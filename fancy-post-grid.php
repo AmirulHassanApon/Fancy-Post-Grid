@@ -55,6 +55,3 @@ function fancy_post_grid_register_image_sizes() {
     add_image_size( 'fancy_post_portrait', 421, 550, true );    // Portrait size with 400x800 dimensions
 }
 add_action( 'after_setup_theme', 'fancy_post_grid_register_image_sizes' );
-
-
-
