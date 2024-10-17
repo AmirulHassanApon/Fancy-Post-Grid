@@ -32,7 +32,7 @@ function fancy_post_grid_metabox_shortcode_callback( $post ) {
     $fpg_limit                                  = get_post_meta( $post->ID, 'fpg_limit', true );
 
     if ( empty( $fpg_limit ) ) {
-        $fpg_limit = '-1'; 
+        $fpg_limit = '5'; 
     }
     $fpg_filter_categories                      = get_post_meta( $post->ID, 'fpg_filter_categories', true );
     $fpg_filter_tags                            = get_post_meta( $post->ID, 'fpg_filter_tags', true );
@@ -58,21 +58,26 @@ function fancy_post_grid_metabox_shortcode_callback( $post ) {
         $fpg_layout_select = 'grid'; // Set default to 'grid'
     }
     $fancy_post_grid_style                      = get_post_meta( $post->ID, 'fancy_post_grid_style', true );
-    
+    if ( empty( $fancy_post_grid_style ) ) {
+        $fancy_post_grid_style = 'style1'; // Set default to 'style1'
+    }
     $fancy_slider_style                         = get_post_meta( $post->ID, 'fancy_slider_style', true );
+    if ( empty( $fancy_slider_style ) ) {
+        $fancy_slider_style = 'sliderstyle1'; // Set default to 'style1'
+    }
 
     $fancy_list_style                         = get_post_meta( $post->ID, 'fancy_list_style', true );
-
+    if ( empty( $fancy_list_style ) ) {
+        $fancy_list_style = 'liststyle1'; // Set default to 'style1'
+    }
     $fancy_isotope_style                         = get_post_meta( $post->ID, 'fancy_isotope_style', true );
+    if ( empty( $fancy_isotope_style ) ) {
+        $fancy_isotope_style= 'isotopestyle1'; // Set default to 'style1'
+    }
     
     $fancy_post_pagination                      = get_post_meta( $post->ID, 'fancy_post_pagination', true );
-    if ( empty( $fancy_post_pagination ) ) {
-        $fancy_post_pagination = 'on'; 
-    }
     $fpg_post_per_page                          = get_post_meta( $post->ID, 'fpg_post_per_page', true );
-    if ( empty( $fpg_post_per_page ) ) {
-        $fpg_post_per_page = '9'; 
-    }
+
     // Column
     $fancy_post_cl_lg                           = get_post_meta( $post->ID, 'fancy_post_cl_lg', true );
     if ( empty( $fancy_post_cl_lg ) ) {
@@ -119,9 +124,9 @@ function fancy_post_grid_metabox_shortcode_callback( $post ) {
         $fancy_link_details = 'on'; 
     }
     $fancy_link_target                          = get_post_meta( $post->ID, 'fancy_link_target', true );
-    if ( empty( $fancy_link_target ) ) {
-        $fancy_link_target = 'same'; 
-    }
+    // if ( empty( $fancy_link_target ) ) {
+    //     $fancy_link_target = 'same'; 
+    // }
 
     $fancy_keyboard                          = get_post_meta( $post->ID, 'fancy_keyboard', true );
     if ( empty( $fancy_keyboard ) ) {
@@ -209,7 +214,7 @@ function fancy_post_grid_metabox_shortcode_callback( $post ) {
     }
     $fancy_button_border_style                  = get_post_meta( $post->ID, 'fancy_button_border_style', true );
     if ( empty( $fancy_button_border_style ) ) {
-        $fancy_button_border_style = 'unset'; 
+        $fancy_button_border_style = 'dotted'; 
     }
 
     $fancy_post_read_more_border_radius         = get_post_meta( $post->ID, 'fancy_post_read_more_border_radius', true );
@@ -315,7 +320,7 @@ function fancy_post_grid_metabox_shortcode_callback( $post ) {
     
     $fpg_title_font_weight                      = get_post_meta( $post->ID,'fpg_title_font_weight', true ); 
     if ( empty( $fpg_title_font_weight ) ) {
-        $fpg_title_font_weight = '600'; 
+        $fpg_title_font_weight = '700'; 
     }
      
     $fpg_category_color = get_post_meta( $post->ID, 'fpg_category_color', true );
@@ -327,16 +332,24 @@ function fancy_post_grid_metabox_shortcode_callback( $post ) {
 
     //Title Hover
     $fpg_title_hover_color                      = get_post_meta( $post->ID,'fpg_title_hover_color', true); 
+    
+    
 
     //Excerpt
     $fpg_excerpt_color                          = get_post_meta( $post->ID,'fpg_excerpt_color', true); // Default to black if not set
     $fpg_excerpt_size                           = get_post_meta( $post->ID,'fpg_excerpt_size', true); 
     
     $fpg_excerpt_font_weight                    = get_post_meta( $post->ID,'fpg_excerpt_font_weight', true ); 
-
+    if ( empty( $fpg_excerpt_font_weight ) ) {
+        $fpg_excerpt_font_weight = '400'; 
+    }
     $fpg_button_font_size                    = get_post_meta( $post->ID,'fpg_button_font_size', true ); 
     $fpg_button_font_weight                    = get_post_meta( $post->ID,'fpg_button_font_weight', true ); 
+    if ( empty( $fpg_button_font_weight ) ) {
+        $fpg_button_font_weight = '400'; 
+    }
     
+
     // Pagination Style
     $fpg_pagination_color               = get_post_meta( $post->ID, 'fpg_pagination_color', true );
     $fpg_pagination_background          = get_post_meta( $post->ID, 'fpg_pagination_background', true );
@@ -367,11 +380,14 @@ function fancy_post_grid_metabox_shortcode_callback( $post ) {
     $fpg_meta_gap                            = get_post_meta( $post->ID,'fpg_meta_gap', true); 
     $fpg_meta_size                           = get_post_meta( $post->ID,'fpg_meta_size', true); 
     $fpg_meta_bgcolor                        = get_post_meta( $post->ID,'fpg_meta_bgcolor', true); 
-    $fpg_date_color                    = get_post_meta( $post->ID,'fpg_date_color', true); 
+     $fpg_date_color                    = get_post_meta( $post->ID,'fpg_date_color', true); 
     $fpg_date_bg_color                  = get_post_meta( $post->ID,'fpg_date_bg_color', true); 
     $fpg_date_padding                   = get_post_meta( $post->ID,'fpg_date_padding', true); 
     
     $fpg_meta_font_weight                    = get_post_meta( $post->ID,'fpg_meta_font_weight', true ); 
+    if ( empty( $fpg_meta_font_weight ) ) {
+        $fpg_meta_font_weight = '400'; 
+    }
 
     // Output for the metabox content
     ?>
@@ -1598,7 +1614,7 @@ function fancy_post_grid_metabox_shortcode_callback( $post ) {
                     </div>  
                     <div class="fpg-post-select-main">
                         <!-- Alignment -->
-                        <div class="fpg-read-more-alignment fpg-common" id="fpg_read_more_alignment_main">
+                        <div class="fpg-read-more-alignment fpg-common">
                             
                             <label for="fancy_post_read_more_alignment"><?php esc_html_e( 'Alignment:', 'fancy-post-grid' ); ?></label>
                             <div class="fpg-container">
@@ -2023,18 +2039,10 @@ function fancy_post_grid_metabox_shortcode_callback( $post ) {
                         </div>
 
                         <!-- Button Font Weight -->
-                        
                         <div class="fpg-font-weight-box">
-                            <label for="fpg_button_font_weight"><?php esc_html_e( 'Font Weight:', 'fancy-post-grid' ); ?></label>
-                            <select id="fpg_button_font_weight" name="fpg_button_font_weight">
-                                <?php 
-                                $weights = array( '100', '200', '300', '400', '500', '600', '700', '800', '900' );
-                                foreach ( $weights as $weight ) {
-                                    echo '<option value="' . esc_attr( $weight ) . '"' . selected( $fpg_button_font_weight, $weight, false ) . '>' . esc_html( $weight ) . '</option>';
-                                }
-                                ?>
-                            </select>
-                        </div> 
+                            <label for="fpg_button_font_weight"><?php esc_html_e( ' Font Weight:', 'fancy-post-grid' ); ?></label>
+                            <input type="text" id="fpg_button_font_weight" name="fpg_button_font_weight" value="<?php echo esc_attr( $fpg_button_font_weight ); ?>" placeholder="e.g., 400" />
+                        </div>
                     </div>
                                          
                 </fieldset>
