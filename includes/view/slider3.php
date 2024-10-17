@@ -1,32 +1,22 @@
 <?php
-if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 ob_start();
 ?>
 <!-- ==== Blog Slider Layout 3 ==== -->
-<section class="rs-blog-layout-3" style="
-        <?php if (!empty($fpg_section_background_color)) : ?>
-            background-color: <?php echo esc_attr($fpg_section_background_color); ?>;
-        <?php endif; ?>
-        <?php if (!empty($fpg_section_margin)) : ?>
-            margin: <?php echo esc_attr($fpg_section_margin); ?>;
-        <?php endif; ?>
-        <?php if (!empty($fpg_section_padding)) : ?>
-            padding: <?php echo esc_attr($fpg_section_padding); ?>;
-        <?php endif; ?>">
+<section class="rs-blog-layout-3">
     <div class="container">
         <div class="row">
             <?php 
-                $pagination_config = '';
-                
-                if ($fpg_pagination_slider === 'normal') {
-                    $pagination_config = '"pagination": {"el": ".swiper-pagination", "clickable": true}';
-                } elseif ($fpg_pagination_slider === 'dynamic') {
-                    $pagination_config = '"pagination": {"el": ".swiper-pagination", "dynamicBullets": true, "clickable": true}';
-                } elseif ($fpg_pagination_slider === 'progress') {
-                    $pagination_config = '"pagination": {"el": ".swiper-pagination", "type": "progressbar"}';
-                } elseif ($fpg_pagination_slider === 'fraction') {
-                    $pagination_config = '"pagination": {"el": ".swiper-pagination", "type": "fraction"}';
-                }
+            $pagination_config = '';
+            
+            if ($fpg_pagination_slider === 'normal') {
+                $pagination_config = '"pagination": {"el": ".swiper-pagination", "clickable": true}';
+            } elseif ($fpg_pagination_slider === 'dynamic') {
+                $pagination_config = '"pagination": {"el": ".swiper-pagination", "dynamicBullets": true, "clickable": true}';
+            } elseif ($fpg_pagination_slider === 'progress') {
+                $pagination_config = '"pagination": {"el": ".swiper-pagination", "type": "progressbar"}';
+            } elseif ($fpg_pagination_slider === 'fraction') {
+                $pagination_config = '"pagination": {"el": ".swiper-pagination", "type": "fraction"}';
+            }
 
             ?>
             <div class="col-lg-12">
@@ -36,7 +26,7 @@ ob_start();
                         "slidesPerView":<?php echo esc_attr($fancy_post_cl_lg_slider); ?>,
                         "freeMode":<?php echo esc_attr($fancy_free_mode); ?>, 
                         "loop": <?php echo esc_attr($fancy_loop); ?>, 
-                        <?php echo esc_attr($pagination_config); ?>,
+                        <?php echo $pagination_config; ?>,
 
                         "autoplay":{"delay":"<?php echo esc_attr($fancy_autoplay); ?>"},
                         "keyboard": {"enabled":"<?php echo esc_attr($fancy_keyboard); ?>"},                        
@@ -186,17 +176,7 @@ ob_start();
                                     $hover_class = $hover_animation !== 'none' ? 'hover-' . esc_attr($hover_animation) : '';
                             ?>
                                 <div class="swiper-slide">
-                                    <div class="rs-blog__single" style="
-                                    <?php if (!empty($fpg_single_section_background_color)) : ?>
-                                        background-color: <?php echo esc_attr($fpg_single_section_background_color); ?>;
-                                    <?php endif; ?>
-                                    <?php if (!empty($fpg_single_section_margin)) : ?>
-                                        margin: <?php echo esc_attr($fpg_single_section_margin); ?>;
-                                    <?php endif; ?>
-                                    <?php if (!empty($fpg_single_section_padding)) : ?>
-                                        padding: <?php echo esc_attr($fpg_single_section_padding); ?>;
-                                    <?php endif; ?>">
-
+                                    <div class="rs-blog__single <?php echo esc_attr($main_alignment_class); ?> <?php echo esc_attr($hover_class); ?>">
                                         <?php if (!$hide_feature_image && $fpg_field_group_image) : ?>
                                         <div class="thumb">
 
@@ -216,8 +196,7 @@ ob_start();
 
                                                 ?>
                                                 <a href="<?php the_permalink(); ?>" <?php echo esc_attr($target_blank); ?>>
-                                                    <img src="<?php echo esc_url( $feature_image_url ); ?>" alt="<?php echo esc_attr( $alt_text ); ?>">
-
+                                                    <img src="<?php echo esc_url($feature_image_url); ?>" alt="<?php echo $alt_text; ?>">
                                                 </a>
                                             <?php endif; ?>
                                             <div class="rs-contact-icon">
@@ -228,208 +207,67 @@ ob_start();
                                             </div>
                                         </div>
                                         <?php endif; ?>
-                                        <div class="content" style="
-                                            <?php if (!empty($fpg_single_section_border_color)) : ?>
-                                                border-color: <?php echo esc_attr($fpg_single_section_border_color); ?>;
-                                            <?php endif; ?>
-                                            <?php if (!empty($fancy_post_border_style)) : ?>
-                                                border-style: <?php echo esc_attr($fancy_post_border_style); ?>;
-                                            <?php endif; ?>
-                                            <?php if (!empty($fancy_post_border_width)) : ?>
-                                                border-width: <?php echo esc_attr($fancy_post_border_width); ?>;
-                                            <?php endif; ?>
-                                            <?php if (!empty($fpg_single_content_section_padding)) : ?>
-                                                padding: <?php echo esc_attr($fpg_single_content_section_padding); ?>;
-                                            <?php endif; ?>">
+                                        <div class="content">
                                             <?php if ($fpg_field_group_categories) : ?>
-                                                <div class="rs-blog-category">
-                                                    <?php 
-                                                    $categories = get_the_category();
-                                                    if (!empty($categories)) {
-                                                        foreach ($categories as $category) {
-                                                            $hover_color = !empty($fpg_meta_hover_color) ? esc_attr($fpg_meta_hover_color) : '';
-                                                            $default_color = !empty($fpg_meta_color) ? esc_attr($fpg_meta_color) : '';
-                                                            $inline_style = '';
-                                                            
-                                                            // Add dynamic styles for color, font-size, and font-weight
-                                                            if (!empty($fpg_meta_color)) {
-                                                                $inline_style .= 'color: ' . esc_attr($fpg_meta_color) . ';';
-                                                            }
-                                                            if (!empty($fpg_meta_size)) {
-                                                                $inline_style .= 'font-size: ' . esc_attr($fpg_meta_size) . 'px;';
-                                                            }
-                                                            if (!empty($fpg_meta_font_weight)) {
-                                                                $inline_style .= 'font-weight: ' . esc_attr($fpg_meta_font_weight) . ';';
-                                                            }
-                                                            
-                                                            
-                                                            echo '<a href="' . esc_url(get_category_link($category->term_id)) . '" 
-                                                                onmouseover="this.style.color=\'' . $hover_color . '\'" 
-                                                                onmouseout="this.style.color=\'' . $default_color . '\'" 
-                                                                style="' . $inline_style . '">' 
-                                                                . esc_html($category->name) . 
-                                                                '</a>';
-                                                        }
-                                                    }
-                                                    ?>
-                                                </div>     
+                                            <div class="rs-blog-category">
+                                                <?php
+                                                $categories = get_the_category();
+                                                if (!empty($categories)) {
+                                                    $category = $categories[0];
+                                                    echo '<a href="' . esc_url(get_category_link($category->term_id)) . '"><div class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="6" height="6" viewBox="0 0 6 6" fill="none"><path d="M3 0L5.59808 1.5V4.5L3 6L0.401924 4.5V1.5L3 0Z" fill="#513DE8"></path><defs><linearGradient x1="-3.93273e-08" y1="0.803572" x2="6.33755" y2="1.30989" gradientUnits="userSpaceOnUse"><stop stop-color="#513DE8" offset="1"></stop><stop offset="1" stop-color="#8366E3"></stop></linearGradient></defs></svg></div>' . esc_html($category->name) . '</a>';
+                                                }
+                                                ?>
+                                            </div>
                                             <?php endif; ?>
                                             
-                                            
-                                            <!-- Title -->
                                             <?php if ($fpg_field_group_title) : ?>
-                                                <<?php echo esc_attr($title_tag); ?> class="title" style="
-                                                    <?php if (!empty($fpg_title_order)) : ?>
-                                                        order: <?php echo esc_attr($fpg_title_order); ?>;
-                                                    <?php endif; ?>
-                                                    padding: <?php echo esc_attr($fpg_title_padding); ?>;
-                                                    margin: <?php echo esc_attr($fpg_title_margin); ?>;
-                                                    <?php if (!empty($fpg_title_border_color)) : ?>
-                                                        border-color: <?php echo esc_attr($fpg_title_border_color); ?>;
-                                                    <?php endif; ?>
-                                                    <?php if (!empty($fpg_title_border_style)) : ?>
-                                                        border-style: <?php echo esc_attr($fpg_title_border_style); ?>;
-                                                    <?php endif; ?>
-                                                    <?php if (!empty($fpg_title_border_width)) : ?>
-                                                        border-width: <?php echo esc_attr($fpg_title_border_width); ?>;
-                                                    <?php endif; ?>">
-
-                                                    <?php if ($fancy_link_details === 'on') : ?>
-                                                        <a href="<?php the_permalink(); ?>"
-                                                           <?php echo esc_attr($target_blank); ?>
-                                                           class="title-link" style="
-                                                           <?php if (!empty($fpg_title_color)) : ?>
-                                                              color: <?php echo esc_attr($fpg_title_color); ?>;
-                                                           <?php endif; ?>
-                                                           <?php if (!empty($fpg_title_font_size)) : ?>
-                                                              font-size: <?php echo esc_attr($fpg_title_font_size); ?>px;
-                                                           <?php endif; ?>
-                                                           <?php if (!empty($fpg_title_font_weight)) : ?>
-                                                              font-weight: <?php echo esc_attr($fpg_title_font_weight); ?>;
-                                                           <?php endif; ?>"
-                                                           onmouseover="this.style.color='<?php echo esc_attr($fpg_title_hover_color); ?>';"
-                                                           onmouseout="this.style.color='<?php echo esc_attr($fpg_title_color); ?>';">
-                                                            <?php
-                                                                if ($fancy_post_title_limit_type === 'words') {
-                                                                    echo esc_html(wp_trim_words(get_the_title(), $fancy_post_title_limit, $title_more_text));
-                                                                } elseif ($fancy_post_title_limit_type === 'characters') {
-                                                                    echo esc_html(mb_strimwidth(get_the_title(), 0, $fancy_post_title_limit, $title_more_text));
-                                                                }
-                                                            ?>
-                                                        </a>
-                                                    <?php else : ?>
-                                                        <?php
-                                                            if ($fancy_post_title_limit_type === 'words') {
-                                                                echo esc_html(wp_trim_words(get_the_title(), $fancy_post_title_limit, $title_more_text));
-                                                            } elseif ($fancy_post_title_limit_type === 'characters') {
-                                                                echo esc_html(mb_strimwidth(get_the_title(), 0, $fancy_post_title_limit, $title_more_text));
-                                                            }
-                                                        ?>
-                                                    <?php endif; ?>
-                                                </<?php echo esc_attr($title_tag); ?>>
-                                            <?php endif; ?>
-
-                                            <?php if ($fpg_field_group_post_date) : ?>
-                                            <ul class="blog-meta <?php echo esc_attr($meta_alignment_class); ?>" style ="
-                                                <?php if (!empty($fpg_meta_order)) : ?>
-                                                    order: <?php echo esc_attr($fpg_meta_order); ?>;
+                                            <<?php echo esc_attr($title_tag); ?> class="title <?php echo esc_attr($title_alignment_class); ?>">
+                                                <?php if ($fancy_link_details === 'on') : ?>
+                                                    <a href="<?php the_permalink(); ?>"
+                                                       <?php echo $target_blank; ?>
+                                                       class="title-link">
+                                                        <?php echo wp_trim_words(get_the_title(), $fancy_post_title_limit, $title_more_text); ?>
+                                                    </a>
+                                                <?php else : ?>
+                                                    <?php echo wp_trim_words(get_the_title(), $fancy_post_title_limit, $title_more_text); ?>
                                                 <?php endif; ?>
-                                                <?php if (!empty($fpg_meta_padding)) : ?>
-                                                    padding: <?php echo esc_attr($fpg_meta_padding); ?>;
-                                                <?php endif; ?>
-                                                <?php if (!empty($fpg_meta_margin)) : ?>
-                                                    margin: <?php echo esc_attr($fpg_meta_margin); ?>;
-                                                <?php endif; ?>
-                                                <?php if (!empty($fpg_meta_gap)) : ?>
-                                                    gap: <?php echo esc_attr($fpg_meta_gap); ?>;
-                                                <?php endif; ?>">
+                                            </<?php echo esc_attr($title_tag); ?>>
+                                        <?php endif; ?>
+                                        <?php if ($fpg_field_group_post_date) : ?>
+                                            <ul class="blog-meta <?php echo esc_attr($meta_alignment_class); ?>">
                                                 
-                                                <!-- META DATE -->
-                                                <?php if ($fpg_field_group_post_date) : ?>
-                                                    <li class="meta-date" style="<?php if (!empty($fpg_meta_color)) : ?>
-                                                        color: <?php echo esc_attr($fpg_meta_color); ?>;
-                                                    <?php endif; ?>
-                                                    <?php if (!empty($fpg_meta_size)) : ?>
-                                                        font-size: <?php echo esc_attr($fpg_meta_size); ?>px;
-                                                    <?php endif; ?>
-                                                    <?php if (!empty($fpg_meta_font_weight)) : ?>
-                                                        font-weight: <?php echo esc_attr($fpg_meta_font_weight); ?>;
-                                                    <?php endif; ?>">
-
-                                                        <i class="ri-calendar-2-line" style="
-                                                            <?php if (!empty($fpg_meta_color)) : ?>
-                                                                color: <?php echo esc_attr($fpg_meta_color); ?>;
-                                                            <?php endif; ?>
-                                                            <?php if (!empty($fpg_meta_size)) : ?>
-                                                                font-size: <?php echo esc_attr($fpg_meta_size); ?>px;
-                                                            <?php endif; ?>
-                                                            <?php if (!empty($fpg_meta_font_weight)) : ?>
-                                                                font-weight: <?php echo esc_attr($fpg_meta_font_weight); ?>;
-                                                            <?php endif; ?>"> 
-                                                        </i>
-                                                        <?php echo esc_html( get_the_date( 'M d, Y' ) ); ?>
-
-                                                    </li>
-                                                <?php endif; ?>
+                                                <li class="meta-date">
+                                                    <?php echo get_the_date('M d, Y'); ?>
+                                                </li>
+                                                <li>
+                                                    <div class="rs-icon">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="4" height="4" viewBox="0 0 6 6" fill="none">
+                                                            <path d="M3 0L5.59808 1.5V4.5L3 6L0.401924 4.5V1.5L3 0Z" fill="#513DE8"></path>
+                                                            <defs>
+                                                                <linearGradient x1="-3.93273e-08" y1="0.803572" x2="6.33755" y2="1.30989" gradientUnits="userSpaceOnUse">
+                                                                    <stop stop-color="#513DE8" offset="1"></stop>
+                                                                    <stop offset="1" stop-color="#8366E3"></stop>
+                                                                </linearGradient>
+                                                            </defs>
+                                                        </svg>
+                                                    </div>    
+                                                    8 min read
+                                                </li>
                                             </ul>
                                             <?php endif; ?>
-                                            
-
-                                            <!-- Excerpt -->
                                             <?php if ($fpg_field_group_excerpt) : ?>
-                                                <div class="desc <?php echo esc_attr($excerpt_alignment_class); ?> " style ="
-                                                    <?php if (!empty($fpg_excerpt_order)) : ?>
-                                                        order: <?php echo esc_attr($fpg_excerpt_order); ?>;
-                                                    <?php endif; ?>
-                                                    <?php if (!empty($fpg_excerpt_padding)) : ?>
-                                                        padding: <?php echo esc_attr($fpg_excerpt_padding); ?>;
-                                                    <?php endif; ?>
-                                                    <?php if (!empty($fpg_excerpt_margin)) : ?>
-                                                        margin: <?php echo esc_attr($fpg_excerpt_margin); ?>;
-                                                    <?php endif; ?> ">
-
-                                                    <p style="<?php if (!empty($fpg_excerpt_color)) : ?>
-                                                        color: <?php echo esc_attr($fpg_excerpt_color); ?>;
-                                                    <?php endif; ?>
-                                                    <?php if (!empty($fpg_excerpt_size)) : ?>
-                                                        font-size: <?php echo esc_attr($fpg_excerpt_size); ?>px;
-                                                    <?php endif; ?>
-                                                    <?php if (!empty($fpg_excerpt_font_weight)) : ?>
-                                                        font-weight: <?php echo esc_attr($fpg_excerpt_font_weight); ?>;
-                                                    <?php endif; ?>">
-                                                    <?php
-                                                        $excerpt = get_the_content();
-
-                                                        if ($fancy_post_excerpt_limit_type === 'words') {
-                                                            echo esc_html(wp_trim_words($excerpt, $fancy_post_excerpt_limit, $excerpt_more_text));
-                                                        } else {
-                                                            // Strip tags to avoid breaking HTML, then apply character limit
-                                                            $excerpt = wp_strip_all_tags($excerpt);
-                                                            echo esc_html(mb_strimwidth($excerpt, 0, $fancy_post_excerpt_limit, $excerpt_more_text));
-                                                        }
-                                                    ?>
-                                                    </p>
-                                                </div>
+                                                <p class="desc <?php echo esc_attr($excerpt_alignment_class); ?>">
+                                                    <?php echo wp_trim_words(get_the_content(), $fancy_post_excerpt_limit, $excerpt_more_text); ?>
+                                                </p>
                                             <?php endif; ?>
-
                                             <div class="rs-blog-author">
-                                                <!-- Author -->
                                                 <?php if ($fpg_field_group_author) : ?>
                                                 <div class="user">                   
                                                     <a href="<?php the_permalink(); ?>">
                                                         <div class="author-thumb" style="color: <?php echo esc_attr($fpg_meta_author_color); ?>; ">
                                                             <?php echo get_avatar(get_the_author_meta('ID'), 32); ?>
                                                         </div>
-                                                        <span style="
-                                                            <?php if (!empty($fpg_meta_color)) : ?>
-                                                                color: <?php echo esc_attr($fpg_meta_color); ?>;
-                                                            <?php endif; ?>
-                                                            <?php if (!empty($fpg_meta_size)) : ?>
-                                                                font-size: <?php echo esc_attr($fpg_meta_size); ?>px;
-                                                            <?php endif; ?>
-                                                            <?php if (!empty($fpg_meta_font_weight)) : ?>
-                                                                font-weight: <?php echo esc_attr($fpg_meta_font_weight); ?>;
-                                                            <?php endif; ?>">
+                                                        <span>
                                                              <?php esc_html_e('by', 'fancy-post-grid'); ?>  
                                                             <?php the_author(); ?>
                                                             
@@ -437,51 +275,15 @@ ob_start();
                                                     </a>
                                                 </div>
                                                 <?php endif; ?>
-                                                <!-- Button -->
-                                                <?php if ($fpg_field_group_read_more) : ?>
-                                                    
-                                                    <div class="rs-link <?php echo esc_attr($button_alignment_class); ?>" style="
-                                                        <?php if (!empty($fpg_button_padding)) : ?>
-                                                            padding: <?php echo esc_attr($fpg_button_padding); ?>;
-                                                        <?php endif; ?>
-                                                        <?php if (!empty($fpg_button_margin)) : ?>
-                                                            margin: <?php echo esc_attr($fpg_button_margin); ?>;
-                                                        <?php endif; ?>
-                                                        <?php if (!empty($fpg_button_order)) : ?>
-                                                            order: <?php echo esc_attr($fpg_button_order); ?>;
-                                                        <?php endif; ?>">
-
-                                                        <a class="read-more <?php echo esc_attr($button_class); ?>" 
-                                                           href="<?php the_permalink(); ?>" 
-                                                           <?php echo esc_attr($target_blank); ?> 
-                                                           style="
-                                                                <?php if (!empty($fpg_button_background_color)) : ?>
-                                                                    background-color: <?php echo esc_attr($fpg_button_background_color); ?>;
-                                                                <?php endif; ?>
-                                                                <?php if (!empty($fpg_button_text_color)) : ?>
-                                                                    color: <?php echo esc_attr($fpg_button_text_color); ?>;
-                                                                <?php endif; ?>
-                                                                <?php if (!empty($fancy_post_read_more_border_radius)) : ?>
-                                                                    border-radius: <?php echo esc_attr($fancy_post_read_more_border_radius); ?>;
-                                                                <?php endif; ?>
-                                                                <?php if (!empty($fpg_border_color)) : ?>
-                                                                    border-color: <?php echo esc_attr($fpg_border_color); ?>;
-                                                                <?php endif; ?>
-                                                                <?php if (!empty($fancy_button_border_style)) : ?>
-                                                                    border-style: <?php echo esc_attr($fancy_button_border_style); ?>;
-                                                                <?php endif; ?>
-                                                                <?php if (!empty($fancy_post_border_width)) : ?>
-                                                                    border-width: <?php echo esc_attr($fancy_post_border_width); ?>;
-                                                                <?php endif; ?>"
-                                                           onmouseover="this.style.color='<?php echo esc_attr($fpg_button_text_hover_color); ?>'; this.style.backgroundColor='<?php echo esc_attr($fpg_button_hover_background_color); ?>';"
-                                                           onmouseout="this.style.color='<?php echo esc_attr($fpg_button_text_color); ?>'; this.style.backgroundColor='<?php echo esc_attr($fpg_button_background_color); ?>';">
-                                                           
-                                                            <?php echo esc_html($fancy_post_read_more_text); ?>
-                                                            <i class="ri-arrow-right-line"></i>
-                                                        </a>
-                                                    </div>
+                                                <!-- Display the custom excerpt here -->
+                                                <?php if ( $fpg_field_group_read_more) : ?>
+                                                <div class="rs-link <?php echo esc_attr($button_alignment_class); ?>">
+                                                    <a class="read-more <?php echo esc_attr($button_class); ?>" href="<?php the_permalink(); ?>" <?php echo $target_blank; ?>>
+                                                        <?php echo esc_html($fancy_post_read_more_text); ?>
+                                                        <i class="ri-arrow-right-line"></i>
+                                                    </a>
+                                                </div>
                                                 <?php endif; ?>
-                                                <!-- END Button -->
                                             </div>
                                         </div>
                                     </div>
@@ -506,7 +308,243 @@ ob_start();
         </div>
     </div>
 </section>
+<style type="text/css">
+    /* General Styles */
+    .rs-blog-layout-3 {
+        <?php if (!empty($fpg_section_background_color)) : ?>
+            background-color: <?php echo esc_attr($fpg_section_background_color); ?>;
+        <?php endif; ?>
+        <?php if (!empty($fpg_section_margin)) : ?>
+            margin: <?php echo esc_attr($fpg_section_margin); ?>;
+        <?php endif; ?>
+        <?php if (!empty($fpg_section_padding)) : ?>
+            padding: <?php echo esc_attr($fpg_section_padding); ?>;
+        <?php endif; ?>
+    }
 
+    /* Single Item Styles */
+    .rs-blog-layout-3 .rs-blog__single {
+        <?php if (!empty($fpg_single_section_background_color)) : ?>
+            background-color: <?php echo esc_attr($fpg_single_section_background_color); ?>;
+        <?php endif; ?>
+        <?php if (!empty($fpg_single_section_margin)) : ?>
+            margin: <?php echo esc_attr($fpg_single_section_margin); ?>;
+        <?php endif; ?>
+        <?php if (!empty($fpg_single_section_padding)) : ?>
+            padding: <?php echo esc_attr($fpg_single_section_padding); ?>;
+        <?php endif; ?>
+        <?php if (!empty($fpg_single_section_border_color)) : ?>
+            border-color: <?php echo esc_attr($fpg_single_section_border_color); ?>;
+        <?php endif; ?>
+        <?php if (!empty($fancy_post_border_style)) : ?>
+            border-style: <?php echo esc_attr($fancy_post_border_style); ?>;
+        <?php endif; ?>
+        <?php if (!empty($fancy_post_border_width)) : ?>
+            border-width: <?php echo esc_attr($fancy_post_border_width); ?>;
+        <?php endif; ?>
+        <?php if (!empty($fancy_post_section_border_radius)) : ?>
+            border-radius: <?php echo esc_attr($fancy_post_section_border_radius); ?>;
+        <?php endif; ?>
+    }
+
+    .rs-blog-layout-3 .rs-blog__single .thumb{        
+        <?php if (!empty($fancy_post_image_border_radius)) : ?>
+            border-radius: <?php echo esc_attr($fancy_post_image_border_radius); ?>;
+        <?php endif; ?>
+    }
+
+    .rs-blog-layout-3 .rs-blog__single .content {
+        <?php if (!empty($fpg_single_content_section_padding)) : ?>
+            padding: <?php echo esc_attr($fpg_single_content_section_padding); ?>;
+        <?php endif; ?>
+    }
+
+    /* Title Styles */
+    .rs-blog-layout-3 .rs-blog__single .content .title {
+        
+        <?php if (!empty($fpg_title_order)) : ?>
+            order: <?php echo esc_attr($fpg_title_order); ?>;
+        <?php endif; ?>
+    }
+
+    .rs-blog-layout-3 .rs-blog__single .content .title a {
+        <?php if (!empty($fpg_title_color)) : ?>
+            color: <?php echo esc_attr($fpg_title_color); ?>;
+        <?php endif; ?>
+        <?php if (!empty($fpg_title_font_size)) : ?>
+            font-size: <?php echo esc_attr($fpg_title_font_size); ?>px;
+        <?php endif; ?>
+        <?php if (!empty($fpg_title_line_height)) : ?>
+            line-height: <?php echo esc_attr($fpg_title_line_height); ?>;
+        <?php endif; ?>
+        <?php if (!empty($fpg_title_font_weight)) : ?>
+            font-weight: <?php echo esc_attr($fpg_title_font_weight); ?>;
+        <?php endif; ?>
+        <?php if (!empty($fpg_title_padding)) : ?>
+            padding: <?php echo esc_attr($fpg_title_padding); ?>;
+        <?php endif; ?>
+        <?php if (!empty($fpg_title_margin)) : ?>
+            margin: <?php echo esc_attr($fpg_title_margin); ?>;
+        <?php endif; ?>
+        <?php if (!empty($fpg_title_border_color)) : ?>
+            border-color: <?php echo esc_attr($fpg_title_border_color); ?>;
+        <?php endif; ?>
+        <?php if (!empty($fpg_title_border_style)) : ?>
+            border-style: <?php echo esc_attr($fpg_title_border_style); ?>;
+        <?php endif; ?>
+        <?php if (!empty($fpg_title_border_width)) : ?>
+            border-width: <?php echo esc_attr($fpg_title_border_width); ?>;
+        <?php endif; ?>
+    }
+
+    .rs-blog-layout-3 .rs-blog__single .content .title a:hover {
+        <?php if (!empty($fpg_title_hover_color)) : ?>
+            color: <?php echo esc_attr($fpg_title_hover_color); ?>;
+        <?php endif; ?>
+    }
+
+    
+
+    /* Excerpt Styles */
+    .rs-blog-layout-3 .rs-blog__single .content .desc {
+        <?php if (!empty($fpg_excerpt_color)) : ?>
+            color: <?php echo esc_attr($fpg_excerpt_color); ?>;
+        <?php endif; ?>
+        <?php if (!empty($fpg_excerpt_size)) : ?>
+            font-size: <?php echo esc_attr($fpg_excerpt_size); ?>px;
+        <?php endif; ?>
+        <?php if (!empty($fpg_excerpt_font_weight)) : ?>
+            font-weight: <?php echo esc_attr($fpg_excerpt_font_weight); ?>;
+        <?php endif; ?>
+        <?php if (!empty($fpg_excerpt_padding)) : ?>
+            padding: <?php echo esc_attr($fpg_excerpt_padding); ?>;
+        <?php endif; ?>
+        <?php if (!empty($fpg_excerpt_margin)) : ?>
+            margin: <?php echo esc_attr($fpg_excerpt_margin); ?>;
+        <?php endif; ?>
+        <?php if (!empty($fpg_excerpt_line_height)) : ?>
+            line-height: <?php echo esc_attr($fpg_excerpt_line_height); ?>;
+        <?php endif; ?>
+        <?php if (!empty($fpg_excerpt_order)) : ?>
+            order: <?php echo esc_attr($fpg_excerpt_order); ?>;
+        <?php endif; ?>
+    }
+
+
+    /* Meta Data Styles */
+
+    .rs-blog-layout-3 .rs-blog__single .content ul{
+        <?php if (!empty($fpg_meta_order)) : ?>
+            order: <?php echo esc_attr($fpg_meta_order); ?>;
+        <?php endif; ?>
+        <?php if (!empty($fpg_meta_padding)) : ?>
+            padding: <?php echo esc_attr($fpg_meta_padding); ?>;
+        <?php endif; ?>
+        <?php if (!empty($fpg_meta_margin)) : ?>
+            margin: <?php echo esc_attr($fpg_meta_margin); ?>;
+        <?php endif; ?>
+        <?php if (!empty($fpg_meta_gap)) : ?>
+            gap: <?php echo esc_attr($fpg_meta_gap); ?>;
+        <?php endif; ?>
+    }
+
+    .rs-blog-layout-3 .rs-blog__single .content ul li,
+    .rs-blog-layout-3 .rs-blog__single .content ul li i,
+    .rs-blog-layout-3 .rs-blog__single .content ul li a,
+    .rs-blog-layout-3 .rs-blog__single .content .rs-blog-category a,
+    .rs-blog-layout-3 .rs-blog__single .content .rs-blog-author .user a span
+    {
+        <?php if (!empty($fpg_meta_color)) : ?>
+            color: <?php echo esc_attr($fpg_meta_color); ?>;
+            <?php endif; ?>
+        <?php if (!empty($fpg_meta_size)) : ?>
+            font-size: <?php echo esc_attr($fpg_meta_size); ?>px;
+        <?php endif; ?>
+        <?php if (!empty($fpg_meta_font_weight)) : ?>
+            font-weight: <?php echo esc_attr($fpg_meta_font_weight); ?>;
+            <?php endif; ?>
+            
+    }
+    .rs-blog-layout-3 .rs-blog__single .content ul li{
+        <?php if (!empty($fpg_meta_line_height)) : ?>
+            line-height: <?php echo esc_attr($fpg_meta_line_height); ?>;
+        <?php endif; ?>        
+    }
+    
+    .rs-blog-layout-3 .rs-blog__single .content ul li .rs-icon svg path,
+    .rs-blog-layout-3 .rs-blog__single .content .rs-blog-category a .icon svg path{
+        <?php if (!empty($fpg_meta_color)) : ?>
+            fill: <?php echo esc_attr($fpg_meta_color); ?>;
+        <?php endif; ?>
+
+    }
+
+
+    .rs-blog-layout-3 .rs-blog__single .content .rs-blog-author .user a:hover span,
+    .rs-blog-layout-3 .rs-blog__single .content .rs-blog-category a:hover{        
+        <?php if (!empty($fpg_meta_hover_color)) : ?>
+            color: <?php echo esc_attr($fpg_meta_hover_color); ?>;
+        <?php endif; ?>
+    }
+
+    /* Button Styles */
+    .rs-blog-layout-3 .rs-blog__single .content .rs-blog-author{
+        <?php if (!empty($fpg_button_order)) : ?>
+            order: <?php echo esc_attr($fpg_button_order); ?>;
+        <?php endif; ?>
+
+    }
+    .rs-blog-layout-3 .rs-blog__single .content .rs-blog-author .rs-link a.<?php echo esc_attr($button_class); ?>{
+        <?php if (!empty($fpg_button_background_color)) : ?>
+            background-color: <?php echo esc_attr($fpg_button_background_color); ?>;
+        <?php endif; ?>
+        <?php if (!empty($fpg_button_text_color)) : ?>
+            color: <?php echo esc_attr($fpg_button_text_color); ?>;
+        <?php endif; ?>
+        <?php if (!empty($fancy_post_read_more_border_radius)) : ?>
+            border-radius: <?php echo esc_attr($fancy_post_read_more_border_radius); ?>;
+        <?php endif; ?>
+        <?php if (!empty($fpg_border_color)) : ?>
+            border-color: <?php echo esc_attr($fpg_border_color); ?>;
+        <?php endif; ?>
+        <?php if (!empty($fancy_button_border_style)) : ?>
+            border-style: <?php echo esc_attr($fancy_button_border_style); ?>;
+        <?php endif; ?>
+        <?php if (!empty($fancy_post_border_width)) : ?>
+            border-width: <?php echo esc_attr($fancy_post_border_width); ?>;
+        <?php endif; ?>
+        <?php if (!empty($fpg_button_font_size)) : ?>
+            font-size: <?php echo esc_attr($fpg_button_font_size); ?>;
+        <?php endif; ?>
+        <?php if (!empty($fpg_button_font_weight)) : ?>
+            font-weight: <?php echo esc_attr($fpg_button_font_weight); ?>;
+        <?php endif; ?>
+        <?php if (!empty($fpg_button_padding)) : ?>
+            padding: <?php echo esc_attr($fpg_button_padding); ?>;
+        <?php endif; ?>
+        <?php if (!empty($fpg_button_margin)) : ?>
+            margin: <?php echo esc_attr($fpg_button_margin); ?>;
+        <?php endif; ?>
+
+    }
+
+
+    .rs-blog-layout-3 .rs-blog__single .content .rs-blog-author .rs-link a.<?php echo esc_attr($button_class); ?>:hover {
+        <?php if (!empty($fpg_button_hover_background_color)) : ?>
+            background-color: <?php echo esc_attr($fpg_button_hover_background_color); ?>;
+        <?php endif; ?>
+        <?php if (!empty($fpg_button_text_hover_color)) : ?>
+            color: <?php echo esc_attr($fpg_button_text_hover_color); ?>;
+        <?php endif; ?>
+    }
+    .rs-blog-layout-3 .rs-blog__single .content .rs-blog-author .rs-link a.<?php echo esc_attr($button_class); ?>::before{
+        <?php if (!empty($fpg_button_border_color)) : ?>
+            background: <?php echo esc_attr($fpg_button_border_color); ?>;
+        <?php endif; ?>
+    }
+
+
+</style>
 
 <?php
 $slider3 = ob_get_clean();
