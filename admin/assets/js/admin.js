@@ -54,9 +54,9 @@
             if (selectedLayout === 'grid') {
                 if (selectedStyle === 'style1') {
                     $('#fpg_field_group_excerpt_main').show();
-                    $('#fpg_field_group_categories_main').show();
-                    $('#fpg_field_group_tag_main').show();
-                    $('#fpg_field_group_comment_count_main').show(); 
+                    $('#fpg_field_group_categories_main').hide();
+                    $('#fpg_field_group_tag_main').hide();
+                    $('#fpg_field_group_comment_count_main').hide(); 
                     $('#fpg_field_group_button_main').show(); 
                     // Ordering
                     $('#fpg_title_order_main').show(); 
@@ -89,6 +89,8 @@
                      
                 }else if (selectedStyle === 'style2') {
                     // Ordering
+                    $('#fpg_field_group_comment_count_main').hide(); 
+                    $('#fpg_field_group_author_main').hide();
                     $('#fpg_title_order_main').show(); 
                     $('#fpg_meta_order_main').show();
                     $('#fpg_excerpt_order_main').show();
@@ -96,8 +98,8 @@
                     $('#fpg_meta_icon_color_main').show();
                     $('#fpg_field_group_excerpt_main').show();
                     $('#fpg_field_group_categories_main').show();
-                    $('#fpg_field_group_tag_main').show();
-                    $('#fpg_field_group_comment_count_main').show(); 
+                    $('#fpg_field_group_tag_main').hide();
+                    
                     $('#fpg_field_group_button_main').show(); 
                     $('#fpg_author_color_main').hide();
                     $('#fpg_author_bg_color_main').hide();
@@ -168,7 +170,7 @@
                     $('#fpg_field_group_categories_main').show();
                     $('#fpg_field_group_tag_main').show();
                     $('#fpg_field_group_comment_count_main').show(); 
-                    $('#fpg_field_group_button_main').show(); 
+                    $('#fpg_field_group_button_main').hide(); 
                     $('#fpg_author_color_main').hide();
                     $('#fpg_author_bg_color_main').hide();
                     $('#fpg_author_padding_main').hide();
@@ -199,9 +201,9 @@
                     $('#fpg_button_order_main').show();
                     $('#fpg_meta_icon_color_main').show();
                     $('#fpg_field_group_excerpt_main').show();
-                    $('#fpg_field_group_categories_main').show();
-                    $('#fpg_field_group_tag_main').show();
-                    $('#fpg_field_group_comment_count_main').show(); 
+                    $('#fpg_field_group_categories_main').hide();
+                    $('#fpg_field_group_tag_main').hide();
+                    $('#fpg_field_group_comment_count_main').hide(); 
                     $('#fpg_field_group_button_main').show(); 
                     $('#fpg_author_color_main').hide();
                     $('#fpg_author_bg_color_main').hide();
@@ -318,7 +320,7 @@
                     $('#fpg_excerpt_setting_main').hide(); 
                     $('#fancy_button_option_main').hide();
                     $('#fpg_excerpt_main').hide(); 
-                    $('#fpg_field_group_button_main').hide();
+                    
                     $('#fpg_button_settings_main').hide();
                     $('#fpg_meta_settings_main').hide();
                     $('#fpg_title_alignment_main').hide();
@@ -528,7 +530,6 @@
                     $('#fancy_button_option_main').show();
                     $('#fpg_button_settings_main').show();
                     $('#fpg_section_bg_hover_main').hide();
-                    $('#fpg_meta_icon_color_main').show();
 
                 } else if (selectedSliderStyle === 'sliderstyle2') {
                     $('#fpg_field_group_author_main').show();
@@ -554,7 +555,7 @@
                     $('#fpg_date_bg_color_main').hide();
                     $('#fpg_date_padding_main').hide();
 
-                    $('#fpg_meta_hover_color_main').hide()
+                    $('#fpg_meta_hover_color_main').show()
                     
                     $('#fpg_single_content_section_padding_box').show();
                     $('#fpg_title_hover_color_box').show();
@@ -565,7 +566,6 @@
                     $('#fancy_button_option_main').show();
                     $('#fpg_button_settings_main').show();
                     $('#fpg_section_bg_hover_main').hide();
-                    $('#fpg_meta_icon_color_main').show();
   
                 }else if (selectedSliderStyle === 'sliderstyle3') {
                     $('#fpg_field_group_author_main').show();
@@ -601,7 +601,6 @@
                     $('#fancy_button_option_main').show();
                     $('#fpg_button_settings_main').show();
                     $('#fpg_section_bg_hover_main').hide();
-                    $('#fpg_meta_icon_color_main').hide();
   
                 }else if (selectedSliderStyle === 'sliderstyle4') {
                     $('#fpg_field_group_author_main').hide();
@@ -637,7 +636,6 @@
                     $('#fancy_button_option_main').show();
                     $('#fpg_button_settings_main').show();
                     $('#fpg_section_bg_hover_main').hide();
-                    $('#fpg_meta_icon_color_main').show();
   
                 }else if (selectedSliderStyle === 'sliderstyle5') {
                     $('#fpg_field_group_author_main').show();
@@ -673,7 +671,6 @@
                     $('#fancy_button_option_main').show();
                     $('#fpg_button_settings_main').show();
                     $('#fpg_section_bg_hover_main').hide();
-                    $('#fpg_meta_icon_color_main').show();
   
                 }else if (selectedSliderStyle === 'sliderstyle6') {
                     $('#fpg_field_group_author_main').hide();
@@ -709,7 +706,6 @@
                     $('#fancy_button_option_main').show();
                     $('#fpg_button_settings_main').show();
                     $('#fpg_section_bg_hover_main').hide();
-                    $('#fpg_meta_icon_color_main').show();
   
                 }else if (selectedSliderStyle === 'sliderstyle7') {
                     $('#fpg_field_group_author_main').hide();
@@ -745,7 +741,6 @@
                     $('#fancy_button_option_main').show();
                     $('#fpg_button_settings_main').show();
                     $('#fpg_section_bg_hover_main').hide();
-                    $('#fpg_meta_icon_color_main').show();
   
                 }
             }else if (selectedLayout === 'list') {
@@ -784,6 +779,7 @@
                     
                     $('#fancy_button_option_main').show();
                     $('#fpg_button_settings_main').show();
+                    $('#fpg_section_bg_hover_main').hide();
 
                 } else if (selectedListStyle === 'liststyle2') {
                     $('#fpg_field_group_author_main').show();
@@ -819,6 +815,7 @@
                     
                     $('#fancy_button_option_main').show();
                     $('#fpg_button_settings_main').show();
+                    $('#fpg_section_bg_hover_main').hide();
   
                 }else if (selectedListStyle === 'liststyle3') {
                     $('#fpg_field_group_author_main').show();
@@ -853,6 +850,7 @@
                     
                     $('#fancy_button_option_main').show();
                     $('#fpg_button_settings_main').show();
+                    $('#fpg_section_bg_hover_main').hide();
   
                 }else if (selectedListStyle === 'liststyle4') {
                     $('#fpg_field_group_author_main').show();
@@ -887,7 +885,7 @@
                     
                     $('#fancy_button_option_main').show();
                     $('#fpg_button_settings_main').show();
-  
+                    $('#fpg_section_bg_hover_main').hide();  
                 }else if (selectedListStyle === 'liststyle5') {
                     $('#fpg_field_group_author_main').hide();
                     $('#fpg_field_group_post_date_main').show();
@@ -921,6 +919,7 @@
                     
                     $('#fancy_button_option_main').show();
                     $('#fpg_button_settings_main').show();
+                    $('#fpg_section_bg_hover_main').hide();
   
                 }else if (selectedListStyle === 'liststyle6') {
                     $('#fpg_field_group_author_main').show();
@@ -955,6 +954,7 @@
                     
                     $('#fancy_button_option_main').hide();
                     $('#fpg_button_settings_main').hide();
+                    $('#fpg_section_bg_hover_main').hide();
   
                 }else if (selectedListStyle === 'liststyle7') {
                     $('#fpg_field_group_author_main').hide();
@@ -989,6 +989,7 @@
                     
                     $('#fancy_button_option_main').show();
                     $('#fpg_button_settings_main').show();
+                    $('#fpg_section_bg_hover_main').hide();
   
                 }else if (selectedListStyle === 'liststyle8') {
                     $('#fpg_field_group_author_main').show();
@@ -1023,6 +1024,7 @@
                     
                     $('#fancy_button_option_main').show();
                     $('#fpg_button_settings_main').show();
+                    $('#fpg_section_bg_hover_main').hide();
   
                 }
             }else if (selectedLayout === 'isotope') {
@@ -1061,6 +1063,7 @@
                     
                     $('#fancy_button_option_main').show();
                     $('#fpg_button_settings_main').show();
+                    $('#fpg_section_bg_hover_main').hide();
 
                 } else if (selectedIsotopeStyle === 'isotopestyle2') {
                     $('#fpg_field_group_author_main').show();
@@ -1096,6 +1099,7 @@
                     
                     $('#fancy_button_option_main').show();
                     $('#fpg_button_settings_main').show();
+                    $('#fpg_section_bg_hover_main').hide();
   
                 }
             }
@@ -1326,112 +1330,982 @@ $(document).ready(function() {
 
         if (selectedStyles === 'style1') {
             
-            // Set values for style1 (Full Area / Section Style)
-            $('#fpg_section_background_color').val('#ffffff'); // White background
+            $('#fpg_section_background_color').val(''); 
             $('#fpg_section_margin').val('');
             $('#fpg_section_padding').val('0px');
-
-            // Set values for style1 (Single Area / Section Style)
-            $('#fpg_single_section_background_color').val('#ff0000'); // Red background
-            $('#fpg_single_section_background_hover_color').val('#cc0000'); // Darker red on hover
-            $('#fpg_single_section_margin').val('15px 20px 25px 30px');
-            $('#fpg_single_section_padding').val('5px 10px 15px 20px');
-            $('#fpg_single_content_section_padding').val('10px 15px 20px 25px');
-            $('#fpg_single_section_border_color').val('#333333'); // Dark Gray
-            $('#fancy_post_border_width').val('2px');
-            $('#fancy_post_border_style').val('solid').change();
+            $('#fpg_single_section_background_color').val('#ffffff'); 
+            $('#fpg_single_section_margin').val('40px 0 0');
+            $('#fpg_single_section_padding').val('0px');
+            $('#fpg_single_content_section_padding').val('20px 0px 0px 0px');
+            $('#fpg_single_section_background_hover_color').val(''); 
+            $('#fpg_single_section_border_color').val(''); 
+            $('#fancy_post_border_width').val('');
+            $('#fancy_post_border_style').val('unset').change();
             $('#fancy_post_section_border_radius').val('5px');
-
-            $('#fpg_title_color').val('#ff0000'); // Red color
-            $('#fpg_title_hover_color').val('#cc0000'); // Darker red
-            $('#fpg_title_margin').val('10px 15px 10px 15px');
-            $('#fpg_title_padding').val('5px 10px 5px 10px');
-            $('#fpg_title_font_size').val('20');
+            $('#fpg_title_color').val('#161616'); 
+            $('#fpg_title_hover_color').val('#007aff'); 
+            $('#fpg_title_margin').val('10px 0px 0px');
+            $('#fpg_title_padding').val('0px');
+            $('#fpg_title_font_size').val('24');
             $('#fpg_title_font_weight').val('600').change();
-            $('#fpg_title_border_color').val('#333333'); // Dark Gray
-            $('#fpg_title_border_width').val('2px');
-            $('#fpg_title_border_style').val('solid').change();
-            $('#fpg_title_line_height').val('24px');
-
-            // Meta Data Settings for style1
-            $('#fpg_meta_color').val('#333333'); // Dark Gray
-            $('#fpg_meta_hover_color').val('#666666'); // Light Gray on hover
-            $('#fpg_meta_icon_color').val('#ff0000'); // Red icon
-            $('#fpg_meta_bgcolor').val('#ffffff'); // White background
-            $('#fpg_meta_size').val('16'); // Font size 16px
-            $('#fpg_meta_font_weight').val('400').change(); // Normal weight
-            $('#fpg_meta_margin').val('5px 10px 5px 10px');
-            $('#fpg_meta_padding').val('5px 5px 5px 5px');
-            $('#fpg_meta_gap').val('10px');
-            $('#fpg_meta_line_height').val('1.5');
-
-            // Author and Category specific settings
-            $('#fpg_author_color').val('#000000'); // Black author text
-            $('#fpg_author_bg_color').val('#e0e0e0'); // Light gray background
-            $('#fpg_author_padding').val('5px 10px');
-
-            $('#fpg_category_color').val('#0000ff'); // Blue category color
-            $('#fpg_category_bg_color').val('#f0f0f0'); // Light gray background
-            $('#fpg_category_padding').val('5px 5px');
-
-            $('#fpg_date_color').val('#ff0000'); // Red date color
-            $('#fpg_date_bg_color').val('#ffffff'); // White background
-            $('#fpg_date_padding').val('5px 5px');
-
-            // Excerpt Style Values for Style1
-            $('#fpg_excerpt_color').val('#000000'); // Black text color
-            $('#fpg_excerpt_size').val('14px');
+            $('#fpg_title_border_style').val('unset').change();
+            $('#fpg_title_line_height').val('34px');
+            $('#fpg_title_border_color').val(''); 
+            $('#fpg_title_border_width').val('');
+            $('#fpg_meta_icon_color').val('#007aff'); 
+            $('#fpg_meta_font_weight').val('400').change(); 
+            $('#fpg_meta_color').val(''); 
+            $('#fpg_meta_hover_color').val(''); 
+            $('#fpg_meta_bgcolor').val(''); 
+            $('#fpg_meta_size').val(''); 
+            $('#fpg_meta_margin').val('');
+            $('#fpg_meta_padding').val('');
+            $('#fpg_meta_gap').val('');
+            $('#fpg_meta_line_height').val('');
+            $('#fpg_author_color').val(''); 
+            $('#fpg_author_bg_color').val(''); 
+            $('#fpg_author_padding').val('');
+            $('#fpg_category_color').val(''); 
+            $('#fpg_category_bg_color').val(''); 
+            $('#fpg_category_padding').val('');
+            $('#fpg_date_color').val(''); 
+            $('#fpg_date_bg_color').val(''); 
+            $('#fpg_date_padding').val('');
             $('#fpg_excerpt_font_weight').val('400').change();
-            $('#fpg_excerpt_margin').val('10px 15px 10px 15px');
-            $('#fpg_excerpt_padding').val('5px 5px 5px 5px');
-            $('#fpg_excerpt_line_height').val('1.5');
-
-            // Button Style Values for Style1
-            $('#fpg_button_background_color').val('#4CAF50'); // Green background
-            $('#fpg_button_hover_background_color').val('#45a049'); // Darker green on hover
-            $('#fpg_button_text_color').val('#ffffff'); // White text color
-            $('#fpg_button_text_hover_color').val('#e7e7e7'); // Light gray on hover
-            $('#fpg_button_border_color').val('#4CAF50');
-            $('#fpg_button_margin').val('5px 10px 5px 10px');
-            $('#fpg_button_padding').val('8px 16px');
-            $('#fpg_button_font_size').val('14px');
-            $('#fpg_button_font_weight').val('600');
-
-            // Set Pagination Normal Style for style1
-            $('#fpg_pagination_color').val('#000000'); // Black text
-            $('#fpg_pagination_background').val('#eeeeee'); // Light gray background
-            $('#fpg_pagination_border_color').val('#dddddd'); // Light gray border
+            $('#fpg_excerpt_margin').val('10px 0px 10px 0px');
+            $('#fpg_excerpt_color').val('');
+            $('#fpg_excerpt_size').val('');
+            $('#fpg_excerpt_padding').val('0px');
+            $('#fpg_excerpt_line_height').val('');
+            $('#fpg_button_text_hover_color').val('#007aff'); 
+            $('#fpg_button_font_size').val('16px');
+            $('#fpg_button_font_weight').val('700');
+            $('#fancy_button_border_style').val('unset');
+            $('#fpg_button_background_color').val(''); 
+            $('#fpg_button_hover_background_color').val(''); 
+            $('#fpg_button_text_color').val(''); 
+            $('#fpg_button_border_color').val('');
+            $('#fpg_button_margin').val('');
+            $('#fpg_button_padding').val('');
+            $('#fpg_pagination_border_color').val('#eaeaea'); 
             $('#fpg_pagination_border_width').val('1px');
             $('#fpg_pagination_border_style').val('solid');
             $('#fpg_pagination_border_radius').val('5px');
-            $('#fpg_pagination_height').val('30px');
-            $('#fpg_pagination_width').val('30px');
-            $('#fpg_pagination_padding').val('5px 10px');
-            $('#fpg_pagination_margin').val('10px 15px');
-            $('#fpg_pagination_gap').val('10px');
-
-            // Set Pagination Hover Style for style1
-            $('#fpg_pagination_hover_color').val('#ffffff'); // White text on hover
-            $('#fpg_pagination_hover_background').val('#ff0000'); // Red background on hover
-            $('#fpg_pagination_hover_border_color').val('#ff6666'); // Lighter red border on hover
-
-            // Set Pagination Active Style for style1
-            $('#fpg_pagination_active_color').val('#ffffff'); // White text when active
-            $('#fpg_pagination_active_background').val('#000000'); // Black background when active
-            $('#fpg_pagination_active_border_color').val('#000000'); // Black border
+            $('#fpg_pagination_hover_color').val('#ffffff'); 
+            $('#fpg_pagination_hover_background').val('#007aff'); 
+            $('#fpg_pagination_hover_border_color').val('#007aff'); 
+            $('#fpg_pagination_active_color').val('#ffffff'); 
+            $('#fpg_pagination_active_background').val('#007aff'); 
+            $('#fpg_pagination_active_border_color').val('#007aff'); 
+            $('#fpg_pagination_color').val(''); 
+            $('#fpg_pagination_background').val(''); 
+            $('#fpg_pagination_height').val('');
+            $('#fpg_pagination_width').val('');
+            $('#fpg_pagination_padding').val('');
+            $('#fpg_pagination_margin').val('');
+            $('#fpg_pagination_gap').val('');
+            $('input[name="fancy_post_main_box_alignment"][value="align-start"]').prop('checked', true).change();
+            $('#fancy_button_option').val('flat').change();
+            $('#fancy_post_hover_animation').val('zoom_in').change();
+            $('#fancy_post_image_border_radius').val('5px');
+            $('#fancy_post_feature_image_size').val('fancy_post_custom_size').change();
 
         } else if (selectedStyles === 'style2') {
-            // Set values for style2
-            $('#fpg_title_color').val('#0000ff'); // Blue color
-            $('#fpg_title_hover_color').val('#0000cc'); // Darker blue
-            $('#fpg_title_margin').val('20px 25px 20px 25px');
-            $('#fpg_title_padding').val('10px 15px 10px 15px');
+            $('#fpg_section_background_color').val('#ffffff'); 
+            $('#fpg_section_margin').val('0px');
+            $('#fpg_section_padding').val('30px 0px 0px 0px');
+            $('#fpg_single_section_background_color').val('#f7f7f7'); 
+            $('#fpg_single_section_background_hover_color').val(''); 
+            $('#fpg_single_section_margin').val('30px 0px 0px 0px');
+            $('#fpg_single_section_padding').val('0px 0px 0px 0px');
+            $('#fpg_single_content_section_padding').val('30px');
+            $('#fancy_post_border_style').val('unset').change();
+            $('#fpg_single_section_border_color').val(''); 
+            $('#fancy_post_border_width').val('');
+            $('#fancy_post_section_border_radius').val('5px');
+            $('#fpg_title_color').val('#000000');  
+            $('#fpg_title_hover_color').val('#1e73be'); 
+            $('#fpg_title_margin').val('0px 0px 0px 0px');
+            $('#fpg_title_padding').val('0px 0px 15px 0px');
+            $('#fpg_title_font_size').val('22');
+            $('#fpg_title_font_weight').val('600').change();
+            $('#fpg_title_border_style').val('unset').change();
+            $('#fpg_title_line_height').val('32px');
+            $('#fpg_title_border_color').val(''); 
+            $('#fpg_title_border_width').val('');
+            $('#fpg_meta_color').val(''); 
+            $('#fpg_meta_hover_color').val('#1e73be'); 
+            $('#fpg_meta_icon_color').val('#1e73be');
+            $('#fpg_meta_bgcolor').val(''); 
+            $('#fpg_meta_size').val('15');
+            $('#fpg_meta_font_weight').val('400').change(); 
+            $('#fpg_meta_color').val(''); 
+            $('#fpg_meta_margin').val('');
+            $('#fpg_meta_padding').val('');
+            $('#fpg_meta_gap').val('');
+            $('#fpg_meta_line_height').val('');
+            $('#fpg_author_color').val(''); 
+            $('#fpg_author_bg_color').val(''); 
+            $('#fpg_author_padding').val('');
+            $('#fpg_category_color').val('');
+            $('#fpg_category_bg_color').val(''); 
+            $('#fpg_category_padding').val('');
+            $('#fpg_date_color').val(''); 
+            $('#fpg_date_bg_color').val(''); 
+            $('#fpg_date_padding').val('');
+            $('#fpg_excerpt_font_weight').val('400').change();
+            $('#fpg_excerpt_margin').val('0px');
+            $('#fpg_excerpt_padding').val('0px');
+            $('#fpg_excerpt_color').val('');
+            $('#fpg_excerpt_size').val('');
+            $('#fpg_excerpt_line_height').val('');
+            $('#fpg_button_font_weight').val('400');
+            $('#fancy_button_border_style').val('unset');
+            $('#fpg_button_text_hover_color').val('');
+            $('#fpg_button_font_size').val('');
+            $('#fpg_button_background_color').val(''); 
+            $('#fpg_button_hover_background_color').val(''); 
+            $('#fpg_button_text_color').val(''); 
+            $('#fpg_button_border_color').val('');
+            $('#fpg_button_margin').val('');
+            $('#fpg_button_padding').val('');
+            $('#fpg_pagination_color').val('#000000'); 
+            $('#fpg_pagination_background').val('#efefef'); 
+            $('#fpg_pagination_border_color').val('#eaeaea');
+            $('#fpg_pagination_border_width').val('1px');
+            $('#fpg_pagination_border_style').val('solid');
+            $('#fpg_pagination_border_radius').val('5px');
+            $('#fpg_pagination_height').val('');
+            $('#fpg_pagination_width').val('');
+            $('#fpg_pagination_padding').val('');
+            $('#fpg_pagination_margin').val('');
+            $('#fpg_pagination_gap').val('');
+            $('#fpg_pagination_hover_color').val('#ffffff'); 
+            $('#fpg_pagination_hover_background').val('#1e73be');
+            $('#fpg_pagination_hover_border_color').val('#1e73be');
+            $('#fpg_pagination_active_color').val('#ffffff'); 
+            $('#fpg_pagination_active_background').val('#007aff'); 
+            $('#fpg_pagination_active_border_color').val('#1e73be');
+            $('#fancy_button_option').val('filled').change();
+            $('#fancy_post_hover_animation').val('zoom_in').change();
+            $('#fancy_post_image_border_radius').val('');
+            $('#fancy_post_feature_image_size').val('fancy_post_landscape').change();
+            $('#fancy_button_border_style').val('unset').change();
+            $('input[name="fancy_post_main_box_alignment"][value="align-start"]').prop('checked', true).change();
+
+        } else if (selectedStyles === 'style3') {
+            
+            $('#fpg_section_background_color').val('');
+            $('#fpg_section_margin').val('');
+            $('#fpg_section_padding').val(' 0px');
+            $('#fpg_single_section_margin').val('40px 0px 0px 0px');
+            $('#fpg_single_section_padding').val('0px 0px 0px 0px');
+            $('#fpg_single_content_section_padding').val('20px 30px 30px 30px');
+            $('#fpg_single_section_background_color').val(''); 
+            $('#fpg_single_section_background_hover_color').val(''); 
+            $('#fpg_single_section_border_color').val(''); 
+            $('#fancy_post_border_width').val('');
+            $('#fancy_post_section_border_radius').val('5px');
+            $('#fancy_post_border_style').val('unset').change();
+            $('#fpg_title_hover_color').val('#634bf8'); 
+            $('#fpg_title_margin').val('0px 0px 0px 0px');
+            $('#fpg_title_padding').val('5px 0px 10px 0px');
+            $('#fpg_title_font_size').val('22');
+            $('#fpg_title_font_weight').val('600').change();
+            $('#fpg_title_border_style').val('unset').change();
+            $('#fpg_title_line_height').val('32px');
+            $('#fpg_title_color').val('');  
+            $('#fpg_title_border_color').val(''); 
+            $('#fpg_title_border_width').val('');
+            $('#fpg_meta_bgcolor').val('#634bf8');
+            $('#fpg_meta_size').val('15'); 
+            $('#fpg_meta_font_weight').val('400').change();
+            $('#fpg_meta_padding').val('9px 30px 9px 0');
+            $('#fpg_meta_hover_color').val('#1e73be'); 
+            $('#fpg_meta_icon_color').val('#1e73be'); 
+            $('#fpg_meta_color').val(''); 
+            $('#fpg_meta_margin').val('');
+            $('#fpg_meta_gap').val('');
+            $('#fpg_meta_line_height').val('');
+            $('#fpg_author_color').val(''); 
+            $('#fpg_author_bg_color').val(''); 
+            $('#fpg_author_padding').val('');
+            $('#fpg_category_color').val(''); 
+            $('#fpg_category_bg_color').val(''); 
+            $('#fpg_category_padding').val('');
+            $('#fpg_date_color').val(''); 
+            $('#fpg_date_bg_color').val(''); 
+            $('#fpg_date_padding').val('');
+            $('#fpg_excerpt_font_weight').val('400').change();
+            $('#fpg_excerpt_margin').val('0px 0px 0px 0px');
+            $('#fpg_excerpt_padding').val('0px 0px 0px 0px');
+            $('#fpg_excerpt_color').val(''); 
+            $('#fpg_excerpt_size').val('');
+            $('#fpg_excerpt_line_height').val('');
+            $('#fpg_button_background_color').val('#634bf8'); 
+            $('#fpg_button_text_color').val('#ffffff'); 
+            $('#fpg_button_padding').val('10px 30px');
+            $('#fpg_button_font_weight').val('400');
+            $('#fancy_button_border_style').val('unset');
+            $('#fpg_button_text_hover_color').val(''); 
+            $('#fpg_button_font_size').val('');
+            $('#fpg_button_hover_background_color').val('');
+            $('#fpg_button_border_color').val('');
+            $('#fpg_button_margin').val('');
+            $('#fpg_pagination_border_color').val('#e8e8e8'); 
+            $('#fpg_pagination_border_width').val('1px');
+            $('#fpg_pagination_border_style').val('solid');
+            $('#fpg_pagination_border_radius').val('5px');
+            $('#fpg_pagination_color').val(''); 
+            $('#fpg_pagination_background').val(''); 
+            $('#fpg_pagination_height').val('');
+            $('#fpg_pagination_width').val('');
+            $('#fpg_pagination_padding').val('');
+            $('#fpg_pagination_margin').val('');
+            $('#fpg_pagination_gap').val('');
+            $('#fpg_pagination_hover_color').val('#ffffff'); 
+            $('#fpg_pagination_hover_background').val('#634bf8'); 
+            $('#fpg_pagination_hover_border_color').val('#634bf8'); 
+            $('#fpg_pagination_active_color').val('#ffffff'); 
+            $('#fpg_pagination_active_background').val('#634bf8'); 
+            $('#fpg_pagination_active_border_color').val('#634bf8'); 
+            $('#fancy_button_option').val('filled').change();
+            $('#fancy_post_hover_animation').val('zoom_out').change();
+            $('#fancy_post_image_border_radius').val('5px');
+            $('#fancy_post_feature_image_size').val('fancy_post_landscape').change();
+            $('input[name="fancy_post_main_box_alignment"][value="align-start"]').prop('checked', true).change();
+
+        } else if (selectedStyles === 'style4') {
+            
+            $('#fpg_section_background_color').val(''); 
+            $('#fpg_section_margin').val('');
+            $('#fpg_section_padding').val('0px');
+            $('#fpg_single_section_background_color').val('#f2f2f2'); 
+            $('#fpg_single_section_background_hover_color').val(''); 
+            $('#fpg_single_section_margin').val('40px 0px 0px 0px');
+            $('#fpg_single_section_padding').val('20px 20px 15px 20px');
+            $('#fpg_single_content_section_padding').val('20px 0px 20px 0px');
+            $('#fpg_single_section_border_color').val(''); 
+            $('#fancy_post_border_width').val('');
+            $('#fancy_post_border_style').val('unset').change();
+            $('#fancy_post_section_border_radius').val('');
+            $('#fpg_title_color').val('#000000');  
+            $('#fpg_title_hover_color').val('#007aff'); 
+            $('#fpg_title_margin').val('0px 0px 5px 0px');
+            $('#fpg_title_padding').val('0px 0px 0px 0px');
+            $('#fpg_title_font_size').val('22');
+            $('#fpg_title_font_weight').val('600').change();
+            $('#fpg_title_border_color').val(''); 
+            $('#fpg_title_border_width').val('');
+            $('#fpg_title_border_style').val('unset').change();
+            $('#fpg_title_line_height').val('');
+            $('#fpg_meta_color').val('#331838'); 
+            $('#fpg_meta_hover_color').val('#007aff');
+            $('#fpg_meta_icon_color').val(''); 
+            $('#fpg_meta_bgcolor').val(''); 
+            $('#fpg_meta_size').val('15'); 
+            $('#fpg_meta_font_weight').val('400').change(); 
+            $('#fpg_meta_margin').val('0px 0px 0px 0px');
+            $('#fpg_meta_padding').val('0px 0px 0px 0px');
+            $('#fpg_meta_gap').val('');
+            $('#fpg_meta_line_height').val('');
+            $('#fpg_author_color').val(''); 
+            $('#fpg_author_bg_color').val(''); 
+            $('#fpg_author_padding').val('');
+            $('#fpg_category_color').val(''); 
+            $('#fpg_category_bg_color').val(''); 
+            $('#fpg_category_padding').val('');
+            $('#fpg_date_color').val('');
+            $('#fpg_date_bg_color').val('#007aff'); 
+            $('#fpg_date_padding').val('');
+            $('#fpg_excerpt_color').val('#666666'); 
+            $('#fpg_excerpt_size').val('');
+            $('#fpg_excerpt_font_weight').val('400').change();
+            $('#fpg_excerpt_margin').val('10px 25px 0px 25px');
+            $('#fpg_excerpt_padding').val('0px 0px 0px 0px');
+            $('#fpg_excerpt_line_height').val('');
+            $('#fpg_button_background_color').val(''); 
+            $('#fpg_button_hover_background_color').val(''); 
+            $('#fpg_button_text_color').val('');
+            $('#fpg_button_text_hover_color').val('#007aff'); 
+            $('#fpg_button_border_color').val('');
+            $('#fpg_button_margin').val('');
+            $('#fpg_button_padding').val('');
+            $('#fpg_button_font_size').val('16px');
+            $('#fpg_button_font_weight').val('400');
+            $('#fancy_button_border_style').val('unset');
+            $('#fpg_pagination_color').val(''); 
+            $('#fpg_pagination_background').val(''); 
+            $('#fpg_pagination_border_color').val('#e5e5e5'); 
+            $('#fpg_pagination_border_width').val('1px');
+            $('#fpg_pagination_border_style').val('solid');
+            $('#fpg_pagination_border_radius').val('5px');
+            $('#fpg_pagination_height').val('');
+            $('#fpg_pagination_width').val('');
+            $('#fpg_pagination_padding').val('');
+            $('#fpg_pagination_margin').val('');
+            $('#fpg_pagination_gap').val('');
+            $('#fpg_pagination_hover_color').val('#ffffff'); 
+            $('#fpg_pagination_hover_background').val('#007aff'); 
+            $('#fpg_pagination_hover_border_color').val('#007aff'); 
+            $('#fpg_pagination_active_color').val('#ffffff'); 
+            $('#fpg_pagination_active_background').val('#007aff'); 
+            $('#fpg_pagination_active_border_color').val('#007aff'); 
+            $('#fancy_button_option').val('').change();
+            $('#fancy_post_hover_animation').val('zoom_in').change();
+            $('#fancy_post_image_border_radius').val('');
+            $('#fancy_post_feature_image_size').val('full').change();
+             $('input[name="fancy_post_main_box_alignment"][value="align-center"]').prop('checked', true).change();
+
+        } else if (selectedStyles === 'style5') {
+            
+            $('#fpg_section_background_color').val('#ffffff'); 
+            $('#fpg_section_margin').val('');
+            $('#fpg_section_padding').val('0px');
+            $('#fpg_single_section_background_color').val('#007aff'); 
+            $('#fpg_single_section_background_hover_color').val(''); 
+            $('#fpg_single_section_margin').val('40px 0px 0px 0px');
+            $('#fpg_single_section_padding').val('');
+            $('#fpg_single_content_section_padding').val('');
+            $('#fpg_single_section_border_color').val('#007aff'); 
+            $('#fancy_post_border_width').val('');
+            $('#fancy_post_border_style').val('solid').change();
+            $('#fancy_post_section_border_radius').val('');
+            $('#fpg_title_color').val('');  
+            $('#fpg_title_hover_color').val(''); 
+            $('#fpg_title_margin').val('');
+            $('#fpg_title_padding').val('');
+            $('#fpg_title_font_size').val('26');
+            $('#fpg_title_font_weight').val('600').change();
+            $('#fpg_title_border_color').val(''); 
+            $('#fpg_title_border_width').val('');
+            $('#fpg_title_border_style').val('unset').change();
+            $('#fpg_title_line_height').val('40px');
+            $('#fpg_meta_color').val('#331838'); 
+            $('#fpg_meta_hover_color').val('#007aff'); 
+            $('#fpg_meta_icon_color').val(''); 
+            $('#fpg_meta_bgcolor').val(''); 
+            $('#fpg_meta_size').val('15'); 
+            $('#fpg_meta_font_weight').val('400').change(); 
+            $('#fpg_meta_margin').val('');
+            $('#fpg_meta_padding').val('');
+            $('#fpg_meta_gap').val('');
+            $('#fpg_meta_line_height').val('');
+            $('#fpg_author_color').val(''); 
+            $('#fpg_author_bg_color').val(''); 
+            $('#fpg_author_padding').val('');
+            $('#fpg_category_color').val(''); 
+            $('#fpg_category_bg_color').val(''); 
+            $('#fpg_category_padding').val('');
+            $('#fpg_date_color').val('#007aff'); 
+            $('#fpg_date_bg_color').val('#ffffff'); 
+            $('#fpg_date_padding').val('');
+            $('#fpg_excerpt_color').val(''); 
+            $('#fpg_excerpt_size').val('');
+            $('#fpg_excerpt_font_weight').val('400').change();
+            $('#fpg_excerpt_margin').val('');
+            $('#fpg_excerpt_padding').val('0px 0px 0px 0px');
+            $('#fpg_excerpt_line_height').val('');
+            $('#fpg_button_background_color').val(''); 
+            $('#fpg_button_hover_background_color').val(''); 
+            $('#fpg_button_text_color').val('#ffffff'); 
+            $('#fpg_button_text_hover_color').val('#ffffff'); 
+            $('#fpg_button_border_color').val('');
+            $('#fpg_button_margin').val('0px 0 0');
+            $('#fpg_button_padding').val('');
+            $('#fpg_button_font_size').val('16px');
+            $('#fpg_button_font_weight').val('400');
+            $('#fancy_button_border_style').val('unset');
+            $('#fpg_pagination_color').val(''); 
+            $('#fpg_pagination_background').val(''); 
+            $('#fpg_pagination_border_color').val('#e5e5e5'); 
+            $('#fpg_pagination_border_width').val('1px');
+            $('#fpg_pagination_border_style').val('solid');
+            $('#fpg_pagination_border_radius').val('10px');
+            $('#fpg_pagination_height').val('');
+            $('#fpg_pagination_width').val('');
+            $('#fpg_pagination_padding').val('');
+            $('#fpg_pagination_margin').val('');
+            $('#fpg_pagination_gap').val('');
+            $('#fpg_pagination_hover_color').val('#ffffff'); 
+            $('#fpg_pagination_hover_background').val('#007aff'); 
+            $('#fpg_pagination_hover_border_color').val('#007aff'); 
+            $('#fpg_pagination_active_color').val('#ffffff'); 
+            $('#fpg_pagination_active_background').val('#007aff'); 
+            $('#fpg_pagination_active_border_color').val('#007aff'); 
+            $('#fancy_button_option').val('flat').change();
+            $('#fancy_post_hover_animation').val('zoom_in').change();
+            $('#fancy_post_image_border_radius').val('');
+            $('#fancy_post_feature_image_size').val('fancy_post_square').change();
+             $('input[name="fancy_post_main_box_alignment"][value="align-start"]').prop('checked', true).change();
+
+        } else if (selectedStyles === 'style6') {
+            
+            $('#fpg_section_background_color').val(''); 
+            $('#fpg_section_margin').val('');
+            $('#fpg_section_padding').val('0px');
+            $('#fpg_single_section_background_color').val(''); 
+            $('#fpg_single_section_background_hover_color').val(''); 
+            $('#fpg_single_section_margin').val('40px 0px 0px 0px');
+            $('#fpg_single_section_padding').val('');
+            $('#fpg_single_content_section_padding').val('');
+            $('#fpg_single_section_border_color').val(''); 
+            $('#fancy_post_border_width').val('');
+            $('#fancy_post_border_style').val('unset').change();
+            $('#fancy_post_section_border_radius').val('');
+            $('#fpg_title_color').val('');  
+            $('#fpg_title_hover_color').val(''); 
+            $('#fpg_title_margin').val('');
+            $('#fpg_title_padding').val('');
+            $('#fpg_title_font_size').val('22');
+            $('#fpg_title_font_weight').val('600').change();
+            $('#fpg_title_border_color').val(''); 
+            $('#fpg_title_border_width').val('');
+            $('#fpg_title_border_style').val('unset').change();
+            $('#fpg_title_line_height').val('');
+            $('#fpg_meta_color').val(''); 
+            $('#fpg_meta_hover_color').val(''); 
+            $('#fpg_meta_icon_color').val(''); 
+            $('#fpg_meta_bgcolor').val(''); 
+            $('#fpg_meta_size').val('15'); 
+            $('#fpg_meta_font_weight').val('400').change(); 
+            $('#fpg_meta_margin').val('');
+            $('#fpg_meta_padding').val('');
+            $('#fpg_meta_gap').val('');
+            $('#fpg_meta_line_height').val('');
+            $('#fpg_author_color').val(''); 
+            $('#fpg_author_bg_color').val(''); 
+            $('#fpg_author_padding').val('');
+            $('#fpg_category_color').val(''); 
+            $('#fpg_category_bg_color').val(''); 
+            $('#fpg_category_padding').val('');
+            $('#fpg_date_color').val(''); 
+            $('#fpg_date_bg_color').val(''); 
+            $('#fpg_date_padding').val('');
+            $('#fpg_excerpt_color').val(''); 
+            $('#fpg_excerpt_size').val('');
+            $('#fpg_excerpt_font_weight').val('400').change();
+            $('#fpg_excerpt_margin').val('');
+            $('#fpg_excerpt_padding').val('0px 0px 0px 0px');
+            $('#fpg_excerpt_line_height').val('');
+            $('#fpg_button_background_color').val(''); 
+            $('#fpg_button_hover_background_color').val(''); 
+            $('#fpg_button_text_color').val('#ffffff'); 
+            $('#fpg_button_text_hover_color').val('#ffffff'); 
+            $('#fpg_button_border_color').val('');
+            $('#fpg_button_margin').val('0px 0 0');
+            $('#fpg_button_padding').val('');
+            $('#fpg_button_font_size').val('16px');
+            $('#fpg_button_font_weight').val('400');
+            $('#fancy_button_border_style').val('unset');
+            $('#fpg_pagination_color').val('#cb003b'); 
+            $('#fpg_pagination_background').val('#ffffff'); 
+            $('#fpg_pagination_border_color').val('#efefef'); 
+            $('#fpg_pagination_border_width').val('1px');
+            $('#fpg_pagination_border_style').val('solid');
+            $('#fpg_pagination_border_radius').val('5px');
+            $('#fpg_pagination_height').val('');
+            $('#fpg_pagination_width').val('');
+            $('#fpg_pagination_padding').val('');
+            $('#fpg_pagination_margin').val('');
+            $('#fpg_pagination_gap').val('');
+            $('#fpg_pagination_hover_color').val('#ffffff'); 
+            $('#fpg_pagination_hover_background').val('#cb003b'); 
+            $('#fpg_pagination_hover_border_color').val('#cb003b'); 
+            $('#fpg_pagination_active_color').val('#ffffff'); 
+            $('#fpg_pagination_active_background').val('#cb003b'); 
+            $('#fpg_pagination_active_border_color').val('#cb003b'); 
+            $('#fancy_button_option').val('border').change();
+            $('#fancy_post_hover_animation').val('zoom_out').change();
+            $('#fancy_post_image_border_radius').val('');
+            $('#fancy_post_feature_image_size').val('fancy_post_landscape').change();
+             $('input[name="fancy_post_main_box_alignment"][value="align-start"]').prop('checked', true).change();
+        } else if (selectedStyles === 'style7') {
+            
+            $('#fpg_section_background_color').val(''); 
+            $('#fpg_section_margin').val('');
+            $('#fpg_section_padding').val('0px');
+            $('#fpg_single_section_background_color').val(''); 
+            $('#fpg_single_section_background_hover_color').val(''); 
+            $('#fpg_single_section_margin').val('0px 0px 0px 0px');
+            $('#fpg_single_section_padding').val('');
+            $('#fpg_single_content_section_padding').val('');
+            $('#fpg_single_section_border_color').val(''); 
+            $('#fancy_post_border_width').val('');
+            $('#fancy_post_border_style').val('unset').change();
+            $('#fancy_post_section_border_radius').val('');
+            $('#fpg_title_color').val('');  
+            $('#fpg_title_hover_color').val(''); 
+            $('#fpg_title_margin').val('');
+            $('#fpg_title_padding').val('');
+            $('#fpg_title_font_size').val('20');
+            $('#fpg_title_font_weight').val('500').change();
+            $('#fpg_title_border_color').val(''); 
+            $('#fpg_title_border_width').val('');
+            $('#fpg_title_border_style').val('unset').change();
+            $('#fpg_title_line_height').val('28px');
+            $('#fpg_meta_color').val(''); 
+            $('#fpg_meta_hover_color').val(''); 
+            $('#fpg_meta_icon_color').val(''); 
+            $('#fpg_meta_bgcolor').val(''); 
+            $('#fpg_meta_size').val('16'); 
+            $('#fpg_meta_font_weight').val('400').change(); 
+            $('#fpg_meta_margin').val('');
+            $('#fpg_meta_padding').val('');
+            $('#fpg_meta_gap').val('');
+            $('#fpg_meta_line_height').val('');
+            $('#fpg_author_color').val(''); 
+            $('#fpg_author_bg_color').val(''); 
+            $('#fpg_author_padding').val('');
+            $('#fpg_category_color').val(''); 
+            $('#fpg_category_bg_color').val(''); 
+            $('#fpg_category_padding').val('');
+            $('#fpg_date_color').val(''); 
+            $('#fpg_date_bg_color').val(''); 
+            $('#fpg_date_padding').val('');
+            $('#fpg_excerpt_color').val(''); 
+            $('#fpg_excerpt_size').val('');
+            $('#fpg_excerpt_font_weight').val('400').change();
+            $('#fpg_excerpt_margin').val('');
+            $('#fpg_excerpt_padding').val('0px 0px 0px 0px');
+            $('#fpg_excerpt_line_height').val('');
+            $('#fpg_button_background_color').val(''); 
+            $('#fpg_button_hover_background_color').val(''); 
+            $('#fpg_button_text_color').val(''); 
+            $('#fpg_button_text_hover_color').val(''); 
+            $('#fpg_button_border_color').val('');
+            $('#fpg_button_margin').val('');
+            $('#fpg_button_padding').val('');
+            $('#fpg_button_font_size').val('');
+            $('#fpg_button_font_weight').val('');
+            $('#fancy_button_border_style').val('');
+            $('#fpg_pagination_color').val('#7a7a7a'); 
+            $('#fpg_pagination_background').val('#ffffff'); 
+            $('#fpg_pagination_border_color').val('#efefef'); 
+            $('#fpg_pagination_border_width').val('1px');
+            $('#fpg_pagination_border_style').val('solid');
+            $('#fpg_pagination_border_radius').val('');
+            $('#fpg_pagination_height').val('');
+            $('#fpg_pagination_width').val('');
+            $('#fpg_pagination_padding').val('');
+            $('#fpg_pagination_margin').val('');
+            $('#fpg_pagination_gap').val('');
+            $('#fpg_pagination_hover_color').val('#ffffff'); 
+            $('#fpg_pagination_hover_background').val('#337ccf'); 
+            $('#fpg_pagination_hover_border_color').val('#337ccf'); 
+            $('#fpg_pagination_active_color').val('#ffffff'); 
+            $('#fpg_pagination_active_background').val('#337ccf'); 
+            $('#fpg_pagination_active_border_color').val('#337ccf'); 
+            $('#fancy_button_option').val('border').change();
+            $('#fancy_post_hover_animation').val('zoom_out').change();
+            $('#fancy_post_image_border_radius').val('10px');
+            $('#fancy_post_feature_image_size').val('fancy_post_square').change();
+             $('input[name="fancy_post_main_box_alignment"][value="align-start"]').prop('checked', true).change();
+        } else if (selectedStyles === 'style8') {
+            
+            $('#fpg_section_background_color').val(''); 
+            $('#fpg_section_margin').val('');
+            $('#fpg_section_padding').val('0px');
+            $('#fpg_single_section_background_color').val(''); 
+            $('#fpg_single_section_background_hover_color').val(''); 
+            $('#fpg_single_section_margin').val('30px 0 0');
+            $('#fpg_single_section_padding').val('');
+            $('#fpg_single_content_section_padding').val('');
+            $('#fpg_single_section_border_color').val(''); 
+            $('#fancy_post_border_width').val('');
+            $('#fancy_post_border_style').val('unset').change();
+            $('#fancy_post_section_border_radius').val('');
+            $('#fpg_title_color').val('');  
+            $('#fpg_title_hover_color').val(''); 
+            $('#fpg_title_margin').val('');
+            $('#fpg_title_padding').val('');
             $('#fpg_title_font_size').val('24');
-            $('#fpg_title_font_weight').val('400').change();
-            $('#fpg_title_border_color').val('#000000'); // Black
-            $('#fpg_title_border_width').val('1px');
-            $('#fpg_title_border_style').val('dashed').change();
+            $('#fpg_title_font_weight').val('600').change();
+            $('#fpg_title_border_color').val(''); 
+            $('#fpg_title_border_width').val('');
+            $('#fpg_title_border_style').val('unset').change();
+            $('#fpg_title_line_height').val('32px');
+            $('#fpg_meta_color').val(''); 
+            $('#fpg_meta_hover_color').val(''); 
+            $('#fpg_meta_icon_color').val(''); 
+            $('#fpg_meta_bgcolor').val(''); 
+            $('#fpg_meta_size').val('16'); 
+            $('#fpg_meta_font_weight').val('400').change(); 
+            $('#fpg_meta_margin').val('');
+            $('#fpg_meta_padding').val('');
+            $('#fpg_meta_gap').val('');
+            $('#fpg_meta_line_height').val('');
+            $('#fpg_author_color').val(''); 
+            $('#fpg_author_bg_color').val(''); 
+            $('#fpg_author_padding').val('');
+            $('#fpg_category_color').val(''); 
+            $('#fpg_category_bg_color').val(''); 
+            $('#fpg_category_padding').val('');
+            $('#fpg_date_color').val(''); 
+            $('#fpg_date_bg_color').val(''); 
+            $('#fpg_date_padding').val('');
+            $('#fpg_excerpt_color').val(''); 
+            $('#fpg_excerpt_size').val('');
+            $('#fpg_excerpt_font_weight').val('400').change();
+            $('#fpg_excerpt_margin').val('');
+            $('#fpg_excerpt_padding').val('');
+            $('#fpg_excerpt_line_height').val('');
+            $('#fpg_button_background_color').val(''); 
+            $('#fpg_button_hover_background_color').val(''); 
+            $('#fpg_button_text_color').val(''); 
+            $('#fpg_button_text_hover_color').val(''); 
+            $('#fpg_button_border_color').val('');
+            $('#fpg_button_margin').val('');
+            $('#fpg_button_padding').val('');
+            $('#fpg_button_font_size').val('');
+            $('#fpg_button_font_weight').val('');
+            $('#fancy_button_border_style').val('');
+            $('#fpg_pagination_color').val(''); 
+            $('#fpg_pagination_background').val(''); 
+            $('#fpg_pagination_border_color').val('#ffffff'); 
+            $('#fpg_pagination_border_width').val('1px');
+            $('#fpg_pagination_border_style').val('solid');
+            $('#fpg_pagination_border_radius').val('5px');
+            $('#fpg_pagination_height').val('');
+            $('#fpg_pagination_width').val('');
+            $('#fpg_pagination_padding').val('');
+            $('#fpg_pagination_margin').val('');
+            $('#fpg_pagination_gap').val('');
+            $('#fpg_pagination_hover_color').val(''); 
+            $('#fpg_pagination_hover_background').val(''); 
+            $('#fpg_pagination_hover_border_color').val(''); 
+            $('#fpg_pagination_active_color').val(''); 
+            $('#fpg_pagination_active_background').val(''); 
+            $('#fpg_pagination_active_border_color').val(''); 
+            $('#fancy_button_option').val('border').change();
+            $('#fancy_post_hover_animation').val('zoom_in').change();
+            $('#fancy_post_image_border_radius').val('');
+            $('#fancy_post_feature_image_size').val('full').change();
+             $('input[name="fancy_post_main_box_alignment"][value="align-start"]').prop('checked', true).change();
+        } else if (selectedStyles === 'style9') {
+            
+            $('#fpg_section_background_color').val(''); 
+            $('#fpg_section_margin').val('');
+            $('#fpg_section_padding').val('0px 0px 0px 0px');
+            $('#fpg_single_section_background_color').val(''); 
+            $('#fpg_single_section_background_hover_color').val(''); 
+            $('#fpg_single_section_margin').val('40px 0 0');
+            $('#fpg_single_section_padding').val('');
+            $('#fpg_single_content_section_padding').val('');
+            $('#fpg_single_section_border_color').val(''); 
+            $('#fancy_post_border_width').val('');
+            $('#fancy_post_border_style').val('unset').change();
+            $('#fancy_post_section_border_radius').val('5px');
+            $('#fpg_title_color').val('#000000');  
+            $('#fpg_title_hover_color').val('#007aff'); 
+            $('#fpg_title_margin').val('');
+            $('#fpg_title_padding').val('');
+            $('#fpg_title_font_size').val('22');
+            $('#fpg_title_font_weight').val('500').change();
+            $('#fpg_title_border_color').val(''); 
+            $('#fpg_title_border_width').val('');
+            $('#fpg_title_border_style').val('unset').change();
+            $('#fpg_title_line_height').val('28px');
+            $('#fpg_meta_color').val(''); 
+            $('#fpg_meta_hover_color').val(''); 
+            $('#fpg_meta_icon_color').val(''); 
+            $('#fpg_meta_bgcolor').val(''); 
+            $('#fpg_meta_size').val('16'); 
+            $('#fpg_meta_font_weight').val('400').change(); 
+            $('#fpg_meta_margin').val('');
+            $('#fpg_meta_padding').val('');
+            $('#fpg_meta_gap').val('');
+            $('#fpg_meta_line_height').val('');
+            $('#fpg_author_color').val(''); 
+            $('#fpg_author_bg_color').val(''); 
+            $('#fpg_author_padding').val('');
+            $('#fpg_category_color').val(''); 
+            $('#fpg_category_bg_color').val(''); 
+            $('#fpg_category_padding').val('');
+            $('#fpg_date_color').val(''); 
+            $('#fpg_date_bg_color').val(''); 
+            $('#fpg_date_padding').val('');
+            $('#fpg_excerpt_color').val(''); 
+            $('#fpg_excerpt_size').val('');
+            $('#fpg_excerpt_font_weight').val('400').change();
+            $('#fpg_excerpt_margin').val('');
+            $('#fpg_excerpt_padding').val('0px 0px 0px 0px');
+            $('#fpg_excerpt_line_height').val('');
+            $('#fpg_button_background_color').val(''); 
+            $('#fpg_button_hover_background_color').val(''); 
+            $('#fpg_button_text_color').val('#ffffff'); 
+            $('#fpg_button_text_hover_color').val('#ffffff'); 
+            $('#fpg_button_border_color').val('');
+            $('#fpg_button_margin').val('0px 0 0');
+            $('#fpg_button_padding').val('');
+            $('#fpg_button_font_size').val('16px');
+            $('#fpg_button_font_weight').val('400');
+            $('#fancy_button_border_style').val('unset');
+            $('#fpg_pagination_color').val('#cb003b'); 
+            $('#fpg_pagination_background').val('#ffffff'); 
+            $('#fpg_pagination_border_color').val('#efefef'); 
+            $('#fpg_pagination_border_width').val('1px');
+            $('#fpg_pagination_border_style').val('solid');
+            $('#fpg_pagination_border_radius').val('5px');
+            $('#fpg_pagination_height').val('');
+            $('#fpg_pagination_width').val('');
+            $('#fpg_pagination_padding').val('');
+            $('#fpg_pagination_margin').val('');
+            $('#fpg_pagination_gap').val('');
+            $('#fpg_pagination_hover_color').val('#ffffff'); 
+            $('#fpg_pagination_hover_background').val('#cb003b'); 
+            $('#fpg_pagination_hover_border_color').val('#cb003b'); 
+            $('#fpg_pagination_active_color').val('#ffffff'); 
+            $('#fpg_pagination_active_background').val('#cb003b'); 
+            $('#fpg_pagination_active_border_color').val('#cb003b'); 
+            $('#fancy_button_option').val('border').change();
+            $('#fancy_post_hover_animation').val('zoom_out').change();
+            $('#fancy_post_image_border_radius').val('');
+            $('#fancy_post_feature_image_size').val('fancy_post_landscape').change();
+             $('input[name="fancy_post_main_box_alignment"][value="align-start"]').prop('checked', true).change();
+        } else if (selectedStyles === 'style10') {
+            
+            $('#fpg_section_background_color').val('#ffffff'); 
+            $('#fpg_section_margin').val('');
+            $('#fpg_section_padding').val('0px 0px 0px 0px');
+            $('#fpg_single_section_background_color').val(''); 
+            $('#fpg_single_section_background_hover_color').val(''); 
+            $('#fpg_single_section_margin').val('40px 0 0');
+            $('#fpg_single_section_padding').val('');
+            $('#fpg_single_content_section_padding').val('25px 35px 30px 35px');
+            $('#fpg_single_section_border_color').val('#e0e0e0'); 
+            $('#fancy_post_border_width').val('1px');
+            $('#fancy_post_border_style').val('unset').change();
+            $('#fancy_post_section_border_radius').val('');
+            $('#fpg_title_color').val('#000000');  
+            $('#fpg_title_hover_color').val('#007aff'); 
+            $('#fpg_title_margin').val('10px 0px 5px 0px');
+            $('#fpg_title_padding').val('');
+            $('#fpg_title_font_size').val('22');
+            $('#fpg_title_font_weight').val('600').change();
+            $('#fpg_title_border_color').val(''); 
+            $('#fpg_title_border_width').val('');
+            $('#fpg_title_border_style').val('unset').change();
             $('#fpg_title_line_height').val('30px');
+            $('#fpg_meta_color').val('#9b9b9b'); 
+            $('#fpg_meta_hover_color').val('#007aff'); 
+            $('#fpg_meta_icon_color').val(''); 
+            $('#fpg_meta_bgcolor').val(''); 
+            $('#fpg_meta_size').val('15'); 
+            $('#fpg_meta_font_weight').val('400').change(); 
+            $('#fpg_meta_margin').val('');
+            $('#fpg_meta_padding').val('0px 0px 15px 0px');
+            $('#fpg_meta_gap').val('');
+            $('#fpg_meta_line_height').val('');
+            $('#fpg_author_color').val(''); 
+            $('#fpg_author_bg_color').val(''); 
+            $('#fpg_author_padding').val('');
+            $('#fpg_category_color').val(''); 
+            $('#fpg_category_bg_color').val(''); 
+            $('#fpg_category_padding').val('');
+            $('#fpg_date_color').val(''); 
+            $('#fpg_date_bg_color').val(''); 
+            $('#fpg_date_padding').val('');
+            $('#fpg_excerpt_color').val(''); 
+            $('#fpg_excerpt_size').val('');
+            $('#fpg_excerpt_font_weight').val('400').change();
+            $('#fpg_excerpt_margin').val('');
+            $('#fpg_excerpt_padding').val('0px 0px 0px 0px');
+            $('#fpg_excerpt_line_height').val('');
+            $('#fpg_button_background_color').val('#007aff'); 
+            $('#fpg_button_hover_background_color').val('#0062ed'); 
+            $('#fpg_button_text_color').val('#ffffff'); 
+            $('#fpg_button_text_hover_color').val('#ffffff'); 
+            $('#fpg_button_border_color').val('');
+            $('#fpg_button_margin').val('');
+            $('#fpg_button_padding').val('10px 15px 10px 15px');
+            $('#fpg_button_font_size').val('16px');
+            $('#fpg_button_font_weight').val('400');
+            $('#fancy_button_border_style').val('unset');
+            $('#fpg_pagination_color').val('#000000'); 
+            $('#fpg_pagination_background').val('#ffffff'); 
+            $('#fpg_pagination_border_color').val('#efefef'); 
+            $('#fpg_pagination_border_width').val('1px');
+            $('#fpg_pagination_border_style').val('solid');
+            $('#fpg_pagination_border_radius').val('5px');
+            $('#fpg_pagination_height').val('');
+            $('#fpg_pagination_width').val('');
+            $('#fpg_pagination_padding').val('');
+            $('#fpg_pagination_margin').val('');
+            $('#fpg_pagination_gap').val('');
+            $('#fpg_pagination_hover_color').val('#ffffff'); 
+            $('#fpg_pagination_hover_background').val('#007aff'); 
+            $('#fpg_pagination_hover_border_color').val(''); 
+            $('#fpg_pagination_active_color').val('#ffffff'); 
+            $('#fpg_pagination_active_background').val('#007aff'); 
+            $('#fpg_pagination_active_border_color').val(''); 
+            $('#fancy_button_option').val('filled').change();
+            $('#fancy_post_hover_animation').val('none').change();
+            $('#fancy_post_image_border_radius').val('');
+            $('#fancy_post_feature_image_size').val('full').change();
+             $('input[name="fancy_post_main_box_alignment"][value="align-start"]').prop('checked', true).change();
+        } else if (selectedStyles === 'style11') {
+            
+            $('#fpg_section_background_color').val(''); 
+            $('#fpg_section_margin').val('');
+            $('#fpg_section_padding').val('0px');
+            $('#fpg_single_section_background_color').val(''); 
+            $('#fpg_single_section_background_hover_color').val(''); 
+            $('#fpg_single_section_margin').val('0px 0px 0px 0px');
+            $('#fpg_single_section_padding').val('');
+            $('#fpg_single_content_section_padding').val('');
+            $('#fpg_single_section_border_color').val(''); 
+            $('#fancy_post_border_width').val('');
+            $('#fancy_post_border_style').val('unset').change();
+            $('#fancy_post_section_border_radius').val('');
+            $('#fpg_title_color').val('');  
+            $('#fpg_title_hover_color').val(''); 
+            $('#fpg_title_margin').val('');
+            $('#fpg_title_padding').val('');
+            $('#fpg_title_font_size').val('20');
+            $('#fpg_title_font_weight').val('500').change();
+            $('#fpg_title_border_color').val(''); 
+            $('#fpg_title_border_width').val('');
+            $('#fpg_title_border_style').val('unset').change();
+            $('#fpg_title_line_height').val('28px');
+            $('#fpg_meta_color').val(''); 
+            $('#fpg_meta_hover_color').val(''); 
+            $('#fpg_meta_icon_color').val(''); 
+            $('#fpg_meta_bgcolor').val(''); 
+            $('#fpg_meta_size').val('16'); 
+            $('#fpg_meta_font_weight').val('400').change(); 
+            $('#fpg_meta_margin').val('');
+            $('#fpg_meta_padding').val('');
+            $('#fpg_meta_gap').val('');
+            $('#fpg_meta_line_height').val('');
+            $('#fpg_author_color').val(''); 
+            $('#fpg_author_bg_color').val(''); 
+            $('#fpg_author_padding').val('');
+            $('#fpg_category_color').val(''); 
+            $('#fpg_category_bg_color').val(''); 
+            $('#fpg_category_padding').val('');
+            $('#fpg_date_color').val(''); 
+            $('#fpg_date_bg_color').val(''); 
+            $('#fpg_date_padding').val('');
+            $('#fpg_excerpt_color').val(''); 
+            $('#fpg_excerpt_size').val('');
+            $('#fpg_excerpt_font_weight').val('400').change();
+            $('#fpg_excerpt_margin').val('');
+            $('#fpg_excerpt_padding').val('0px 0px 0px 0px');
+            $('#fpg_excerpt_line_height').val('');
+            $('#fpg_button_background_color').val(''); 
+            $('#fpg_button_hover_background_color').val(''); 
+            $('#fpg_button_text_color').val('#ffffff'); 
+            $('#fpg_button_text_hover_color').val('#ffffff'); 
+            $('#fpg_button_border_color').val('');
+            $('#fpg_button_margin').val('0px 0 0');
+            $('#fpg_button_padding').val('');
+            $('#fpg_button_font_size').val('16px');
+            $('#fpg_button_font_weight').val('400');
+            $('#fancy_button_border_style').val('unset');
+            $('#fpg_pagination_color').val('#cb003b'); 
+            $('#fpg_pagination_background').val('#ffffff'); 
+            $('#fpg_pagination_border_color').val('#efefef'); 
+            $('#fpg_pagination_border_width').val('1px');
+            $('#fpg_pagination_border_style').val('solid');
+            $('#fpg_pagination_border_radius').val('5px');
+            $('#fpg_pagination_height').val('');
+            $('#fpg_pagination_width').val('');
+            $('#fpg_pagination_padding').val('');
+            $('#fpg_pagination_margin').val('');
+            $('#fpg_pagination_gap').val('');
+            $('#fpg_pagination_hover_color').val('#ffffff'); 
+            $('#fpg_pagination_hover_background').val('#cb003b'); 
+            $('#fpg_pagination_hover_border_color').val('#cb003b'); 
+            $('#fpg_pagination_active_color').val('#ffffff'); 
+            $('#fpg_pagination_active_background').val('#cb003b'); 
+            $('#fpg_pagination_active_border_color').val('#cb003b'); 
+            $('#fancy_button_option').val('broder').change();
+            $('#fancy_post_hover_animation').val('zoom_out').change();
+            $('#fancy_post_image_border_radius').val('');
+            $('#fancy_post_feature_image_size').val('fancy_post_landscape').change();
+             $('input[name="fancy_post_main_box_alignment"][value="align-start"]').prop('checked', true).change();
+        } else  {
+            
+            $('#fpg_section_background_color').val(''); 
+            $('#fpg_section_margin').val('12px');
+            $('#fpg_section_padding').val('0px');
+            $('#fpg_single_section_background_color').val('#efefef'); 
+            $('#fpg_single_section_background_hover_color').val('#007aff'); 
+            $('#fpg_single_section_margin').val('0px 0px 0px 0px');
+            $('#fpg_single_section_padding').val('40px 35px 50px 35px');
+            $('#fpg_single_content_section_padding').val('');
+            $('#fpg_single_section_border_color').val(''); 
+            $('#fancy_post_border_width').val('');
+            $('#fancy_post_border_style').val('unset').change();
+            $('#fancy_post_section_border_radius').val('10px 10px');
+            $('#fpg_title_color').val('');  
+            $('#fpg_title_hover_color').val(''); 
+            $('#fpg_title_margin').val('');
+            $('#fpg_title_padding').val('');
+            $('#fpg_title_font_size').val('22');
+            $('#fpg_title_font_weight').val('600').change();
+            $('#fpg_title_border_color').val(''); 
+            $('#fpg_title_border_width').val('');
+            $('#fpg_title_border_style').val('unset').change();
+            $('#fpg_title_line_height').val('30px');
+            $('#fpg_meta_color').val(''); 
+            $('#fpg_meta_hover_color').val(''); 
+            $('#fpg_meta_icon_color').val(''); 
+            $('#fpg_meta_bgcolor').val(''); 
+            $('#fpg_meta_size').val('16'); 
+            $('#fpg_meta_font_weight').val('400').change(); 
+            $('#fpg_meta_margin').val('');
+            $('#fpg_meta_padding').val('');
+            $('#fpg_meta_gap').val('');
+            $('#fpg_meta_line_height').val('');
+            $('#fpg_author_color').val(''); 
+            $('#fpg_author_bg_color').val(''); 
+            $('#fpg_author_padding').val('');
+            $('#fpg_category_color').val(''); 
+            $('#fpg_category_bg_color').val(''); 
+            $('#fpg_category_padding').val('');
+            $('#fpg_date_color').val(''); 
+            $('#fpg_date_bg_color').val(''); 
+            $('#fpg_date_padding').val('');
+            $('#fpg_excerpt_color').val(''); 
+            $('#fpg_excerpt_size').val('');
+            $('#fpg_excerpt_font_weight').val('400').change();
+            $('#fpg_excerpt_margin').val('');
+            $('#fpg_excerpt_padding').val('0px 0px 0px 0px');
+            $('#fpg_excerpt_line_height').val('');
+            $('#fpg_button_background_color').val('#007aff'); 
+            $('#fpg_button_hover_background_color').val(''); 
+            $('#fpg_button_text_color').val(''); 
+            $('#fpg_button_text_hover_color').val('#000000'); 
+            $('#fpg_button_border_color').val('');
+            $('#fpg_button_margin').val('0px 0 0');
+            $('#fpg_button_padding').val('10px 17px 11px 15px');
+            $('#fpg_button_font_size').val('16px');
+            $('#fpg_button_font_weight').val('400');
+            $('#fancy_button_border_style').val('unset');
+            $('#fpg_pagination_color').val('#cb003b'); 
+            $('#fpg_pagination_background').val('#ffffff'); 
+            $('#fpg_pagination_border_color').val('#efefef'); 
+            $('#fpg_pagination_border_width').val('1px');
+            $('#fpg_pagination_border_style').val('solid');
+            $('#fpg_pagination_border_radius').val('5px');
+            $('#fpg_pagination_height').val('');
+            $('#fpg_pagination_width').val('');
+            $('#fpg_pagination_padding').val('');
+            $('#fpg_pagination_margin').val('');
+            $('#fpg_pagination_gap').val('');
+            $('#fpg_pagination_hover_color').val('#ffffff'); 
+            $('#fpg_pagination_hover_background').val('#cb003b'); 
+            $('#fpg_pagination_hover_border_color').val('#cb003b'); 
+            $('#fpg_pagination_active_color').val('#ffffff'); 
+            $('#fpg_pagination_active_background').val('#cb003b'); 
+            $('#fpg_pagination_active_border_color').val('#cb003b'); 
+            $('#fancy_button_option').val('broder').change();
+            $('#fancy_post_hover_animation').val('zoom_out').change();
+            $('#fancy_post_image_border_radius').val('');
+            $('#fancy_post_feature_image_size').val('fancy_post_landscape').change();
+             $('input[name="fancy_post_main_box_alignment"][value="align-start"]').prop('checked', true).change();
         }
 
         // Trigger change events to apply any related updates
@@ -1491,6 +2365,7 @@ $(document).ready(function() {
         $('#fpg_button_text_color').change();
         $('#fpg_button_text_hover_color').change();
         $('#fpg_button_border_color').change();
+        $('#fancy_button_border_style').change();
         $('#fpg_button_margin').change();
         $('#fpg_button_padding').change();
         $('#fpg_button_font_size').change();
@@ -1516,11 +2391,12 @@ $(document).ready(function() {
         $('#fancy_button_option').change();
         $('#fancy_post_hover_animation').change();
         $('#fancy_post_feature_image_size').change();
+        $('#fancy_post_image_border_radius').change();
+        $('#fancy_button_border_style').change();
+        $('input[name="fancy_post_main_box_alignment"]').change();
 
         console.log('Style applied:', selectedStyles);
     });
 });
 
 })(jQuery);
-
-
