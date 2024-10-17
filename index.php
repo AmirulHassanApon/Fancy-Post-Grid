@@ -1,4 +1,2 @@
 <?php
-// Silence is golden. 
-
-// sdas  sdad
+// Silence is golden.
