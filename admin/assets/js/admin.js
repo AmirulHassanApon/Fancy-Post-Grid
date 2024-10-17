@@ -2284,27 +2284,27 @@ $(document).ready(function() {
             $('#fpg_button_font_size').val('16px');
             $('#fpg_button_font_weight').val('400');
             $('#fancy_button_border_style').val('unset');
-            $('#fpg_pagination_color').val('#cb003b'); 
-            $('#fpg_pagination_background').val('#ffffff'); 
+            $('#fpg_pagination_color').val('#000000'); 
+            $('#fpg_pagination_background').val('#efefef'); 
             $('#fpg_pagination_border_color').val('#efefef'); 
-            $('#fpg_pagination_border_width').val('1px');
-            $('#fpg_pagination_border_style').val('solid');
-            $('#fpg_pagination_border_radius').val('5px');
+            $('#fpg_pagination_border_width').val('');
+            $('#fpg_pagination_border_style').val('unset');
+            $('#fpg_pagination_border_radius').val('');
             $('#fpg_pagination_height').val('');
             $('#fpg_pagination_width').val('');
             $('#fpg_pagination_padding').val('');
             $('#fpg_pagination_margin').val('');
             $('#fpg_pagination_gap').val('');
             $('#fpg_pagination_hover_color').val('#ffffff'); 
-            $('#fpg_pagination_hover_background').val('#cb003b'); 
-            $('#fpg_pagination_hover_border_color').val('#cb003b'); 
+            $('#fpg_pagination_hover_background').val('#007aff'); 
+            $('#fpg_pagination_hover_border_color').val('#007aff'); 
             $('#fpg_pagination_active_color').val('#ffffff'); 
-            $('#fpg_pagination_active_background').val('#cb003b'); 
-            $('#fpg_pagination_active_border_color').val('#cb003b'); 
-            $('#fancy_button_option').val('broder').change();
+            $('#fpg_pagination_active_background').val('#007aff'); 
+            $('#fpg_pagination_active_border_color').val('#007aff'); 
+            $('#fancy_button_option').val('filled').change();
             $('#fancy_post_hover_animation').val('zoom_out').change();
             $('#fancy_post_image_border_radius').val('');
-            $('#fancy_post_feature_image_size').val('fancy_post_landscape').change();
+            $('#fancy_post_feature_image_size').val('fancy_post_square').change();
              $('input[name="fancy_post_main_box_alignment"][value="align-start"]').prop('checked', true).change();
         }
 
