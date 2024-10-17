@@ -1,0 +1,349 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Fancy Post Grid Plugin\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-07-14 10:08+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: \n"
+"Language: \n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Loco https://localise.biz/\n"
+"X-Loco-Version: 2.6.2; wp-6.0\n"
+"X-Domain: fancy-post-grid"
+
+
+#: fancy-post-grid.php:63
+msgid "Settings"
+msgstr ""
+
+#: includes/shortcode_generate.php:10
+msgid "Fancy Post Grid"
+msgstr ""
+
+#: includes/shortcode_generate.php:11
+msgid "The Post Grid"
+msgstr ""
+
+#: includes/shortcode_generate.php:12
+msgid "Add New Grid"
+msgstr ""
+
+#: includes/shortcode_generate.php:13
+msgid "All Grids"
+msgstr ""
+
+#: includes/shortcode_generate.php:14
+msgid "Add New Post Grid"
+msgstr ""
+
+#: includes/shortcode_generate.php:15
+msgid "Edit Post Grid"
+msgstr ""
+
+#: includes/shortcode_generate.php:16
+msgid "New Post Grid"
+msgstr ""
+
+#: includes/shortcode_generate.php:17
+msgid "Enter Shortcode Name"
+msgstr ""
+
+#: includes/shortcode_generate.php:18
+msgid "View Post Grid"
+msgstr ""
+
+#: includes/shortcode_generate.php:19
+msgid "Search Post Grids"
+msgstr ""
+
+#: includes/shortcode_generate.php:20
+msgid "No Post Grids found"
+msgstr ""
+
+#: includes/shortcode_generate.php:21
+msgid "No Post Grids found in Trash"
+msgstr ""
+
+#: includes/shortcode_generate.php:25
+msgid "All Post Grids"
+msgstr ""
+
+#: includes/shortcode_generate.php:26
+msgid "Shortcode news and reviews"
+msgstr ""
+
+#: includes/shortcode_generate.php:54
+msgid "Enter Shortcode Name"
+msgstr ""
+
+#: includes/shortcode_generate.php:65 
+#: includes/shortcode_generate.php:68
+msgid "Shortcode updated."
+msgstr ""
+
+#: includes/shortcode_generate.php:69
+msgid "Shortcode restored to revision from %s"
+msgstr ""
+
+#: includes/shortcode_generate.php:70
+msgid "Shortcode published."
+msgstr ""
+
+#: includes/shortcode_generate.php:71
+msgid "Shortcode saved."
+msgstr ""
+#: includes/shortcode_generate.php:72
+msgid "Shortcode submitted."
+msgstr ""
+
+#: includes/shortcode_generate.php:73
+#, php-format
+msgid "Shortcode scheduled for: <strong>%1$s</strong>."
+msgstr ""
+
+#: includes/shortcode_generate.php:74
+msgid "Shortcode draft updated."
+msgstr ""
+
+#: includes/shortcode_generate.php:85
+msgid "Shortcode"
+msgstr ""
+
+
+#: includes/metabox/fancy-post-grid-metabox.php:14
+msgid "Shortcode Generator"
+msgstr ""
+
+#: includes/metabox/fancy-post-grid-metabox.php:101
+msgid "Post Type"
+msgstr ""
+
+#: includes/metabox/fancy-post-grid-metabox.php:109
+msgid "Layout Type"
+msgstr ""
+
+#: includes/metabox/fancy-post-grid-metabox.php:115
+msgid "Grid"
+msgstr ""
+
+#: includes/metabox/fancy-post-grid-metabox.php:116
+msgid "Slider"
+msgstr ""
+
+#: includes/metabox/fancy-post-grid-metabox.php:122
+msgid "Post Per Page"
+msgstr ""
+
+#: includes/metabox/fancy-post-grid-metabox.php:129
+msgid "Choose Category"
+msgstr ""
+
+#: includes/metabox/fancy-post-grid-metabox.php:137
+#: includes/metabox/fancy-post-grid-metabox.php:166
+msgid "Select Style"
+msgstr ""
+
+#: includes/metabox/fancy-post-grid-metabox.php:143
+#: includes/metabox/fancy-post-grid-metabox.php:172
+msgid "Style 01"
+msgstr ""
+
+#: includes/metabox/fancy-post-grid-metabox.php:144
+#: includes/metabox/fancy-post-grid-metabox.php:173
+msgid "Style 02"
+msgstr ""
+
+#: includes/metabox/fancy-post-grid-metabox.php:145
+#: includes/metabox/fancy-post-grid-metabox.php:174
+msgid "Style 03"
+msgstr ""
+
+#: includes/metabox/fancy-post-grid-metabox.php:151
+msgid "Select Column "
+msgstr ""
+
+#: includes/metabox/fancy-post-grid-metabox.php:179
+
+msgid "Number of columns Desktops > 1199px"
+msgstr ""
+
+#: includes/metabox/fancy-post-grid-metabox.php:158
+#: includes/metabox/fancy-post-grid-metabox.php:185
+#: includes/metabox/fancy-post-grid-metabox.php:197
+msgid "Column 3"
+msgstr ""
+
+#: includes/metabox/fancy-post-grid-metabox.php:191
+msgid "Number of columns Desktops > 991px"
+msgstr ""
+
+#: includes/metabox/fancy-post-grid-metabox.php:204
+msgid "Post Title Section"
+msgstr ""
+
+#: includes/metabox/fancy-post-grid-metabox.php:211
+#: includes/metabox/fancy-post-grid-metabox.php:235
+#: includes/metabox/fancy-post-grid-metabox.php:265
+msgid "Color"
+msgstr ""
+
+#: includes/metabox/fancy-post-grid-metabox.php:218
+msgid "Background Color"
+msgstr ""
+
+#: includes/metabox/fancy-post-grid-metabox.php:228
+msgid "Post Description Section"
+msgstr ""
+
+#: includes/metabox/fancy-post-grid-metabox.php:243
+msgid "Background Color"
+msgstr ""
+
+#: includes/metabox/fancy-post-grid-metabox.php:250
+msgid "Date Color"
+msgstr ""
+
+#: includes/metabox/fancy-post-grid-metabox.php:258
+msgid "More Post Section"
+msgstr ""
+
+#: includes/metabox/fancy-post-grid-metabox.php:275
+msgid "Hover Color Fields"
+msgstr ""
+
+#: includes/metabox/fancy-post-grid-metabox.php:282
+msgid "Title"
+msgstr ""
+
+#: includes/metabox/fancy-post-grid-metabox.php:291
+msgid "Description"
+msgstr ""
+
+#: includes/metabox/fancy-post-grid-metabox.php:305
+msgid "%s &mdash; Updated!"
+msgstr ""
+
+
+
+#: admin/settings/plugin-settings.php:10
+#: admin/settings/plugin-settings.php:11
+msgid "Settings"
+msgstr ""
+
+#: admin/settings/plugin-settings.php:29
+msgid "General"
+msgstr ""
+
+#: admin/settings/plugin-settings.php:30
+msgid "Enable/Disable CSS"
+msgstr ""
+
+#: admin/settings/plugin-settings.php:31
+msgid "Enable/Disable JS"
+msgstr ""
+
+#: admin/settings/plugin-settings.php:32
+msgid "Overview"
+msgstr ""
+
+#: admin/settings/plugin-settings.php:61
+msgid "Features"
+msgstr ""
+#: admin/settings/plugin-settings.php:62
+msgid "Status"
+msgstr ""
+
+#: admin/settings/plugin-settings.php:173
+msgid "Not Selected"
+msgstr ""
+
+#: admin/settings/plugin-settings.php:276
+msgid "Form Plugin"
+msgstr ""
+
+#: admin/settings/plugin-settings.php:173
+msgid "Form Theme"
+msgstr ""
+
+#: admin/settings/plugin-settings.php:65 
+#: admin/settings/plugin-settings.php:189
+msgid "Primary Color"
+msgstr ""
+
+#: admin/settings/plugin-settings.php:71 
+#: admin/settings/plugin-settings.php:197
+msgid "Secondary Color"
+msgstr ""
+
+#: admin/settings/plugin-settings.php:77 
+#: admin/settings/plugin-settings.php:205
+msgid "Select Single Template"
+msgstr ""
+
+#: admin/settings/plugin-settings.php:83
+#: admin/settings/plugin-settings.php:213
+msgid "Single Template Padding Top/Bottom"
+msgstr ""
+
+#: admin/settings/plugin-settings.php:89
+#: admin/settings/plugin-settings.php:221
+msgid "Disable Details Page"
+msgstr ""
+
+#: admin/settings/plugin-settings.php:95
+#: admin/settings/plugin-settings.php:321
+msgid "Disable Boostrap CSS"
+msgstr ""
+
+#: admin/settings/plugin-settings.php:101 
+#: admin/settings/plugin-settings.php:328
+msgid "Disable Fontawesome CSS"
+msgstr ""
+
+#: admin/settings/plugin-settings.php:107
+#: admin/settings/plugin-settings.php:336
+msgid "Disable owl carousel CSS"
+msgstr ""
+
+#: admin/settings/plugin-settings.php:113 
+#: admin/settings/plugin-settings.php:343
+msgid "Disable FlexSlider CSS"
+msgstr ""
+
+#: admin/settings/plugin-settings.php:119
+#: admin/settings/plugin-settings.php:351
+msgid "Disable magnific popup CSS"
+msgstr ""
+
+#: admin/settings/plugin-settings.php:125
+#: admin/settings/plugin-settings.php:423
+msgid "Disable Isotope JS"
+msgstr ""
+
+#: admin/settings/plugin-settings.php:131
+#: admin/settings/plugin-settings.php:431
+msgid "Disable owl carousel JS"
+msgstr ""
+
+#: admin/settings/plugin-settings.php:438
+#: admin/settings/plugin-settings.php:137
+msgid "Disable FlexSlider JS"
+msgstr ""
+
+#: admin/settings/plugin-settings.php:143
+#: admin/settings/plugin-settings.php:446
+msgid "Disable magnific popup JS"
+msgstr ""
+#: admin/settings/plugin-settings.php:272
+msgid "From Plugin"
+msgstr ""
+
+#: admin/settings/plugin-settings.php:274
+msgid "From Theme"
+msgstr ""
+
