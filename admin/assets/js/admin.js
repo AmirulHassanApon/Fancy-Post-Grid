@@ -530,6 +530,7 @@
                     $('#fancy_button_option_main').show();
                     $('#fpg_button_settings_main').show();
                     $('#fpg_section_bg_hover_main').hide();
+                    $('#fpg_meta_icon_color_main').show();
 
                 } else if (selectedSliderStyle === 'sliderstyle2') {
                     $('#fpg_field_group_author_main').show();
@@ -555,7 +556,7 @@
                     $('#fpg_date_bg_color_main').hide();
                     $('#fpg_date_padding_main').hide();
 
-                    $('#fpg_meta_hover_color_main').show()
+                    $('#fpg_meta_hover_color_main').hide()
                     
                     $('#fpg_single_content_section_padding_box').show();
                     $('#fpg_title_hover_color_box').show();
@@ -566,6 +567,7 @@
                     $('#fancy_button_option_main').show();
                     $('#fpg_button_settings_main').show();
                     $('#fpg_section_bg_hover_main').hide();
+                    $('#fpg_meta_icon_color_main').show();
   
                 }else if (selectedSliderStyle === 'sliderstyle3') {
                     $('#fpg_field_group_author_main').show();
@@ -601,6 +603,7 @@
                     $('#fancy_button_option_main').show();
                     $('#fpg_button_settings_main').show();
                     $('#fpg_section_bg_hover_main').hide();
+                    $('#fpg_meta_icon_color_main').hide();
   
                 }else if (selectedSliderStyle === 'sliderstyle4') {
                     $('#fpg_field_group_author_main').hide();
@@ -636,6 +639,7 @@
                     $('#fancy_button_option_main').show();
                     $('#fpg_button_settings_main').show();
                     $('#fpg_section_bg_hover_main').hide();
+                    $('#fpg_meta_icon_color_main').show();
   
                 }else if (selectedSliderStyle === 'sliderstyle5') {
                     $('#fpg_field_group_author_main').show();
@@ -671,6 +675,7 @@
                     $('#fancy_button_option_main').show();
                     $('#fpg_button_settings_main').show();
                     $('#fpg_section_bg_hover_main').hide();
+                    $('#fpg_meta_icon_color_main').show();
   
                 }else if (selectedSliderStyle === 'sliderstyle6') {
                     $('#fpg_field_group_author_main').hide();
@@ -706,6 +711,7 @@
                     $('#fancy_button_option_main').show();
                     $('#fpg_button_settings_main').show();
                     $('#fpg_section_bg_hover_main').hide();
+                    $('#fpg_meta_icon_color_main').hide();
   
                 }else if (selectedSliderStyle === 'sliderstyle7') {
                     $('#fpg_field_group_author_main').hide();
@@ -741,6 +747,7 @@
                     $('#fancy_button_option_main').show();
                     $('#fpg_button_settings_main').show();
                     $('#fpg_section_bg_hover_main').hide();
+                    $('#fpg_meta_icon_color_main').hide();
   
                 }
             }else if (selectedLayout === 'list') {
@@ -2144,6 +2151,7 @@ $(document).ready(function() {
             $('#fancy_post_image_border_radius').val('');
             $('#fancy_post_feature_image_size').val('full').change();
              $('input[name="fancy_post_main_box_alignment"][value="align-start"]').prop('checked', true).change();
+
         } else if (selectedStyles === 'style11') {
             
             $('#fpg_section_background_color').val(''); 
@@ -2305,7 +2313,7 @@ $(document).ready(function() {
             $('#fancy_post_hover_animation').val('zoom_out').change();
             $('#fancy_post_image_border_radius').val('');
             $('#fancy_post_feature_image_size').val('fancy_post_square').change();
-             $('input[name="fancy_post_main_box_alignment"][value="align-start"]').prop('checked', true).change();
+            $('input[name="fancy_post_main_box_alignment"][value="align-start"]').prop('checked', true).change();
         }
 
         // Trigger change events to apply any related updates
@@ -2387,7 +2395,6 @@ $(document).ready(function() {
         $('#fpg_pagination_active_color').change();
         $('#fpg_pagination_active_background').change();
         $('#fpg_pagination_active_border_color').change();
-
         $('#fancy_button_option').change();
         $('#fancy_post_hover_animation').change();
         $('#fancy_post_feature_image_size').change();
