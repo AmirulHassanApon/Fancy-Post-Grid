@@ -371,7 +371,7 @@ ob_start();
     }
 
     /* Excerpt Styles */
-    .rs-blog-layout-4 .rs-blog__item .rs-content p {
+    .rs-blog-layout-4 .rs-blog__item .rs-content .desc {
         <?php if (!empty($fpg_excerpt_color)) : ?>
             color: <?php echo esc_attr($fpg_excerpt_color); ?>;
         <?php endif; ?>
@@ -381,10 +381,6 @@ ob_start();
         <?php if (!empty($fpg_excerpt_font_weight)) : ?>
             font-weight: <?php echo esc_attr($fpg_excerpt_font_weight); ?>;
         <?php endif; ?>
-        
-        
-    }
-    .rs-blog-layout-4 .rs-blog__item .rs-content p{
         <?php if (!empty($fpg_excerpt_order)) : ?>
             order: <?php echo esc_attr($fpg_excerpt_order); ?>;
         <?php endif; ?>
@@ -393,8 +389,11 @@ ob_start();
         <?php endif; ?>
         <?php if (!empty($fpg_excerpt_margin)) : ?>
             margin: <?php echo esc_attr($fpg_excerpt_margin); ?>;
-        <?php endif; ?>
-
+        <?php endif; ?> 
+        <?php if (!empty($fpg_excerpt_line_height)) : ?>
+            line-height: <?php echo esc_attr($fpg_excerpt_line_height); ?>;
+        <?php endif; ?>       
+        
     }
 
     .rs-blog-layout-5 .rs-blog__single .rs-content .btn-wrapper{
