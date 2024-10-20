@@ -1190,17 +1190,80 @@ img {
     margin-right: 6px;
 }
 
-.rs-blog-layout-4 .rs-blog__item .rs-content .rs-blog-footer a {
-    color: #FE8801;
-    font-size: 16px;
-    font-weight: 600;
+.rs-blog-layout-4 .rs-blog__item .rs-content .rs-blog-footer .btn-link {
     transition: all linear 0.3s;
     text-decoration: none;
 }
 
-.rs-blog-layout-4 .rs-blog__item .rs-content .rs-blog-footer a:hover {
+.rs-blog-layout-4 .rs-blog__item .rs-content .rs-blog-footer .btn-link:hover {
     color: #002559;
 }
+
+.rs-blog-layout-4 .rs-blog__item .rs-content .rs-blog-footer .btn-link.fpg-filled{
+    font-size: 16px;
+    font-weight: 600;
+    color: #ffffff;
+    display: inline-block;
+    padding: 10px 20px;
+    border-radius: 30px;
+    background: #F79C53;
+}
+
+
+.rs-blog-layout-4 .rs-blog__item .rs-content .rs-blog-footer .btn-link.fpg-filled:hover {
+    color: #ffffff;
+    background: #F79C53da;
+}
+
+.rs-blog-layout-4 .rs-blog__item .rs-content .rs-blog-footer .btn-link.fpg-filled i {
+    margin-left: 5px;
+}
+.rs-blog-layout-4 .rs-blog__item .rs-content .rs-blog-footer .btn-link.fpg-border{
+    font-size: 16px;
+    font-weight: 600;
+    color: #454545;
+    display: inline-block;
+    position: relative;
+    background: transparent !important;
+}
+.rs-blog-layout-4 .rs-blog__item .rs-content .rs-blog-footer .btn-link.fpg-border:hover{
+    color: #F79C53;
+    background: transparent !important;
+}
+
+.rs-blog-layout-4 .rs-blog__item .rs-content .rs-blog-footer .btn-link.fpg-border::before{
+    position: absolute;
+    content: '';
+    left: 0;
+    bottom: 0;
+    height: 2px;
+    width: 0%;
+    background: #F79C53;
+    transition: all ease 0.3s;
+}
+
+.rs-blog-layout-4 .rs-blog__item .rs-content .rs-blog-footer .btn-link.fpg-border:hover::before{
+    width: 100%;
+}
+
+.rs-blog-layout-4 .rs-blog__item .rs-content .rs-blog-footer .btn-link.fpg-flat {
+    font-size: 16px;
+    font-weight: 600;
+    color: #454545;
+    margin-top: 0px;
+    display: inline-block;
+    position: relative;
+    background: transparent !important;
+}
+
+.rs-blog-layout-4 .rs-blog__item .rs-content .rs-blog-footer .btn-link.fpg-flat:hover{
+    color: #F79C53;
+    background: transparent !important;
+}
+
+
+
+
 .rs-blog-layout-4 .swiper_wrap .swiper-pagination-4 {
     bottom: -98px !important;
     width: auto;
