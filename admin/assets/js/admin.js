@@ -2405,7 +2405,7 @@ $(document).ready(function() {
         $('#fancy_button_border_style').change();
         $('input[name="fancy_post_main_box_alignment"]').change();
 
-        console.log('Style applied:', selectedStyles);
+        
     });
 });
 
