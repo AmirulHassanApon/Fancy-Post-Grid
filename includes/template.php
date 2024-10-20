@@ -18,16 +18,15 @@ function fancy_post_grid_shortcode( $atts ) {
 		$post_id = $atts['id'];		
 		if($post_id!='xx'){	
 
-		 /*===========================================================
-		       //retrive settings value form settings page
-		   ============================================================*/
+		/*===========================================================
+		    //retrive settings value form settings page
+		============================================================*/
 
 		//Tab-1 Title Settings
 		$fancy_post_type                            = get_post_meta( $post_id, 'fancy_post_type', true );
 	    $fpg_include_only                           = get_post_meta( $post_id, 'fpg_include_only', true );
 	    $fpg_exclude                                = get_post_meta( $post_id, 'fpg_exclude', true );
 	    $fpg_limit                                  = get_post_meta( $post_id, 'fpg_limit', true );
-	    
 	    $fpg_filter_categories                      = get_post_meta( $post_id, 'fpg_filter_categories', true );
 	    $fpg_filter_tags                            = get_post_meta( $post_id, 'fpg_filter_tags', true );
 	    $fpg_field_group_taxonomy                   = get_post_meta( $post_id, 'fpg_field_group_taxonomy', true );
@@ -49,51 +48,41 @@ function fancy_post_grid_shortcode( $atts ) {
 		$layout_type                   				= get_post_meta($post_id, 'fpg_layout_select', true);
 		$fpg_grid_style                				= get_post_meta($post_id, 'fancy_post_grid_style', true);
 		$fancy_slider_style              			= get_post_meta($post_id, 'fancy_slider_style', true);
-		$fancy_list_style              			= get_post_meta($post_id, 'fancy_list_style', true);
+		$fancy_list_style              				= get_post_meta($post_id, 'fancy_list_style', true);
 		$fancy_isotope_style              			= get_post_meta($post_id, 'fancy_isotope_style', true);
-
 		//Columns		
 		$fancy_post_cl_lg                           = get_post_meta( $post_id, 'fancy_post_cl_lg', true );
 	    $fancy_post_cl_md                           = get_post_meta( $post_id, 'fancy_post_cl_md', true );
 	    $fancy_post_cl_sm                           = get_post_meta( $post_id, 'fancy_post_cl_sm', true );
 	    $fancy_post_cl_mobile                       = get_post_meta( $post_id, 'fancy_post_cl_mobile', true );
-
 	    $fancy_post_cl_lg_slider                    = get_post_meta( $post_id, 'fancy_post_cl_lg_slider', true );
 	    $fancy_post_cl_md_silder                    = get_post_meta( $post_id, 'fancy_post_cl_md_silder', true );
 	    $fancy_post_cl_sm_slider                    = get_post_meta( $post_id, 'fancy_post_cl_sm_slider', true );
 	    $fancy_post_cl_mobile_slider                = get_post_meta( $post_id, 'fancy_post_cl_mobile_slider', true );
-
 	    //Pagination
 	    $fancy_post_pagination                      = get_post_meta( $post_id, 'fancy_post_pagination', true );
 	    $fpg_post_per_page                			= get_post_meta($post_id, 'fpg_post_per_page', true);
 	    $fpg_pagination_slider                		= get_post_meta($post_id, 'fpg_pagination_slider', true);
-	    
-
 	    //Link
 	    $fancy_link_details                         = get_post_meta( $post_id, 'fancy_link_details', true );
     	$fancy_link_target                          = get_post_meta( $post_id, 'fancy_link_target', true );
-
     	$fancy_autoplay                         	= get_post_meta( $post_id, 'fancy_autoplay', true );
     	$fancy_free_mode                         	= get_post_meta( $post_id, 'fancy_free_mode', true );
     	$fancy_loop                         		= get_post_meta( $post_id, 'fancy_loop', true );
     	$fancy_keyboard                         	= get_post_meta( $post_id, 'fancy_keyboard', true );
     	$fancy_pagination_clickable                 = get_post_meta( $post_id, 'fancy_pagination_clickable', true );
     	$fancy_spacebetween                 		= get_post_meta( $post_id, 'fancy_spacebetween', true );
-    	
     	//tab-3 Advanced Settings
     	$fancy_post_title_tag                       = get_post_meta( $post_id, 'fancy_post_title_tag', true );
     	$fancy_post_title_more_text                	= get_post_meta( $post_id, 'fancy_post_title_more_text', true );
     	$fancy_post_title_limit                     = get_post_meta( $post_id, 'fancy_post_title_limit', true );
     	$fancy_post_title_limit_type                = get_post_meta( $post_id, 'fancy_post_title_limit_type', true );
-
     	//feature-image
     	$fancy_post_hide_feature_image              = get_post_meta( $post_id, 'fancy_post_hide_feature_image', true );	    
 	    $fancy_post_feature_image_size              = get_post_meta( $post_id, 'fancy_post_feature_image_size', true );
 	    $fpg_title_border_style              		= get_post_meta( $post_id, 'fpg_title_border_style', true );
-	    
 	    $fancy_post_media_source                    = get_post_meta( $post_id, 'fancy_post_media_source', true ); 
 	    $fancy_post_hover_animation                 = get_post_meta( $post_id, 'fancy_post_hover_animation', true );
-
 	    //Excerpt
 	    $fancy_post_excerpt_limit                   = get_post_meta( $post_id, 'fancy_post_excerpt_limit', true );
 	    $fancy_post_excerpt_type                    = get_post_meta( $post_id, 'fancy_post_excerpt_type', true );
@@ -105,7 +94,6 @@ function fancy_post_grid_shortcode( $atts ) {
 	    $fancy_button_border_style         			= get_post_meta( $post_id, 'fancy_button_border_style', true );
     	$fancy_post_read_more_alignment             = get_post_meta( $post_id, 'fancy_post_read_more_alignment', true );
     	$fancy_post_read_more_text                  = get_post_meta( $post_id, 'fancy_post_read_more_text', true );
-    	
     	//Field Selector -Tab-4
     	$fpg_field_group_title                      = get_post_meta( $post_id, 'fpg_field_group_title', true );
 	    $fpg_field_group_excerpt                    = get_post_meta( $post_id, 'fpg_field_group_excerpt', true );
@@ -116,12 +104,10 @@ function fancy_post_grid_shortcode( $atts ) {
 	    $fpg_field_group_categories                 = get_post_meta( $post_id, 'fpg_field_group_categories', true );
 	    $fpg_field_group_tag                        = get_post_meta( $post_id, 'fpg_field_group_tag', true );
 	    $fpg_field_group_comment_count              = get_post_meta( $post_id, 'fpg_field_group_comment_count', true );
-
 	    $fancy_post_main_box_alignment              = get_post_meta( $post_id, 'fancy_post_main_box_alignment', true );
 	    $fancy_post_title_alignment                 = get_post_meta( $post_id, 'fancy_post_title_alignment', true );
 	    $fancy_post_meta_alignment              	= get_post_meta( $post_id, 'fancy_post_meta_alignment', true );
 	    $fancy_post_excerpt_alignment              	= get_post_meta( $post_id, 'fancy_post_excerpt_alignment', true );
-	    
 	    //Button
 	    $fpg_button_background_color                = get_post_meta( $post_id,'fpg_button_background_color', true); 
 	    $fpg_button_hover_background_color          = get_post_meta( $post_id,'fpg_button_hover_background_color', true); 
@@ -134,26 +120,20 @@ function fancy_post_grid_shortcode( $atts ) {
 	    $fpg_section_padding                        = get_post_meta( $post_id, 'fpg_section_padding', true );
 	    $fancy_post_section_border_radius           = get_post_meta( $post_id, 'fancy_post_section_border_radius', true );
 	    $fancy_post_image_border_radius             = get_post_meta( $post_id, 'fancy_post_image_border_radius', true );
-
 	    //Padding & Margin 
 	    $fpg_meta_padding                			= get_post_meta( $post_id,'fpg_meta_padding', true); 
 	    $fpg_meta_margin          					= get_post_meta( $post_id,'fpg_meta_margin', true); 
-
 	    $fpg_excerpt_padding                      	= get_post_meta( $post_id,'fpg_excerpt_padding', true ); 
 	    $fpg_excerpt_margin                			= get_post_meta( $post_id,'fpg_excerpt_margin', true ); 
-
 	    $fpg_title_padding                			= get_post_meta( $post_id,'fpg_title_padding', true ); 	    
 	    $fpg_title_margin               			= get_post_meta( $post_id, 'fpg_title_margin', true );
 		$fpg_title_border_width                		= get_post_meta( $post_id,'fpg_title_border_width', true ); 
-
 	    $fpg_title_border_color                		= get_post_meta( $post_id,'fpg_title_border_color', true ); 	    
 	    $fpg_title_margin               			= get_post_meta( $post_id, 'fpg_title_margin', true );
 	    $fpg_button_padding                         = get_post_meta( $post_id, 'fpg_button_padding', true );
 	    $fpg_button_margin                        	= get_post_meta( $post_id, 'fpg_button_margin', true );
-
-
 	    $fpg_single_section_background_color        = get_post_meta( $post_id, 'fpg_single_section_background_color', true );
-	     $fpg_single_section_background_hover_color        = get_post_meta( $post_id, 'fpg_single_section_background_hover_color', true );
+	    $fpg_single_section_background_hover_color        = get_post_meta( $post_id, 'fpg_single_section_background_hover_color', true );
 	    $fpg_single_section_margin                  = get_post_meta( $post_id, 'fpg_single_section_margin', true );
 	    $fpg_single_section_padding                 = get_post_meta( $post_id, 'fpg_single_section_padding', true );
 	    $fpg_single_content_section_padding         = get_post_meta( $post_id, 'fpg_single_content_section_padding', true );
@@ -164,11 +144,9 @@ function fancy_post_grid_shortcode( $atts ) {
 
 	    // Title
 	    $fpg_title_color                            = get_post_meta( $post_id,'fpg_title_color', true); 
-
 	    $fpg_title_font_size                        = get_post_meta( $post_id,'fpg_title_font_size', true); 
 	    $fpg_title_font_weight                      = get_post_meta( $post_id,'fpg_title_font_weight', true ); 
 	    $fpg_title_alignment                        = get_post_meta( $post_id,'fpg_title_alignment', true ); 
-
 		$fpg_title_line_height                      = get_post_meta( $post_id,'fpg_title_line_height', true); 
 	    $fpg_meta_line_height                       = get_post_meta( $post_id,'fpg_meta_line_height', true ); 
 	    $fpg_excerpt_line_height                    = get_post_meta( $post_id,'fpg_excerpt_line_height', true ); 
@@ -184,10 +162,8 @@ function fancy_post_grid_shortcode( $atts ) {
 	    $fpg_excerpt_size                           = get_post_meta( $post_id,'fpg_excerpt_size', true); 
 	    $fpg_excerpt_font_weight                    = get_post_meta( $post_id,'fpg_excerpt_font_weight', true ); 
 	    $fpg_excerpt_alignment                      = get_post_meta( $post_id,'fpg_excerpt_alignment', true ); 
-
 	    //Meta Data
 	    $fpg_meta_color                             = get_post_meta( $post_id,'fpg_meta_color', true); 
-		
 	    $fpg_meta_hover_color                       = get_post_meta( $post_id,'fpg_meta_hover_color', true); 
 	    $fpg_meta_gap                               = get_post_meta( $post_id,'fpg_meta_gap', true); 
 	    $fpg_meta_size                              = get_post_meta( $post_id,'fpg_meta_size', true); 
@@ -208,31 +184,29 @@ function fancy_post_grid_shortcode( $atts ) {
 		$fpg_pagination_active_color              	= get_post_meta( $post_id, 'fpg_pagination_active_color', true );
 		$fpg_pagination_active_background         	= get_post_meta( $post_id, 'fpg_pagination_active_background', true );
 		$fpg_pagination_active_border_color       	= get_post_meta( $post_id, 'fpg_pagination_active_border_color', true );
-
 		$fpg_pagination_border_width              	= get_post_meta( $post_id, 'fpg_pagination_border_width', true );
 		$fpg_pagination_height         				= get_post_meta( $post_id, 'fpg_pagination_height', true );
 		$fpg_pagination_width       				= get_post_meta( $post_id, 'fpg_pagination_width', true );
-
 		$fpg_border_color       					= get_post_meta( $post_id, 'fpg_border_color', true );
-
 		$fpg_author_color         					= get_post_meta( $post_id, 'fpg_author_color', true );
 		$fpg_author_bg_color       					= get_post_meta( $post_id, 'fpg_author_bg_color', true );
-
 		$fpg_author_padding       					= get_post_meta( $post_id, 'fpg_author_padding', true );
-		
 		$fpg_category_color         				= get_post_meta( $post_id, 'fpg_category_color', true );
 		$fpg_category_bg_color       				= get_post_meta( $post_id, 'fpg_category_bg_color', true );
-
 		$fpg_category_padding       				= get_post_meta( $post_id, 'fpg_category_padding', true );
-
 		$fpg_date_color         					= get_post_meta( $post_id, 'fpg_date_color', true );
 		$fpg_date_bg_color       					= get_post_meta( $post_id, 'fpg_date_bg_color', true );
-
 		$fpg_date_padding       					= get_post_meta( $post_id, 'fpg_date_padding', true );
 		$fpg_meta_bgcolor       					= get_post_meta( $post_id, 'fpg_meta_bgcolor', true );
-		$fpg_button_font_weight       					= get_post_meta( $post_id, 'fpg_button_font_weight', true );
-		$fpg_button_font_size       					= get_post_meta( $post_id, 'fpg_button_font_size', true );
+		$fpg_button_font_weight       				= get_post_meta( $post_id, 'fpg_button_font_weight', true );
+		$fpg_button_font_size       				= get_post_meta( $post_id, 'fpg_button_font_size', true );
 		$fpg_meta_icon_color       					= get_post_meta( $post_id, 'fpg_meta_icon_color', true );
+
+		$fpg_icon_font_size       					= get_post_meta( $post_id, 'fpg_icon_font_size', true );
+		$fpg_slider_dots_color       				= get_post_meta( $post_id, 'fpg_slider_dots_color', true );
+		$fpg_slider_dots_active_color       		= get_post_meta( $post_id, 'fpg_slider_dots_active_color', true );
+		$fpg_arrow_color       						= get_post_meta( $post_id, 'fpg_arrow_color', true );
+		$fpg_arrow_hover_color       				= get_post_meta( $post_id, 'fpg_arrow_hover_color', true );
 
 	    $main_alignment_class = '';
         if ($fancy_post_main_box_alignment === 'align-start') {
@@ -438,8 +412,6 @@ function fancy_post_grid_shortcode( $atts ) {
 				require  $dir.'view/list8.php';	
 				return $list8;		
 			}
-
-			
 		}
 		/*=====================================================================
 		//isotope type check 
@@ -456,11 +428,7 @@ function fancy_post_grid_shortcode( $atts ) {
 				require  $dir.'view/isotope1.php';
 				return $isotope1;		
 			}
-
-			
-			
 		}
-
 	}
 }
 add_shortcode( 'fancy_gird_post_shortcode', 'fancy_post_grid_shortcode' );
