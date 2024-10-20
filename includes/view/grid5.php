@@ -320,12 +320,14 @@ ob_start();
         <?php if (!empty($fpg_date_bg_color)) : ?>
             background: <?php echo esc_attr($fpg_date_bg_color); ?>;
         <?php endif; ?>
+    }
+    .pre-blog-item.style_12 .blog-inner-wrap .pre-image-wrap .pre-blog-meta .pre-date,
+    .pre-blog-item.style_12 .blog-inner-wrap .pre-image-wrap .pre-blog-meta .pre-month{
         <?php if (!empty($fpg_date_color)) : ?>
             color: <?php echo esc_attr($fpg_date_color); ?>;
         <?php endif; ?>
-
-
     }
+
     .pre-blog-item.style_12 .blog-inner-wrap .pre-image-wrap .pre-blog-meta::after{
         <?php if (!empty($fpg_date_bg_color)) : ?>
             border-color: <?php echo esc_attr($fpg_date_bg_color); ?>;
