@@ -324,6 +324,7 @@ function fancy_post_grid_metabox_shortcode_callback( $post ) {
     }
      
     $fpg_category_color = get_post_meta( $post->ID, 'fpg_category_color', true );
+    $fpg_single_image_shape_color = get_post_meta( $post->ID, 'fpg_single_image_shape_color', true );
     $fpg_category_bg_color = get_post_meta( $post->ID, 'fpg_category_bg_color', true );
     $fpg_category_padding = get_post_meta( $post->ID, 'fpg_category_padding', true );
     $fpg_title_line_height = get_post_meta( $post->ID, 'fpg_title_line_height', true );
@@ -1710,6 +1711,12 @@ function fancy_post_grid_metabox_shortcode_callback( $post ) {
                             <label for="fpg_single_section_background_hover_color"><?php esc_html_e( 'Background Hover Color:', 'fancy-post-grid' ); ?></label>
                             <input type="text" class="color-field" id="fpg_single_section_background_hover_color" name="fpg_single_section_background_hover_color" value="<?php echo esc_attr( $fpg_single_section_background_hover_color ); ?>" />
                         </div>
+
+                        <!-- Image Shape Color -->
+                        <div class="fpg-color-box" id="fpg_section_image_shape_main">
+                            <label for="fpg_single_image_shape_color"><?php esc_html_e( 'Image Shape Color:', 'fancy-post-grid' ); ?></label>
+                            <input type="text" class="color-field" id="fpg_single_image_shape_color" name="fpg_single_image_shape_color" value="<?php echo esc_attr( $fpg_single_image_shape_color ); ?>" />
+                        </div>
                         
                         <!-- Margin -->
                         <div class="fpg-margin-box">
@@ -2504,9 +2511,6 @@ function fancy_post_grid_save_metabox_data( $post_id ) {
         delete_post_meta( $post_id, 'fpg_field_group' );
     }
 
-
-
-
     $fields = [
         'fpg_field_group_title',
         'fpg_field_group_excerpt',
@@ -2570,6 +2574,9 @@ function fancy_post_grid_save_metabox_data( $post_id ) {
     // Save Title Border Color
     if ( isset( $_POST['fpg_title_border_color'] ) ) {
         update_post_meta( $post_id, 'fpg_title_border_color', sanitize_hex_color( wp_unslash($_POST['fpg_title_border_color'] ) ));
+    }
+    if ( isset( $_POST['fpg_single_image_shape_color'] ) ) {
+        update_post_meta( $post_id, 'fpg_single_image_shape_color', sanitize_hex_color( wp_unslash($_POST['fpg_single_image_shape_color'] ) ));
     }
 
     // Save Title Border Width
