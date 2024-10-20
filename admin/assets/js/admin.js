@@ -2205,12 +2205,12 @@ $(document).ready(function() {
             $('#fpg_excerpt_line_height').val('');
             $('#fpg_button_background_color').val(''); 
             $('#fpg_button_hover_background_color').val(''); 
-            $('#fpg_button_text_color').val('#ffffff'); 
-            $('#fpg_button_text_hover_color').val('#ffffff'); 
+            $('#fpg_button_text_color').val(''); 
+            $('#fpg_button_text_hover_color').val(''); 
             $('#fpg_button_border_color').val('');
-            $('#fpg_button_margin').val('0px 0 0');
+            $('#fpg_button_margin').val('');
             $('#fpg_button_padding').val('');
-            $('#fpg_button_font_size').val('16px');
+            $('#fpg_button_font_size').val('');
             $('#fpg_button_font_weight').val('400');
             $('#fancy_button_border_style').val('unset');
             $('#fpg_pagination_color').val('#e25a42'); 
