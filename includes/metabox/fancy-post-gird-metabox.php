@@ -388,6 +388,11 @@ function fancy_post_grid_metabox_shortcode_callback( $post ) {
     if ( empty( $fpg_meta_font_weight ) ) {
         $fpg_meta_font_weight = '400'; 
     }
+    $fpg_slider_dots_active_color = get_post_meta( $post_id, 'fpg_slider_dots_active_color', true );
+    $fpg_slider_dots_color = get_post_meta( $post_id, 'fpg_slider_dots_color', true );
+    $fpg_arrow_color = get_post_meta( $post_id, 'fpg_arrow_color', true );
+    $fpg_arrow_hover_color = get_post_meta( $post_id, 'fpg_arrow_hover_color', true );
+    $fpg_icon_font_size = get_post_meta( $post_id, 'fpg_icon_font_size', true );
 
     // Output for the metabox content
     ?>
@@ -658,8 +663,6 @@ function fancy_post_grid_metabox_shortcode_callback( $post ) {
                 </fieldset>
             </div>
 
-
-
             <!-- Column Grid Settings -->
             <div class="fancy-post-column fpg-common" id="fancy_post_column_grid">
                 <fieldset>
@@ -761,6 +764,7 @@ function fancy_post_grid_metabox_shortcode_callback( $post ) {
                     </div>                    
                 </fieldset>
             </div>
+
             <!-- Item Order Settings -->
             <div class="fancy-post-item-order fpg-common" id="fancy_post_item_order">
                 <fieldset>
@@ -878,6 +882,7 @@ function fancy_post_grid_metabox_shortcode_callback( $post ) {
                     </div>
                 </fieldset>
             </div>
+
             <!-- Pagination Slider Option -->
             <div class="fpg-slider-option fpg-common" id="fpg_slider_pagination_option">
                 <fieldset>
@@ -895,6 +900,7 @@ function fancy_post_grid_metabox_shortcode_callback( $post ) {
                         </div>
                 </fieldset>
             </div>
+
             <!-- Pagination -->
             <div class="fpg-pagination fpg-common" id="fpg_pagination">
                 <fieldset>
@@ -935,7 +941,6 @@ function fancy_post_grid_metabox_shortcode_callback( $post ) {
                         </div>
                     </div>
                 </fieldset>
-
                 
                 <fieldset>
                     <legend><?php esc_html_e( 'Link Target:', 'fancy-post-grid' ); ?></legend>
@@ -953,8 +958,7 @@ function fancy_post_grid_metabox_shortcode_callback( $post ) {
                             <p><?php esc_html_e( 'New Window', 'fancy-post-grid' ); ?></p>
                         </label>
                     </div>
-                </fieldset>
-                
+                </fieldset>   
             </div>
         </div>
         
@@ -1245,7 +1249,6 @@ function fancy_post_grid_metabox_shortcode_callback( $post ) {
             </div>
         </div>
 
-
         <div id="tab-4" class="fpg-tab-content">      
 
             <div class="fpg-content-settings fpg-common">
@@ -1370,6 +1373,7 @@ function fancy_post_grid_metabox_shortcode_callback( $post ) {
                     </div>    
                 </fieldset>
             </div>
+
             <div class="fpg-meta-settings fpg-common" id="fpg_meta_settings_main">
                 <fieldset>
                     <legend><?php esc_html_e( 'Meta Settings', 'fancy-post-grid' ); ?></legend>
@@ -1409,7 +1413,8 @@ function fancy_post_grid_metabox_shortcode_callback( $post ) {
                             </div>
                         </div>
                 </fieldset>
-            </div>     
+            </div>
+
             <div class="fpg-title-settings fpg-common" id="fpg_title_settings_main">
                 <fieldset>
                     <legend><?php esc_html_e( 'Title Settings', 'fancy-post-grid' ); ?></legend>
@@ -1496,6 +1501,7 @@ function fancy_post_grid_metabox_shortcode_callback( $post ) {
                     </div>   
                 </fieldset>
             </div>
+
             <div class="fpg-excerpt-settings fpg-common" id="fpg_excerpt_setting_main">
                 <fieldset>
                     <legend><?php esc_html_e( 'Excerpt Settings', 'fancy-post-grid' ); ?></legend>
@@ -1567,6 +1573,7 @@ function fancy_post_grid_metabox_shortcode_callback( $post ) {
                     </div>    
                 </fieldset>
             </div>
+
             <div class="fpg-read-more-button-settings fpg-common" id="fancy_button_option_main">
                 <fieldset>
                     <legend><?php esc_html_e( 'Button Settings', 'fancy-post-grid' ); ?></legend>
@@ -1607,14 +1614,13 @@ function fancy_post_grid_metabox_shortcode_callback( $post ) {
                                 <option value="dashed" <?php selected( $fancy_button_border_style, 'dashed' ); ?>><?php esc_html_e( 'Dashed', 'fancy-post-grid' ); ?></option>
                                 <option value="solid" <?php selected( $fancy_button_border_style, 'solid' ); ?>><?php esc_html_e( 'Solid', 'fancy-post-grid' ); ?></option>
                                 <option value="double" <?php selected( $fancy_button_border_style, 'double' ); ?>><?php esc_html_e( 'Double', 'fancy-post-grid' ); ?></option>
-                                <option value="groove" <?php selected( $fancy_button_border_style, 'groove' ); ?>><?php esc_html_e( 'Groove', 'fancy-post-grid' ); ?></option>
-                                
+                                <option value="groove" <?php selected( $fancy_button_border_style, 'groove' ); ?>><?php esc_html_e( 'Groove', 'fancy-post-grid' ); ?></option>      
                             </select>
                         </div>
                     </div>  
                     <div class="fpg-post-select-main">
                         <!-- Alignment -->
-                        <div class="fpg-read-more-alignment fpg-common">
+                        <div class="fpg-read-more-alignment fpg-common" id="fpg-read-more-alignment">
                             
                             <label for="fancy_post_read_more_alignment"><?php esc_html_e( 'Alignment:', 'fancy-post-grid' ); ?></label>
                             <div class="fpg-container">
@@ -1657,6 +1663,7 @@ function fancy_post_grid_metabox_shortcode_callback( $post ) {
                     </div>  
                 </fieldset>
             </div>
+
         </div>
 
         <div id="tab-5" class="fpg-tab-content">
@@ -2047,6 +2054,45 @@ function fancy_post_grid_metabox_shortcode_callback( $post ) {
                                          
                 </fieldset>
             </div>    
+            <div class="fancy-post-slider-arrow fpg-common" id="fpg_slider_arrow_dots">
+                <fieldset>
+                    <legend><?php esc_html_e( 'Slider Dot & Arrow Style', 'fancy-post-grid' ); ?></legend>
+                    
+                    <div class="fpg-post-select-main">
+                        
+
+                        <!-- Slider Dots Color -->
+                        <div class="fpg-color-box" id="fpg_slider_dots_color">
+                            <label for="fpg_slider_dots_color"><?php esc_html_e( 'Slider Dots Color:', 'fancy-post-grid' ); ?></label>
+                            <input type="color" class="color-field" id="fpg_slider_dots_color" name="fpg_slider_dots_color" value="<?php echo esc_attr( $fpg_slider_dots_color ); ?>" />
+                        </div>
+
+                        <!-- Slider Dots Active Color -->
+                        <div class="fpg-color-box" id="fpg_slider_dots_active_color">
+                            <label for="fpg_slider_dots_active_color"><?php esc_html_e( 'Slider Dots Active Color:', 'fancy-post-grid' ); ?></label>
+                            <input type="color" class="color-field" id="fpg_slider_dots_active_color" name="fpg_slider_dots_active_color" value="<?php echo esc_attr( $fpg_slider_dots_active_color ); ?>" />
+                        </div>
+
+                        <!-- Arrow Color -->
+                        <div class="fpg-color-box" id="fpg_arrow_color">
+                            <label for="fpg_arrow_color"><?php esc_html_e( 'Arrow Color:', 'fancy-post-grid' ); ?></label>
+                            <input type="color" class="color-field" id="fpg_arrow_color" name="fpg_arrow_color" value="<?php echo esc_attr( $fpg_arrow_color ); ?>" />
+                        </div>
+
+                        <!-- Arrow Hover Color -->
+                        <div class="fpg-color-box" id="fpg_arrow_hover_color">
+                            <label for="fpg_arrow_hover_color"><?php esc_html_e( 'Arrow Hover Color:', 'fancy-post-grid' ); ?></label>
+                            <input type="color" class="color-field" id="fpg_arrow_hover_color" name="fpg_arrow_hover_color" value="<?php echo esc_attr( $fpg_arrow_hover_color ); ?>" />
+                        </div>
+
+                        <!-- Icon Font Size -->
+                        <div class="fpg-font-size-box" id="fpg_icon_font_size">
+                            <label for="fpg_icon_font_size"><?php esc_html_e( 'Icon Font Size:', 'fancy-post-grid' ); ?></label>
+                            <input type="text" id="fpg_icon_font_size" name="fpg_icon_font_size" value="<?php echo esc_attr( $fpg_icon_font_size ); ?>" placeholder="e.g., 16px" />
+                        </div>
+                    </div>                                     
+                </fieldset>
+            </div>
 
             <div class="fancy-post-grid-pagination fpg-common" id="fpg_pagination_main">
                 <fieldset>
@@ -2745,6 +2791,24 @@ function fancy_post_grid_save_metabox_data( $post_id ) {
 
     }if ( isset( $_POST['fpg_category_bg_color'] ) ) {
         update_post_meta( $post_id, 'fpg_category_bg_color', sanitize_hex_color( wp_unslash($_POST['fpg_category_bg_color'] ) ));
+    }
+
+    if ( isset( $_POST['fpg_icon_font_size'] ) ) {
+        update_post_meta( $post_id, 'fpg_icon_font_size', sanitize_text_field( wp_unslash($_POST['fpg_icon_font_size'] ) ));
+    }
+    if ( isset( $_POST['fpg_slider_dots_active_color'] ) ) {
+        update_post_meta( $post_id, 'fpg_slider_dots_active_color', sanitize_hex_color(wp_unslash( $_POST['fpg_slider_dots_active_color'] ) ));
+    }
+
+    if ( isset( $_POST['fpg_slider_dots_color'] ) ) {
+        update_post_meta( $post_id, 'fpg_slider_dots_color', sanitize_hex_color( wp_unslash($_POST['fpg_slider_dots_color'] ) ));
+
+    }
+    if ( isset( $_POST['fpg_arrow_color'] ) ) {
+        update_post_meta( $post_id, 'fpg_arrow_color', sanitize_hex_color( wp_unslash($_POST['fpg_arrow_color'] ) ));
+    }
+    if ( isset( $_POST['fpg_arrow_hover_color'] ) ) {
+        update_post_meta( $post_id, 'fpg_arrow_hover_color', sanitize_hex_color( wp_unslash($_POST['fpg_arrow_hover_color'] ) ));
     }
 
     if ( isset( $_POST['fpg_single_section_background_hover_color'] ) ) {
