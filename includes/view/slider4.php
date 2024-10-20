@@ -1,4 +1,5 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 ob_start();
 ?>
 <!-- ==== Blog Slider Layout 4 ==== -->

@@ -2403,7 +2403,7 @@ $(document).ready(function() {
         $('#fancy_post_feature_image_size').change();
         $('#fancy_post_image_border_radius').change();
         $('#fancy_button_border_style').change();
-        $('#fancy_button_border_style').change();
+        
         $('input[name="fancy_post_main_box_alignment"]').change();
 
         
