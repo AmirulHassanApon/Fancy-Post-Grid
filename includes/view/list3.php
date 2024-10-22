@@ -651,7 +651,7 @@ ob_start();
         <?php endif; ?>
     }
     
-    .rs-blog-layout-17 .rs-blog-layout-17-item .rs-content .rs-meta ul, ,.rs-blog-layout-17 .rs-blog-layout-17-item.rs-blog-layout-17-item-list .rs-content .rs-meta ul{
+    .rs-blog-layout-17 .rs-blog-layout-17-item .rs-content .rs-meta ul ,.rs-blog-layout-17 .rs-blog-layout-17-item.rs-blog-layout-17-item-list .rs-content .rs-meta ul{
         <?php if (!empty($fpg_meta_order)) : ?>
             order: <?php echo esc_attr($fpg_meta_order); ?>;
         <?php endif; ?>
