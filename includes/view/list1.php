@@ -3,19 +3,9 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 ob_start();
 ?>
 <!-- Blog List Layout 1 -->
-<section class="rs-blog-layout-8" style="
-    <?php if (!empty($fpg_section_background_color)) : ?>
-        background-color: <?php echo esc_attr($fpg_section_background_color); ?>;
-    <?php endif; ?>
-    <?php if (!empty($fpg_section_margin)) : ?>
-        margin: <?php echo esc_attr($fpg_section_margin); ?>;
-    <?php endif; ?>
-    <?php if (!empty($fpg_section_padding)) : ?>
-        padding: <?php echo esc_attr($fpg_section_padding); ?>;
-    <?php endif; ?>">
+<section class="rs-blog-layout-8">
     <div class="container">
         <div class="row">
-
             <?php
                 // =======Pagination==========
                 
@@ -1263,6 +1253,30 @@ ob_start();
     </div>
 </section>
 <!-- End Blog Grid Layout 1 -->
+<style type="text/css">
+    .rs-blog-layout-8{
+        <?php if (!empty($fpg_section_background_color)) : ?>
+            background-color: <?php echo esc_attr($fpg_section_background_color); ?>;
+        <?php endif; ?>
+        <?php if (!empty($fpg_section_margin)) : ?>
+            margin: <?php echo esc_attr($fpg_section_margin); ?>;
+        <?php endif; ?>
+        <?php if (!empty($fpg_section_padding)) : ?>
+            padding: <?php echo esc_attr($fpg_section_padding); ?>;
+        <?php endif; ?>
+    }
+    .rs-blog-layout-8 .rs-blog__left-blog{
+        <?php if (!empty($fpg_single_section_background_color)) : ?>
+            background-color: <?php echo esc_attr($fpg_single_section_background_color); ?>;
+        <?php endif; ?>
+        <?php if (!empty($fpg_single_section_margin)) : ?>
+            margin: <?php echo esc_attr($fpg_single_section_margin); ?>;
+        <?php endif; ?>
+        <?php if (!empty($fpg_single_section_padding)) : ?>
+            padding: <?php echo esc_attr($fpg_single_section_padding); ?>;
+        <?php endif; ?>
+    }
+</style>
 <?php
 $list1 = ob_get_clean();
 ?>
