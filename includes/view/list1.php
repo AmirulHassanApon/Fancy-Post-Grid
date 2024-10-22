@@ -620,7 +620,7 @@ ob_start();
         </div>
     </div>
 </section>
-<!-- End Blog Grid Layout 1 -->
+<!-- End Blog list Layout 1 -->
 <style type="text/css">
     .rs-blog-layout-8{
         <?php if (!empty($fpg_section_background_color)) : ?>
