@@ -2231,7 +2231,7 @@ $(document).ready(function() {
             $('#fancy_post_image_border_radius').val('');
             $('#fancy_post_feature_image_size').val('fancy_post_landscape').change();
              $('input[name="fancy_post_main_box_alignment"][value="align-start"]').prop('checked', true).change();
-        } else  {
+        } else if (selectedStyles === 'style12') {
             $('#fancy_post_cl_lg').val('4').change();
             $('#fpg_section_background_color').val(''); 
             $('#fpg_section_margin').val('12px');
