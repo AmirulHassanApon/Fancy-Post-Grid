@@ -205,8 +205,8 @@ ob_start();
                                 </div>
                             <?php endif; ?>
                                     <div class="rs-content">
-                                        <div class="rs-meta">
-                                            <ul class="blog-meta <?php echo esc_attr($meta_alignment_class); ?>">
+                                        <div class="rs-meta <?php echo esc_attr($meta_alignment_class); ?>">
+                                            <ul class="blog-meta">
                                                 
                                                 <?php if ($fpg_field_group_categories) : ?>
                                                 <li><i class="ri-bookmark-line"></i> <?php the_category(', '); ?></li>
@@ -218,7 +218,7 @@ ob_start();
                                         </div>
                                         
                                         <?php if ($fpg_field_group_title) : ?>
-                                            <<?php echo esc_attr($title_tag); ?> class="title">
+                                            <<?php echo esc_attr($title_tag); ?> class="title <?php echo esc_attr($title_alignment_class); ?>">
                                                 <?php if ($fancy_link_details === 'on') : ?>
                                                     <a href="<?php the_permalink(); ?>"
                                                        <?php echo $target_blank; ?>
@@ -352,6 +352,13 @@ ob_start();
     }
 
 
+    /* Image Thumb Styles */
+    .rs-blog-layout-18-item .rs-thumb{
+        <?php if (!empty($fancy_post_image_border_radius)) : ?>
+            border-radius: <?php echo esc_attr($fancy_post_image_border_radius); ?>;
+        <?php endif; ?>
+    }
+    /* Image Thumb Styles */
     /* Meta Data Styles */
 
     .rs-blog-layout-18-item .rs-content .rs-meta{
