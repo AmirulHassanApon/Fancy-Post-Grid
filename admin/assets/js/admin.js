@@ -630,7 +630,7 @@
   
                 }else if (selectedSliderStyle === 'sliderstyle5') {
                     $('#fpg_field_group_author_main').show();
-                    $('#fpg_field_group_post_date_main').show();
+                    $('#fpg_field_group_post_date_main').hide();
                     $('#fpg_field_group_excerpt_main').hide();
                     $('#fpg_field_group_categories_main').show();
                     $('#fpg_field_group_tag_main').hide();
