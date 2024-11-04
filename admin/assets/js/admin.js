@@ -209,7 +209,7 @@
                     $('#fpg_category_bg_color_main').hide();
                     $('#fpg_category_padding_main').hide();
                     $('#fpg_meta_hover_color_main').show();
-                    $('#fpg_excerpt_setting_main').show();
+                    $('#fpg_excerpt_setting_main').hide();
                     $('#fpg-read-more-alignment').show();
                     $('#fpg_single_content_section_padding_box').show();
                     $('#fpg_title_hover_color_box').show();
