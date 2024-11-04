@@ -2410,7 +2410,7 @@ $(document).ready(function() {
     $('input[name="fancy_post_grid_style"]').change(function() {
         var selectedStyles = $(this).val();
 
-        if (selectedStyles === 'style1') {
+        if (selectedStyles === 'sliderstyle1') {
             
             $('#fpg_section_background_color').val(''); 
             $('#fpg_section_margin').val('');
