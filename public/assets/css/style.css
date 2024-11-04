@@ -3800,12 +3800,15 @@ img {
         margin: -80px 0px 0px 70px;
         display: flex;
         flex-direction: column;
+        align-items: flex-start;
     }
     .rs-blog-layout-18-item.align-center .rs-content{
         text-align: center;
+        align-items: center;
     }
     .rs-blog-layout-18-item.align-end .rs-content{
         text-align: right;
+        align-items: flex-end;
     }
     .rs-blog-layout-18-item .rs-content .rs-meta{
         display: inline-block;
@@ -3880,6 +3883,7 @@ img {
     }
     .rs-blog-layout-18-item .rs-content .title.align-end{
         text-align: right;
+        text-align: right;
     }
     .rs-blog-layout-18-item .rs-content .title a{
         color: #080d41;
@@ -3890,16 +3894,79 @@ img {
     .rs-blog-layout-18-item .rs-content .title a:hover{
         color: #3a15fb;
     }
-    .rs-blog-layout-18-item .rs-content .rs-btn{
-        color: #3a3a3a;
-        display: block;
-        margin-top: 10px;
-        font-weight: 600;
-        text-decoration: none;
+    .rs-blog-layout-18-item .rs-content .blgo-btn-box{
+        width: 100%;
     }
-    .rs-blog-layout-18-item .rs-content .rs-btn:hover{
+    .rs-blog-layout-18-item .rs-content .blgo-btn-box.align-start{
+        text-align: left;
+    }
+    .rs-blog-layout-18-item .rs-content .blgo-btn-box.align-center{
+        text-align: center;
+    }
+    .rs-blog-layout-18-item .rs-content .blgo-btn-box.align-end{
+        text-align: right;
+    }
+    .rs-blog-layout-18-item .rs-content a.rs-btn.fpg-filled {
+        font-size: 16px;
+        font-weight: 600;
+        color: #ffffff;
+        margin-top: 15px;
+        display: inline-block;
+        padding: 16px 40px;
+        border-radius: 5px;
+        background: #3a15fb;
+    }
+    .rs-blog-layout-18-item .rs-content a.rs-btn.fpg-filled:hover {
+        color: #ffffff;
+        background: #3a15fbda;
+    }
+    
+    .rs-blog-layout-18-item .rs-content a.rs-btn.fpg-filled i {
+        margin-left: 5px;
+    }
+
+    .rs-blog-layout-18-item .rs-content a.rs-btn.fpg-border{
+        font-size: 16px;
+        font-weight: 600;
+        color: #454545;
+        margin-top: 10px;
+        display: inline-block;
+        position: relative;
+        background: transparent !important;
+    }
+    .rs-blog-layout-18-item .rs-content a.rs-btn.fpg-border:hover{
+        color: #3a15fb;
+        background: transparent !important;
+    }
+    
+    .rs-blog-layout-18-item .rs-content a.rs-btn.fpg-border::before{
+        position: absolute;
+        content: '';
+        left: 0;
+        bottom: 0;
+        height: 2px;
+        width: 0%;
+        background: #3a15fb;
+        transition: all ease 0.3s;
+    }
+    
+    .rs-blog-layout-18-item .rs-content a.rs-btn.fpg-border:hover::before{
+        width: 100%;
+    }
+
+    .rs-blog-layout-18-item .rs-content a.rs-btn.fpg-flat{
+        color: #3e3e3e;
+        font-size: 16px;
+        font-weight: 600;
+        margin-top: 15px;
+        display: block;
+    }
+    .rs-blog-layout-18-item .rs-content a.rs-btn.fpg-flat:hover{
         color: #3a15fb;
     }
+
+
+
     .rs-blog-layout-18 .swiper_wrap .swiper-pagination-18{
         position: absolute;
         left: 50%;
@@ -3910,11 +3977,11 @@ img {
         height: 8px;
         width: 8px;
         opacity: 1;
-        background: #634bf8ad;
+        background: #3a15fbad;
         transition: all ease 0.3s;
     }
     .rs-blog-layout-18 .swiper_wrap .swiper-pagination-18 .swiper-pagination-bullet.swiper-pagination-bullet-active{
-        background: #634bf8;
+        background: #3a15fb;
         width: 20px;
         border-radius: 10px;
     }

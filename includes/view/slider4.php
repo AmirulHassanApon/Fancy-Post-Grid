@@ -480,8 +480,8 @@ ob_start();
         <?php if (!empty($fancy_button_border_style)) : ?>
             border-style: <?php echo esc_attr($fancy_button_border_style); ?>;
         <?php endif; ?>
-        <?php if (!empty($fancy_post_border_width)) : ?>
-            border-width: <?php echo esc_attr($fancy_post_border_width); ?>;
+        <?php if (!empty($fancy_post_button_border_width)) : ?>
+            border-width: <?php echo esc_attr($fancy_post_button_border_width); ?>;
         <?php endif; ?>
         <?php if (!empty($fpg_button_font_size)) : ?>
             font-size: <?php echo esc_attr($fpg_button_font_size); ?>;
