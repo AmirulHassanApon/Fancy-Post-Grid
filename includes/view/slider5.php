@@ -207,6 +207,9 @@ ob_start();
                                     <div class="rs-content">
                                         <div class="rs-meta">
                                             <ul class="blog-meta <?php echo esc_attr($meta_alignment_class); ?>">
+                                                <?php if ($fpg_field_group_post_date) : ?>
+                                                <li><i class="ri-calendar-2-line"></i> <?php echo get_the_date('M d, Y'); ?></li>
+                                                <?php endif; ?>
                                                 <?php if ($fpg_field_group_categories) : ?>
                                                 <li><i class="ri-bookmark-line"></i> <?php the_category(', '); ?></li>
                                                 <?php endif; ?>
