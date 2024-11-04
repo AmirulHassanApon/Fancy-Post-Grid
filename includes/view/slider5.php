@@ -233,12 +233,14 @@ ob_start();
                                        
 
                                         <?php if ($fpg_field_group_read_more) : ?>
-                                    <a class="rs-btn  <?php echo esc_attr($button_class); ?>" href="<?php the_permalink(); ?>" <?php echo $target_blank; ?>>
-                                        <div class="blog-btn <?php echo esc_attr($button_alignment_class); ?>" >
-                                            <?php echo esc_html($fancy_post_read_more_text); ?>
-                                            <i class="ri-arrow-right-line"></i>
+                                        <div class="blgo-btn-box <?php echo esc_attr($button_alignment_class); ?>">
+                                            <a class="rs-btn  <?php echo esc_attr($button_class); ?>" href="<?php the_permalink(); ?>" <?php echo $target_blank; ?>>
+                                                <div class="blog-btn" >
+                                                    <?php echo esc_html($fancy_post_read_more_text); ?>
+                                                    <i class="ri-arrow-right-line"></i>
+                                                </div>
+                                            </a>
                                         </div>
-                                    </a>
                                 <?php endif; ?>
                                     </div>
                                 </div>
@@ -279,15 +281,6 @@ ob_start();
 
     /* Single Item Styles */
     .rs-blog-layout-18 .rs-blog-layout-18-item {
-        <?php if (!empty($fpg_single_section_background_color)) : ?>
-            background-color: <?php echo esc_attr($fpg_single_section_background_color); ?>;
-        <?php endif; ?>
-        <?php if (!empty($fpg_single_section_margin)) : ?>
-            margin: <?php echo esc_attr($fpg_single_section_margin); ?>;
-        <?php endif; ?>
-        <?php if (!empty($fpg_single_section_padding)) : ?>
-            padding: <?php echo esc_attr($fpg_single_section_padding); ?>;
-        <?php endif; ?>
     }
 
     .rs-blog-layout-18 .rs-blog-layout-18-item .rs-content {
@@ -299,6 +292,18 @@ ob_start();
         <?php endif; ?>
         <?php if (!empty($fancy_post_border_width)) : ?>
             border-width: <?php echo esc_attr($fancy_post_border_width); ?>;
+        <?php endif; ?>
+        <?php if (!empty($fancy_post_section_border_radius)) : ?>
+            border-radius: <?php echo esc_attr($fancy_post_section_border_radius); ?>;
+        <?php endif; ?>
+        <?php if (!empty($fpg_single_section_background_color)) : ?>
+            background-color: <?php echo esc_attr($fpg_single_section_background_color); ?>;
+        <?php endif; ?>
+        <?php if (!empty($fpg_single_section_margin)) : ?>
+            margin: <?php echo esc_attr($fpg_single_section_margin); ?>;
+        <?php endif; ?>
+        <?php if (!empty($fpg_single_section_padding)) : ?>
+            padding: <?php echo esc_attr($fpg_single_section_padding); ?>;
         <?php endif; ?>
         
     }
@@ -412,7 +417,7 @@ ob_start();
     }
 
     /* Button Styles */
-    .rs-blog-layout-5 .rs-blog__single .rs-content .rs-link.<?php echo esc_attr($button_class); ?>{
+    .rs-blog-layout-18-item .rs-content .blgo-btn-box a.rs-btn.<?php echo esc_attr($button_class); ?>{
         <?php if (!empty($fpg_button_background_color)) : ?>
             background-color: <?php echo esc_attr($fpg_button_background_color); ?>;
         <?php endif; ?>
@@ -428,19 +433,19 @@ ob_start();
         <?php if (!empty($fancy_button_border_style)) : ?>
             border-style: <?php echo esc_attr($fancy_button_border_style); ?>;
         <?php endif; ?>
-        <?php if (!empty($fancy_post_border_width)) : ?>
-            border-width: <?php echo esc_attr($fancy_post_border_width); ?>;
+        <?php if (!empty($fancy_post_button_border_width)) : ?>
+            border-width: <?php echo esc_attr($fancy_post_button_border_width); ?>;
         <?php endif; ?>
         
     }
 
-    .rs-blog-layout-18-item .rs-content .rs-btn{
+    .rs-blog-layout-18-item .rs-content .blgo-btn-box{
         <?php if (!empty($fpg_button_order)) : ?>
             order: <?php echo esc_attr($fpg_button_order); ?>;
         <?php endif; ?>
 
     }
-    .rs-blog-layout-5 .rs-blog__single .rs-content .rs-link.<?php echo esc_attr($button_class); ?>:hover {
+    .rs-blog-layout-18-item .rs-content .blgo-btn-box a.rs-btn.<?php echo esc_attr($button_class); ?>:hover {
         <?php if (!empty($fpg_button_hover_background_color)) : ?>
             background-color: <?php echo esc_attr($fpg_button_hover_background_color); ?>;
         <?php endif; ?>
@@ -448,7 +453,7 @@ ob_start();
             color: <?php echo esc_attr($fpg_button_text_hover_color); ?>;
         <?php endif; ?>
     }
-    .rs-blog-layout-5 .rs-blog__single .rs-content .rs-link.<?php echo esc_attr($button_class); ?>::before{
+    .rs-blog-layout-18-item .rs-content .blgo-btn-box a.rs-btn.<?php echo esc_attr($button_class); ?>::before{
         <?php if (!empty($fpg_button_border_color)) : ?>
             background: <?php echo esc_attr($fpg_button_border_color); ?>;
         <?php endif; ?>
