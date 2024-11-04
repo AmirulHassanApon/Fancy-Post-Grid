@@ -85,6 +85,7 @@
                     $('#fpg_button_settings_main').show();
                     $('#fpg_section_bg_hover_main').hide();
                     $('#fpg_section_image_shape_main').hide();
+                    $('#fpg_excerpt_main').show(); 
           
                 }else if (selectedStyle === 'style2') {
                     // Ordering
@@ -120,6 +121,7 @@
                     $('#fpg_button_settings_main').show();
                     $('#fpg_section_bg_hover_main').hide();
                     $('#fpg_section_image_shape_main').hide();
+                    $('#fpg_excerpt_main').show(); 
   
                 }else if (selectedStyle === 'style3') {
                     // Ordering
@@ -155,6 +157,7 @@
                     $('#fpg_button_settings_main').show();
                     $('#fpg_section_bg_hover_main').hide();
                     $('#fpg_section_image_shape_main').hide();
+                    $('#fpg_excerpt_main').show(); 
 
                 }else if (selectedStyle === 'style4') {
                     // Ordering
@@ -189,6 +192,7 @@
                     $('#fpg_button_settings_main').hide();
                     $('#fpg_section_bg_hover_main').hide();
                     $('#fpg_section_image_shape_main').hide();
+                    $('#fpg_excerpt_main').show(); 
                     
                 }else if (selectedStyle === 'style5') {
                     // Ordering
@@ -223,6 +227,7 @@
                     $('#fpg_button_settings_main').show();
                     $('#fpg_section_bg_hover_main').hide();
                     $('#fpg_section_image_shape_main').hide();
+                    $('#fpg_excerpt_main').show(); 
                      
                 }else if (selectedStyle === 'style6') {
                     // Ordering
@@ -523,6 +528,7 @@
                     $('#fpg_meta_icon_color_main').show();
                     $('#fpg_section_image_shape_main').hide();
                     $('#fpg_excerpt_setting_main').show(); 
+                    $('#fpg_excerpt_main').show(); 
 
                 } else if (selectedSliderStyle === 'sliderstyle2') {
                     $('#fpg_field_group_author_main').show();
@@ -559,6 +565,7 @@
                     $('#fpg_meta_icon_color_main').show();
                     $('#fpg_section_image_shape_main').hide();
                     $('#fpg_excerpt_setting_main').show(); 
+                    $('#fpg_excerpt_main').show(); 
   
                 }else if (selectedSliderStyle === 'sliderstyle3') {
                     $('#fpg_field_group_author_main').show();
@@ -595,6 +602,7 @@
                     $('#fpg_meta_icon_color_main').hide();
                     $('#fpg_section_image_shape_main').show();
                     $('#fpg_excerpt_setting_main').show(); 
+                    $('#fpg_excerpt_main').show(); 
   
                 }else if (selectedSliderStyle === 'sliderstyle4') {
                     $('#fpg_field_group_author_main').hide();
@@ -631,6 +639,7 @@
                     $('#fpg_meta_icon_color_main').show();
                     $('#fpg_section_image_shape_main').hide();
                     $('#fpg_excerpt_setting_main').show(); 
+                    $('#fpg_excerpt_main').show(); 
   
                 }else if (selectedSliderStyle === 'sliderstyle5') {
                     $('#fpg_field_group_author_main').show();
@@ -667,6 +676,7 @@
                     $('#fpg_meta_icon_color_main').show();
                     $('#fpg_section_image_shape_main').hide();
                     $('#fpg_excerpt_setting_main').hide(); 
+                    $('#fpg_excerpt_main').hide(); 
   
                 }else if (selectedSliderStyle === 'sliderstyle6') {
                     $('#fpg_field_group_author_main').hide();
@@ -703,6 +713,7 @@
                     $('#fpg_meta_icon_color_main').hide();
                     $('#fpg_section_image_shape_main').hide();
                     $('#fpg_excerpt_setting_main').show(); 
+                    $('#fpg_excerpt_main').show(); 
   
                 }else if (selectedSliderStyle === 'sliderstyle7') {
                     $('#fpg_field_group_author_main').hide();
@@ -739,6 +750,7 @@
                     $('#fpg_meta_icon_color_main').hide();
                     $('#fpg_section_image_shape_main').hide();
                     $('#fpg_excerpt_setting_main').show(); 
+                    $('#fpg_excerpt_main').show(); 
   
                 }
             } else if (selectedLayout === 'list') {
