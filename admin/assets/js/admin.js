@@ -665,7 +665,7 @@
                     $('#fpg_date_bg_color_main').hide();
                     $('#fpg_date_padding_main').hide();
                     $('#fpg_meta_hover_color_main').show()                   
-                    $('#fpg_single_content_section_padding_box').show();
+                    $('#fpg_single_content_section_padding_box').hide();
                     $('#fpg_title_hover_color_box').show();
                     $('#fpg_meta_settings_main').show();
                     $('#fpg_meta_gap_main').show();
