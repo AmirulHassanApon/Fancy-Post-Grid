@@ -178,7 +178,7 @@ ob_start();
                             ?>
 
                             <div class="swiper-slide">
-                                <div class="rs-blog-layout-18-item">
+                                <div class="rs-blog-layout-18-item <?php echo esc_attr($main_alignment_class); ?> <?php echo esc_attr($hover_class); ?>">
                                     <?php if (!$hide_feature_image && $fpg_field_group_image) : ?>
                                 <div class="rs-thumb">
 
@@ -353,7 +353,7 @@ ob_start();
 
     /* Meta Data Styles */
 
-    .rs-blog-layout-18-item .rs-content .rs-meta ul{
+    .rs-blog-layout-18-item .rs-content .rs-meta{
         <?php if (!empty($fpg_meta_order)) : ?>
             order: <?php echo esc_attr($fpg_meta_order); ?>;
         <?php endif; ?>
@@ -426,7 +426,7 @@ ob_start();
         
     }
 
-    .rs-blog-layout-5 .rs-blog__single .rs-content .btn-wrapper{
+    .rs-blog-layout-18-item .rs-content .rs-btn{
         <?php if (!empty($fpg_button_order)) : ?>
             order: <?php echo esc_attr($fpg_button_order); ?>;
         <?php endif; ?>
