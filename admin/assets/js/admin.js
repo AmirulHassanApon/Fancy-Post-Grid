@@ -76,6 +76,7 @@
                     $('#fpg_single_content_section_padding_box').show();
                     $('#fpg_title_hover_color_box').show();
                     $('#fpg_meta_settings_main').show();
+                    $('#fpg_meta_data_main').show();
                     $('#fpg_meta_gap_main').show();
                     $('#fpg_meta_bgcolor_box').hide();
                     $('#fpg_date_color_main').hide();
@@ -112,6 +113,7 @@
                     $('#fpg_single_content_section_padding_box').show();
                     $('#fpg_title_hover_color_box').show();
                     $('#fpg_meta_settings_main').show();
+                    $('#fpg_meta_data_main').show();
                     $('#fpg_meta_gap_main').show();
                     $('#fpg_meta_bgcolor_box').hide();
                     $('#fpg_date_color_main').hide();
@@ -149,6 +151,7 @@
                     $('#fpg_title_hover_color_box').show();
                     $('#fpg_meta_bgcolor_box').show();
                     $('#fpg_meta_settings_main').hide();
+                    $('#fpg_meta_data_main').show();
                     $('#fpg_meta_gap_main').hide();
                     $('#fpg_date_color_main').hide();
                     $('#fpg_date_bg_color_main').hide();
@@ -183,6 +186,7 @@
                     $('#fpg_single_content_section_padding_box').show();
                     $('#fpg_title_hover_color_box').show();
                     $('#fpg_meta_settings_main').show();
+                    $('#fpg_meta_data_main').show();
                     $('#fpg_meta_gap_main').hide();
                     $('#fpg_meta_bgcolor_box').hide();
                     $('#fpg_date_color_main').show();
@@ -218,6 +222,7 @@
                     $('#fpg_single_content_section_padding_box').show();
                     $('#fpg_title_hover_color_box').show();
                     $('#fpg_meta_settings_main').show();
+                    $('#fpg_meta_data_main').show();
                     $('#fpg_meta_gap_main').show();
                     $('#fpg_meta_bgcolor_box').hide();
                     $('#fpg_date_color_main').show();
@@ -255,6 +260,7 @@
                     $('#fpg_single_content_section_padding_box').show();
                     $('#fpg_title_hover_color_box').show();
                     $('#fpg_meta_settings_main').show();
+                    $('#fpg_meta_data_main').show();
                     $('#fpg_meta_gap_main').show();
                     $('#fpg_date_color_main').show();
                     $('#fpg_date_bg_color_main').show();
@@ -284,6 +290,7 @@
                     $('#fpg_button_settings_main').hide();
                     $('#fancy_button_option_main').hide();
                     $('#fpg_meta_settings_main').hide();
+                    $('#fpg_meta_data_main').show();
                     $('#fpg_title_alignment_main').hide();
                     $('#fpg_meta_gap_main').hide();
                     $('#fpg_author_color_main').show();
@@ -321,6 +328,7 @@
                     $('#fpg_excerpt_main').hide();                 
                     $('#fpg_button_settings_main').hide();
                     $('#fpg_meta_settings_main').hide();
+                    $('#fpg_meta_data_main').show();
                     $('#fpg_title_alignment_main').hide();
                     $('#fpg_meta_gap_main').hide();
                     $('#fpg_category_color_main').show();
@@ -355,6 +363,7 @@
                     $('#fancy_button_option_main').hide();
                     $('#fpg_button_settings_main').hide();
                     $('#fpg_meta_settings_main').hide();
+                    $('#fpg_meta_data_main').show();
                     $('#fpg_title_alignment_main').hide();
                     $('#fpg_meta_gap_main').hide();
                     $('#fpg_excerpt_main').hide();
@@ -395,6 +404,7 @@
                     $('#fancy_button_option_main').show();
                     $('#fpg_button_settings_main').show();
                     $('#fpg_meta_settings_main').show();
+                    $('#fpg_meta_data_main').show();
                     $('#fpg_title_alignment_main').show();
                     $('#fpg_meta_gap_main').hide();
                     $('#fpg_meta_bgcolor_box').hide();
@@ -434,6 +444,7 @@
                     $('#fancy_button_option_main').show();
                     $('#fpg_button_settings_main').show();
                     $('#fpg_meta_settings_main').show();
+                    $('#fpg_meta_data_main').show();
                     $('#fpg_title_alignment_main').show();
                     $('#fpg_meta_gap_main').hide();
                     $('#fpg_meta_bgcolor_box').hide();
@@ -472,6 +483,7 @@
                     $('#fancy_button_option_main').show();
                     $('#fpg_button_settings_main').show();
                     $('#fpg_meta_settings_main').show();
+                    $('#fpg_meta_data_main').show();
                     $('#fpg_title_alignment_main').show();
                     $('#fpg_meta_gap_main').hide();
                     $('#fpg_meta_bgcolor_box').hide();
@@ -520,6 +532,7 @@
                     $('#fpg_single_content_section_padding_box').show();
                     $('#fpg_title_hover_color_box').show();
                     $('#fpg_meta_settings_main').show();
+                    $('#fpg_meta_data_main').show();
                     $('#fpg_meta_gap_main').show();
                     $('#fpg_meta_bgcolor_box').hide();
                     $('#fancy_button_option_main').show();
@@ -557,6 +570,7 @@
                     $('#fpg_single_content_section_padding_box').show();
                     $('#fpg_title_hover_color_box').show();
                     $('#fpg_meta_settings_main').show();
+                    $('#fpg_meta_data_main').show();
                     $('#fpg_meta_gap_main').show();
                     $('#fpg_meta_bgcolor_box').hide();                    
                     $('#fancy_button_option_main').show();
@@ -594,6 +608,7 @@
                     $('#fpg_single_content_section_padding_box').show();
                     $('#fpg_title_hover_color_box').show();
                     $('#fpg_meta_settings_main').show();
+                    $('#fpg_meta_data_main').show();
                     $('#fpg_meta_gap_main').show();
                     $('#fpg_meta_bgcolor_box').hide();                    
                     $('#fancy_button_option_main').show();
@@ -631,6 +646,7 @@
                     $('#fpg_single_content_section_padding_box').show();
                     $('#fpg_title_hover_color_box').show();
                     $('#fpg_meta_settings_main').show();
+                    $('#fpg_meta_data_main').show();
                     $('#fpg_meta_gap_main').show();
                     $('#fpg_meta_bgcolor_box').hide();                    
                     $('#fancy_button_option_main').show();
@@ -668,6 +684,7 @@
                     $('#fpg_single_content_section_padding_box').hide();
                     $('#fpg_title_hover_color_box').show();
                     $('#fpg_meta_settings_main').show();
+                    $('#fpg_meta_data_main').show();
                     $('#fpg_meta_gap_main').show();
                     $('#fpg_meta_bgcolor_box').hide();                    
                     $('#fancy_button_option_main').show();
@@ -689,7 +706,7 @@
                     // Ordering
                     $('#fpg-read-more-alignment').show();
                     $('#fpg_title_order_main').show(); 
-                    $('#fpg_meta_order_main').show();
+                    $('#fpg_meta_order_main').hide();
                     $('#fpg_excerpt_order_main').hide();
                     $('#fpg_button_order_main').show();
                     $('#fpg_author_color_main').hide();
@@ -704,7 +721,8 @@
                     $('#fpg_meta_hover_color_main').hide()                    
                     $('#fpg_single_content_section_padding_box').show();
                     $('#fpg_title_hover_color_box').show();
-                    $('#fpg_meta_settings_main').show();
+                    $('#fpg_meta_settings_main').hide();
+                    $('#fpg_meta_data_main').hide();
                     $('#fpg_meta_gap_main').show();
                     $('#fpg_meta_bgcolor_box').hide();                  
                     $('#fancy_button_option_main').show();
@@ -712,8 +730,8 @@
                     $('#fpg_section_bg_hover_main').hide();
                     $('#fpg_meta_icon_color_main').hide();
                     $('#fpg_section_image_shape_main').hide();
-                    $('#fpg_excerpt_setting_main').show(); 
-                    $('#fpg_excerpt_main').show(); 
+                    $('#fpg_excerpt_setting_main').hide(); 
+                    $('#fpg_excerpt_main').hide(); 
   
                 }else if (selectedSliderStyle === 'sliderstyle7') {
                     $('#fpg_field_group_author_main').hide();
@@ -742,6 +760,7 @@
                     $('#fpg_single_content_section_padding_box').show();
                     $('#fpg_title_hover_color_box').show();
                     $('#fpg_meta_settings_main').show();
+                    $('#fpg_meta_data_main').show();
                     $('#fpg_meta_gap_main').show();
                     $('#fpg_meta_bgcolor_box').hide();                   
                     $('#fancy_button_option_main').show();
@@ -784,6 +803,7 @@
                     $('#fpg_single_content_section_padding_box').show();
                     $('#fpg_title_hover_color_box').show();
                     $('#fpg_meta_settings_main').show();
+                    $('#fpg_meta_data_main').show();
                     $('#fpg_meta_gap_main').show();
                     $('#fpg_meta_bgcolor_box').hide();
                     
@@ -820,6 +840,7 @@
                     $('#fpg_single_content_section_padding_box').show();
                     $('#fpg_title_hover_color_box').show();
                     $('#fpg_meta_settings_main').show();
+                    $('#fpg_meta_data_main').show();
                     $('#fpg_meta_gap_main').show();
                     $('#fpg_meta_bgcolor_box').hide();
                     
@@ -856,6 +877,7 @@
                     $('#fpg_single_content_section_padding_box').show();
                     $('#fpg_title_hover_color_box').show();
                     $('#fpg_meta_settings_main').show();
+                    $('#fpg_meta_data_main').show();
                     $('#fpg_meta_gap_main').show();
                     $('#fpg_meta_bgcolor_box').hide();
                     
@@ -892,6 +914,7 @@
                     $('#fpg_single_content_section_padding_box').show();
                     $('#fpg_title_hover_color_box').show();
                     $('#fpg_meta_settings_main').show();
+                    $('#fpg_meta_data_main').show();
                     $('#fpg_meta_gap_main').show();
                     $('#fpg_meta_bgcolor_box').hide();
                     
@@ -927,6 +950,7 @@
                     $('#fpg_single_content_section_padding_box').show();
                     $('#fpg_title_hover_color_box').show();
                     $('#fpg_meta_settings_main').show();
+                    $('#fpg_meta_data_main').show();
                     $('#fpg_meta_gap_main').show();
                     $('#fpg_meta_bgcolor_box').hide();
                     
@@ -963,6 +987,7 @@
                     $('#fpg_single_content_section_padding_box').show();
                     $('#fpg_title_hover_color_box').show();
                     $('#fpg_meta_settings_main').show();
+                    $('#fpg_meta_data_main').show();
                     $('#fpg_meta_gap_main').show();
                     $('#fpg_meta_bgcolor_box').hide();
                     
@@ -999,6 +1024,7 @@
                     $('#fpg_single_content_section_padding_box').show();
                     $('#fpg_title_hover_color_box').show();
                     $('#fpg_meta_settings_main').show();
+                    $('#fpg_meta_data_main').show();
                     $('#fpg_meta_gap_main').show();
                     $('#fpg_meta_bgcolor_box').hide();
                     
@@ -1035,6 +1061,7 @@
                     $('#fpg_single_content_section_padding_box').show();
                     $('#fpg_title_hover_color_box').show();
                     $('#fpg_meta_settings_main').show();
+                    $('#fpg_meta_data_main').show();
                     $('#fpg_meta_gap_main').show();
                     $('#fpg_meta_bgcolor_box').hide();
                     
@@ -1075,6 +1102,7 @@
                     $('#fpg_single_content_section_padding_box').show();
                     $('#fpg_title_hover_color_box').show();
                     $('#fpg_meta_settings_main').show();
+                    $('#fpg_meta_data_main').show();
                     $('#fpg_meta_gap_main').show();
                     $('#fpg_meta_bgcolor_box').hide();
                     
@@ -1112,6 +1140,7 @@
                     $('#fpg_single_content_section_padding_box').show();
                     $('#fpg_title_hover_color_box').show();
                     $('#fpg_meta_settings_main').show();
+                    $('#fpg_meta_data_main').show();
                     $('#fpg_meta_gap_main').show();
                     $('#fpg_meta_bgcolor_box').hide();
                     
