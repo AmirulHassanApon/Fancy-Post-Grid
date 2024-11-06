@@ -4553,6 +4553,15 @@ img {
         position: relative;
         margin-top: 30px;
     }
+    .rs-blog-layout-23-item.align-start{
+        text-align: left;
+    }
+    .rs-blog-layout-23-item.align-center{
+        text-align: center;
+    }
+    .rs-blog-layout-23-item.align-end{
+        text-align: right;
+    }
     .rs-blog-layout-23-item img{
         width: 100%;
         transition: all ease 0.3s;
@@ -4571,10 +4580,20 @@ img {
         transition: all ease 0.3s;
         opacity: 0;
         visibility: hidden;
+    }   
+    .rs-blog-layout-23-item .rs-blog-layout-23-overlay .title.align-start{
+        text-align: left;
+    }
+    .rs-blog-layout-23-item .rs-blog-layout-23-overlay .title.align-center{
+        text-align: center;
+    }
+    .rs-blog-layout-23-item .rs-blog-layout-23-overlay .title.align-end{
+        text-align: right;
     }
     .rs-blog-layout-23-item .rs-blog-layout-23-overlay .title{
         font-size: 26px;
         line-height: 34px;
+        margin-bottom: 15px;
     }
     .rs-blog-layout-23-item .rs-blog-layout-23-overlay .title a{
         color: #fff;
@@ -4592,6 +4611,86 @@ img {
         display: block;
         margin-top: 10px;
     }
+
+
+    .rs-blog-layout-23-item .rs-blog-layout-23-overlay .rs-btn-box.align-start{
+        text-align: left;
+    }
+    .rs-blog-layout-23-item .rs-blog-layout-23-overlay .rs-btn-box.align-center{
+        text-align: center;
+    }
+    .rs-blog-layout-23-item .rs-blog-layout-23-overlay .rs-btn-box.align-end{
+        text-align: right;
+    }
+    .rs-blog-layout-23-item .rs-blog-layout-23-overlay .rs-btn.fpg-filled {
+        font-size: 16px;
+        font-weight: 600;
+        color: #ffffff;
+        margin-top: 0px;
+        display: inline-block;
+        padding: 16px 40px;
+        border-radius: 5px;
+        background: #E35E47;
+    }
+    .rs-blog-layout-23-item .rs-blog-layout-23-overlay .rs-btn.fpg-filled:hover {
+        color: #ffffff;
+        background: #E35E47da;
+    }
+    
+    .rs-blog-layout-23-item .rs-blog-layout-23-overlay .rs-btn.fpg-filled i {
+        margin-left: 5px;
+    }
+
+    .rs-blog-layout-23-item .rs-blog-layout-23-overlay .rs-btn.fpg-border{
+        font-size: 16px;
+        font-weight: 600;
+        color: #ffffff;
+        margin-top: 0px;
+        display: inline-flex;
+        align-items: center;
+        position: relative;
+        background: transparent !important;
+    }
+    .rs-blog-layout-23-item .rs-blog-layout-23-overlay .rs-btn.fpg-border .blog-btn i{
+        position: relative;
+        top: -2px;
+        
+    }
+    .rs-blog-layout-23-item .rs-blog-layout-23-overlay .rs-btn.fpg-border:hover{
+        color: #E35E47;
+        background: transparent !important;
+    }
+    
+    .rs-blog-layout-23-item .rs-blog-layout-23-overlay .rs-btn.fpg-border::before{
+        position: absolute;
+        content: '';
+        left: 0;
+        bottom: 0;
+        height: 2px;
+        width: 0%;
+        background: #E35E47;
+        transition: all ease 0.3s;
+    }
+    
+    .rs-blog-layout-23-item .rs-blog-layout-23-overlay .rs-btn.fpg-border:hover::before{
+        width: 100%;
+    }
+    .rs-blog-layout-23-item .rs-blog-layout-23-overlay .rs-btn.fpg-flat{
+        color: #ffffff;
+        font-weight: 700;
+        margin-top: 0px;
+        display: inline-flex;
+        align-items: center;
+    }
+    .rs-blog-layout-23-item .rs-blog-layout-23-overlay .rs-btn.fpg-flat .blog-btn i{
+        position: relative;
+        top: -2px;
+    }
+    .rs-blog-layout-23-item .rs-blog-layout-23-overlay .rs-btn.fpg-flat:hover{
+        color: #E35E47;
+    }
+
+
     .rs-blog-layout-23-item .rs-blog-layout-23-overlay .rs-btn:hover{
         color: #488edd;
     }
@@ -4599,8 +4698,15 @@ img {
         opacity: 1;
         visibility: visible;
     }
-    .rs-blog-layout-23-item:hover img{
+    .rs-blog-layout-23-item.hover-zoom_in:hover img{
         transform: scale(1.1);
+    }
+    .rs-blog-layout-23-item.hover-zoom_out img{
+        transform: scale(1.1);
+    }
+    .rs-blog-layout-23-item.hover-zoom_out:hover img{
+        transform: scale(1);
+
     }
     /* blog layout 23 css */
 
@@ -5679,6 +5785,7 @@ img {
     .rs-blog-layout-22-item .rs-content p{
         font-size: 15px;
     }
+
     .rs-blog-layout-23-item .rs-blog-layout-23-overlay .title{
         font-size: 22px;
         line-height: 32px;
