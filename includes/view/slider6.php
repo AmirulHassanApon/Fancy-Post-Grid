@@ -311,6 +311,9 @@ ob_start();
         <?php if (!empty($fpg_title_border_width)) : ?>
             border-width: <?php echo esc_attr($fpg_title_border_width); ?>;
         <?php endif; ?>
+        <?php if (!empty($fpg_title_line_height)) : ?>
+            line-height: <?php echo esc_attr($fpg_title_line_height); ?>;
+        <?php endif; ?>
     }
 
     /* Title Styles */
