@@ -1759,7 +1759,7 @@ function fancy_post_grid_metabox_shortcode_callback( $post ) {
                             </select>
                         </div>
                         <!-- Border Radius -->
-                        <div class="fpg-section-border-radius fpg-common">
+                        <div class="fpg-section-border-radius fpg-common" id="fpg_section_border_radius_main">
                             <label for="fancy_post_section_border_radius"><?php esc_html_e( 'Border Radius:', 'fancy-post-grid' ); ?></label>
                             <input type="text" id="fancy_post_section_border_radius" name="fancy_post_section_border_radius" value="<?php echo esc_attr( $fancy_post_section_border_radius ); ?>" placeholder="e.g., 2px 3px 4px 5px" />
                         </div>

@@ -58,6 +58,7 @@
                     $('#fpg_field_group_tag_main').hide();
                     $('#fpg_field_group_comment_count_main').hide(); 
                     $('#fpg_field_group_button_main').show(); 
+                    $('#fpg_section_border_radius_main').show();
                     // Ordering
                     $('#fpg_title_order_main').show(); 
                     $('#fpg_meta_order_main').show();
@@ -124,6 +125,7 @@
                     $('#fpg_section_bg_hover_main').hide();
                     $('#fpg_section_image_shape_main').hide();
                     $('#fpg_excerpt_main').show(); 
+                    $('#fpg_section_border_radius_main').show();
   
                 }else if (selectedStyle === 'style3') {
                     // Ordering
@@ -161,6 +163,7 @@
                     $('#fpg_section_bg_hover_main').hide();
                     $('#fpg_section_image_shape_main').hide();
                     $('#fpg_excerpt_main').show(); 
+                    $('#fpg_section_border_radius_main').show();
 
                 }else if (selectedStyle === 'style4') {
                     // Ordering
@@ -197,7 +200,7 @@
                     $('#fpg_section_bg_hover_main').hide();
                     $('#fpg_section_image_shape_main').hide();
                     $('#fpg_excerpt_main').show(); 
-                    
+                    $('#fpg_section_border_radius_main').show();
                 }else if (selectedStyle === 'style5') {
                     // Ordering
                     $('#fpg_title_order_main').show(); 
@@ -233,7 +236,7 @@
                     $('#fpg_section_bg_hover_main').hide();
                     $('#fpg_section_image_shape_main').hide();
                     $('#fpg_excerpt_main').show(); 
-                     
+                    $('#fpg_section_border_radius_main').show(); 
                 }else if (selectedStyle === 'style6') {
                     // Ordering
                     $('#fpg_title_order_main').show(); 
@@ -269,7 +272,7 @@
                     $('#fpg_button_settings_main').show();
                     $('#fpg_section_bg_hover_main').hide();
                     $('#fpg_section_image_shape_main').hide();
-
+                    $('#fpg_section_border_radius_main').show();
                 }else if (selectedStyle === 'style7') {
 
                     // Ordering
@@ -307,7 +310,7 @@
                     $('#fpg_date_padding_main').hide();
                     $('#fpg_section_bg_hover_main').hide();
                     $('#fpg_section_image_shape_main').hide();
-                  
+                    $('#fpg_section_border_radius_main').show();
                 }else if (selectedStyle === 'style8') {
 
                     // Ordering
@@ -345,7 +348,7 @@
                     $('#fpg_date_padding_main').hide();
                     $('#fpg_section_bg_hover_main').hide();
                     $('#fpg_section_image_shape_main').hide();
-                    
+                    $('#fpg_section_border_radius_main').show();
                 }else if (selectedStyle === 'style9') {
                     // Ordering
                     $('#fpg_title_order_main').show(); 
@@ -383,7 +386,7 @@
                     $('#fpg_date_padding_main').hide();
                     $('#fpg_section_bg_hover_main').hide();
                     $('#fpg_section_image_shape_main').hide();
-                     
+                    $('#fpg_section_border_radius_main').show();
                 }else if (selectedStyle === 'style10') {
 
                     // Ordering
@@ -422,7 +425,7 @@
                     $('#fpg_date_padding_main').hide();
                     $('#fpg_section_bg_hover_main').hide();
                     $('#fpg_section_image_shape_main').hide();
-                   
+                    $('#fpg_section_border_radius_main').show();
                 }else if (selectedStyle === 'style11') {
                     // Ordering
                     $('#fpg_title_order_main').show(); 
@@ -462,7 +465,7 @@
                     $('#fpg_date_padding_main').hide();
                     $('#fpg_section_bg_hover_main').hide();
                     $('#fpg_section_image_shape_main').hide();
- 
+                    $('#fpg_section_border_radius_main').show();
                 }else if (selectedStyle === 'style12')  {
                     // Ordering
                     $('#fpg_title_order_main').show(); 
@@ -501,7 +504,7 @@
                     $('#fpg_date_padding_main').hide();
                     $('#fpg_section_bg_hover_main').show();
                     $('#fpg_section_image_shape_main').hide();
- 
+                    $('#fpg_section_border_radius_main').show();
                 } 
             } else if (selectedLayout === 'slider') {
                 
@@ -515,6 +518,7 @@
                     $('#fpg_field_group_button_main').show(); 
                     // Ordering
                     $('#fpg_title_order_main').show(); 
+                    $('#fpg_section_border_radius_main').show(); 
                     $('#fpg_meta_order_main').show();
                     $('#fpg_excerpt_order_main').show();
                     $('#fpg_button_order_main').show();
@@ -544,6 +548,7 @@
                     $('#fpg_excerpt_main').show(); 
 
                 } else if (selectedSliderStyle === 'sliderstyle2') {
+                    $('#fpg_section_border_radius_main').show();
                     $('#fpg_field_group_author_main').show();
                     $('#fpg_field_group_post_date_main').show();
                     $('#fpg_field_group_excerpt_main').show();
@@ -589,6 +594,7 @@
                     $('#fpg_field_group_tag_main').hide();
                     $('#fpg_field_group_comment_count_main').hide(); 
                     $('#fpg_field_group_button_main').show(); 
+                    $('#fpg_section_border_radius_main').show();
                     // Ordering
                     $('#fpg-read-more-alignment').hide();
                     $('#fpg_title_order_main').show(); 
@@ -626,7 +632,8 @@
                     $('#fpg_field_group_categories_main').show();
                     $('#fpg_field_group_tag_main').hide();
                     $('#fpg_field_group_comment_count_main').show(); 
-                    $('#fpg_field_group_button_main').show(); 
+                    $('#fpg_field_group_button_main').show();
+                    $('#fpg_section_border_radius_main').show(); 
                     // Ordering
                     $('#fpg-read-more-alignment').hide();
                     $('#fpg_title_order_main').show(); 
@@ -665,6 +672,7 @@
                     $('#fpg_field_group_tag_main').hide();
                     $('#fpg_field_group_comment_count_main').hide(); 
                     $('#fpg_field_group_button_main').show(); 
+                    $('#fpg_section_border_radius_main').show();
                     // Ordering
                     $('#fpg-read-more-alignment').show();
                     $('#fpg_title_order_main').show(); 
@@ -702,7 +710,8 @@
                     $('#fpg_field_group_categories_main').hide();
                     $('#fpg_field_group_tag_main').hide();
                     $('#fpg_field_group_comment_count_main').hide(); 
-                    $('#fpg_field_group_button_main').show(); 
+                    $('#fpg_field_group_button_main').show();
+                    $('#fpg_section_border_radius_main').hide(); 
                     // Ordering
                     $('#fpg-read-more-alignment').show();
                     $('#fpg_title_order_main').show(); 
@@ -741,6 +750,7 @@
                     $('#fpg_field_group_tag_main').hide();
                     $('#fpg_field_group_comment_count_main').hide(); 
                     $('#fpg_field_group_button_main').show(); 
+                    $('#fpg_section_border_radius_main').show();
                     // Ordering
                     $('#fpg-read-more-alignment').show();
                     $('#fpg_title_order_main').show(); 
