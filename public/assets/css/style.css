@@ -3801,6 +3801,7 @@ img {
         display: flex;
         flex-direction: column;
         align-items: flex-start;
+        overflow: hidden;
     }
     .rs-blog-layout-18-item.align-center .rs-content{
         text-align: center;
@@ -3850,6 +3851,10 @@ img {
     .rs-blog-layout-18-item .rs-content .rs-meta ul li{
         color: #fff ;
         font-size: 15px;
+        transition: all linear 0.3s;
+    }
+    .rs-blog-layout-18-item .rs-content .rs-meta ul li i{
+        transition: all linear 0.3s;
     }
     .rs-blog-layout-18-item .rs-content .rs-meta ul li a{
         text-decoration: none;
