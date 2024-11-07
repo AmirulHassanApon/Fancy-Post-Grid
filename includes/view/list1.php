@@ -658,6 +658,12 @@ ob_start();
             padding: <?php echo esc_attr($fpg_single_content_section_padding); ?>;
         <?php endif; ?>
     }
+    .rs-blog-layout-8 .rs-blog__thumb {
+        <?php if (!empty($fancy_post_image_border_radius)) : ?>
+            border-radius: <?php echo esc_attr($fancy_post_image_border_radius); ?>;
+        <?php endif; ?>
+
+    }
     .rs-blog-layout-8 .rs-blog__thumb .rs-category i{
         <?php if (!empty($fpg_meta_color)) : ?>
             color: <?php echo esc_attr($fpg_meta_color); ?>;
@@ -750,17 +756,11 @@ ob_start();
         <?php endif; ?>
     }
     .rs-blog-layout-8 .rs-blog__content .btn-wrapper{
-        <?php if (!empty($fpg_button_padding)) : ?>
-            padding: <?php echo esc_attr($fpg_button_padding); ?>;
-        <?php endif; ?>
-        <?php if (!empty($fpg_button_margin)) : ?>
-            margin: <?php echo esc_attr($fpg_button_margin); ?>;
-        <?php endif; ?>
         <?php if (!empty($fpg_button_order)) : ?>
             order: <?php echo esc_attr($fpg_button_order); ?>;
         <?php endif; ?>
     }
-    .rs-blog-layout-8 .rs-blog__content .btn-wrapper a.rs-link.read-more{
+    .rs-blog-layout-8 .rs-blog__content .btn-wrapper a.rs-link.<?php echo esc_attr($button_class); ?>{
         <?php if (!empty($fpg_button_background_color)) : ?>
             background-color: <?php echo esc_attr($fpg_button_background_color); ?>;
         <?php endif; ?>
@@ -779,8 +779,20 @@ ob_start();
         <?php if (!empty($fancy_post_border_width)) : ?>
             border-width: <?php echo esc_attr($fancy_post_border_width); ?>;
         <?php endif; ?>
+        <?php if (!empty($fpg_button_font_size)) : ?>
+            font-size: <?php echo esc_attr($fpg_button_font_size); ?>;
+        <?php endif; ?>
+        <?php if (!empty($fpg_button_font_weight)) : ?>
+            font-weight: <?php echo esc_attr($fpg_button_font_weight); ?>;
+        <?php endif; ?>
+        <?php if (!empty($fpg_button_padding)) : ?>
+            padding: <?php echo esc_attr($fpg_button_padding); ?>;
+        <?php endif; ?>
+        <?php if (!empty($fpg_button_margin)) : ?>
+            margin: <?php echo esc_attr($fpg_button_margin); ?>;
+        <?php endif; ?>
     }
-    .rs-blog-layout-8 .rs-blog__content .btn-wrapper a.rs-link.read-more:hover{
+    .rs-blog-layout-8 .rs-blog__content .btn-wrapper a.rs-link.<?php echo esc_attr($button_class); ?>:hover{
         <?php if (!empty($fpg_button_hover_background_color)) : ?>
             background-color: <?php echo esc_attr($fpg_button_hover_background_color); ?>;
         <?php endif; ?>
@@ -788,6 +800,12 @@ ob_start();
             color: <?php echo esc_attr($fpg_button_text_hover_color); ?>;
         <?php endif; ?>
     }
+    .rs-blog-layout-8 .rs-blog__content .btn-wrapper a.rs-link.<?php echo esc_attr($button_class); ?>::before{
+        <?php if (!empty($fpg_button_border_color)) : ?>
+            background: <?php echo esc_attr($fpg_button_border_color); ?>;
+        <?php endif; ?>
+    }
+
 </style>
 <?php
 $list1 = ob_get_clean();
