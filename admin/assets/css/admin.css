@@ -337,7 +337,7 @@ border-radius: 50%;
 .fpg-post-select-main {
   display: flex;
   justify-content: flex-start;
-  gap: 10px 35px;
+  gap: 20px 35px;
   flex-wrap: wrap;
 }
 .fpg-post-select{

@@ -2285,6 +2285,16 @@ img {
     justify-content: flex-end;
 }
 
+.rs-blog-layout-8 .rs-blog__left-blog .rs-blog__content ul.align-start{
+    justify-content: flex-start;
+}
+.rs-blog-layout-8 .rs-blog__left-blog .rs-blog__content ul.align-center{
+    justify-content: center;
+}
+.rs-blog-layout-8 .rs-blog__left-blog .rs-blog__content ul.align-end{
+    justify-content: flex-end;
+}
+
 @media only screen and (min-width: 768px) and (max-width: 991px) {
     .rs-blog-layout-8 .rs-blog__left-blog {
         margin-right: 0;
@@ -2370,6 +2380,9 @@ img {
     position: relative;
     z-index: 10;
 }
+.rs-blog-layout-8 .rs-blog__thumb img{
+    transition: all linear 0.3s;
+}
 
 .rs-blog-layout-8 .rs-blog__thumb .rs-category {
     position: absolute;
@@ -2402,6 +2415,16 @@ img {
 
 .rs-blog-layout-8 .rs-blog__thumb .rs-category:hover {
     opacity: 0.8;
+}
+
+.rs-blog-layout-8 .rs-blog__left-blog.hover-zoom_in:hover .rs-blog__thumb img{
+    transform: scale(1.1);
+}
+.rs-blog-layout-8 .rs-blog__left-blog.hover-zoom_out .rs-blog__thumb img{
+    transform: scale(1.1);
+}
+.rs-blog-layout-8 .rs-blog__left-blog.hover-zoom_out:hover .rs-blog__thumb img{
+    transform: scale(1);
 }
 
 .rs-blog-layout-8 .rs-blog__content {
@@ -2479,10 +2502,29 @@ img {
     color: #FC3737;
 }
 
+.rs-blog-layout-8 .rs-blog__content .title.align-start{
+    text-align: left;
+}
+.rs-blog-layout-8 .rs-blog__content .title.align-center{
+    text-align: center;
+}
+.rs-blog-layout-8 .rs-blog__content .title.align-end{
+    text-align: right;
+}
+
 .rs-blog-layout-8 .rs-blog__content p {
     font-size: 16px;
     line-height: 32px;
     margin-bottom: 0px;
+}
+.rs-blog-layout-8 .rs-blog__content .fpg-excerpt.align-start {
+    text-align: left;
+}
+.rs-blog-layout-8 .rs-blog__content .fpg-excerpt.align-center {
+    text-align: center;
+}
+.rs-blog-layout-8 .rs-blog__content .fpg-excerpt.align-end {
+    text-align: right;
 }
 
 .rs-blog-layout-8 .rs-blog__content .btn-wrapper a {
@@ -2494,10 +2536,84 @@ img {
     text-decoration: none;
 }
 
-.rs-blog-layout-8 .rs-blog__content>a i {
+.rs-blog-layout-8 .rs-blog__content .btn-wrapper .rs-link.fpg-filled {
+    font-size: 16px;
+    font-weight: 600;
+    color: #ffffff;
+    margin-top: 10px;
+    display: inline-block;
+    padding: 12px 30px;
+    border-radius: 5px;
+    background: #FC3737;
+}
+
+.rs-blog-layout-8 .rs-blog__content .btn-wrapper .rs-link.fpg-filled:hover {
+    color: #ffffff;
+    background: #FC3737da;
+}
+
+.rs-blog-layout-8 .rs-blog__content .btn-wrapper .rs-link.fpg-filled i {
+    margin-left: 5px;
+}
+
+.rs-blog-layout-8 .rs-blog__content .btn-wrapper .rs-link.fpg-border{
+    font-size: 16px;
+    font-weight: 600;
+    color: #454545;
+    margin-top: 10px;
+    display: inline-block;
+    position: relative;
+    background: transparent !important;
+}
+.rs-blog-layout-8 .rs-blog__content .btn-wrapper .rs-link.fpg-border:hover{
+    color: #FC3737;
+    background: transparent !important;
+}
+
+.rs-blog-layout-8 .rs-blog__content .btn-wrapper .rs-link.fpg-border::before{
+    position: absolute;
+    content: '';
+    left: 0;
+    bottom: 0;
+    height: 2px;
+    width: 0%;
+    background: #FC3737;
+    transition: all ease 0.3s;
+}
+
+.rs-blog-layout-8 .rs-blog__content .btn-wrapper .rs-link.fpg-border:hover::before{
+    width: 100%;
+}
+
+.rs-blog-layout-8 .rs-blog__content .btn-wrapper .rs-link.fpg-flat{
+    font-size: 16px;
+    font-weight: 600;
+    color: #454545;
+    margin-top: 0px;
+    display: inline-block;
+    position: relative;
+    background: transparent !important;
+}
+
+.rs-blog-layout-8 .rs-blog__content .btn-wrapper .rs-link.fpg-flat:hover{
+    color: #FC3737;
+    background: transparent !important;
+}
+
+
+.rs-blog-layout-8 .rs-blog__content .btn-wrapper a i {
     margin-left: 6px;
 }
 
+.rs-blog-layout-8 .rs-blog__content .btn-wrapper.align-start{
+    text-align: left;
+}
+.rs-blog-layout-8 .rs-blog__content .btn-wrapper.align-center{
+    text-align: center;
+}
+.rs-blog-layout-8 .rs-blog__content .btn-wrapper.align-end{
+    text-align: right;
+}
 
 /* blog layout 8 css */
 
