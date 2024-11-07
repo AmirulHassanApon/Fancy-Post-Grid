@@ -801,9 +801,9 @@
                     $('#fpg_author_color_main').hide();
                     $('#fpg_author_bg_color_main').hide();
                     $('#fpg_author_padding_main').hide();
-                    $('#fpg_category_color_main').hide();
-                    $('#fpg_category_bg_color_main').hide();
-                    $('#fpg_category_padding_main').hide();
+                    $('#fpg_category_color_main').show();
+                    $('#fpg_category_bg_color_main').show();
+                    $('#fpg_category_padding_main').show();
                     $('#fpg_date_color_main').hide();
                     $('#fpg_date_bg_color_main').hide();
                     $('#fpg_date_padding_main').hide();
