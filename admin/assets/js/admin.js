@@ -788,7 +788,7 @@
                     $('#fpg_field_group_author_main').show();
                     $('#fpg_field_group_post_date_main').show();
                     $('#fpg_field_group_excerpt_main').show();
-                    $('#fpg_field_group_categories_main').hide();
+                    $('#fpg_field_group_categories_main').show();
                     $('#fpg_field_group_tag_main').hide();
                     $('#fpg_field_group_comment_count_main').hide(); 
                     $('#fpg_field_group_button_main').show(); 

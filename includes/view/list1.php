@@ -553,7 +553,7 @@ ob_start();
                                             
                                             <i class="ri-user-3-line"></i> 
                                             <?php esc_html_e('Posted By -', 'fancy-post-grid'); ?>  
-                                            <?php the_author(); ?>     
+                                            <?php the_author(); ?>
                                         </li>
                                         <?php endif; ?>
 
