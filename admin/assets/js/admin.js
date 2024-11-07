@@ -1166,7 +1166,7 @@
                 toggleSliderPaginationOption(fancy_pagination);
             } else if (selectedLayout === 'list') {
                 $('#fancy_post_list_style').show();
-                $('#fpg_pagination_main_option').show();
+                $('#fpg_pagination_main_option').hide();
 
             } else if (selectedLayout === 'isotope') {
                 $('#fancy_post_isotope_style').show();
