@@ -9,15 +9,16 @@ ob_start();
         <div class="row">
             <?php 
             $pagination_config = '';
-            
+            // Check if the clickable setting is true or false
+            $clickable = ($fancy_pagination_clickable === 'true') ? 'true' : 'false';
             if ($fpg_pagination_slider === 'normal') {
-                $pagination_config = '"pagination": {"el": ".swiper-pagination", "clickable": true}';
+                $pagination_config = '"pagination": {"el": ".swiper-pagination", "clickable": ' . $clickable . '}';
             } elseif ($fpg_pagination_slider === 'dynamic') {
-                $pagination_config = '"pagination": {"el": ".swiper-pagination", "dynamicBullets": true, "clickable": true}';
+                $pagination_config = '"pagination": {"el": ".swiper-pagination", "dynamicBullets": true, "clickable": ' . $clickable . '}';
             } elseif ($fpg_pagination_slider === 'progress') {
-                $pagination_config = '"pagination": {"el": ".swiper-pagination", "type": "progressbar"}';
+                $pagination_config = '"pagination": {"el": ".swiper-pagination", "type": "progressbar", "clickable": ' . $clickable . '}';
             } elseif ($fpg_pagination_slider === 'fraction') {
-                $pagination_config = '"pagination": {"el": ".swiper-pagination", "type": "fraction"}';
+                $pagination_config = '"pagination": {"el": ".swiper-pagination", "type": "fraction", "clickable": ' . $clickable . '}';
             }
 
             ?>
@@ -278,10 +279,15 @@ ob_start();
                         </div>
                     </div>
                     <div class="swiper-pagination swiper-pagination-1"></div>
-                    <!-- Navigation buttons, if applicable -->
-                    <?php if (in_array($fpg_pagination_slider, ['progress', 'fraction'])) : ?>
-                        <div class="swiper-button-next"></div>
-                        <div class="swiper-button-prev"></div>
+                    <!-- Pagination and Navigation Controls -->
+                    <?php if ($fancy_arrow === 'true') : ?>
+                        
+                        
+                        <!-- Navigation buttons, if applicable -->
+                        <?php if (in_array($fpg_pagination_slider, ['progress', 'fraction', 'dynamic', 'normal'])) : ?>
+                            <div class="swiper-button-next"></div>
+                            <div class="swiper-button-prev"></div>
+                        <?php endif; ?>
                     <?php endif; ?>
                 </div>
             </div>

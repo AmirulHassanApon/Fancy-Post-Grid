@@ -36,8 +36,17 @@ jQuery(document).ready(function($) {
             new Swiper(swiper, options);
         });
     }
-});
-jQuery(document).ready(function($) {
+
+    // Initialize additional Swiper instance with navigation
+    var swiper = new Swiper(".rs-mySwiper", {
+        spaceBetween: 5,
+        slidesPerView: 1,
+        navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
+        },
+    });
+
     // Initialize Isotope after all images are loaded
     var $grid = $('.rs-grid').isotope({
         itemSelector: '.rs-grid-item',
