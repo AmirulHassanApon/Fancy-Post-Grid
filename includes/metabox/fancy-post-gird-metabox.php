@@ -2385,6 +2385,9 @@ function fancy_post_grid_save_metabox_data( $post_id ) {
     if ( isset( $_POST['fpg_excerpt_order'] ) ) {
         update_post_meta( $post_id, 'fpg_excerpt_order', sanitize_text_field(wp_unslash( $_POST['fpg_excerpt_order'] )) );
     }
+    if ( isset( $_POST['fpg_category_padding'] ) ) {
+        update_post_meta( $post_id, 'fpg_category_padding', sanitize_text_field(wp_unslash( $_POST['fpg_category_padding'] )) );
+    }
 
     //Layout
     if ( isset( $_POST['fpg_layout_select'] ) ) {
