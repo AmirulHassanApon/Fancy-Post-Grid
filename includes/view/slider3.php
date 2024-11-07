@@ -29,7 +29,7 @@ ob_start();
                         "loop": <?php echo esc_attr($fancy_loop); ?>, 
                         <?php echo $pagination_config; ?>,
 
-                        "autoplay":{"delay":"<?php echo esc_attr($fancy_autoplay); ?>"},
+                        "autoplay":{"delay":<?php echo esc_attr($fancy_autoplay); ?>},
                         "keyboard": {"enabled":<?php echo esc_attr($fancy_keyboard); ?>},                        
                         "breakpoints":{                                                       
                             "10":{"slidesPerView":<?php echo esc_attr($fancy_post_cl_mobile_slider ); ?>,"spaceBetween":<?php echo esc_attr($fancy_spacebetween); ?>},
