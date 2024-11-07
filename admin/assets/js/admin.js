@@ -808,15 +808,13 @@
                     $('#fpg_date_bg_color_main').hide();
                     $('#fpg_date_padding_main').hide();
                     $('#fpg_section_image_shape_main').hide();
-                    $('#fpg_meta_hover_color_main').show()
-                    
+                    $('#fpg_meta_hover_color_main').show()                   
                     $('#fpg_single_content_section_padding_box').show();
                     $('#fpg_title_hover_color_box').show();
                     $('#fpg_meta_settings_main').show();
                     $('#fpg_meta_data_main').show();
                     $('#fpg_meta_gap_main').show();
-                    $('#fpg_meta_bgcolor_box').hide();
-                    
+                    $('#fpg_meta_bgcolor_box').hide();                  
                     $('#fancy_button_option_main').show();
                     $('#fpg_button_settings_main').show();
                     $('#fpg_section_bg_hover_main').hide();
@@ -845,15 +843,13 @@
                     $('#fpg_date_bg_color_main').hide();
                     $('#fpg_date_padding_main').hide();
                     $('#fpg_section_image_shape_main').hide();
-                    $('#fpg_meta_hover_color_main').show()
-                    
+                    $('#fpg_meta_hover_color_main').show()                    
                     $('#fpg_single_content_section_padding_box').show();
                     $('#fpg_title_hover_color_box').show();
                     $('#fpg_meta_settings_main').show();
                     $('#fpg_meta_data_main').show();
                     $('#fpg_meta_gap_main').show();
-                    $('#fpg_meta_bgcolor_box').hide();
-                    
+                    $('#fpg_meta_bgcolor_box').hide();               
                     $('#fancy_button_option_main').show();
                     $('#fpg_button_settings_main').show();
                     $('#fpg_section_bg_hover_main').hide();
@@ -882,15 +878,13 @@
                     $('#fpg_date_bg_color_main').hide();
                     $('#fpg_date_padding_main').hide();
                     $('#fpg_section_image_shape_main').hide();
-                    $('#fpg_meta_hover_color_main').show()
-                    
+                    $('#fpg_meta_hover_color_main').show()                
                     $('#fpg_single_content_section_padding_box').show();
                     $('#fpg_title_hover_color_box').show();
                     $('#fpg_meta_settings_main').show();
                     $('#fpg_meta_data_main').show();
                     $('#fpg_meta_gap_main').show();
-                    $('#fpg_meta_bgcolor_box').hide();
-                    
+                    $('#fpg_meta_bgcolor_box').hide();                   
                     $('#fancy_button_option_main').show();
                     $('#fpg_button_settings_main').show();
                     $('#fpg_section_bg_hover_main').hide();
@@ -919,15 +913,13 @@
                     $('#fpg_date_bg_color_main').hide();
                     $('#fpg_date_padding_main').hide();
                     $('#fpg_section_image_shape_main').hide();
-                    $('#fpg_meta_hover_color_main').show()
-                    
+                    $('#fpg_meta_hover_color_main').show()                   
                     $('#fpg_single_content_section_padding_box').show();
                     $('#fpg_title_hover_color_box').show();
                     $('#fpg_meta_settings_main').show();
                     $('#fpg_meta_data_main').show();
                     $('#fpg_meta_gap_main').show();
-                    $('#fpg_meta_bgcolor_box').hide();
-                    
+                    $('#fpg_meta_bgcolor_box').hide();                    
                     $('#fancy_button_option_main').show();
                     $('#fpg_button_settings_main').show();
                     $('#fpg_section_bg_hover_main').hide();  
@@ -955,15 +947,13 @@
                     $('#fpg_date_bg_color_main').hide();
                     $('#fpg_date_padding_main').hide();
                     $('#fpg_section_image_shape_main').hide();
-                    $('#fpg_meta_hover_color_main').show()
-                    
+                    $('#fpg_meta_hover_color_main').show()                    
                     $('#fpg_single_content_section_padding_box').show();
                     $('#fpg_title_hover_color_box').show();
                     $('#fpg_meta_settings_main').show();
                     $('#fpg_meta_data_main').show();
                     $('#fpg_meta_gap_main').show();
-                    $('#fpg_meta_bgcolor_box').hide();
-                    
+                    $('#fpg_meta_bgcolor_box').hide();                   
                     $('#fancy_button_option_main').show();
                     $('#fpg_button_settings_main').show();
                     $('#fpg_section_bg_hover_main').hide();
@@ -992,15 +982,13 @@
                     $('#fpg_date_bg_color_main').hide();
                     $('#fpg_date_padding_main').hide();
                     $('#fpg_section_image_shape_main').hide();
-                    $('#fpg_meta_hover_color_main').show()
-                    
+                    $('#fpg_meta_hover_color_main').show()                  
                     $('#fpg_single_content_section_padding_box').show();
                     $('#fpg_title_hover_color_box').show();
                     $('#fpg_meta_settings_main').show();
                     $('#fpg_meta_data_main').show();
                     $('#fpg_meta_gap_main').show();
-                    $('#fpg_meta_bgcolor_box').hide();
-                    
+                    $('#fpg_meta_bgcolor_box').hide();                    
                     $('#fancy_button_option_main').hide();
                     $('#fpg_button_settings_main').hide();
                     $('#fpg_section_bg_hover_main').hide();
@@ -1029,15 +1017,13 @@
                     $('#fpg_date_bg_color_main').hide();
                     $('#fpg_date_padding_main').hide();
                     $('#fpg_section_image_shape_main').hide();
-                    $('#fpg_meta_hover_color_main').show()
-                    
+                    $('#fpg_meta_hover_color_main').show()                   
                     $('#fpg_single_content_section_padding_box').show();
                     $('#fpg_title_hover_color_box').show();
                     $('#fpg_meta_settings_main').show();
                     $('#fpg_meta_data_main').show();
                     $('#fpg_meta_gap_main').show();
-                    $('#fpg_meta_bgcolor_box').hide();
-                    
+                    $('#fpg_meta_bgcolor_box').hide();                   
                     $('#fancy_button_option_main').show();
                     $('#fpg_button_settings_main').show();
                     $('#fpg_section_bg_hover_main').hide();
@@ -1066,15 +1052,13 @@
                     $('#fpg_date_bg_color_main').hide();
                     $('#fpg_date_padding_main').hide();
                     $('#fpg_section_image_shape_main').hide();
-                    $('#fpg_meta_hover_color_main').show()
-                    
+                    $('#fpg_meta_hover_color_main').show()                   
                     $('#fpg_single_content_section_padding_box').show();
                     $('#fpg_title_hover_color_box').show();
                     $('#fpg_meta_settings_main').show();
                     $('#fpg_meta_data_main').show();
                     $('#fpg_meta_gap_main').show();
-                    $('#fpg_meta_bgcolor_box').hide();
-                    
+                    $('#fpg_meta_bgcolor_box').hide();                  
                     $('#fancy_button_option_main').show();
                     $('#fpg_button_settings_main').show();
                     $('#fpg_section_bg_hover_main').hide();
@@ -1106,16 +1090,13 @@
                     $('#fpg_date_color_main').hide();
                     $('#fpg_date_bg_color_main').hide();
                     $('#fpg_date_padding_main').hide();
-
-                    $('#fpg_meta_hover_color_main').show()
-                    
+                    $('#fpg_meta_hover_color_main').show()                   
                     $('#fpg_single_content_section_padding_box').show();
                     $('#fpg_title_hover_color_box').show();
                     $('#fpg_meta_settings_main').show();
                     $('#fpg_meta_data_main').show();
                     $('#fpg_meta_gap_main').show();
-                    $('#fpg_meta_bgcolor_box').hide();
-                    
+                    $('#fpg_meta_bgcolor_box').hide();                   
                     $('#fancy_button_option_main').show();
                     $('#fpg_button_settings_main').show();
                     $('#fpg_section_bg_hover_main').hide();
@@ -1144,16 +1125,13 @@
                     $('#fpg_date_color_main').hide();
                     $('#fpg_date_bg_color_main').hide();
                     $('#fpg_date_padding_main').hide();
-
                     $('#fpg_meta_hover_color_main').show()
-                    
                     $('#fpg_single_content_section_padding_box').show();
                     $('#fpg_title_hover_color_box').show();
                     $('#fpg_meta_settings_main').show();
                     $('#fpg_meta_data_main').show();
                     $('#fpg_meta_gap_main').show();
-                    $('#fpg_meta_bgcolor_box').hide();
-                    
+                    $('#fpg_meta_bgcolor_box').hide();                  
                     $('#fancy_button_option_main').show();
                     $('#fpg_button_settings_main').show();
                     $('#fpg_section_bg_hover_main').hide();
@@ -1163,57 +1141,60 @@
         }
 
         function toggleLayoutFields() {
+            // Retrieve selected layout and fancy pagination values
             var selectedLayout = $('input[name="fpg_layout_select"]:checked').val();
+            var fancy_pagination = $('input[name="fancy_pagination"]:checked').val();
+            
+            // Reset all sections to hidden by default
+            $('#fancy_post_grid_style,#fpg_slider_arrow_dots, #fpg_pagination, #fancy_post_column_grid, #fancy_post_slider_style, #fancy_post_list_style, #fancy_post_isotope_style, #fancy_post_column_slider, #fpg_slider_option, #fpg_slider_pagination_option').hide();
+
+            // Show elements based on selected layout
             if (selectedLayout === 'grid') {
                 $('#fancy_post_grid_style').show();
                 $('#fancy_post_column_grid').show();
-                $('#fancy_post_slider_style').hide();
-                $('#fancy_post_list_style').hide();
-                $('#fancy_post_isotope_style').hide();
-                $('#fancy_post_column_slider').hide();
-                $('#fpg_slider_option').hide();
-                $('#fpg_slider_pagination_option').hide();
                 $('#fpg_pagination').show();
-                
+                $('#fpg_pagination_main_option').show();
 
             } else if (selectedLayout === 'slider') {
-                $('#fancy_post_grid_style').hide();
-                $('#fpg_pagination').hide();
-                $('#fancy_post_column_grid').hide();
                 $('#fancy_post_slider_style').show();
-                $('#fancy_post_list_style').hide();
-                $('#fancy_post_isotope_style').hide();
                 $('#fancy_post_column_slider').show();
                 $('#fpg_slider_option').show();
-                $('#fpg_slider_pagination_option').show();
-                
+                $('#fpg_pagination_main_option').hide();
+                $('#fpg_slider_arrow_dots').show();
 
-            }else if (selectedLayout === 'list') {
-                $('#fancy_post_grid_style').hide();
-                $('#fpg_pagination').hide();
-                $('#fancy_post_column_grid').hide();
-                $('#fancy_post_slider_style').hide();
+                // Show or hide slider pagination option based on fancy_pagination value
+                toggleSliderPaginationOption(fancy_pagination);
+            } else if (selectedLayout === 'list') {
                 $('#fancy_post_list_style').show();
-                $('#fancy_post_isotope_style').hide();
-                $('#fancy_post_column_slider').hide();
-                $('#fpg_slider_option').hide();
-                $('#fpg_slider_pagination_option').hide();
-                
+                $('#fpg_pagination_main_option').show();
 
-            }else if (selectedLayout === 'isotope') {
-                $('#fancy_post_grid_style').hide();
-                $('#fpg_pagination').hide();
-                $('#fancy_post_column_grid').show();
-                $('#fancy_post_slider_style').hide();
-                $('#fancy_post_column_slider').hide();
-                $('#fancy_post_list_style').hide();
+            } else if (selectedLayout === 'isotope') {
                 $('#fancy_post_isotope_style').show();
-                $('#fpg_slider_option').hide();
-                $('#fpg_slider_pagination_option').hide();
-                
-
+                $('#fancy_post_column_grid').show();
+                $('#fpg_pagination_main_option').show();
             }
         }
+
+        // Function to toggle the slider pagination option
+        function toggleSliderPaginationOption(fancy_pagination) {
+            if (fancy_pagination === 'true') {
+                $('#fpg_slider_pagination_option').show();
+            } else {
+                $('#fpg_slider_pagination_option').hide();
+            }
+        }
+
+        // Initial call to set up fields based on initial state
+        toggleLayoutFields();
+
+        // Event listener for layout changes
+        $('input[name="fpg_layout_select"]').on('change', toggleLayoutFields);
+
+        // Event listener for fancy_pagination toggle, to show/hide instantly
+        $('input[name="fancy_pagination"]').on('change', function() {
+            var fancy_pagination = $(this).val();
+            toggleSliderPaginationOption(fancy_pagination);
+        });
 
         function toggleButtonFields() {
             var selectedLayout = $('#fancy_button_option').val();

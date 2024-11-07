@@ -124,13 +124,23 @@ function fancy_post_grid_metabox_shortcode_callback( $post ) {
         $fancy_link_details = 'on'; 
     }
     $fancy_link_target                          = get_post_meta( $post->ID, 'fancy_link_target', true );
-    // if ( empty( $fancy_link_target ) ) {
-    //     $fancy_link_target = 'same'; 
-    // }
+    if ( empty( $fancy_link_target ) ) {
+        $fancy_link_target = 'same'; 
+    }
 
     $fancy_keyboard                          = get_post_meta( $post->ID, 'fancy_keyboard', true );
     if ( empty( $fancy_keyboard ) ) {
         $fancy_keyboard = 'false'; 
+    }
+
+    $fancy_arrow = get_post_meta( $post->ID, 'fancy_arrow', true );
+    if ( empty( $fancy_arrow ) ) {
+        $fancy_arrow = 'false';
+    }
+
+    $fancy_pagination = get_post_meta( $post->ID, 'fancy_pagination', true );
+    if ( empty( $fancy_pagination ) ) {
+        $fancy_pagination = 'false';
     }
 
     $fancy_loop                          = get_post_meta( $post->ID, 'fancy_loop', true );
@@ -389,11 +399,11 @@ function fancy_post_grid_metabox_shortcode_callback( $post ) {
     if ( empty( $fpg_meta_font_weight ) ) {
         $fpg_meta_font_weight = '400'; 
     }
-    $fpg_slider_dots_active_color = get_post_meta( $post_id, 'fpg_slider_dots_active_color', true );
-    $fpg_slider_dots_color = get_post_meta( $post_id, 'fpg_slider_dots_color', true );
-    $fpg_arrow_color = get_post_meta( $post_id, 'fpg_arrow_color', true );
-    $fpg_arrow_hover_color = get_post_meta( $post_id, 'fpg_arrow_hover_color', true );
-    $fpg_icon_font_size = get_post_meta( $post_id, 'fpg_icon_font_size', true );
+    $fpg_slider_dots_active_color = get_post_meta( $post->ID, 'fpg_slider_dots_active_color', true );
+    $fpg_slider_dots_color = get_post_meta( $post->ID, 'fpg_slider_dots_color', true );
+    $fpg_arrow_color = get_post_meta( $post->ID, 'fpg_arrow_color', true );
+    $fpg_arrow_hover_color = get_post_meta( $post->ID, 'fpg_arrow_hover_color', true );
+    $fpg_icon_font_size = get_post_meta( $post->ID, 'fpg_icon_font_size', true );
 
     // Output for the metabox content
     ?>
@@ -801,6 +811,36 @@ function fancy_post_grid_metabox_shortcode_callback( $post ) {
                 <fieldset>
                     <legend><?php esc_html_e( 'Enable Slider Option:', 'fancy-post-grid' ); ?></legend>
                     <div class="fpg-post-select-main">
+                         <!-- Arrow Control -->
+                        <div class="fpg-container">
+                            <label for="fancy_arrow"><?php esc_html_e( 'Enable Arrow Control:', 'fancy-post-grid' ); ?></label>
+                            <div class="switch switch--horizontal">
+                                <input id="fancy_arrow_false" type="radio" name="fancy_arrow" value="false" <?php checked( $fancy_arrow, 'false' ); ?> />
+                                <label for="fancy_arrow_false"><?php esc_html_e( 'False', 'fancy-post-grid' ); ?></label>
+
+                                <input id="fancy_arrow_true" type="radio" name="fancy_arrow" value="true" <?php checked( $fancy_arrow, 'true' ); ?> />
+                                <label for="fancy_arrow_true"><?php esc_html_e( 'True', 'fancy-post-grid' ); ?></label>
+                                <span class="toggle-outside">
+                                    <span class="toggle-inside"></span>
+                                </span>
+                            </div>
+                        </div>
+
+                        <!-- Pagination Control -->
+                        <div class="fpg-container">
+                            <label for="fancy_pagination"><?php esc_html_e( 'Enable Pagination Control:', 'fancy-post-grid' ); ?></label>
+                            <div class="switch switch--horizontal">
+                                <input id="fancy_pagination_false" type="radio" name="fancy_pagination" value="false" <?php checked( $fancy_pagination, 'false' ); ?> />
+                                <label for="fancy_pagination_false"><?php esc_html_e( 'False', 'fancy-post-grid' ); ?></label>
+
+                                <input id="fancy_pagination_true" type="radio" name="fancy_pagination" value="true" <?php checked( $fancy_pagination, 'true' ); ?> />
+                                <label for="fancy_pagination_true"><?php esc_html_e( 'True', 'fancy-post-grid' ); ?></label>
+                                <span class="toggle-outside">
+                                    <span class="toggle-inside"></span>
+                                </span>
+                            </div>
+                        </div>
+
                         <!-- Keyboard Control -->
                         <div class="fpg-container">
                             <label for="fancy_keyboard"><?php esc_html_e( 'Enable Keyboard Control:', 'fancy-post-grid' ); ?></label>
@@ -2067,7 +2107,6 @@ function fancy_post_grid_metabox_shortcode_callback( $post ) {
                     
                     <div class="fpg-post-select-main">
                         
-
                         <!-- Slider Dots Color -->
                         <div class="fpg-color-box" id="fpg_slider_dots_color">
                             <label for="fpg_slider_dots_color"><?php esc_html_e( 'Slider Dots Color:', 'fancy-post-grid' ); ?></label>
@@ -2102,7 +2141,7 @@ function fancy_post_grid_metabox_shortcode_callback( $post ) {
             </div>
 
             <div class="fancy-post-grid-pagination fpg-common" id="fpg_pagination_main">
-                <fieldset>
+                <fieldset id="fpg_pagination_main_option">
                     <legend><?php esc_html_e( 'Pagination Style', 'fancy-post-grid' ); ?></legend>
 
                     <fieldset>
@@ -2399,6 +2438,12 @@ function fancy_post_grid_save_metabox_data( $post_id ) {
     }
     if ( isset( $_POST['fancy_keyboard'] ) ) {
         update_post_meta( $post_id, 'fancy_keyboard', sanitize_text_field( wp_unslash($_POST['fancy_keyboard'] )) );
+    }
+    if ( isset( $_POST['fancy_arrow'] ) ) {
+        update_post_meta( $post_id, 'fancy_arrow', sanitize_text_field( wp_unslash( $_POST['fancy_arrow'] ) ) );
+    }
+    if ( isset( $_POST['fancy_pagination'] ) ) {
+        update_post_meta( $post_id, 'fancy_pagination', sanitize_text_field( wp_unslash( $_POST['fancy_pagination'] ) ) );
     }
     if ( isset( $_POST['fancy_free_mode'] ) ) {
         update_post_meta( $post_id, 'fancy_free_mode', sanitize_text_field(wp_unslash($_POST['fancy_free_mode'] )) );
