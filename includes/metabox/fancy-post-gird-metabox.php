@@ -887,7 +887,7 @@ function fancy_post_grid_metabox_shortcode_callback( $post ) {
                         </div>
 
                         <!-- Pagination Clickable Mode Option -->
-                        <div class="fpg-container">
+                        <div class="fpg-container" id="fancy_pagination_clickable_main">
                             <label for="fancy_pagination_clickable"><?php esc_html_e( 'Pagination Clickable Mode:', 'fancy-post-grid' ); ?></label>
                             <div class="switch switch--horizontal">
                                 <input id="fancy_pagination_clickable_false" type="radio" name="fancy_pagination_clickable" value="false" <?php checked( $fancy_pagination_clickable, 'false' ); ?> />
