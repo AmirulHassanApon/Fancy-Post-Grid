@@ -70,6 +70,8 @@ function fancy_post_grid_shortcode( $atts ) {
     	$fancy_free_mode                         	= get_post_meta( $post_id, 'fancy_free_mode', true );
     	$fancy_loop                         		= get_post_meta( $post_id, 'fancy_loop', true );
     	$fancy_keyboard                         	= get_post_meta( $post_id, 'fancy_keyboard', true );
+    	$fancy_arrow                         	= get_post_meta( $post_id, 'fancy_arrow', true );
+    	$fancy_pagination                         	= get_post_meta( $post_id, 'fancy_pagination', true );
     	$fancy_pagination_clickable                 = get_post_meta( $post_id, 'fancy_pagination_clickable', true );
     	$fancy_spacebetween                 		= get_post_meta( $post_id, 'fancy_spacebetween', true );
     	//tab-3 Advanced Settings
