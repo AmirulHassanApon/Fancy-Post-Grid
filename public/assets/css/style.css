@@ -2265,6 +2265,26 @@ img {
     margin-right: -50px;
 }
 
+.rs-blog-layout-8 .rs-blog__left-blog.align-start .rs-blog__content{
+    text-align: left;
+}
+.rs-blog-layout-8 .rs-blog__left-blog.align-center .rs-blog__content{
+    text-align: center;
+}
+.rs-blog-layout-8 .rs-blog__left-blog.align-end .rs-blog__content{
+    text-align: right;
+}
+
+.rs-blog-layout-8 .rs-blog__left-blog.align-start .rs-blog__content ul{
+    justify-content: flex-start;
+}
+.rs-blog-layout-8 .rs-blog__left-blog.align-center .rs-blog__content ul{
+    justify-content: center;
+}
+.rs-blog-layout-8 .rs-blog__left-blog.align-end .rs-blog__content ul{
+    justify-content: flex-end;
+}
+
 @media only screen and (min-width: 768px) and (max-width: 991px) {
     .rs-blog-layout-8 .rs-blog__left-blog {
         margin-right: 0;
@@ -2282,7 +2302,11 @@ img {
     margin-left: 40px;
     display: flex;
     align-items: center;
-    padding-bottom: 30px;
+    padding-bottom: 20px;
+}
+
+.rs-blog-layout-8 .rs-blog__left-blog.right-blog .rs-blog__content{
+    padding-top: 0;
 }
 
 @media only screen and (min-width: 768px) and (max-width: 991px) {
@@ -2382,6 +2406,8 @@ img {
 
 .rs-blog-layout-8 .rs-blog__content {
     padding-top: 20px;
+    display: flex;
+    flex-direction: column;
 }
 
 .rs-blog-layout-8 .rs-blog__content ul {
@@ -2432,6 +2458,8 @@ img {
 .rs-blog-layout-8 .rs-blog__content .title {
     font-size: 24px;
     line-height: 36px;
+    margin-top: 17px;
+    margin-bottom: 17px;
 }
 
 @media only screen and (max-width: 575px) {
@@ -2445,8 +2473,6 @@ img {
     transition: all linear 0.3s;
     color: #152445;
     text-decoration: none;
-    margin-top: 17px;
-    margin-bottom: 17px;
 }
 
 .rs-blog-layout-8 .rs-blog__content .title a:hover {
@@ -2456,9 +2482,10 @@ img {
 .rs-blog-layout-8 .rs-blog__content p {
     font-size: 16px;
     line-height: 32px;
+    margin-bottom: 0px;
 }
 
-.rs-blog-layout-8 .rs-blog__content>a {
+.rs-blog-layout-8 .rs-blog__content .btn-wrapper a {
     color: #212C4A;
     font-size: 18px;
     line-height: 28px;
