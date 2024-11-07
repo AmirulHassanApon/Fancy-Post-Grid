@@ -2630,7 +2630,7 @@ img {
 }
 
 .rs-blog-layout-1.rs-blog-layout-9 .blog-item .blog-content .blog-title a{
-    padding-right: 30px;
+    padding-right: 0px;
 }
 
 .rs-blog-layout-1.rs-blog-layout-9 .blog-item:hover {
@@ -2672,6 +2672,8 @@ img {
     display: flex;
     justify-content: flex-start;
     padding: 0 0 8px;
+    margin: 0;
+    list-style-type: none;
 }
 
 .rs-blog-layout-1.rs-blog-layout-9 .blog-horizontal .blog-meta .blog-item-wrap .blog-content .blog-meta .admin {
@@ -2691,16 +2693,16 @@ img {
     position: relative;
 }
 
-.rs-blog-layout-1.rs-blog-layout-9 .blog-horizontal .blog-meta .blog-item-wrap .blog-content .blog-meta .date {
+.rs-blog-layout-1.rs-blog-layout-9 .blog-horizontal .blog-meta .blog-item-wrap .blog-content .blog-meta .meta-date {
     font-size: 15px;
 }
 
-.rs-blog-layout-1.rs-blog-layout-9 .blog-horizontal .blog-meta .blog-item-wrap .blog-content .blog-meta .date i {
+.rs-blog-layout-1.rs-blog-layout-9 .blog-horizontal .blog-meta .blog-item-wrap .blog-content .blog-meta .meta-date i {
     color: #FF6D00;
     margin-right: 6px;
 }
 
-.rs-blog-layout-1.rs-blog-layout-9 .blog-horizontal .blog-meta .blog-item-wrap .blog-content .blog-meta .date i:before {
+.rs-blog-layout-1.rs-blog-layout-9 .blog-horizontal .blog-meta .blog-item-wrap .blog-content .blog-meta .meta-date i:before {
     top: 1px;
     position: relative;
 }
