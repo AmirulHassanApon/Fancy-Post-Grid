@@ -877,7 +877,7 @@ function fancy_post_grid_metabox_shortcode_callback( $post ) {
                         </div>
 
                         <div class="fpg-container">
-                            <label for="fancy_spacebetween"><?php esc_html_e( 'Pagination Clickable Mode:', 'fancy-post-grid' ); ?></label>
+                            <label for="fancy_spacebetween"><?php esc_html_e( 'Slider Item Gap :', 'fancy-post-grid' ); ?></label>
                             <input type="number" id="fancy_spacebetween" name="fancy_spacebetween" value="<?php echo esc_attr( $fancy_spacebetween ); ?>" placeholder="10" />
                         </div>
                     </div>
