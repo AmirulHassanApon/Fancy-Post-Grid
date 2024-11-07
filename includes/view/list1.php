@@ -670,7 +670,20 @@ ob_start();
         <?php endif; ?>
 
     }
+    .rs-blog-layout-8 .rs-blog__thumb .rs-category {
+        <?php if (!empty($fpg_category_bg_color)) : ?>
+            background: <?php echo esc_attr($fpg_category_bg_color); ?>;
+        <?php endif; ?>
+        <?php if (!empty($fpg_category_padding)) : ?>
+            padding: <?php echo esc_attr($fpg_category_padding); ?>;
+        <?php endif; ?>
+
+    }
+    .rs-blog-layout-8 .rs-blog__thumb .rs-category i,
     .rs-blog-layout-8 .rs-blog__thumb .rs-category a{
+        <?php if (!empty($fpg_category_color)) : ?>
+            color: <?php echo esc_attr($fpg_category_color); ?>;
+        <?php endif; ?>
 
     }
     .rs-blog-layout-8 .rs-blog__left-blog .rs-blog__content ul,
