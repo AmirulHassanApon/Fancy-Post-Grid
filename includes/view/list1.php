@@ -793,6 +793,9 @@ ob_start();
         <?php if (!empty($fpg_excerpt_font_weight)) : ?>
             font-weight: <?php echo esc_attr($fpg_excerpt_font_weight); ?>;
         <?php endif; ?>
+        <?php if (!empty($fpg_excerpt_line_height)) : ?>
+            line-height: <?php echo esc_attr($fpg_excerpt_line_height); ?>;
+        <?php endif; ?>
     }
     .rs-blog-layout-8 .rs-blog__content .btn-wrapper{
         <?php if (!empty($fpg_button_order)) : ?>
