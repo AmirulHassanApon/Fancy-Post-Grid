@@ -24,7 +24,7 @@ ob_start();
             ?>
             <div class="col-lg-12">
                 <div class="swiper_wrap">
-                    <div class="swiper rs-mySwiper" data-swiper='{
+                    <div class="swiper mySwiper" data-swiper='{
                             "spaceBetween":<?php echo esc_attr($fancy_spacebetween); ?>,
                             "slidesPerView":<?php echo esc_attr($fancy_post_cl_lg_slider); ?>,
                             "freeMode":<?php echo esc_attr($fancy_free_mode); ?>, 
@@ -278,7 +278,9 @@ ob_start();
                             ?>
                         </div>
                     </div>
+                    <?php if ($fancy_pagination === 'true') : ?>
                     <div class="swiper-pagination swiper-pagination-1"></div>
+                    <?php endif; ?>
                     <!-- Pagination and Navigation Controls -->
                     <?php if ($fancy_arrow === 'true') : ?>
                         
@@ -522,8 +524,6 @@ ob_start();
             background: <?php echo esc_attr($fpg_button_border_color); ?>;
         <?php endif; ?>
     }
-
-
 </style>
 <?php
 $slider1 = ob_get_clean();

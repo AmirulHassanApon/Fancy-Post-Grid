@@ -38,9 +38,15 @@ jQuery(document).ready(function($) {
     }
 
     // Initialize additional Swiper instance with navigation
-    var swiper = new Swiper(".rs-mySwiper", {
-        spaceBetween: 5,
-        slidesPerView: 1,
+    // Get the swiper container
+    const swiperContainer = document.querySelector(".mySwiper");
+
+    // Parse the data-swiper attribute as JSON
+    const swiperOptions = JSON.parse(swiperContainer.getAttribute("data-swiper"));
+
+    // Initialize Swiper with parsed options
+    var swiper = new Swiper(".mySwiper", {
+        ...swiperOptions,  // Spread all options from data-swiper
         navigation: {
             nextEl: ".swiper-button-next",
             prevEl: ".swiper-button-prev",
