@@ -2623,6 +2623,7 @@ img {
 .rs-blog-layout-8 .rs-blog__content ul li a {
     transition: all linear 0.3s;
     color: #454545;
+    text-decoration: none;
 }
 
 .rs-blog-layout-8 .rs-blog__content ul li a:hover {
