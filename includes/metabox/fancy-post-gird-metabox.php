@@ -2110,25 +2110,26 @@ function fancy_post_grid_metabox_shortcode_callback( $post ) {
                         <!-- Slider Dots Color -->
                         <div class="fpg-color-box" id="fpg_slider_dots_color">
                             <label for="fpg_slider_dots_color"><?php esc_html_e( 'Slider Dots Color:', 'fancy-post-grid' ); ?></label>
-                            <input type="color" class="color-field" id="fpg_slider_dots_color" name="fpg_slider_dots_color" value="<?php echo esc_attr( $fpg_slider_dots_color ); ?>" />
+                            <input type="text" class="color-field" id="fpg_slider_dots_color" name="fpg_slider_dots_color" value="<?php echo esc_attr( $fpg_slider_dots_color ); ?>" />
                         </div>
+
 
                         <!-- Slider Dots Active Color -->
                         <div class="fpg-color-box" id="fpg_slider_dots_active_color">
                             <label for="fpg_slider_dots_active_color"><?php esc_html_e( 'Slider Dots Active Color:', 'fancy-post-grid' ); ?></label>
-                            <input type="color" class="color-field" id="fpg_slider_dots_active_color" name="fpg_slider_dots_active_color" value="<?php echo esc_attr( $fpg_slider_dots_active_color ); ?>" />
+                            <input type="text" class="color-field" id="fpg_slider_dots_active_color" name="fpg_slider_dots_active_color" value="<?php echo esc_attr( $fpg_slider_dots_active_color ); ?>" />
                         </div>
 
                         <!-- Arrow Color -->
                         <div class="fpg-color-box" id="fpg_arrow_color">
                             <label for="fpg_arrow_color"><?php esc_html_e( 'Arrow Color:', 'fancy-post-grid' ); ?></label>
-                            <input type="color" class="color-field" id="fpg_arrow_color" name="fpg_arrow_color" value="<?php echo esc_attr( $fpg_arrow_color ); ?>" />
+                            <input type="text" class="color-field" id="fpg_arrow_color" name="fpg_arrow_color" value="<?php echo esc_attr( $fpg_arrow_color ); ?>" />
                         </div>
 
                         <!-- Arrow Hover Color -->
                         <div class="fpg-color-box" id="fpg_arrow_hover_color">
                             <label for="fpg_arrow_hover_color"><?php esc_html_e( 'Arrow Hover Color:', 'fancy-post-grid' ); ?></label>
-                            <input type="color" class="color-field" id="fpg_arrow_hover_color" name="fpg_arrow_hover_color" value="<?php echo esc_attr( $fpg_arrow_hover_color ); ?>" />
+                            <input type="text" class="color-field" id="fpg_arrow_hover_color" name="fpg_arrow_hover_color" value="<?php echo esc_attr( $fpg_arrow_hover_color ); ?>" />
                         </div>
 
                         <!-- Icon Font Size -->
