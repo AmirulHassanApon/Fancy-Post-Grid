@@ -22,7 +22,7 @@ ob_start();
             ?>
             <div class="col-lg-12">
                 <div class="swiper_wrap">
-                    <div class="swiper rs-mySwiper" data-swiper='{
+                    <div class="swiper mySwiper" data-swiper='{
                         "spaceBetween":<?php echo esc_attr($fancy_spacebetween); ?>,
                         "slidesPerView":<?php echo esc_attr($fancy_post_cl_lg_slider); ?>,
                         "freeMode":<?php echo esc_attr($fancy_free_mode); ?>, 

@@ -299,9 +299,7 @@ ob_start();
                                 <?php if (!$hide_feature_image && $fpg_field_group_image) : ?>
                                     <div class="rs-blog__thumb">
                                         <?php if ($feature_image_url) : ?>
-
                                             <?php
-
                                                 $post_id = get_the_ID();
                                                 // Get the thumbnail ID
                                                 $thumbnail_id = get_post_thumbnail_id($post_id);
@@ -311,7 +309,6 @@ ob_start();
                                                 $image_title = get_the_title($thumbnail_id);
                                                 // Use alt text if available; otherwise, use title text
                                                 $alt_text = !empty($image_alt) ? esc_attr($image_alt) : esc_attr($image_title);
-
                                             ?>
                                             <a href="<?php the_permalink(); ?>" <?php echo esc_attr($target_blank); ?>>
                                                 <img src="<?php echo esc_url( $feature_image_url ); ?>" alt="<?php echo esc_attr( $alt_text ); ?>">
@@ -332,8 +329,7 @@ ob_start();
 
                                         <!-- AUTHOR -->
                                         <?php if ($fpg_field_group_author) : ?>
-                                        <li class="meta-author">
-                                            
+                                        <li class="meta-author">                            
                                             <i class="ri-user-3-line">   </i> 
                                             <a href="<?php the_permalink(); ?>"
                                                 <?php echo esc_attr($target_blank); ?>>
