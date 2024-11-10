@@ -213,6 +213,11 @@ function fancy_post_grid_shortcode( $atts ) {
 		$fpg_arrow_bg_hover_color       				= get_post_meta( $post_id, 'fpg_arrow_bg_hover_color', true );
 		$fpg_single_image_shape_color       		= get_post_meta( $post_id, 'fpg_single_image_shape_color', true );
 
+		$fpg_fraction_total_color       				= get_post_meta( $post_id, 'fpg_fraction_total_color', true );
+		$fpg_fraction_current_color       						= get_post_meta( $post_id, 'fpg_fraction_current_color', true );
+		$fpg_fraction_total_font_size       				= get_post_meta( $post_id, 'fpg_fraction_total_font_size', true );
+		$fpg_fraction_current_font_size       		= get_post_meta( $post_id, 'fpg_fraction_current_font_size', true );
+
 	    $main_alignment_class = '';
         if ($fancy_post_main_box_alignment === 'align-start') {
             $main_alignment_class = 'align-start';

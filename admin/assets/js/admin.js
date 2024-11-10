@@ -1182,7 +1182,7 @@
                 $('#fancy_pagination_clickable_main').show();
             } else {
                 $('#fpg_slider_pagination_option').hide();
-                $('#fancy_pagination_clickable_main').hide();
+                $('#fpg_slider_pagination_option').hide();
             }
         }
 

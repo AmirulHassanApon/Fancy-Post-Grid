@@ -406,6 +406,10 @@ function fancy_post_grid_metabox_shortcode_callback( $post ) {
     $fpg_arrow_bg_color = get_post_meta( $post->ID, 'fpg_arrow_bg_color', true );
     $fpg_arrow_bg_hover_color = get_post_meta( $post->ID, 'fpg_arrow_bg_hover_color', true );
     $fpg_icon_font_size = get_post_meta( $post->ID, 'fpg_icon_font_size', true );
+    $fpg_fraction_total_color = get_post_meta( $post->ID, 'fpg_fraction_total_color', true );
+    $fpg_fraction_current_color = get_post_meta( $post->ID, 'fpg_fraction_current_color', true );
+    $fpg_fraction_total_font_size = get_post_meta( $post->ID, 'fpg_fraction_total_font_size', true );
+    $fpg_fraction_current_font_size = get_post_meta( $post->ID, 'fpg_fraction_current_font_size', true );
 
     // Output for the metabox content
     ?>
@@ -2151,6 +2155,30 @@ function fancy_post_grid_metabox_shortcode_callback( $post ) {
                             <label for="fpg_icon_font_size"><?php esc_html_e( 'Arrow Icon Font Size:', 'fancy-post-grid' ); ?></label>
                             <input type="text" id="fpg_icon_font_size" name="fpg_icon_font_size" value="<?php echo esc_attr( $fpg_icon_font_size ); ?>" placeholder="e.g., 16px" />
                         </div>
+
+                        <!-- Fraction Total Color -->
+                        <div class="fpg-color-box" id="fpg_fraction_total_color">
+                            <label for="fpg_fraction_total_color"><?php esc_html_e( 'Fraction Total Color:', 'fancy-post-grid' ); ?></label>
+                            <input type="text" class="color-field" id="fpg_fraction_total_color" name="fpg_fraction_total_color" value="<?php echo esc_attr( $fpg_fraction_total_color ); ?>" />
+                        </div>
+
+                        <!-- Fraction Current Color -->
+                        <div class="fpg-color-box" id="fpg_fraction_current_color">
+                            <label for="fpg_fraction_current_color"><?php esc_html_e( 'Fraction Current Color:', 'fancy-post-grid' ); ?></label>
+                            <input type="text" class="color-field" id="fpg_fraction_current_color" name="fpg_fraction_current_color" value="<?php echo esc_attr( $fpg_fraction_current_color ); ?>" />
+                        </div>
+
+                        <!-- Fraction Total Font Size -->
+                        <div class="fpg-font-size-box" id="fpg_fraction_total_font_size">
+                            <label for="fpg_fraction_total_font_size"><?php esc_html_e( 'Fraction Total Font Size:', 'fancy-post-grid' ); ?></label>
+                            <input type="text" id="fpg_fraction_total_font_size" name="fpg_fraction_total_font_size" value="<?php echo esc_attr( $fpg_fraction_total_font_size ); ?>" placeholder="e.g., 14px" />
+                        </div>
+
+                        <!-- Fraction Current Font Size -->
+                        <div class="fpg-font-size-box" id="fpg_fraction_current_font_size">
+                            <label for="fpg_fraction_current_font_size"><?php esc_html_e( 'Fraction Current Font Size:', 'fancy-post-grid' ); ?></label>
+                            <input type="text" id="fpg_fraction_current_font_size" name="fpg_fraction_current_font_size" value="<?php echo esc_attr( $fpg_fraction_current_font_size ); ?>" placeholder="e.g., 14px" />
+                        </div>
                     </div>                                     
                 </fieldset>
             </div>
@@ -2868,6 +2896,18 @@ function fancy_post_grid_save_metabox_data( $post_id ) {
     }
     if ( isset( $_POST['fpg_slider_dots_active_color'] ) ) {
         update_post_meta( $post_id, 'fpg_slider_dots_active_color', sanitize_hex_color(wp_unslash( $_POST['fpg_slider_dots_active_color'] ) ));
+    }
+    if ( isset( $_POST['fpg_fraction_total_font_size'] ) ) {
+        update_post_meta( $post_id, 'fpg_fraction_total_font_size', sanitize_text_field( wp_unslash($_POST['fpg_fraction_total_font_size'] ) ));
+    }
+    if ( isset( $_POST['fpg_fraction_current_color'] ) ) {
+        update_post_meta( $post_id, 'fpg_fraction_current_color', sanitize_hex_color(wp_unslash( $_POST['fpg_fraction_current_color'] ) ));
+    }
+    if ( isset( $_POST['fpg_fraction_current_font_size'] ) ) {
+        update_post_meta( $post_id, 'fpg_fraction_current_font_size', sanitize_text_field( wp_unslash($_POST['fpg_fraction_current_font_size'] ) ));
+    }
+    if ( isset( $_POST['fpg_fraction_total_color'] ) ) {
+        update_post_meta( $post_id, 'fpg_fraction_total_color', sanitize_hex_color(wp_unslash( $_POST['fpg_fraction_total_color'] ) ));
     }
 
     if ( isset( $_POST['fpg_slider_dots_color'] ) ) {
