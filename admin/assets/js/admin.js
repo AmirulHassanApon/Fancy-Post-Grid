@@ -1173,6 +1173,9 @@
                 $('#fancy_post_column_grid').show();
                 $('#fpg_pagination_main_option').show();
             }
+
+            // Toggle fraction font size based on pagination type
+            toggleFractionFontSize();
         }
 
         // Function to toggle the slider pagination option
@@ -1227,13 +1230,27 @@
                 $('#fpg_post_per_page_fieldset').hide();
             }
         }
-    
+        // Function to show or hide the fraction font size field based on pagination type
+        function toggleFractionFontSize() {
+            var paginationType = $('#fpg_pagination_slider').val();
+            if (paginationType === 'fraction') {
+                $('#fpg_fraction_total_font_size').show();
+                $('#fpg_fraction_total_color').show();
+                $('#fpg_fraction_current_color').show();
+                $('#fpg_fraction_current_font_size').show();
+            } else {
+                $('#fpg_fraction_total_font_size').hide();
+                $('#fpg_fraction_total_color').hide();
+                $('#fpg_fraction_current_color').hide();
+                $('#fpg_fraction_current_font_size').hide();
+            }
+        }
         // Initialize the visibility on page load
         toggleLayoutActiveFields();
         toggleLayoutFields();
         toggleButtonFields();
         togglePaginationFields();
-    
+        $('#fpg_pagination_slider').on('change', toggleFractionFontSize);
         // Bind the function to the change event for both layout and style radio buttons
         $('input[name="fpg_layout_select"], input[name="fancy_post_grid_style"], input[name="fancy_slider_style"]').on('change', function() {
             toggleLayoutActiveFields();
