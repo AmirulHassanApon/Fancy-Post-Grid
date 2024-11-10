@@ -288,14 +288,41 @@ img {
     width: 100%;
     position: relative;
 }
+.rs-blog-layout-1 .swiper_wrap .swiper-button-next{
+    right: -50px;
+    height: 40px;
+    width: 40px;
+    background: #FF6D00;
+    border-radius: 50%;
+    transition: all linear 0.3s;
+}
+.rs-blog-layout-1 .swiper_wrap .swiper-button-next::after{
+    font-size: 16px;
+    color: #fff;
+    transition: all linear 0.3s;
+}
+.rs-blog-layout-1 .swiper_wrap .swiper-button-prev{
+    left: -50px;
+    height: 40px;
+    width: 40px;
+    background: #FF6D00;
+    border-radius: 50%;
+    transition: all linear 0.3s;
+}
+.rs-blog-layout-1 .swiper_wrap .swiper-button-prev::after{
+    font-size: 16px;
+    color: #fff;
+    transition: all linear 0.3s;
+}
 
 .rs-blog-layout-1 .swiper_wrap .swiper-pagination .swiper-pagination-bullet {
     height: 8px;
     width: 25px;
     border-radius: 30px;
-    box-shadow: 0px 3px 8px 0px rgba(0, 0, 0, 0.25);
-    background: #FF6D00;
+    background: #ebebeb;
     transition: all linear 0.3s;
+    opacity: 1;
+    box-shadow: none;
 }
 
 .rs-blog-layout-1 .swiper_wrap .swiper-pagination {
@@ -306,6 +333,14 @@ img {
 .rs-blog-layout-1 .swiper_wrap .swiper-pagination .swiper-pagination-bullet.swiper-pagination-bullet-active {
     width: 40px;
     opacity: 1;
+    background: #FF6D00;
+}
+
+.rs-blog-layout-1 .swiper_wrap .swiper-pagination-progressbar{
+    background: #ebebeb;
+}
+.rs-blog-layout-1 .swiper_wrap .swiper-pagination-progressbar .swiper-pagination-progressbar-fill{
+    background: #FF6D00;
 }
 
 /* blog Slider layout 1 css */
@@ -588,13 +623,41 @@ img {
     position: relative;
 }
 
+.rs-blog-layout-2 .swiper_wrap .swiper-button-next{
+    right: -50px;
+    height: 40px;
+    width: 40px;
+    background: #FF6D00;
+    border-radius: 50%;
+    transition: all linear 0.3s;
+}
+.rs-blog-layout-2 .swiper_wrap .swiper-button-next::after{
+    font-size: 16px;
+    color: #fff;
+    transition: all linear 0.3s;
+}
+.rs-blog-layout-2 .swiper_wrap .swiper-button-prev{
+    left: -50px;
+    height: 40px;
+    width: 40px;
+    background: #FF6D00;
+    border-radius: 50%;
+    transition: all linear 0.3s;
+}
+.rs-blog-layout-2 .swiper_wrap .swiper-button-prev::after{
+    font-size: 16px;
+    color: #fff;
+    transition: all linear 0.3s;
+}
+
 .rs-blog-layout-2 .swiper_wrap .swiper-pagination .swiper-pagination-bullet {
     height: 8px;
     width: 25px;
     border-radius: 30px;
-    box-shadow: 0px 3px 8px 0px rgba(0, 0, 0, 0.25);
-    background: #FF6D00;
+    background: #ebebeb;
     transition: all linear 0.3s;
+    opacity: 1;
+    box-shadow: none;
 }
 
 .rs-blog-layout-2 .swiper_wrap .swiper-pagination {
@@ -605,6 +668,14 @@ img {
 .rs-blog-layout-2 .swiper_wrap .swiper-pagination .swiper-pagination-bullet.swiper-pagination-bullet-active {
     width: 40px;
     opacity: 1;
+    background: #FF6D00;
+}
+
+.rs-blog-layout-2 .swiper_wrap .swiper-pagination-progressbar{
+    background: #ebebeb;
+}
+.rs-blog-layout-2 .swiper_wrap .swiper-pagination-progressbar .swiper-pagination-progressbar-fill{
+    background: #FF6D00;
 }
 
 
