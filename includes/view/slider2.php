@@ -490,8 +490,6 @@ ob_start();
         <?php endif; ?>
 
     }
-
-
     .rs-blog-layout-2 .blog-item .blog-content .blog-btn .read-more.<?php echo esc_attr($button_class); ?>:hover {
         <?php if (!empty($fpg_button_hover_background_color)) : ?>
             background-color: <?php echo esc_attr($fpg_button_hover_background_color); ?>;
@@ -500,6 +498,8 @@ ob_start();
             color: <?php echo esc_attr($fpg_button_text_hover_color); ?>;
         <?php endif; ?>
     }
+
+    
     .rs-blog-layout-2 .blog-item .blog-content .blog-btn .read-more.<?php echo esc_attr($button_class); ?>::before{
         <?php if (!empty($fpg_button_border_color)) : ?>
             background: <?php echo esc_attr($fpg_button_border_color); ?>;
