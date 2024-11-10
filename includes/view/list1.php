@@ -592,7 +592,7 @@ ob_start();
         <?php endif; ?>
     }
     .rs-blog-layout-8 .rs-blog__content ul li,
-    .rs-blog-layout-8 .rs-blog__content ul li i{
+    .rs-blog-layout-8 .rs-blog__content ul li i,.rs-blog-layout-8 .rs-blog__content ul li a{
         <?php if (!empty($fpg_meta_color)) : ?>
             color: <?php echo esc_attr($fpg_meta_color); ?>;
         <?php endif; ?>
@@ -615,7 +615,7 @@ ob_start();
         <?php endif; ?>
 
     }
-    .rs-blog-layout-8 .rs-blog__content ul li:hover{
+    .rs-blog-layout-8 .rs-blog__content ul li:hover,.rs-blog-layout-8 .rs-blog__content ul li a:hover{
         <?php if (!empty($fpg_meta_hover_color)) : ?>
             color: <?php echo esc_attr($fpg_meta_hover_color); ?>;
         <?php endif; ?>
