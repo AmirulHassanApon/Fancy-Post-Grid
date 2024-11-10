@@ -588,7 +588,12 @@ ob_start();
             font-weight: <?php echo esc_attr($fpg_meta_font_weight); ?>;
         <?php endif; ?>
     }
-    .rs-blog-layout-1.rs-blog-layout-9 .blog-item .blog-content .blog-title,.rs-blog-layout-1.rs-blog-layout-9 .blog-item-wrap .blog-content .blog-title{
+    .rs-blog-layout-1.rs-blog-layout-9 .blog-horizontal .blog-meta .blog-item-wrap .blog-content .blog-meta .meta-date i,.rs-blog-layout-1.rs-blog-layout-9 .blog-horizontal .blog-meta .blog-item-wrap .blog-content .blog-meta .admin i{
+        <?php if (!empty($fpg_meta_icon_color)) : ?>
+            color: <?php echo esc_attr($fpg_meta_icon_color); ?>;
+        <?php endif; ?>
+    }
+    .rs-blog-layout-1.rs-blog-layout-9 .blog-item .blog-content .blog-title,.rs-blog-layout-1.rs-blog-layout-9 .blog-horizontal .blog-meta .blog-item-wrap .blog-content .blog-title {
         <?php if (!empty($fpg_title_order)) : ?>
             order: <?php echo esc_attr($fpg_title_order); ?>;
         <?php endif; ?>
@@ -604,7 +609,7 @@ ob_start();
             border-width: <?php echo esc_attr($fpg_title_border_width); ?>;
         <?php endif; ?>
     }
-    .rs-blog-layout-1.rs-blog-layout-9 .blog-item .blog-content .blog-title a, .rs-blog-layout-1.rs-blog-layout-9 .blog-item-wrap .blog-content .blog-title a{
+    .rs-blog-layout-1.rs-blog-layout-9 .blog-item .blog-content .blog-title a, .rs-blog-layout-1.rs-blog-layout-9 .blog-horizontal .blog-meta .blog-item-wrap .blog-content .blog-title a{
         <?php if (!empty($fpg_title_color)) : ?>
           color: <?php echo esc_attr($fpg_title_color); ?>;
        <?php endif; ?>
@@ -615,7 +620,7 @@ ob_start();
           font-weight: <?php echo esc_attr($fpg_title_font_weight); ?>;
        <?php endif; ?>
     }
-    .rs-blog-layout-1.rs-blog-layout-9 .blog-item .blog-content .blog-title a:hover, .rs-blog-layout-1.rs-blog-layout-9 .blog-item-wrap .blog-content .blog-title a:hover{
+    .rs-blog-layout-1.rs-blog-layout-9 .blog-item .blog-content .blog-title a:hover, .rs-blog-layout-1.rs-blog-layout-9 .blog-horizontal .blog-meta .blog-item-wrap .blog-content .blog-title a:hover{
         <?php if (!empty($fpg_title_hover_color)) : ?>
           color: <?php echo esc_attr($fpg_title_hover_color); ?>;
        <?php endif; ?>
