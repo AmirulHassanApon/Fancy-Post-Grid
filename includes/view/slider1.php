@@ -569,20 +569,20 @@ ob_start();
 }
 
 .rs-blog-layout-1 .swiper_wrap .swiper-pagination-fraction{
-    <?php if (!empty($fpg_fraction_current_color)) : ?>
-        color: <?php echo esc_attr($fpg_fraction_current_color); ?>;
-    <?php endif; ?>
-    <?php if (!empty($fpg_fraction_current_font_size)) : ?>
-        font-size: <?php echo esc_attr($fpg_fraction_current_font_size); ?>;
-    <?php endif; ?>
-}
-
-.rs-blog-layout-1 .swiper_wrap .swiper-pagination-fraction .swiper-pagination-current{
     <?php if (!empty($fpg_fraction_total_color)) : ?>
         color: <?php echo esc_attr($fpg_fraction_total_color); ?>;
     <?php endif; ?>
     <?php if (!empty($fpg_fraction_total_font_size)) : ?>
         font-size: <?php echo esc_attr($fpg_fraction_total_font_size); ?>;
+    <?php endif; ?>
+}
+
+.rs-blog-layout-1 .swiper_wrap .swiper-pagination-fraction .swiper-pagination-current{
+    <?php if (!empty($fpg_fraction_current_color)) : ?>
+        color: <?php echo esc_attr($fpg_fraction_current_color); ?>;
+    <?php endif; ?>
+    <?php if (!empty($fpg_fraction_current_font_size)) : ?>
+        font-size: <?php echo esc_attr($fpg_fraction_current_font_size); ?>;
     <?php endif; ?>
 }
 </style>
