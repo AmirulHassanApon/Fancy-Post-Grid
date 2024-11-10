@@ -8,18 +8,18 @@ ob_start();
     <div class="container">
         <div class="row">
             <?php 
-            $pagination_config = '';
-            // Check if the clickable setting is true or false
-            $clickable = ($fancy_pagination_clickable === 'true') ? 'true' : 'false';
-            if ($fpg_pagination_slider === 'normal') {
-                $pagination_config = '"pagination": {"el": ".swiper-pagination", "clickable": ' . $clickable . '}';
-            } elseif ($fpg_pagination_slider === 'dynamic') {
-                $pagination_config = '"pagination": {"el": ".swiper-pagination", "dynamicBullets": true, "clickable": ' . $clickable . '}';
-            } elseif ($fpg_pagination_slider === 'progress') {
-                $pagination_config = '"pagination": {"el": ".swiper-pagination", "type": "progressbar", "clickable": ' . $clickable . '}';
-            } elseif ($fpg_pagination_slider === 'fraction') {
-                $pagination_config = '"pagination": {"el": ".swiper-pagination", "type": "fraction", "clickable": ' . $clickable . '}';
-            }
+                $pagination_config = '';
+                // Check if the clickable setting is true or false
+                $clickable = ($fancy_pagination_clickable === 'true') ? 'true' : 'false';
+                if ($fpg_pagination_slider === 'normal') {
+                    $pagination_config = '"pagination": {"el": ".swiper-pagination", "clickable": ' . $clickable . '}';
+                } elseif ($fpg_pagination_slider === 'dynamic') {
+                    $pagination_config = '"pagination": {"el": ".swiper-pagination", "dynamicBullets": true, "clickable": ' . $clickable . '}';
+                } elseif ($fpg_pagination_slider === 'progress') {
+                    $pagination_config = '"pagination": {"el": ".swiper-pagination", "type": "progressbar", "clickable": ' . $clickable . '}';
+                } elseif ($fpg_pagination_slider === 'fraction') {
+                    $pagination_config = '"pagination": {"el": ".swiper-pagination", "type": "fraction", "clickable": ' . $clickable . '}';
+                }
 
             ?>
             <div class="col-lg-12">

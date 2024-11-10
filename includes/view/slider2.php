@@ -8,17 +8,18 @@ ob_start();
     <div class="container">
         <div class="row">
             <?php 
-            $pagination_config = '';
-            
-            if ($fpg_pagination_slider === 'normal') {
-                $pagination_config = '"pagination": {"el": ".swiper-pagination", "clickable": true}';
-            } elseif ($fpg_pagination_slider === 'dynamic') {
-                $pagination_config = '"pagination": {"el": ".swiper-pagination", "dynamicBullets": true, "clickable": true}';
-            } elseif ($fpg_pagination_slider === 'progress') {
-                $pagination_config = '"pagination": {"el": ".swiper-pagination", "type": "progressbar"}';
-            } elseif ($fpg_pagination_slider === 'fraction') {
-                $pagination_config = '"pagination": {"el": ".swiper-pagination", "type": "fraction"}';
-            }
+                $pagination_config = '';
+                // Check if the clickable setting is true or false
+                $clickable = ($fancy_pagination_clickable === 'true') ? 'true' : 'false';
+                if ($fpg_pagination_slider === 'normal') {
+                    $pagination_config = '"pagination": {"el": ".swiper-pagination", "clickable": ' . $clickable . '}';
+                } elseif ($fpg_pagination_slider === 'dynamic') {
+                    $pagination_config = '"pagination": {"el": ".swiper-pagination", "dynamicBullets": true, "clickable": ' . $clickable . '}';
+                } elseif ($fpg_pagination_slider === 'progress') {
+                    $pagination_config = '"pagination": {"el": ".swiper-pagination", "type": "progressbar", "clickable": ' . $clickable . '}';
+                } elseif ($fpg_pagination_slider === 'fraction') {
+                    $pagination_config = '"pagination": {"el": ".swiper-pagination", "type": "fraction", "clickable": ' . $clickable . '}';
+                }
 
             ?>
             <div class="col-lg-12">
@@ -266,11 +267,18 @@ ob_start();
 
                         </div>
                     </div>
+                    <?php if ($fancy_pagination === 'true') : ?>
                     <div class="swiper-pagination swiper-pagination-2"></div>
-                    <!-- Navigation buttons, if applicable -->
-                    <?php if (in_array($fpg_pagination_slider, ['progress', 'fraction'])) : ?>
-                        <div class="swiper-button-next"></div>
-                        <div class="swiper-button-prev"></div>
+                    <?php endif; ?>
+                    <!-- Pagination and Navigation Controls -->
+                    <?php if ($fancy_arrow === 'true') : ?>
+                        
+                        
+                        <!-- Navigation buttons, if applicable -->
+                        <?php if (in_array($fpg_pagination_slider, ['progress', 'fraction', 'dynamic', 'normal'])) : ?>
+                            <div class="swiper-button-next"></div>
+                            <div class="swiper-button-prev"></div>
+                        <?php endif; ?>
                     <?php endif; ?>
                 </div>
             </div>

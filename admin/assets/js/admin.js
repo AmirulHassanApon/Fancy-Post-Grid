@@ -798,9 +798,9 @@
                     $('#fpg_excerpt_order_main').show();
                     $('#fpg_button_order_main').show();
                     $('#fpg-read-more-alignment').show();
-                    $('#fpg_author_color_main').hide();
-                    $('#fpg_author_bg_color_main').hide();
-                    $('#fpg_author_padding_main').hide();
+                    $('#fpg_author_color_main').show();
+                    $('#fpg_author_bg_color_main').show();
+                    $('#fpg_author_padding_main').show();
                     $('#fpg_category_color_main').show();
                     $('#fpg_category_bg_color_main').show();
                     $('#fpg_category_padding_main').show();

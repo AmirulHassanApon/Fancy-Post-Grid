@@ -198,21 +198,16 @@ ob_start();
                                 </div>
                             <?php endif; ?>
                             
-
                             <div class="rs-blog__content">
-
                                 <!-- Meta -->
                                 <ul class="meta-data-list <?php echo esc_attr($meta_alignment_class); ?>">
 
                                     <!-- AUTHOR -->
                                     <?php if ($fpg_field_group_author) : ?>
-                                    <li class="meta-author">
-                                        
-                                            <i class="ri-user-3-line"> 
-                                                
-                                            </i> 
-                                            <?php esc_html_e('Posted By -', 'fancy-post-grid'); ?>  <?php the_author(); ?>
-                                        
+                                    <li class="meta-author">          
+                                            <i class="ri-user-3-line"></i> 
+                                            <?php esc_html_e('Posted By -', 'fancy-post-grid'); ?> 
+                                            <?php the_author(); ?> 
                                     </li>
                                     <?php endif; ?>
 
@@ -509,106 +504,7 @@ ob_start();
                                     <!-- END Button -->
                                 </div>
                             </div>
-                        <?php elseif ($query->current_post === 3) : ?>
-                            <div class="rs-blog__left-blog right-blog <?php echo esc_attr($main_alignment_class); ?> <?php echo esc_attr($hover_class); ?>"> 
-
-                                <!-- Image -->
-                                <?php if (!$hide_feature_image && $fpg_field_group_image) : ?>
-                                    <div class="rs-blog__thumb">
-                                        <?php if ($feature_image_url) : ?>
-
-                                            <?php
-
-                                                $post_id = get_the_ID();
-                                                // Get the thumbnail ID
-                                                $thumbnail_id = get_post_thumbnail_id($post_id);
-                                                
-                                                // Get the image alt text and title text
-                                                $image_alt = get_post_meta($thumbnail_id, '_wp_attachment_image_alt', true);
-                                                $image_title = get_the_title($thumbnail_id);
-                                                // Use alt text if available; otherwise, use title text
-                                                $alt_text = !empty($image_alt) ? esc_attr($image_alt) : esc_attr($image_title);
-
-                                            ?>
-                                            <a href="<?php the_permalink(); ?>" <?php echo esc_attr($target_blank); ?>>
-                                                <img src="<?php echo esc_url( $feature_image_url ); ?>" alt="<?php echo esc_attr( $alt_text ); ?>">
-                                            </a>
-                                            <!-- CATEGORY -->
-                                            <?php if ($fpg_field_group_categories) : ?>
-                                            <div class="rs-category">
-                                                <i class="ri-price-tag-3-line"></i> <?php echo get_the_category_list(', '); ?>
-                                            </div>
-                                            <?php endif; ?>
-                                        <?php endif; ?>
-                                    </div>
-                                <?php endif; ?>
-
-                                <div class="rs-blog__content">
-                                    <!-- Meta -->
-                                    <ul class="meta-data-list <?php echo esc_attr($meta_alignment_class); ?>">
-
-                                        <!-- AUTHOR -->
-                                        <?php if ($fpg_field_group_author) : ?>
-                                        <li class="meta-author">
-                                            
-                                            <i class="ri-user-3-line"></i> 
-                                            <?php esc_html_e('Posted By -', 'fancy-post-grid'); ?>  
-                                            <?php the_author(); ?>
-                                        </li>
-                                        <?php endif; ?>
-
-                                        <!-- META DATE -->
-                                        <?php if ($fpg_field_group_post_date) : ?>
-                                            <li class="meta-date">
-                                                <i class="ri-calendar-line"> </i>
-                                                <?php echo esc_html( get_the_date( 'M d, Y' ) ); ?>
-                                            </li>
-                                        <?php endif; ?>
-                                    </ul>
-
-                                    <!-- Title -->
-                                    <?php if ($fpg_field_group_title) : ?>
-                                        <<?php echo esc_attr($title_tag); ?> class="title <?php echo esc_attr($title_alignment_class); ?>" >                
-                                        <?php if ($fancy_link_details === 'on') : ?>
-                                                <a href="<?php the_permalink(); ?>"
-                                                   <?php echo esc_attr($target_blank); ?>
-                                                   class="title-link">
-                                                    <?php
-                                                        if ($fancy_post_title_limit_type === 'words') {
-                                                            echo esc_html(wp_trim_words(get_the_title(), $fancy_post_title_limit, $title_more_text));
-                                                        } elseif ($fancy_post_title_limit_type === 'characters') {
-                                                            echo esc_html(mb_strimwidth(get_the_title(), 0, $fancy_post_title_limit, $title_more_text));
-                                                        }
-                                                    ?>
-                                                </a>
-                                            <?php else : ?>
-                                                <?php
-                                                if ($fancy_post_title_limit_type === 'words') {
-                                                    echo esc_html(wp_trim_words(get_the_title(), $fancy_post_title_limit, $title_more_text));
-                                                } elseif ($fancy_post_title_limit_type === 'characters') {
-                                                    echo esc_html(mb_strimwidth(get_the_title(), 0, $fancy_post_title_limit, $title_more_text));
-                                                }
-                                                ?>
-                                            <?php endif; ?>
-                                        </<?php echo esc_attr($title_tag); ?>>
-                                    <?php endif; ?>
-
-                                    <!-- Button -->
-                                    <?php if ($fpg_field_group_read_more) : ?>
-                                        
-                                        <div class="btn-wrapper <?php echo esc_attr($button_alignment_class); ?>">
-                                            <a class="rs-link read-more <?php echo esc_attr($button_class); ?>" 
-                                               href="<?php the_permalink(); ?>" 
-                                               <?php echo esc_attr($target_blank); ?> >
-                                               
-                                                <?php echo esc_html($fancy_post_read_more_text); ?>
-                                                <i class="ri-arrow-right-line"></i>
-                                            </a>
-                                        </div>
-                                    <?php endif; ?>
-                                    <!-- END Button -->
-                                </div>
-                            </div>
+                        
                         <?php else : ?>
                    </div>   
                 <?php endif; ?>
@@ -726,6 +622,11 @@ ob_start();
 
     }
     .rs-blog-layout-8 .rs-blog__content ul li:hover{
+        <?php if (!empty($fpg_meta_hover_color)) : ?>
+            color: <?php echo esc_attr($fpg_meta_hover_color); ?>;
+        <?php endif; ?>
+    }
+    .rs-blog-layout-8 .rs-blog__content ul li a:hover{
         <?php if (!empty($fpg_meta_hover_color)) : ?>
             color: <?php echo esc_attr($fpg_meta_hover_color); ?>;
         <?php endif; ?>
