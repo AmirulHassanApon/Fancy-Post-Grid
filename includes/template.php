@@ -209,6 +209,8 @@ function fancy_post_grid_shortcode( $atts ) {
 		$fpg_slider_dots_active_color       		= get_post_meta( $post_id, 'fpg_slider_dots_active_color', true );
 		$fpg_arrow_color       						= get_post_meta( $post_id, 'fpg_arrow_color', true );
 		$fpg_arrow_hover_color       				= get_post_meta( $post_id, 'fpg_arrow_hover_color', true );
+		$fpg_arrow_bg_color       						= get_post_meta( $post_id, 'fpg_arrow_bg_color', true );
+		$fpg_arrow_bg_hover_color       				= get_post_meta( $post_id, 'fpg_arrow_bg_hover_color', true );
 		$fpg_single_image_shape_color       		= get_post_meta( $post_id, 'fpg_single_image_shape_color', true );
 
 	    $main_alignment_class = '';
