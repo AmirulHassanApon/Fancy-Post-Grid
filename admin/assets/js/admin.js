@@ -1166,6 +1166,7 @@
                 // Show or hide slider pagination option based on fancy_pagination value
                 toggleSliderPaginationOption(fancy_pagination);
                 toggleSliderArrowOption(fancy_arrow);
+                toggleSliderArrowDots(fancy_arrow,fancy_pagination);
             } else if (selectedLayout === 'list') {
                 $('#fancy_post_list_style').show();
                 $('#fpg_pagination_main_option').hide();
@@ -1191,6 +1192,32 @@
             }
         }
 
+        // Function to toggle the slider pagination option
+        function toggleSliderArrowOption(fancy_arrow) {
+            if (fancy_arrow === 'true') {
+                $('#fpg_arrow_color').show();
+                $('#fpg_arrow_hover_color').show();
+                $('#fpg_arrow_bg_color').show();
+                $('#fpg_arrow_bg_hover_color').show();
+                $('#fpg_icon_font_size').show();
+            } else {
+                $('#fpg_arrow_color').hide();
+                $('#fpg_arrow_hover_color').hide();
+                $('#fpg_arrow_bg_color').hide();
+                $('#fpg_arrow_bg_hover_color').hide();
+                $('#fpg_icon_font_size').hide();
+            }
+        }
+        // Function to toggle the slider ARROW DOTS option
+        function toggleSliderArrowDots(fancy_arrow,fancy_pagination) {
+            if (fancy_arrow === 'false' && fancy_pagination === 'false') {
+                $('#fpg_slider_arrow_dots').hide();
+                
+            } else {
+                $('#fpg_slider_arrow_dots').show();
+            }
+        }
+
         // Initial call to set up fields based on initial state
         toggleLayoutFields();
 
@@ -1201,6 +1228,14 @@
         $('input[name="fancy_pagination"]').on('change', function() {
             var fancy_pagination = $(this).val();
             toggleSliderPaginationOption(fancy_pagination);
+            toggleSliderArrowDots($('input[name="fancy_arrow"]:checked').val(), fancy_pagination);
+        });
+
+        // Event listener for fancy_pagination toggle, to show/hide instantly
+        $('input[name="fancy_arrow"]').on('change', function() {
+            var fancy_arrow = $(this).val();
+            toggleSliderArrowOption(fancy_arrow);
+            toggleSliderArrowDots(fancy_arrow, $('input[name="fancy_pagination"]:checked').val());
         });
 
         function toggleButtonFields() {
