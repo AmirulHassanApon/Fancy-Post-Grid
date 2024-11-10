@@ -1144,6 +1144,7 @@
             // Retrieve selected layout and fancy pagination values
             var selectedLayout = $('input[name="fpg_layout_select"]:checked').val();
             var fancy_pagination = $('input[name="fancy_pagination"]:checked').val();
+            var fancy_arrow = $('input[name="fancy_arrow"]:checked').val();
             
             // Reset all sections to hidden by default
             $('#fancy_post_grid_style,#fpg_slider_arrow_dots, #fpg_pagination, #fancy_post_column_grid, #fancy_post_slider_style, #fancy_post_list_style, #fancy_post_isotope_style, #fancy_post_column_slider, #fpg_slider_option, #fpg_slider_pagination_option').hide();
@@ -1164,6 +1165,7 @@
 
                 // Show or hide slider pagination option based on fancy_pagination value
                 toggleSliderPaginationOption(fancy_pagination);
+                toggleSliderArrowOption(fancy_arrow);
             } else if (selectedLayout === 'list') {
                 $('#fancy_post_list_style').show();
                 $('#fpg_pagination_main_option').hide();
