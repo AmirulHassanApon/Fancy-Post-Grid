@@ -524,6 +524,18 @@ ob_start();
             background: <?php echo esc_attr($fpg_button_border_color); ?>;
         <?php endif; ?>
     }
+
+
+    .rs-blog-layout-1 .swiper_wrap .swiper-pagination .swiper-pagination-bullet{
+        <?php if (!empty($fpg_slider_dots_color)) : ?>
+            background: <?php echo esc_attr($fpg_slider_dots_color); ?>;
+        <?php endif; ?>
+    }
+    .rs-blog-layout-1 .swiper_wrap .swiper-pagination .swiper-pagination-bullet.swiper-pagination-bullet-active{
+        <?php if (!empty($fpg_slider_dots_active_color)) : ?>
+            background: <?php echo esc_attr($fpg_slider_dots_active_color); ?>;
+        <?php endif; ?>
+    }
 </style>
 <?php
 $slider1 = ob_get_clean();
