@@ -206,8 +206,9 @@ ob_start();
                                     <?php if ($fpg_field_group_author) : ?>
                                     <li class="meta-author">          
                                             <i class="ri-user-3-line"></i> 
-                                            <?php esc_html_e('Posted By -', 'fancy-post-grid'); ?> 
-                                            <?php the_author(); ?> 
+                                            <a href="<?php the_permalink(); ?>"
+                                                <?php echo esc_attr($target_blank); ?>>
+                                            <?php esc_html_e('Posted By -', 'fancy-post-grid'); ?>  <?php the_author(); ?></a> 
                                     </li>
                                     <?php endif; ?>
 
@@ -334,7 +335,9 @@ ob_start();
                                         <li class="meta-author">
                                             
                                             <i class="ri-user-3-line">   </i> 
-                                            <?php esc_html_e('Posted By -', 'fancy-post-grid'); ?>  <?php the_author(); ?>
+                                            <a href="<?php the_permalink(); ?>"
+                                                <?php echo esc_attr($target_blank); ?>>
+                                            <?php esc_html_e('Posted By -', 'fancy-post-grid'); ?>  <?php the_author(); ?></a>
                                             
                                         </li>
                                         <?php endif; ?>
@@ -342,9 +345,7 @@ ob_start();
                                         <!-- META DATE -->
                                         <?php if ($fpg_field_group_post_date) : ?>
                                             <li class="meta-date">
-
-                                                <i class="ri-calendar-line"> 
-                                                </i>
+                                                <i class="ri-calendar-line"> </i>
                                                 <?php echo esc_html( get_the_date( 'M d, Y' ) ); ?>
                                             </li>
                                         <?php endif; ?>
@@ -438,12 +439,11 @@ ob_start();
 
                                         <!-- AUTHOR -->
                                         <?php if ($fpg_field_group_author) : ?>
-                                        <li class="meta-author">
-                                            
-                                                <i class="ri-user-3-line"> 
-                                                    
-                                                </i> 
-                                                <?php esc_html_e('Posted By -', 'fancy-post-grid'); ?>  <?php the_author(); ?>
+                                        <li class="meta-author">                                           
+                                            <i class="ri-user-3-line"> </i> 
+                                            <a href="<?php the_permalink(); ?>"
+                                                <?php echo esc_attr($target_blank); ?>>
+                                            <?php esc_html_e('Posted By -', 'fancy-post-grid'); ?>  <?php the_author(); ?></a>
                                             
                                         </li>
                                         <?php endif; ?>
@@ -626,11 +626,7 @@ ob_start();
             color: <?php echo esc_attr($fpg_meta_hover_color); ?>;
         <?php endif; ?>
     }
-    .rs-blog-layout-8 .rs-blog__content ul li a:hover{
-        <?php if (!empty($fpg_meta_hover_color)) : ?>
-            color: <?php echo esc_attr($fpg_meta_hover_color); ?>;
-        <?php endif; ?>
-    }
+
 
     .rs-blog-layout-8 .rs-blog__left-blog.right-blog .rs-blog__content .title,
     .rs-blog-layout-8 .rs-blog__content .title{
