@@ -403,6 +403,8 @@ function fancy_post_grid_metabox_shortcode_callback( $post ) {
     $fpg_slider_dots_color = get_post_meta( $post->ID, 'fpg_slider_dots_color', true );
     $fpg_arrow_color = get_post_meta( $post->ID, 'fpg_arrow_color', true );
     $fpg_arrow_hover_color = get_post_meta( $post->ID, 'fpg_arrow_hover_color', true );
+    $fpg_arrow_bg_color = get_post_meta( $post->ID, 'fpg_arrow_bg_color', true );
+    $fpg_arrow_bg_hover_color = get_post_meta( $post->ID, 'fpg_arrow_bg_hover_color', true );
     $fpg_icon_font_size = get_post_meta( $post->ID, 'fpg_icon_font_size', true );
 
     // Output for the metabox content
@@ -2132,9 +2134,21 @@ function fancy_post_grid_metabox_shortcode_callback( $post ) {
                             <input type="text" class="color-field" id="fpg_arrow_hover_color" name="fpg_arrow_hover_color" value="<?php echo esc_attr( $fpg_arrow_hover_color ); ?>" />
                         </div>
 
+                        <!-- Arrow Background Color -->
+                        <div class="fpg-color-box" id="fpg_arrow_bg_color">
+                            <label for="fpg_arrow_bg_color"><?php esc_html_e( 'Arrow Background Color:', 'fancy-post-grid' ); ?></label>
+                            <input type="text" class="color-field" id="fpg_arrow_bg_color" name="fpg_arrow_bg_color" value="<?php echo esc_attr( $fpg_arrow_bg_color ); ?>" />
+                        </div>
+
+                        <!-- Arrow Background Hover Color -->
+                        <div class="fpg-color-box" id="fpg_arrow_bg_hover_color">
+                            <label for="fpg_arrow_bg_hover_color"><?php esc_html_e( 'Arrow Background Hover Color:', 'fancy-post-grid' ); ?></label>
+                            <input type="text" class="color-field" id="fpg_arrow_bg_hover_color" name="fpg_arrow_bg_hover_color" value="<?php echo esc_attr( $fpg_arrow_bg_hover_color ); ?>" />
+                        </div>
+
                         <!-- Icon Font Size -->
                         <div class="fpg-font-size-box" id="fpg_icon_font_size">
-                            <label for="fpg_icon_font_size"><?php esc_html_e( 'Icon Font Size:', 'fancy-post-grid' ); ?></label>
+                            <label for="fpg_icon_font_size"><?php esc_html_e( 'Arrow Icon Font Size:', 'fancy-post-grid' ); ?></label>
                             <input type="text" id="fpg_icon_font_size" name="fpg_icon_font_size" value="<?php echo esc_attr( $fpg_icon_font_size ); ?>" placeholder="e.g., 16px" />
                         </div>
                     </div>                                     
@@ -2865,6 +2879,12 @@ function fancy_post_grid_save_metabox_data( $post_id ) {
     }
     if ( isset( $_POST['fpg_arrow_hover_color'] ) ) {
         update_post_meta( $post_id, 'fpg_arrow_hover_color', sanitize_hex_color( wp_unslash($_POST['fpg_arrow_hover_color'] ) ));
+    }
+    if ( isset( $_POST['fpg_arrow_bg_color'] ) ) {
+        update_post_meta( $post_id, 'fpg_arrow_bg_color', sanitize_hex_color( wp_unslash($_POST['fpg_arrow_bg_color'] ) ));
+    }
+    if ( isset( $_POST['fpg_arrow_bg_hover_color'] ) ) {
+        update_post_meta( $post_id, 'fpg_arrow_bg_hover_color', sanitize_hex_color( wp_unslash($_POST['fpg_arrow_bg_hover_color'] ) ));
     }
 
     if ( isset( $_POST['fpg_single_section_background_hover_color'] ) ) {
