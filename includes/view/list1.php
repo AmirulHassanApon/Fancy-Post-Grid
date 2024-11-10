@@ -334,7 +334,6 @@ ob_start();
                                             <a href="<?php the_permalink(); ?>"
                                                 <?php echo esc_attr($target_blank); ?>>
                                             <?php esc_html_e('Posted By -', 'fancy-post-grid'); ?>  <?php the_author(); ?></a>
-                                            
                                         </li>
                                         <?php endif; ?>
 
@@ -350,8 +349,7 @@ ob_start();
                                     <!-- Title -->
                                     <?php if ($fpg_field_group_title) : ?>
                                         <<?php echo esc_attr($title_tag); ?> class="title <?php echo esc_attr($title_alignment_class); ?>" >
-
-                                            
+                                           
                                         <?php if ($fancy_link_details === 'on') : ?>
                                                 <a href="<?php the_permalink(); ?>"
                                                    <?php echo esc_attr($target_blank); ?>
