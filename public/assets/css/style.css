@@ -288,6 +288,28 @@ img {
     width: 100%;
     position: relative;
 }
+.rs-blog-layout-1 .swiper_wrap .swiper-button-next{
+    right: -50px;
+    height: 40px;
+    width: 40px;
+    background: #FF6D00;
+    border-radius: 50%;
+}
+.rs-blog-layout-1 .swiper_wrap .swiper-button-next::after{
+    font-size: 16px;
+    color: #fff;
+}
+.rs-blog-layout-1 .swiper_wrap .swiper-button-prev{
+    left: -50px;
+    height: 40px;
+    width: 40px;
+    background: #FF6D00;
+    border-radius: 50%;
+}
+.rs-blog-layout-1 .swiper_wrap .swiper-button-prev::after{
+    font-size: 16px;
+    color: #fff;
+}
 
 .rs-blog-layout-1 .swiper_wrap .swiper-pagination .swiper-pagination-bullet {
     height: 8px;
