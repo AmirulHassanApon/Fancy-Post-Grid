@@ -2114,16 +2114,20 @@ function fancy_post_grid_metabox_shortcode_callback( $post ) {
                     <div class="fpg-post-select-main">
                         
                         <!-- Slider Dots Color -->
-                        <div class="fpg-color-box" id="fpg_slider_dots_color">
-                            <label for="fpg_slider_dots_color"><?php esc_html_e( 'Slider Dots Color:', 'fancy-post-grid' ); ?></label>
-                            <input type="text" class="color-field" id="fpg_slider_dots_color" name="fpg_slider_dots_color" value="<?php echo esc_attr( $fpg_slider_dots_color ); ?>" />
+                        <div id="fpg_slider_dots_color_main">
+                            <div class="fpg-color-box" id="fpg_slider_dots_color">
+                                <label for="fpg_slider_dots_color"><?php esc_html_e( 'Slider Dots Color:', 'fancy-post-grid' ); ?></label>
+                                <input type="text" class="color-field" id="fpg_slider_dots_color" name="fpg_slider_dots_color" value="<?php echo esc_attr( $fpg_slider_dots_color ); ?>" />
+                            </div>
                         </div>
 
 
                         <!-- Slider Dots Active Color -->
-                        <div class="fpg-color-box" id="fpg_slider_dots_active_color">
-                            <label for="fpg_slider_dots_active_color"><?php esc_html_e( 'Slider Dots Active Color:', 'fancy-post-grid' ); ?></label>
-                            <input type="text" class="color-field" id="fpg_slider_dots_active_color" name="fpg_slider_dots_active_color" value="<?php echo esc_attr( $fpg_slider_dots_active_color ); ?>" />
+                        <div id="fpg_slider_dots_active_color_main">
+                            <div class="fpg-color-box" id="fpg_slider_dots_active_color">
+                                <label for="fpg_slider_dots_active_color"><?php esc_html_e( 'Slider Dots Active Color:', 'fancy-post-grid' ); ?></label>
+                                <input type="text" class="color-field" id="fpg_slider_dots_active_color" name="fpg_slider_dots_active_color" value="<?php echo esc_attr( $fpg_slider_dots_active_color ); ?>" />
+                            </div>
                         </div>
 
                         <!-- Arrow Color -->
