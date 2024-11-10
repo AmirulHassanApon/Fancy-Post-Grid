@@ -923,9 +923,10 @@ img {
     font-weight: 600;
     line-height: 24px;
     border-radius: 45px 45px 45px 45px;
-    color: #513de8;
+    color: #ffffff;
     transition: all linear 0.3s;
     text-decoration: none;
+    background: #513de8;
 }
 
 .rs-blog-layout-3 .rs-blog__single .content .rs-blog-author .rs-link a.fpg-filled svg path {
@@ -1071,6 +1072,34 @@ img {
     text-align: right;
 }
 
+.rs-blog-layout-3 .swiper_wrap .swiper-button-next{
+    right: -50px;
+    height: 40px;
+    width: 40px;
+    background: #513de8;
+    border-radius: 50%;
+    transition: all linear 0.3s;
+}
+.rs-blog-layout-3 .swiper_wrap .swiper-button-next::after{
+    font-size: 16px;
+    color: #fff;
+    transition: all linear 0.3s;
+}
+.rs-blog-layout-3 .swiper_wrap .swiper-button-prev{
+    left: -50px;
+    height: 40px;
+    width: 40px;
+    background: #513de8;
+    border-radius: 50%;
+    transition: all linear 0.3s;
+}
+.rs-blog-layout-3 .swiper_wrap .swiper-button-prev::after{
+    font-size: 16px;
+    color: #fff;
+    transition: all linear 0.3s;
+}
+
+
 
 .rs-blog-layout-3 .swiper_wrap .swiper-pagination-3 {
     bottom: -98px !important;
@@ -1080,6 +1109,14 @@ img {
     background: #513de823;
     border-radius: 50px;
     padding: 0px 15px 4px;
+}
+
+.rs-blog-layout-3 .swiper_wrap .swiper-pagination-3.swiper-pagination-progressbar{
+    width: 100%;
+}
+.rs-blog-layout-3 .swiper_wrap .swiper-pagination-3.swiper-pagination-fraction{
+    padding: 0;
+    background: transparent !important;
 }
 
 .rs-blog-layout-3 .swiper_wrap .swiper-pagination-3 .swiper-pagination-bullet {
@@ -1094,6 +1131,11 @@ img {
 
 .rs-blog-layout-3 .swiper_wrap .swiper-pagination-3 .swiper-pagination-bullet.swiper-pagination-bullet-active {
     width: 30px;
+}
+
+.rs-blog-layout-3 .swiper_wrap .swiper-pagination-3.swiper-pagination-bullets-dynamic{
+    padding: 0;
+    background: transparent !important;
 }
 
 /* blog Slider layout 3 css */
@@ -1335,6 +1377,33 @@ img {
 }
 
 
+.rs-blog-layout-4 .swiper_wrap .swiper-button-next{
+    right: -50px;
+    height: 40px;
+    width: 40px;
+    background: #F79C53;
+    border-radius: 50%;
+    transition: all linear 0.3s;
+}
+.rs-blog-layout-4 .swiper_wrap .swiper-button-next::after{
+    font-size: 16px;
+    color: #fff;
+    transition: all linear 0.3s;
+}
+.rs-blog-layout-4 .swiper_wrap .swiper-button-prev{
+    left: -50px;
+    height: 40px;
+    width: 40px;
+    background: #F79C53;
+    border-radius: 50%;
+    transition: all linear 0.3s;
+}
+.rs-blog-layout-4 .swiper_wrap .swiper-button-prev::after{
+    font-size: 16px;
+    color: #fff;
+    transition: all linear 0.3s;
+}
+
 
 
 .rs-blog-layout-4 .swiper_wrap .swiper-pagination-4 {
@@ -1346,7 +1415,15 @@ img {
     border-radius: 50px;
     padding: 0px 15px 4px;
 }
+.rs-blog-layout-4 .swiper_wrap .swiper-pagination-4.swiper-pagination-progressbar{
+    width: 100%;
+}
 
+.rs-blog-layout-4 .swiper_wrap .swiper-pagination-4.swiper-pagination-fraction,
+.rs-blog-layout-4 .swiper_wrap .swiper-pagination-4.swiper-pagination-bullets-dynamic{
+    background: transparent !important;
+    padding: 0;
+}
 .rs-blog-layout-4 .swiper_wrap .swiper-pagination-4 .swiper-pagination-bullet {
     width: 10px;
     height: 6px;
@@ -4191,6 +4268,32 @@ img {
     }
 
 
+    .rs-blog-layout-18 .swiper_wrap .swiper-button-next{
+        right: -50px;
+        height: 40px;
+        width: 40px;
+        background: #3a15fb;
+        border-radius: 50%;
+        transition: all linear 0.3s;
+    }
+    .rs-blog-layout-18 .swiper_wrap .swiper-button-next::after{
+        font-size: 16px;
+        color: #fff;
+        transition: all linear 0.3s;
+    }
+    .rs-blog-layout-18 .swiper_wrap .swiper-button-prev{
+        left: -50px;
+        height: 40px;
+        width: 40px;
+        background: #3a15fb;
+        border-radius: 50%;
+        transition: all linear 0.3s;
+    }
+    .rs-blog-layout-18 .swiper_wrap .swiper-button-prev::after{
+        font-size: 16px;
+        color: #fff;
+        transition: all linear 0.3s;
+    }
 
     .rs-blog-layout-18 .swiper_wrap .swiper-pagination-18{
         position: absolute;
