@@ -2655,8 +2655,19 @@
                 $('#' + id).val(value).trigger('change');
             });
 
-            // Update radio buttons (if any)
-            $('input[name="fancy_post_main_box_alignment"][value="align-start"]').prop('checked', true).trigger('change');
+            // Update specific radio button settings
+            if (selectedStyle === 'sliderstyle3' || selectedStyle === 'sliderstyle4' || selectedStyle === 'sliderstyle7') {
+                $('input[name="fancy_arrow"][value="true"]').prop("checked", true).trigger('change');
+            } else {
+                $('input[name="fancy_arrow"][value="false"]').prop("checked", true).trigger('change');
+            }
+            if (selectedStyle === 'sliderstyle3') {
+                // For 'sliderstyle3' and 'sliderstyle7', align center
+                $('input[name="fancy_post_main_box_alignment"][value="align-center"]').prop("checked", true).trigger('change');
+            }else {
+                // Default to 'align-start' (left) for all other styles
+                $('input[name="fancy_post_main_box_alignment"][value="align-start"]').prop("checked", true).trigger('change');
+            }
         });
     });
 })(jQuery);
