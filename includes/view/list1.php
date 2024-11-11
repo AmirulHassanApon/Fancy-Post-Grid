@@ -14,7 +14,7 @@ ob_start();
                     $fpg_post_per_page = -1;
                 }  
                 // Set a maximum limit for posts_per_page
-                $max_posts_per_page = 4;
+                $max_posts_per_page = 3;
 
                 // Check if the dynamic value exceeds the maximum limit
                 if ($fpg_post_per_page > $max_posts_per_page || $fpg_post_per_page = -1) {
@@ -536,7 +536,7 @@ ob_start();
     }
     .rs-blog-layout-8 .rs-blog__left-blog {
         <?php if (!empty($fpg_single_section_border_color)) : ?>
-            border-color: <?php echo esc_attr($fpg_single_section_border_color); ?>;
+            border-color: <?php echo esc_attr($fpg_single_section_border_color); ?>1a;
         <?php endif; ?>
         <?php if (!empty($fancy_post_border_style)) : ?>
             border-style: <?php echo esc_attr($fancy_post_border_style); ?>;

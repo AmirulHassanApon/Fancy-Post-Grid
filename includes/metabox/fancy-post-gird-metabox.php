@@ -224,7 +224,7 @@ function fancy_post_grid_metabox_shortcode_callback( $post ) {
     }
     $fancy_button_border_style                  = get_post_meta( $post->ID, 'fancy_button_border_style', true );
     if ( empty( $fancy_button_border_style ) ) {
-        $fancy_button_border_style = 'dotted'; 
+        $fancy_button_border_style = 'unset'; 
     }
 
     $fancy_post_read_more_border_radius         = get_post_meta( $post->ID, 'fancy_post_read_more_border_radius', true );
