@@ -308,13 +308,10 @@ ob_start();
                                 <?php endif; ?>
 
                                 <div class="blog-content">
-
-
                                     <ul class="blog-meta <?php echo esc_attr($meta_alignment_class); ?>">
                                         <!-- AUTHOR -->
                                         <?php if ($fpg_field_group_author) : ?>
                                         <li class="admin">
-                                            
                                             <i class="ri-user-3-line"> </i> 
                                             <?php the_author(); ?>            
                                         </li>
