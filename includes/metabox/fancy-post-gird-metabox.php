@@ -63,7 +63,7 @@ function fancy_post_grid_metabox_shortcode_callback( $post ) {
     }
     $fancy_slider_style                         = get_post_meta( $post->ID, 'fancy_slider_style', true );
     if ( empty( $fancy_slider_style ) ) {
-        $fancy_slider_style = 'sliderstyle1'; // Set default to 'style1'
+        $fancy_slider_style = 'sliderstyle1'; // Set default to 'sliderstyle1'
     }
 
     $fancy_list_style                         = get_post_meta( $post->ID, 'fancy_list_style', true );
@@ -140,7 +140,7 @@ function fancy_post_grid_metabox_shortcode_callback( $post ) {
 
     $fancy_pagination = get_post_meta( $post->ID, 'fancy_pagination', true );
     if ( empty( $fancy_pagination ) ) {
-        $fancy_pagination = 'false';
+        $fancy_pagination = 'true';
     }
 
     $fancy_loop                          = get_post_meta( $post->ID, 'fancy_loop', true );
