@@ -4021,7 +4021,9 @@ img {
     .rs-blog-layout-17-item .rs-content .title{
         font-size: 30px;
         line-height: 40px;
+        margin-top: 15px;
     }
+    
     .rs-blog-layout-17-item .rs-content .title a{
         color: #080d41;
         text-decoration: none;
@@ -4054,6 +4056,19 @@ img {
     .rs-blog-layout-17-item.rs-blog-layout-17-item-list .rs-content .title{
         font-size: 20px;
         line-height: 30px;
+        
+    }
+    .rs-blog-layout-17 .rs-blog-layout-17-item .rs-content .blog-title {
+        
+        margin-top: 15px;
+    }
+    .rs-blog-layout-17 .rs-blog-layout-17-item.rs-blog-layout-17-item-list .rs-content .btn-wrapper a{
+        
+        text-decoration: none;
+    }
+    .rs-blog-layout-17 .rs-blog-layout-17-item .rs-content .blog-title a{
+        
+        text-decoration: none;
     }
     .rs-blog-layout-17-item.rs-blog-layout-17-item-list .rs-content p{
         margin-top: 10px;
