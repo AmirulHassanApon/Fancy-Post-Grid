@@ -202,9 +202,11 @@ img {
     text-align: right;
 }
 
-.rs-blog-layout-1 .blog-item .blog-content a  {
-    
+.rs-blog-layout-1 .blog-item .blog-content a {
     text-decoration: none;
+}
+.rs-blog-layout-1.rs-blog-layout-9 .blog-item .blog-content .blog-title a,.rs-blog-layout-1.rs-blog-layout-9 .blog-horizontal .blog-meta .blog-item-wrap .blog-content .blog-title a{
+    text-align: left;
 }
 
 .rs-blog-layout-1 .blog-item .blog-content .blog-btn .read-more.fpg-filled{
@@ -4021,7 +4023,7 @@ img {
     .rs-blog-layout-17-item .rs-content .title{
         font-size: 30px;
         line-height: 40px;
-        margin-top: 15px;
+        
     }
     
     .rs-blog-layout-17-item .rs-content .title a{
@@ -4562,7 +4564,7 @@ img {
         display: inline-flex;
         align-items: center;
         border-bottom: 1px solid #AD87FF47;
-        padding-bottom: 10px;
+        padding: 0 0 10px 0;
     }
     .rs-blog-layout-20-item .rs-content .rs-meta ul li{
         color: #6d6d6d;
@@ -4607,7 +4609,7 @@ img {
         border-width: 2px 2px 2px 2px;
         border-color: #FF87B2;
         display: inline-block;
-        margin-top: 30px;
+        margin-top: 10px;
         text-decoration: unset;
     }
     .rs-blog-layout-20-item .rs-content a.rs-btn:hover{
@@ -6402,7 +6404,7 @@ img {
         max-width: 130px;
     }
     .rs-blog-layout-20-item .rs-content .rs-meta ul li:first-child{
-        margin-right: 10px;
+        margin-right: 0px;
     }
     .rs-blog-layout-20-item .rs-content .rs-meta ul li{
         font-size: 14px;
