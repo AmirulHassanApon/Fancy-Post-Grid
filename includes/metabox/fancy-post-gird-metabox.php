@@ -196,8 +196,20 @@ function fancy_post_grid_metabox_shortcode_callback( $post ) {
         $fancy_post_hide_feature_image = 'on'; // image
     }
     $fancy_post_feature_image_size              = get_post_meta( $post->ID, 'fancy_post_feature_image_size', true );
+
     if ( empty( $fancy_post_feature_image_size ) ) {
         $fancy_post_feature_image_size ="full";
+    }
+
+    $fancy_post_feature_image_left = get_post_meta( $post->ID, 'fancy_post_feature_image_left', true );
+
+    if ( empty( $fancy_post_feature_image_left ) ) {
+        $fancy_post_feature_image_left ="full";
+    }
+    $fancy_post_feature_image_right = get_post_meta( $post->ID, 'fancy_post_feature_image_right', true );
+
+    if ( empty( $fancy_post_feature_image_right ) ) {
+        $fancy_post_feature_image_right ="full";
     }
     $fancy_post_media_source                    = get_post_meta( $post->ID, 'fancy_post_media_source', true );
     if ( empty( $fancy_post_media_source ) ) {
@@ -1356,10 +1368,34 @@ function fancy_post_grid_metabox_shortcode_callback( $post ) {
                             </div>                       
                         </div>
                         
-                        <!-- Feature Image Size -->                        
-                        <div class="fpg-feature-image-size fpg-common" id="fpg-feature-image-size">
-                            <label for="fancy_post_feature_image_size"><?php esc_html_e( 'Feature Image Size:', 'fancy-post-grid' ); ?></label>
-                            <select id="fancy_post_feature_image_size" name="fancy_post_feature_image_size" style="width: 100%;">
+                        <!-- Feature Image Size -->  
+                        <div id="fpg_feature_image_size">                     
+                            <div class="fpg-feature-image-size fpg-common" id="fpg-feature-image-size">
+                                <label for="fancy_post_feature_image_size"><?php esc_html_e( 'Feature Image Size:', 'fancy-post-grid' ); ?></label>
+                                <select id="fancy_post_feature_image_size" name="fancy_post_feature_image_size" style="width: 100%;">
+                                    <?php 
+                                    $sizes = [
+                                        'thumbnail' => 'Thumbnail',
+                                        'medium' => 'Medium',
+                                        'medium_large' => 'Medium Large',
+                                        'large' => 'Large',
+                                        'full' => 'Full', 
+                                        'fancy_post_custom_size' => 'Custom Size (768x500)',  
+                                        'fancy_post_square' => 'Square (500x500)', 
+                                        'fancy_post_landscape' => 'Landscape (834x550)', 
+                                        'fancy_post_portrait' => 'Portrait (421x550)', 
+                                    ];
+                                    foreach ($sizes as $size_key => $size_label) {
+                                        echo '<option value="' . esc_attr($size_key) . '" ' . selected($fancy_post_feature_image_size, $size_key, false) . '>' . esc_html($size_label) . '</option>';
+                                    }
+                                    ?>
+                                </select>
+                            </div>
+                        </div>
+                        <!-- Left Side Featured Image -->
+                        <div class="fpg-feature-image-position fpg-common" id="fpg-feature-image-left">
+                            <label for="fancy_post_feature_image_left"><?php esc_html_e( 'Left Side Featured Image:', 'fancy-post-grid' ); ?></label>
+                            <select id="fancy_post_feature_image_left" name="fancy_post_feature_image_left" style="width: 100%;">
                                 <?php 
                                 $sizes = [
                                     'thumbnail' => 'Thumbnail',
@@ -1373,12 +1409,34 @@ function fancy_post_grid_metabox_shortcode_callback( $post ) {
                                     'fancy_post_portrait' => 'Portrait (421x550)', 
                                 ];
                                 foreach ($sizes as $size_key => $size_label) {
-                                    echo '<option value="' . esc_attr($size_key) . '" ' . selected($fancy_post_feature_image_size, $size_key, false) . '>' . esc_html($size_label) . '</option>';
+                                    echo '<option value="' . esc_attr($size_key) . '" ' . selected($fancy_post_feature_image_left, $size_key, false) . '>' . esc_html($size_label) . '</option>';
                                 }
                                 ?>
                             </select>
                         </div>
 
+                        <!-- Right Side Featured Image -->
+                        <div class="fpg-feature-image-position fpg-common" id="fpg-feature-image-right">
+                            <label for="fancy_post_feature_image_right"><?php esc_html_e( 'Right Side Featured Image:', 'fancy-post-grid' ); ?></label>
+                            <select id="fancy_post_feature_image_right" name="fancy_post_feature_image_right" style="width: 100%;">
+                                <?php 
+                                $sizes = [
+                                    'thumbnail' => 'Thumbnail',
+                                    'medium' => 'Medium',
+                                    'medium_large' => 'Medium Large',
+                                    'large' => 'Large',
+                                    'full' => 'Full', 
+                                    'fancy_post_custom_size' => 'Custom Size (768x500)',  
+                                    'fancy_post_square' => 'Square (500x500)', 
+                                    'fancy_post_landscape' => 'Landscape (834x550)', 
+                                    'fancy_post_portrait' => 'Portrait (421x550)', 
+                                ];
+                                foreach ($sizes as $size_key => $size_label) {
+                                    echo '<option value="' . esc_attr($size_key) . '" ' . selected($fancy_post_feature_image_right, $size_key, false) . '>' . esc_html($size_label) . '</option>';
+                                }
+                                ?>
+                            </select>
+                        </div>
                         <!-- Media Source -->
                         <div class="fpg-media-source fpg-common" id="fpg-media-source">
                             
@@ -2536,6 +2594,12 @@ function fancy_post_grid_save_metabox_data( $post_id ) {
     }
     if ( isset( $_POST['fancy_post_feature_image_size'] ) ) {
         update_post_meta( $post_id, 'fancy_post_feature_image_size', sanitize_text_field( wp_unslash($_POST['fancy_post_feature_image_size'] ) ));
+    }
+    if ( isset( $_POST['fancy_post_feature_image_left'] ) ) {
+        update_post_meta( $post_id, 'fancy_post_feature_image_left', sanitize_text_field( wp_unslash($_POST['fancy_post_feature_image_left'] ) ));
+    }
+    if ( isset( $_POST['fancy_post_feature_image_right'] ) ) {
+        update_post_meta( $post_id, 'fancy_post_feature_image_right', sanitize_text_field( wp_unslash($_POST['fancy_post_feature_image_right'] ) ));
     }
     if ( isset( $_POST['fancy_post_media_source'] ) ) {
         update_post_meta( $post_id, 'fancy_post_media_source', sanitize_text_field( wp_unslash($_POST['fancy_post_media_source'] ) ));

@@ -2529,7 +2529,6 @@ img {
     overflow: hidden;
     position: relative;
     z-index: 10;
-    max-height: 280px;
 }
 .rs-blog-layout-8 .rs-blog__thumb img{
     transition: all linear 0.3s;

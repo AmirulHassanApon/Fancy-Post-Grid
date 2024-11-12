@@ -82,6 +82,8 @@ function fancy_post_grid_shortcode( $atts ) {
     	//feature-image
     	$fancy_post_hide_feature_image              = get_post_meta( $post_id, 'fancy_post_hide_feature_image', true );	    
 	    $fancy_post_feature_image_size              = get_post_meta( $post_id, 'fancy_post_feature_image_size', true );
+	    $fancy_post_feature_image_left              = get_post_meta( $post_id, 'fancy_post_feature_image_left', true );
+	    $fancy_post_feature_image_right              = get_post_meta( $post_id, 'fancy_post_feature_image_right', true );
 	    $fpg_title_border_style              		= get_post_meta( $post_id, 'fpg_title_border_style', true );
 	    $fancy_post_media_source                    = get_post_meta( $post_id, 'fancy_post_media_source', true ); 
 	    $fancy_post_hover_animation                 = get_post_meta( $post_id, 'fancy_post_hover_animation', true );

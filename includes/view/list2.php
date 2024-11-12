@@ -8,8 +8,6 @@ ob_start();
         <div class="row">
 
             <?php
-                // =======Pagination==========
-                
                 // Check if pagination is on or off
                 if ($fancy_post_pagination === 'off') {
                     $fpg_post_per_page = -1;
@@ -141,9 +139,10 @@ ob_start();
                     // Determine the feature image size
                     $feature_image_size = isset($fancy_post_feature_image_size) ? (string) $fancy_post_feature_image_size : '';  
 
-                               
-                    // Determine the media source
-                    $media_source = isset($fancy_post_media_source) ? $fancy_post_media_source : 'feature_image';
+                    // Determine the feature image size                    
+                    $feature_image_left_size = isset($fancy_post_feature_image_left) ? (string) $fancy_post_feature_image_left : '';  
+
+                    $feature_image_right_size = isset($fancy_post_feature_image_right) ? (string) $fancy_post_feature_image_right : ''; 
                     
                     // Determine the hover animation
                     $hover_animation = !empty($fancy_post_hover_animation) ? $fancy_post_hover_animation : 'none';
@@ -155,9 +154,21 @@ ob_start();
                         preg_match_all('/<img[^>]+>/i', $content, $matches);
                         $first_image = !empty($matches[0][0]) ? $matches[0][0] : '';
                         preg_match('/src="([^"]+)"/i', $first_image, $img_src);
-                        $feature_image_url = !empty($img_src[1]) ? $img_src[1] : get_the_post_thumbnail_url(get_the_ID(), $feature_image_size);
+                        $feature_image_left_url = !empty($img_src[1]) ? $img_src[1] : get_the_post_thumbnail_url(get_the_ID(), $feature_image_left_size);
                     } else {
-                        $feature_image_url = get_the_post_thumbnail_url(get_the_ID(), $feature_image_size);
+                        $feature_image_left_url = get_the_post_thumbnail_url(get_the_ID(), $feature_image_left_size);
+                    }
+
+                    // Get the feature image or first image from content
+                    if ($media_source === 'first_image') {
+
+                        $content = get_the_content();
+                        preg_match_all('/<img[^>]+>/i', $content, $matches);
+                        $first_image = !empty($matches[0][0]) ? $matches[0][0] : '';
+                        preg_match('/src="([^"]+)"/i', $first_image, $img_src);
+                        $feature_image_right_url = !empty($img_src[1]) ? $img_src[1] : get_the_post_thumbnail_url(get_the_ID(), $feature_image_right_size);
+                    } else {
+                        $feature_image_right_url = get_the_post_thumbnail_url(get_the_ID(), $feature_image_right_size);
                     }
 
                     // Apply hover animation class if needed
@@ -170,9 +181,8 @@ ob_start();
                         <!-- Image -->
                         <?php if (!$hide_feature_image && $fpg_field_group_image) : ?>    
                         <div class="image-wrap">
-                            <?php if ($feature_image_url) : ?>
+                            <?php if ($feature_image_left_url) : ?>
                                 <?php
-
                                     $post_id = get_the_ID();
                                     // Get the thumbnail ID
                                     $thumbnail_id = get_post_thumbnail_id($post_id);
@@ -185,7 +195,7 @@ ob_start();
 
                                 ?>
                                 <a href="<?php the_permalink(); ?>" <?php echo esc_attr($target_blank); ?>>
-                                    <img src="<?php echo esc_url( $feature_image_url ); ?>" alt="<?php echo esc_attr( $alt_text ); ?>">
+                                    <img src="<?php echo esc_url( $feature_image_left_url ); ?>" alt="<?php echo esc_attr( $alt_text ); ?>">
                                 </a>
                             <?php endif; ?>
                         </div>
@@ -286,9 +296,8 @@ ob_start();
                                 <!-- Image -->
                                 <?php if (!$hide_feature_image && $fpg_field_group_image) : ?>    
                                 <div class="image-wrap">
-                                    <?php if ($feature_image_url) : ?>
+                                    <?php if ($feature_image_right_url) : ?>
                                         <?php
-
                                             $post_id = get_the_ID();
                                             // Get the thumbnail ID
                                             $thumbnail_id = get_post_thumbnail_id($post_id);
@@ -298,10 +307,9 @@ ob_start();
                                             $image_title = get_the_title($thumbnail_id);
                                             // Use alt text if available; otherwise, use title text
                                             $alt_text = !empty($image_alt) ? esc_attr($image_alt) : esc_attr($image_title);
-
                                         ?>
                                         <a href="<?php the_permalink(); ?>" <?php echo esc_attr($target_blank); ?>>
-                                            <img src="<?php echo esc_url( $feature_image_url ); ?>" alt="<?php echo esc_attr( $alt_text ); ?>">
+                                            <img src="<?php echo esc_url( $feature_image_right_url ); ?>" alt="<?php echo esc_attr( $alt_text ); ?>">
                                         </a>
                                     <?php endif; ?>
                                 </div>
@@ -364,9 +372,8 @@ ob_start();
                                 <!-- Image -->
                                 <?php if (!$hide_feature_image && $fpg_field_group_image) : ?>    
                                 <div class="image-wrap">
-                                    <?php if ($feature_image_url) : ?>
+                                    <?php if ($feature_image_right_url) : ?>
                                         <?php
-
                                             $post_id = get_the_ID();
                                             // Get the thumbnail ID
                                             $thumbnail_id = get_post_thumbnail_id($post_id);
@@ -376,10 +383,9 @@ ob_start();
                                             $image_title = get_the_title($thumbnail_id);
                                             // Use alt text if available; otherwise, use title text
                                             $alt_text = !empty($image_alt) ? esc_attr($image_alt) : esc_attr($image_title);
-
                                         ?>
                                         <a href="<?php the_permalink(); ?>" <?php echo esc_attr($target_blank); ?>>
-                                            <img src="<?php echo esc_url( $feature_image_url ); ?>" alt="<?php echo esc_attr( $alt_text ); ?>">
+                                            <img src="<?php echo esc_url( $feature_image_right_url ); ?>" alt="<?php echo esc_attr( $alt_text ); ?>">
                                         </a>
                                     <?php endif; ?>
                                 </div>
@@ -439,24 +445,23 @@ ob_start();
                                 <!-- Image -->
                                 <?php if (!$hide_feature_image && $fpg_field_group_image) : ?>    
                                 <div class="image-wrap">
-                                    <?php if ($feature_image_url) : ?>
-                                        <?php
-
-                                            $post_id = get_the_ID();
-                                            // Get the thumbnail ID
-                                            $thumbnail_id = get_post_thumbnail_id($post_id);
+                                    <?php if ($feature_image_right_url) : ?>
+                                            <?php
+                                                $post_id = get_the_ID();
+                                                // Get the thumbnail ID
+                                                $thumbnail_id = get_post_thumbnail_id($post_id);
+                                                
+                                                // Get the image alt text and title text
+                                                $image_alt = get_post_meta($thumbnail_id, '_wp_attachment_image_alt', true);
+                                                $image_title = get_the_title($thumbnail_id);
+                                                // Use alt text if available; otherwise, use title text
+                                                $alt_text = !empty($image_alt) ? esc_attr($image_alt) : esc_attr($image_title);
+                                            ?>
+                                            <a href="<?php the_permalink(); ?>" <?php echo esc_attr($target_blank); ?>>
+                                                <img src="<?php echo esc_url( $feature_image_right_url ); ?>" alt="<?php echo esc_attr( $alt_text ); ?>">
+                                            </a>
                                             
-                                            // Get the image alt text and title text
-                                            $image_alt = get_post_meta($thumbnail_id, '_wp_attachment_image_alt', true);
-                                            $image_title = get_the_title($thumbnail_id);
-                                            // Use alt text if available; otherwise, use title text
-                                            $alt_text = !empty($image_alt) ? esc_attr($image_alt) : esc_attr($image_title);
-
-                                        ?>
-                                        <a href="<?php the_permalink(); ?>" <?php echo esc_attr($target_blank); ?>>
-                                            <img src="<?php echo esc_url( $feature_image_url ); ?>" alt="<?php echo esc_attr( $alt_text ); ?>">
-                                        </a>
-                                    <?php endif; ?>
+                                        <?php endif; ?>
                                 </div>
                                 <?php endif; ?>
 
@@ -533,7 +538,7 @@ ob_start();
             padding: <?php echo esc_attr($fpg_section_padding); ?>;
         <?php endif; ?>
     }
-    .rs-blog-layout-1.rs-blog-layout-9 .blog-item, .rs-blog-layout-1.rs-blog-layout-9 .blog-item-wrap{
+    .rs-blog-layout-1.rs-blog-layout-9 .blog-item, .rs-blog-layout-1.rs-blog-layout-9 .blog-horizontal .blog-meta .blog-item-wrap{
         <?php if (!empty($fpg_single_section_background_color)) : ?>
             background-color: <?php echo esc_attr($fpg_single_section_background_color); ?>;
         <?php endif; ?>
