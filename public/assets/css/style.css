@@ -4590,7 +4590,6 @@ img {
     .rs-blog-layout-20-item .rs-content .title a{
         font-size: 26px;
         line-height: 36px;
-        margin-top: 10px;
         display: block;
         color: #3D3458;
         text-decoration: none;
@@ -4612,9 +4611,10 @@ img {
         margin-top: 10px;
         text-decoration: unset;
     }
-    .rs-blog-layout-20-item .rs-content a.rs-btn:hover{
+    .rs-blog-layout-20 .rs-blog-layout-20-item .rs-content .btn-wrapper a:hover{
         background: transparent;
         color: #FF87B2;
+        border: 2px solid #FF87B2;
     }
 
     /* blog layout 20 css */

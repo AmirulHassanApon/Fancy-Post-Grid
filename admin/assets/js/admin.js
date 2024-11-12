@@ -879,6 +879,8 @@
                     $('#fpg_button_settings_main').show();
                     $('#fpg_section_bg_hover_main').hide();
                     $('#fpg_meta_icon_color_main').show();
+                    $('#fpg_excerpt_main').show(); 
+                    $('#fpg_excerpt_setting_main').show();
 
                 } else if (selectedListStyle === 'liststyle2') {
                     $('#fpg_feature_image_size').hide();
@@ -918,6 +920,8 @@
                     $('#fancy_button_option_main').show();
                     $('#fpg_button_settings_main').show();
                     $('#fpg_section_bg_hover_main').hide();
+                    $('#fpg_excerpt_main').show(); 
+                    $('#fpg_excerpt_setting_main').show();
   
                 }else if (selectedListStyle === 'liststyle3') {
                     $('#fpg_feature_image_size').hide();
@@ -957,6 +961,8 @@
                     $('#fpg_button_settings_main').show();
                     $('#fpg_section_bg_hover_main').hide();
                     $('#fpg_meta_icon_color_main').hide();
+                    $('#fpg_excerpt_main').show(); 
+                    $('#fpg_excerpt_setting_main').show();
   
                 }else if (selectedListStyle === 'liststyle4') {
                     $('#fpg_meta_icon_color_main').hide();
@@ -965,11 +971,12 @@
                     $('#fpg-feature-image-left').hide();
                     $('#fpg_field_group_author_main').show();
                     $('#fpg_field_group_post_date_main').show();
-                    $('#fpg_field_group_excerpt_main').show();
+                    $('#fpg_field_group_excerpt_main').hide();
                     $('#fpg_field_group_categories_main').hide();
                     $('#fpg_field_group_tag_main').hide();
                     $('#fpg_field_group_comment_count_main').hide(); 
                     $('#fpg_field_group_button_main').show(); 
+                    $('#fpg_excerpt_main').hide(); 
                     // Ordering
                     $('#fpg-read-more-alignment').show();
                     $('#fpg_title_order_main').show(); 
@@ -996,7 +1003,10 @@
                     $('#fancy_button_option_main').show();
                     $('#fpg_button_settings_main').show();
                     $('#fpg_section_bg_hover_main').hide();  
+                    $('#fpg_excerpt_setting_main').hide();
+
                 }else if (selectedListStyle === 'liststyle5') {
+                    $('#fpg_excerpt_setting_main').show();
                     $('#fpg_feature_image_size').hide();
                     $('#fpg-feature-image-right').show();
                     $('#fpg-feature-image-left').show();
@@ -1034,8 +1044,10 @@
                     $('#fancy_button_option_main').show();
                     $('#fpg_button_settings_main').show();
                     $('#fpg_section_bg_hover_main').hide();
+                    $('#fpg_excerpt_main').show(); 
   
                 }else if (selectedListStyle === 'liststyle6') {
+                    $('#fpg_excerpt_setting_main').show();
                     $('#fpg_feature_image_size').hide();
                     $('#fpg-feature-image-right').show();
                     $('#fpg-feature-image-left').show();
@@ -1073,8 +1085,10 @@
                     $('#fancy_button_option_main').hide();
                     $('#fpg_button_settings_main').hide();
                     $('#fpg_section_bg_hover_main').hide();
+                    $('#fpg_excerpt_main').show(); 
   
                 }else if (selectedListStyle === 'liststyle7') {
+                    $('#fpg_excerpt_setting_main').show();
                     $('#fpg_meta_icon_color_main').hide();
                     $('#fpg_feature_image_size').hide();
                     $('#fpg-feature-image-right').show();
@@ -1112,8 +1126,10 @@
                     $('#fancy_button_option_main').show();
                     $('#fpg_button_settings_main').show();
                     $('#fpg_section_bg_hover_main').hide();
+                    $('#fpg_excerpt_main').show(); 
   
                 }else if (selectedListStyle === 'liststyle8') {
+                    $('#fpg_excerpt_setting_main').show();
                     $('#fpg_feature_image_size').hide();
                     $('#fpg_meta_icon_color_main').hide();
                     $('#fpg-feature-image-right').show();
@@ -1125,6 +1141,7 @@
                     $('#fpg_field_group_tag_main').hide();
                     $('#fpg_field_group_comment_count_main').hide(); 
                     $('#fpg_field_group_button_main').show(); 
+                    $('#fpg_excerpt_main').show(); 
                     // Ordering
                     $('#fpg-read-more-alignment').show();
                     $('#fpg_title_order_main').show(); 
@@ -1156,6 +1173,7 @@
             } else if (selectedLayout === 'isotope') {
                 
                 if (selectedIsotopeStyle === 'isotopestyle1') {
+                    $('#fpg_excerpt_setting_main').show();
                     $('#fpg_feature_image_size').show();
                     $('#fpg-feature-image-right').hide();
                     $('#fpg-feature-image-left').hide();
@@ -1232,6 +1250,7 @@
                     $('#fancy_button_option_main').show();
                     $('#fpg_button_settings_main').show();
                     $('#fpg_section_bg_hover_main').hide();
+                    $('#fpg_excerpt_setting_main').show();
   
                 }
             }
