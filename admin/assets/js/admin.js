@@ -53,7 +53,7 @@
 
             if (selectedLayout === 'grid') {
                 if (selectedStyle === 'style1') {
-                    $('#fpg-feature-image-size').show();
+                    $('#fpg_feature_image_size').show();
                     $('#fpg-feature-image-right').hide();
                     $('#fpg-feature-image-left').hide();
 
@@ -95,7 +95,7 @@
           
                 }else if (selectedStyle === 'style2') {
                     // Ordering
-                    $('#fpg-feature-image-size').show();
+                    $('#fpg_feature_image_size').show();
                     $('#fpg-feature-image-right').hide();
                     $('#fpg-feature-image-left').hide();
 
@@ -136,7 +136,7 @@
                     $('#fpg_section_border_radius_main').show();
   
                 }else if (selectedStyle === 'style3') {
-                    $('#fpg-feature-image-size').show();
+                    $('#fpg_feature_image_size').show();
                     $('#fpg-feature-image-right').hide();
                     $('#fpg-feature-image-left').hide();
                     // Ordering
@@ -177,7 +177,7 @@
                     $('#fpg_section_border_radius_main').show();
 
                 }else if (selectedStyle === 'style4') {
-                    $('#fpg-feature-image-size').show();
+                    $('#fpg_feature_image_size').show();
                     $('#fpg-feature-image-right').hide();
                     $('#fpg-feature-image-left').hide();
                     // Ordering
@@ -216,7 +216,7 @@
                     $('#fpg_excerpt_main').show(); 
                     $('#fpg_section_border_radius_main').show();
                 }else if (selectedStyle === 'style5') {
-                    $('#fpg-feature-image-size').show();
+                    $('#fpg_feature_image_size').show();
                     $('#fpg-feature-image-right').hide();
                     $('#fpg-feature-image-left').hide();
                     // Ordering
@@ -255,7 +255,7 @@
                     $('#fpg_excerpt_main').show(); 
                     $('#fpg_section_border_radius_main').show(); 
                 }else if (selectedStyle === 'style6') {
-                    $('#fpg-feature-image-size').show();
+                    $('#fpg_feature_image_size').show();
                     $('#fpg-feature-image-right').hide();
                     $('#fpg-feature-image-left').hide();
                     // Ordering
@@ -294,7 +294,7 @@
                     $('#fpg_section_image_shape_main').hide();
                     $('#fpg_section_border_radius_main').show();
                 }else if (selectedStyle === 'style7') {
-                    $('#fpg-feature-image-size').show();
+                    $('#fpg_feature_image_size').show();
                     $('#fpg-feature-image-right').hide();
                     $('#fpg-feature-image-left').hide();
 
@@ -335,7 +335,7 @@
                     $('#fpg_section_image_shape_main').hide();
                     $('#fpg_section_border_radius_main').show();
                 }else if (selectedStyle === 'style8') {
-                    $('#fpg-feature-image-size').show();
+                    $('#fpg_feature_image_size').show();
                     $('#fpg-feature-image-right').hide();
                     $('#fpg-feature-image-left').hide();
                     // Ordering
@@ -375,7 +375,7 @@
                     $('#fpg_section_image_shape_main').hide();
                     $('#fpg_section_border_radius_main').show();
                 }else if (selectedStyle === 'style9') {
-                    $('#fpg-feature-image-size').show();
+                    $('#fpg_feature_image_size').show();
                     $('#fpg-feature-image-right').hide();
                     $('#fpg-feature-image-left').hide();
                     // Ordering
@@ -416,7 +416,7 @@
                     $('#fpg_section_image_shape_main').hide();
                     $('#fpg_section_border_radius_main').show();
                 }else if (selectedStyle === 'style10') {
-                    $('#fpg-feature-image-size').show();
+                    $('#fpg_feature_image_size').show();
                     $('#fpg-feature-image-right').hide();
                     $('#fpg-feature-image-left').hide();
                     // Ordering
@@ -457,7 +457,7 @@
                     $('#fpg_section_image_shape_main').hide();
                     $('#fpg_section_border_radius_main').show();
                 }else if (selectedStyle === 'style11') {
-                    $('#fpg-feature-image-size').show();
+                    $('#fpg_feature_image_size').show();
                     $('#fpg-feature-image-right').hide();
                     $('#fpg-feature-image-left').hide();
                     // Ordering
@@ -500,7 +500,7 @@
                     $('#fpg_section_image_shape_main').hide();
                     $('#fpg_section_border_radius_main').show();
                 }else if (selectedStyle === 'style12')  {
-                    $('#fpg-feature-image-size').show();
+                    $('#fpg_feature_image_size').show();
                     $('#fpg-feature-image-right').hide();
                     $('#fpg-feature-image-left').hide();
                     // Ordering
@@ -545,7 +545,7 @@
             } else if (selectedLayout === 'slider') {
                 
                 if (selectedSliderStyle === 'sliderstyle1') {
-                    $('#fpg-feature-image-size').show();
+                    $('#fpg_feature_image_size').show();
                     $('#fpg-feature-image-right').hide();
                     $('#fpg-feature-image-left').hide();
                     $('#fpg_field_group_author_main').show();
@@ -587,7 +587,7 @@
                     $('#fpg_excerpt_main').show(); 
 
                 } else if (selectedSliderStyle === 'sliderstyle2') {
-                    $('#fpg-feature-image-size').show();
+                    $('#fpg_feature_image_size').show();
                     $('#fpg-feature-image-right').hide();
                     $('#fpg-feature-image-left').hide();
                     $('#fpg_section_border_radius_main').show();
@@ -629,7 +629,7 @@
                     $('#fpg_excerpt_main').show(); 
   
                 }else if (selectedSliderStyle === 'sliderstyle3') {
-                    $('#fpg-feature-image-size').show();
+                    $('#fpg_feature_image_size').show();
                     $('#fpg-feature-image-right').hide();
                     $('#fpg-feature-image-left').hide();
                     $('#fpg_field_group_author_main').show();
@@ -671,7 +671,7 @@
                     $('#fpg_excerpt_main').show(); 
   
                 }else if (selectedSliderStyle === 'sliderstyle4') {
-                    $('#fpg-feature-image-size').show();
+                    $('#fpg_feature_image_size').show();
                     $('#fpg-feature-image-right').hide();
                     $('#fpg-feature-image-left').hide();
                     $('#fpg_field_group_author_main').hide();
@@ -713,7 +713,7 @@
                     $('#fpg_excerpt_main').show(); 
   
                 }else if (selectedSliderStyle === 'sliderstyle5') {
-                    $('#fpg-feature-image-size').show();
+                    $('#fpg_feature_image_size').show();
                     $('#fpg-feature-image-right').hide();
                     $('#fpg-feature-image-left').hide();
                     $('#fpg_field_group_author_main').show();
@@ -755,7 +755,7 @@
                     $('#fpg_excerpt_main').hide(); 
   
                 }else if (selectedSliderStyle === 'sliderstyle6') {
-                    $('#fpg-feature-image-size').show();
+                    $('#fpg_feature_image_size').show();
                     $('#fpg-feature-image-right').hide();
                     $('#fpg-feature-image-left').hide();
                     $('#fpg_field_group_author_main').hide();
@@ -797,7 +797,7 @@
                     $('#fpg_excerpt_main').hide(); 
   
                 }else if (selectedSliderStyle === 'sliderstyle7') {
-                    $('#fpg-feature-image-size').show();
+                    $('#fpg_feature_image_size').show();
                     $('#fpg-feature-image-right').hide();
                     $('#fpg-feature-image-left').hide();
                     $('#fpg_field_group_author_main').hide();
@@ -842,7 +842,7 @@
             } else if (selectedLayout === 'list') {
                 
                 if (selectedListStyle === 'liststyle1') {
-                    $('#fpg-feature-image-size').hide();
+                    $('#fpg_feature_image_size').hide();
                     $('#fpg-feature-image-right').show();
                     $('#fpg-feature-image-left').show();
                     $('#fpg_field_group_author_main').show();
@@ -878,9 +878,10 @@
                     $('#fancy_button_option_main').show();
                     $('#fpg_button_settings_main').show();
                     $('#fpg_section_bg_hover_main').hide();
+                    $('#fpg_meta_icon_color_main').show();
 
                 } else if (selectedListStyle === 'liststyle2') {
-                    $('#fpg-feature-image-size').hide();
+                    $('#fpg_feature_image_size').hide();
                     $('#fpg-feature-image-right').show();
                     $('#fpg-feature-image-left').show();
                     $('#fpg_field_group_author_main').show();
@@ -911,6 +912,7 @@
                     $('#fpg_title_hover_color_box').show();
                     $('#fpg_meta_settings_main').show();
                     $('#fpg_meta_data_main').show();
+                    $('#fpg_meta_icon_color_main').hide();
                     $('#fpg_meta_gap_main').show();
                     $('#fpg_meta_bgcolor_box').hide();               
                     $('#fancy_button_option_main').show();
@@ -918,7 +920,7 @@
                     $('#fpg_section_bg_hover_main').hide();
   
                 }else if (selectedListStyle === 'liststyle3') {
-                    $('#fpg-feature-image-size').hide();
+                    $('#fpg_feature_image_size').hide();
                     $('#fpg-feature-image-right').show();
                     $('#fpg-feature-image-left').show();
                     $('#fpg_field_group_author_main').show();
@@ -944,7 +946,7 @@
                     $('#fpg_date_bg_color_main').hide();
                     $('#fpg_date_padding_main').hide();
                     $('#fpg_section_image_shape_main').hide();
-                    $('#fpg_meta_hover_color_main').show();                
+                    $('#fpg_meta_hover_color_main').hide();                
                     $('#fpg_single_content_section_padding_box').show();
                     $('#fpg_title_hover_color_box').show();
                     $('#fpg_meta_settings_main').show();
@@ -954,11 +956,13 @@
                     $('#fancy_button_option_main').show();
                     $('#fpg_button_settings_main').show();
                     $('#fpg_section_bg_hover_main').hide();
+                    $('#fpg_meta_icon_color_main').hide();
   
                 }else if (selectedListStyle === 'liststyle4') {
-                    $('#fpg-feature-image-size').hide();
-                    $('#fpg-feature-image-right').show();
-                    $('#fpg-feature-image-left').show();
+                    $('#fpg_meta_icon_color_main').hide();
+                    $('#fpg_feature_image_size').show();
+                    $('#fpg-feature-image-right').hide();
+                    $('#fpg-feature-image-left').hide();
                     $('#fpg_field_group_author_main').show();
                     $('#fpg_field_group_post_date_main').show();
                     $('#fpg_field_group_excerpt_main').show();
@@ -993,7 +997,7 @@
                     $('#fpg_button_settings_main').show();
                     $('#fpg_section_bg_hover_main').hide();  
                 }else if (selectedListStyle === 'liststyle5') {
-                    $('#fpg-feature-image-size').hide();
+                    $('#fpg_feature_image_size').hide();
                     $('#fpg-feature-image-right').show();
                     $('#fpg-feature-image-left').show();
                     $('#fpg_field_group_author_main').hide();
@@ -1002,7 +1006,8 @@
                     $('#fpg_field_group_categories_main').show();
                     $('#fpg_field_group_tag_main').hide();
                     $('#fpg_field_group_comment_count_main').hide(); 
-                    $('#fpg_field_group_button_main').show(); 
+                    $('#fpg_field_group_button_main').show();
+                    $('#fpg_meta_icon_color_main').hide(); 
                     // Ordering
                     $('#fpg-read-more-alignment').show();
                     $('#fpg_title_order_main').show(); 
@@ -1031,7 +1036,7 @@
                     $('#fpg_section_bg_hover_main').hide();
   
                 }else if (selectedListStyle === 'liststyle6') {
-                    $('#fpg-feature-image-size').hide();
+                    $('#fpg_feature_image_size').hide();
                     $('#fpg-feature-image-right').show();
                     $('#fpg-feature-image-left').show();
                     $('#fpg_field_group_author_main').show();
@@ -1040,7 +1045,8 @@
                     $('#fpg_field_group_categories_main').hide();
                     $('#fpg_field_group_tag_main').hide();
                     $('#fpg_field_group_comment_count_main').hide(); 
-                    $('#fpg_field_group_button_main').hide(); 
+                    $('#fpg_field_group_button_main').hide();
+                    $('#fpg_meta_icon_color_main').hide(); 
                     // Ordering
                     $('#fpg-read-more-alignment').show();
                     $('#fpg_title_order_main').show(); 
@@ -1069,7 +1075,8 @@
                     $('#fpg_section_bg_hover_main').hide();
   
                 }else if (selectedListStyle === 'liststyle7') {
-                    $('#fpg-feature-image-size').hide();
+                    $('#fpg_meta_icon_color_main').hide();
+                    $('#fpg_feature_image_size').hide();
                     $('#fpg-feature-image-right').show();
                     $('#fpg-feature-image-left').show();
                     $('#fpg_field_group_author_main').hide();
@@ -1107,7 +1114,8 @@
                     $('#fpg_section_bg_hover_main').hide();
   
                 }else if (selectedListStyle === 'liststyle8') {
-                    $('#fpg-feature-image-size').hide();
+                    $('#fpg_feature_image_size').hide();
+                    $('#fpg_meta_icon_color_main').hide();
                     $('#fpg-feature-image-right').show();
                     $('#fpg-feature-image-left').show();
                     $('#fpg_field_group_author_main').show();
@@ -1148,7 +1156,7 @@
             } else if (selectedLayout === 'isotope') {
                 
                 if (selectedIsotopeStyle === 'isotopestyle1') {
-                    $('#fpg-feature-image-size').show();
+                    $('#fpg_feature_image_size').show();
                     $('#fpg-feature-image-right').hide();
                     $('#fpg-feature-image-left').hide();
                     $('#fpg_field_group_author_main').show();
@@ -1158,6 +1166,7 @@
                     $('#fpg_field_group_tag_main').show();
                     $('#fpg_field_group_comment_count_main').show(); 
                     $('#fpg_field_group_button_main').show(); 
+                    $('#fpg_meta_icon_color_main').hide();
                     // Ordering
                     $('#fpg-read-more-alignment').show();
                     $('#fpg_title_order_main').show(); 
@@ -1186,7 +1195,7 @@
                     $('#fpg_section_bg_hover_main').hide();
 
                 } else if (selectedIsotopeStyle === 'isotopestyle2') {
-                    $('#fpg-feature-image-size').show();
+                    $('#fpg_feature_image_size').show();
                     $('#fpg-feature-image-right').hide();
                     $('#fpg-feature-image-left').hide();
                     $('#fpg_field_group_author_main').show();
@@ -1197,6 +1206,7 @@
                     $('#fpg_field_group_comment_count_main').hide(); 
                     $('#fpg_field_group_button_main').show(); 
                     // Ordering
+                    $('#fpg_meta_icon_color_main').hide();
                     $('#fpg-read-more-alignment').show();
                     $('#fpg_title_order_main').show(); 
                     $('#fpg_meta_order_main').show();
@@ -1435,12 +1445,12 @@
         function toggleImageFields() {
             var hideFeatureImage = $('input[name="fancy_post_hide_feature_image"]:checked').val();
             if (hideFeatureImage === 'off') {
-                $('#fpg_feature_image_size').hide();
+                $('#fpg-feature-image-size').hide();
                 $('.fpg-media-source').hide();
                 $('.fpg-hover-animation').hide();
                 $('.fpg-image-border-radius').hide();
             } else {
-                $('#fpg_feature_image_size').show();
+                $('#fpg-feature-image-size').show();
                 $('.fpg-media-source').show();
                 $('.fpg-hover-animation').show();
                 $('.fpg-image-border-radius').show();

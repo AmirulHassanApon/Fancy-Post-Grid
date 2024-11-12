@@ -65,8 +65,6 @@ ob_start();
                 // Capture and sanitize tag terms if 'tags' taxonomy is selected
                 $tag_terms = array_map('intval', $fpg_filter_tags_terms);   
 
-
-
                 // Get values from the form inputs           
                 $args = array(
                     'post_type'      => $fancy_post_type,
@@ -244,26 +242,7 @@ ob_start();
                                     <?php endif; ?>
                                 </<?php echo esc_attr($title_tag); ?>>
                             <?php endif; ?>
-                            <!-- Excerpt -->
-                            <?php if ($fpg_field_group_excerpt) : ?>
-                                <div class="fpg-excerpt <?php echo esc_attr($excerpt_alignment_class); ?>">
-
-                                    <p>
-                                    <?php
-                                        $excerpt = get_the_content();
-
-                                        if ($fancy_post_excerpt_limit_type === 'words') {
-                                            echo esc_html(wp_trim_words($excerpt, $fancy_post_excerpt_limit, $excerpt_more_text));
-                                        } else {
-                                            // Strip tags to avoid breaking HTML, then apply character limit
-                                            $excerpt = wp_strip_all_tags($excerpt);
-                                            echo esc_html(mb_strimwidth($excerpt, 0, $fancy_post_excerpt_limit, $excerpt_more_text));
-                                        }
-                                    ?>
-                                    </p>
-                                </div>
-                            <?php endif; ?>
-                        
+                            
                             <!-- Button -->
                             <?php if ($fpg_field_group_read_more) : ?>
                                 
