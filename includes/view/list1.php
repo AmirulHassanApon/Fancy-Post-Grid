@@ -6,9 +6,7 @@ ob_start();
 <section class="rs-blog-layout-8">
     <div class="container">
         <div class="row">
-            <?php
-                // =======Pagination==========
-                
+            <?php               
                 // Check if pagination is on or off
                 if ($fancy_post_pagination === 'off') {
                     $fpg_post_per_page = -1;
@@ -136,16 +134,17 @@ ob_start();
                     // Determine if the feature image should be hidden
                     $hide_feature_image = isset($fancy_post_hide_feature_image) && $fancy_post_hide_feature_image === 'off';
                     
+                    // Determine the feature image size                    
+                    $feature_image_left_size = isset($fancy_post_feature_image_left) ? (string) $fancy_post_feature_image_left : '';  
 
-                    // Determine the feature image size
-                    $feature_image_size = isset($fancy_post_feature_image_size) ? (string) $fancy_post_feature_image_size : '';  
-
+                    $feature_image_right_size = isset($fancy_post_feature_image_right) ? (string) $fancy_post_feature_image_right : '';  
                                
                     // Determine the media source
                     $media_source = isset($fancy_post_media_source) ? $fancy_post_media_source : 'feature_image';
                     
                     // Determine the hover animation
                     $hover_animation = !empty($fancy_post_hover_animation) ? $fancy_post_hover_animation : 'none';
+                    
                     
                     // Get the feature image or first image from content
                     if ($media_source === 'first_image') {
@@ -154,10 +153,23 @@ ob_start();
                         preg_match_all('/<img[^>]+>/i', $content, $matches);
                         $first_image = !empty($matches[0][0]) ? $matches[0][0] : '';
                         preg_match('/src="([^"]+)"/i', $first_image, $img_src);
-                        $feature_image_url = !empty($img_src[1]) ? $img_src[1] : get_the_post_thumbnail_url(get_the_ID(), $feature_image_size);
+                        $feature_image_left_url = !empty($img_src[1]) ? $img_src[1] : get_the_post_thumbnail_url(get_the_ID(), $feature_image_left_size);
                     } else {
-                        $feature_image_url = get_the_post_thumbnail_url(get_the_ID(), $feature_image_size);
+                        $feature_image_left_url = get_the_post_thumbnail_url(get_the_ID(), $feature_image_left_size);
                     }
+
+                    // Get the feature image or first image from content
+                    if ($media_source === 'first_image') {
+
+                        $content = get_the_content();
+                        preg_match_all('/<img[^>]+>/i', $content, $matches);
+                        $first_image = !empty($matches[0][0]) ? $matches[0][0] : '';
+                        preg_match('/src="([^"]+)"/i', $first_image, $img_src);
+                        $feature_image_right_url = !empty($img_src[1]) ? $img_src[1] : get_the_post_thumbnail_url(get_the_ID(), $feature_image_right_size);
+                    } else {
+                        $feature_image_right_url = get_the_post_thumbnail_url(get_the_ID(), $feature_image_right_size);
+                    }
+
 
                     // Apply hover animation class if needed
                     $hover_class = $hover_animation !== 'none' ? 'hover-' . esc_attr($hover_animation) : '';
@@ -169,7 +181,8 @@ ob_start();
                             <!-- Image -->
                             <?php if (!$hide_feature_image && $fpg_field_group_image) : ?>
                                 <div class="rs-blog__thumb">
-                                    <?php if ($feature_image_url) : ?>
+                                    
+                                    <?php if ($feature_image_left_url) : ?>
 
                                         <?php
 
@@ -185,7 +198,7 @@ ob_start();
 
                                         ?>
                                         <a href="<?php the_permalink(); ?>" <?php echo esc_attr($target_blank); ?>>
-                                            <img src="<?php echo esc_url( $feature_image_url ); ?>" alt="<?php echo esc_attr( $alt_text ); ?>">
+                                            <img src="<?php echo esc_url( $feature_image_left_url ); ?>" alt="<?php echo esc_attr( $alt_text ); ?>">
                                         </a>
                                         <!-- CATEGORY -->
                                         <?php if ($fpg_field_group_categories) : ?>
@@ -298,7 +311,8 @@ ob_start();
                                 <!-- Image -->
                                 <?php if (!$hide_feature_image && $fpg_field_group_image) : ?>
                                     <div class="rs-blog__thumb">
-                                        <?php if ($feature_image_url) : ?>
+                                        
+                                        <?php if ($feature_image_right_url) : ?>
                                             <?php
                                                 $post_id = get_the_ID();
                                                 // Get the thumbnail ID
@@ -311,7 +325,7 @@ ob_start();
                                                 $alt_text = !empty($image_alt) ? esc_attr($image_alt) : esc_attr($image_title);
                                             ?>
                                             <a href="<?php the_permalink(); ?>" <?php echo esc_attr($target_blank); ?>>
-                                                <img src="<?php echo esc_url( $feature_image_url ); ?>" alt="<?php echo esc_attr( $alt_text ); ?>">
+                                                <img src="<?php echo esc_url( $feature_image_right_url ); ?>" alt="<?php echo esc_attr( $alt_text ); ?>">
                                             </a>
                                             <!-- CATEGORY -->
                                             <?php if ($fpg_field_group_categories) : ?>
@@ -399,10 +413,8 @@ ob_start();
                                 <!-- Image -->
                                 <?php if (!$hide_feature_image && $fpg_field_group_image) : ?>
                                     <div class="rs-blog__thumb">
-                                        <?php if ($feature_image_url) : ?>
-
+                                        <?php if ($feature_image_right_url) : ?>
                                             <?php
-
                                                 $post_id = get_the_ID();
                                                 // Get the thumbnail ID
                                                 $thumbnail_id = get_post_thumbnail_id($post_id);
@@ -412,10 +424,9 @@ ob_start();
                                                 $image_title = get_the_title($thumbnail_id);
                                                 // Use alt text if available; otherwise, use title text
                                                 $alt_text = !empty($image_alt) ? esc_attr($image_alt) : esc_attr($image_title);
-
                                             ?>
                                             <a href="<?php the_permalink(); ?>" <?php echo esc_attr($target_blank); ?>>
-                                                <img src="<?php echo esc_url( $feature_image_url ); ?>" alt="<?php echo esc_attr( $alt_text ); ?>">
+                                                <img src="<?php echo esc_url( $feature_image_right_url ); ?>" alt="<?php echo esc_attr( $alt_text ); ?>">
                                             </a>
                                             <!-- CATEGORY -->
                                             <?php if ($fpg_field_group_categories) : ?>
