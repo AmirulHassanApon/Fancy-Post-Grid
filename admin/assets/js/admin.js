@@ -1048,9 +1048,9 @@
   
                 }else if (selectedListStyle === 'liststyle6') {
                     $('#fpg_excerpt_setting_main').show();
-                    $('#fpg_feature_image_size').hide();
-                    $('#fpg-feature-image-right').show();
-                    $('#fpg-feature-image-left').show();
+                    $('#fpg_feature_image_size').show();
+                    $('#fpg-feature-image-right').hide();
+                    $('#fpg-feature-image-left').hide();
                     $('#fpg_field_group_author_main').show();
                     $('#fpg_field_group_post_date_main').show();
                     $('#fpg_field_group_excerpt_main').show();
@@ -1090,9 +1090,9 @@
                 }else if (selectedListStyle === 'liststyle7') {
                     $('#fpg_excerpt_setting_main').show();
                     $('#fpg_meta_icon_color_main').hide();
-                    $('#fpg_feature_image_size').hide();
-                    $('#fpg-feature-image-right').show();
-                    $('#fpg-feature-image-left').show();
+                    $('#fpg_feature_image_size').show();
+                    $('#fpg-feature-image-right').hide();
+                    $('#fpg-feature-image-left').hide();
                     $('#fpg_field_group_author_main').hide();
                     $('#fpg_field_group_post_date_main').hide();
                     $('#fpg_field_group_excerpt_main').hide();
