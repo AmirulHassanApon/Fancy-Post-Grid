@@ -5098,10 +5098,6 @@ img {
         border-radius: 10px;
     }
 
-
-
-
-
     /* blog layout 23 css */
 
     /* blog layout 24 css */
@@ -5126,6 +5122,7 @@ img {
         display: flex;
         align-items: center;
         margin-bottom: 10px;
+        padding: 0;
     }
     .rs-blog-layout-24-item .rs-content .rs-meta ul li {
         font-size: 15px;
