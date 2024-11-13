@@ -1104,7 +1104,7 @@
                     $('#fpg-read-more-alignment').show();
                     $('#fpg_title_order_main').show(); 
                     $('#fpg_meta_order_main').hide();
-                    $('#fpg_excerpt_order_main').show();
+                    $('#fpg_excerpt_order_main').hide();
                     $('#fpg_button_order_main').show();
                     $('#fpg_author_color_main').hide();
                     $('#fpg_author_bg_color_main').hide();
@@ -1126,7 +1126,7 @@
                     $('#fancy_button_option_main').show();
                     $('#fpg_button_settings_main').show();
                     $('#fpg_section_bg_hover_main').hide();
-                    $('#fpg_excerpt_main').show(); 
+                    $('#fpg_excerpt_main').hide(); 
   
                 }else if (selectedListStyle === 'liststyle8') {
                     $('#fpg_excerpt_setting_main').show();
