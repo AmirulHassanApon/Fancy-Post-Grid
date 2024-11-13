@@ -1007,12 +1007,12 @@
 
                 }else if (selectedListStyle === 'liststyle5') {
                     $('#fpg_excerpt_setting_main').show();
-                    $('#fpg_feature_image_size').hide();
-                    $('#fpg-feature-image-right').show();
-                    $('#fpg-feature-image-left').show();
+                    $('#fpg_feature_image_size').show();
+                    $('#fpg-feature-image-right').hide();
+                    $('#fpg-feature-image-left').hide();
                     $('#fpg_field_group_author_main').hide();
                     $('#fpg_field_group_post_date_main').show();
-                    $('#fpg_field_group_excerpt_main').hide();
+                    $('#fpg_field_group_excerpt_main').show();
                     $('#fpg_field_group_categories_main').show();
                     $('#fpg_field_group_tag_main').hide();
                     $('#fpg_field_group_comment_count_main').hide(); 
