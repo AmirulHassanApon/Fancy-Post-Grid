@@ -153,7 +153,7 @@ ob_start();
                     // Apply hover animation class if needed
                     $hover_class = $hover_animation !== 'none' ? 'hover-' . esc_attr($hover_animation) : '';
             ?>
-                <div class="col-lg-12">
+                <div class="col-lg-6">
                     <div class="rs-blog-layout-22-item <?php echo esc_attr($main_alignment_class); ?> <?php echo esc_attr($hover_class); ?>">
                         <!-- Image -->
                         <?php if (!$hide_feature_image && $fpg_field_group_image) : ?>
@@ -185,31 +185,26 @@ ob_start();
                         <div class="rs-content">
                             <div class="rs-meta">
                                 <!-- Meta -->
-                                <ul class="meta-data-list <?php echo esc_attr($meta_alignment_class); ?>">
-
+                                <ul class=" <?php echo esc_attr($meta_alignment_class); ?>">
                                     <!-- META DATE -->
                                     <?php if ($fpg_field_group_post_date) : ?>
-                                        <li class="meta-date">
+                                        <li>
                                             <i class="ri-calendar-line"></i>
                                             <?php echo esc_html( get_the_date( 'M d, Y' ) ); ?>
                                         </li>
                                     <?php endif; ?>
                                     <!-- CATEGORY -->
                                     <?php if ($fpg_field_group_categories) : ?>
-                                    <li class="rs-category">
+                                    <li>
                                         <i class="ri-price-tag-3-line"></i> <a href="#"><?php echo get_the_category_list(', '); ?></a>
                                     </li>
                                     <?php endif; ?>
-
-                                    
                                 </ul>
                             </div>
 
                             <!-- Title -->
                             <?php if ($fpg_field_group_title) : ?>
                                 <<?php echo esc_attr($title_tag); ?> class="title <?php echo esc_attr($title_alignment_class); ?>">
-
-                                    
                                 <?php if ($fancy_link_details === 'on') : ?>
                                         <a href="<?php the_permalink(); ?>"
                                            <?php echo esc_attr($target_blank); ?>
@@ -259,12 +254,10 @@ ob_start();
                             <?php if ($fpg_field_group_read_more) : ?>
                                 
                                 <div class="btn-wrapper <?php echo esc_attr($button_alignment_class); ?>">
-
                                     <a class="rs-btn <?php echo esc_attr($button_class); ?>" 
                                        href="<?php the_permalink(); ?>" 
-                                       <?php echo esc_attr($target_blank); ?>>
-                                       
-                                        <?php echo esc_html($fancy_post_read_more_text); ?>
+                                       <?php echo esc_attr($target_blank); ?>> 
+                                       <?php echo esc_html($fancy_post_read_more_text); ?>
                                         <i class="ri-arrow-right-line"></i>
                                     </a>
                                 </div>
