@@ -1129,19 +1129,19 @@
                     $('#fpg_excerpt_main').hide(); 
   
                 }else if (selectedListStyle === 'liststyle8') {
-                    $('#fpg_excerpt_setting_main').show();
-                    $('#fpg_feature_image_size').hide();
+                    $('#fpg_excerpt_setting_main').hide();
+                    $('#fpg_feature_image_size').show();
                     $('#fpg_meta_icon_color_main').hide();
-                    $('#fpg-feature-image-right').show();
-                    $('#fpg-feature-image-left').show();
+                    $('#fpg-feature-image-right').hide();
+                    $('#fpg-feature-image-left').hide();
                     $('#fpg_field_group_author_main').show();
                     $('#fpg_field_group_post_date_main').show();
-                    $('#fpg_field_group_excerpt_main').show();
+                    $('#fpg_field_group_excerpt_main').hide();
                     $('#fpg_field_group_categories_main').show();
                     $('#fpg_field_group_tag_main').hide();
                     $('#fpg_field_group_comment_count_main').hide(); 
                     $('#fpg_field_group_button_main').show(); 
-                    $('#fpg_excerpt_main').show(); 
+                    $('#fpg_excerpt_main').hide(); 
                     // Ordering
                     $('#fpg-read-more-alignment').show();
                     $('#fpg_title_order_main').show(); 
