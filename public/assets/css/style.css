@@ -5480,8 +5480,8 @@ img {
     .rs-blog-layout-27-item .rs-content{
         padding: 33px 30px 34px;
     }
-    .rs-blog-layout-27-item .rs-content .rs-meta ul li:first-child{
-        margin-right: 15px;
+    .rs-blog-layout-27 .rs-blog-layout-27-item .rs-content .rs-meta ul{
+        padding: 0px;
     }
     .rs-blog-layout-27-item .rs-content .rs-meta ul li{
         display: inline-block;
@@ -6481,9 +6481,7 @@ img {
         min-width: 210px;
         max-width: 210px;
     }
-    .rs-blog-layout-27-item .rs-content .rs-meta ul li:first-child{
-        margin-right: 10px;
-    }
+    
     .rs-blog-layout-27-item .rs-content .rs-meta ul li{
         font-size: 14px;
     }
