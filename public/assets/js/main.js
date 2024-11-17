@@ -52,7 +52,9 @@ jQuery(document).ready(function($) {
             prevEl: ".swiper-button-prev",
         },
     });
+});
 
+jQuery(document).ready(function($) {
     // Initialize Isotope after all images are loaded
     var $grid = $('.rs-grid').isotope({
         itemSelector: '.rs-grid-item',

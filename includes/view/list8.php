@@ -437,33 +437,6 @@ ob_start();
                     </div>
                     <?php elseif ($query->current_post === 3) : ?>
                     <div class="rs-blog-layout-27-item <?php echo esc_attr($main_alignment_class); ?> <?php echo esc_attr($hover_class); ?>">
-                        <!-- Image -->
-                        <?php if (!$hide_feature_image && $fpg_field_group_image) : ?>
-                            <div class="rs-thumb">
-                                <?php if ($feature_image_url) : ?>
-
-                                    <?php
-
-                                        $post_id = get_the_ID();
-                                        // Get the thumbnail ID
-                                        $thumbnail_id = get_post_thumbnail_id($post_id);
-                                        
-                                        // Get the image alt text and title text
-                                        $image_alt = get_post_meta($thumbnail_id, '_wp_attachment_image_alt', true);
-                                        $image_title = get_the_title($thumbnail_id);
-                                        // Use alt text if available; otherwise, use title text
-                                        $alt_text = !empty($image_alt) ? esc_attr($image_alt) : esc_attr($image_title);
-
-                                    ?>
-                                    <a href="<?php the_permalink(); ?>" <?php echo esc_attr($target_blank); ?>>
-                                        <img src="<?php echo esc_url( $feature_image_url ); ?>" alt="<?php echo esc_attr( $alt_text ); ?>">
-                                    </a>
-                                    
-                                    
-                                <?php endif; ?>
-                            </div>
-                        <?php endif; ?>
-
                         <div class="rs-content">
                             <div class="rs-meta">
                                 <ul class="<?php echo esc_attr($meta_alignment_class); ?>">
@@ -528,6 +501,34 @@ ob_start();
                             <?php endif; ?>
                             <!-- END Button -->
                         </div>
+                        <!-- Image -->
+                        <?php if (!$hide_feature_image && $fpg_field_group_image) : ?>
+                            <div class="rs-thumb">
+                                <?php if ($feature_image_url) : ?>
+
+                                    <?php
+
+                                        $post_id = get_the_ID();
+                                        // Get the thumbnail ID
+                                        $thumbnail_id = get_post_thumbnail_id($post_id);
+                                        
+                                        // Get the image alt text and title text
+                                        $image_alt = get_post_meta($thumbnail_id, '_wp_attachment_image_alt', true);
+                                        $image_title = get_the_title($thumbnail_id);
+                                        // Use alt text if available; otherwise, use title text
+                                        $alt_text = !empty($image_alt) ? esc_attr($image_alt) : esc_attr($image_title);
+
+                                    ?>
+                                    <a href="<?php the_permalink(); ?>" <?php echo esc_attr($target_blank); ?>>
+                                        <img src="<?php echo esc_url( $feature_image_url ); ?>" alt="<?php echo esc_attr( $alt_text ); ?>">
+                                    </a>
+                                    
+                                    
+                                <?php endif; ?>
+                            </div>
+                        <?php endif; ?>
+
+                        
                     </div>
                     <?php endif; ?>
                 <?php 
