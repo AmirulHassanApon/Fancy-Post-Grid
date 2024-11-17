@@ -437,8 +437,8 @@ function fancy_post_grid_shortcode( $atts ) {
 			}
 
 			if( $fancy_isotope_style == 'isotopestyle2'){				
-				require  $dir.'view/isotope1.php';
-				return $isotope1;		
+				require  $dir.'view/isotope2.php';
+				return $isotope2;		
 			}
 		}
 	}

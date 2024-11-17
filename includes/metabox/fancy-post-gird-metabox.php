@@ -671,6 +671,8 @@ function fancy_post_grid_metabox_shortcode_callback( $post ) {
                     $isotope_styles = [
                         'isotopestyle1' => 'Isotope Layout 1',
                         'isotopestyle2' => 'Isotope Layout 2',
+                        'isotopestyle3' => 'Isotope Layout 3',
+                        'isotopestyle4' => 'Isotope Layout 4',
                     ];
 
                     foreach ($isotope_styles as $style_value => $style_label) :
