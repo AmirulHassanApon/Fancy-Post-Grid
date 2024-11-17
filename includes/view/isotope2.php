@@ -2,14 +2,14 @@
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 ob_start();
 ?>
-<!-- isotope 1 -->
-<section class="rs-blog-layout-5">
+<!-- isotope 2 -->
+<section class="rs-blog-layout-5 rs-blog-layout-10">
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
                 <div class="rs-blog-layout-10-filter">
-                    <div class="filter-button-group" style="justify-content: <?php echo esc_attr($fpg_filter_align); ?>;">
-                        <button class="active" data-filter="*">ALL</button>
+                    <div class="filter-button-group" style="justify-content: <?php echo esc_attr($fancy_post_filter_alignment); ?>;">
+                        <button class="active" data-filter="*"><?php echo esc_attr($fancy_post_filter_text); ?></button>
                         <?php
                         // Get unique categories from posts
                         $categories = get_categories();
@@ -279,6 +279,7 @@ ob_start();
 </section>
 <style type="text/css">
     /* General Styles */
+
     .rs-blog-layout-5 {
         <?php if (!empty($fpg_section_background_color)) : ?>
             background-color: <?php echo esc_attr($fpg_section_background_color); ?>;
@@ -290,9 +291,46 @@ ob_start();
             padding: <?php echo esc_attr($fpg_section_padding); ?>;
         <?php endif; ?>
     }
+    .rs-blog-layout-10 .rs-blog-layout-10-filter .filter-button-group button{
+        
+        font-weight: 500;
+        <?php if (!empty($fancy_post_filter_bg_color)) : ?>
+            background-color: <?php echo esc_attr($fancy_post_filter_bg_color); ?>;
+        <?php endif; ?>
+        <?php if (!empty($fancy_post_filter_text_color)) : ?>
+            color: <?php echo esc_attr($fancy_post_filter_text_color); ?>;
+        <?php endif; ?>
+    
+        <?php if (!empty($fancy_post_filter_margin)) : ?>
+            margin: <?php echo esc_attr($fancy_post_filter_margin); ?>px;
+        <?php endif; ?>
+        <?php if (!empty($fancy_post_filter_padding)) : ?>
+            padding: <?php echo esc_attr($fancy_post_filter_padding); ?>px;
+        <?php endif; ?>
+        <?php if (!empty($fancy_post_filter_font_size)) : ?>
+            font-size: <?php echo esc_attr($fancy_post_filter_font_size); ?>px;
+        <?php endif; ?>
+        
+    }
 
+    .rs-blog-layout-10 .rs-blog-layout-10-filter .filter-button-group button.active{
+        <?php if (!empty($fancy_post_filter_active_hover_color)) : ?>
+            background-color: <?php echo esc_attr($fancy_post_filter_active_hover_color); ?>;
+        <?php endif; ?>
+        <?php if (!empty($fancy_post_filter_active_color)) : ?>
+            color: <?php echo esc_attr($fancy_post_filter_active_color); ?>;
+        <?php endif; ?>
+    }
+    .rs-blog-layout-10 .rs-blog-layout-10-filter .filter-button-group button:hover{
+        <?php if (!empty($fancy_post_filter_hover_bg_color)) : ?>
+            background-color: <?php echo esc_attr($fancy_post_filter_hover_bg_color); ?>;
+        <?php endif; ?>
+        <?php if (!empty($fancy_post_filter_active_color)) : ?>
+            color: <?php echo esc_attr($fancy_post_filter_active_color); ?>;
+        <?php endif; ?>
+    }
     /* Single Item Styles */
-    .rs-blog-layout-5 .rs-blog__single {
+    .rs-blog-layout-5 .rs-grid .rs-grid-item .rs-grid .rs-grid-item .rs-blog__single {
         <?php if (!empty($fpg_single_section_background_color)) : ?>
             background-color: <?php echo esc_attr($fpg_single_section_background_color); ?>;
         <?php endif; ?>
@@ -306,13 +344,12 @@ ob_start();
             border-radius: <?php echo esc_attr($fancy_post_section_border_radius); ?>;
         <?php endif; ?>
     }
-    .rs-blog-layout-5 .rs-blog__single .rs-thumb{
+    .rs-blog-layout-5 .rs-grid .rs-grid-item .rs-blog__single .rs-thumb{
         <?php if (!empty($fancy_post_image_border_radius)) : ?>
             border-radius: <?php echo esc_attr($fancy_post_image_border_radius); ?>;
         <?php endif; ?>
     }
-
-    .rs-blog-layout-5 .rs-blog__single .rs-content {
+    .rs-blog-layout-5 .rs-grid .rs-grid-item .rs-blog__single .rs-content {
         <?php if (!empty($fpg_single_section_border_color)) : ?>
             border-color: <?php echo esc_attr($fpg_single_section_border_color); ?>;
         <?php endif; ?>
@@ -328,7 +365,7 @@ ob_start();
     }
 
     /* Title Styles */
-    .rs-blog-layout-5 .rs-blog__single .rs-content .title {
+    .rs-blog-layout-5 .rs-grid .rs-grid-item .rs-blog__single .rs-content .title {
         
         <?php if (!empty($fpg_title_order)) : ?>
             order: <?php echo esc_attr($fpg_title_order); ?>;
@@ -349,7 +386,7 @@ ob_start();
     }
 
     /* Title Styles */
-    .rs-blog-layout-5 .rs-blog__single .rs-content .title a {
+    .rs-blog-layout-5 .rs-grid .rs-grid-item .rs-blog__single .rs-content .title a {
         padding: <?php echo esc_attr($fpg_title_padding); ?>;
         margin: <?php echo esc_attr($fpg_title_margin); ?>;
         <?php if (!empty($fpg_title_color)) : ?>
@@ -363,27 +400,14 @@ ob_start();
         <?php endif; ?>
         
     }
-
-    .rs-blog-layout-5 .rs-blog__single .rs-content .title a:hover {
+    .rs-blog-layout-5 .rs-grid .rs-grid-item .rs-blog__single .rs-content .title a:hover {
         <?php if (!empty($fpg_title_hover_color)) : ?>
             color: <?php echo esc_attr($fpg_title_hover_color); ?>;
         <?php endif; ?>
-    }
-
-    .rs-blog-layout-5 .title-link {
-        <?php if (!empty($fpg_title_color)) : ?>
-            color: <?php echo esc_attr($fpg_title_color); ?>;
-        <?php endif; ?>
-    }
-
-    .rs-blog-layout-5 .title-link:hover {
-        <?php if (!empty($fpg_title_hover_color)) : ?>
-            color: <?php echo esc_attr($fpg_title_hover_color); ?>;
-        <?php endif; ?>
-    }
+    }.rs-grid .rs-grid-item 
 
     /* Excerpt Styles */
-    .rs-blog-layout-5 .fpg-excerpt {
+    .rs-blog-layout-5 .rs-grid .rs-grid-item .fpg-excerpt {
         <?php if (!empty($fpg_excerpt_color)) : ?>
             color: <?php echo esc_attr($fpg_excerpt_color); ?>;
         <?php endif; ?>
@@ -399,13 +423,13 @@ ob_start();
         
         
     }
-    .rs-blog-layout-5 .rs-blog__single .rs-content .fpg-excerpt{
+    .rs-blog-layout-5 .rs-grid .rs-grid-item .rs-blog__single .rs-content .fpg-excerpt{
         <?php if (!empty($fpg_excerpt_order)) : ?>
             order: <?php echo esc_attr($fpg_excerpt_order); ?>;
         <?php endif; ?>
 
     }
-    .rs-blog-layout-5 .rs-blog__single .rs-content .fpg-excerpt p{
+    .rs-blog-layout-5 .rs-grid .rs-grid-item .rs-blog__single .rs-content .fpg-excerpt p{
         
         <?php if (!empty($fpg_excerpt_padding)) : ?>
             padding: <?php echo esc_attr($fpg_excerpt_padding); ?>;
@@ -416,7 +440,7 @@ ob_start();
 
     }
 
-    .rs-blog-layout-5 .rs-blog__single .rs-content .btn-wrapper{
+    .rs-blog-layout-5 .rs-grid .rs-grid-item .rs-blog__single .rs-content .btn-wrapper{
         <?php if (!empty($fpg_button_padding)) : ?>
             padding: <?php echo esc_attr($fpg_button_padding); ?>;
         <?php endif; ?>
@@ -424,11 +448,9 @@ ob_start();
             margin: <?php echo esc_attr($fpg_button_margin); ?>;
         <?php endif; ?>
     }
-
-
     /* Meta Data Styles */
 
-    .rs-blog-layout-5 .rs-blog__single .rs-content ul{
+    .rs-blog-layout-5 .rs-grid .rs-grid-item .rs-blog__single .rs-content ul{
         <?php if (!empty($fpg_meta_order)) : ?>
             order: <?php echo esc_attr($fpg_meta_order); ?>;
         <?php endif; ?>
@@ -440,7 +462,7 @@ ob_start();
         <?php endif; ?>
     }
 
-    .rs-blog-layout-5 .rs-blog__single .rs-content ul{
+    .rs-blog-layout-5 .rs-grid .rs-grid-item .rs-blog__single .rs-content ul{
         <?php if (!empty($fpg_meta_gap)) : ?>
             gap: <?php echo esc_attr($fpg_meta_gap); ?>;
         <?php endif; ?>
@@ -450,13 +472,13 @@ ob_start();
         
     }
 
-    .rs-blog-layout-5 .rs-blog__single .rs-content ul li,
-    .rs-blog-layout-5 .rs-blog__single .rs-content ul li a,
-    .rs-blog-layout-5 .meta-data-list .meta-date i,
-    .rs-blog-layout-5 .meta-data-list .meta-author i,
-    .rs-blog-layout-5 .meta-data-list .meta-categories i,
-    .rs-blog-layout-5 .meta-data-list .meta-comment-count i,
-    .rs-blog-layout-5 .meta-data-list .meta-tags i
+    .rs-blog-layout-5 .rs-grid .rs-grid-item .rs-blog__single .rs-content ul li,
+    .rs-blog-layout-5 .rs-grid .rs-grid-item .rs-blog__single .rs-content ul li a,
+    .rs-blog-layout-5 .rs-grid .rs-grid-item .meta-data-list .meta-date i,
+    .rs-blog-layout-5 .rs-grid .rs-grid-item .meta-data-list .meta-author i,
+    .rs-blog-layout-5 .rs-grid .rs-grid-item .meta-data-list .meta-categories i,
+    .rs-blog-layout-5 .rs-grid .rs-grid-item .meta-data-list .meta-comment-count i,
+    .rs-blog-layout-5 .rs-grid .rs-grid-item .meta-data-list .meta-tags i
     {
         <?php if (!empty($fpg_meta_color)) : ?>
             color: <?php echo esc_attr($fpg_meta_color); ?>;
@@ -471,7 +493,7 @@ ob_start();
         
     }
 
-    .rs-blog-layout-5 .rs-blog__single .rs-content ul li i{
+    .rs-blog-layout-5 .rs-grid .rs-grid-item .rs-blog__single .rs-content ul li i{
         <?php if (!empty($fpg_meta_icon_color)) : ?>
             color: <?php echo esc_attr($fpg_meta_icon_color); ?>;
         <?php endif; ?>
@@ -482,7 +504,7 @@ ob_start();
             font-weight: <?php echo esc_attr($fpg_meta_font_weight); ?>;
         <?php endif; ?>
     }
-    .rs-blog-layout-5 .rs-blog__single .rs-content ul li a:hover{
+    .rs-blog-layout-5 .rs-grid .rs-grid-item .rs-blog__single .rs-content ul li a:hover{
         
         <?php if (!empty($fpg_meta_hover_color)) : ?>
             color: <?php echo esc_attr($fpg_meta_hover_color); ?>;
@@ -490,7 +512,7 @@ ob_start();
     }
 
     /* Button Styles */
-    .rs-blog-layout-5 .rs-blog__single .rs-content .rs-link.<?php echo esc_attr($button_class); ?>{
+    .rs-blog-layout-5 .rs-grid .rs-grid-item .rs-blog__single .rs-content .rs-link.<?php echo esc_attr($button_class); ?>{
         <?php if (!empty($fpg_button_background_color)) : ?>
             background-color: <?php echo esc_attr($fpg_button_background_color); ?>;
         <?php endif; ?>
@@ -518,13 +540,13 @@ ob_start();
 
     }
 
-    .rs-blog-layout-5 .rs-blog__single .rs-content .btn-wrapper{
+    .rs-blog-layout-5 .rs-grid .rs-grid-item .rs-blog__single .rs-content .btn-wrapper{
         <?php if (!empty($fpg_button_order)) : ?>
             order: <?php echo esc_attr($fpg_button_order); ?>;
         <?php endif; ?>
 
     }
-    .rs-blog-layout-5 .rs-blog__single .rs-content .rs-link.<?php echo esc_attr($button_class); ?>:hover {
+    .rs-blog-layout-5 .rs-grid .rs-grid-item .rs-blog__single .rs-content .rs-link.<?php echo esc_attr($button_class); ?>:hover {
         <?php if (!empty($fpg_button_hover_background_color)) : ?>
             background-color: <?php echo esc_attr($fpg_button_hover_background_color); ?>;
         <?php endif; ?>
@@ -532,81 +554,13 @@ ob_start();
             color: <?php echo esc_attr($fpg_button_text_hover_color); ?>;
         <?php endif; ?>
     }
-    .rs-blog-layout-5 .rs-blog__single .rs-content .rs-link.<?php echo esc_attr($button_class); ?>::before{
+    .rs-blog-layout-5 .rs-grid .rs-grid-item .rs-blog__single .rs-content .rs-link.<?php echo esc_attr($button_class); ?>::before{
         <?php if (!empty($fpg_button_border_color)) : ?>
             background: <?php echo esc_attr($fpg_button_border_color); ?>;
         <?php endif; ?>
     }
 
-    /*Pagination*/
-    .fpg-pagination ul.page-numbers{
-        <?php if (!empty($fpg_pagination_gap)) : ?>
-            gap: <?php echo esc_attr($fpg_pagination_gap); ?>;
-        <?php endif; ?> 
-    }
-    .fpg-pagination ul.page-numbers li .page-numbers {
-
-        <?php if (!empty($fpg_pagination_background)) : ?>
-            background-color: <?php echo esc_attr($fpg_pagination_background); ?>;
-        <?php endif; ?>
-        <?php if (!empty($fpg_pagination_color)) : ?>
-            color: <?php echo esc_attr($fpg_pagination_color); ?>;
-        <?php endif; ?>
-        <?php if (!empty($fpg_pagination_border_color)) : ?>
-            border-color: <?php echo esc_attr($fpg_pagination_border_color); ?>;
-        <?php endif; ?>
-        
-
-        <?php if (!empty($fpg_pagination_border_width)) : ?>
-            border-width: <?php echo esc_attr($fpg_pagination_border_width); ?>;
-        <?php endif; ?>
-
-        <?php if (!empty($fpg_pagination_border_style)) : ?>
-            border-style: <?php echo esc_attr($fpg_pagination_border_style); ?>;
-        <?php endif; ?>
-
-        <?php if (!empty($fpg_pagination_border_radius)) : ?>
-            border-radius: <?php echo esc_attr($fpg_pagination_border_radius); ?>;
-        <?php endif; ?>
-        <?php if (!empty($fpg_pagination_height)) : ?>
-            height: <?php echo esc_attr($fpg_pagination_height); ?>;
-        <?php endif; ?>
-
-        <?php if (!empty($fpg_pagination_width)) : ?>
-            width: <?php echo esc_attr($fpg_pagination_width); ?>;
-        <?php endif; ?>
-
-        <?php if (!empty($fpg_pagination_padding)) : ?>
-            padding: <?php echo esc_attr($fpg_pagination_padding); ?>;
-        <?php endif; ?>
-        <?php if (!empty($fpg_pagination_margin)) : ?>
-            margin: <?php echo esc_attr($fpg_pagination_margin); ?>;
-        <?php endif; ?> 
-    }
-    .fpg-pagination ul.page-numbers li .page-numbers:hover{
-        <?php if (!empty($fpg_pagination_hover_background)) : ?>
-            background-color: <?php echo esc_attr($fpg_pagination_hover_background); ?>;
-        <?php endif; ?>
-        <?php if (!empty($fpg_pagination_hover_color)) : ?>
-            color: <?php echo esc_attr($fpg_pagination_hover_color); ?>;
-        <?php endif; ?>
-        <?php if (!empty($fpg_pagination_hover_border_color)) : ?>
-            border-color: <?php echo esc_attr($fpg_pagination_hover_border_color); ?>;
-        <?php endif; ?>
-    }
-    .fpg-pagination ul.page-numbers li .page-numbers.current{
-        <?php if (!empty($fpg_pagination_active_background)) : ?>
-            background-color: <?php echo esc_attr($fpg_pagination_active_background); ?>;
-        <?php endif; ?>
-        <?php if (!empty($fpg_pagination_active_color)) : ?>
-            color: <?php echo esc_attr($fpg_pagination_active_color); ?>;
-        <?php endif; ?>
-        <?php if (!empty($fpg_pagination_active_border_color)) : ?>
-            border-color: <?php echo esc_attr($fpg_pagination_active_border_color); ?>;
-        <?php endif; ?>
-    }
 </style>
 <?php
 $isotope2 = ob_get_clean();
-
 ?>
