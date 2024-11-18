@@ -49,9 +49,10 @@ include_once  FANCY_POST_GRID_PATH.'includes/metabox/fancy-post-gird-metabox.php
  * Register custom image sizes for Fancy Post Grid
  */
 function fancy_post_grid_register_image_sizes() {
-    add_image_size( 'fancy_post_custom_size', 768, 500, true ); // Custom size with 666x450 dimensions and hard crop
+    add_image_size( 'fancy_post_custom_size', 768, 500, true ); // Custom size with 768x500 dimensions and hard crop
     add_image_size( 'fancy_post_square', 500, 500, true );      // Square size with 500x500 dimensions
-    add_image_size( 'fancy_post_landscape', 834, 550, true );   // Landscape size with 800x400 dimensions
-    add_image_size( 'fancy_post_portrait', 421, 550, true );    // Portrait size with 400x800 dimensions
+    add_image_size( 'fancy_post_landscape', 834, 550, true );   // Landscape size with 834x550 dimensions
+    add_image_size( 'fancy_post_portrait', 421, 550, true );    // Portrait size with 421x550 dimensions
+    add_image_size( 'fancy_post_list', 1200, 650, true );    // Portrait size with 1200x650 dimensions
 }
 add_action( 'after_setup_theme', 'fancy_post_grid_register_image_sizes' );
