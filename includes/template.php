@@ -465,6 +465,15 @@ function fancy_post_grid_shortcode( $atts ) {
 				require  $dir.'view/isotope2.php';
 				return $isotope2;		
 			}
+			if( $fancy_isotope_style == 'isotopestyle3'){				
+				require  $dir.'view/isotope3.php';	
+				return $isotope3;		
+			}
+
+			if( $fancy_isotope_style == 'isotopestyle4'){				
+				require  $dir.'view/isotope4.php';
+				return $isotope4;		
+			}
 		}
 	}
 }

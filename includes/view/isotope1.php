@@ -325,8 +325,8 @@ ob_start();
         <?php if (!empty($fancy_post_filter_active_color)) : ?>
             color: <?php echo esc_attr($fancy_post_filter_active_color); ?>;
         <?php endif; ?>
-        <?php if (!empty($fancy_post_filter_active_hover_color)) : ?>
-            background-color: <?php echo esc_attr($fancy_post_filter_active_hover_color); ?>;
+        <?php if (!empty($fancy_post_filter_active_bg_color)) : ?>
+            background-color: <?php echo esc_attr($fancy_post_filter_active_bg_color); ?>;
         <?php endif; ?>
     }
     .rs-blog-layout-10 .rs-blog-layout-10-filter .filter-button-group button:hover{
