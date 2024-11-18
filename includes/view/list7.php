@@ -11,20 +11,29 @@ ob_start();
                     <a href="<?php echo esc_url(get_post_type_archive_link('post')); ?>">
                         <?php esc_html_e('See All Posts', 'fancy-post-grid'); ?> <i class="ri-arrow-right-up-line"></i>
                     </a>
+
                 </div>
             </div>
         </div>
         <div class="row">
             <div class="col-lg-12">
                 <?php
-                    // =======Pagination==========
-                    
+
                     // Check if pagination is on or off
                     if ($fancy_post_pagination === 'off') {
                         $fpg_post_per_page = -1;
                     }  
-                    
-                    //==============STATUS==============
+                    // Set a maximum limit for posts_per_page
+                    $max_posts_per_page = 4;
+
+                    // Check if the dynamic value exceeds the maximum limit
+                    if ($fpg_post_per_page > $max_posts_per_page || $fpg_post_per_page = -1) {
+                        // If it does, set posts_per_page to the maximum limit
+                        $fpg_post_per_page = $max_posts_per_page;
+                    } else {
+                        // Otherwise, use the dynamic value
+                        $fpg_post_per_page = $fpg_post_per_page;
+                    }
                     // Ensure it's an array
                     if (!is_array($fpg_filter_statuses)) {
                         // Convert string to array if necessary
@@ -65,8 +74,6 @@ ob_start();
 
                     // Capture and sanitize tag terms if 'tags' taxonomy is selected
                     $tag_terms = array_map('intval', $fpg_filter_tags_terms);   
-
-
 
                     // Get values from the form inputs           
                     $args = array(
@@ -178,7 +185,6 @@ ob_start();
                                     $image_title = get_the_title($thumbnail_id);
                                     // Use alt text if available; otherwise, use title text
                                     $alt_text = !empty($image_alt) ? esc_attr($image_alt) : esc_attr($image_title);
-
                                 ?>
                                 <a href="<?php the_permalink(); ?>" <?php echo esc_attr($target_blank); ?>>
                                     <img src="<?php echo esc_url( $feature_image_url ); ?>" alt="<?php echo esc_attr( $alt_text ); ?>">
@@ -190,8 +196,7 @@ ob_start();
                             <!-- CATEGORY -->
                             <?php if ($fpg_field_group_categories) : ?>
                             <div class="rs-cat">
-                                
-                                <i class="ri-price-tag-3-line"></i> <a href="#"><?php echo get_the_category_list(', '); ?></a>
+                                <?php echo get_the_category_list(', '); ?>
                             </div>
                             <?php endif; ?>
                             <!-- Title -->
@@ -202,7 +207,6 @@ ob_start();
                                         <a href="<?php the_permalink(); ?>"
                                            <?php echo esc_attr($target_blank); ?>
                                            class="title-link">
-
                                             <?php
                                                 if ($fancy_post_title_limit_type === 'words') {
                                                     echo esc_html(wp_trim_words(get_the_title(), $fancy_post_title_limit, $title_more_text));

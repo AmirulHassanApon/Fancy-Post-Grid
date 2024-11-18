@@ -163,7 +163,7 @@ ob_start();
                     // Apply hover animation class if needed
                     $hover_class = $hover_animation !== 'none' ? 'hover-' . esc_attr($hover_animation) : '';
             ?>
-            <div class="col-lg-12">
+            <div class="col-lg-6">
                 <div class="rs-blog-layout-20-item <?php echo esc_attr($main_alignment_class); ?> <?php echo esc_attr($hover_class); ?>">
                     <!-- Image -->
                     <?php if (!$hide_feature_image && $fpg_field_group_image) : ?>
@@ -194,23 +194,21 @@ ob_start();
                     <div class="rs-content">
                         <div class="rs-meta">
                             <!-- Meta -->
-                            <ul class="meta-data-list <?php echo esc_attr($meta_alignment_class); ?>">
-
-                                <!-- AUTHOR -->
-                                <?php if ($fpg_field_group_author) : ?>
-                                <li class="meta-author">
-                                    <i class="ri-user-3-line"> </i> 
-                                        <?php esc_html_e('Posted By -', 'fancy-post-grid'); ?>  <?php the_author(); ?>
-                                </li>
-                                <?php endif; ?>
-
+                            <ul class="<?php echo esc_attr($meta_alignment_class); ?>">
                                 <!-- META DATE -->
                                 <?php if ($fpg_field_group_post_date) : ?>
-                                    <li class="meta-date">
+                                    <li>
                                         <i class="ri-calendar-line"> </i>
                                         <?php echo esc_html( get_the_date( 'M d, Y' ) ); ?>
                                     </li>
                                 <?php endif; ?>
+                                <!-- AUTHOR -->
+                                <?php if ($fpg_field_group_author) : ?>
+                                <li>
+                                    <i class="ri-user-3-line"> </i> 
+                                    <?php the_author(); ?>
+                                </li>
+                                <?php endif; ?>                       
                             </ul>
                         </div>
                         <!-- Title -->
@@ -239,26 +237,6 @@ ob_start();
                                     ?>
                                 <?php endif; ?>
                             </<?php echo esc_attr($title_tag); ?>>
-                        <?php endif; ?>
-
-                        <!-- Excerpt -->
-                        <?php if ($fpg_field_group_excerpt) : ?>
-                            <div class="fpg-excerpt <?php echo esc_attr($excerpt_alignment_class); ?>">
-
-                                <p>
-                                <?php
-                                    $excerpt = get_the_content();
-
-                                    if ($fancy_post_excerpt_limit_type === 'words') {
-                                        echo esc_html(wp_trim_words($excerpt, $fancy_post_excerpt_limit, $excerpt_more_text));
-                                    } else {
-                                        // Strip tags to avoid breaking HTML, then apply character limit
-                                        $excerpt = wp_strip_all_tags($excerpt);
-                                        echo esc_html(mb_strimwidth($excerpt, 0, $fancy_post_excerpt_limit, $excerpt_more_text));
-                                    }
-                                ?>
-                                </p>
-                            </div>
                         <?php endif; ?>
 
                         <!-- Button -->

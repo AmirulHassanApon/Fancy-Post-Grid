@@ -63,7 +63,7 @@ function fancy_post_grid_metabox_shortcode_callback( $post ) {
     }
     $fancy_slider_style                         = get_post_meta( $post->ID, 'fancy_slider_style', true );
     if ( empty( $fancy_slider_style ) ) {
-        $fancy_slider_style = 'sliderstyle1'; // Set default to 'style1'
+        $fancy_slider_style = 'sliderstyle1'; // Set default to 'sliderstyle1'
     }
 
     $fancy_list_style                         = get_post_meta( $post->ID, 'fancy_list_style', true );
@@ -140,7 +140,7 @@ function fancy_post_grid_metabox_shortcode_callback( $post ) {
 
     $fancy_pagination = get_post_meta( $post->ID, 'fancy_pagination', true );
     if ( empty( $fancy_pagination ) ) {
-        $fancy_pagination = 'false';
+        $fancy_pagination = 'true';
     }
 
     $fancy_loop                          = get_post_meta( $post->ID, 'fancy_loop', true );
@@ -196,8 +196,20 @@ function fancy_post_grid_metabox_shortcode_callback( $post ) {
         $fancy_post_hide_feature_image = 'on'; // image
     }
     $fancy_post_feature_image_size              = get_post_meta( $post->ID, 'fancy_post_feature_image_size', true );
+
     if ( empty( $fancy_post_feature_image_size ) ) {
         $fancy_post_feature_image_size ="full";
+    }
+
+    $fancy_post_feature_image_left = get_post_meta( $post->ID, 'fancy_post_feature_image_left', true );
+
+    if ( empty( $fancy_post_feature_image_left ) ) {
+        $fancy_post_feature_image_left ="full";
+    }
+    $fancy_post_feature_image_right = get_post_meta( $post->ID, 'fancy_post_feature_image_right', true );
+
+    if ( empty( $fancy_post_feature_image_right ) ) {
+        $fancy_post_feature_image_right ="full";
     }
     $fancy_post_media_source                    = get_post_meta( $post->ID, 'fancy_post_media_source', true );
     if ( empty( $fancy_post_media_source ) ) {
@@ -224,7 +236,7 @@ function fancy_post_grid_metabox_shortcode_callback( $post ) {
     }
     $fancy_button_border_style                  = get_post_meta( $post->ID, 'fancy_button_border_style', true );
     if ( empty( $fancy_button_border_style ) ) {
-        $fancy_button_border_style = 'dotted'; 
+        $fancy_button_border_style = 'unset'; 
     }
 
     $fancy_post_read_more_border_radius         = get_post_meta( $post->ID, 'fancy_post_read_more_border_radius', true );
@@ -294,11 +306,23 @@ function fancy_post_grid_metabox_shortcode_callback( $post ) {
     $fpg_button_text_hover_color                = get_post_meta( $post->ID,'fpg_button_text_hover_color', true ); 
     $fpg_button_border_color                    = get_post_meta( $post->ID,'fpg_button_border_color', true ); 
 
+    $fancy_post_filter_alignment = get_post_meta($post->ID, 'fancy_post_filter_alignment', true);
+    $fancy_post_filter_text_color = get_post_meta($post->ID, 'fancy_post_filter_text_color', true);
+    $fancy_post_filter_bg_color = get_post_meta($post->ID, 'fancy_post_filter_bg_color', true);
+    $fancy_post_filter_active_color = get_post_meta($post->ID, 'fancy_post_filter_active_color', true);
+    $fancy_post_filter_active_hover_color = get_post_meta($post->ID, 'fancy_post_filter_active_hover_color', true);
+    $fancy_post_filter_hover_color = get_post_meta($post->ID, 'fancy_post_filter_hover_color', true);
+    $fancy_post_filter_hover_bg_color = get_post_meta($post->ID, 'fancy_post_filter_hover_bg_color', true);
+    $fancy_post_filter_text = get_post_meta($post->ID, 'fancy_post_filter_text', true);
+
+    $fancy_post_filter_padding = get_post_meta($post->ID, 'fancy_post_filter_padding', true);
+    $fancy_post_filter_margin = get_post_meta($post->ID, 'fancy_post_filter_margin', true);
+    $fancy_post_filter_font_size = get_post_meta($post->ID, 'fancy_post_filter_font_size', true);
+
     //full Section
     $fpg_section_background_color               = get_post_meta( $post->ID, 'fpg_section_background_color', true );
     $fpg_section_margin                         = get_post_meta( $post->ID, 'fpg_section_margin', true );
     $fpg_section_padding                        = get_post_meta( $post->ID, 'fpg_section_padding', true );
-
 
     //Padding & Margin
     $fpg_button_margin                = get_post_meta( $post->ID,'fpg_button_margin', true); 
@@ -659,6 +683,8 @@ function fancy_post_grid_metabox_shortcode_callback( $post ) {
                     $isotope_styles = [
                         'isotopestyle1' => 'Isotope Layout 1',
                         'isotopestyle2' => 'Isotope Layout 2',
+                        'isotopestyle3' => 'Isotope Layout 3',
+                        'isotopestyle4' => 'Isotope Layout 4',
                     ];
 
                     foreach ($isotope_styles as $style_value => $style_label) :
@@ -1330,7 +1356,102 @@ function fancy_post_grid_metabox_shortcode_callback( $post ) {
                     </div>
                 </fieldset>
             </div>  
-               
+
+            <div class="fpg-filter-settings fpg-common" id="fpg_filter_settings">
+                <fieldset>
+                    <legend><?php esc_html_e('Filter Box Settings', 'fancy-post-grid'); ?></legend>
+                    <div class="fpg-post-select-main">
+                        <!-- Filter Alignment -->
+                        <div class="fpg-filter-align">
+                            <label for="fancy_post_filter_alignment"><?php esc_html_e('Filter Alignment:', 'fancy-post-grid'); ?></label>
+                            <div class="fpg-container">
+                                <div class="fpg-radio-list-wrapper fpg-radio-list">
+                                    <input type="radio" id="fancy_post_filter_alignment_left" name="fancy_post_filter_alignment" value="flex-start" <?php checked($fancy_post_filter_alignment, 'flex-start', true); ?> />
+                                    <label for="fancy_post_filter_alignment_left">
+                                        <span></span>
+                                        <p><?php esc_html_e('Left', 'fancy-post-grid'); ?></p>
+                                    </label>
+                                </div>
+                                <div class="fpg-radio-list-wrapper fpg-radio-list">
+                                    <input type="radio" id="fancy_post_filter_alignment_center" name="fancy_post_filter_alignment" value="center" <?php checked($fancy_post_filter_alignment, 'center', true); ?> />
+                                    <label for="fancy_post_filter_alignment_center">
+                                        <span></span>
+                                        <p><?php esc_html_e('Center', 'fancy-post-grid'); ?></p>
+                                    </label>
+                                </div>
+                                <div class="fpg-radio-list-wrapper fpg-radio-list">
+                                    <input type="radio" id="fancy_post_filter_alignment_right" name="fancy_post_filter_alignment" value="flex-end" <?php checked($fancy_post_filter_alignment, 'flex-end', true); ?> />
+                                    <label for="fancy_post_filter_alignment_right">
+                                        <span></span>
+                                        <p><?php esc_html_e('Right', 'fancy-post-grid'); ?></p>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Filter Text -->
+                        <div class="fpg-text-box">
+                            <label for="fancy_post_filter_text"><?php esc_html_e('Filter Text:', 'fancy-post-grid'); ?></label>
+                            <input type="text" id="fancy_post_filter_text" name="fancy_post_filter_text" value="<?php echo esc_attr($fancy_post_filter_text); ?>" />
+                        </div>
+                        <!-- Filter Text Color -->
+                        <div class="fpg-color-box">
+                            <label for="fancy_post_filter_text_color"><?php esc_html_e('Filter Text Color:', 'fancy-post-grid'); ?></label>
+                            <input type="text" class="color-field" id="fancy_post_filter_text_color" name="fancy_post_filter_text_color" value="<?php echo esc_attr($fancy_post_filter_text_color); ?>" />
+                        </div>
+
+                        <!-- Filter Background Color -->
+                        <div class="fpg-color-box">
+                            <label for="fancy_post_filter_bg_color"><?php esc_html_e('Filter Background Color:', 'fancy-post-grid'); ?></label>
+                            <input type="text" class="color-field" id="fancy_post_filter_bg_color" name="fancy_post_filter_bg_color" value="<?php echo esc_attr($fancy_post_filter_bg_color); ?>" />
+                        </div>
+
+                        <!-- Filter Active Color -->
+                        <div class="fpg-color-box">
+                            <label for="fancy_post_filter_active_color"><?php esc_html_e('Active Text Color:', 'fancy-post-grid'); ?></label>
+                            <input type="text" class="color-field" id="fancy_post_filter_active_color" name="fancy_post_filter_active_color" value="<?php echo esc_attr($fancy_post_filter_active_color); ?>" />
+                        </div>
+
+                        <!-- Filter Active Hover Color -->
+                        <div class="fpg-color-box">
+                            <label for="fancy_post_filter_active_hover_color"><?php esc_html_e('Active Hover Text Color:', 'fancy-post-grid'); ?></label>
+                            <input type="text" class="color-field" id="fancy_post_filter_active_hover_color" name="fancy_post_filter_active_hover_color" value="<?php echo esc_attr($fancy_post_filter_active_hover_color); ?>" />
+                        </div>
+
+                        <!-- Filter Hover Text Color -->
+                        <div class="fpg-color-box">
+                            <label for="fancy_post_filter_hover_color"><?php esc_html_e('Hover Text Color:', 'fancy-post-grid'); ?></label>
+                            <input type="text" class="color-field" id="fancy_post_filter_hover_color" name="fancy_post_filter_hover_color" value="<?php echo esc_attr($fancy_post_filter_hover_color); ?>" />
+                        </div>
+
+                        <!-- Filter Hover Background Color -->
+                        <div class="fpg-color-box">
+                            <label for="fancy_post_filter_hover_bg_color"><?php esc_html_e('Hover Background Color:', 'fancy-post-grid'); ?></label>
+                            <input type="text" class="color-field" id="fancy_post_filter_hover_bg_color" name="fancy_post_filter_hover_bg_color" value="<?php echo esc_attr($fancy_post_filter_hover_bg_color); ?>" />
+                        </div>
+
+                        
+
+                        <!-- Filter Padding -->
+                        <div class="fpg-filter-padding fpg-common">
+                            <label for="fancy_post_filter_padding"><?php esc_html_e('Filter Padding (px):', 'fancy-post-grid'); ?></label>
+                            <input type="number" id="fancy_post_filter_padding" name="fancy_post_filter_padding" value="<?php echo esc_attr($fancy_post_filter_padding); ?>" />
+                        </div>
+
+                        <!-- Filter Margin -->
+                        <div class="fpg-filter-margin fpg-common">
+                            <label for="fancy_post_filter_margin"><?php esc_html_e('Filter Margin (px):', 'fancy-post-grid'); ?></label>
+                            <input type="number" id="fancy_post_filter_margin" name="fancy_post_filter_margin" value="<?php echo esc_attr($fancy_post_filter_margin); ?>" />
+                        </div>
+
+                        <!-- Filter Font Size -->
+                        <div class="fpg-filter-font-size fpg-common">
+                            <label for="fancy_post_filter_font_size"><?php esc_html_e('Filter Font Size (px):', 'fancy-post-grid'); ?></label>
+                            <input type="number" id="fancy_post_filter_font_size" name="fancy_post_filter_font_size" value="<?php echo esc_attr($fancy_post_filter_font_size); ?>" />
+                        </div>
+                    </div>
+                </fieldset>
+            </div>
+
             <div class="fpg-image-settings fpg-common" id="fpg_image_settings_main">
                 <fieldset>
                     <legend><?php esc_html_e( 'Image Settings', 'fancy-post-grid' ); ?></legend>
@@ -1356,10 +1477,34 @@ function fancy_post_grid_metabox_shortcode_callback( $post ) {
                             </div>                       
                         </div>
                         
-                        <!-- Feature Image Size -->                        
-                        <div class="fpg-feature-image-size fpg-common" id="fpg-feature-image-size">
-                            <label for="fancy_post_feature_image_size"><?php esc_html_e( 'Feature Image Size:', 'fancy-post-grid' ); ?></label>
-                            <select id="fancy_post_feature_image_size" name="fancy_post_feature_image_size" style="width: 100%;">
+                        <!-- Feature Image Size -->  
+                        <div id="fpg_feature_image_size">                     
+                            <div class="fpg-feature-image-size fpg-common" id="fpg-feature-image-size">
+                                <label for="fancy_post_feature_image_size"><?php esc_html_e( 'Feature Image Size:', 'fancy-post-grid' ); ?></label>
+                                <select id="fancy_post_feature_image_size" name="fancy_post_feature_image_size" style="width: 100%;">
+                                    <?php 
+                                    $sizes = [
+                                        'thumbnail' => 'Thumbnail',
+                                        'medium' => 'Medium',
+                                        'medium_large' => 'Medium Large',
+                                        'large' => 'Large',
+                                        'full' => 'Full', 
+                                        'fancy_post_custom_size' => 'Custom Size (768x500)',  
+                                        'fancy_post_square' => 'Square (500x500)', 
+                                        'fancy_post_landscape' => 'Landscape (834x550)', 
+                                        'fancy_post_portrait' => 'Portrait (421x550)', 
+                                    ];
+                                    foreach ($sizes as $size_key => $size_label) {
+                                        echo '<option value="' . esc_attr($size_key) . '" ' . selected($fancy_post_feature_image_size, $size_key, false) . '>' . esc_html($size_label) . '</option>';
+                                    }
+                                    ?>
+                                </select>
+                            </div>
+                        </div>
+                        <!-- Left Side Featured Image -->
+                        <div class="fpg-feature-image-position fpg-common" id="fpg-feature-image-left">
+                            <label for="fancy_post_feature_image_left"><?php esc_html_e( 'Left Side Featured Image:', 'fancy-post-grid' ); ?></label>
+                            <select id="fancy_post_feature_image_left" name="fancy_post_feature_image_left" style="width: 100%;">
                                 <?php 
                                 $sizes = [
                                     'thumbnail' => 'Thumbnail',
@@ -1373,12 +1518,34 @@ function fancy_post_grid_metabox_shortcode_callback( $post ) {
                                     'fancy_post_portrait' => 'Portrait (421x550)', 
                                 ];
                                 foreach ($sizes as $size_key => $size_label) {
-                                    echo '<option value="' . esc_attr($size_key) . '" ' . selected($fancy_post_feature_image_size, $size_key, false) . '>' . esc_html($size_label) . '</option>';
+                                    echo '<option value="' . esc_attr($size_key) . '" ' . selected($fancy_post_feature_image_left, $size_key, false) . '>' . esc_html($size_label) . '</option>';
                                 }
                                 ?>
                             </select>
                         </div>
 
+                        <!-- Right Side Featured Image -->
+                        <div class="fpg-feature-image-position fpg-common" id="fpg-feature-image-right">
+                            <label for="fancy_post_feature_image_right"><?php esc_html_e( 'Right Side Featured Image:', 'fancy-post-grid' ); ?></label>
+                            <select id="fancy_post_feature_image_right" name="fancy_post_feature_image_right" style="width: 100%;">
+                                <?php 
+                                $sizes = [
+                                    'thumbnail' => 'Thumbnail',
+                                    'medium' => 'Medium',
+                                    'medium_large' => 'Medium Large',
+                                    'large' => 'Large',
+                                    'full' => 'Full', 
+                                    'fancy_post_custom_size' => 'Custom Size (768x500)',  
+                                    'fancy_post_square' => 'Square (500x500)', 
+                                    'fancy_post_landscape' => 'Landscape (834x550)', 
+                                    'fancy_post_portrait' => 'Portrait (421x550)', 
+                                ];
+                                foreach ($sizes as $size_key => $size_label) {
+                                    echo '<option value="' . esc_attr($size_key) . '" ' . selected($fancy_post_feature_image_right, $size_key, false) . '>' . esc_html($size_label) . '</option>';
+                                }
+                                ?>
+                            </select>
+                        </div>
                         <!-- Media Source -->
                         <div class="fpg-media-source fpg-common" id="fpg-media-source">
                             
@@ -2537,6 +2704,12 @@ function fancy_post_grid_save_metabox_data( $post_id ) {
     if ( isset( $_POST['fancy_post_feature_image_size'] ) ) {
         update_post_meta( $post_id, 'fancy_post_feature_image_size', sanitize_text_field( wp_unslash($_POST['fancy_post_feature_image_size'] ) ));
     }
+    if ( isset( $_POST['fancy_post_feature_image_left'] ) ) {
+        update_post_meta( $post_id, 'fancy_post_feature_image_left', sanitize_text_field( wp_unslash($_POST['fancy_post_feature_image_left'] ) ));
+    }
+    if ( isset( $_POST['fancy_post_feature_image_right'] ) ) {
+        update_post_meta( $post_id, 'fancy_post_feature_image_right', sanitize_text_field( wp_unslash($_POST['fancy_post_feature_image_right'] ) ));
+    }
     if ( isset( $_POST['fancy_post_media_source'] ) ) {
         update_post_meta( $post_id, 'fancy_post_media_source', sanitize_text_field( wp_unslash($_POST['fancy_post_media_source'] ) ));
     }
@@ -2844,7 +3017,51 @@ function fancy_post_grid_save_metabox_data( $post_id ) {
     if ( isset( $_POST['fpg_pagination_border_width'] ) ) {
         update_post_meta( $post_id, 'fpg_pagination_border_width', sanitize_text_field( wp_unslash($_POST['fpg_pagination_border_width'] ) ));
     }
+    // Save Filter Alignment
+    if (isset($_POST['fancy_post_filter_alignment'])) {
+        update_post_meta($post_id, 'fancy_post_filter_alignment', sanitize_text_field($_POST['fancy_post_filter_alignment']));
+    }
 
+    // Save Active Text Color
+    if (isset($_POST['fancy_post_filter_active_color'])) {
+        update_post_meta($post_id, 'fancy_post_filter_active_color', sanitize_hex_color($_POST['fancy_post_filter_active_color']));
+    }
+
+    // Save Active Hover Text Color
+    if (isset($_POST['fancy_post_filter_active_hover_color'])) {
+        update_post_meta($post_id, 'fancy_post_filter_active_hover_color', sanitize_hex_color($_POST['fancy_post_filter_active_hover_color']));
+    }
+
+    // Save Hover Text Color
+    if (isset($_POST['fancy_post_filter_hover_color'])) {
+        update_post_meta($post_id, 'fancy_post_filter_hover_color', sanitize_hex_color($_POST['fancy_post_filter_hover_color']));
+    }
+
+    // Save Hover Background Color
+    if (isset($_POST['fancy_post_filter_hover_bg_color'])) {
+        update_post_meta($post_id, 'fancy_post_filter_hover_bg_color', sanitize_hex_color($_POST['fancy_post_filter_hover_bg_color']));
+    }
+
+    // Save Filter Text
+    if (isset($_POST['fancy_post_filter_text'])) {
+        update_post_meta($post_id, 'fancy_post_filter_text', sanitize_text_field($_POST['fancy_post_filter_text']));
+    }
+
+
+    // Save Filter Padding
+    if (isset($_POST['fancy_post_filter_padding'])) {
+        update_post_meta($post_id, 'fancy_post_filter_padding', intval($_POST['fancy_post_filter_padding']));
+    }
+
+    // Save Filter Margin
+    if (isset($_POST['fancy_post_filter_margin'])) {
+        update_post_meta($post_id, 'fancy_post_filter_margin', intval($_POST['fancy_post_filter_margin']));
+    }
+
+    // Save Filter Font Size
+    if (isset($_POST['fancy_post_filter_font_size'])) {
+        update_post_meta($post_id, 'fancy_post_filter_font_size', intval($_POST['fancy_post_filter_font_size']));
+    }
     if ( isset( $_POST['fpg_pagination_active_background'] ) ) {
         update_post_meta( $post_id, 'fpg_pagination_active_background', sanitize_text_field( wp_unslash($_POST['fpg_pagination_active_background'] ) ));
     }
