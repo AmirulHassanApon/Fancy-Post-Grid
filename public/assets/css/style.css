@@ -2779,6 +2779,15 @@ img {
     padding-bottom: 90px;
 }
 
+.rs-blog-layout-1.rs-blog-layout-9 .blog-item {
+    position: relative;
+    z-index: 11;
+    transition: all 500ms ease;
+    background-color: #ffffff;
+    box-shadow: 0 6px 25px rgba(12, 89, 219, 0.09);
+    border-radius: 70px 0px 0px 0px;
+    margin: 40px 15px;
+}
 .rs-blog-layout-1.rs-blog-layout-9 .blog-item .blog-content .blog-title {
     font-size: 28px;
     line-height: 38px;
