@@ -128,16 +128,24 @@ function fancy_post_grid_shortcode( $atts ) {
 	    $fancy_post_filter_alignment                			= get_post_meta( $post_id,'fancy_post_filter_alignment', true); 
 
 	    $fancy_post_filter_text_color          					= get_post_meta( $post_id,'fancy_post_filter_text_color', true); 
-	    $fancy_post_filter_bg_color                      	= get_post_meta( $post_id,'fancy_post_filter_bg_color', true ); 
+	    $fancy_post_filter_hover_color                      	= get_post_meta( $post_id,'fancy_post_filter_hover_color', true ); 
 	    $fancy_post_filter_active_color          					= get_post_meta( $post_id,'fancy_post_filter_active_color', true); 
-	    $fancy_post_filter_active_hover_color                      	= get_post_meta( $post_id,'fancy_post_filter_active_hover_color', true ); 
-	    $fancy_post_filter_hover_color          					= get_post_meta( $post_id,'fancy_post_filter_hover_color', true); 
-	    $fancy_post_filter_hover_bg_color                      	= get_post_meta( $post_id,'fancy_post_filter_hover_bg_color', true ); 
+	    $fancy_post_filter_bg_color                      	= get_post_meta( $post_id,'fancy_post_filter_bg_color', true ); 
+	    $fancy_post_filter_hover_bg_color          					= get_post_meta( $post_id,'fancy_post_filter_hover_bg_color', true); 
+	    $fancy_post_filter_active_bg_color                      	= get_post_meta( $post_id,'fancy_post_filter_active_bg_color', true );
+	    $fancy_post_filter_border_color          					= get_post_meta( $post_id,'fancy_post_filter_border_color', true); 
+	    $fancy_post_filter_active_border_color                      	= get_post_meta( $post_id,'fancy_post_filter_active_border_color', true ); 
+
+	    $fancy_post_filter_border_style          					= get_post_meta( $post_id,'fancy_post_filter_border_style', true); 
 	    $fancy_post_filter_text          					= get_post_meta( $post_id,'fancy_post_filter_text', true); 
 	     
 	    $fancy_post_filter_padding                			= get_post_meta( $post_id,'fancy_post_filter_padding', true ); 
 	    $fancy_post_filter_margin                			= get_post_meta( $post_id,'fancy_post_filter_margin', true ); 	    
 	    $fancy_post_filter_font_size               			= get_post_meta( $post_id, 'fancy_post_filter_font_size', true );
+	    $fancy_post_filter_border_radius                			= get_post_meta( $post_id,'fancy_post_filter_border_radius', true ); 
+	    $fancy_post_filter_border_width                			= get_post_meta( $post_id,'fancy_post_filter_border_width', true ); 	    
+	    $fancy_post_filter_box_padding               			= get_post_meta( $post_id, 'fancy_post_filter_box_padding', true );
+	    $fancy_post_filter_box_margin               			= get_post_meta( $post_id, 'fancy_post_filter_box_margin', true );
 	    //Padding & Margin 
 	    $fpg_meta_padding                			= get_post_meta( $post_id,'fpg_meta_padding', true); 
 	    $fpg_meta_margin          					= get_post_meta( $post_id,'fpg_meta_margin', true); 

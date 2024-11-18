@@ -1252,6 +1252,46 @@
                     $('#fpg_section_bg_hover_main').hide();
                     $('#fpg_excerpt_setting_main').show();
   
+                }else  {
+                    $('#fpg_feature_image_size').show();
+                    $('#fpg-feature-image-right').hide();
+                    $('#fpg-feature-image-left').hide();
+                    $('#fpg_field_group_author_main').show();
+                    $('#fpg_field_group_post_date_main').show();
+                    $('#fpg_field_group_excerpt_main').show();
+                    $('#fpg_field_group_categories_main').hide();
+                    $('#fpg_field_group_tag_main').hide();
+                    $('#fpg_field_group_comment_count_main').hide(); 
+                    $('#fpg_field_group_button_main').show(); 
+                    // Ordering
+                    $('#fpg_meta_icon_color_main').hide();
+                    $('#fpg-read-more-alignment').show();
+                    $('#fpg_title_order_main').show(); 
+                    $('#fpg_meta_order_main').show();
+                    $('#fpg_excerpt_order_main').show();
+                    $('#fpg_button_order_main').show();
+                    $('#fpg_section_image_shape_main').hide();
+                    $('#fpg_author_color_main').hide();
+                    $('#fpg_author_bg_color_main').hide();
+                    $('#fpg_author_padding_main').hide();
+                    $('#fpg_category_color_main').hide();
+                    $('#fpg_category_bg_color_main').hide();
+                    $('#fpg_category_padding_main').hide();
+                    $('#fpg_date_color_main').hide();
+                    $('#fpg_date_bg_color_main').hide();
+                    $('#fpg_date_padding_main').hide();
+                    $('#fpg_meta_hover_color_main').show();
+                    $('#fpg_single_content_section_padding_box').show();
+                    $('#fpg_title_hover_color_box').show();
+                    $('#fpg_meta_settings_main').show();
+                    $('#fpg_meta_data_main').show();
+                    $('#fpg_meta_gap_main').show();
+                    $('#fpg_meta_bgcolor_box').hide();                  
+                    $('#fancy_button_option_main').show();
+                    $('#fpg_button_settings_main').show();
+                    $('#fpg_section_bg_hover_main').hide();
+                    $('#fpg_excerpt_setting_main').show();
+  
                 }
             }
         }
@@ -1263,7 +1303,7 @@
             var fancy_arrow = $('input[name="fancy_arrow"]:checked').val();
             
             // Reset all sections to hidden by default
-            $('#fancy_post_grid_style,#fpg_slider_arrow_dots, #fpg_pagination, #fancy_post_column_grid, #fancy_post_slider_style, #fancy_post_list_style, #fancy_post_isotope_style, #fancy_post_column_slider, #fpg_slider_option, #fpg_slider_pagination_option').hide();
+            $('#fpg_filter_style,#fpg_filter_settings,#fancy_post_grid_style,#fpg_slider_arrow_dots, #fpg_pagination, #fancy_post_column_grid, #fancy_post_slider_style, #fancy_post_list_style, #fancy_post_isotope_style, #fancy_post_column_slider, #fpg_slider_option, #fpg_slider_pagination_option').hide();
 
             // Show elements based on selected layout
             if (selectedLayout === 'grid') {
@@ -1290,6 +1330,8 @@
             } else if (selectedLayout === 'isotope') {
                 $('#fancy_post_isotope_style').show();
                 $('#fancy_post_column_grid').show();
+                $('#fpg_filter_settings').show();
+                $('#fpg_filter_style').show();
                 $('#fpg_pagination_main_option').show();
             }
 
@@ -1370,7 +1412,7 @@
                 $('#fpg_button_br_color').hide();
                 $('#fpg_button_bg_color').hide();
                 $('#fpg_button_bg_hover_color').hide();
-
+           
             } else {
                 $('#fpg_post_select_button').hide();
                 $('#fpg_button_br_color').show();
