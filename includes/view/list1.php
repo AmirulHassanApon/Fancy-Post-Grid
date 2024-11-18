@@ -534,6 +534,25 @@ ob_start();
             padding: <?php echo esc_attr($fpg_section_padding); ?>;
         <?php endif; ?>
     }
+
+    /* top menu */
+    .rs-blog-layout-10 .rs-blog-layout-10-filter .filter-button-group button{
+        <?php if (!empty($fancy_post_filter_text_color)) : ?>
+            color: <?php echo esc_attr($fancy_post_filter_text_color); ?>;
+        <?php endif; ?>
+    }
+    .rs-blog-layout-10 .rs-blog-layout-10-filter .filter-button-group button:hover{
+        <?php if (!empty($fancy_post_filter_hover_color)) : ?>
+            color: <?php echo esc_attr($fancy_post_filter_hover_color); ?>;
+        <?php endif; ?>
+    }
+    .rs-blog-layout-10 .rs-blog-layout-10-filter .filter-button-group button.active{
+        <?php if (!empty($fancy_post_filter_active_color)) : ?>
+            color: <?php echo esc_attr($fancy_post_filter_active_color); ?>;
+        <?php endif; ?>
+    }
+    /* top menu */
+
     .rs-blog-layout-8 .rs-blog__left-blog, .rs-blog-layout-8 .rs-blog__left-blog .right-blog{
         <?php if (!empty($fpg_single_section_background_color)) : ?>
             background-color: <?php echo esc_attr($fpg_single_section_background_color); ?>;
