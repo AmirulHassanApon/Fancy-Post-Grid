@@ -536,19 +536,31 @@ ob_start();
     }
 
     /* top menu */
+    .rs-blog-layout-10 .rs-blog-layout-10-filter .filter-button-group{
+
+    }
     .rs-blog-layout-10 .rs-blog-layout-10-filter .filter-button-group button{
         <?php if (!empty($fancy_post_filter_text_color)) : ?>
             color: <?php echo esc_attr($fancy_post_filter_text_color); ?>;
+        <?php endif; ?>
+        <?php if (!empty($fancy_post_filter_bg_color)) : ?>
+            background: <?php echo esc_attr($fancy_post_filter_bg_color); ?>;
         <?php endif; ?>
     }
     .rs-blog-layout-10 .rs-blog-layout-10-filter .filter-button-group button:hover{
         <?php if (!empty($fancy_post_filter_hover_color)) : ?>
             color: <?php echo esc_attr($fancy_post_filter_hover_color); ?>;
         <?php endif; ?>
+        <?php if (!empty($fancy_post_filter_hover_bg_color)) : ?>
+            background: <?php echo esc_attr($fancy_post_filter_hover_bg_color); ?>;
+        <?php endif; ?>
     }
     .rs-blog-layout-10 .rs-blog-layout-10-filter .filter-button-group button.active{
         <?php if (!empty($fancy_post_filter_active_color)) : ?>
             color: <?php echo esc_attr($fancy_post_filter_active_color); ?>;
+        <?php endif; ?>
+        <?php if (!empty($fancy_post_filter_active_bg_color)) : ?>
+            background: <?php echo esc_attr($fancy_post_filter_active_bg_color); ?>;
         <?php endif; ?>
     }
     /* top menu */
