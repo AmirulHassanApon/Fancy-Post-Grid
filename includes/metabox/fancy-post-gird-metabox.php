@@ -3050,7 +3050,6 @@ function fancy_post_grid_save_metabox_data( $post_id ) {
         update_post_meta($post_id, 'fancy_post_filter_border_style', sanitize_text_field($_POST['fancy_post_filter_border_style']));
     }
 
-    // Save Active Text Color
     if (isset($_POST['fancy_post_filter_text_color'])) {
         update_post_meta($post_id, 'fancy_post_filter_text_color', sanitize_hex_color($_POST['fancy_post_filter_text_color']));
     }
