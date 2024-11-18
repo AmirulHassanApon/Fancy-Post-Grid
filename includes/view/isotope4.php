@@ -446,6 +446,6 @@ ob_start();
     }
 </style>
 <?php
-$isotope1 = ob_get_clean();
+$isotope4 = ob_get_clean();
 
 ?>
