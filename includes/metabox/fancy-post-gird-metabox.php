@@ -314,7 +314,9 @@ function fancy_post_grid_metabox_shortcode_callback( $post ) {
     $fancy_post_filter_hover_color = get_post_meta($post->ID, 'fancy_post_filter_hover_color', true);
     $fancy_post_filter_hover_bg_color = get_post_meta($post->ID, 'fancy_post_filter_hover_bg_color', true);
     $fancy_post_filter_text = get_post_meta($post->ID, 'fancy_post_filter_text', true);
-
+    if ( empty( $fancy_post_filter_text ) ) {
+        $fancy_post_filter_text = 'Show All'; 
+    }
     $fancy_post_filter_padding = get_post_meta($post->ID, 'fancy_post_filter_padding', true);
     $fancy_post_filter_margin = get_post_meta($post->ID, 'fancy_post_filter_margin', true);
     $fancy_post_filter_font_size = get_post_meta($post->ID, 'fancy_post_filter_font_size', true);
@@ -3020,6 +3022,16 @@ function fancy_post_grid_save_metabox_data( $post_id ) {
     // Save Filter Alignment
     if (isset($_POST['fancy_post_filter_alignment'])) {
         update_post_meta($post_id, 'fancy_post_filter_alignment', sanitize_text_field($_POST['fancy_post_filter_alignment']));
+    }
+
+    // Save Active Text Color
+    if (isset($_POST['fancy_post_filter_text_color'])) {
+        update_post_meta($post_id, 'fancy_post_filter_text_color', sanitize_hex_color($_POST['fancy_post_filter_text_color']));
+    }
+
+    // Save Active Hover Text Color
+    if (isset($_POST['fancy_post_filter_bg_color'])) {
+        update_post_meta($post_id, 'fancy_post_filter_bg_color', sanitize_hex_color($_POST['fancy_post_filter_bg_color']));
     }
 
     // Save Active Text Color
