@@ -2779,6 +2779,15 @@ img {
     padding-bottom: 90px;
 }
 
+.rs-blog-layout-1.rs-blog-layout-9 .blog-item {
+    position: relative;
+    z-index: 11;
+    transition: all 500ms ease;
+    background-color: #ffffff;
+    box-shadow: 0 6px 25px rgba(12, 89, 219, 0.09);
+    border-radius: 70px 0px 0px 0px;
+    margin: 40px 15px;
+}
 .rs-blog-layout-1.rs-blog-layout-9 .blog-item .blog-content .blog-title {
     font-size: 28px;
     line-height: 38px;
@@ -2896,22 +2905,27 @@ img {
     justify-content: center;
     flex-wrap: wrap;
     gap: 20px;
-    margin-bottom: 30px;
+    margin-bottom: 10px;
 }
 
 .rs-blog-layout-10 .rs-blog-layout-10-filter .filter-button-group button {
     font-size: 16px;
     font-weight: 500;
-    color: #545454;
+    color: #8d8d8d;
     background: transparent;
-    padding: 0;
+    padding: 12px 30px;
     border: 0;
     text-transform: capitalize;
     cursor: pointer;
+    border: 1px solid #e9e9e9;
+    border-radius: 30px;
 }
 
+.rs-blog-layout-10 .rs-blog-layout-10-filter .filter-button-group button:hover,
 .rs-blog-layout-10 .rs-blog-layout-10-filter .filter-button-group button.active {
-    color: #FE8801;
+    background: #F79C53;
+    color: #ffffff;
+    border-color: #F79C53;
 }
 
 /* blog layout 10 css */

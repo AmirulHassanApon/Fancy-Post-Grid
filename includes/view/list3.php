@@ -354,9 +354,9 @@ ob_start();
                                 <!-- Button -->
                                 <?php if ($fpg_field_group_read_more) : ?>
                                     
-                                    <div class="btn-wrapper <?php echo esc_attr($button_alignment_class); ?>">
+                                    <div class="blog-btn <?php echo esc_attr($button_alignment_class); ?>">
 
-                                        <a class="rs-link read-more <?php echo esc_attr($button_class); ?>" 
+                                        <a class="rs-btn <?php echo esc_attr($button_class); ?>" 
                                            href="<?php the_permalink(); ?>" 
                                            <?php echo esc_attr($target_blank); ?>>
                                            
@@ -440,6 +440,7 @@ ob_start();
                                 <!-- Excerpt -->
                                 <?php if ($fpg_field_group_excerpt) : ?>
                                     <div class="fpg-excerpt <?php echo esc_attr($excerpt_alignment_class); ?> ">
+                                        <p>
                                         <?php
                                             $excerpt = get_the_content();
 
@@ -457,9 +458,9 @@ ob_start();
                                 <!-- Button -->
                                 <?php if ($fpg_field_group_read_more) : ?>
                                     
-                                    <div class="btn-wrapper <?php echo esc_attr($button_alignment_class); ?>">
+                                    <div class="blog-btn <?php echo esc_attr($button_alignment_class); ?>">
 
-                                        <a class="rs-link read-more <?php echo esc_attr($button_class); ?>" 
+                                        <a class="rs-btn <?php echo esc_attr($button_class); ?>" 
                                            href="<?php the_permalink(); ?>" 
                                            <?php echo esc_attr($target_blank); ?>>
                                            
