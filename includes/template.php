@@ -138,6 +138,7 @@ function fancy_post_grid_shortcode( $atts ) {
 
 	    $fancy_post_filter_border_style          					= get_post_meta( $post_id,'fancy_post_filter_border_style', true); 
 	    $fancy_post_filter_text          					= get_post_meta( $post_id,'fancy_post_filter_text', true); 
+	    $fancy_post_filter_item_gap          					= get_post_meta( $post_id,'fancy_post_filter_item_gap', true); 
 	     
 	    $fancy_post_filter_padding                			= get_post_meta( $post_id,'fancy_post_filter_padding', true ); 
 	    $fancy_post_filter_margin                			= get_post_meta( $post_id,'fancy_post_filter_margin', true ); 	    

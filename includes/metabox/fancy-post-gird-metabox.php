@@ -335,6 +335,7 @@ function fancy_post_grid_metabox_shortcode_callback( $post ) {
     $fancy_post_filter_border_width = get_post_meta($post->ID, 'fancy_post_filter_border_width', true);
     $fancy_post_filter_box_padding = get_post_meta($post->ID, 'fancy_post_filter_box_padding', true);
     $fancy_post_filter_box_margin = get_post_meta($post->ID, 'fancy_post_filter_box_margin', true);
+    $fancy_post_filter_item_gap = get_post_meta($post->ID, 'fancy_post_filter_item_gap', true);
 
     //full Section
     $fpg_section_background_color               = get_post_meta( $post->ID, 'fpg_section_background_color', true );
@@ -1905,30 +1906,31 @@ function fancy_post_grid_metabox_shortcode_callback( $post ) {
                             'fancy_post_filter_border_width' => 'Border Width (px)',
                             'fancy_post_filter_box_padding' => 'Box Padding (px)',
                             'fancy_post_filter_box_margin' => 'Box Margin (px)',
+                            'fancy_post_filter_item_gap' => 'Item Gap (px)',
                         ];
                         foreach ($numeric_fields as $field_name => $label) { ?>
-    <div class="fpg-numeric-box">
-        <label for="<?php echo esc_attr($field_name); ?>"><?php esc_html_e($label . ':', 'fancy-post-grid'); ?></label>
-        <input type="text" id="<?php echo esc_attr($field_name); ?>" name="<?php echo esc_attr($field_name); ?>" value="<?php echo esc_attr($$field_name); ?>" />
-    </div>
+                        <div class="fpg-numeric-box">
+                            <label for="<?php echo esc_attr($field_name); ?>"><?php esc_html_e($label . ':', 'fancy-post-grid'); ?></label>
+                            <input type="text" id="<?php echo esc_attr($field_name); ?>" name="<?php echo esc_attr($field_name); ?>" value="<?php echo esc_attr($$field_name); ?>" />
+                        </div>
 
-    <?php
-    // Inject Border Style field after Border Radius
-    if ($field_name === 'fancy_post_filter_border_radius') { ?>
-        <div class="fpg-border-style">
-            <label for="fancy_post_filter_border_style"><?php esc_html_e('Border Style:', 'fancy-post-grid'); ?></label>
-            <select id="fancy_post_filter_border_style" name="fancy_post_filter_border_style">
-                <?php
-                $border_styles = ['none', 'solid', 'dotted', 'dashed', 'double', 'groove', 'ridge', 'inset', 'outset'];
-                foreach ($border_styles as $style) { ?>
-                    <option value="<?php echo esc_attr($style); ?>" <?php selected($fancy_post_filter_border_style, $style); ?>>
-                        <?php echo esc_html(ucfirst($style)); ?>
-                    </option>
-                <?php } ?>
-            </select>
-        </div>
-    <?php }
-}?>
+                        <?php
+                        // Inject Border Style field after Border Radius
+                        if ($field_name === 'fancy_post_filter_border_radius') { ?>
+                            <div class="fpg-border-style">
+                                <label for="fancy_post_filter_border_style"><?php esc_html_e('Border Style:', 'fancy-post-grid'); ?></label>
+                                <select id="fancy_post_filter_border_style" name="fancy_post_filter_border_style">
+                                    <?php
+                                    $border_styles = ['none', 'solid', 'dotted', 'dashed', 'double', 'groove', 'ridge', 'inset', 'outset'];
+                                    foreach ($border_styles as $style) { ?>
+                                        <option value="<?php echo esc_attr($style); ?>" <?php selected($fancy_post_filter_border_style, $style); ?>>
+                                            <?php echo esc_html(ucfirst($style)); ?>
+                                        </option>
+                                    <?php } ?>
+                                </select>
+                            </div>
+                        <?php }
+                    }?>
                     </div>
                 </fieldset>
             </div>    
@@ -3101,6 +3103,9 @@ function fancy_post_grid_save_metabox_data( $post_id ) {
     }
     if (isset($_POST['fancy_post_filter_box_margin'])) {
         update_post_meta($post_id, 'fancy_post_filter_box_margin', sanitize_text_field($_POST['fancy_post_filter_box_margin']));
+    }
+    if (isset($_POST['fancy_post_filter_item_gap'])) {
+        update_post_meta($post_id, 'fancy_post_filter_item_gap', sanitize_text_field($_POST['fancy_post_filter_item_gap']));
     }
     if ( isset( $_POST['fpg_pagination_active_background'] ) ) {
         update_post_meta( $post_id, 'fpg_pagination_active_background', sanitize_text_field( wp_unslash($_POST['fpg_pagination_active_background'] ) ));
