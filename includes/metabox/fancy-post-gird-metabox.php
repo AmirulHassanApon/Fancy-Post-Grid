@@ -2421,7 +2421,6 @@ function fancy_post_grid_metabox_shortcode_callback( $post ) {
                                     <option value="double" <?php selected( $fpg_pagination_border_style, 'double' ); ?>><?php esc_html_e( 'Double', 'fancy-post-grid' ); ?></option>
                                 </select>
                             </div>
-
                             <!-- Pagination Border Radius -->
                             <div class="fpg-border-radius-box">
                                 <label for="fpg_pagination_border_radius"><?php esc_html_e( 'Border Radius (e.g., 5px):', 'fancy-post-grid' ); ?></label>
