@@ -1412,7 +1412,7 @@
                 $('#fpg_button_br_color').hide();
                 $('#fpg_button_bg_color').hide();
                 $('#fpg_button_bg_hover_color').hide();
-
+           
             } else {
                 $('#fpg_post_select_button').hide();
                 $('#fpg_button_br_color').show();
