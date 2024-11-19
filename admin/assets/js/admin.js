@@ -3013,6 +3013,9 @@
                 settings['fpg_title_font_size'] = '30';
                 settings['fpg_title_margin'] = '0px';
                 settings['fpg_meta_margin'] = '0px 0px 12px';
+                settings['fpg_excerpt_margin'] = '10px 0px 10px';
+                settings['fpg_button_text_color'] = '#3a3a3a';
+                settings['fpg_button_text_hover_color'] = '#1a73e9';
                 settings['fancy_button_option'] = 'flat';
                 settings['fancy_post_feature_image_left'] = 'fancy_post_list';
                 settings['fancy_post_feature_image_right'] = 'fancy_post_square';
