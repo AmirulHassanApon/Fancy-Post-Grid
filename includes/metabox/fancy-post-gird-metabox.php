@@ -1910,6 +1910,7 @@ function fancy_post_grid_metabox_shortcode_callback( $post ) {
                             'fancy_post_filter_box_padding' => 'Box Padding (px)',
                             'fancy_post_filter_box_margin' => 'Box Margin (px)',
                             'fancy_post_filter_box_border_radius' => 'Box Border Radius (px)',
+                            
                             'fancy_post_filter_item_gap' => 'Item Gap (px)',
                         ];
                         foreach ($numeric_fields as $field_name => $label) { ?>
