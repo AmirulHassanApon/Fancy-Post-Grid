@@ -7,8 +7,8 @@ ob_start();
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
-                <div class="rs-blog-layout-2-filter">
-                    <div class="filter-button-group" style="justify-content: <?php echo esc_attr($fancy_post_filter_alignment); ?>;">
+                <div class="rs-blog-layout-2-filter" style="justify-content: <?php echo esc_attr($fancy_post_filter_alignment); ?>;">
+                    <div class="filter-button-group">
                         <button class="active" data-filter="*"><?php echo esc_attr($fancy_post_filter_text); ?></button>
                         <?php
                         // Get unique categories from posts
@@ -294,6 +294,9 @@ ob_start();
     .rs-blog-layout-5 .rs-blog-layout-2-filter .filter-button-group{
         <?php if (!empty($fancy_post_filter_box_bg_color)) : ?>
             background: <?php echo esc_attr($fancy_post_filter_box_bg_color); ?>;
+        <?php endif; ?>
+        <?php if (!empty($fancy_post_filter_box_border_radius)) : ?>
+            border-radius: <?php echo esc_attr($fancy_post_filter_box_border_radius); ?>;
         <?php endif; ?>
         <?php if (!empty($fancy_post_filter_box_margin)) : ?>
             margin: <?php echo esc_attr($fancy_post_filter_box_margin); ?>;
