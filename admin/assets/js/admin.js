@@ -1384,7 +1384,7 @@
             var fancy_arrow = $('input[name="fancy_arrow"]:checked').val();
             
             // Reset all sections to hidden by default
-            $('#fpg_filter_style,#fpg_filter_settings,#fancy_post_grid_style,#fpg_slider_arrow_dots, #fpg_pagination, #fancy_post_column_grid, #fancy_post_slider_style, #fancy_post_list_style, #fancy_post_isotope_style, #fancy_post_column_slider, #fpg_slider_option, #fpg_slider_pagination_option').hide();
+            $('#fpg_filter_style,#fpg_filter_settings,#fancy_post_grid_style,#fpg_slider_arrow_dots, #fpg_pagination, #fancy_post_column_grid, #fancy_post_slider_style, #fancy_post_list_style, #fancy_post_isotope_style, #fancy_post_column_slider, #fpg_slider_option,#fpg_limit_main, #fpg_slider_pagination_option').hide();
 
             // Show elements based on selected layout
             if (selectedLayout === 'grid') {
@@ -1392,6 +1392,7 @@
                 $('#fancy_post_column_grid').show();
                 $('#fpg_pagination').show();
                 $('#fpg_pagination_main_option').show();
+                $('#fpg_limit_main').show();
 
             } else if (selectedLayout === 'slider') {
                 $('#fancy_post_slider_style').show();
@@ -1399,6 +1400,7 @@
                 $('#fpg_slider_option').show();
                 $('#fpg_pagination_main_option').hide();
                 $('#fpg_slider_arrow_dots').show();
+                $('#fpg_limit_main').show();
 
                 // Show or hide slider pagination option based on fancy_pagination value
                 toggleSliderPaginationOption(fancy_pagination);
@@ -1407,6 +1409,7 @@
             } else if (selectedLayout === 'list') {
                 $('#fancy_post_list_style').show();
                 $('#fpg_pagination_main_option').hide();
+                $('#fpg_limit_main').hide();
 
             } else if (selectedLayout === 'isotope') {
                 $('#fancy_post_isotope_style').show();
@@ -1414,6 +1417,7 @@
                 $('#fpg_filter_settings').show();
                 $('#fpg_filter_style').show();
                 $('#fpg_pagination_main_option').show();
+                $('#fpg_limit_main').show();
             }
 
             // Toggle fraction font size based on pagination type
@@ -2900,6 +2904,167 @@
             } else {
                 $('input[name="fancy_arrow"][value="false"]').prop("checked", true).trigger('change');
             }
+            if (selectedStyle === 'sliderstyle3') {
+                // For 'sliderstyle3' and 'sliderstyle7', align center
+                $('input[name="fancy_post_main_box_alignment"][value="align-center"]').prop("checked", true).trigger('change');
+            }else {
+                // Default to 'align-start' (left) for all other styles
+                $('input[name="fancy_post_main_box_alignment"][value="align-start"]').prop("checked", true).trigger('change');
+            }
+        });
+    });
+    // List
+    $(document).ready(function() {
+        $('input[name="fancy_list_style"]').change(function() {
+            var selectedStyle = $(this).val();
+
+            // Common settings for both styles
+            const settings = {
+                'fpg_section_background_color': '',
+                'fpg_section_margin': '',
+                'fpg_section_padding': '',
+                'fpg_single_section_background_color': '',
+                'fpg_single_section_margin': '',
+                'fpg_single_section_padding': '',
+                'fpg_single_content_section_padding': '',
+                'fpg_single_section_background_hover_color': '',
+                'fpg_single_section_border_color': '',
+                'fancy_post_border_width': '',
+                'fancy_post_border_style': 'unset',
+                'fancy_post_section_border_radius': '',
+                'fpg_title_color': '',
+                'fpg_title_hover_color': '',
+                'fpg_title_margin': '',
+                'fpg_title_padding': '',
+                'fpg_title_font_size': '',
+                'fpg_title_font_weight': '600',
+                'fpg_title_border_style': 'unset',
+                'fpg_title_line_height': '',
+                'fpg_title_border_color': '',
+                'fpg_title_border_width': '',
+                'fpg_meta_icon_color': '',
+                'fpg_meta_font_weight': '400',
+                'fpg_meta_color': '',
+                'fpg_meta_hover_color': '',
+                'fpg_meta_bgcolor': '',
+                'fpg_meta_size': '',
+                'fpg_meta_margin': '',
+                'fpg_meta_padding': '',
+                'fpg_meta_gap': '',
+                'fpg_meta_line_height': '',
+                'fpg_author_color': '',
+                'fpg_author_bg_color': '',
+                'fpg_author_padding': '',
+                'fpg_category_color': '',
+                'fpg_category_bg_color': '',
+                'fpg_category_padding': '',
+                'fpg_date_color': '',
+                'fpg_date_bg_color': '',
+                'fpg_date_padding': '',
+                'fpg_excerpt_margin': '',
+                'fpg_excerpt_color': '',
+                'fpg_excerpt_size': '',
+                'fpg_excerpt_padding': '',
+                'fpg_excerpt_line_height': '',
+                'fpg_excerpt_font_weight': '400',
+                'fpg_button_background_color': '',
+                'fpg_button_hover_background_color': '',
+                'fpg_button_text_color': '',
+                'fpg_button_text_hover_color': '',
+                'fpg_button_border_color': '',
+                'fpg_button_margin': '',
+                'fpg_button_padding': '',
+                'fpg_button_font_size': '',
+                'fpg_button_font_weight': '',
+                'fancy_button_border_style': '',
+                'fancy_post_main_box_alignment': 'align-start',
+                'fancy_button_option': '',
+                'fancy_post_hover_animation': '',
+                'fancy_post_image_border_radius': '',
+                'fancy_post_feature_image_size': '',                   
+                'fancy_post_feature_image_left': '',                   
+                'fancy_post_feature_image_right': '',                   
+                 
+            };
+
+            // Additional settings specific to "liststyle1"
+            if (selectedStyle === 'liststyle1') {
+
+                settings['fpg_section_background_color'] = '#effdfc';
+                settings['fpg_single_section_border_color'] = '#323f7c';
+                settings['fancy_post_border_width'] = '2px';
+                settings['fancy_post_border_style'] = 'solid';
+                settings['fpg_title_font_size'] = '22';
+                settings['fancy_button_option'] = 'flat';
+                settings['fancy_post_feature_image_left'] = 'fancy_post_list';
+                settings['fancy_post_feature_image_right'] = 'fancy_post_square';
+                
+            }else if (selectedStyle === 'liststyle2') {
+                settings['fpg_title_margin'] = '0px';
+                settings['fancy_button_option'] = 'flat';
+                settings['fancy_post_feature_image_left'] = 'fancy_post_landscape';
+                settings['fancy_post_feature_image_right'] = 'fancy_post_square';
+                
+            }else if (selectedStyle === 'liststyle3') {
+                settings['fpg_section_background_color'] = '#effdfc';
+                settings['fpg_title_color'] = '#080d41';
+                settings['fpg_title_hover_color'] = '#1a5eff';
+                settings['fancy_post_border_style'] = 'unset';
+                settings['fpg_title_font_size'] = '30';
+                settings['fpg_title_margin'] = '0px';
+                settings['fpg_meta_margin'] = '0px 0px 12px';
+                settings['fancy_button_option'] = 'flat';
+                settings['fancy_post_feature_image_left'] = 'fancy_post_list';
+                settings['fancy_post_feature_image_right'] = 'fancy_post_square';
+                
+            }else if (selectedStyle === 'liststyle4') {
+                settings['fpg_section_background_color'] = '#f3f3f3';
+                settings['fpg_section_padding'] = '120px 0px 120px';
+                settings['fancy_arrow'] = 'true';
+                settings['fpg_pagination_slider'] = 'progress';
+                settings['fpg_button_text_color'] = '#f79c53';
+                settings['fpg_button_padding'] = '0px';
+                settings['fancy_button_option'] = 'flat';
+                settings['fancy_post_feature_image_size'] = 'fancy_post_landscape';
+                settings['fpg_slider_dots_color'] = '#ffffff';
+                settings['fpg_slider_dots_active_color'] = '#f79c53';
+                
+            }else if (selectedStyle === 'liststyle5') {
+                
+                settings['fancy_arrow'] = 'true';
+                settings['fpg_title_font_weight'] = '700';
+                settings['fpg_pagination_slider'] = 'dynamic';
+                settings['fpg_meta_size'] = '14';
+                settings['fancy_button_option'] = 'flat';
+                settings['fancy_post_feature_image_size'] = 'fancy_post_square';
+                
+            }else if (selectedStyle === 'liststyle6') {
+                settings['fpg_section_background_color'] = '#ffffff';
+                settings['fpg_button_text_color'] = '#ffffff';
+                settings['fpg_button_text_hover_color'] = '#488edd';
+                settings['fpg_button_border_color'] = '#488edd';
+                settings['fpg_fraction_total_color'] = '#488edd';
+                settings['fpg_fraction_current_color'] = '#488edd';
+                settings['fpg_title_font_weight'] = '600';
+                settings['fpg_pagination_slider'] = 'fraction';
+                settings['fancy_button_option'] = 'border';
+                settings['fancy_post_feature_image_size'] = 'fancy_post_square';
+                
+            }else if (selectedStyle === 'liststyle7') {
+                
+                settings['fancy_arrow'] = 'true';
+                settings['fpg_title_font_weight'] = '700';
+                settings['fpg_pagination_slider'] = 'normal';
+                settings['fancy_button_option'] = 'filled';
+                settings['fancy_post_feature_image_size'] = 'fancy_post_custom_size';
+                
+            }
+
+            // Apply each setting and trigger change event
+            $.each(settings, function(id, value) {
+                $('#' + id).val(value).trigger('change');
+            });
+
             if (selectedStyle === 'sliderstyle3') {
                 // For 'sliderstyle3' and 'sliderstyle7', align center
                 $('input[name="fancy_post_main_box_alignment"][value="align-center"]').prop("checked", true).trigger('change');
