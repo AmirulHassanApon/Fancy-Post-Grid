@@ -7,8 +7,8 @@ ob_start();
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
-                <div class="rs-blog-layout-10-filter">
-                    <div class="filter-button-group" style="justify-content: <?php echo esc_attr($fancy_post_filter_alignment); ?>;">
+                <div class="rs-blog-layout-1-filter" style="justify-content: <?php echo esc_attr($fancy_post_filter_alignment); ?>;">
+                    <div class="filter-button-group">
                         <button class="active" data-filter="*"><?php echo esc_attr($fancy_post_filter_text); ?></button>
                         <?php
                         // Get unique categories from posts
@@ -299,7 +299,7 @@ ob_start();
             padding: <?php echo esc_attr($fpg_section_padding); ?>;
         <?php endif; ?>
     }
-    .rs-blog-layout-10 .rs-blog-layout-10-filter .filter-button-group{
+    .rs-blog-layout-10 .rs-blog-layout-1-filter .filter-button-group{
         <?php if (!empty($fancy_post_filter_box_margin)) : ?>
             margin: <?php echo esc_attr($fancy_post_filter_box_margin); ?>;
         <?php endif; ?>
@@ -310,7 +310,7 @@ ob_start();
             gap: <?php echo esc_attr($fancy_post_filter_item_gap); ?>;
         <?php endif; ?>
     }
-    .rs-blog-layout-10 .rs-blog-layout-10-filter .filter-button-group button{
+    .rs-blog-layout-10 .rs-blog-layout-1-filter .filter-button-group button{
         <?php if (!empty($fancy_post_filter_text_color)) : ?>
             color: <?php echo esc_attr($fancy_post_filter_text_color); ?>;
         <?php endif; ?>
@@ -327,7 +327,7 @@ ob_start();
             padding: <?php echo esc_attr($fancy_post_filter_padding); ?>;
         <?php endif; ?>
         <?php if (!empty($fancy_post_filter_font_size)) : ?>
-            font-size: <?php echo esc_attr($fancy_post_filter_font_size); ?>px;
+            font-size: <?php echo esc_attr($fancy_post_filter_font_size); ?>;
         <?php endif; ?>
         <?php if (!empty($fancy_post_filter_font_size)) : ?>
             border-radius: <?php echo esc_attr($fancy_post_filter_font_size); ?>;
@@ -339,7 +339,7 @@ ob_start();
             border-width: <?php echo esc_attr($fancy_post_filter_border_width); ?>;
         <?php endif; ?>
     }
-    .rs-blog-layout-10 .rs-blog-layout-10-filter .filter-button-group button:hover{
+    .rs-blog-layout-10 .rs-blog-layout-1-filter .filter-button-group button:hover{
         <?php if (!empty($fancy_post_filter_hover_bg_color)) : ?>
             background-color: <?php echo esc_attr($fancy_post_filter_hover_bg_color); ?>;
         <?php endif; ?>
@@ -348,7 +348,7 @@ ob_start();
         <?php endif; ?>
     }
 
-    .rs-blog-layout-10 .rs-blog-layout-10-filter .filter-button-group button.active{
+    .rs-blog-layout-10 .rs-blog-layout-1-filter .filter-button-group button.active{
         <?php if (!empty($fancy_post_filter_active_color)) : ?>
             color: <?php echo esc_attr($fancy_post_filter_active_color); ?>;
         <?php endif; ?>

@@ -7,7 +7,7 @@ ob_start();
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
-                <div class="rs-blog-layout-10-filter">
+                <div class="rs-blog-layout-2-filter">
                     <div class="filter-button-group" style="justify-content: <?php echo esc_attr($fancy_post_filter_alignment); ?>;">
                         <button class="active" data-filter="*"><?php echo esc_attr($fancy_post_filter_text); ?></button>
                         <?php
@@ -291,42 +291,64 @@ ob_start();
             padding: <?php echo esc_attr($fpg_section_padding); ?>;
         <?php endif; ?>
     }
-    .rs-blog-layout-10 .rs-blog-layout-10-filter .filter-button-group button{
-        
-        font-weight: 500;
-        <?php if (!empty($fancy_post_filter_bg_color)) : ?>
-            background-color: <?php echo esc_attr($fancy_post_filter_bg_color); ?>;
+    .rs-blog-layout-5 .rs-blog-layout-2-filter .filter-button-group{
+        <?php if (!empty($fancy_post_filter_box_margin)) : ?>
+            margin: <?php echo esc_attr($fancy_post_filter_box_margin); ?>;
         <?php endif; ?>
+        <?php if (!empty($fancy_post_filter_box_padding)) : ?>
+            padding: <?php echo esc_attr($fancy_post_filter_box_padding); ?>;
+        <?php endif; ?>
+        <?php if (!empty($fancy_post_filter_item_gap)) : ?>
+            gap: <?php echo esc_attr($fancy_post_filter_item_gap); ?>;
+        <?php endif; ?>
+    }
+    .rs-blog-layout-5 .rs-blog-layout-2-filter .filter-button-group button{
         <?php if (!empty($fancy_post_filter_text_color)) : ?>
             color: <?php echo esc_attr($fancy_post_filter_text_color); ?>;
         <?php endif; ?>
-    
+        <?php if (!empty($fancy_post_filter_bg_color)) : ?>
+            background-color: <?php echo esc_attr($fancy_post_filter_bg_color); ?>;
+        <?php endif; ?>     
+        <?php if (!empty($fancy_post_filter_border_color)) : ?>
+            border-color: <?php echo esc_attr($fancy_post_filter_border_color); ?>;
+        <?php endif; ?>
         <?php if (!empty($fancy_post_filter_margin)) : ?>
-            margin: <?php echo esc_attr($fancy_post_filter_margin); ?>px;
+            margin: <?php echo esc_attr($fancy_post_filter_margin); ?>;
         <?php endif; ?>
         <?php if (!empty($fancy_post_filter_padding)) : ?>
-            padding: <?php echo esc_attr($fancy_post_filter_padding); ?>px;
+            padding: <?php echo esc_attr($fancy_post_filter_padding); ?>;
         <?php endif; ?>
         <?php if (!empty($fancy_post_filter_font_size)) : ?>
-            font-size: <?php echo esc_attr($fancy_post_filter_font_size); ?>px;
+            font-size: <?php echo esc_attr($fancy_post_filter_font_size); ?>;
         <?php endif; ?>
-        
+        <?php if (!empty($fancy_post_filter_font_size)) : ?>
+            border-radius: <?php echo esc_attr($fancy_post_filter_font_size); ?>;
+        <?php endif; ?>
+        <?php if (!empty($fancy_post_filter_border_style)) : ?>
+            border-style: <?php echo esc_attr($fancy_post_filter_border_style); ?>;
+        <?php endif; ?>
+        <?php if (!empty($fancy_post_filter_border_width)) : ?>
+            border-width: <?php echo esc_attr($fancy_post_filter_border_width); ?>;
+        <?php endif; ?>
     }
-
-    .rs-blog-layout-10 .rs-blog-layout-10-filter .filter-button-group button.active{
-        <?php if (!empty($fancy_post_filter_active_hover_color)) : ?>
-            background-color: <?php echo esc_attr($fancy_post_filter_active_hover_color); ?>;
-        <?php endif; ?>
-        <?php if (!empty($fancy_post_filter_active_color)) : ?>
-            color: <?php echo esc_attr($fancy_post_filter_active_color); ?>;
-        <?php endif; ?>
-    }
-    .rs-blog-layout-10 .rs-blog-layout-10-filter .filter-button-group button:hover{
+    .rs-blog-layout-5 .rs-blog-layout-2-filter .filter-button-group button:hover{
         <?php if (!empty($fancy_post_filter_hover_bg_color)) : ?>
             background-color: <?php echo esc_attr($fancy_post_filter_hover_bg_color); ?>;
         <?php endif; ?>
+        <?php if (!empty($fancy_post_filter_hover_color)) : ?>
+            color: <?php echo esc_attr($fancy_post_filter_hover_color); ?>;
+        <?php endif; ?>
+    }
+
+    .rs-blog-layout-5 .rs-blog-layout-2-filter .filter-button-group button.active{
         <?php if (!empty($fancy_post_filter_active_color)) : ?>
             color: <?php echo esc_attr($fancy_post_filter_active_color); ?>;
+        <?php endif; ?>
+        <?php if (!empty($fancy_post_filter_active_bg_color)) : ?>
+            background-color: <?php echo esc_attr($fancy_post_filter_active_bg_color); ?>;
+        <?php endif; ?> 
+        <?php if (!empty($fancy_post_filter_active_border_color)) : ?>
+            border-color: <?php echo esc_attr($fancy_post_filter_active_border_color); ?>;
         <?php endif; ?>
     }
     /* Single Item Styles */
