@@ -1455,8 +1455,11 @@ img {
     margin: 40px 0px 0;
 }
 
-.rs-blog-layout-5 .rs-blog-layout-2-filter .filter-button-group {
+.rs-blog-layout-5 .rs-blog-layout-2-filter {
     display: flex;
+}
+.rs-blog-layout-5 .rs-blog-layout-2-filter .filter-button-group {
+    display: inline-flex;
     align-items: center;
     justify-content: flex-start;
     flex-wrap: wrap;
@@ -5643,32 +5646,38 @@ img {
         padding-bottom: 120px;
     }
 
-    .rs-blog-layout-28 .rs-blog-layout-3-filter .filter-button-group {
+    .rs-blog-layout-28 .rs-blog-layout-3-filter {
         display: flex;
+    }
+    .rs-blog-layout-28 .rs-blog-layout-3-filter .filter-button-group {
+        display: inline-flex;
         align-items: center;
         justify-content: center;
         flex-wrap: wrap;
-        gap: 20px;
-        margin-bottom: 10px;
+        gap: 10px;
+        margin-bottom: 20px;
+        background: #BB0B0B;
+        border-radius: 10px;
+        padding: 5px;
     }
     
     .rs-blog-layout-28 .rs-blog-layout-3-filter .filter-button-group button {
         font-size: 16px;
         font-weight: 500;
-        color: #8d8d8d;
+        color: #ffffff;
         background: transparent;
         padding: 12px 30px;
         border: 0;
         text-transform: capitalize;
         cursor: pointer;
-        border: 1px solid #e9e9e9;
-        border-radius: 30px;
+        border: 1px solid #e9e9e900;
+        border-radius: 10px;
     }
     
     .rs-blog-layout-28 .rs-blog-layout-3-filter .filter-button-group button:hover,
     .rs-blog-layout-28 .rs-blog-layout-3-filter .filter-button-group button.active {
-        background: #BB0B0B;
-        color: #ffffff;
+        background: #ffffff;
+        color: #BB0B0B;
         border-color: #BB0B0B;
     }
 
@@ -6122,8 +6131,11 @@ img {
         padding-bottom: 120px;
     }
 
-    .rs-blog-layout-30 .rs-blog-layout-4-filter .filter-button-group {
+    .rs-blog-layout-30 .rs-blog-layout-4-filter {
         display: flex;
+    }
+    .rs-blog-layout-30 .rs-blog-layout-4-filter .filter-button-group {
+        display: inline-flex;
         align-items: center;
         justify-content: center;
         flex-wrap: wrap;
@@ -6140,14 +6152,15 @@ img {
         border: 0;
         text-transform: capitalize;
         cursor: pointer;
-        border: 1px solid #e9e9e9;
-        border-radius: 30px;
+        border-top: 1px solid #e9e9e9;
+        border-bottom: 1px solid #e9e9e9;
+        border-radius: 0px;
     }
     
     .rs-blog-layout-30 .rs-blog-layout-4-filter .filter-button-group button:hover,
     .rs-blog-layout-30 .rs-blog-layout-4-filter .filter-button-group button.active {
-        background: #b69d74;
-        color: #ffffff;
+        background: transparent;
+        color: #b69d74;
         border-color: #b69d74;
     }
     .rs-blog-layout-30-item{
@@ -6246,6 +6259,10 @@ img {
     }
     .rs-blog-layout-30-item .rs-content .rs-meta ul li:last-child{
         margin-right: 0;
+    }
+    .rs-blog-layout-30-item .rs-content .rs-meta ul{
+        margin: 0;
+        padding: 0;
     }
     .rs-blog-layout-30-item .rs-content ul li a{
         text-decoration: none;

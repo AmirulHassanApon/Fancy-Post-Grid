@@ -303,6 +303,9 @@ ob_start();
         <?php if (!empty($fancy_post_filter_box_bg_color)) : ?>
             background: <?php echo esc_attr($fancy_post_filter_box_bg_color); ?>;
         <?php endif; ?>
+        <?php if (!empty($fancy_post_filter_box_border_radius)) : ?>
+            border-radius: <?php echo esc_attr($fancy_post_filter_box_border_radius); ?>;
+        <?php endif; ?>
         <?php if (!empty($fancy_post_filter_box_margin)) : ?>
             margin: <?php echo esc_attr($fancy_post_filter_box_margin); ?>;
         <?php endif; ?>
