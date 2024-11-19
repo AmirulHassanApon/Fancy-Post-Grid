@@ -1889,7 +1889,7 @@ function fancy_post_grid_metabox_shortcode_callback( $post ) {
                             'fancy_post_filter_active_bg_color' => 'Active Background Color',
                             'fancy_post_filter_border_color' => 'Border Color',
                             'fancy_post_filter_active_border_color' => 'Active Border Color',
-                            'fancy_post_filter_box_bg_color' => 'Box Background Color:',
+                            'fancy_post_filter_box_bg_color' => 'Box Background Color',
                         ];
                         foreach ($color_fields as $field_name => $label) { ?>
                             <div class="fpg-color-box">
