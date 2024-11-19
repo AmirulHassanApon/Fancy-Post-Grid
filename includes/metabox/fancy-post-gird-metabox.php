@@ -323,6 +323,7 @@ function fancy_post_grid_metabox_shortcode_callback( $post ) {
     $fancy_post_filter_active_bg_color = get_post_meta($post->ID, 'fancy_post_filter_active_bg_color', true);
     $fancy_post_filter_border_color = get_post_meta($post->ID, 'fancy_post_filter_border_color', true);
     $fancy_post_filter_active_border_color = get_post_meta($post->ID, 'fancy_post_filter_active_border_color', true);
+    $fancy_post_filter_box_bg_color = get_post_meta($post->ID, 'fancy_post_filter_box_bg_color', true);
 
     $fancy_post_filter_text = get_post_meta($post->ID, 'fancy_post_filter_text', true);
     if ( empty( $fancy_post_filter_text ) ) {
@@ -703,10 +704,6 @@ function fancy_post_grid_metabox_shortcode_callback( $post ) {
                         'isotopestyle2' => 'Isotope Layout 2',
                         'isotopestyle3' => 'Isotope Layout 3',
                         'isotopestyle4' => 'Isotope Layout 4',
-                        'isotopestyle5' => 'Isotope Layout 5',
-                        'isotopestyle6' => 'Isotope Layout 6',
-                        'isotopestyle7' => 'Isotope Layout 7',
-                        'isotopestyle8' => 'Isotope Layout 8',
                     ];
 
                     foreach ($isotope_styles as $style_value => $style_label) :
@@ -1164,7 +1161,7 @@ function fancy_post_grid_metabox_shortcode_callback( $post ) {
                             <p><?php esc_html_e( 'List of post IDs to hide (comma-separated values, for example: 1,2,3)', 'fancy-post-grid' ); ?></p>
                         </div> 
 
-                        <div class="fpg-margin-box">
+                        <div class="fpg-margin-box" id="fpg_limit_main">
                             <label for="fpg_limit"><?php esc_html_e( 'Limit:', 'fancy-post-grid' ); ?></label>
                             <input type="number" id="fpg_limit" name="fpg_limit" value="<?php echo esc_attr( $fpg_limit ); ?>" placeholder="5" />
                             <p><?php esc_html_e( 'The number of posts to show. Set empty to show all found posts.', 'fancy-post-grid' ); ?></p>
@@ -1892,6 +1889,7 @@ function fancy_post_grid_metabox_shortcode_callback( $post ) {
                             'fancy_post_filter_active_bg_color' => 'Active Background Color',
                             'fancy_post_filter_border_color' => 'Border Color',
                             'fancy_post_filter_active_border_color' => 'Active Border Color',
+                            'fancy_post_filter_box_bg_color' => 'Box Background Color:',
                         ];
                         foreach ($color_fields as $field_name => $label) { ?>
                             <div class="fpg-color-box">
@@ -3078,6 +3076,9 @@ function fancy_post_grid_save_metabox_data( $post_id ) {
     }
     if (isset($_POST['fancy_post_filter_active_border_color'])) {
         update_post_meta($post_id, 'fancy_post_filter_active_border_color', sanitize_hex_color($_POST['fancy_post_filter_active_border_color']));
+    }
+    if (isset($_POST['fancy_post_filter_box_bg_color'])) {
+        update_post_meta($post_id, 'fancy_post_filter_box_bg_color', sanitize_hex_color($_POST['fancy_post_filter_box_bg_color']));
     }
     // Save Filter Text
     if (isset($_POST['fancy_post_filter_text'])) {

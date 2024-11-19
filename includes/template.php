@@ -244,6 +244,7 @@ function fancy_post_grid_shortcode( $atts ) {
 		$fpg_fraction_current_color       						= get_post_meta( $post_id, 'fpg_fraction_current_color', true );
 		$fpg_fraction_total_font_size       				= get_post_meta( $post_id, 'fpg_fraction_total_font_size', true );
 		$fpg_fraction_current_font_size       		= get_post_meta( $post_id, 'fpg_fraction_current_font_size', true );
+		$fancy_post_filter_box_bg_color       		= get_post_meta( $post_id, 'fancy_post_filter_box_bg_color', true );
 
 	    $main_alignment_class = '';
         if ($fancy_post_main_box_alignment === 'align-start') {
