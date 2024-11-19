@@ -291,6 +291,9 @@ ob_start();
         <?php endif; ?>
     }
     .rs-blog-layout-28 .rs-blog-layout-3-filter .filter-button-group{
+        <?php if (!empty($fancy_post_filter_box_bg_color)) : ?>
+            background: <?php echo esc_attr($fancy_post_filter_box_bg_color); ?>;
+        <?php endif; ?>
         <?php if (!empty($fancy_post_filter_box_margin)) : ?>
             margin: <?php echo esc_attr($fancy_post_filter_box_margin); ?>;
         <?php endif; ?>
