@@ -333,6 +333,7 @@ function fancy_post_grid_metabox_shortcode_callback( $post ) {
     $fancy_post_filter_margin = get_post_meta($post->ID, 'fancy_post_filter_margin', true);
     $fancy_post_filter_font_size = get_post_meta($post->ID, 'fancy_post_filter_font_size', true);
     $fancy_post_filter_border_radius = get_post_meta($post->ID, 'fancy_post_filter_border_radius', true);
+    $fancy_post_filter_box_border_radius = get_post_meta($post->ID, 'fancy_post_filter_box_border_radius', true);
     $fancy_post_filter_border_width = get_post_meta($post->ID, 'fancy_post_filter_border_width', true);
     $fancy_post_filter_box_padding = get_post_meta($post->ID, 'fancy_post_filter_box_padding', true);
     $fancy_post_filter_box_margin = get_post_meta($post->ID, 'fancy_post_filter_box_margin', true);
@@ -1908,6 +1909,8 @@ function fancy_post_grid_metabox_shortcode_callback( $post ) {
                             'fancy_post_filter_border_width' => 'Border Width (px)',
                             'fancy_post_filter_box_padding' => 'Box Padding (px)',
                             'fancy_post_filter_box_margin' => 'Box Margin (px)',
+                            'fancy_post_filter_box_border_radius' => 'Box Border Radius (px)',
+                            
                             'fancy_post_filter_item_gap' => 'Item Gap (px)',
                         ];
                         foreach ($numeric_fields as $field_name => $label) { ?>
@@ -3099,6 +3102,9 @@ function fancy_post_grid_save_metabox_data( $post_id ) {
     }
     if (isset($_POST['fancy_post_filter_border_radius'])) {
         update_post_meta($post_id, 'fancy_post_filter_border_radius', sanitize_text_field($_POST['fancy_post_filter_border_radius']));
+    }
+    if (isset($_POST['fancy_post_filter_box_border_radius'])) {
+        update_post_meta($post_id, 'fancy_post_filter_box_border_radius', sanitize_text_field($_POST['fancy_post_filter_box_border_radius']));
     }
     if (isset($_POST['fancy_post_filter_border_width'])) {
         update_post_meta($post_id, 'fancy_post_filter_border_width', sanitize_text_field($_POST['fancy_post_filter_border_width']));
