@@ -162,9 +162,7 @@ ob_start();
                     <?php if (!$hide_feature_image && $fpg_field_group_image) : ?>
                         <div class="rs-thumb">
                             <?php if ($feature_image_url) : ?>
-
                                 <?php
-
                                     $post_id = get_the_ID();
                                     // Get the thumbnail ID
                                     $thumbnail_id = get_post_thumbnail_id($post_id);
@@ -220,9 +218,11 @@ ob_start();
                             <?php endif; ?>
 
                             <?php if ($fpg_field_group_author) : ?>
-                            <a class="meta-date"> 
-                                <?php esc_html_e('by ', 'fancy-post-grid'); ?><?php the_author(); ?>
-                            </a>
+                            <a href="<?php echo esc_url(get_author_posts_url(get_the_author_meta('ID'))); ?>"
+                                <?php echo esc_attr($target_blank); ?>>
+                                <?php esc_html_e('by ', 'fancy-post-grid'); ?>
+                                <?php the_author(); ?>
+                            </a> 
                             <?php endif; ?>
                         </div>
                     </div>

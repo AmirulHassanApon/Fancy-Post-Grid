@@ -198,8 +198,12 @@ ob_start();
                                 <?php if ($fpg_field_group_author) : ?>
                                 <li class="meta-author">
                                     <?php echo get_avatar(get_the_author_meta('ID'), 32); ?>
-                                    <?php esc_html_e('by ', 'fancy-post-grid'); ?> 
-                                    <?php the_author(); ?>
+                                    
+                                    <a href="<?php echo esc_url(get_author_posts_url(get_the_author_meta('ID'))); ?>"
+                                        <?php echo esc_attr($target_blank); ?>>
+                                        <?php esc_html_e('by ', 'fancy-post-grid'); ?> 
+                                        <?php the_author(); ?>
+                                    </a> 
                                     
                                 </li>
                                 <?php endif; ?>

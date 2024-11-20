@@ -188,7 +188,10 @@ ob_start();
                                     <?php if ($fpg_field_group_author) : ?>
                                     <li>
                                         <i class="ri-user-3-line"> </i> 
-                                        <?php the_author(); ?>
+                                        <a href="<?php echo esc_url(get_author_posts_url(get_the_author_meta('ID'))); ?>"
+                                            <?php echo esc_attr($target_blank); ?>>
+                                            <?php the_author(); ?>
+                                        </a>
                                     </li>
                                     <?php endif; ?>
                                     <!-- META DATE -->
@@ -256,7 +259,10 @@ ob_start();
                                     <?php if ($fpg_field_group_author) : ?>
                                     <li>
                                         <i class="ri-user-3-line"> </i> 
-                                        <?php the_author(); ?>
+                                        <a href="<?php echo esc_url(get_author_posts_url(get_the_author_meta('ID'))); ?>"
+                                            <?php echo esc_attr($target_blank); ?>>
+                                            <?php the_author(); ?>
+                                        </a>
                                     </li>
                                     <?php endif; ?>
                                     <!-- META DATE -->
@@ -440,7 +446,8 @@ ob_start();
             gap: <?php echo esc_attr($fpg_meta_gap); ?>;
         <?php endif; ?>
     }
-    .rs-blog-layout-27 .rs-blog-layout-27-item .rs-content .rs-meta ul li, .rs-blog-layout-27 .rs-blog-layout-27-item .rs-content .rs-meta ul li i{
+    .rs-blog-layout-27 .rs-blog-layout-27-item .rs-content .rs-meta ul li, .rs-blog-layout-27 .rs-blog-layout-27-item .rs-content .rs-meta ul li i,
+    .rs-blog-layout-27 .rs-blog-layout-27-item .rs-content .rs-meta ul li a{
         <?php if (!empty($fpg_meta_color)) : ?>
             color: <?php echo esc_attr($fpg_meta_color); ?>;
         <?php endif; ?>
