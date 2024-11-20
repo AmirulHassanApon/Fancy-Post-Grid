@@ -266,6 +266,11 @@ ob_start();
         <?php endif; ?>
     }
     
+    .rs-blog-layout-26 .rs-blog-layout-26-item{
+        <?php if (!empty($fancy_post_section_border_radius)) : ?>
+            border-radius: <?php echo esc_attr($fancy_post_section_border_radius); ?>;
+        <?php endif; ?>
+    }
     .rs-blog-layout-26 .rs-blog-layout-26-item .rs-content{
         <?php if (!empty($fpg_single_section_background_color)) : ?>
             background-color: <?php echo esc_attr($fpg_single_section_background_color); ?>;
@@ -286,9 +291,6 @@ ob_start();
         <?php endif; ?>
         <?php if (!empty($fancy_post_border_width)) : ?>
             border-width: <?php echo esc_attr($fancy_post_border_width); ?>;
-        <?php endif; ?>
-        <?php if (!empty($fancy_post_section_border_radius)) : ?>
-            border-radius: <?php echo esc_attr($fancy_post_section_border_radius); ?>;
         <?php endif; ?>
     }
 
