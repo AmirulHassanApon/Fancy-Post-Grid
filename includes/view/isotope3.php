@@ -335,6 +335,9 @@ ob_start();
         <?php if (!empty($fancy_post_filter_border_width)) : ?>
             border-width: <?php echo esc_attr($fancy_post_filter_border_width); ?>;
         <?php endif; ?>
+        <?php if (!empty($fancy_post_filter_border_radius)) : ?>
+            border-radius: <?php echo esc_attr($fancy_post_filter_border_radius); ?>;
+        <?php endif; ?>
     }
     .rs-blog-layout-28 .rs-blog-layout-3-filter .filter-button-group button:hover{
         <?php if (!empty($fancy_post_filter_hover_bg_color)) : ?>
