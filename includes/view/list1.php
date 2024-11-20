@@ -218,10 +218,10 @@ ob_start();
                                     <!-- AUTHOR -->
                                     <?php if ($fpg_field_group_author) : ?>
                                     <li class="meta-author">          
-                                            <i class="ri-user-3-line"></i> 
-                                            <a href="<?php the_permalink(); ?>"
-                                                <?php echo esc_attr($target_blank); ?>>
-                                            <?php esc_html_e('Posted By -', 'fancy-post-grid'); ?>  <?php the_author(); ?></a> 
+                                        <i class="ri-user-3-line"></i> 
+                                        <a href="<?php echo esc_url(get_author_posts_url(get_the_author_meta('ID'))); ?>"
+                                            <?php echo esc_attr($target_blank); ?>>
+                                        <?php esc_html_e('Posted By -', 'fancy-post-grid'); ?>  <?php the_author(); ?></a> 
                                     </li>
                                     <?php endif; ?>
 
