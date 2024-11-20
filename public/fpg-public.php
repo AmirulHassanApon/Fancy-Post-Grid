@@ -2,9 +2,9 @@
 /**
  * Include public styles
  */
-function fancy_post_grid_public_styles() {
+function fancy_post_grid_public_styles_pro() {
 
-    $ufpg_version = defined( 'FANCY_POST_GRID_VERSION' ) ? FANCY_POST_GRID_VERSION : '1.0.0'; // Define version number
+    $ufpg_version = defined( 'FANCY_POST_GRID_VERSION_PRO' ) ? FANCY_POST_GRID_VERSION_PRO : '1.0.0'; // Define version number
     $settings_options = get_option( 'fpg_settings_option' );
     
         
@@ -18,15 +18,15 @@ function fancy_post_grid_public_styles() {
     wp_enqueue_style('custom-style', plugins_url('/assets/css/style.css',__FILE__), array(), $ufpg_version, 'all');
 
 }
-add_action( 'wp_enqueue_scripts', 'fancy_post_grid_public_styles' );
+add_action( 'wp_enqueue_scripts', 'fancy_post_grid_public_styles_pro' );
 
 /**
  * Include public scripts
  */
 
 
-function fancy_post_grid_public_scripts(){
-    $ufpg_version = defined( 'FANCY_POST_GRID_VERSION' ) ? FANCY_POST_GRID_VERSION : '1.0.0'; // Define version number
+function fancy_post_grid_public_scripts_pro(){
+    $ufpg_version = defined( 'FANCY_POST_GRID_VERSION_PRO' ) ? FANCY_POST_GRID_VERSION_PRO : '1.0.0'; // Define version number
 
     // Enqueue the necessary scripts
     wp_enqueue_script('jquery'); // This will ensure jQuery is loaded from WordPress's built-in version
@@ -34,4 +34,4 @@ function fancy_post_grid_public_scripts(){
     wp_enqueue_script('fpg-main-js', plugins_url('/assets/js/main.js', __FILE__), array('swiper-bundle-fpg', 'jquery'), $ufpg_version, true);
     wp_enqueue_script( 'fpg-isotope', plugins_url('/assets/js/isotope.pkgd.min.js', __FILE__) , array('jquery','imagesloaded'), $ufpg_version, true );
 }
-add_action( 'wp_enqueue_scripts', 'fancy_post_grid_public_scripts' );
+add_action( 'wp_enqueue_scripts', 'fancy_post_grid_public_scripts_pro' );

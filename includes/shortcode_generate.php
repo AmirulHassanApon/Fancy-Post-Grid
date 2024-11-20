@@ -4,7 +4,7 @@
  * Register custom post type
  */
 
-function fancy_post_grid_custom_post_type() {
+function fancy_post_grid_custom_post_type_pro() {
     // Set UI labels for Custom Post Type
     $labels = array(
         'name'               => esc_html__( 'Fancy Post Grid', 'fancy-post-grid' ),
@@ -44,22 +44,22 @@ function fancy_post_grid_custom_post_type() {
     // Registering the Shortcodes Custom Post Type
     register_post_type( 'fancy-post-grid-fpg', $args );
 }
-add_action( 'init', 'fancy_post_grid_custom_post_type' );
+add_action( 'init', 'fancy_post_grid_custom_post_type_pro' );
 
 
 
-function fancy_post_grid_settings_admin_enter_title( $input ) {
+function fancy_post_grid_settings_admin_enter_title_pro( $input ) {
     global $post_type;
     if ( 'fancy-post-grid-fpg' == $post_type )
         return esc_html__( 'Enter Shortcode Name', 'fancy-post-grid' );
     return $input;
 }
-add_filter( 'enter_title_here', 'fancy_post_grid_settings_admin_enter_title' );
+add_filter( 'enter_title_here', 'fancy_post_grid_settings_admin_enter_title_pro' );
 
 /**
  *
  */
-function fancy_post_grid_settings_admin_updated_messages( $messages ) {
+function fancy_post_grid_settings_admin_updated_messages_pro( $messages ) {
     global $post, $post_id;
     $messages['fancy-post-grid-fpg'] = array(
         1 => esc_html__('Shortcode updated.', 'fancy-post-grid'),
@@ -80,23 +80,23 @@ function fancy_post_grid_settings_admin_updated_messages( $messages ) {
     return $messages;
 }
 
-add_filter( 'post_updated_messages', 'fancy_post_grid_settings_admin_updated_messages' );
+add_filter( 'post_updated_messages', 'fancy_post_grid_settings_admin_updated_messages_pro' );
 
 /**
  * Extra column make for shotcode custom post
  */
-function fancy_post_grid_settings_add_shortcode_column( $columns ) {
+function fancy_post_grid_settings_add_shortcode_column_pro( $columns ) {
     return array_merge( $columns,
         array( 'shortcode' => esc_html__( 'Shortcode', 'fancy-post-grid' ) )
     );
 }
-add_filter( 'manage_fancy-post-grid-fpg_posts_columns' , 'fancy_post_grid_settings_add_shortcode_column' );
+add_filter( 'manage_fancy-post-grid-fpg_posts_columns' , 'fancy_post_grid_settings_add_shortcode_column_pro' );
 
 
 /**
  * Dynamic Shortcode generator
  */
-function fancy_post_grid_settings_add_posts_shortcode_display( $column, $post_id ) {
+function fancy_post_grid_settings_add_posts_shortcode_display_pro( $column, $post_id ) {
     if ($column == 'shortcode'){
         ?>
     <input style="background:#ccc; width:250px" type="text" onClick="this.select();" value="[fancy_gird_post_shortcode <?php echo 'id=&quot;'.esc_attr( $post_id ).'&quot;';?>]" />
@@ -105,4 +105,4 @@ function fancy_post_grid_settings_add_posts_shortcode_display( $column, $post_id
     <?php
     }
 }
-add_action( 'manage_fancy-post-grid-fpg_posts_custom_column' , 'fancy_post_grid_settings_add_posts_shortcode_display', 10, 2 );
+add_action( 'manage_fancy-post-grid-fpg_posts_custom_column' , 'fancy_post_grid_settings_add_posts_shortcode_display_pro', 10, 2 );
