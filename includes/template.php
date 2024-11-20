@@ -9,7 +9,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	// Fancy Post Grid ShortCode
   =======================================================================*/
 
-function fancy_post_grid_shortcode( $atts ) {
+function fancy_post_grid_shortcode_pro( $atts ) {
 	$atts = shortcode_atts(
 		array(
 			'id' => "", 
@@ -479,4 +479,4 @@ function fancy_post_grid_shortcode( $atts ) {
 		}
 	}
 }
-add_shortcode( 'fancy_gird_post_shortcode', 'fancy_post_grid_shortcode' );
+add_shortcode( 'fancy_gird_post_shortcode', 'fancy_post_grid_shortcode_pro' );

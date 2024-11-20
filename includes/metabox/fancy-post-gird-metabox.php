@@ -4,12 +4,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 } // Exit if accessed directly
 
 
-add_action( 'add_meta_boxes', 'fancy_post_grid_custom_settings_shortcode_metabox' );
-function fancy_post_grid_custom_settings_shortcode_metabox() {
+add_action( 'add_meta_boxes', 'fancy_post_grid_custom_settings_shortcode_metabox_pro' );
+function fancy_post_grid_custom_settings_shortcode_metabox_pro() {
     add_meta_box(
         'fpg_metabox_shortcode',
         esc_html__( 'Shortcode Generator', 'fancy-post-grid' ),
-        'fancy_post_grid_metabox_shortcode_callback',
+        'fancy_post_grid_metabox_shortcode_callback_pro',
         'fancy-post-grid-fpg', // Replace 'fancy-post-grid-fpg' with your custom post type slug
         'normal',
         'high'
@@ -20,7 +20,7 @@ function fancy_post_grid_custom_settings_shortcode_metabox() {
 /**
  * Callback function for metabox content.
  */
-function fancy_post_grid_metabox_shortcode_callback( $post ) {
+function fancy_post_grid_metabox_shortcode_callback_pro( $post ) {
     // Add nonce for security verification
     wp_nonce_field( 'fpg_metabox_nonce', 'fpg_metabox_nonce' );
 
@@ -566,7 +566,7 @@ function fancy_post_grid_metabox_shortcode_callback( $post ) {
                             <input type="radio" id="fpg_layout_list" name="fpg_layout_select" value="list" <?php checked( $fpg_layout_select, 'list',true ); ?> />
                             <label for="fpg_layout_list">
                                 <span></span>
-                                <img class="fpg_logo" src="<?php echo esc_url(plugins_url( 'img/slider_style_main.png', __FILE__ )); ?>" alt="List Style">
+                                <img class="fpg_logo" src="<?php echo esc_url(plugins_url( 'img/list_style_main.png', __FILE__ )); ?>" alt="List Style">
                                 <p><?php esc_html_e( 'List', 'fancy-post-grid' ); ?></p>
                             </label>
                         </div>
@@ -574,7 +574,7 @@ function fancy_post_grid_metabox_shortcode_callback( $post ) {
                             <input type="radio" id="fpg_layout_isotope" name="fpg_layout_select" value="isotope" <?php checked( $fpg_layout_select, 'isotope',true ); ?> />
                             <label for="fpg_layout_isotope">
                                 <span></span>
-                                <img class="fpg_logo" src="<?php echo esc_url(plugins_url( 'img/slider_style_main.png', __FILE__ )); ?>" alt="Isotope Style">
+                                <img class="fpg_logo" src="<?php echo esc_url(plugins_url( 'img/isotope_style_main.png', __FILE__ )); ?>" alt="Isotope Style">
                                 <p><?php esc_html_e( 'Isotope', 'fancy-post-grid' ); ?></p>
                             </label>
                         </div>
@@ -2514,7 +2514,7 @@ function fancy_post_grid_metabox_shortcode_callback( $post ) {
 /**
  * Save metabox data when the post is saved.
  */
-function fancy_post_grid_save_metabox_data( $post_id ) {
+function fancy_post_grid_save_metabox_data_pro( $post_id ) {
     // Check if our nonce is set.
     if ( ! isset( $_POST['fpg_metabox_nonce'] ) ) {
         return;
@@ -3208,12 +3208,12 @@ function fancy_post_grid_save_metabox_data( $post_id ) {
         update_post_meta( $post_id, 'fpg_single_section_background_hover_color', sanitize_text_field( wp_unslash($_POST['fpg_single_section_background_hover_color'] ) ));
     }
 }
-add_action( 'save_post', 'fancy_post_grid_save_metabox_data' );
+add_action( 'save_post', 'fancy_post_grid_save_metabox_data_pro' );
 
 /**
  * Enqueue scripts and styles for the metabox.
  */
-function fancy_post_grid_metabox_enqueue_scripts( $hook ) {
+function fancy_post_grid_metabox_enqueue_scripts_pro( $hook ) {
     // Enqueue scripts and styles only on your custom post type edit screen
     global $post_type;
     if ( 'fancy-post-grid-fpg' === $post_type ) {
@@ -3222,5 +3222,5 @@ function fancy_post_grid_metabox_enqueue_scripts( $hook ) {
         wp_enqueue_style( 'fpg-admin-style', plugins_url('custom/css/admin-style.css', __FILE__),array(),'1.0' );
     }
 }
-add_action( 'admin_enqueue_scripts', 'fancy_post_grid_metabox_enqueue_scripts' );
+add_action( 'admin_enqueue_scripts', 'fancy_post_grid_metabox_enqueue_scripts_pro' );
 ?>
