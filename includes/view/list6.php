@@ -183,7 +183,10 @@ ob_start();
                                     <?php if ($fpg_field_group_author) : ?>
                                     <li class="admin">
                                         <i class="ri-user-3-line"> </i> 
-                                        <?php the_author(); ?>
+                                        <a href="<?php echo esc_url(get_author_posts_url(get_the_author_meta('ID'))); ?>"
+                                            <?php echo esc_attr($target_blank); ?>>
+                                            <?php the_author(); ?>
+                                        </a>
                                     </li>
                                     <?php endif; ?>               
                                 </ul>
