@@ -476,6 +476,20 @@ function fancy_post_grid_shortcode_pro( $atts ) {
 				require  $dir.'view/isotope4.php';
 				return $isotope4;		
 			}
+
+			if( $fancy_isotope_style == 'isotopestyle5'){				
+				require  $dir.'view/isotope5.php';
+				return $isotope5;		
+			}
+			if( $fancy_isotope_style == 'isotopestyle6'){				
+				require  $dir.'view/isotope6.php';	
+				return $isotope6;		
+			}
+
+			if( $fancy_isotope_style == 'isotopestyle7'){				
+				require  $dir.'view/isotope7.php';
+				return $isotope7;		
+			}
 		}
 	}
 }
