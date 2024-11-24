@@ -358,10 +358,17 @@ ob_start();
         <?php if (!empty($fancy_post_filter_active_bg_color)) : ?>
             background-color: <?php echo esc_attr($fancy_post_filter_active_bg_color); ?>;
         <?php endif; ?> 
+    }
+
+    .rs-blog-layout-12 .rs-blog-layout-5-filter .filter-button-group button.active,
+    .rs-blog-layout-12 .rs-blog-layout-5-filter .filter-button-group button:hover{
         <?php if (!empty($fancy_post_filter_active_border_color)) : ?>
             border-color: <?php echo esc_attr($fancy_post_filter_active_border_color); ?>;
         <?php endif; ?>
+
     }
+
+
 
     .rs-blog-layout-12 .rs-grid .rs-grid-item .pre-blog-item.style_12 .blog-inner-wrap{
         <?php if (!empty($fancy_post_image_border_radius)) : ?>
