@@ -264,8 +264,8 @@ ob_start();
                                             <?php endif; ?>
                                             <div class="rs-blog-author">
                                                 <?php if ($fpg_field_group_author) : ?>
-                                                <div class="user">                   
-                                                    <a href="<?php the_permalink(); ?>">
+                                                <div class="user">                 
+                                                    <a href="<?php echo esc_url(get_author_posts_url(get_the_author_meta('ID'))); ?>">
                                                         <div class="author-thumb" style="color: <?php echo esc_attr($fpg_meta_author_color); ?>; ">
                                                             <?php echo get_avatar(get_the_author_meta('ID'), 32); ?>
                                                         </div>

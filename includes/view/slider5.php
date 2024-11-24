@@ -213,7 +213,13 @@ ob_start();
                                                 <li><i class="ri-bookmark-line"></i> <?php the_category(', '); ?></li>
                                                 <?php endif; ?>
                                                 <?php if ($fpg_field_group_author) : ?>
-                                                <li><i class="ri-user-line"></i> <?php the_author(); ?></li>
+                                                <li>
+                                                    <i class="ri-user-line"></i> 
+                                                    <a href="<?php echo esc_url(get_author_posts_url(get_the_author_meta('ID'))); ?>"
+                                                        <?php echo esc_attr($target_blank); ?>>
+                                                        <?php the_author(); ?>
+                                                    </a> 
+                                                </li>
                                                 <?php endif; ?>
                                             </ul>
                                         </div>

@@ -2,8 +2,8 @@
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 ob_start();
 ?>
-<!-- isotope 3 -->
-<section class="rs-blog-layout-30 rs-blog-layout-10">
+<!-- isotope 6 -->
+<section class="rs-blog-layout-15">
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
@@ -168,41 +168,28 @@ ob_start();
             ?>
             <div class=" <?php echo esc_attr($main_cl_lg . ' ' .  $main_cl_md . ' ' . $main_cl_sm . ' ' . $main_cl_mobile); ?> rs-grid-item
                 <?php foreach ($post_categories as $category) { echo esc_attr(' ' . $category->slug); } ?>">
-                <div class="rs-blog-layout-30-item <?php echo esc_attr($main_alignment_class); ?> <?php echo esc_attr($hover_class); ?>">
+                <div class="rs-blog-layout-15-item <?php echo esc_attr($main_alignment_class); ?> <?php echo esc_attr($hover_class); ?>">
+                    <div class="rs-content">
+                        <!-- Meta -->
+                        <div class="rs-meta <?php echo esc_attr($meta_alignment_class); ?>">
+                            <?php if ($fpg_field_group_post_date) : ?>
+                            <div class="meta-date">
+                                <span>
 
-                    <?php if (!$hide_feature_image && $fpg_field_group_image) : ?>
-                        <div class="rs-thumb">
-                            <?php if ($feature_image_url) : ?>
-                                <?php
-
-                                    $post_id = get_the_ID();
-                                    // Get the thumbnail ID
-                                    $thumbnail_id = get_post_thumbnail_id($post_id);
+                                    <?php echo get_the_date('M j, Y'); ?>
                                     
-                                    // Get the image alt text and title text
-                                    $image_alt = get_post_meta($thumbnail_id, '_wp_attachment_image_alt', true);
-                                    $image_title = get_the_title($thumbnail_id);
-                                    // Use alt text if available; otherwise, use title text
-                                    $alt_text = !empty($image_alt) ? esc_attr($image_alt) : esc_attr($image_title);
-
-                                ?>
-                                <a href="<?php the_permalink(); ?>" <?php echo esc_attr($target_blank); ?>>
-                                    <img src="<?php echo esc_url($feature_image_url); ?>" alt="<?php echo $alt_text; ?>">
-                                </a>
+                                </span>
+                            </div>
                             <?php endif; ?>
 
-                            <?php if ($fpg_field_group_post_date) : ?>
-                                <div class="meta-date">
-                                    <span>
-                                        <?php echo get_the_date('M d, Y'); ?>
-                                    </span>                                
-                                </div>
+                            <?php if ($fpg_field_group_author) : ?>
+                            <div class="meta-author">
+                                <a href="<?php echo esc_url(get_author_posts_url(get_the_author_meta('ID'))); ?>">
+                                    <?php the_author(); ?>                                        
+                                </a>
+                            </div>
                             <?php endif; ?>
                         </div>
-                    <?php endif; ?>
-
-                    <div class="rs-content">
-
                         <!-- Title -->
                         <?php if ($fpg_field_group_title) : ?>
                             <<?php echo esc_attr($title_tag); ?> class="title <?php echo esc_attr($title_alignment_class); ?>" >
@@ -229,47 +216,42 @@ ob_start();
                                 <?php endif; ?>
                             </<?php echo esc_attr($title_tag); ?>>
                         <?php endif; ?>
-
-                        <div class="rs-meta <?php echo esc_attr($meta_alignment_class); ?>">
-                            <ul>
-                                <?php if ($fpg_field_group_author) : ?>
-                                    <li class="meta-author">
-                                        
-                                        <a href="<?php echo esc_url(get_author_posts_url(get_the_author_meta('ID'))); ?>"
-                                            <?php echo esc_attr($target_blank); ?>>
-                                            <?php the_author(); ?>
-                                        </a> 
-                                    </li>
-                                <?php endif; ?>
-                                <?php if ($fpg_field_group_categories) : ?>
-                                    <li class="meta-categories">
-                                        
-                                        <?php the_category(', '); ?>
-                                    </li>
-                                <?php endif; ?>
-                            </ul>                                                      
-                        </div>
-
-                        <!-- Excerpt -->
-                        <?php if ($fpg_field_group_excerpt) : ?>
-                            <div class="fpg-excerpt <?php echo esc_attr($excerpt_alignment_class); ?>">
-                                <p>
-                                <?php
-                                $excerpt = get_the_content();
-
-                                if ($fancy_post_excerpt_limit_type === 'words') {
-                                    echo wp_trim_words($excerpt, $fancy_post_excerpt_limit, $excerpt_more_text);
-                                } else {
-                                    // Strip tags to avoid breaking HTML, then apply character limit
-                                    $excerpt = wp_strip_all_tags($excerpt);
-                                    echo esc_html(mb_strimwidth($excerpt, 0, $fancy_post_excerpt_limit, $excerpt_more_text));
-                                }
-                                ?>
-                                </p>
-                            </div>
-                        <?php endif; ?>
-
                     </div>
+
+                    <?php if (!$hide_feature_image && $fpg_field_group_image) : ?>
+                    <div class="rs-thumb">
+                        <?php if ($feature_image_url) : ?>
+
+                            <?php
+
+                                $post_id = get_the_ID();
+                                // Get the thumbnail ID
+                                $thumbnail_id = get_post_thumbnail_id($post_id);
+                                
+                                // Get the image alt text and title text
+                                $image_alt = get_post_meta($thumbnail_id, '_wp_attachment_image_alt', true);
+                                $image_title = get_the_title($thumbnail_id);
+                                // Use alt text if available; otherwise, use title text
+                                $alt_text = !empty($image_alt) ? esc_attr($image_alt) : esc_attr($image_title);
+
+                            ?>
+                            <a href="<?php the_permalink(); ?>" <?php echo esc_attr($target_blank); ?>>
+                                <img src="<?php echo esc_url($feature_image_url); ?>" alt="<?php echo $alt_text; ?>">
+                            </a>
+                        <?php endif; ?>
+                        <?php if ($fpg_field_group_categories) : ?>
+                        <div class="rs-category">
+                            <?php
+                            $categories = get_the_category();
+                            if (!empty($categories)) {
+                                $category = $categories[0]; // Use the first category
+                                echo '<a href="' . esc_url(get_category_link($category->term_id)) . '"><i class="ri-bookmark-line"></i>' . esc_html($category->name) . '</a>';
+                            }
+                            ?>
+                        </div>
+                        <?php endif; ?>
+                    </div>
+                    <?php endif; ?>
                 </div>
             </div>
             <?php
@@ -283,7 +265,7 @@ ob_start();
 <style type="text/css">
     /* General Styles */
 
-    .rs-blog-layout-30 {
+    .rs-blog-layout-15 {
         <?php if (!empty($fpg_section_background_color)) : ?>
             background-color: <?php echo esc_attr($fpg_section_background_color); ?>;
         <?php endif; ?>
@@ -294,7 +276,7 @@ ob_start();
             padding: <?php echo esc_attr($fpg_section_padding); ?>;
         <?php endif; ?>
     }
-    .rs-blog-layout-30 .rs-blog-layout-4-filter .filter-button-group{
+    .rs-blog-layout-15 .rs-blog-layout-4-filter .filter-button-group{
         <?php if (!empty($fancy_post_filter_box_bg_color)) : ?>
             background: <?php echo esc_attr($fancy_post_filter_box_bg_color); ?>;
         <?php endif; ?>
@@ -311,7 +293,7 @@ ob_start();
             gap: <?php echo esc_attr($fancy_post_filter_item_gap); ?>;
         <?php endif; ?>
     }
-    .rs-blog-layout-30 .rs-blog-layout-4-filter .filter-button-group button{
+    .rs-blog-layout-15 .rs-blog-layout-4-filter .filter-button-group button{
         <?php if (!empty($fancy_post_filter_text_color)) : ?>
             color: <?php echo esc_attr($fancy_post_filter_text_color); ?>;
         <?php endif; ?>
@@ -343,7 +325,7 @@ ob_start();
             border-radius: <?php echo esc_attr($fancy_post_filter_border_radius); ?>;
         <?php endif; ?>
     }
-    .rs-blog-layout-30 .rs-blog-layout-4-filter .filter-button-group button:hover{
+    .rs-blog-layout-15 .rs-blog-layout-4-filter .filter-button-group button:hover{
         <?php if (!empty($fancy_post_filter_hover_bg_color)) : ?>
             background-color: <?php echo esc_attr($fancy_post_filter_hover_bg_color); ?>;
         <?php endif; ?>
@@ -352,7 +334,7 @@ ob_start();
         <?php endif; ?>
     }
 
-    .rs-blog-layout-30 .rs-blog-layout-4-filter .filter-button-group button.active{
+    .rs-blog-layout-15 .rs-blog-layout-4-filter .filter-button-group button.active{
         <?php if (!empty($fancy_post_filter_active_color)) : ?>
             color: <?php echo esc_attr($fancy_post_filter_active_color); ?>;
         <?php endif; ?>
@@ -364,7 +346,7 @@ ob_start();
         <?php endif; ?>
     }
     /* Single Item Styles */
-    .rs-blog-layout-30 .rs-grid .rs-grid-item .rs-blog-layout-30-item {
+    .rs-blog-layout-15 .rs-grid .rs-grid-item .rs-blog-layout-15-item {
         <?php if (!empty($fpg_single_section_background_color)) : ?>
             background-color: <?php echo esc_attr($fpg_single_section_background_color); ?>;
         <?php endif; ?>
@@ -373,61 +355,64 @@ ob_start();
         <?php endif; ?>
         <?php if (!empty($fpg_single_section_padding)) : ?>
             padding: <?php echo esc_attr($fpg_single_section_padding); ?>;
-        <?php endif; ?>
+        <?php endif; ?>    
         <?php if (!empty($fpg_single_section_border_color)) : ?>
             border-color: <?php echo esc_attr($fpg_single_section_border_color); ?>;
-        <?php endif; ?>
-        <?php if (!empty($fancy_post_border_style)) : ?>
-            border-style: <?php echo esc_attr($fancy_post_border_style); ?>;
         <?php endif; ?>
         <?php if (!empty($fancy_post_border_width)) : ?>
             border-width: <?php echo esc_attr($fancy_post_border_width); ?>;
         <?php endif; ?>
+        <?php if (!empty($fancy_post_border_style)) : ?>
+            border-style: <?php echo esc_attr($fancy_post_border_style); ?>;
+        <?php endif; ?>
         <?php if (!empty($fancy_post_section_border_radius)) : ?>
             border-radius: <?php echo esc_attr($fancy_post_section_border_radius); ?>;
-        <?php endif; ?>
+        <?php endif; ?>    
     }
 
-    .rs-blog-layout-30 .rs-grid .rs-grid-item .rs-blog-layout-30-item .rs-thumb{
+    .rs-blog-layout-15 .rs-grid .rs-grid-item .rs-blog-layout-15-item .rs-thumb{
         <?php if (!empty($fancy_post_image_border_radius)) : ?>
             border-radius: <?php echo esc_attr($fancy_post_image_border_radius); ?>;
         <?php endif; ?>
     }
-
-    .rs-blog-layout-30 .rs-grid .rs-grid-item .rs-blog-layout-30-item .rs-content {
+    
+    .rs-blog-layout-15 .rs-grid .rs-grid-item .rs-blog-layout-15-item .rs-content{
         <?php if (!empty($fpg_single_content_section_padding)) : ?>
             padding: <?php echo esc_attr($fpg_single_content_section_padding); ?>;
-        <?php endif; ?>
+        <?php endif; ?>        
     }
 
     /* Title Styles */
-    .rs-blog-layout-30 .rs-grid .rs-grid-item .rs-blog-layout-30-item .rs-content .title {        
+    .rs-blog-layout-15 .rs-grid .rs-grid-item .rs-blog-layout-15-item .rs-content .title{
         <?php if (!empty($fpg_title_order)) : ?>
             order: <?php echo esc_attr($fpg_title_order); ?>;
         <?php endif; ?>
-        
+        <?php if (!empty($fpg_title_padding)) : ?>
+            padding: <?php echo esc_attr($fpg_title_padding); ?>;
+        <?php endif; ?>  
+        <?php if (!empty($fpg_title_margin)) : ?>
+            margin: <?php echo esc_attr($fpg_title_margin); ?>;
+        <?php endif; ?>  
         <?php if (!empty($fpg_title_border_color)) : ?>
             border-color: <?php echo esc_attr($fpg_title_border_color); ?>;
         <?php endif; ?>
-        <?php if (!empty($fpg_title_border_style)) : ?>
-            border-style: <?php echo esc_attr($fpg_title_border_style); ?>;
-        <?php endif; ?>
         <?php if (!empty($fpg_title_border_width)) : ?>
             border-width: <?php echo esc_attr($fpg_title_border_width); ?>;
+        <?php endif; ?>
+        <?php if (!empty($fpg_title_border_style)) : ?>
+            border-style: <?php echo esc_attr($fpg_title_border_style); ?>;
         <?php endif; ?>
         <?php if (!empty($fpg_title_line_height)) : ?>
             line-height: <?php echo esc_attr($fpg_title_line_height); ?>;
         <?php endif; ?>
     }
-
-    /* Title Styles */
-    .rs-blog-layout-30 .rs-grid .rs-grid-item .rs-blog-layout-30-item .rs-content .title a {
+    .rs-blog-layout-15 .rs-grid .rs-grid-item .rs-blog-layout-15-item .rs-content .title a {
         <?php if (!empty($fpg_title_padding)) : ?>
             padding: <?php echo esc_attr($fpg_title_padding); ?>;
-        <?php endif; ?>
+        <?php endif; ?>  
         <?php if (!empty($fpg_title_margin)) : ?>
             margin: <?php echo esc_attr($fpg_title_margin); ?>;
-        <?php endif; ?>
+        <?php endif; ?> 
         <?php if (!empty($fpg_title_color)) : ?>
             color: <?php echo esc_attr($fpg_title_color); ?>;
         <?php endif; ?>
@@ -438,46 +423,27 @@ ob_start();
             font-weight: <?php echo esc_attr($fpg_title_font_weight); ?>;
         <?php endif; ?>
     }
-
-    .rs-blog-layout-30 .rs-grid .rs-grid-item .rs-blog-layout-30-item .rs-content .title a:hover {
+    .rs-blog-layout-15 .rs-grid .rs-grid-item .rs-blog-layout-15-item .rs-content .title a:hover {
         <?php if (!empty($fpg_title_hover_color)) : ?>
             color: <?php echo esc_attr($fpg_title_hover_color); ?>;
         <?php endif; ?>
     }
 
-    /* Excerpt Styles */
-
-    .rs-blog-layout-30 .rs-grid .rs-grid-item .rs-blog-layout-30-item .rs-content .fpg-excerpt{
-        <?php if (!empty($fpg_excerpt_order)) : ?>
-            order: <?php echo esc_attr($fpg_excerpt_order); ?>;
-        <?php endif; ?>
-        <?php if (!empty($fpg_excerpt_line_height)) : ?>
-            line-height: <?php echo esc_attr($fpg_excerpt_line_height); ?>;
-        <?php endif; ?>
-        
-    }
-    .rs-blog-layout-30 .rs-grid .rs-grid-item .rs-blog-layout-30-item .rs-content .fpg-excerpt p{
-        <?php if (!empty($fpg_excerpt_padding)) : ?>
-            padding: <?php echo esc_attr($fpg_excerpt_padding); ?>;
-        <?php endif; ?>
-        <?php if (!empty($fpg_excerpt_margin)) : ?>
-            margin: <?php echo esc_attr($fpg_excerpt_margin); ?>;
-        <?php endif; ?>
-        <?php if (!empty($fpg_excerpt_color)) : ?>
-            color: <?php echo esc_attr($fpg_excerpt_color); ?>;
-        <?php endif; ?>
-        <?php if (!empty($fpg_excerpt_size)) : ?>
-            font-size: <?php echo esc_attr($fpg_excerpt_size); ?>px;
-        <?php endif; ?>
-        <?php if (!empty($fpg_excerpt_font_weight)) : ?>
-            font-weight: <?php echo esc_attr($fpg_excerpt_font_weight); ?>;
-        <?php endif; ?>   
-    }
-
-
     /* Meta Data Styles */
-
-    .rs-blog-layout-30 .rs-grid .rs-grid-item .rs-blog-layout-30-item .rs-content .rs-meta{
+    .rs-blog-layout-15 .rs-grid .rs-grid-item .rs-blog-layout-15-item .rs-content .rs-meta .meta-date span ,
+    .rs-blog-layout-15 .rs-grid .rs-grid-item .rs-blog-layout-15-item .rs-content .rs-meta .meta-author a,
+    .rs-blog-layout-15 .rs-grid .rs-grid-item .rs-blog-layout-15-item .rs-content .rs-meta .meta-date::before{
+        <?php if (!empty($fpg_meta_color)) : ?>
+            color: <?php echo esc_attr($fpg_meta_color); ?>;
+        <?php endif; ?>
+        <?php if (!empty($fpg_meta_size)) : ?>
+            font-size: <?php echo esc_attr($fpg_meta_size); ?>px;
+        <?php endif; ?>
+        <?php if (!empty($fpg_meta_font_weight)) : ?>
+            font-weight: <?php echo esc_attr($fpg_meta_font_weight); ?>;
+        <?php endif; ?>
+    }
+    .rs-blog-layout-15 .rs-grid .rs-grid-item .rs-blog-layout-15-item .rs-content .rs-meta{
         <?php if (!empty($fpg_meta_order)) : ?>
             order: <?php echo esc_attr($fpg_meta_order); ?>;
         <?php endif; ?>
@@ -488,42 +454,9 @@ ob_start();
             margin: <?php echo esc_attr($fpg_meta_margin); ?>;
         <?php endif; ?>
     }
-
-    .rs-blog-layout-30 .rs-grid .rs-grid-item .rs-blog-layout-30-item .rs-content .rs-meta ul li a,
-    .rs-blog-layout-30 .rs-grid .rs-grid-item .rs-blog-layout-30-item .rs-content .rs-meta ul li{
-        <?php if (!empty($fpg_meta_color)) : ?>
-            color: <?php echo esc_attr($fpg_meta_color); ?>;
-        <?php endif; ?>
-        <?php if (!empty($fpg_meta_size)) : ?>
-            font-size: <?php echo esc_attr($fpg_meta_size); ?>px;
-        <?php endif; ?>
-        <?php if (!empty($fpg_meta_font_weight)) : ?>
-            font-weight: <?php echo esc_attr($fpg_meta_font_weight); ?>;
-        <?php endif; ?>      
-        <?php if (!empty($fpg_meta_line_height)) : ?>
-            line-height: <?php echo esc_attr($fpg_meta_line_height); ?>;
-        <?php endif; ?>  
-    }
     
-    .rs-blog-layout-30 .rs-grid .rs-grid-item .rs-blog-layout-30-item .rs-content .rs-meta ul li a:hover{        
-        <?php if (!empty($fpg_meta_hover_color)) : ?>
-            color: <?php echo esc_attr($fpg_meta_hover_color); ?>;
-        <?php endif; ?>
-    }
-
-    .rs-blog-layout-30 .rs-grid .rs-grid-item .rs-blog-layout-30-item .rs-thumb .meta-date span{
-        <?php if (!empty($fpg_date_color)) : ?>
-            color: <?php echo esc_attr($fpg_date_color); ?>;
-        <?php endif; ?>
-        <?php if (!empty($fpg_date_bg_color)) : ?>
-            background: <?php echo esc_attr($fpg_date_bg_color); ?>;
-        <?php endif; ?>
-        <?php if (!empty($fpg_date_padding)) : ?>
-            padding: <?php echo esc_attr($fpg_date_padding); ?>;
-        <?php endif; ?>    
-    }
 
 </style>
 <?php
-$isotope4 = ob_get_clean();
+$isotope6 = ob_get_clean();
 ?>

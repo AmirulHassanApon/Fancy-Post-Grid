@@ -2,18 +2,32 @@
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 ob_start();
 ?>
-<!-- ==== Blog Layout 5 ==== -->
-<section class="rs-blog-layout-12 grey">
+<!-- isotope 5 -->
+<section class="rs-blog-layout-12">
     <div class="container">
         <div class="row">
-        <?php
-            
-            // Check if pagination is on or off
-            if ($fancy_post_pagination === 'off') {
-                $fpg_post_per_page = -1;
-            }  
-
-            //==============STATUS==============
+            <div class="col-lg-12">
+                <div class="rs-blog-layout-4-filter" style="justify-content: <?php echo esc_attr($fancy_post_filter_alignment); ?>;">
+                    <div class="filter-button-group">
+                        <button class="active" data-filter="*"><?php echo esc_attr($fancy_post_filter_text); ?></button>
+                        <?php
+                        // Get unique categories from posts
+                        $categories = get_categories();
+                        foreach ($categories as $category) {
+                            echo '<button data-filter=".' . esc_attr($category->slug) . '">' . esc_html($category->name) . '</button>';
+                        }
+                        ?>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row rs-grid">
+            <?php
+                // Check if pagination is on or off
+                if ($fancy_post_pagination === 'off') {
+                    $fpg_post_per_page = -1;
+                }  
+                
                 // Ensure it's an array
                 if (!is_array($fpg_filter_statuses)) {
                     // Convert string to array if necessary
@@ -24,7 +38,6 @@ ob_start();
                     }
                 }
 
-                // ==============AUTHOR==========
                 // Unserialize the data if necessary
                 if (is_string($fpg_filter_authors)) {
                     $fpg_filter_authors = maybe_unserialize($fpg_filter_authors);
@@ -54,8 +67,6 @@ ob_start();
 
                 // Capture and sanitize tag terms if 'tags' taxonomy is selected
                 $tag_terms = array_map('intval', $fpg_filter_tags_terms);   
-
-
 
                 // Get values from the form inputs           
                 $args = array(
@@ -109,52 +120,54 @@ ob_start();
                 if (!empty($tax_query)) {
                     $args['tax_query'] = $tax_query;
                 }
-                // echo '<pre>' . print_r($args, true) . '</pre>';
                 
-            $query = new WP_Query($args);
+                
+                $query = new WP_Query($args);
 
-            // Loop through the custom query
-            while ($query->have_posts()) : $query->the_post();
+                // Loop through the custom query
+                while ($query->have_posts()) : $query->the_post();
+                    $main_cl_lg = empty($fancy_post_cl_lg) ? 'col-lg-4' : 'col-lg-' . $fancy_post_cl_lg;
+                    $main_cl_md = empty($fancy_post_cl_md) ? 'col-md-4' : 'col-md-' . $fancy_post_cl_md;
+                    $main_cl_sm = empty($fancy_post_cl_sm) ? 'col-sm-6' : 'col-sm-' . $fancy_post_cl_sm;
+                    $main_cl_mobile = empty($fancy_post_cl_mobile) ? 'col-sm-12' : 'col-sm-' . $fancy_post_cl_mobile;
+                    // Check if the link should open in a new tab
+                    $target_blank = ($fancy_link_target === 'new') ? 'target="_blank"' : '';
+                    
+                    // Determine the title tag
+                    $title_tag = !empty($fancy_post_title_tag) ? $fancy_post_title_tag : 'h3';
+                    
+                    // Determine if the feature image should be hidden
+                    $hide_feature_image = isset($fancy_post_hide_feature_image) && $fancy_post_hide_feature_image === 'off';
+                    
 
-                $main_cl_lg = empty($fancy_post_cl_lg) ? 'col-lg-4' : 'col-lg-' . $fancy_post_cl_lg;
-                $main_cl_md = empty($fancy_post_cl_md) ? 'col-md-4' : 'col-md-' . $fancy_post_cl_md;
-                $main_cl_sm = empty($fancy_post_cl_sm) ? 'col-sm-6' : 'col-sm-' . $fancy_post_cl_sm;
-                $main_cl_mobile = empty($fancy_post_cl_mobile) ? 'col-sm-12' : 'col-sm-' . $fancy_post_cl_mobile;
+                    // Determine the feature image size
+                    $feature_image_size = isset($fancy_post_feature_image_size) ? (string) $fancy_post_feature_image_size : '';  
 
-                // Check if the link should open in a new tab
-                $target_blank = ($fancy_link_target === 'new') ? 'target="_blank"' : '';
-                
-                // Determine the title tag
-                $title_tag = !empty($fancy_post_title_tag) ? $fancy_post_title_tag : 'h3';
-                
-                // Determine if the feature image should be hidden
-                $hide_feature_image = isset($fancy_post_hide_feature_image) && $fancy_post_hide_feature_image === 'off';
-                
-                // Determine the feature image size
-                $feature_image_size = isset($fancy_post_feature_image_size) ? (string) $fancy_post_feature_image_size : 'large';  
-                           
-                // Determine the media source
-                $media_source = isset($fancy_post_media_source) ? $fancy_post_media_source : 'feature_image';
-                
-                // Determine the hover animation
-                $hover_animation = !empty($fancy_post_hover_animation) ? $fancy_post_hover_animation : 'none';
-                
-                // Get the feature image or first image from content
-                if ($media_source === 'first_image') {
+                               
+                    // Determine the media source
+                    $media_source = isset($fancy_post_media_source) ? $fancy_post_media_source : 'feature_image';
+                    
+                    // Determine the hover animation
+                    $hover_animation = !empty($fancy_post_hover_animation) ? $fancy_post_hover_animation : 'none';
+                    
+                    // Get the feature image or first image from content
+                    if ($media_source === 'first_image') {
 
-                    $content = get_the_content();
-                    preg_match_all('/<img[^>]+>/i', $content, $matches);
-                    $first_image = !empty($matches[0][0]) ? $matches[0][0] : '';
-                    preg_match('/src="([^"]+)"/i', $first_image, $img_src);
-                    $feature_image_url = !empty($img_src[1]) ? $img_src[1] : get_the_post_thumbnail_url(get_the_ID(), $feature_image_size);
-                } else {
-                    $feature_image_url = get_the_post_thumbnail_url(get_the_ID(), $feature_image_size);
-                }
+                        $content = get_the_content();
+                        preg_match_all('/<img[^>]+>/i', $content, $matches);
+                        $first_image = !empty($matches[0][0]) ? $matches[0][0] : '';
+                        preg_match('/src="([^"]+)"/i', $first_image, $img_src);
+                        $feature_image_url = !empty($img_src[1]) ? $img_src[1] : get_the_post_thumbnail_url(get_the_ID(), $feature_image_size);
+                    } else {
+                        $feature_image_url = get_the_post_thumbnail_url(get_the_ID(), $feature_image_size);
+                    }
 
-                // Apply hover animation class if needed
-                $hover_class = $hover_animation !== 'none' ? 'hover-' . esc_attr($hover_animation) : '';
-        ?>
-            <div class="<?php echo esc_attr($main_cl_lg . ' ' .  $main_cl_md . ' ' . $main_cl_sm . ' ' . $main_cl_mobile); ?>">
+                    // Apply hover animation class if needed
+                    $hover_class = $hover_animation !== 'none' ? 'hover-' . esc_attr($hover_animation) : '';
+                    $post_categories = get_the_category();
+            ?>
+            <div class=" <?php echo esc_attr($main_cl_lg . ' ' .  $main_cl_md . ' ' . $main_cl_sm . ' ' . $main_cl_mobile); ?> rs-grid-item
+                <?php foreach ($post_categories as $category) { echo esc_attr(' ' . $category->slug); } ?>">
                 <div class="pre-blog-item style_12 pre-blog-meta-style2 default  <?php echo esc_attr($hover_class); ?>">
                     <div class="blog-inner-wrap pre-thum-default pre-meta-blocks top">
                         <?php if (!$hide_feature_image && $fpg_field_group_image) : ?>
@@ -260,31 +273,15 @@ ob_start();
             </div>
             <?php
                 endwhile;
-                // Restore original post data
-                wp_reset_postdata();
-            
+                wp_reset_postdata(); // Reset the post data
+                
             ?>
         </div>
-        <?php if ($fancy_post_pagination === 'on') : ?>
-            <div class="fpg-pagination">
-                <?php
-                echo paginate_links(array(
-                    'total'   => $query->max_num_pages,
-                    'current' => max(1, get_query_var('paged')),
-                    'format'  => '?paged=%#%',
-                    'show_all' => false,
-                    'type'     => 'list',
-                    'prev_text' => __('« Prev', 'fancy-post-grid'),
-                    'next_text' => __('Next »', 'fancy-post-grid'),
-                ));
-                ?>
-            </div>
-        <?php endif; ?>
     </div>
 </section>
-
 <style type="text/css">
     /* General Styles */
+
     .rs-blog-layout-12 {
         <?php if (!empty($fpg_section_background_color)) : ?>
             background-color: <?php echo esc_attr($fpg_section_background_color); ?>;
@@ -296,13 +293,83 @@ ob_start();
             padding: <?php echo esc_attr($fpg_section_padding); ?>;
         <?php endif; ?>
     }
-    .pre-blog-item.style_12 .blog-inner-wrap{
+    .rs-blog-layout-12 .rs-blog-layout-4-filter .filter-button-group{
+        <?php if (!empty($fancy_post_filter_box_bg_color)) : ?>
+            background: <?php echo esc_attr($fancy_post_filter_box_bg_color); ?>;
+        <?php endif; ?>
+        <?php if (!empty($fancy_post_filter_box_border_radius)) : ?>
+            border-radius: <?php echo esc_attr($fancy_post_filter_box_border_radius); ?>;
+        <?php endif; ?>
+        <?php if (!empty($fancy_post_filter_box_margin)) : ?>
+            margin: <?php echo esc_attr($fancy_post_filter_box_margin); ?>;
+        <?php endif; ?>
+        <?php if (!empty($fancy_post_filter_box_padding)) : ?>
+            padding: <?php echo esc_attr($fancy_post_filter_box_padding); ?>;
+        <?php endif; ?>
+        <?php if (!empty($fancy_post_filter_item_gap)) : ?>
+            gap: <?php echo esc_attr($fancy_post_filter_item_gap); ?>;
+        <?php endif; ?>
+    }
+    .rs-blog-layout-12 .rs-blog-layout-4-filter .filter-button-group button{
+        <?php if (!empty($fancy_post_filter_text_color)) : ?>
+            color: <?php echo esc_attr($fancy_post_filter_text_color); ?>;
+        <?php endif; ?>
+        <?php if (!empty($fancy_post_filter_bg_color)) : ?>
+            background-color: <?php echo esc_attr($fancy_post_filter_bg_color); ?>;
+        <?php endif; ?>     
+        <?php if (!empty($fancy_post_filter_border_color)) : ?>
+            border-color: <?php echo esc_attr($fancy_post_filter_border_color); ?>;
+        <?php endif; ?>
+        <?php if (!empty($fancy_post_filter_margin)) : ?>
+            margin: <?php echo esc_attr($fancy_post_filter_margin); ?>;
+        <?php endif; ?>
+        <?php if (!empty($fancy_post_filter_padding)) : ?>
+            padding: <?php echo esc_attr($fancy_post_filter_padding); ?>;
+        <?php endif; ?>
+        <?php if (!empty($fancy_post_filter_font_size)) : ?>
+            font-size: <?php echo esc_attr($fancy_post_filter_font_size); ?>;
+        <?php endif; ?>
+        <?php if (!empty($fancy_post_filter_font_size)) : ?>
+            border-radius: <?php echo esc_attr($fancy_post_filter_font_size); ?>;
+        <?php endif; ?>
+        <?php if (!empty($fancy_post_filter_border_style)) : ?>
+            border-style: <?php echo esc_attr($fancy_post_filter_border_style); ?>;
+        <?php endif; ?>
+        <?php if (!empty($fancy_post_filter_border_width)) : ?>
+            border-width: <?php echo esc_attr($fancy_post_filter_border_width); ?>;
+        <?php endif; ?>
+        <?php if (!empty($fancy_post_filter_border_radius)) : ?>
+            border-radius: <?php echo esc_attr($fancy_post_filter_border_radius); ?>;
+        <?php endif; ?>
+    }
+    .rs-blog-layout-12 .rs-blog-layout-4-filter .filter-button-group button:hover{
+        <?php if (!empty($fancy_post_filter_hover_bg_color)) : ?>
+            background-color: <?php echo esc_attr($fancy_post_filter_hover_bg_color); ?>;
+        <?php endif; ?>
+        <?php if (!empty($fancy_post_filter_hover_color)) : ?>
+            color: <?php echo esc_attr($fancy_post_filter_hover_color); ?>;
+        <?php endif; ?>
+    }
+
+    .rs-blog-layout-12 .rs-blog-layout-4-filter .filter-button-group button.active{
+        <?php if (!empty($fancy_post_filter_active_color)) : ?>
+            color: <?php echo esc_attr($fancy_post_filter_active_color); ?>;
+        <?php endif; ?>
+        <?php if (!empty($fancy_post_filter_active_bg_color)) : ?>
+            background-color: <?php echo esc_attr($fancy_post_filter_active_bg_color); ?>;
+        <?php endif; ?> 
+        <?php if (!empty($fancy_post_filter_active_border_color)) : ?>
+            border-color: <?php echo esc_attr($fancy_post_filter_active_border_color); ?>;
+        <?php endif; ?>
+    }
+
+    .rs-blog-layout-12 .rs-grid .rs-grid-item .pre-blog-item.style_12 .blog-inner-wrap{
         <?php if (!empty($fancy_post_image_border_radius)) : ?>
             border-radius: <?php echo esc_attr($fancy_post_image_border_radius); ?>;
         <?php endif; ?>
     }
     /* Single Item Styles */
-    .pre-blog-item.style_12 {
+    .rs-blog-layout-12 .rs-grid .rs-grid-item .pre-blog-item.style_12 {
         <?php if (!empty($fpg_single_section_margin)) : ?>
             margin: <?php echo esc_attr($fpg_single_section_margin); ?>;
         <?php endif; ?>
@@ -311,12 +378,12 @@ ob_start();
         <?php endif; ?>
     }
     
-    .pre-blog-item.style_12 .blog-inner-wrap .pre-blog-content{
+    .rs-blog-layout-12 .rs-grid .rs-grid-item .pre-blog-item.style_12 .blog-inner-wrap .pre-blog-content{
         <?php if (!empty($fpg_single_content_section_padding)) : ?>
             padding: <?php echo esc_attr($fpg_single_content_section_padding); ?>;
         <?php endif; ?>
     }
-    .pre-blog-item.style_12 .blog-inner-wrap .pre-image-wrap .pre-blog-meta{
+    .rs-blog-layout-12 .rs-grid .rs-grid-item .pre-blog-item.style_12 .blog-inner-wrap .pre-image-wrap .pre-blog-meta{
         <?php if (!empty($fpg_date_padding)) : ?>
             padding: <?php echo esc_attr($fpg_date_padding); ?>;
         <?php endif; ?>
@@ -324,29 +391,29 @@ ob_start();
             background: <?php echo esc_attr($fpg_date_bg_color); ?>;
         <?php endif; ?>
     }
-    .pre-blog-item.style_12 .blog-inner-wrap .pre-image-wrap .pre-blog-meta .pre-date,
-    .pre-blog-item.style_12 .blog-inner-wrap .pre-image-wrap .pre-blog-meta .pre-month{
+    .rs-blog-layout-12 .rs-grid .rs-grid-item .pre-blog-item.style_12 .blog-inner-wrap .pre-image-wrap .pre-blog-meta .pre-date,
+    .rs-blog-layout-12 .rs-grid .rs-grid-item .pre-blog-item.style_12 .blog-inner-wrap .pre-image-wrap .pre-blog-meta .pre-month{
         <?php if (!empty($fpg_date_color)) : ?>
             color: <?php echo esc_attr($fpg_date_color); ?>;
         <?php endif; ?>
     }
 
-    .pre-blog-item.style_12 .blog-inner-wrap .pre-image-wrap .pre-blog-meta::after{
+    .rs-blog-layout-12 .rs-grid .rs-grid-item .pre-blog-item.style_12 .blog-inner-wrap .pre-image-wrap .pre-blog-meta::after{
         <?php if (!empty($fpg_date_bg_color)) : ?>
             border-color: <?php echo esc_attr($fpg_date_bg_color); ?>;
         <?php endif; ?>
     }
-    .pre-blog-item.style_12 .blog-inner-wrap .pre-blog-content ul{
+    .rs-blog-layout-12 .rs-grid .rs-grid-item .pre-blog-item.style_12 .blog-inner-wrap .pre-blog-content ul{
         <?php if (!empty($fpg_meta_line_height)) : ?>
             line-height: <?php echo esc_attr($fpg_meta_line_height); ?>;
         <?php endif; ?>
     }
-    .pre-blog-item.style_12:hover .blog-inner-wrap .pre-blog-content{
+    .rs-blog-layout-12 .rs-grid .rs-grid-item .pre-blog-item.style_12:hover .blog-inner-wrap .pre-blog-content{
         <?php if (!empty($fpg_single_section_background_color)) : ?>
             background: <?php echo esc_attr($fpg_single_section_background_color); ?>;
         <?php endif; ?>
     }
-    .pre-blog-item.style_12:after {
+    .rs-blog-layout-12 .rs-grid .rs-grid-item .pre-blog-item.style_12:after {
         <?php if (!empty($fpg_single_section_border_color)) : ?>
             border-color: <?php echo esc_attr($fpg_single_section_border_color); ?>;
         <?php endif; ?>
@@ -364,7 +431,7 @@ ob_start();
     }
 
     /* Title Styles */
-    .pre-blog-item.style_12 .blog-inner-wrap .pre-blog-content .pre-post-title {
+    .rs-blog-layout-12 .rs-grid .rs-grid-item .pre-blog-item.style_12 .blog-inner-wrap .pre-blog-content .pre-post-title {
 
         <?php if (!empty($fpg_title_font_size)) : ?>
             font-size: <?php echo esc_attr($fpg_title_font_size); ?>px;
@@ -390,20 +457,19 @@ ob_start();
             line-height: <?php echo esc_attr($fpg_title_line_height); ?>;
         <?php endif; ?>
     }
-    .pre-blog-item.style_12 .blog-inner-wrap .pre-blog-content .pre-post-title a{
-    padding: <?php echo esc_attr($fpg_title_padding); ?>;
+    .rs-blog-layout-12 .rs-grid .rs-grid-item .pre-blog-item.style_12 .blog-inner-wrap .pre-blog-content .pre-post-title a{
+        padding: <?php echo esc_attr($fpg_title_padding); ?>;
         margin: <?php echo esc_attr($fpg_title_margin); ?>;
-    
     }
 
-    .pre-blog-item.style_12 .blog-inner-wrap .pre-blog-content .pre-post-title .title-link {
+    .rs-blog-layout-12 .rs-grid .rs-grid-item .pre-blog-item.style_12 .blog-inner-wrap .pre-blog-content .pre-post-title .title-link {
         <?php if (!empty($fpg_title_color)) : ?>
             color: <?php echo esc_attr($fpg_title_color); ?>;
         <?php endif; ?>
     }
 
     /* Excerpt Styles */
-    .pre-blog-item.style_12 .blog-inner-wrap .pre-blog-content .pre-content {
+    .rs-blog-layout-12 .rs-grid .rs-grid-item .pre-blog-item.style_12 .blog-inner-wrap .pre-blog-content .pre-content {
 
         <?php if (!empty($fpg_excerpt_color)) : ?>
             color: <?php echo esc_attr($fpg_excerpt_color); ?>;
@@ -422,7 +488,7 @@ ob_start();
         <?php endif; ?>
         
     }
-    .pre-blog-item.style_12 .blog-inner-wrap .pre-blog-content .pre-content p{
+    .rs-blog-layout-12 .rs-grid .rs-grid-item .pre-blog-item.style_12 .blog-inner-wrap .pre-blog-content .pre-content p{
     <?php if (!empty($fpg_excerpt_padding)) : ?>
             padding: <?php echo esc_attr($fpg_excerpt_padding); ?>;
         <?php endif; ?>
@@ -430,25 +496,25 @@ ob_start();
             margin: <?php echo esc_attr($fpg_excerpt_margin); ?>;
         <?php endif; ?>
     }
-    .pre-blog-item.style_12 .blog-inner-wrap .pre-blog-content .blog-btn-part{
+    .rs-blog-layout-12 .rs-grid .rs-grid-item .pre-blog-item.style_12 .blog-inner-wrap .pre-blog-content .blog-btn-part{
         <?php if (!empty($fpg_button_order)) : ?>
             order: <?php echo esc_attr($fpg_button_order); ?>;
         <?php endif; ?>
     }
-    .pre-blog-item.style_12 .blog-inner-wrap .pre-blog-content .blog-btn-part .blog-btn.<?php echo esc_attr($button_class); ?>::before{
+    .rs-blog-layout-12 .rs-grid .rs-grid-item .pre-blog-item.style_12 .blog-inner-wrap .pre-blog-content .blog-btn-part .blog-btn.<?php echo esc_attr($button_class); ?>::before{
         <?php if (!empty($fpg_button_border_color)) : ?>
             background: <?php echo esc_attr($fpg_button_border_color); ?>;
         <?php endif; ?>
     }
     /* Meta Data Styles */
-    .rs-blog-layout-12 .rs-blog__single .rs-content ul li ,
-    .rs-blog-layout-12 .rs-blog__single .rs-content ul li i,
-    .rs-blog-layout-12 .rs-blog__single .rs-content ul li a,
-    .rs-blog-layout-12 .meta-data-list .meta-date i,
-    .rs-blog-layout-12 .meta-data-list .meta-author i,
-    .rs-blog-layout-12 .meta-data-list .meta-categories i,
-    .rs-blog-layout-12 .meta-data-list .meta-comment-count i,
-    .rs-blog-layout-12 .meta-data-list .meta-tags i ,
+    .rs-blog-layout-12 .rs-grid .rs-grid-item .rs-blog-layout-12 .rs-blog__single .rs-content ul li ,
+    .rs-blog-layout-12 .rs-grid .rs-grid-item .rs-blog-layout-12 .rs-blog__single .rs-content ul li i,
+    .rs-blog-layout-12 .rs-grid .rs-grid-item .rs-blog-layout-12 .rs-blog__single .rs-content ul li a,
+    .rs-blog-layout-12 .rs-grid .rs-grid-item .rs-blog-layout-12 .meta-data-list .meta-date i,
+    .rs-blog-layout-12 .rs-grid .rs-grid-item .rs-blog-layout-12 .meta-data-list .meta-author i,
+    .rs-blog-layout-12 .rs-grid .rs-grid-item .rs-blog-layout-12 .meta-data-list .meta-categories i,
+    .rs-blog-layout-12 .rs-grid .rs-grid-item .rs-blog-layout-12 .meta-data-list .meta-comment-count i,
+    .rs-blog-layout-12 .rs-grid .rs-grid-item .rs-blog-layout-12 .meta-data-list .meta-tags i ,
     {
         <?php if (!empty($fpg_meta_color)) : ?>
             color: <?php echo esc_attr($fpg_meta_color); ?>;
@@ -461,17 +527,14 @@ ob_start();
         <?php endif; ?>
     }
 
-    .pre-blog-item.style_12 .blog-inner-wrap .pre-blog-content ul li a:hover{
+    .rs-blog-layout-12 .rs-grid .rs-grid-item .pre-blog-item.style_12 .blog-inner-wrap .pre-blog-content ul li a:hover{
         <?php if (!empty($fpg_meta_hover_color)) : ?>
             color: <?php echo esc_attr($fpg_meta_hover_color); ?>;
         <?php endif; ?>
-
     }
-
     /* Button Styles */
 
-
-    .pre-blog-item.style_12 .blog-inner-wrap .pre-blog-content .blog-btn-part .blog-btn.<?php echo esc_attr($button_class); ?> {
+    .rs-blog-layout-12 .rs-grid .rs-grid-item .pre-blog-item.style_12 .blog-inner-wrap .pre-blog-content .blog-btn-part .blog-btn.<?php echo esc_attr($button_class); ?> {
 
         <?php if (!empty($fpg_button_background_color)) : ?>
             background-color: <?php echo esc_attr($fpg_button_background_color); ?>;
@@ -492,7 +555,7 @@ ob_start();
             border-width: <?php echo esc_attr($fancy_post_border_width); ?>;
         <?php endif; ?>
     }
-    .pre-blog-item.style_12 .blog-inner-wrap .pre-blog-content .blog-btn-part{
+    .rs-blog-layout-12 .rs-grid .rs-grid-item .pre-blog-item.style_12 .blog-inner-wrap .pre-blog-content .blog-btn-part{
         <?php if (!empty($fpg_button_padding)) : ?>
             padding: <?php echo esc_attr($fpg_button_padding); ?>;
         <?php endif; ?>
@@ -501,7 +564,7 @@ ob_start();
         <?php endif; ?>
     }
 
-    .pre-blog-item.style_12 .blog-inner-wrap .pre-blog-content .blog-btn-part .blog-btn.<?php echo esc_attr($button_class); ?>:hover {
+    .rs-blog-layout-12 .rs-grid .rs-grid-item .pre-blog-item.style_12 .blog-inner-wrap .pre-blog-content .blog-btn-part .blog-btn.<?php echo esc_attr($button_class); ?>:hover {
         <?php if (!empty($fpg_button_hover_background_color)) : ?>
             background-color: <?php echo esc_attr($fpg_button_hover_background_color); ?>;
         <?php endif; ?>
@@ -510,7 +573,7 @@ ob_start();
         <?php endif; ?>
     }
 
-    .pre-blog-item.style_12 .blog-inner-wrap .pre-blog-content ul{
+    .rs-blog-layout-12 .rs-grid .rs-grid-item .pre-blog-item.style_12 .blog-inner-wrap .pre-blog-content ul{
         <?php if (!empty($fpg_meta_gap)) : ?>
             gap: <?php echo esc_attr($fpg_meta_gap); ?>;
         <?php endif; ?>
@@ -527,74 +590,8 @@ ob_start();
             line-height: <?php echo esc_attr($fpg_meta_line_height); ?>;
         <?php endif; ?>
     }
-    .fpg-pagination ul.page-numbers{
-        <?php if (!empty($fpg_pagination_gap)) : ?>
-            gap: <?php echo esc_attr($fpg_pagination_gap); ?>;
-        <?php endif; ?> 
-    }
-    .fpg-pagination ul.page-numbers li .page-numbers {
 
-        <?php if (!empty($fpg_pagination_background)) : ?>
-            background-color: <?php echo esc_attr($fpg_pagination_background); ?>;
-        <?php endif; ?>
-        <?php if (!empty($fpg_pagination_color)) : ?>
-            color: <?php echo esc_attr($fpg_pagination_color); ?>;
-        <?php endif; ?>
-        <?php if (!empty($fpg_pagination_border_color)) : ?>
-            border-color: <?php echo esc_attr($fpg_pagination_border_color); ?>;
-        <?php endif; ?>
-        
-
-        <?php if (!empty($fpg_pagination_border_width)) : ?>
-            border-width: <?php echo esc_attr($fpg_pagination_border_width); ?>;
-        <?php endif; ?>
-
-        <?php if (!empty($fpg_pagination_border_style)) : ?>
-            border-style: <?php echo esc_attr($fpg_pagination_border_style); ?>;
-        <?php endif; ?>
-
-        <?php if (!empty($fpg_pagination_border_radius)) : ?>
-            border-radius: <?php echo esc_attr($fpg_pagination_border_radius); ?>;
-        <?php endif; ?>
-        <?php if (!empty($fpg_pagination_height)) : ?>
-            height: <?php echo esc_attr($fpg_pagination_height); ?>;
-        <?php endif; ?>
-
-        <?php if (!empty($fpg_pagination_width)) : ?>
-            width: <?php echo esc_attr($fpg_pagination_width); ?>;
-        <?php endif; ?>
-
-        <?php if (!empty($fpg_pagination_padding)) : ?>
-            padding: <?php echo esc_attr($fpg_pagination_padding); ?>;
-        <?php endif; ?>
-        <?php if (!empty($fpg_pagination_margin)) : ?>
-            margin: <?php echo esc_attr($fpg_pagination_margin); ?>;
-        <?php endif; ?> 
-    }
-    .fpg-pagination ul.page-numbers li .page-numbers:hover{
-        <?php if (!empty($fpg_pagination_hover_background)) : ?>
-            background-color: <?php echo esc_attr($fpg_pagination_hover_background); ?>;
-        <?php endif; ?>
-        <?php if (!empty($fpg_pagination_hover_color)) : ?>
-            color: <?php echo esc_attr($fpg_pagination_hover_color); ?>;
-        <?php endif; ?>
-        <?php if (!empty($fpg_pagination_hover_border_color)) : ?>
-            border-color: <?php echo esc_attr($fpg_pagination_hover_border_color); ?>;
-        <?php endif; ?>
-    }
-    .fpg-pagination ul.page-numbers li .page-numbers.current{
-        <?php if (!empty($fpg_pagination_active_background)) : ?>
-            background-color: <?php echo esc_attr($fpg_pagination_active_background); ?>;
-        <?php endif; ?>
-        <?php if (!empty($fpg_pagination_active_color)) : ?>
-            color: <?php echo esc_attr($fpg_pagination_active_color); ?>;
-        <?php endif; ?>
-        <?php if (!empty($fpg_pagination_active_border_color)) : ?>
-            border-color: <?php echo esc_attr($fpg_pagination_active_border_color); ?>;
-        <?php endif; ?>
-    }
 </style>
-
 <?php
-$grid5 = ob_get_clean();
+$isotope5 = ob_get_clean();
 ?>

@@ -151,16 +151,17 @@ img {
     color: #FF6D00;
 }
 .rs-blog-layout-1 .blog-item .blog-content .blog-meta li a,
-.rs-blog-layout-1 .blog-item .blog-content .blog-meta li{
+.rs-blog-layout-1 .blog-item .blog-content .blog-meta li,
+.rs-blog-layout-1 .blog-item-wrap .blog-content .blog-meta li a,
+.rs-blog-layout-1 .blog-item-wrap .blog-content .blog-meta li{
     font-size: 15px;
     color: #101010;
+    text-decoration: none;
 }
-.rs-blog-layout-1 .blog-item .blog-content .blog-meta li a:hover{
+.rs-blog-layout-1 .blog-item .blog-content .blog-meta li a:hover,
+.rs-blog-layout-1 .blog-item-wrap .blog-content .blog-meta li a:hover{
     color: #FF6D00;
 }
-
-
-
 
 .rs-blog-layout-1 .blog-item .blog-content .blog-title {
     letter-spacing: -1px;
@@ -3184,7 +3185,7 @@ img {
 }
 
 .pre-blog-item.style_12 .blog-inner-wrap .pre-blog-content ul li a:hover {
-    color: #9cafaa;
+    color: #f0f0f0;
 }
 
 .pre-blog-item.style_12 .blog-inner-wrap .pre-blog-content ul li {
@@ -3996,9 +3997,11 @@ img {
         margin-top: 20px;
         order: 2;
     }
-    .rs-blog-layout-16-item .rs-content .rs-meta .rs-author span {
+    .rs-blog-layout-16-item .rs-content .rs-meta .rs-author span,.rs-blog-layout-16-item .rs-content .rs-meta .rs-author span a{
         font-weight: 600;
         font-size: 14px;
+        text-decoration: none;
+        color: #7A7A7A;
     }
     .rs-blog-layout-16-item .rs-content .rs-meta .rs-author img{
         height: 40px;
@@ -4616,12 +4619,15 @@ img {
         border-bottom: 1px solid #AD87FF47;
         padding: 0 0 10px 0;
     }
-    .rs-blog-layout-20-item .rs-content .rs-meta ul li{
+    .rs-blog-layout-20-item .rs-content .rs-meta ul li,.rs-blog-layout-20 .rs-blog-layout-20-item .rs-content .rs-meta ul li a{
         color: #6d6d6d;
         font-weight: 500;
     }
     .rs-blog-layout-20-item .rs-content .rs-meta ul li i{
         color: #AD87FF;
+    }
+    .rs-blog-layout-20 .rs-blog-layout-20-item .rs-content .rs-meta ul li a{
+        text-decoration: none ;
     }
     .rs-blog-layout-20-item .rs-content .rs-meta ul li:first-child{
         margin-right: 40px;
@@ -5536,10 +5542,11 @@ img {
     .rs-blog-layout-27-item .rs-content .rs-meta ul li:first-child{
         margin-right: 15px;
     }
-    .rs-blog-layout-27-item .rs-content .rs-meta ul li{
+    .rs-blog-layout-27-item .rs-content .rs-meta ul li,.rs-blog-layout-27-item .rs-content .rs-meta ul li a{
         display: inline-block;
         color: #505050;
         font-size: 15px;
+        text-decoration: none;
     }
     .rs-blog-layout-27-item .rs-content .rs-meta ul li i{
         display: inline-block;
