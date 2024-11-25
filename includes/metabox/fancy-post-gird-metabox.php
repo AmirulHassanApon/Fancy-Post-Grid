@@ -68,11 +68,11 @@ function fancy_post_grid_metabox_shortcode_callback_pro( $post ) {
 
     $fancy_list_style                         = get_post_meta( $post->ID, 'fancy_list_style', true );
     if ( empty( $fancy_list_style ) ) {
-        $fancy_list_style = 'liststyle1'; // Set default to 'style1'
+        $fancy_list_style = 'liststyle1'; // Set default to 'liststyle1'
     }
     $fancy_isotope_style                         = get_post_meta( $post->ID, 'fancy_isotope_style', true );
     if ( empty( $fancy_isotope_style ) ) {
-        $fancy_isotope_style= 'isotopestyle1'; // Set default to 'style1'
+        $fancy_isotope_style= 'isotopestyle1'; // Set default to 'isotopestyle1'
     }
     
     $fancy_post_pagination                      = get_post_meta( $post->ID, 'fancy_post_pagination', true );

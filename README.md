@@ -1,3 +1,25 @@
+# Fancy Post Grid Pro- Ultimate Post Grid Builder Plugin #
+  
+**Plugin Name:** Fancy Post Grid Pro - Ultimate Post Grid Builder Plugin
+**Plugin URI:** https://wordpress.org/plugins/fancy-post-grid/
+**Author:** RSTheme 
+**Author URI:** http://rstheme.com 
+**Contributors:** rstheme2017, rubrash
+**Tags:** maintenance mode, coming soon, landing page, under construction, countdown   
+**Version:** 1.0.0
+**License:** GPLv2 or later
+**License URI:** http://www.gnu.org/licenses/gpl-2.0.html 
+**Stable tag:** 1.0.0
+**Tested up to:** 6.7
+**Requires PHP:** 7.0.0
+**Requires at least:** 5.5
+
+Elegant, responsive WordPress plugin for stylish post grids, sliders, lists, and isotope layouts.
+
+## Description ##
+
+[__Live Demo__](https://plugins.rstheme.com/fancy-post-grid/) | [__Documentation__](https://plugins.rstheme.com/fancy-post-grid/) | [__Support__](https://rstheme.com/support) | [__Go Pro__](https://plugins.rstheme.com/fancy-post-grid/)
+
 Elegant, responsive WordPress plugin for stylish post grids, sliders, lists, and isotope layouts. Customize easily, mobile-friendly. Boost your site's visual appeal with a variety of layouts and styles!
 
 Description
@@ -10,18 +32,22 @@ Key Features
 Create visually stunning grid layouts for displaying posts on your WordPress website.
 
 12 Unique Grid Styles for various post types.
+
 ✔ Slider Layout
 In addition to grid layouts, the plugin offers a slider layout option, providing dynamic ways to showcase your content.
 
 7 Beautiful Slider Styles to add motion to your posts.
+
 ✔ List Layout
 Display posts in a clean and organized list view.
 
 8 Different List Styles for a structured post layout.
+
 ✔ Isotope Layout
 Add creative, filterable post grids with dynamic isotope functionality.
 
-1 Isotope Style for an interactive post grid experience.
+8 Isotope Style for an interactive post grid experience.
+
 ✔ Responsive Design
 Ensures that your post grids, sliders, lists, and isotope layouts look great and function flawlessly on all devices, from desktops to smartphones.
 
@@ -63,5 +89,6 @@ Activate the plugin through the 'Plugins' menu in WordPress.
 Navigate to the 'Fancy Post Grid' settings to start configuring your post displays.
 
 Changelog
+
 1.0.0
-Initial release with support for 4 layout types (Grid, Slider, List, Isotope) and multiple styles for each.
+Initial release with support for 4 layout types (Grid, Slider, List) and multiple styles for each.
