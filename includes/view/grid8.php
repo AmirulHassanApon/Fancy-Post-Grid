@@ -371,6 +371,11 @@ ob_start();
     }
 
     /* Meta Data Styles */
+    
+    .rs-blog-layout-15-item .rs-thumb .rs-category a{
+        font-size: <?php echo esc_attr($fpg_meta_size); ?>px;
+
+    }
     .rs-blog-layout-15-item .rs-content .rs-meta .meta-date span ,
     .rs-blog-layout-15-item .rs-content .rs-meta .meta-author a,
     .rs-blog-layout-15-item .rs-content .rs-meta .meta-date::before{

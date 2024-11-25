@@ -7,7 +7,7 @@ ob_start();
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
-                <div class="rs-blog-layout-4-filter" style="justify-content: <?php echo esc_attr($fancy_post_filter_alignment); ?>;">
+                <div class="rs-blog-layout-5-filter" style="justify-content: <?php echo esc_attr($fancy_post_filter_alignment); ?>;">
                     <div class="filter-button-group">
                         <button class="active" data-filter="*"><?php echo esc_attr($fancy_post_filter_text); ?></button>
                         <?php
@@ -293,7 +293,7 @@ ob_start();
             padding: <?php echo esc_attr($fpg_section_padding); ?>;
         <?php endif; ?>
     }
-    .rs-blog-layout-12 .rs-blog-layout-4-filter .filter-button-group{
+    .rs-blog-layout-12 .rs-blog-layout-5-filter .filter-button-group{
         <?php if (!empty($fancy_post_filter_box_bg_color)) : ?>
             background: <?php echo esc_attr($fancy_post_filter_box_bg_color); ?>;
         <?php endif; ?>
@@ -310,7 +310,7 @@ ob_start();
             gap: <?php echo esc_attr($fancy_post_filter_item_gap); ?>;
         <?php endif; ?>
     }
-    .rs-blog-layout-12 .rs-blog-layout-4-filter .filter-button-group button{
+    .rs-blog-layout-12 .rs-blog-layout-5-filter .filter-button-group button{
         <?php if (!empty($fancy_post_filter_text_color)) : ?>
             color: <?php echo esc_attr($fancy_post_filter_text_color); ?>;
         <?php endif; ?>
@@ -342,7 +342,7 @@ ob_start();
             border-radius: <?php echo esc_attr($fancy_post_filter_border_radius); ?>;
         <?php endif; ?>
     }
-    .rs-blog-layout-12 .rs-blog-layout-4-filter .filter-button-group button:hover{
+    .rs-blog-layout-12 .rs-blog-layout-5-filter .filter-button-group button:hover{
         <?php if (!empty($fancy_post_filter_hover_bg_color)) : ?>
             background-color: <?php echo esc_attr($fancy_post_filter_hover_bg_color); ?>;
         <?php endif; ?>
@@ -351,17 +351,24 @@ ob_start();
         <?php endif; ?>
     }
 
-    .rs-blog-layout-12 .rs-blog-layout-4-filter .filter-button-group button.active{
+    .rs-blog-layout-12 .rs-blog-layout-5-filter .filter-button-group button.active{
         <?php if (!empty($fancy_post_filter_active_color)) : ?>
             color: <?php echo esc_attr($fancy_post_filter_active_color); ?>;
         <?php endif; ?>
         <?php if (!empty($fancy_post_filter_active_bg_color)) : ?>
             background-color: <?php echo esc_attr($fancy_post_filter_active_bg_color); ?>;
         <?php endif; ?> 
+    }
+
+    .rs-blog-layout-12 .rs-blog-layout-5-filter .filter-button-group button.active,
+    .rs-blog-layout-12 .rs-blog-layout-5-filter .filter-button-group button:hover{
         <?php if (!empty($fancy_post_filter_active_border_color)) : ?>
             border-color: <?php echo esc_attr($fancy_post_filter_active_border_color); ?>;
         <?php endif; ?>
+
     }
+
+
 
     .rs-blog-layout-12 .rs-grid .rs-grid-item .pre-blog-item.style_12 .blog-inner-wrap{
         <?php if (!empty($fancy_post_image_border_radius)) : ?>
