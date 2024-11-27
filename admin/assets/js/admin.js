@@ -57,9 +57,9 @@
                     $('#fpg-feature-image-right').hide();
                     $('#fpg-feature-image-left').hide();
                     $('#fpg_field_group_excerpt_main').show();
-                    $('#fpg_field_group_categories_main').hide();
-                    $('#fpg_field_group_tag_main').hide();
-                    $('#fpg_field_group_comment_count_main').hide(); 
+                    $('#fpg_field_group_categories_main').show();
+                    $('#fpg_field_group_tag_main').show();
+                    $('#fpg_field_group_comment_count_main').show(); 
                     $('#fpg_field_group_button_main').show(); 
                     $('#fpg_section_border_radius_main').show();
                     // Ordering
@@ -98,8 +98,8 @@
                     $('#fpg-feature-image-right').hide();
                     $('#fpg-feature-image-left').hide();
 
-                    $('#fpg_field_group_comment_count_main').hide(); 
-                    $('#fpg_field_group_author_main').hide();
+                    $('#fpg_field_group_comment_count_main').show(); 
+                    $('#fpg_field_group_author_main').show();
                     $('#fpg_title_order_main').show(); 
                     $('#fpg_meta_order_main').show();
                     $('#fpg_excerpt_order_main').show();
@@ -107,7 +107,7 @@
                     $('#fpg_meta_icon_color_main').show();
                     $('#fpg_field_group_excerpt_main').show();
                     $('#fpg_field_group_categories_main').show();
-                    $('#fpg_field_group_tag_main').hide();
+                    $('#fpg_field_group_tag_main').show();
                     $('#fpg-read-more-alignment').show();
                     $('#fpg_field_group_button_main').show(); 
                     $('#fpg_author_color_main').hide();
@@ -1841,8 +1841,29 @@
                 $('#fancy_post_hover_animation').val('zoom_in').change();
                 $('#fancy_post_image_border_radius').val('5px');
                 $('#fancy_post_feature_image_size').val('fancy_post_custom_size').change();
+                // Set checkbox states and trigger change events
+                $('#fpg_field_group_title').prop('checked', true).change(); // Enable Title
+                $('#fpg_field_group_excerpt').prop('checked', true).change(); // Enable Excerpt
+                $('#fpg_field_group_read_more').prop('checked', true).change(); // Enable Button
+                $('#fpg_field_group_image').prop('checked', true).change(); // Enable Image
+                $('#fpg_field_group_post_date').prop('checked', true).change(); // Disable Post Date
+                $('#fpg_field_group_author').prop('checked', true).change(); // Disable Author
+                $('#fpg_field_group_categories').prop('checked', false).change(); // Enable Categories
+                $('#fpg_field_group_tag').prop('checked', false).change(); // Enable Tags
+                $('#fpg_field_group_comment_count').prop('checked', false).change(); // Disable Comment Count
 
             } else if (selectedStyles === 'style2') {
+                // Set checkbox states and trigger change events
+                $('#fpg_field_group_title').prop('checked', true).change(); // Enable Title
+                $('#fpg_field_group_excerpt').prop('checked', true).change(); // Enable Excerpt
+                $('#fpg_field_group_read_more').prop('checked', true).change(); // Enable Button
+                $('#fpg_field_group_image').prop('checked', true).change(); // Enable Image
+                $('#fpg_field_group_post_date').prop('checked', true).change(); // Disable Post Date
+                $('#fpg_field_group_author').prop('checked', true).change(); // Disable Author
+                $('#fpg_field_group_categories').prop('checked', false).change(); // Enable Categories
+                $('#fpg_field_group_tag').prop('checked', false).change(); // Enable Tags
+                $('#fpg_field_group_comment_count').prop('checked', false).change(); // Disable Comment Count
+
                 $('#fpg_section_background_color').val('#ffffff'); 
                 $('#fpg_section_margin').val('0px');
                 $('#fpg_section_padding').val('30px 0px 0px 0px');
