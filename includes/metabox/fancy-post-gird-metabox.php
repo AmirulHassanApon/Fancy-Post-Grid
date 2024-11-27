@@ -16,7 +16,6 @@ function fancy_post_grid_custom_settings_shortcode_metabox_pro() {
     );
 }
 
-
 /**
  * Callback function for metabox content.
  */

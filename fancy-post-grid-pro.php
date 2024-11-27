@@ -1,6 +1,6 @@
 <?php
 /**
- * Plugin Name:       Fancy Post Grid Pro
+ * Plugin Name:       Fancy Post Grid Pro - Ultimate Post Grid Builder Plugin
  * Plugin URI:        https://wordpress.org/plugins/fancy-post-grid/
  * Description:       Fancy Post Grid plugin provides an elegant solution for displaying posts in a Grid and Slider layout. It is designed to be user and developer friendly, offering easy customization and usage. The plugin is fully responsive and mobile-friendly, ensuring a seamless browsing experience across all devices.
  * Version:           1.0.0

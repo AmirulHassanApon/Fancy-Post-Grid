@@ -246,7 +246,10 @@ function fancy_post_grid_shortcode_pro( $atts ) {
 		$fpg_fraction_current_font_size       		= get_post_meta( $post_id, 'fpg_fraction_current_font_size', true );
 		$fancy_post_filter_box_bg_color       		= get_post_meta( $post_id, 'fancy_post_filter_box_bg_color', true );
 		$fancy_post_filter_box_border_radius       		= get_post_meta( $post_id, 'fancy_post_filter_box_border_radius', true );
-
+		$fpg_primary_color = get_option('fpg_primary_color', '');
+		$fpg_secondary_color = get_option('fpg_secondary_color', '');
+		$fpg_body_color = get_option('fpg_body_color', '');
+		
 	    $main_alignment_class = '';
         if ($fancy_post_main_box_alignment === 'align-start') {
             $main_alignment_class = 'align-start';
@@ -301,7 +304,7 @@ function fancy_post_grid_shortcode_pro( $atts ) {
             $button_alignment_class = 'align-end';
         }
         
-        
+        $disabled_meta_icons = get_option('fpg_disable_meta_icon_fields', []);
 	    	
 		$dir = plugin_dir_path( __FILE__ );
 

@@ -1,6 +1,7 @@
 <?php
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 ob_start();
+
 ?>
 
 <!-- Blog Grid 1 -->
@@ -160,10 +161,10 @@ ob_start();
                 // Apply hover animation class if needed
                 $hover_class = $hover_animation !== 'none' ? 'hover-' . esc_attr($hover_animation) : '';
         ?>
-
             <div class="<?php echo esc_attr($main_cl_lg . ' ' .  $main_cl_md . ' ' . $main_cl_sm . ' ' . $main_cl_mobile); ?>">
                 <div class="rs-blog__single mt-30 <?php echo esc_attr($main_alignment_class); ?> <?php echo esc_attr($hover_class); ?>">
                         <!-- Image -->
+                        
                         <?php if (!$hide_feature_image && $fpg_field_group_image) : ?>
                             <div class="rs-thumb">
                                 <?php if ($feature_image_url) : ?>
@@ -187,22 +188,50 @@ ob_start();
                                 <?php endif; ?>
                             </div>
                         <?php endif; ?>
-
+                        
                     <div class="rs-content">
                         <ul class="meta-data-list <?php echo esc_attr($meta_alignment_class); ?>">
                             <?php if ($fpg_field_group_post_date) : ?>
                                 <li class="meta-date">
+                                    <?php if (empty($disabled_meta_icons['date_icon'])) {?>
                                     <i class="ri-calendar-2-line"></i>
+                                    <?php } ?>
                                     <?php echo get_the_date('M d, Y'); ?>
                                 </li>
                             <?php endif; ?>
                             <?php if ($fpg_field_group_author) : ?>
                                 <li class="meta-author">
+                                    <?php if (empty($disabled_meta_icons['author_icon'])) {?>
                                     <i class="ri-user-line"></i>
+                                    <?php } ?>
                                     <a href="<?php echo esc_url(get_author_posts_url(get_the_author_meta('ID'))); ?>"
                                         <?php echo esc_attr($target_blank); ?>>
                                         <?php the_author(); ?>
                                     </a> 
+                                </li>
+                            <?php endif; ?>
+                            <?php if ($fpg_field_group_categories) : ?>
+                                <li class="meta-categories">
+                                    <?php if (empty($disabled_meta_icons['category_icon'])) {?>
+                                    <i class="ri-folder-line"></i>
+                                    <?php } ?>
+                                    <?php the_category(', '); ?>
+                                </li>
+                            <?php endif; ?>
+                            <?php if ($fpg_field_group_comment_count && get_comments_number() > 0) : ?>
+                                <li class="meta-comment-count">
+                                    <?php if (empty($disabled_meta_icons['comment_count_icon'])) {?>
+                                    <i class="ri-chat-3-line"></i>
+                                    <?php } ?>
+                                    <?php comments_number('0 Comments', '1 Comment', '% Comments'); ?>
+                                </li>
+                            <?php endif; ?>
+                            <?php if ($fpg_field_group_tag && has_tag()) : ?>
+                                <li class="meta-tags">
+                                    <?php if (empty($disabled_meta_icons['tags_icon'])) {?>
+                                    <i class="ri-price-tag-3-line"></i>
+                                    <?php } ?>
+                                    <?php the_tags('', ', ', ''); ?>
                                 </li>
                             <?php endif; ?>
                             
@@ -366,9 +395,10 @@ ob_start();
     .rs-blog-layout-5 .rs-blog__single .rs-content .title a {
     	padding: <?php echo esc_attr($fpg_title_padding); ?>;
         margin: <?php echo esc_attr($fpg_title_margin); ?>;
-        <?php if (!empty($fpg_title_color)) : ?>
-            color: <?php echo esc_attr($fpg_title_color); ?>;
+        <?php if (!empty($fpg_primary_color) || !empty($fpg_title_color)) : ?>
+            color: <?php echo esc_attr(!empty($fpg_primary_color) ? $fpg_primary_color : $fpg_title_color); ?>;
         <?php endif; ?>
+
         <?php if (!empty($fpg_title_font_size)) : ?>
             font-size: <?php echo esc_attr($fpg_title_font_size); ?>px;
         <?php endif; ?>
