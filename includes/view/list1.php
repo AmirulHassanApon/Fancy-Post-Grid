@@ -203,7 +203,10 @@ ob_start();
                                         <!-- CATEGORY -->
                                         <?php if ($fpg_field_group_categories) : ?>
                                         <div class="rs-category">
-                                            <i class="ri-price-tag-3-line"></i> <?php echo get_the_category_list(', '); ?>
+                                            <?php if (empty($disabled_meta_icons['category_icon'])) {?>
+                                            <i class="ri-price-tag-3-line"></i>
+                                            <?php } ?>
+                                             <?php echo get_the_category_list(', '); ?>
                                         </div>
                                         <?php endif; ?>
                                         
@@ -214,24 +217,40 @@ ob_start();
                             <div class="rs-blog__content">
                                 <!-- Meta -->
                                 <ul class="meta-data-list <?php echo esc_attr($meta_alignment_class); ?>">
-
-                                    <!-- AUTHOR -->
                                     <?php if ($fpg_field_group_author) : ?>
-                                    <li class="meta-author">          
-                                        <i class="ri-user-3-line"></i> 
-                                        <a href="<?php echo esc_url(get_author_posts_url(get_the_author_meta('ID'))); ?>"
-                                            <?php echo esc_attr($target_blank); ?>>
-                                        <?php esc_html_e('Posted By -', 'fancy-post-grid'); ?>  <?php the_author(); ?></a> 
-                                    </li>
+                                        <li class="meta-author">
+                                            <?php if (empty($disabled_meta_icons['author_icon'])) {?>
+                                            <i class="ri-user-line"></i>
+                                            <?php } ?>
+                                            <a href="<?php echo esc_url(get_author_posts_url(get_the_author_meta('ID'))); ?>"
+                                                <?php echo esc_attr($target_blank); ?>>
+                                                <?php the_author(); ?>
+                                            </a> 
+                                        </li>
                                     <?php endif; ?>
-
-                                    <!-- META DATE -->
                                     <?php if ($fpg_field_group_post_date) : ?>
                                         <li class="meta-date">
-
-                                            <i class="ri-calendar-line"> 
-                                            </i>
-                                            <?php echo esc_html( get_the_date( 'M d, Y' ) ); ?>
+                                            <?php if (empty($disabled_meta_icons['date_icon'])) {?>
+                                            <i class="ri-calendar-2-line"></i>
+                                            <?php } ?>
+                                            <?php echo get_the_date('M d, Y'); ?>
+                                        </li>
+                                    <?php endif; ?>
+                                                                    
+                                    <?php if ($fpg_field_group_comment_count && get_comments_number() > 0) : ?>
+                                        <li class="meta-comment-count">
+                                            <?php if (empty($disabled_meta_icons['comment_count_icon'])) {?>
+                                            <i class="ri-chat-3-line"></i>
+                                            <?php } ?>
+                                            <?php comments_number('0 Comments', '1 Comment', '% Comments'); ?>
+                                        </li>
+                                    <?php endif; ?>
+                                    <?php if ($fpg_field_group_tag && has_tag()) : ?>
+                                        <li class="meta-tags">
+                                            <?php if (empty($disabled_meta_icons['tags_icon'])) {?>
+                                            <i class="ri-price-tag-3-line"></i>
+                                            <?php } ?>
+                                            <?php the_tags('', ', ', ''); ?>
                                         </li>
                                     <?php endif; ?>
                                 </ul>
@@ -330,7 +349,10 @@ ob_start();
                                             <!-- CATEGORY -->
                                             <?php if ($fpg_field_group_categories) : ?>
                                             <div class="rs-category">
-                                                <i class="ri-price-tag-3-line"></i> <?php echo get_the_category_list(', '); ?>
+                                                <?php if (empty($disabled_meta_icons['category_icon'])) {?>
+                                                <i class="ri-price-tag-3-line"></i>
+                                                <?php } ?>
+                                                 <?php echo get_the_category_list(', '); ?>
                                             </div>
                                             <?php endif; ?>
                                         <?php endif; ?>
@@ -341,21 +363,40 @@ ob_start();
                                     <!-- Meta -->
                                     <ul class="meta-data-list <?php echo esc_attr($meta_alignment_class); ?>">
 
-                                        <!-- AUTHOR -->
                                         <?php if ($fpg_field_group_author) : ?>
-                                        <li class="meta-author">                            
-                                            <i class="ri-user-3-line">   </i> 
-                                            <a href="<?php the_permalink(); ?>"
-                                                <?php echo esc_attr($target_blank); ?>>
-                                            <?php esc_html_e('Posted By -', 'fancy-post-grid'); ?>  <?php the_author(); ?></a>
-                                        </li>
+                                            <li class="meta-author">
+                                                <?php if (empty($disabled_meta_icons['author_icon'])) {?>
+                                                <i class="ri-user-line"></i>
+                                                <?php } ?>
+                                                <a href="<?php echo esc_url(get_author_posts_url(get_the_author_meta('ID'))); ?>"
+                                                    <?php echo esc_attr($target_blank); ?>>
+                                                    <?php the_author(); ?>
+                                                </a> 
+                                            </li>
                                         <?php endif; ?>
-
-                                        <!-- META DATE -->
                                         <?php if ($fpg_field_group_post_date) : ?>
                                             <li class="meta-date">
-                                                <i class="ri-calendar-line"> </i>
-                                                <?php echo esc_html( get_the_date( 'M d, Y' ) ); ?>
+                                                <?php if (empty($disabled_meta_icons['date_icon'])) {?>
+                                                <i class="ri-calendar-2-line"></i>
+                                                <?php } ?>
+                                                <?php echo get_the_date('M d, Y'); ?>
+                                            </li>
+                                        <?php endif; ?>
+                                                                        
+                                        <?php if ($fpg_field_group_comment_count && get_comments_number() > 0) : ?>
+                                            <li class="meta-comment-count">
+                                                <?php if (empty($disabled_meta_icons['comment_count_icon'])) {?>
+                                                <i class="ri-chat-3-line"></i>
+                                                <?php } ?>
+                                                <?php comments_number('0 Comments', '1 Comment', '% Comments'); ?>
+                                            </li>
+                                        <?php endif; ?>
+                                        <?php if ($fpg_field_group_tag && has_tag()) : ?>
+                                            <li class="meta-tags">
+                                                <?php if (empty($disabled_meta_icons['tags_icon'])) {?>
+                                                <i class="ri-price-tag-3-line"></i>
+                                                <?php } ?>
+                                                <?php the_tags('', ', ', ''); ?>
                                             </li>
                                         <?php endif; ?>
                                     </ul>
@@ -431,7 +472,10 @@ ob_start();
                                             <!-- CATEGORY -->
                                             <?php if ($fpg_field_group_categories) : ?>
                                             <div class="rs-category">
-                                                <i class="ri-price-tag-3-line"></i> <?php echo get_the_category_list(', '); ?>
+                                                <?php if (empty($disabled_meta_icons['category_icon'])) {?>
+                                                <i class="ri-price-tag-3-line"></i>
+                                                <?php } ?>
+                                                 <?php echo get_the_category_list(', '); ?>
                                             </div>
                                             <?php endif; ?>
                                         <?php endif; ?>
@@ -442,22 +486,40 @@ ob_start();
                                     <!-- Meta -->
                                     <ul class="meta-data-list <?php echo esc_attr($meta_alignment_class); ?>">
 
-                                        <!-- AUTHOR -->
                                         <?php if ($fpg_field_group_author) : ?>
-                                        <li class="meta-author">                                           
-                                            <i class="ri-user-3-line"> </i> 
-                                            <a href="<?php the_permalink(); ?>"
-                                                <?php echo esc_attr($target_blank); ?>>
-                                            <?php esc_html_e('Posted By -', 'fancy-post-grid'); ?>  <?php the_author(); ?></a>
-                                            
-                                        </li>
+                                            <li class="meta-author">
+                                                <?php if (empty($disabled_meta_icons['author_icon'])) {?>
+                                                <i class="ri-user-line"></i>
+                                                <?php } ?>
+                                                <a href="<?php echo esc_url(get_author_posts_url(get_the_author_meta('ID'))); ?>"
+                                                    <?php echo esc_attr($target_blank); ?>>
+                                                    <?php the_author(); ?>
+                                                </a> 
+                                            </li>
                                         <?php endif; ?>
-
-                                        <!-- META DATE -->
                                         <?php if ($fpg_field_group_post_date) : ?>
                                             <li class="meta-date">
-                                                <i class="ri-calendar-line"></i>
-                                                <?php echo esc_html( get_the_date( 'M d, Y' ) ); ?>
+                                                <?php if (empty($disabled_meta_icons['date_icon'])) {?>
+                                                <i class="ri-calendar-2-line"></i>
+                                                <?php } ?>
+                                                <?php echo get_the_date('M d, Y'); ?>
+                                            </li>
+                                        <?php endif; ?>
+                                                                          
+                                        <?php if ($fpg_field_group_comment_count && get_comments_number() > 0) : ?>
+                                            <li class="meta-comment-count">
+                                                <?php if (empty($disabled_meta_icons['comment_count_icon'])) {?>
+                                                <i class="ri-chat-3-line"></i>
+                                                <?php } ?>
+                                                <?php comments_number('0 Comments', '1 Comment', '% Comments'); ?>
+                                            </li>
+                                        <?php endif; ?>
+                                        <?php if ($fpg_field_group_tag && has_tag()) : ?>
+                                            <li class="meta-tags">
+                                                <?php if (empty($disabled_meta_icons['tags_icon'])) {?>
+                                                <i class="ri-price-tag-3-line"></i>
+                                                <?php } ?>
+                                                <?php the_tags('', ', ', ''); ?>
                                             </li>
                                         <?php endif; ?>
                                     </ul>

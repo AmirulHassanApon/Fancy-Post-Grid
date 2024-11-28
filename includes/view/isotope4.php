@@ -194,6 +194,9 @@ ob_start();
                             <?php if ($fpg_field_group_post_date) : ?>
                                 <div class="meta-date">
                                     <span>
+                                        <?php if (empty($disabled_meta_icons['date_icon'])) {?>
+                                        <i class="ri-calendar-2-line"></i>
+                                        <?php } ?>
                                         <?php echo get_the_date('M d, Y'); ?>
                                     </span>                                
                                 </div>
@@ -234,17 +237,38 @@ ob_start();
                             <ul>
                                 <?php if ($fpg_field_group_author) : ?>
                                     <li class="meta-author">
-                                        
+                                        <?php if (empty($disabled_meta_icons['author_icon'])) {?>
+                                        <i class="ri-user-line"></i>
+                                        <?php } ?>
                                         <a href="<?php echo esc_url(get_author_posts_url(get_the_author_meta('ID'))); ?>"
                                             <?php echo esc_attr($target_blank); ?>>
                                             <?php the_author(); ?>
                                         </a> 
                                     </li>
                                 <?php endif; ?>
+
                                 <?php if ($fpg_field_group_categories) : ?>
                                     <li class="meta-categories">
-                                        
+                                        <?php if (empty($disabled_meta_icons['category_icon'])) {?>
+                                        <i class="ri-folder-line"></i>
+                                        <?php } ?>
                                         <?php the_category(', '); ?>
+                                    </li>
+                                <?php endif; ?>
+                                <?php if ($fpg_field_group_comment_count && get_comments_number() > 0) : ?>
+                                    <li class="meta-comment-count">
+                                        <?php if (empty($disabled_meta_icons['comment_count_icon'])) {?>
+                                        <i class="ri-chat-3-line"></i>
+                                        <?php } ?>
+                                        <?php comments_number('0 Comments', '1 Comment', '% Comments'); ?>
+                                    </li>
+                                <?php endif; ?>
+                                <?php if ($fpg_field_group_tag && has_tag()) : ?>
+                                    <li class="meta-tags">
+                                        <?php if (empty($disabled_meta_icons['tags_icon'])) {?>
+                                        <i class="ri-price-tag-3-line"></i>
+                                        <?php } ?>
+                                        <?php the_tags('', ', ', ''); ?>
                                     </li>
                                 <?php endif; ?>
                             </ul>                                                      

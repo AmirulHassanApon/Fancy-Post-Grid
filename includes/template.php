@@ -305,6 +305,7 @@ function fancy_post_grid_shortcode_pro( $atts ) {
         }
         
         $disabled_meta_icons = get_option('fpg_disable_meta_icon_fields', []);
+        // $fpg_meta_icon_settings = get_option('fpg_style_meta_icon_settings', []);
 	    	
 		$dir = plugin_dir_path( __FILE__ );
 

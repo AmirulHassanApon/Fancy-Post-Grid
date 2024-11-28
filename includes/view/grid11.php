@@ -192,15 +192,52 @@ ob_start();
                             <ul class="meta-data-list <?php echo esc_attr($meta_alignment_class); ?>">
                                 <?php if ($fpg_field_group_post_date) : ?>
                                     <li class="meta-date">
+                                        <?php if (empty($disabled_meta_icons['date_icon'])) {?>
                                         <i class="ri-calendar-fill"></i>
+                                        <?php } ?>
                                         <?php echo get_the_date('M d, Y'); ?>
                                     </li>
                                 <?php endif; ?>
                                 
                                 <?php if ($fpg_field_group_categories) : ?>
                                     <li class="meta-categories">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="5" height="9" viewBox="0 0 5 9" fill="none"><line x1="4.44721" y1="0.223607" x2="0.447214" y2="8.22361" stroke="#E25A42"></line></svg> <i class="ri-price-tag-fill"></i>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="5" height="9" viewBox="0 0 5 9" fill="none"><line x1="4.44721" y1="0.223607" x2="0.447214" y2="8.22361" stroke="#E25A42"></line></svg> 
+                                        <?php if (empty($disabled_meta_icons['category_icon'])) {?>
+                                        <i class="ri-price-tag-fill"></i>
+                                        <?php } ?>
                                         <?php the_category(', '); ?>
+                                    </li>
+                                <?php endif; ?>
+
+                                <?php if ($fpg_field_group_author) : ?>
+                                    <li class="meta-author">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="5" height="9" viewBox="0 0 5 9" fill="none"><line x1="4.44721" y1="0.223607" x2="0.447214" y2="8.22361" stroke="#E25A42"></line></svg> 
+                                        <?php if (empty($disabled_meta_icons['author_icon'])) {?>
+                                        <i class="ri-user-line"></i>
+                                        <?php } ?>
+                                        <a href="<?php echo esc_url(get_author_posts_url(get_the_author_meta('ID'))); ?>"
+                                            <?php echo esc_attr($target_blank); ?>>
+                                            <?php the_author(); ?>
+                                        </a> 
+                                    </li>
+                                <?php endif; ?>
+                                
+                                <?php if ($fpg_field_group_comment_count && get_comments_number() > 0) : ?>
+                                    <li class="meta-comment-count">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="5" height="9" viewBox="0 0 5 9" fill="none"><line x1="4.44721" y1="0.223607" x2="0.447214" y2="8.22361" stroke="#E25A42"></line></svg> 
+                                        <?php if (empty($disabled_meta_icons['comment_count_icon'])) {?>
+                                        <i class="ri-chat-3-line"></i>
+                                        <?php } ?>
+                                        <?php comments_number('0 Comments', '1 Comment', '% Comments'); ?>
+                                    </li>
+                                <?php endif; ?>
+                                <?php if ($fpg_field_group_tag && has_tag()) : ?>
+                                    <li class="meta-tags">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="5" height="9" viewBox="0 0 5 9" fill="none"><line x1="4.44721" y1="0.223607" x2="0.447214" y2="8.22361" stroke="#E25A42"></line></svg> 
+                                        <?php if (empty($disabled_meta_icons['tags_icon'])) {?>
+                                        <i class="ri-price-tag-3-line"></i>
+                                        <?php } ?>
+                                        <?php the_tags('', ', ', ''); ?>
                                     </li>
                                 <?php endif; ?>
                             </ul>

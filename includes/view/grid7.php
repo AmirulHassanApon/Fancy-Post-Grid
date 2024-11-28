@@ -212,6 +212,9 @@ ob_start();
                         <div class="rs-meta">
                             <?php if ($fpg_field_group_post_date) : ?>
                             <span class="meta-date">
+                                <?php if (empty($disabled_meta_icons['date_icon'])) {?>
+                                    <i class="ri-calendar-2-line"></i>
+                                    <?php } ?>
                                 <?php echo get_the_date('M j, Y'); ?>
 
                             </span>
@@ -220,9 +223,36 @@ ob_start();
                             <?php if ($fpg_field_group_author) : ?>
                             <a href="<?php echo esc_url(get_author_posts_url(get_the_author_meta('ID'))); ?>"
                                 <?php echo esc_attr($target_blank); ?>>
+                                <?php if (empty($disabled_meta_icons['author_icon'])) {?>
+                                    <i class="ri-user-line"></i>
+                                    <?php } ?>
                                 <?php esc_html_e('by ', 'fancy-post-grid'); ?>
                                 <?php the_author(); ?>
                             </a> 
+                            <?php endif; ?>
+                            <?php if ($fpg_field_group_categories) : ?>
+                                
+                                <?php if (empty($disabled_meta_icons['category_icon'])) {?>
+                                <i class="ri-folder-line"></i>
+                                <?php } ?>
+                                <?php the_category(', '); ?>
+                                
+                            <?php endif; ?>
+                            <?php if ($fpg_field_group_comment_count && get_comments_number() > 0) : ?>
+                                
+                                    <?php if (empty($disabled_meta_icons['comment_count_icon'])) {?>
+                                    <i class="ri-chat-3-line"></i>
+                                    <?php } ?>
+                                    <?php comments_number('0 Comments', '1 Comment', '% Comments'); ?>
+                                
+                            <?php endif; ?>
+                            <?php if ($fpg_field_group_tag && has_tag()) : ?>
+                                
+                                    <?php if (empty($disabled_meta_icons['tags_icon'])) {?>
+                                    <i class="ri-price-tag-3-line"></i>
+                                    <?php } ?>
+                                    <?php the_tags('', ', ', ''); ?>
+                                
                             <?php endif; ?>
                         </div>
                     </div>
@@ -231,7 +261,6 @@ ob_start();
         <?php
             endwhile;
             wp_reset_postdata(); // Reset post data to the main query
-        
         ?>
 
         </div>

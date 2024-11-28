@@ -14,7 +14,7 @@ if (!class_exists('Fpg_Plugin_Updater')) {
 function fancy_post_grid_plugin_updater() {
     $license_key = trim(get_option('fancy_post_grid_license_key'));
 
-    $updater = new WPUCS_Plugin_Updater(
+    $updater = new Fpg_Plugin_Updater(
         FPG_STORE_URL,
         __FILE__,
         [

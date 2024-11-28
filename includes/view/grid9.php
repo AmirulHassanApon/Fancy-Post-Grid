@@ -219,7 +219,9 @@ ob_start();
                         <div class="rs-meta">
                             <?php if ($fpg_field_group_author) : ?>
                             <div class="rs-author">
-                                <?php echo get_avatar(get_the_author_meta('ID'), 32); ?>
+                                <?php if (empty($disabled_meta_icons['author_icon'])) {?>
+                                    <?php echo get_avatar(get_the_author_meta('ID'), 32); ?>
+                                    <?php } ?>
                                 <span>                                 
                                     <a href="<?php echo esc_url(get_author_posts_url(get_the_author_meta('ID'))); ?>"
                                         <?php echo esc_attr($target_blank); ?>>
@@ -231,10 +233,36 @@ ob_start();
                             <?php if ($fpg_field_group_post_date) : ?>
                             <div class="rs-date">
                                 <span>
+                                    <?php if (empty($disabled_meta_icons['date_icon'])) {?>
                                     <i class="ri-time-line"></i> 
+                                    <?php } ?>
                                     <?php echo get_the_date('d M Y'); ?>
                                 </span>
                             </div>
+                            <?php endif; ?>
+                            <?php if ($fpg_field_group_categories) : ?>
+                                <div class="meta-categories">
+                                    <?php if (empty($disabled_meta_icons['category_icon'])) {?>
+                                    <i class="ri-folder-line"></i>
+                                    <?php } ?>
+                                    <?php the_category(', '); ?>
+                                </div>
+                            <?php endif; ?>
+                            <?php if ($fpg_field_group_comment_count && get_comments_number() > 0) : ?>
+                                <div class="meta-comment-count">
+                                    <?php if (empty($disabled_meta_icons['comment_count_icon'])) {?>
+                                    <i class="ri-chat-3-line"></i>
+                                    <?php } ?>
+                                    <?php comments_number('0 Comments', '1 Comment', '% Comments'); ?>
+                                </div>
+                            <?php endif; ?>
+                            <?php if ($fpg_field_group_tag && has_tag()) : ?>
+                                <div class="meta-tags">
+                                    <?php if (empty($disabled_meta_icons['tags_icon'])) {?>
+                                    <i class="ri-price-tag-3-line"></i>
+                                    <?php } ?>
+                                    <?php the_tags('', ', ', ''); ?>
+                                </div>
                             <?php endif; ?>
                         </div>
                     </div>

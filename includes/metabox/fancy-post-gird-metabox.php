@@ -57,23 +57,9 @@ function fancy_post_grid_metabox_shortcode_callback_pro( $post ) {
         $fpg_layout_select = 'grid'; // Set default to 'grid'
     }
     $fancy_post_grid_style                      = get_post_meta( $post->ID, 'fancy_post_grid_style', true );
-    if ( empty( $fancy_post_grid_style ) ) {
-        $fancy_post_grid_style = 'style1'; // Set default to 'style1'
-    }
     $fancy_slider_style                         = get_post_meta( $post->ID, 'fancy_slider_style', true );
-    if ( empty( $fancy_slider_style ) ) {
-        $fancy_slider_style = 'sliderstyle1'; // Set default to 'sliderstyle1'
-    }
-
     $fancy_list_style                         = get_post_meta( $post->ID, 'fancy_list_style', true );
-    if ( empty( $fancy_list_style ) ) {
-        $fancy_list_style = 'liststyle1'; // Set default to 'liststyle1'
-    }
     $fancy_isotope_style                         = get_post_meta( $post->ID, 'fancy_isotope_style', true );
-    if ( empty( $fancy_isotope_style ) ) {
-        $fancy_isotope_style= 'isotopestyle1'; // Set default to 'isotopestyle1'
-    }
-    
     $fancy_post_pagination                      = get_post_meta( $post->ID, 'fancy_post_pagination', true );
     $fpg_post_per_page                          = get_post_meta( $post->ID, 'fpg_post_per_page', true );
 
@@ -196,20 +182,14 @@ function fancy_post_grid_metabox_shortcode_callback_pro( $post ) {
     }
     $fancy_post_feature_image_size              = get_post_meta( $post->ID, 'fancy_post_feature_image_size', true );
 
-    if ( empty( $fancy_post_feature_image_size ) ) {
-        $fancy_post_feature_image_size ="full";
-    }
+    
 
     $fancy_post_feature_image_left = get_post_meta( $post->ID, 'fancy_post_feature_image_left', true );
 
-    if ( empty( $fancy_post_feature_image_left ) ) {
-        $fancy_post_feature_image_left ="full";
-    }
+    
     $fancy_post_feature_image_right = get_post_meta( $post->ID, 'fancy_post_feature_image_right', true );
 
-    if ( empty( $fancy_post_feature_image_right ) ) {
-        $fancy_post_feature_image_right ="full";
-    }
+    
     $fancy_post_media_source                    = get_post_meta( $post->ID, 'fancy_post_media_source', true );
     if ( empty( $fancy_post_media_source ) ) {
         $fancy_post_media_source ="feature_image";
@@ -230,9 +210,7 @@ function fancy_post_grid_metabox_shortcode_callback_pro( $post ) {
 
     // Button
     $fancy_button_option                        = get_post_meta( $post->ID, 'fancy_button_option', true );
-    if ( empty( $fancy_button_option ) ) {
-        $fancy_button_option = 'filled'; 
-    }
+    
     $fancy_button_border_style                  = get_post_meta( $post->ID, 'fancy_button_border_style', true );
     if ( empty( $fancy_button_border_style ) ) {
         $fancy_button_border_style = 'unset'; 
@@ -387,8 +365,6 @@ function fancy_post_grid_metabox_shortcode_callback_pro( $post ) {
     //Title Hover
     $fpg_title_hover_color                      = get_post_meta( $post->ID,'fpg_title_hover_color', true); 
     
-    
-
     //Excerpt
     $fpg_excerpt_color                          = get_post_meta( $post->ID,'fpg_excerpt_color', true); // Default to black if not set
     $fpg_excerpt_size                           = get_post_meta( $post->ID,'fpg_excerpt_size', true); 
@@ -1300,7 +1276,7 @@ function fancy_post_grid_metabox_shortcode_callback_pro( $post ) {
                                 <select id="fpg_filter_authors" name="fpg_filter_authors[]" multiple="multiple" style="width: 100%;">
                                     <?php
                                     $authors = get_users( array(
-                                        'who' => 'authors',
+                                        'capability' => 'edit_posts',
                                     ) );
                                     foreach ( $authors as $author ) {
                                         echo '<option value="' . esc_attr( $author->ID ) . '" ' . (in_array( $author->ID, (array) $fpg_filter_authors ) ? 'selected="selected"' : '') . '>' . esc_html( $author->display_name ) . '</option>';
@@ -3220,7 +3196,7 @@ function fancy_post_grid_metabox_enqueue_scripts_pro( $hook ) {
     global $post_type;
     if ( 'fancy-post-grid-fpg' === $post_type ) {
         // Enqueue your scripts and styles here
-        wp_enqueue_script( 'fpg-admin-script',  plugins_url('custom/js/admin-script.js', __FILE__), array( 'jquery' ), '1.0', true );
+        wp_enqueue_script( 'fpg-admin-script',  plugins_url('custom/js/admin-script.js', __FILE__), array( 'jquery' ), '1.0.1', true );
         wp_enqueue_style( 'fpg-admin-style', plugins_url('custom/css/admin-style.css', __FILE__),array(),'1.0' );
     }
 }
