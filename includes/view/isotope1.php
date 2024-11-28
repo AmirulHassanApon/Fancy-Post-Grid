@@ -194,18 +194,46 @@ ob_start();
                     <?php endif; ?>
 
                     <div class="rs-content">
+                        <?php if ($fpg_field_group_categories) : ?>
                         <div class="rs-category">
-                            <?php
-                            foreach ($post_categories as $category) {
-                                echo '<a href="' . esc_url(get_category_link($category->term_id)) . '">' . esc_html($category->name) . '</a>';
-                            }
-                            ?>
+                            <?php if (empty($disabled_meta_icons['category_icon'])) {?>
+                                    <i class="ri-folder-line"></i>
+                            <?php } ?>
+                            <?php the_category(', '); ?>
                         </div>
+                        <?php endif; ?>
+
+                        <?php if ($fpg_field_group_post_date) : ?>
+                            <div class="meta-date">
+                                <?php if (empty($disabled_meta_icons['date_icon'])) {?>
+                                <i class="ri-calendar-2-line"></i>
+                                <?php } ?>
+                                <?php echo get_the_date('M d, Y'); ?>
+                            </div>
+                        <?php endif; ?>
+                        <?php if ($fpg_field_group_author) : ?>
+                            <div class="meta-author">
+                                <?php if (empty($disabled_meta_icons['author_icon'])) {?>
+                                <i class="ri-user-line"></i>
+                                <?php } ?>
+                                <a href="<?php echo esc_url(get_author_posts_url(get_the_author_meta('ID'))); ?>"
+                                    <?php echo esc_attr($target_blank); ?>>
+                                    <?php the_author(); ?>
+                                </a> 
+                            </div>
+                        <?php endif; ?>
+                        <?php if ($fpg_field_group_tag && has_tag()) : ?>
+                            <div class="meta-tags">
+                                <?php if (empty($disabled_meta_icons['tags_icon'])) {?>
+                                <i class="ri-price-tag-3-line"></i>
+                                <?php } ?>
+                                <?php the_tags('', ', ', ''); ?>
+                            </div>
+                        <?php endif; ?>
+
                         <!-- Title -->
                         <?php if ($fpg_field_group_title) : ?>
                             <<?php echo esc_attr($title_tag); ?> class="title <?php echo esc_attr($title_alignment_class); ?>" >
-
-                                
                             <?php if ($fancy_link_details === 'on') : ?>
                                     <a href="<?php the_permalink(); ?>"
                                        <?php echo esc_attr($target_blank); ?>
@@ -255,7 +283,9 @@ ob_start();
                                 <!-- COMMENT -->
                                 <?php if ($fpg_field_group_comment_count ) : ?>
                                     <div class="meta-comment-count">
+                                        <?php if (empty($disabled_meta_icons['comment_count_icon'])) {?>
                                         <i class="ri-chat-3-line"></i>
+                                        <?php } ?>
                                         <?php comments_number('0 Comments', '1 Comment', '% Comments'); ?>
                                     </div>
                                 <?php endif; ?>

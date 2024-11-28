@@ -234,7 +234,6 @@ ob_start();
                                     <?php the_tags('', ', ', ''); ?>
                                 </li>
                             <?php endif; ?>
-                            
                         </ul>
                         <?php if ($fpg_field_group_excerpt) : ?>
                             <div class="fpg-excerpt <?php echo esc_attr($excerpt_alignment_class); ?>">
@@ -388,8 +387,9 @@ ob_start();
     .rs-blog-layout-6 .rs-blog__single .rs-content .title a {
     	padding: <?php echo esc_attr($fpg_title_padding); ?>;
         margin: <?php echo esc_attr($fpg_title_margin); ?>;
-        <?php if (!empty($fpg_title_color)) : ?>
-            color: <?php echo esc_attr($fpg_title_color); ?>;
+        
+        <?php if (!empty($fpg_secondary_color) || !empty($fpg_title_color)) : ?>
+            color: <?php echo esc_attr(!empty($fpg_secondary_color) ? $fpg_secondary_color : $fpg_title_color); ?>;
         <?php endif; ?>
         <?php if (!empty($fpg_title_font_size)) : ?>
             font-size: <?php echo esc_attr($fpg_title_font_size); ?>px;
@@ -421,8 +421,9 @@ ob_start();
 
     /* Excerpt Styles */
     .rs-blog-layout-6 .fpg-excerpt {
-        <?php if (!empty($fpg_excerpt_color)) : ?>
-            color: <?php echo esc_attr($fpg_excerpt_color); ?>;
+        
+        <?php if (!empty($fpg_body_color) || !empty($fpg_excerpt_color)) : ?>
+            color: <?php echo esc_attr(!empty($fpg_body_color) ? $fpg_body_color : $fpg_excerpt_color); ?>;
         <?php endif; ?>
         <?php if (!empty($fpg_excerpt_size)) : ?>
             font-size: <?php echo esc_attr($fpg_excerpt_size); ?>px;
@@ -507,8 +508,9 @@ ob_start();
         
     }
      .rs-blog-layout-6 .rs-blog__single .rs-content ul li i{
-        <?php if (!empty($fpg_meta_icon_color)) : ?>
-            color: <?php echo esc_attr($fpg_meta_icon_color); ?>;
+        
+        <?php if (!empty($fpg_primary_color) || !empty($fpg_meta_icon_color)) : ?>
+            color: <?php echo esc_attr(!empty($fpg_primary_color) ? $fpg_primary_color : $fpg_meta_icon_color); ?>;
         <?php endif; ?>
         <?php if (!empty($fpg_meta_size)) : ?>
             font-size: <?php echo esc_attr($fpg_meta_size); ?>px;
@@ -530,9 +532,10 @@ ob_start();
         <?php if (!empty($fpg_button_background_color)) : ?>
             background-color: <?php echo esc_attr($fpg_button_background_color); ?>;
         <?php endif; ?>
-        <?php if (!empty($fpg_button_text_color)) : ?>
-            color: <?php echo esc_attr($fpg_button_text_color); ?>;
+        <?php if (!empty($fpg_secondary_color) || !empty($fpg_button_text_color)) : ?>
+            color: <?php echo esc_attr(!empty($fpg_secondary_color) ? $fpg_secondary_color : $fpg_button_text_color); ?>;
         <?php endif; ?>
+        
         <?php if (!empty($fancy_post_read_more_border_radius)) : ?>
             border-radius: <?php echo esc_attr($fancy_post_read_more_border_radius); ?>;
         <?php endif; ?>
