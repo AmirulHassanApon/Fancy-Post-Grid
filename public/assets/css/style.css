@@ -4333,6 +4333,8 @@ img {
     }
     .rs-blog-layout-18-item .rs-content .blgo-btn-box{
         width: 100%;
+    }.rs-blog-layout-18-item .rs-content .blgo-btn-box a{
+        text-decoration: none;
     }
     .rs-blog-layout-18-item .rs-content .blgo-btn-box.align-start{
         text-align: left;

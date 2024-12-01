@@ -752,7 +752,7 @@
                     $('#fpg_meta_settings_main').show();
                     $('#fpg_meta_data_main').show();
                     $('#fpg_meta_gap_main').show();
-                    $('#fpg_meta_bgcolor_box').hide();                    
+                    $('#fpg_meta_bgcolor_box').show();                    
                     $('#fancy_button_option_main').show();
                     $('#fpg_button_settings_main').show();
                     $('#fpg_section_bg_hover_main').hide();
