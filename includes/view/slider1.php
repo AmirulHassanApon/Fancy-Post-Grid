@@ -237,7 +237,7 @@ ob_start();
                                                     <?php the_category(', '); ?>
                                                 </li>
                                             <?php endif; ?>
-                                            
+
                                             <?php if ($fpg_field_group_comment_count && get_comments_number() > 0) : ?>
                                                 <li class="meta-comment-count">
                                                     <?php if (empty($disabled_meta_icons['comment_count_icon'])) {?>
@@ -498,8 +498,9 @@ ob_start();
 
     }
     .rs-blog-layout-1 .blog-item .blog-content .blog-btn .read-more.<?php echo esc_attr($button_class); ?>{
-        <?php if (!empty($fpg_button_background_color)) : ?>
-            background-color: <?php echo esc_attr($fpg_button_background_color); ?>;
+        
+        <?php if (!empty($fpg_primary_color) || !empty($fpg_button_background_color)) : ?>
+            background-color: <?php echo esc_attr(!empty($fpg_primary_color) ? $fpg_primary_color : $fpg_button_background_color); ?>;
         <?php endif; ?>
         <?php if (!empty($fpg_button_text_color)) : ?>
             color: <?php echo esc_attr($fpg_button_text_color); ?>;

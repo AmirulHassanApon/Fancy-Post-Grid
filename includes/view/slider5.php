@@ -210,16 +210,44 @@ ob_start();
                                             <ul class="blog-meta">
                                                 
                                                 <?php if ($fpg_field_group_categories) : ?>
-                                                <li><i class="ri-bookmark-line"></i> <?php the_category(', '); ?></li>
+                                                <li><?php if (empty($disabled_meta_icons['category_icon'])) {?>
+                                                    <i class="ri-bookmark-line"></i>
+                                                    <?php } ?> <?php the_category(', '); ?></li>
                                                 <?php endif; ?>
                                                 <?php if ($fpg_field_group_author) : ?>
                                                 <li>
-                                                    <i class="ri-user-line"></i> 
+                                                    <?php if (empty($disabled_meta_icons['author_icon'])) {?>
+                                                    <i class="ri-user-line"></i>
+                                                    <?php } ?>
                                                     <a href="<?php echo esc_url(get_author_posts_url(get_the_author_meta('ID'))); ?>"
                                                         <?php echo esc_attr($target_blank); ?>>
                                                         <?php the_author(); ?>
                                                     </a> 
                                                 </li>
+                                                <?php endif; ?>
+                                                <?php if ($fpg_field_group_post_date) : ?>
+                                                    <li class="meta-date">
+                                                        <?php if (empty($disabled_meta_icons['date_icon'])) {?>
+                                                        <i class="ri-calendar-2-line"></i>
+                                                        <?php } ?>
+                                                        <?php echo get_the_date('M d, Y'); ?>
+                                                    </li>
+                                                <?php endif; ?>
+                                                <?php if ($fpg_field_group_comment_count && get_comments_number() > 0) : ?>
+                                                    <li class="meta-comment-count">
+                                                        <?php if (empty($disabled_meta_icons['comment_count_icon'])) {?>
+                                                        <i class="ri-chat-3-line"></i>
+                                                        <?php } ?>
+                                                        <?php comments_number('0 Comments', '1 Comment', '% Comments'); ?>
+                                                    </li>
+                                                <?php endif; ?>
+                                                <?php if ($fpg_field_group_tag && has_tag()) : ?>
+                                                    <li class="meta-tags">
+                                                        <?php if (empty($disabled_meta_icons['tags_icon'])) {?>
+                                                        <i class="ri-price-tag-3-line"></i>
+                                                        <?php } ?>
+                                                        <?php the_tags('', ', ', ''); ?>
+                                                    </li>
                                                 <?php endif; ?>
                                             </ul>
                                         </div>
@@ -340,11 +368,10 @@ ob_start();
             border-width: <?php echo esc_attr($fpg_title_border_width); ?>;
         <?php endif; ?>
     }
-
     /* Title Styles */
     .rs-blog-layout-18 .rs-blog-layout-18-item .rs-content .title a {
-        <?php if (!empty($fpg_title_color)) : ?>
-            color: <?php echo esc_attr($fpg_title_color); ?>;
+        <?php if (!empty($fpg_secondary_color) || !empty($fpg_title_color)) : ?>
+            color: <?php echo esc_attr(!empty($fpg_secondary_color) ? $fpg_secondary_color : $fpg_title_color); ?>;
         <?php endif; ?>
         <?php if (!empty($fpg_title_font_size)) : ?>
             font-size: <?php echo esc_attr($fpg_title_font_size); ?>px;
@@ -356,14 +383,11 @@ ob_start();
             font-weight: <?php echo esc_attr($fpg_title_font_weight); ?>;
         <?php endif; ?>
     }
-
-    .rs-blog-layout-18-item .rs-content .title a:hover {
-        <?php if (!empty($fpg_title_hover_color)) : ?>
-            color: <?php echo esc_attr($fpg_title_hover_color); ?>;
+    .rs-blog-layout-18-item .rs-content .title a:hover {   
+        <?php if (!empty($fpg_primary_color) || !empty($fpg_title_hover_color)) : ?>
+            color: <?php echo esc_attr(!empty($fpg_primary_color) ? $fpg_primary_color : $fpg_title_hover_color); ?>;
         <?php endif; ?>
     }
-
-
     /* Image Thumb Styles */
     .rs-blog-layout-18-item .rs-thumb{
         <?php if (!empty($fancy_post_image_border_radius)) : ?>
@@ -389,15 +413,11 @@ ob_start();
         <?php if (!empty($fpg_meta_gap)) : ?>
             gap: <?php echo esc_attr($fpg_meta_gap); ?>;
         <?php endif; ?>
-        
-        
     }
-    .rs-blog-layout-18-item .rs-content .rs-meta {
-        
-        <?php if (!empty($fpg_meta_bgcolor)) : ?>
-            background: <?php echo esc_attr($fpg_meta_bgcolor); ?>;
-        <?php endif; ?>
-        
+    .rs-blog-layout-18-item .rs-content .rs-meta {          
+        <?php if (!empty($fpg_primary_color) || !empty($fpg_meta_bgcolor)) : ?>
+            background: <?php echo esc_attr(!empty($fpg_primary_color) ? $fpg_primary_color : $fpg_meta_bgcolor); ?>;
+        <?php endif; ?>  
     }
     .rs-blog-layout-18-item .rs-content .rs-meta ul li i{
         <?php if (!empty($fpg_meta_icon_color)) : ?>
@@ -419,13 +439,10 @@ ob_start();
         <?php endif; ?>
         <?php if (!empty($fpg_meta_line_height)) : ?>
             line-height: <?php echo esc_attr($fpg_meta_line_height); ?>;
-        <?php endif; ?>
-        
+        <?php endif; ?>  
     }
 
-    
-    .rs-blog-layout-18-item .rs-content .rs-meta ul li a:hover,.rs-blog-layout-18-item .rs-content .rs-meta ul li:hover{
-        
+    .rs-blog-layout-18-item .rs-content .rs-meta ul li a:hover,.rs-blog-layout-18-item .rs-content .rs-meta ul li:hover{       
         <?php if (!empty($fpg_meta_hover_color)) : ?>
             color: <?php echo esc_attr($fpg_meta_hover_color); ?>;
         <?php endif; ?>
@@ -476,8 +493,9 @@ ob_start();
         <?php if (!empty($fpg_button_hover_background_color)) : ?>
             background-color: <?php echo esc_attr($fpg_button_hover_background_color); ?>;
         <?php endif; ?>
-        <?php if (!empty($fpg_button_text_hover_color)) : ?>
-            color: <?php echo esc_attr($fpg_button_text_hover_color); ?>;
+        
+        <?php if (!empty($fpg_primary_color) || !empty($fpg_button_text_hover_color)) : ?>
+            color: <?php echo esc_attr(!empty($fpg_primary_color) ? $fpg_primary_color : $fpg_button_text_hover_color); ?>;
         <?php endif; ?>
     }
     .rs-blog-layout-18-item .rs-content .blgo-btn-box a.rs-btn.<?php echo esc_attr($button_class); ?>::before{
@@ -494,15 +512,16 @@ ob_start();
     }
     .rs-blog-layout-18 .swiper_wrap .swiper-pagination-progressbar .swiper-pagination-progressbar-fill,
     .rs-blog-layout-18 .swiper_wrap .swiper-pagination .swiper-pagination-bullet.swiper-pagination-bullet-active{
-        <?php if (!empty($fpg_slider_dots_active_color)) : ?>
-            background: <?php echo esc_attr($fpg_slider_dots_active_color); ?>;
+        
+        <?php if (!empty($fpg_primary_color) || !empty($fpg_slider_dots_active_color)) : ?>
+            background: <?php echo esc_attr(!empty($fpg_primary_color) ? $fpg_primary_color : $fpg_slider_dots_active_color); ?>;
         <?php endif; ?>
     }
     .rs-blog-layout-18 .swiper_wrap .swiper-button-next,
     .rs-blog-layout-18 .swiper_wrap .swiper-button-prev{
-        <?php if (!empty($fpg_arrow_bg_color)) : ?>
-            background: <?php echo esc_attr($fpg_arrow_bg_color); ?>;
-        <?php endif; ?>
+        <?php if (!empty($fpg_primary_color) || !empty($fpg_arrow_bg_color)) : ?>
+            background: <?php echo esc_attr(!empty($fpg_primary_color) ? $fpg_primary_color : $fpg_arrow_bg_color); ?>;
+        <?php endif; ?> 
     }
 
     .rs-blog-layout-18 .swiper_wrap .swiper-button-next:hover,
@@ -539,15 +558,13 @@ ob_start();
     }
 
     .rs-blog-layout-18 .swiper_wrap .swiper-pagination-fraction .swiper-pagination-current{
-        <?php if (!empty($fpg_fraction_current_color)) : ?>
-            color: <?php echo esc_attr($fpg_fraction_current_color); ?>;
-        <?php endif; ?>
+        <?php if (!empty($fpg_primary_color) || !empty($fpg_fraction_current_color)) : ?>
+           color: <?php echo esc_attr(!empty($fpg_primary_color) ? $fpg_primary_color : $fpg_fraction_current_color); ?>;
+        <?php endif; ?> 
         <?php if (!empty($fpg_fraction_current_font_size)) : ?>
             font-size: <?php echo esc_attr($fpg_fraction_current_font_size); ?>;
         <?php endif; ?>
     }
-
-    
 </style>
 <?php
 $slider5 = ob_get_clean();

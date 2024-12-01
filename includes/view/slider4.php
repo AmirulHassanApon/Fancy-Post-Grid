@@ -135,15 +135,12 @@ ob_start();
                                     );
                                 }
 
-
                                 if (!empty($tax_query)) {
                                     $args['tax_query'] = $tax_query;
                                 }
                                 
-
                                 $query = new WP_Query($args);
-                            
-                            
+                                                        
                                 while ($query->have_posts()) : $query->the_post();
                                     // Check if the link should open in a new tab
                                     $target_blank = ($fancy_link_target === 'new') ? 'target="_blank"' : '';
@@ -454,12 +451,10 @@ ob_start();
             margin: <?php echo esc_attr($fpg_meta_margin); ?>;
         <?php endif; ?>
     }
-
     .rs-blog-layout-5 .rs-blog__single .rs-content ul{
         <?php if (!empty($fpg_meta_gap)) : ?>
             gap: <?php echo esc_attr($fpg_meta_gap); ?>;
         <?php endif; ?>
-        
     }
 
     .rs-blog-layout-5 .rs-blog__item .rs-content .rs-blog-footer span,
@@ -480,9 +475,7 @@ ob_start();
         <?php if (!empty($fpg_meta_font_weight)) : ?>
             font-weight: <?php echo esc_attr($fpg_meta_font_weight); ?>;
         <?php endif; ?>
-        
     }
-
     .rs-blog-layout-4 .rs-blog__item .rs-content .rs-blog-footer span svg path{
         
         <?php if (!empty($fpg_primary_color) || !empty($fpg_meta_icon_color)) : ?>
@@ -494,24 +487,19 @@ ob_start();
             background: <?php echo esc_attr(!empty($fpg_primary_color) ? $fpg_primary_color : $fpg_meta_bgcolor); ?>;
         <?php endif; ?>
     }
-    
     .rs-blog-layout-4 .rs-blog__item .rs-content .rs-blog-footer span:hover,.rs-blog-layout-4 .rs-blog__item .rs-content .rs-category a:hover{
-        
         <?php if (!empty($fpg_meta_hover_color)) : ?>
             color: <?php echo esc_attr($fpg_meta_hover_color); ?>;
         <?php endif; ?>
     }
-    
     /* Button Styles */
     .rs-blog-layout-4 .rs-blog__item .rs-content .rs-blog-footer .btn-link.<?php echo esc_attr($button_class); ?>{
         <?php if (!empty($fpg_button_background_color)) : ?>
             background-color: <?php echo esc_attr($fpg_button_background_color); ?>;
         <?php endif; ?>
-
         <?php if (!empty($fpg_primary_color) || !empty($fpg_button_text_color)) : ?>
             color: <?php echo esc_attr(!empty($fpg_primary_color) ? $fpg_primary_color : $fpg_button_text_color); ?>;
         <?php endif; ?>
-
         <?php if (!empty($fancy_post_read_more_border_radius)) : ?>
             border-radius: <?php echo esc_attr($fancy_post_read_more_border_radius); ?>;
         <?php endif; ?>
@@ -536,10 +524,7 @@ ob_start();
         <?php if (!empty($fpg_button_margin)) : ?>
             margin: <?php echo esc_attr($fpg_button_margin); ?>;
         <?php endif; ?>
-
     }
-
-
     .rs-blog-layout-4 .rs-blog__item .rs-content .rs-blog-footer .btn-link.<?php echo esc_attr($button_class); ?>:hover {
         <?php if (!empty($fpg_button_hover_background_color)) : ?>
             background-color: <?php echo esc_attr($fpg_button_hover_background_color); ?>;
