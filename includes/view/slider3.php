@@ -238,9 +238,30 @@ ob_start();
                                         <?php if ($fpg_field_group_post_date) : ?>
                                             <ul class="blog-meta <?php echo esc_attr($meta_alignment_class); ?>">
                                                 
-                                                <li class="meta-date">
-                                                    <?php echo get_the_date('M d, Y'); ?>
-                                                </li>
+                                                <?php if ($fpg_field_group_post_date) : ?>
+                                                    <li class="date">
+                                                        <?php if (empty($disabled_meta_icons['date_icon'])) {?>
+                                                        <i class="ri-calendar-2-line"></i>
+                                                        <?php } ?>
+                                                        <?php echo get_the_date('M d, Y'); ?>
+                                                    </li>
+                                                <?php endif; ?>
+                                                <?php if ($fpg_field_group_comment_count && get_comments_number() > 0) : ?>
+                                                    <li class="meta-comment-count">
+                                                        <?php if (empty($disabled_meta_icons['comment_count_icon'])) {?>
+                                                        <i class="ri-chat-3-line"></i>
+                                                        <?php } ?>
+                                                        <?php comments_number('0 Comments', '1 Comment', '% Comments'); ?>
+                                                    </li>
+                                                <?php endif; ?>
+                                                <?php if ($fpg_field_group_tag && has_tag()) : ?>
+                                                    <li class="meta-tags">
+                                                        <?php if (empty($disabled_meta_icons['tags_icon'])) {?>
+                                                        <i class="ri-price-tag-3-line"></i>
+                                                        <?php } ?>
+                                                        <?php the_tags('', ', ', ''); ?>
+                                                    </li>
+                                                <?php endif; ?> 
                                                 <li>
                                                     <div class="rs-icon">
                                                         <svg xmlns="http://www.w3.org/2000/svg" width="4" height="4" viewBox="0 0 6 6" fill="none">
@@ -361,6 +382,11 @@ ob_start();
             border-radius: <?php echo esc_attr($fancy_post_image_border_radius); ?>;
         <?php endif; ?>
     }
+    .rs-blog-layout-3 .rs-blog__single .thumb .rs-contact-icon a{        
+        <?php if (!empty($fpg_primary_color) || !empty($fpg_title_color)) : ?>
+            background: <?php echo esc_attr(!empty($fpg_primary_color) ? $fpg_primary_color : $fpg_title_color); ?>;
+        <?php endif; ?>
+    }
 
     .rs-blog-layout-3 .rs-blog__single .content {
         <?php if (!empty($fpg_single_content_section_padding)) : ?>
@@ -377,8 +403,9 @@ ob_start();
     }
 
     .rs-blog-layout-3 .rs-blog__single .content .title a {
-        <?php if (!empty($fpg_title_color)) : ?>
-            color: <?php echo esc_attr($fpg_title_color); ?>;
+        
+        <?php if (!empty($fpg_secondary_color) || !empty($fpg_title_color)) : ?>
+            color: <?php echo esc_attr(!empty($fpg_secondary_color) ? $fpg_secondary_color : $fpg_title_color); ?>;
         <?php endif; ?>
         <?php if (!empty($fpg_title_font_size)) : ?>
             font-size: <?php echo esc_attr($fpg_title_font_size); ?>px;
@@ -405,20 +432,19 @@ ob_start();
             border-width: <?php echo esc_attr($fpg_title_border_width); ?>;
         <?php endif; ?>
     }
-
     .rs-blog-layout-3 .rs-blog__single .content .title a:hover {
-        <?php if (!empty($fpg_title_hover_color)) : ?>
-            color: <?php echo esc_attr($fpg_title_hover_color); ?>;
+        
+        <?php if (!empty($fpg_primary_color) || !empty($fpg_title_hover_color)) : ?>
+            color: <?php echo esc_attr(!empty($fpg_primary_color) ? $fpg_primary_color : $fpg_title_hover_color); ?>;
         <?php endif; ?>
     }
-
-    
-
     /* Excerpt Styles */
     .rs-blog-layout-3 .rs-blog__single .content .desc {
-        <?php if (!empty($fpg_excerpt_color)) : ?>
-            color: <?php echo esc_attr($fpg_excerpt_color); ?>;
+        
+        <?php if (!empty($fpg_body_color) || !empty($fpg_excerpt_color)) : ?>
+            color: <?php echo esc_attr(!empty($fpg_body_color) ? $fpg_body_color : $fpg_excerpt_color); ?>;
         <?php endif; ?>
+
         <?php if (!empty($fpg_excerpt_size)) : ?>
             font-size: <?php echo esc_attr($fpg_excerpt_size); ?>px;
         <?php endif; ?>
@@ -438,10 +464,7 @@ ob_start();
             order: <?php echo esc_attr($fpg_excerpt_order); ?>;
         <?php endif; ?>
     }
-
-
     /* Meta Data Styles */
-
     .rs-blog-layout-3 .rs-blog__single .content ul{
         <?php if (!empty($fpg_meta_order)) : ?>
             order: <?php echo esc_attr($fpg_meta_order); ?>;
@@ -474,6 +497,11 @@ ob_start();
             <?php endif; ?>
             
     }
+    .rs-blog-layout-3 .rs-blog__single .content .rs-blog-category a{
+        <?php if (!empty($fpg_primary_color) || !empty($fpg_meta_color)) : ?>
+            color: <?php echo esc_attr(!empty($fpg_primary_color) ? $fpg_primary_color : $fpg_meta_color); ?>;
+        <?php endif; ?>
+    }
     .rs-blog-layout-3 .rs-blog__single .content ul li{
         <?php if (!empty($fpg_meta_line_height)) : ?>
             line-height: <?php echo esc_attr($fpg_meta_line_height); ?>;
@@ -482,8 +510,8 @@ ob_start();
     
     .rs-blog-layout-3 .rs-blog__single .content ul li .rs-icon svg path,
     .rs-blog-layout-3 .rs-blog__single .content .rs-blog-category a .icon svg path{
-        <?php if (!empty($fpg_meta_color)) : ?>
-            fill: <?php echo esc_attr($fpg_meta_color); ?>;
+        <?php if (!empty($fpg_primary_color) || !empty($fpg_meta_color)) : ?>
+            fill: <?php echo esc_attr(!empty($fpg_primary_color) ? $fpg_primary_color : $fpg_meta_color); ?>;
         <?php endif; ?>
 
     }
@@ -504,8 +532,9 @@ ob_start();
 
     }
     .rs-blog-layout-3 .rs-blog__single .content .rs-blog-author .rs-link a.<?php echo esc_attr($button_class); ?>{
-        <?php if (!empty($fpg_button_background_color)) : ?>
-            background-color: <?php echo esc_attr($fpg_button_background_color); ?>;
+        
+        <?php if (!empty($fpg_primary_color) || !empty($fpg_button_background_color)) : ?>
+            background-color: <?php echo esc_attr(!empty($fpg_primary_color) ? $fpg_primary_color : $fpg_button_background_color); ?>;
         <?php endif; ?>
         <?php if (!empty($fpg_button_text_color)) : ?>
             color: <?php echo esc_attr($fpg_button_text_color); ?>;
@@ -552,18 +581,17 @@ ob_start();
         <?php endif; ?>
     }
 
-
-
     .rs-blog-layout-3 .swiper_wrap .swiper-pagination-progressbar,
     .rs-blog-layout-3 .swiper_wrap .swiper-pagination .swiper-pagination-bullet{
-        <?php if (!empty($fpg_slider_dots_color)) : ?>
-            background: <?php echo esc_attr($fpg_slider_dots_color); ?>;
+        
+        <?php if (!empty($fpg_primary_color) || !empty($fpg_slider_dots_color)) : ?>
+            background: <?php echo esc_attr(!empty($fpg_primary_color) ? $fpg_primary_color : $fpg_slider_dots_color); ?>;
         <?php endif; ?>
     }
     .rs-blog-layout-3 .swiper_wrap .swiper-pagination-progressbar .swiper-pagination-progressbar-fill,
     .rs-blog-layout-3 .swiper_wrap .swiper-pagination .swiper-pagination-bullet.swiper-pagination-bullet-active{
-        <?php if (!empty($fpg_slider_dots_active_color)) : ?>
-            background: <?php echo esc_attr($fpg_slider_dots_active_color); ?>;
+        <?php if (!empty($fpg_primary_color) || !empty($fpg_slider_dots_active_color)) : ?>
+            background: <?php echo esc_attr(!empty($fpg_primary_color) ? $fpg_primary_color : $fpg_slider_dots_active_color); ?>;
         <?php endif; ?>
     }
     .rs-blog-layout-3 .swiper_wrap .swiper-pagination.swiper-pagination-bullets{
@@ -574,9 +602,9 @@ ob_start();
     }
     .rs-blog-layout-3 .swiper_wrap .swiper-button-next,
     .rs-blog-layout-3 .swiper_wrap .swiper-button-prev{
-        <?php if (!empty($fpg_arrow_bg_color)) : ?>
-            background: <?php echo esc_attr($fpg_arrow_bg_color); ?>;
-        <?php endif; ?>
+        <?php if (!empty($fpg_primary_color) || !empty($fpg_arrow_bg_color)) : ?>
+            background: <?php echo esc_attr(!empty($fpg_primary_color) ? $fpg_primary_color : $fpg_arrow_bg_color); ?>;
+        <?php endif; ?> 
     }
 
     .rs-blog-layout-3 .swiper_wrap .swiper-button-next:hover,
@@ -604,9 +632,9 @@ ob_start();
     }
 
     .rs-blog-layout-3 .swiper_wrap .swiper-pagination-fraction{
-        <?php if (!empty($fpg_fraction_total_color)) : ?>
-            color: <?php echo esc_attr($fpg_fraction_total_color); ?>;
-        <?php endif; ?>
+        <?php if (!empty($fpg_primary_color) || !empty($fpg_fraction_total_color)) : ?>
+           color: <?php echo esc_attr(!empty($fpg_primary_color) ? $fpg_primary_color : $fpg_fraction_total_color); ?>;
+        <?php endif; ?> 
         <?php if (!empty($fpg_fraction_total_font_size)) : ?>
             font-size: <?php echo esc_attr($fpg_fraction_total_font_size); ?>;
         <?php endif; ?>

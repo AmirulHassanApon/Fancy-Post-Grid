@@ -357,8 +357,8 @@ ob_start();
     }
     .rs-blog-layout-16-item .rs-content .title a{
 
-        <?php if (!empty($fpg_title_color)) : ?>
-            color: <?php echo esc_attr($fpg_title_color); ?>;
+        <?php if (!empty($fpg_primary_color) || !empty($fpg_title_color)) : ?>
+            color: <?php echo esc_attr(!empty($fpg_primary_color) ? $fpg_primary_color : $fpg_title_color); ?>;
         <?php endif; ?>
         <?php if (!empty($fpg_title_font_size)) : ?>
             font-size: <?php echo esc_attr($fpg_title_font_size); ?>px;

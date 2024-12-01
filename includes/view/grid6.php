@@ -326,7 +326,6 @@ ob_start();
         <?php endif; ?>
     }
 
-
      /* Single Area Styles */
      .rs-blog-layout-13-item {
         <?php if (!empty($fpg_single_section_background_color)) : ?>
@@ -365,23 +364,25 @@ ob_start();
             padding: <?php echo esc_attr($fpg_single_content_section_padding); ?>;
         <?php endif; ?>
     }
-    .rs-blog-layout-13-item .rs-thumb .pre-blog-meta{
+    .rs-blog-layout-13-item .rs-thumb .pre-blog-meta,.rs-blog-layout-13-item .rs-thumb .pre-blog-meta {
         <?php if (!empty($fpg_date_padding)) : ?>
             padding: <?php echo esc_attr($fpg_date_padding); ?>;
         <?php endif; ?>
-        <?php if (!empty($fpg_date_bg_color)) : ?>
-            background: <?php echo esc_attr($fpg_date_bg_color); ?>;
-        <?php endif; ?>
-        <?php if (!empty($fpg_date_color)) : ?>
-            color: <?php echo esc_attr($fpg_date_color); ?>;
-        <?php endif; ?>
 
+        <?php if (!empty($fpg_secondary_color) || !empty($fpg_date_bg_color)) : ?>
+            background: <?php echo esc_attr(!empty($fpg_secondary_color) ? $fpg_secondary_color : $fpg_date_bg_color); ?>;
+        <?php endif; ?>     
+    }
+    .rs-blog-layout-13-item .rs-thumb .pre-blog-meta .pre-date,.rs-blog-layout-13-item .rs-thumb .pre-blog-meta .pre-month{
 
+        <?php if (!empty($fpg_primary_color) || !empty($fpg_date_color)) : ?>
+            color: <?php echo esc_attr(!empty($fpg_primary_color) ? $fpg_primary_color : $fpg_date_color); ?>;
+        <?php endif; ?> 
     }
     .rs-blog-layout-13-item .rs-thumb .pre-blog-meta::after{
-        <?php if (!empty($fpg_date_bg_color)) : ?>
-            border-color: <?php echo esc_attr($fpg_date_bg_color); ?>;
-        <?php endif; ?>
+        <?php if (!empty($fpg_secondary_color) || !empty($fpg_date_bg_color)) : ?>
+            border-color: <?php echo esc_attr(!empty($fpg_secondary_color) ? $fpg_secondary_color : $fpg_date_bg_color); ?>;
+        <?php endif; ?>   
     }
     
     /* Title Styles */
@@ -419,13 +420,10 @@ ob_start();
         <?php endif; ?>
     }
 
-    
     .rs-blog-layout-13-item .rs-content .title a:hover {
-
         <?php if (!empty($fpg_title_hover_color)) : ?>
             color: <?php echo esc_attr($fpg_title_hover_color); ?>;
         <?php endif; ?>
-        
     }
 
     .rs-blog-layout-13-item .rs-content .blog-btn.<?php echo esc_attr($button_class); ?> {
