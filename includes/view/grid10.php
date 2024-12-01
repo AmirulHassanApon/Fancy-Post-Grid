@@ -400,12 +400,18 @@ ob_start();
     }
 
     /* Meta Data Styles */
-    .rs-blog-layout-19-item .rs-content .rs-meta ul li ,
-    .rs-blog-layout-19-item .rs-content .rs-meta ul li i,
+    .rs-blog-layout-19-item .rs-content .rs-meta ul li , 
+    .rs-blog-layout-19-item .rs-content .rs-meta ul li a,
     .rs-blog-layout-19-item .rs-content .rs-meta ul li:first-child::before{
         color: <?php echo esc_attr($fpg_meta_color); ?>;
         font-size: <?php echo esc_attr($fpg_meta_size); ?>px;
         font-weight: <?php echo esc_attr($fpg_meta_font_weight); ?>;
+    }
+    .rs-blog-layout-19-item .rs-content .rs-meta ul li a:hover{
+        color: <?php echo esc_attr($fpg_meta_hover_color); ?>;
+    }
+    .rs-blog-layout-19-item .rs-content .rs-meta ul li i{
+        color: <?php echo esc_attr($fpg_meta_icon_color); ?>;
     }
     .rs-blog-layout-19-item .rs-content .rs-meta{
         <?php if (!empty($fpg_meta_order)) : ?>
@@ -427,9 +433,11 @@ ob_start();
 
     /* Button Styles */
     .rs-blog-layout-19-item .rs-content a.rs-btn.<?php echo esc_attr($button_class); ?>{
-        <?php if (!empty($fpg_button_background_color)) : ?>
-            background-color: <?php echo esc_attr($fpg_button_background_color); ?>;
+
+        <?php if (!empty($fpg_primary_color) || !empty($fpg_button_background_color)) : ?>
+            background-color: <?php echo esc_attr(!empty($fpg_primary_color) ? $fpg_primary_color : $fpg_button_background_color); ?>;
         <?php endif; ?>
+
         <?php if (!empty($fpg_button_text_color)) : ?>
             color: <?php echo esc_attr($fpg_button_text_color); ?>;
         <?php endif; ?>        
@@ -465,8 +473,9 @@ ob_start();
 
     }
     .rs-blog-layout-19-item .rs-content a.rs-btn.<?php echo esc_attr($button_class); ?>:hover {
-        <?php if (!empty($fpg_button_hover_background_color)) : ?>
-            background-color: <?php echo esc_attr($fpg_button_hover_background_color); ?>;
+        
+        <?php if (!empty($fpg_secondary_color) || !empty($fpg_button_hover_background_color)) : ?>
+            background-color: <?php echo esc_attr(!empty($fpg_secondary_color) ? $fpg_secondary_color : $fpg_button_hover_background_color); ?>;
         <?php endif; ?>
         <?php if (!empty($fpg_button_text_hover_color)) : ?>
             color: <?php echo esc_attr($fpg_button_text_hover_color); ?>;

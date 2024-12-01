@@ -218,6 +218,34 @@ ob_start();
                                             ?>
                                         </div>
                                         <?php endif; ?>
+                                        <?php if ($fpg_field_group_post_date) : ?>
+                                            <div class="meta-date">
+                                                <?php if (empty($disabled_meta_icons['date_icon'])) {?>
+                                                <i class="ri-calendar-2-line"></i>
+                                                <?php } ?>
+                                                <?php echo get_the_date('M d, Y'); ?>
+                                            </div>
+                                        <?php endif; ?>
+                                        
+                                        <?php if ($fpg_field_group_author) : ?>
+                                            <div class="meta-author">
+                                                <?php if (empty($disabled_meta_icons['author_icon'])) {?>
+                                                <i class="ri-user-line"></i>
+                                                <?php } ?>
+                                                <a href="<?php echo esc_url(get_author_posts_url(get_the_author_meta('ID'))); ?>"
+                                                    <?php echo esc_attr($target_blank); ?>>
+                                                    <?php the_author(); ?>
+                                                </a> 
+                                            </div>
+                                        <?php endif; ?>
+                                        <?php if ($fpg_field_group_tag && has_tag()) : ?>
+                                            <div class="meta-tags">
+                                                <?php if (empty($disabled_meta_icons['tags_icon'])) {?>
+                                                <i class="ri-price-tag-3-line"></i>
+                                                <?php } ?>
+                                                <?php the_tags('', ', ', ''); ?>
+                                            </div>
+                                        <?php endif; ?>
 
                                         <?php if ($fpg_field_group_title) : ?>
                                             <<?php echo esc_attr($title_tag); ?> class="title <?php echo esc_attr($title_alignment_class); ?>">
@@ -344,8 +372,8 @@ ob_start();
         <?php if (!empty($fpg_title_order)) : ?>
             order: <?php echo esc_attr($fpg_title_order); ?>;
         <?php endif; ?>
-        <?php if (!empty($fpg_title_color)) : ?>
-            color: <?php echo esc_attr($fpg_title_color); ?>;
+        <?php if (!empty($fpg_secondary_color) || !empty($fpg_title_color)) : ?>
+            color: <?php echo esc_attr(!empty($fpg_secondary_color) ? $fpg_secondary_color : $fpg_title_color); ?>;
         <?php endif; ?>
         <?php if (!empty($fpg_title_font_size)) : ?>
             font-size: <?php echo esc_attr($fpg_title_font_size); ?>px;
@@ -374,15 +402,15 @@ ob_start();
     }
 
     .rs-blog-layout-4 .rs-blog__item .rs-content .title a:hover {
-        <?php if (!empty($fpg_title_hover_color)) : ?>
-            color: <?php echo esc_attr($fpg_title_hover_color); ?>;
+        <?php if (!empty($fpg_primary_color) || !empty($fpg_title_hover_color)) : ?>
+            color: <?php echo esc_attr(!empty($fpg_primary_color) ? $fpg_primary_color : $fpg_title_hover_color); ?>;
         <?php endif; ?>
     }
 
     /* Excerpt Styles */
     .rs-blog-layout-4 .rs-blog__item .rs-content .desc {
-        <?php if (!empty($fpg_excerpt_color)) : ?>
-            color: <?php echo esc_attr($fpg_excerpt_color); ?>;
+        <?php if (!empty($fpg_body_color) || !empty($fpg_excerpt_color)) : ?>
+            color: <?php echo esc_attr(!empty($fpg_body_color) ? $fpg_body_color : $fpg_excerpt_color); ?>;
         <?php endif; ?>
         <?php if (!empty($fpg_excerpt_size)) : ?>
             font-size: <?php echo esc_attr($fpg_excerpt_size); ?>px;
@@ -402,7 +430,6 @@ ob_start();
         <?php if (!empty($fpg_excerpt_line_height)) : ?>
             line-height: <?php echo esc_attr($fpg_excerpt_line_height); ?>;
         <?php endif; ?>       
-        
     }
 
     .rs-blog-layout-5 .rs-blog__single .rs-content .btn-wrapper{
@@ -413,7 +440,6 @@ ob_start();
             margin: <?php echo esc_attr($fpg_button_margin); ?>;
         <?php endif; ?>
     }
-
 
     /* Meta Data Styles */
 
@@ -436,8 +462,8 @@ ob_start();
         
     }
 
-    .rs-blog-layout-4 .rs-blog__item .rs-content .rs-blog-footer span,
-    .rs-blog-layout-4 .rs-blog__item .rs-content .rs-category a,
+    .rs-blog-layout-5 .rs-blog__item .rs-content .rs-blog-footer span,
+    .rs-blog-layout-5 .rs-blog__item .rs-content .rs-category a,
     .rs-blog-layout-5 .rs-blog__single .rs-content ul li a,
     .rs-blog-layout-5 .meta-data-list .meta-date i,
     .rs-blog-layout-5 .meta-data-list .meta-author i,
@@ -458,11 +484,16 @@ ob_start();
     }
 
     .rs-blog-layout-4 .rs-blog__item .rs-content .rs-blog-footer span svg path{
-        <?php if (!empty($fpg_meta_icon_color)) : ?>
-            fill: <?php echo esc_attr($fpg_meta_icon_color); ?>;
+        
+        <?php if (!empty($fpg_primary_color) || !empty($fpg_meta_icon_color)) : ?>
+            fill: <?php echo esc_attr(!empty($fpg_primary_color) ? $fpg_primary_color : $fpg_meta_icon_color); ?>;
         <?php endif; ?>
     }
-
+    .rs-blog-layout-4 .rs-blog__item .rs-content .rs-category a{
+        <?php if (!empty($fpg_primary_color) || !empty($fpg_meta_bgcolor)) : ?>
+            background: <?php echo esc_attr(!empty($fpg_primary_color) ? $fpg_primary_color : $fpg_meta_bgcolor); ?>;
+        <?php endif; ?>
+    }
     
     .rs-blog-layout-4 .rs-blog__item .rs-content .rs-blog-footer span:hover,.rs-blog-layout-4 .rs-blog__item .rs-content .rs-category a:hover{
         
@@ -476,9 +507,11 @@ ob_start();
         <?php if (!empty($fpg_button_background_color)) : ?>
             background-color: <?php echo esc_attr($fpg_button_background_color); ?>;
         <?php endif; ?>
-        <?php if (!empty($fpg_button_text_color)) : ?>
-            color: <?php echo esc_attr($fpg_button_text_color); ?>;
+
+        <?php if (!empty($fpg_primary_color) || !empty($fpg_button_text_color)) : ?>
+            color: <?php echo esc_attr(!empty($fpg_primary_color) ? $fpg_primary_color : $fpg_button_text_color); ?>;
         <?php endif; ?>
+
         <?php if (!empty($fancy_post_read_more_border_radius)) : ?>
             border-radius: <?php echo esc_attr($fancy_post_read_more_border_radius); ?>;
         <?php endif; ?>
@@ -520,18 +553,17 @@ ob_start();
             background: <?php echo esc_attr($fpg_button_border_color); ?>;
         <?php endif; ?>
     }
-
-
     .rs-blog-layout-4 .swiper_wrap .swiper-pagination-progressbar,
     .rs-blog-layout-4 .swiper_wrap .swiper-pagination .swiper-pagination-bullet{
+        
         <?php if (!empty($fpg_slider_dots_color)) : ?>
-            background: <?php echo esc_attr($fpg_slider_dots_color); ?>;
+            background: <?php echo esc_attr($fpg_slider_dots_color); ?>23;
         <?php endif; ?>
     }
     .rs-blog-layout-4 .swiper_wrap .swiper-pagination-progressbar .swiper-pagination-progressbar-fill,
     .rs-blog-layout-4 .swiper_wrap .swiper-pagination .swiper-pagination-bullet.swiper-pagination-bullet-active{
-        <?php if (!empty($fpg_slider_dots_active_color)) : ?>
-            background: <?php echo esc_attr($fpg_slider_dots_active_color); ?>;
+        <?php if (!empty($fpg_primary_color) || !empty($fpg_slider_dots_active_color)) : ?>
+            background: <?php echo esc_attr(!empty($fpg_primary_color) ? $fpg_primary_color : $fpg_slider_dots_active_color); ?>;
         <?php endif; ?>
     }
     .rs-blog-layout-4 .swiper_wrap .swiper-pagination.swiper-pagination-bullets{
@@ -542,9 +574,9 @@ ob_start();
     }
     .rs-blog-layout-4 .swiper_wrap .swiper-button-next,
     .rs-blog-layout-4 .swiper_wrap .swiper-button-prev{
-        <?php if (!empty($fpg_arrow_bg_color)) : ?>
-            background: <?php echo esc_attr($fpg_arrow_bg_color); ?>;
-        <?php endif; ?>
+        <?php if (!empty($fpg_primary_color) || !empty($fpg_arrow_bg_color)) : ?>
+            background: <?php echo esc_attr(!empty($fpg_primary_color) ? $fpg_primary_color : $fpg_arrow_bg_color); ?>;
+        <?php endif; ?> 
     }
 
     .rs-blog-layout-4 .swiper_wrap .swiper-button-next:hover,
@@ -581,9 +613,10 @@ ob_start();
 }
 
 .rs-blog-layout-4 .swiper_wrap .swiper-pagination-fraction .swiper-pagination-current{
-    <?php if (!empty($fpg_fraction_current_color)) : ?>
-        color: <?php echo esc_attr($fpg_fraction_current_color); ?>;
-    <?php endif; ?>
+    
+    <?php if (!empty($fpg_primary_color) || !empty($fpg_fraction_current_color)) : ?>
+           color: <?php echo esc_attr(!empty($fpg_primary_color) ? $fpg_primary_color : $fpg_fraction_current_color); ?>;
+        <?php endif; ?> 
     <?php if (!empty($fpg_fraction_current_font_size)) : ?>
         font-size: <?php echo esc_attr($fpg_fraction_current_font_size); ?>;
     <?php endif; ?>

@@ -493,14 +493,14 @@ ob_start();
         <?php if (!empty($fpg_category_padding)) : ?>
             padding: <?php echo esc_attr($fpg_category_padding); ?>;
         <?php endif; ?>
+        <?php if (!empty($fpg_primary_color) || !empty($fpg_category_bg_color)) : ?>
+            background: <?php echo esc_attr(!empty($fpg_primary_color) ? $fpg_primary_color : $fpg_category_bg_color); ?>;
+        <?php endif; ?>
     }
-    .rs-blog-layout-15-item .rs-thumb .rs-category a{
-        <?php if (!empty($fpg_category_color)) : ?>
-            color: <?php echo esc_attr($fpg_category_color); ?>;
-        <?php endif; ?>
-        <?php if (!empty($fpg_category_bg_color)) : ?>
-            background: <?php echo esc_attr($fpg_category_bg_color); ?>;
-        <?php endif; ?>
+    .rs-blog-layout-15-item .rs-thumb .rs-category a{     
+        <?php if (!empty($fpg_secondary_color) || !empty($fpg_category_color)) : ?>
+            color: <?php echo esc_attr(!empty($fpg_secondary_color) ? $fpg_secondary_color : $fpg_category_color); ?>;
+        <?php endif; ?>   
     }
 
 </style>

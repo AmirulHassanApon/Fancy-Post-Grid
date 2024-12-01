@@ -336,7 +336,6 @@ ob_start();
             padding: <?php echo esc_attr($fpg_single_section_padding); ?>;
         <?php endif; ?>
     }
-    
     .pre-blog-item.style_12 .blog-inner-wrap .pre-blog-content{
         <?php if (!empty($fpg_single_content_section_padding)) : ?>
             padding: <?php echo esc_attr($fpg_single_content_section_padding); ?>;
@@ -346,20 +345,23 @@ ob_start();
         <?php if (!empty($fpg_date_padding)) : ?>
             padding: <?php echo esc_attr($fpg_date_padding); ?>;
         <?php endif; ?>
-        <?php if (!empty($fpg_date_bg_color)) : ?>
-            background: <?php echo esc_attr($fpg_date_bg_color); ?>;
+        
+        <?php if (!empty($fpg_secondary_color) || !empty($fpg_date_bg_color)) : ?>
+            background: <?php echo esc_attr(!empty($fpg_secondary_color) ? $fpg_secondary_color : $fpg_date_bg_color); ?>;
         <?php endif; ?>
     }
     .pre-blog-item.style_12 .blog-inner-wrap .pre-image-wrap .pre-blog-meta .pre-date,
     .pre-blog-item.style_12 .blog-inner-wrap .pre-image-wrap .pre-blog-meta .pre-month{
-        <?php if (!empty($fpg_date_color)) : ?>
-            color: <?php echo esc_attr($fpg_date_color); ?>;
+        
+        <?php if (!empty($fpg_primary_color) || !empty($fpg_date_color)) : ?>
+            color: <?php echo esc_attr(!empty($fpg_primary_color) ? $fpg_primary_color : $fpg_date_color); ?>;
         <?php endif; ?>
     }
 
     .pre-blog-item.style_12 .blog-inner-wrap .pre-image-wrap .pre-blog-meta::after{
-        <?php if (!empty($fpg_date_bg_color)) : ?>
-            border-color: <?php echo esc_attr($fpg_date_bg_color); ?>;
+        
+        <?php if (!empty($fpg_secondary_color) || !empty($fpg_date_bg_color)) : ?>
+            border-color: <?php echo esc_attr(!empty($fpg_secondary_color) ? $fpg_secondary_color : $fpg_date_bg_color); ?>;
         <?php endif; ?>
     }
     .pre-blog-item.style_12 .blog-inner-wrap .pre-blog-content ul{
@@ -371,10 +373,14 @@ ob_start();
         <?php if (!empty($fpg_single_section_background_color)) : ?>
             background: <?php echo esc_attr($fpg_single_section_background_color); ?>;
         <?php endif; ?>
+        <?php if (!empty($fpg_primary_color) || !empty($fpg_single_section_background_color)) : ?>
+            background: <?php echo esc_attr(!empty($fpg_primary_color) ? $fpg_primary_color : $fpg_single_section_background_color); ?>;
+        <?php endif; ?>
     }
     .pre-blog-item.style_12:after {
-        <?php if (!empty($fpg_single_section_border_color)) : ?>
-            border-color: <?php echo esc_attr($fpg_single_section_border_color); ?>;
+        
+        <?php if (!empty($fpg_primary_color) || !empty($fpg_single_section_border_color)) : ?>
+            border-color: <?php echo esc_attr(!empty($fpg_primary_color) ? $fpg_primary_color : $fpg_single_section_border_color); ?>;
         <?php endif; ?>
         <?php if (!empty($fancy_post_border_style)) : ?>
             border-style: <?php echo esc_attr($fancy_post_border_style); ?>;
@@ -385,8 +391,6 @@ ob_start();
         <?php if (!empty($fancy_post_section_border_radius)) : ?>
             border-radius: <?php echo esc_attr($fancy_post_section_border_radius); ?>;
         <?php endif; ?>
-        
-        
     }
 
     /* Title Styles */
@@ -417,22 +421,21 @@ ob_start();
         <?php endif; ?>
     }
     .pre-blog-item.style_12 .blog-inner-wrap .pre-blog-content .pre-post-title a{
-    padding: <?php echo esc_attr($fpg_title_padding); ?>;
+        padding: <?php echo esc_attr($fpg_title_padding); ?>;
         margin: <?php echo esc_attr($fpg_title_margin); ?>;
-    
     }
 
     .pre-blog-item.style_12 .blog-inner-wrap .pre-blog-content .pre-post-title .title-link {
-        <?php if (!empty($fpg_title_color)) : ?>
-            color: <?php echo esc_attr($fpg_title_color); ?>;
-        <?php endif; ?>
-    }
+            <?php if (!empty($fpg_secondary_color) || !empty($fpg_title_color)) : ?>
+                color: <?php echo esc_attr(!empty($fpg_secondary_color) ? $fpg_secondary_color : $fpg_title_color); ?>;
+            <?php endif; ?>
+        }
 
     /* Excerpt Styles */
     .pre-blog-item.style_12 .blog-inner-wrap .pre-blog-content .pre-content {
 
-        <?php if (!empty($fpg_excerpt_color)) : ?>
-            color: <?php echo esc_attr($fpg_excerpt_color); ?>;
+        <?php if (!empty($fpg_body_color) || !empty($fpg_excerpt_color)) : ?>
+            color: <?php echo esc_attr(!empty($fpg_body_color) ? $fpg_body_color : $fpg_excerpt_color); ?>;
         <?php endif; ?>
         <?php if (!empty($fpg_excerpt_size)) : ?>
             font-size: <?php echo esc_attr($fpg_excerpt_size); ?>px;
@@ -446,7 +449,6 @@ ob_start();
         <?php if (!empty($fpg_excerpt_line_height)) : ?>
             line-height: <?php echo esc_attr($fpg_excerpt_line_height); ?>;
         <?php endif; ?>
-        
     }
     .pre-blog-item.style_12 .blog-inner-wrap .pre-blog-content .pre-content p{
     <?php if (!empty($fpg_excerpt_padding)) : ?>
@@ -491,12 +493,9 @@ ob_start();
         <?php if (!empty($fpg_meta_hover_color)) : ?>
             color: <?php echo esc_attr($fpg_meta_hover_color); ?>;
         <?php endif; ?>
-
     }
 
     /* Button Styles */
-
-
     .pre-blog-item.style_12 .blog-inner-wrap .pre-blog-content .blog-btn-part .blog-btn.<?php echo esc_attr($button_class); ?> {
 
         <?php if (!empty($fpg_button_background_color)) : ?>
