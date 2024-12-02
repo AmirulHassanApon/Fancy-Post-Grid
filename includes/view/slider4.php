@@ -180,7 +180,6 @@ ob_start();
                                 <div class="rs-blog__item <?php echo esc_attr($main_alignment_class); ?> <?php echo esc_attr($hover_class); ?>">
                                     <?php if (!$hide_feature_image && $fpg_field_group_image) : ?>
                                         <div class="rs-thumb">
-
                                         <?php if ($feature_image_url) : ?>
 
                                             <?php
@@ -200,24 +199,21 @@ ob_start();
                                                 <img src="<?php echo esc_url($feature_image_url); ?>" alt="<?php echo $alt_text; ?>">
                                             </a>
                                         <?php endif; ?>
-                                        
                                         </div>
                                     <?php endif; ?>
 
                                     <div class="rs-content">
                                         <?php if ($fpg_field_group_categories) : ?>
                                         <div class="rs-category <?php echo esc_attr($meta_alignment_class); ?>">
-                                            <?php
-                                            $categories = get_the_category();
-                                            if (!empty($categories)) {
-                                                echo '<a href="' . esc_url(get_category_link($categories[0]->term_id)) . '">' . esc_html($categories[0]->name) . '</a>';
-                                            }
-                                            ?>
+                                            <?php if (!empty($fpg_field_group_category_icon) && empty($disabled_meta_icons['category_icon'])) {?>
+                                            <i class="ri-folder-line"></i>
+                                            <?php } ?>
+                                            <?php the_category(', '); ?>
                                         </div>
                                         <?php endif; ?>
                                         <?php if ($fpg_field_group_post_date) : ?>
                                             <div class="meta-date">
-                                                <?php if (empty($disabled_meta_icons['date_icon'])) {?>
+                                                <?php if (!empty($fpg_field_group_date_icon) && empty($disabled_meta_icons['date_icon'])) {?>
                                                 <i class="ri-calendar-2-line"></i>
                                                 <?php } ?>
                                                 <?php echo get_the_date('M d, Y'); ?>
@@ -226,7 +222,7 @@ ob_start();
                                         
                                         <?php if ($fpg_field_group_author) : ?>
                                             <div class="meta-author">
-                                                <?php if (empty($disabled_meta_icons['author_icon'])) {?>
+                                                <?php if (!empty($fpg_field_group_author_icon) && empty($disabled_meta_icons['author_icon'])) { ?>
                                                 <i class="ri-user-line"></i>
                                                 <?php } ?>
                                                 <a href="<?php echo esc_url(get_author_posts_url(get_the_author_meta('ID'))); ?>"
@@ -237,7 +233,7 @@ ob_start();
                                         <?php endif; ?>
                                         <?php if ($fpg_field_group_tag && has_tag()) : ?>
                                             <div class="meta-tags">
-                                                <?php if (empty($disabled_meta_icons['tags_icon'])) {?>
+                                                <?php if (!empty($fpg_field_group_tags_icon) && empty($disabled_meta_icons['tags_icon'])) {?>
                                                 <i class="ri-price-tag-3-line"></i>
                                                 <?php } ?>
                                                 <?php the_tags('', ', ', ''); ?>
@@ -482,7 +478,7 @@ ob_start();
             fill: <?php echo esc_attr(!empty($fpg_primary_color) ? $fpg_primary_color : $fpg_meta_icon_color); ?>;
         <?php endif; ?>
     }
-    .rs-blog-layout-4 .rs-blog__item .rs-content .rs-category a{
+    .rs-blog-layout-4 .rs-blog__item .rs-content .rs-category {
         <?php if (!empty($fpg_primary_color) || !empty($fpg_meta_bgcolor)) : ?>
             background: <?php echo esc_attr(!empty($fpg_primary_color) ? $fpg_primary_color : $fpg_meta_bgcolor); ?>;
         <?php endif; ?>
