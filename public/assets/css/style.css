@@ -1233,12 +1233,8 @@ img {
     font-weight: 400;
     text-transform: capitalize;
     line-height: 12px;
-    
-    
     text-decoration: none;
 }
-
-
 
 .rs-blog-layout-4 .rs-blog__item .rs-content .title{
     margin-bottom: 0;
@@ -6323,7 +6319,7 @@ img {
     .rs-blog-layout-30-item .rs-thumb .meta-date span{
         display: inline-block;
         background: #000;
-        padding: 8px 25px;
+        padding: 8px 15px;
         border-radius: 5px 5px 0 0;
         opacity: 1;
         background: #b69d74;

@@ -201,24 +201,6 @@ ob_start();
                         <div class="pre-blog-content <?php echo esc_attr($main_alignment_class); ?>">
                             
                             <ul class="meta-data-list <?php echo esc_attr($meta_alignment_class); ?>">
-                                
-                                <?php if ($fpg_field_group_author) : ?>
-                                    <li class="meta-author">
-                                        <i class="ri-user-line"></i>
-                                        <a href="<?php echo esc_url(get_author_posts_url(get_the_author_meta('ID'))); ?>"
-                                            <?php echo esc_attr($target_blank); ?>>
-                                            <?php the_author(); ?>
-                                        </a> 
-                                    </li>
-                                <?php endif; ?>
-                                <?php if ($fpg_field_group_categories) : ?>
-                                    <li class="meta-categories">
-                                        <?php if (empty($disabled_meta_icons['category_icon'])) {?>
-                                        <i class="ri-folder-line"></i>
-                                        <?php } ?>
-                                        <?php the_category(', '); ?>
-                                    </li>
-                                <?php endif; ?>
                                 <?php if ($fpg_field_group_author) : ?>
                                     <li class="meta-author">
                                         <?php if (empty($disabled_meta_icons['author_icon'])) {?>
@@ -230,7 +212,16 @@ ob_start();
                                         </a> 
                                     </li>
                                 <?php endif; ?>
-                                
+
+                                <?php if ($fpg_field_group_categories) : ?>
+                                    <li class="meta-categories">
+                                        <?php if (!empty($fpg_field_group_category_icon) && empty($disabled_meta_icons['category_icon'])) {?>
+                                        <i class="ri-folder-line"></i>
+                                        <?php } ?>
+                                        <?php the_category(', '); ?>
+                                    </li>
+                                <?php endif; ?>
+                                     
                                 <?php if ($fpg_field_group_comment_count && get_comments_number() > 0) : ?>
                                     <li class="meta-comment-count">
                                         <?php if (empty($disabled_meta_icons['comment_count_icon'])) {?>

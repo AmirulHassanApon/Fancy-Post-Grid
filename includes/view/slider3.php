@@ -240,7 +240,7 @@ ob_start();
                                                 
                                                 <?php if ($fpg_field_group_post_date) : ?>
                                                     <li class="date">
-                                                        <?php if (empty($disabled_meta_icons['date_icon'])) {?>
+                                                        <?php if (!empty($fpg_field_group_date_icon) && empty($disabled_meta_icons['date_icon'])) {?>
                                                         <i class="ri-calendar-2-line"></i>
                                                         <?php } ?>
                                                         <?php echo get_the_date('M d, Y'); ?>
@@ -248,7 +248,7 @@ ob_start();
                                                 <?php endif; ?>
                                                 <?php if ($fpg_field_group_comment_count && get_comments_number() > 0) : ?>
                                                     <li class="meta-comment-count">
-                                                        <?php if (empty($disabled_meta_icons['comment_count_icon'])) {?>
+                                                        <?php if (!empty($fpg_field_group_comment_count_icon) && empty($disabled_meta_icons['comment_count_icon'])) {?>
                                                         <i class="ri-chat-3-line"></i>
                                                         <?php } ?>
                                                         <?php comments_number('0 Comments', '1 Comment', '% Comments'); ?>
@@ -256,7 +256,7 @@ ob_start();
                                                 <?php endif; ?>
                                                 <?php if ($fpg_field_group_tag && has_tag()) : ?>
                                                     <li class="meta-tags">
-                                                        <?php if (empty($disabled_meta_icons['tags_icon'])) {?>
+                                                        <?php if (!empty($fpg_field_group_tags_icon) && empty($disabled_meta_icons['tags_icon'])) {?>
                                                         <i class="ri-price-tag-3-line"></i>
                                                         <?php } ?>
                                                         <?php the_tags('', ', ', ''); ?>
@@ -274,7 +274,7 @@ ob_start();
                                                             </defs>
                                                         </svg>
                                                     </div>    
-                                                    8 min read
+                                                    <?php esc_html_e('8 min read', 'fancy-post-grid'); ?>
                                                 </li>
                                             </ul>
                                             <?php endif; ?>
@@ -291,9 +291,8 @@ ob_start();
                                                             <?php echo get_avatar(get_the_author_meta('ID'), 32); ?>
                                                         </div>
                                                         <span>
-                                                             <?php esc_html_e('by', 'fancy-post-grid'); ?>  
+                                                            <?php esc_html_e('by', 'fancy-post-grid'); ?>  
                                                             <?php the_author(); ?>
-                                                            
                                                         </span>
                                                     </a>
                                                 </div>

@@ -198,9 +198,7 @@ ob_start();
                             <?php endif; ?>
                             <?php if ($fpg_field_group_author) : ?>
                                 <li class="meta-author">
-                                    <?php 
-                                        // Check if 'fpg_field_group_author' is enabled and the icon is not disabled
-                                        if (!empty($fpg_field_group_author_icon) && empty($disabled_meta_icons['author_icon'])) { ?>
+                                    <?php if (!empty($fpg_field_group_author_icon) && empty($disabled_meta_icons['author_icon'])) { ?>
                                             <i class="ri-user-line"></i>
                                         <?php } ?>
 
