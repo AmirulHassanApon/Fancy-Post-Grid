@@ -445,9 +445,9 @@ ob_start();
     }
     .rs-blog-layout-28-item .rs-thumb .rs-meta::before {
         
-        <?php if (!empty($fpg_meta_bgcolor)) : ?>
-            background-color: <?php echo esc_attr($fpg_meta_bgcolor); ?>;
-        <?php endif; ?>
+        <?php if (!empty($fpg_primary_color) || !empty($fpg_meta_bgcolor)) : ?>
+            border-bottom-color: <?php echo esc_attr(!empty($fpg_primary_color) ? $fpg_primary_color : $fpg_meta_bgcolor); ?>;
+        <?php endif; ?> 
     }
 
     .rs-blog-layout-28-item .rs-thumb .rs-meta ul li,.rs-blog-layout-28-item .rs-thumb .rs-meta ul li a{

@@ -262,6 +262,12 @@ function fancy_post_grid_metabox_shortcode_callback_pro( $post ) {
     $fpg_field_group_categories                 = get_post_meta( $post->ID, 'fpg_field_group_categories', true );
     $fpg_field_group_tag                        = get_post_meta( $post->ID, 'fpg_field_group_tag', true );
     $fpg_field_group_comment_count              = get_post_meta( $post->ID, 'fpg_field_group_comment_count', true );
+
+    $fpg_field_group_author_icon                  = get_post_meta( $post->ID, 'fpg_field_group_author_icon', true );
+    $fpg_field_group_date_icon                     = get_post_meta( $post->ID, 'fpg_field_group_date_icon', true );
+    $fpg_field_group_category_icon                 = get_post_meta( $post->ID, 'fpg_field_group_category_icon', true );
+    $fpg_field_group_tags_icon                        = get_post_meta( $post->ID, 'fpg_field_group_tags_icon', true );
+    $fpg_field_group_comment_count_icon              = get_post_meta( $post->ID, 'fpg_field_group_comment_count_icon', true );
     
 
     $fpg_field_group_title = ( $fpg_field_group_title === '' ) ? '1' : $fpg_field_group_title;
@@ -273,6 +279,14 @@ function fancy_post_grid_metabox_shortcode_callback_pro( $post ) {
     $fpg_field_group_categories = ( $fpg_field_group_categories === '' ) ? '1' : $fpg_field_group_categories;
     $fpg_field_group_tag = ( $fpg_field_group_tag === '' ) ? '1' : $fpg_field_group_tag;
     $fpg_field_group_comment_count = ( $fpg_field_group_comment_count === '' ) ? '1' : $fpg_field_group_comment_count;
+
+    $fpg_field_group_date_icon = ( $fpg_field_group_date_icon === '' ) ? '1' : $fpg_field_group_date_icon;
+    $fpg_field_group_author_icon = ( $fpg_field_group_author_icon === '' ) ? '1' : $fpg_field_group_author_icon;
+    $fpg_field_group_category_icon = ( $fpg_field_group_category_icon === '' ) ? '1' : $fpg_field_group_category_icon;
+    $fpg_field_group_tags_icon = ( $fpg_field_group_tags_icon === '' ) ? '1' : $fpg_field_group_tags_icon;
+    $fpg_field_group_comment_count_icon = ( $fpg_field_group_comment_count_icon === '' ) ? '1' : $fpg_field_group_comment_count_icon;
+
+
     // tab-5 Title Settings
     
     //Button
@@ -1074,11 +1088,25 @@ function fancy_post_grid_metabox_shortcode_callback_pro( $post ) {
                             <?php esc_html_e( 'Post Date', 'fancy-post-grid' ); ?>
                         </label>
                     </div>
+                    <div class="fpg-field-group fpg-common" id="fpg_field_group_post_date_icon_main">
+                        <input type="checkbox" id="fpg_field_group_date_icon" name="fpg_field_group_date_icon" value="1" <?php checked( $fpg_field_group_date_icon, '1' ); ?> />
+                        <label for="fpg_field_group_date_icon">
+                            <span></span>
+                            <?php esc_html_e( 'Post Date Icon', 'fancy-post-grid' ); ?>
+                        </label>
+                    </div>
                     <div class="fpg-field-group fpg-common" id="fpg_field_group_author_main">
                         <input type="checkbox" id="fpg_field_group_author" name="fpg_field_group_author" value="1" <?php checked( $fpg_field_group_author, '1' ); ?> />
                         <label for="fpg_field_group_author">
                             <span></span>
                             <?php esc_html_e( 'Author', 'fancy-post-grid' ); ?>
+                        </label>
+                    </div>
+                    <div class="fpg-field-group fpg-common" id="fpg_field_group_author_icon_main">
+                        <input type="checkbox" id="fpg_field_group_author_icon" name="fpg_field_group_author_icon" value="1" <?php checked( $fpg_field_group_author_icon, '1' ); ?> />
+                        <label for="fpg_field_group_author_icon">
+                            <span></span>
+                            <?php esc_html_e( 'Author Icon', 'fancy-post-grid' ); ?>
                         </label>
                     </div>
                     <div class="fpg-field-group fpg-common" id="fpg_field_group_categories_main">
@@ -1088,6 +1116,13 @@ function fancy_post_grid_metabox_shortcode_callback_pro( $post ) {
                             <?php esc_html_e( 'Categories', 'fancy-post-grid' ); ?>
                         </label>
                     </div>
+                    <div class="fpg-field-group fpg-common" id="fpg_field_group_categories_icon_main">
+                        <input type="checkbox" id="fpg_field_group_category_icon" name="fpg_field_group_category_icon" value="1" <?php checked( $fpg_field_group_category_icon, '1' ); ?> />
+                        <label for="fpg_field_group_category_icon">
+                            <span></span>
+                            <?php esc_html_e( 'Categories Icon', 'fancy-post-grid' ); ?>
+                        </label>
+                    </div>
                     <div class="fpg-field-group fpg-common" id="fpg_field_group_tag_main">
                         <input type="checkbox" id="fpg_field_group_tag" name="fpg_field_group_tag" value="1" <?php checked( $fpg_field_group_tag, '1' ); ?> />
                         <label for="fpg_field_group_tag">                            
@@ -1095,11 +1130,25 @@ function fancy_post_grid_metabox_shortcode_callback_pro( $post ) {
                             <?php esc_html_e( 'Tags', 'fancy-post-grid' ); ?>
                         </label>
                     </div>
+                    <div class="fpg-field-group fpg-common" id="fpg_field_group_tag_icon_main">
+                        <input type="checkbox" id="fpg_field_group_tags_icon" name="fpg_field_group_tags_icon" value="1" <?php checked( $fpg_field_group_tags_icon, '1' ); ?> />
+                        <label for="fpg_field_group_tags_icon">                            
+                            <span></span>
+                            <?php esc_html_e( 'Tags Icon', 'fancy-post-grid' ); ?>
+                        </label>
+                    </div>
                     <div class="fpg-field-group fpg-common" id="fpg_field_group_comment_count_main">
                         <input type="checkbox" id="fpg_field_group_comment_count" name="fpg_field_group_comment_count" value="1" <?php checked( $fpg_field_group_comment_count, '1' ); ?> />
                         <label for="fpg_field_group_comment_count">
                             <span></span>
                             <?php esc_html_e( 'Comment Count', 'fancy-post-grid' ); ?>
+                        </label>
+                    </div>
+                    <div class="fpg-field-group fpg-common" id="fpg_field_group_comment_count_icon_main">
+                        <input type="checkbox" id="fpg_field_group_comment_count_icon" name="fpg_field_group_comment_count_icon" value="1" <?php checked( $fpg_field_group_comment_count_icon, '1' ); ?> />
+                        <label for="fpg_field_group_comment_count_icon">
+                            <span></span>
+                            <?php esc_html_e( 'Comment Count Icon', 'fancy-post-grid' ); ?>
                         </label>
                     </div>
                 </fieldset>
@@ -1572,8 +1621,10 @@ function fancy_post_grid_metabox_shortcode_callback_pro( $post ) {
                                 
                             </div>
                         </div>
+
                 </fieldset>
             </div>
+
 
             <div class="fpg-title-settings fpg-common" id="fpg_title_settings_main">
                 <fieldset>
@@ -1619,9 +1670,7 @@ function fancy_post_grid_metabox_shortcode_callback_pro( $post ) {
                         <div class="fpg-title-more-text fpg-common">
                             <label for="fancy_post_title_more_text"><?php esc_html_e( 'Title More Text:', 'fancy-post-grid' ); ?></label>
                             <input type="text" id="fancy_post_title_more_text" name="fancy_post_title_more_text" value="<?php echo esc_attr( $fancy_post_title_more_text ); ?>" placeholder="..." />
-                        </div>
-
-                                               
+                        </div>                  
                     </div> 
                     <div class="fpg-post-select-main" id="fpg_title_alignment_main">
                         <!-- Title Alignment -->
@@ -2798,6 +2847,11 @@ function fancy_post_grid_save_metabox_data_pro( $post_id ) {
         'fpg_field_group_categories',
         'fpg_field_group_tag',
         'fpg_field_group_comment_count',
+        'fpg_field_group_author_icon',
+        'fpg_field_group_date_icon',
+        'fpg_field_group_category_icon',
+        'fpg_field_group_tags_icon',
+        'fpg_field_group_comment_count_icon',
     ];
 
     // Loop through each field

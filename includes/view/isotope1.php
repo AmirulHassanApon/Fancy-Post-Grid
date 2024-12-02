@@ -199,7 +199,7 @@ ob_start();
                             <?php if (empty($disabled_meta_icons['category_icon'])) {?>
                                     <i class="ri-folder-line"></i>
                             <?php } ?>
-                            <?php the_category(', '); ?>
+                            <?php  the_category(', '); ?>
                         </div>
                         <?php endif; ?>
 
@@ -470,9 +470,10 @@ ob_start();
         <?php endif; ?>
     }
     .rs-blog-layout-4.rs-blog-layout-10 .rs-grid .rs-grid-item .rs-blog__item .title a{
-        <?php if (!empty($fpg_title_color)) : ?>
-          color: <?php echo esc_attr($fpg_title_color); ?>;
-       <?php endif; ?>
+        
+       <?php if (!empty($fpg_secondary_color) || !empty($fpg_title_color)) : ?>
+            color: <?php echo esc_attr(!empty($fpg_secondary_color) ? $fpg_secondary_color : $fpg_title_color); ?>;
+        <?php endif; ?>
        <?php if (!empty($fpg_title_font_size)) : ?>
           font-size: <?php echo esc_attr($fpg_title_font_size); ?>px;
        <?php endif; ?>
@@ -481,9 +482,10 @@ ob_start();
        <?php endif; ?>
     }
     .rs-blog-layout-4.rs-blog-layout-10 .rs-grid .rs-grid-item .rs-blog__item .title a:hover{
-        <?php if (!empty($fpg_title_hover_color)) : ?>
-          color: <?php echo esc_attr($fpg_title_hover_color); ?>;
-       <?php endif; ?>
+        
+       <?php if (!empty($fpg_primary_color) || !empty($fpg_title_hover_color)) : ?>
+            color: <?php echo esc_attr(!empty($fpg_primary_color) ? $fpg_primary_color : $fpg_title_hover_color); ?>;
+        <?php endif; ?>
        
     }
     .rs-blog-layout-4.rs-blog-layout-10 .rs-grid .rs-grid-item .rs-blog__item .fpg-excerpt{
@@ -497,9 +499,42 @@ ob_start();
             margin: <?php echo esc_attr($fpg_excerpt_margin); ?>;
         <?php endif; ?>
     }
+    .rs-blog-layout-4 .rs-blog__item .rs-content .rs-category{
+        <?php if (!empty($fpg_primary_color) || !empty($fpg_meta_bgcolor)) : ?>
+            background-color: <?php echo esc_attr(!empty($fpg_primary_color) ? $fpg_primary_color : $fpg_meta_bgcolor); ?>;
+        <?php endif; ?>
+    }
+    .rs-blog-layout-4 .rs-blog__item .rs-content .rs-category a{
+        <?php if (!empty($fpg_meta_color)) : ?>
+            color: <?php echo esc_attr($fpg_meta_color); ?>;
+        <?php endif; ?>
+        <?php if (!empty($fpg_meta_size)) : ?>
+            font-size: <?php echo esc_attr($fpg_meta_size); ?>px;
+        <?php endif; ?>
+        <?php if (!empty($fpg_meta_font_weight)) : ?>
+            font-weight: <?php echo esc_attr($fpg_meta_font_weight); ?>;
+        <?php endif; ?>
+    }
+    .rs-blog-layout-4 .rs-blog__item .rs-content .rs-category a:hover{
+        <?php if (!empty($fpg_meta_hover_color)) : ?>
+            color: <?php echo esc_attr($fpg_meta_hover_color); ?>;
+        <?php endif; ?>
+        
+    }
+    .rs-blog-layout-4 .rs-blog__item .rs-content .rs-category i {
+        <?php if (!empty($fpg_meta_icon_color)) : ?>
+            color: <?php echo esc_attr($fpg_meta_icon_color); ?>;
+        <?php endif; ?>
+        <?php if (!empty($fpg_meta_size)) : ?>
+            font-size: <?php echo esc_attr($fpg_meta_size); ?>px;
+        <?php endif; ?>
+        <?php if (!empty($fpg_meta_font_weight)) : ?>
+            font-weight: <?php echo esc_attr($fpg_meta_font_weight); ?>;
+        <?php endif; ?>
+    }
     .rs-blog-layout-4.rs-blog-layout-10 .rs-grid .rs-grid-item .rs-blog__item .fpg-excerpt p{
-        <?php if (!empty($fpg_excerpt_color)) : ?>
-            color: <?php echo esc_attr($fpg_excerpt_color); ?>;
+        <?php if (!empty($fpg_body_color) || !empty($fpg_excerpt_color)) : ?>
+            color: <?php echo esc_attr(!empty($fpg_body_color) ? $fpg_body_color : $fpg_excerpt_color); ?>;
         <?php endif; ?>
         <?php if (!empty($fpg_excerpt_size)) : ?>
             font-size: <?php echo esc_attr($fpg_excerpt_size); ?>px;
@@ -523,8 +558,9 @@ ob_start();
         <?php if (!empty($fpg_button_background_color)) : ?>
             background-color: <?php echo esc_attr($fpg_button_background_color); ?>;
         <?php endif; ?>
-        <?php if (!empty($fpg_button_text_color)) : ?>
-            color: <?php echo esc_attr($fpg_button_text_color); ?>;
+        
+        <?php if (!empty($fpg_primary_color) || !empty($fpg_button_text_color)) : ?>
+            color: <?php echo esc_attr(!empty($fpg_primary_color) ? $fpg_primary_color : $fpg_button_text_color); ?>;
         <?php endif; ?>
         <?php if (!empty($fancy_post_read_more_border_radius)) : ?>
             border-radius: <?php echo esc_attr($fancy_post_read_more_border_radius); ?>;

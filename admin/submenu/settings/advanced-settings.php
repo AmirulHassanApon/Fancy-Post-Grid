@@ -12,7 +12,7 @@ require_once FANCY_POST_GRID_PATH_PRO . 'admin/submenu/settings/includes/custom-
 function fancy_post_grid_render_advanced_settings_page() {
     ?>
     <div class="wrap">
-        <h1><?php esc_html_e('Advanced Settings', 'fancy-post-grid'); ?></h1>
+        <h1><?php esc_html_e('Settings', 'fancy-post-grid'); ?></h1>
         
         <!-- Tabs navigation -->
         <h2 class="nav-tab-wrapper">
