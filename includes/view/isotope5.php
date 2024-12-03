@@ -341,9 +341,10 @@ ob_start();
         <?php if (!empty($fancy_post_filter_text_color)) : ?>
             color: <?php echo esc_attr($fancy_post_filter_text_color); ?>;
         <?php endif; ?>
-        <?php if (!empty($fancy_post_filter_bg_color)) : ?>
-            background-color: <?php echo esc_attr($fancy_post_filter_bg_color); ?>;
-        <?php endif; ?>     
+          
+        <?php if (!empty($fancy_post_filter_box_bg_color)) : ?>
+            background-color: <?php echo esc_attr($fancy_post_filter_box_bg_color); ?>;
+        <?php endif; ?> 
         <?php if (!empty($fancy_post_filter_border_color)) : ?>
             border-color: <?php echo esc_attr($fancy_post_filter_border_color); ?>;
         <?php endif; ?>
@@ -370,33 +371,27 @@ ob_start();
         <?php endif; ?>
     }
     .rs-blog-layout-12 .rs-blog-layout-5-filter .filter-button-group button:hover{
-        <?php if (!empty($fancy_post_filter_hover_bg_color)) : ?>
-            background-color: <?php echo esc_attr($fancy_post_filter_hover_bg_color); ?>;
+        <?php if (!empty($fpg_primary_color) || !empty($fancy_post_filter_hover_bg_color)) : ?>
+            background-color: <?php echo esc_attr(!empty($fpg_primary_color) ? $fpg_primary_color : $fancy_post_filter_hover_bg_color); ?>;
         <?php endif; ?>
         <?php if (!empty($fancy_post_filter_hover_color)) : ?>
             color: <?php echo esc_attr($fancy_post_filter_hover_color); ?>;
         <?php endif; ?>
     }
-
     .rs-blog-layout-12 .rs-blog-layout-5-filter .filter-button-group button.active{
         <?php if (!empty($fancy_post_filter_active_color)) : ?>
             color: <?php echo esc_attr($fancy_post_filter_active_color); ?>;
         <?php endif; ?>
-        <?php if (!empty($fancy_post_filter_active_bg_color)) : ?>
-            background-color: <?php echo esc_attr($fancy_post_filter_active_bg_color); ?>;
+        <?php if (!empty($fpg_primary_color) || !empty($fancy_post_filter_active_bg_color)) : ?>
+            background-color: <?php echo esc_attr(!empty($fpg_primary_color) ? $fpg_primary_color : $fancy_post_filter_active_bg_color); ?>;
         <?php endif; ?> 
     }
-
     .rs-blog-layout-12 .rs-blog-layout-5-filter .filter-button-group button.active,
     .rs-blog-layout-12 .rs-blog-layout-5-filter .filter-button-group button:hover{
-        <?php if (!empty($fancy_post_filter_active_border_color)) : ?>
-            border-color: <?php echo esc_attr($fancy_post_filter_active_border_color); ?>;
+        <?php if (!empty($fpg_primary_color) || !empty($fancy_post_filter_active_border_color)) : ?>
+            border-color: <?php echo esc_attr(!empty($fpg_primary_color) ? $fpg_primary_color : $fancy_post_filter_active_border_color); ?>;
         <?php endif; ?>
-
     }
-
-
-
     .rs-blog-layout-12 .rs-grid .rs-grid-item .pre-blog-item.style_12 .blog-inner-wrap{
         <?php if (!empty($fancy_post_image_border_radius)) : ?>
             border-radius: <?php echo esc_attr($fancy_post_image_border_radius); ?>;
@@ -421,20 +416,20 @@ ob_start();
         <?php if (!empty($fpg_date_padding)) : ?>
             padding: <?php echo esc_attr($fpg_date_padding); ?>;
         <?php endif; ?>
-        <?php if (!empty($fpg_date_bg_color)) : ?>
-            background: <?php echo esc_attr($fpg_date_bg_color); ?>;
+        <?php if (!empty($fpg_secondary_color) || !empty($fpg_date_bg_color)) : ?>
+            background: <?php echo esc_attr(!empty($fpg_secondary_color) ? $fpg_secondary_color : $fpg_date_bg_color); ?>;
         <?php endif; ?>
     }
     .rs-blog-layout-12 .rs-grid .rs-grid-item .pre-blog-item.style_12 .blog-inner-wrap .pre-image-wrap .pre-blog-meta .pre-date,
     .rs-blog-layout-12 .rs-grid .rs-grid-item .pre-blog-item.style_12 .blog-inner-wrap .pre-image-wrap .pre-blog-meta .pre-month{
-        <?php if (!empty($fpg_date_color)) : ?>
-            color: <?php echo esc_attr($fpg_date_color); ?>;
+        <?php if (!empty($fpg_primary_color) || !empty($fpg_date_color)) : ?>
+            color: <?php echo esc_attr(!empty($fpg_primary_color) ? $fpg_primary_color : $fpg_date_color); ?>;
         <?php endif; ?>
     }
 
     .rs-blog-layout-12 .rs-grid .rs-grid-item .pre-blog-item.style_12 .blog-inner-wrap .pre-image-wrap .pre-blog-meta::after{
-        <?php if (!empty($fpg_date_bg_color)) : ?>
-            border-color: <?php echo esc_attr($fpg_date_bg_color); ?>;
+        <?php if (!empty($fpg_secondary_color) || !empty($fpg_date_bg_color)) : ?>
+            border-color: <?php echo esc_attr(!empty($fpg_secondary_color) ? $fpg_secondary_color : $fpg_date_bg_color); ?>;
         <?php endif; ?>
     }
     .rs-blog-layout-12 .rs-grid .rs-grid-item .pre-blog-item.style_12 .blog-inner-wrap .pre-blog-content ul{
@@ -443,13 +438,13 @@ ob_start();
         <?php endif; ?>
     }
     .rs-blog-layout-12 .rs-grid .rs-grid-item .pre-blog-item.style_12:hover .blog-inner-wrap .pre-blog-content{
-        <?php if (!empty($fpg_single_section_background_color)) : ?>
-            background: <?php echo esc_attr($fpg_single_section_background_color); ?>;
+        <?php if (!empty($fpg_primary_color) || !empty($fpg_single_section_background_color)) : ?>
+            background: <?php echo esc_attr(!empty($fpg_primary_color) ? $fpg_primary_color : $fpg_single_section_background_color); ?>;
         <?php endif; ?>
     }
     .rs-blog-layout-12 .rs-grid .rs-grid-item .pre-blog-item.style_12:after {
-        <?php if (!empty($fpg_single_section_border_color)) : ?>
-            border-color: <?php echo esc_attr($fpg_single_section_border_color); ?>;
+        <?php if (!empty($fpg_primary_color) || !empty($fpg_single_section_border_color)) : ?>
+            border-color: <?php echo esc_attr(!empty($fpg_primary_color) ? $fpg_primary_color : $fpg_single_section_border_color); ?>;
         <?php endif; ?>
         <?php if (!empty($fancy_post_border_style)) : ?>
             border-style: <?php echo esc_attr($fancy_post_border_style); ?>;
@@ -460,8 +455,6 @@ ob_start();
         <?php if (!empty($fancy_post_section_border_radius)) : ?>
             border-radius: <?php echo esc_attr($fancy_post_section_border_radius); ?>;
         <?php endif; ?>
-        
-        
     }
 
     /* Title Styles */
@@ -497,16 +490,16 @@ ob_start();
     }
 
     .rs-blog-layout-12 .rs-grid .rs-grid-item .pre-blog-item.style_12 .blog-inner-wrap .pre-blog-content .pre-post-title .title-link {
-        <?php if (!empty($fpg_title_color)) : ?>
-            color: <?php echo esc_attr($fpg_title_color); ?>;
-        <?php endif; ?>
+        <?php if (!empty($fpg_secondary_color) || !empty($fpg_title_color)) : ?>
+                color: <?php echo esc_attr(!empty($fpg_secondary_color) ? $fpg_secondary_color : $fpg_title_color); ?>;
+            <?php endif; ?>
     }
 
     /* Excerpt Styles */
     .rs-blog-layout-12 .rs-grid .rs-grid-item .pre-blog-item.style_12 .blog-inner-wrap .pre-blog-content .pre-content {
 
-        <?php if (!empty($fpg_excerpt_color)) : ?>
-            color: <?php echo esc_attr($fpg_excerpt_color); ?>;
+        <?php if (!empty($fpg_body_color) || !empty($fpg_excerpt_color)) : ?>
+            color: <?php echo esc_attr(!empty($fpg_body_color) ? $fpg_body_color : $fpg_excerpt_color); ?>;
         <?php endif; ?>
         <?php if (!empty($fpg_excerpt_size)) : ?>
             font-size: <?php echo esc_attr($fpg_excerpt_size); ?>px;
@@ -549,9 +542,11 @@ ob_start();
     .rs-blog-layout-12 .rs-grid .rs-grid-item .rs-blog-layout-12 .meta-data-list .meta-categories i,
     .rs-blog-layout-12 .rs-grid .rs-grid-item .rs-blog-layout-12 .meta-data-list .meta-comment-count i,
     .rs-blog-layout-12 .rs-grid .rs-grid-item .rs-blog-layout-12 .meta-data-list .meta-tags i ,
+    .rs-blog-layout-12 .rs-grid .rs-grid-item .pre-blog-item.style_12 .blog-inner-wrap .pre-blog-content ul li a,.rs-blog-layout-12 .rs-grid .rs-grid-item .pre-blog-item.style_12 .blog-inner-wrap .pre-blog-content ul li i
     {
-        <?php if (!empty($fpg_meta_color)) : ?>
-            color: <?php echo esc_attr($fpg_meta_color); ?>;
+        
+        <?php if (!empty($fpg_secondary_color) || !empty($fpg_meta_color)) : ?>
+            color: <?php echo esc_attr(!empty($fpg_secondary_color) ? $fpg_secondary_color : $fpg_meta_color); ?>;
         <?php endif; ?>
         <?php if (!empty($fpg_meta_size)) : ?>
             font-size: <?php echo esc_attr($fpg_meta_size); ?>px;

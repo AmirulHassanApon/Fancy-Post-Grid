@@ -371,14 +371,16 @@ ob_start();
         <?php if (!empty($fancy_post_filter_hover_bg_color)) : ?>
             background-color: <?php echo esc_attr($fancy_post_filter_hover_bg_color); ?>;
         <?php endif; ?>
-        <?php if (!empty($fancy_post_filter_hover_color)) : ?>
-            color: <?php echo esc_attr($fancy_post_filter_hover_color); ?>;
+        
+        <?php if (!empty($fpg_primary_color) || !empty($fancy_post_filter_hover_color)) : ?>
+            color: <?php echo esc_attr(!empty($fpg_primary_color) ? $fpg_primary_color : $fancy_post_filter_hover_color); ?>;
         <?php endif; ?>
     }
 
     .rs-blog-layout-30 .rs-blog-layout-4-filter .filter-button-group button.active{
-        <?php if (!empty($fancy_post_filter_active_color)) : ?>
-            color: <?php echo esc_attr($fancy_post_filter_active_color); ?>;
+        
+        <?php if (!empty($fpg_primary_color) || !empty($fancy_post_filter_active_color)) : ?>
+            color: <?php echo esc_attr(!empty($fpg_primary_color) ? $fpg_primary_color : $fancy_post_filter_active_color); ?>;
         <?php endif; ?>
         <?php if (!empty($fancy_post_filter_active_bg_color)) : ?>
             background-color: <?php echo esc_attr($fancy_post_filter_active_bg_color); ?>;
@@ -386,8 +388,9 @@ ob_start();
     }
     .rs-blog-layout-30 .rs-blog-layout-4-filter .filter-button-group button.active,
     .rs-blog-layout-30 .rs-blog-layout-4-filter .filter-button-group button:hover{
-        <?php if (!empty($fancy_post_filter_active_border_color)) : ?>
-            border-color: <?php echo esc_attr($fancy_post_filter_active_border_color); ?>;
+        
+        <?php if (!empty($fpg_primary_color) || !empty($fancy_post_filter_active_border_color)) : ?>
+            border-color: <?php echo esc_attr(!empty($fpg_primary_color) ? $fpg_primary_color : $fancy_post_filter_active_border_color); ?>;
         <?php endif; ?>
     }
     /* Single Item Styles */
@@ -455,8 +458,8 @@ ob_start();
         <?php if (!empty($fpg_title_margin)) : ?>
             margin: <?php echo esc_attr($fpg_title_margin); ?>;
         <?php endif; ?>
-        <?php if (!empty($fpg_title_color)) : ?>
-            color: <?php echo esc_attr($fpg_title_color); ?>;
+        <?php if (!empty($fpg_secondary_color) || !empty($fpg_title_color)) : ?>
+            color: <?php echo esc_attr(!empty($fpg_secondary_color) ? $fpg_secondary_color : $fpg_title_color); ?>;
         <?php endif; ?>
         <?php if (!empty($fpg_title_font_size)) : ?>
             font-size: <?php echo esc_attr($fpg_title_font_size); ?>px;
@@ -467,8 +470,8 @@ ob_start();
     }
 
     .rs-blog-layout-30 .rs-grid .rs-grid-item .rs-blog-layout-30-item .rs-content .title a:hover {
-        <?php if (!empty($fpg_title_hover_color)) : ?>
-            color: <?php echo esc_attr($fpg_title_hover_color); ?>;
+        <?php if (!empty($fpg_primary_color) || !empty($fpg_title_hover_color)) : ?>
+            color: <?php echo esc_attr(!empty($fpg_primary_color) ? $fpg_primary_color : $fpg_title_hover_color); ?>;
         <?php endif; ?>
     }
 
@@ -490,8 +493,8 @@ ob_start();
         <?php if (!empty($fpg_excerpt_margin)) : ?>
             margin: <?php echo esc_attr($fpg_excerpt_margin); ?>;
         <?php endif; ?>
-        <?php if (!empty($fpg_excerpt_color)) : ?>
-            color: <?php echo esc_attr($fpg_excerpt_color); ?>;
+        <?php if (!empty($fpg_body_color) || !empty($fpg_excerpt_color)) : ?>
+            color: <?php echo esc_attr(!empty($fpg_body_color) ? $fpg_body_color : $fpg_excerpt_color); ?>;
         <?php endif; ?>
         <?php if (!empty($fpg_excerpt_size)) : ?>
             font-size: <?php echo esc_attr($fpg_excerpt_size); ?>px;
@@ -501,9 +504,7 @@ ob_start();
         <?php endif; ?>   
     }
 
-
     /* Meta Data Styles */
-
     .rs-blog-layout-30 .rs-grid .rs-grid-item .rs-blog-layout-30-item .rs-content .rs-meta{
         <?php if (!empty($fpg_meta_order)) : ?>
             order: <?php echo esc_attr($fpg_meta_order); ?>;
@@ -533,8 +534,8 @@ ob_start();
     }
     
     .rs-blog-layout-30 .rs-grid .rs-grid-item .rs-blog-layout-30-item .rs-content .rs-meta ul li a:hover{        
-        <?php if (!empty($fpg_meta_hover_color)) : ?>
-            color: <?php echo esc_attr($fpg_meta_hover_color); ?>;
+        <?php if (!empty($fpg_primary_color) || !empty($fpg_meta_hover_color)) : ?>
+            color: <?php echo esc_attr(!empty($fpg_primary_color) ? $fpg_primary_color : $fpg_meta_hover_color); ?>;
         <?php endif; ?>
     }
 
@@ -542,8 +543,8 @@ ob_start();
         <?php if (!empty($fpg_date_color)) : ?>
             color: <?php echo esc_attr($fpg_date_color); ?>;
         <?php endif; ?>
-        <?php if (!empty($fpg_date_bg_color)) : ?>
-            background: <?php echo esc_attr($fpg_date_bg_color); ?>;
+        <?php if (!empty($fpg_primary_color) || !empty($fpg_date_bg_color)) : ?>
+            background-color: <?php echo esc_attr(!empty($fpg_primary_color) ? $fpg_primary_color : $fpg_date_bg_color); ?>;
         <?php endif; ?>
         <?php if (!empty($fpg_date_padding)) : ?>
             padding: <?php echo esc_attr($fpg_date_padding); ?>;

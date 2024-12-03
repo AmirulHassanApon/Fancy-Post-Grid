@@ -355,8 +355,8 @@ ob_start();
         <?php if (!empty($fpg_excerpt_order)) : ?>
             order: <?php echo esc_attr($fpg_excerpt_order); ?>;
         <?php endif; ?>
-        <?php if (!empty($fpg_excerpt_color)) : ?>
-            color: <?php echo esc_attr($fpg_excerpt_color); ?>;
+        <?php if (!empty($fpg_body_color) || !empty($fpg_excerpt_color)) : ?>
+            color: <?php echo esc_attr(!empty($fpg_body_color) ? $fpg_body_color : $fpg_excerpt_color); ?>;
         <?php endif; ?>
         <?php if (!empty($fpg_excerpt_size)) : ?>
             font-size: <?php echo esc_attr($fpg_excerpt_size); ?>px;
@@ -503,15 +503,12 @@ ob_start();
         <?php if (!empty($fpg_button_margin)) : ?>
             margin: <?php echo esc_attr($fpg_button_margin); ?>;
         <?php endif; ?>
-        
     }
-
 
     .rs-blog-layout-28-item .rs-content .rs-btn-box{
         <?php if (!empty($fpg_button_order)) : ?>
             order: <?php echo esc_attr($fpg_button_order); ?>;
         <?php endif; ?>
-
     }
     .rs-blog-layout-28-item .rs-content .rs-btn.<?php echo esc_attr($button_class); ?>:hover {
         <?php if (!empty($fpg_button_hover_background_color)) : ?>

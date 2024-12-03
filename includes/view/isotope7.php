@@ -197,10 +197,10 @@ ob_start();
                         <div class="rs-meta <?php echo esc_attr($meta_alignment_class); ?>">
                             <?php if ($fpg_field_group_post_date) : ?>
                             <div class="meta-date" >
-                                <?php if (!empty($fpg_field_group_date_icon) && empty($disabled_meta_icons['date_icon'])) {?>
+                                
+                                <span><?php if (!empty($fpg_field_group_date_icon) && empty($disabled_meta_icons['date_icon'])) {?>
                                     <i class="ri-calendar-2-line"></i>
-                                <?php } ?>
-                                <span><?php echo esc_html(get_the_date('d M Y')); ?></span>
+                                <?php } ?><?php echo esc_html(get_the_date('d M Y')); ?></span>
                             </div>
                             <?php endif; ?>
 
@@ -350,18 +350,20 @@ ob_start();
     }
 
     .rs-blog-layout-26 .rs-blog-layout-7-filter .filter-button-group button.active{
-        <?php if (!empty($fancy_post_filter_active_color)) : ?>
-            color: <?php echo esc_attr($fancy_post_filter_active_color); ?>;
-        <?php endif; ?>
+        
+        <?php if (!empty($fpg_primary_color) || !empty($fancy_post_filter_active_color)) : ?>
+            color: <?php echo esc_attr(!empty($fpg_primary_color) ? $fpg_primary_color : $fancy_post_filter_active_color); ?>;
+        <?php endif; ?> 
         <?php if (!empty($fancy_post_filter_active_bg_color)) : ?>
             background-color: <?php echo esc_attr($fancy_post_filter_active_bg_color); ?>;
         <?php endif; ?> 
     }
     .rs-blog-layout-26 .rs-blog-layout-7-filter .filter-button-group button:hover,
     .rs-blog-layout-26 .rs-blog-layout-7-filter .filter-button-group button.active{
-        <?php if (!empty($fancy_post_filter_active_border_color)) : ?>
-            border-color: <?php echo esc_attr($fancy_post_filter_active_border_color); ?>;
-        <?php endif; ?>
+        
+        <?php if (!empty($fpg_primary_color) || !empty($fancy_post_filter_active_border_color)) : ?>
+            border-color: <?php echo esc_attr(!empty($fpg_primary_color) ? $fpg_primary_color : $fancy_post_filter_active_border_color); ?>;
+        <?php endif; ?> 
     }
 
     .rs-blog-layout-26 .rs-grid .rs-grid-item .rs-blog-layout-26-item{
@@ -391,8 +393,8 @@ ob_start();
     }
 
     .rs-blog-layout-26 .rs-grid .rs-grid-item .rs-blog-layout-26-item:hover .rs-content{
-        <?php if (!empty($fpg_single_section_background_hover_color)) : ?>
-            background-color: <?php echo esc_attr($fpg_single_section_background_hover_color); ?>DE;
+        <?php if (!empty($fpg_primary_color) || !empty($fpg_single_section_background_hover_color)) : ?>
+            background-color: <?php echo esc_attr(!empty($fpg_primary_color) ? $fpg_primary_color : $fpg_single_section_background_hover_color); ?>DE;
         <?php endif; ?>
     }
 
@@ -457,9 +459,9 @@ ob_start();
         <?php if (!empty($fpg_title_margin)) : ?>
             margin: <?php echo esc_attr($fpg_title_margin); ?>;
         <?php endif; ?>
-        <?php if (!empty($fpg_title_color)) : ?>
-            color: <?php echo esc_attr($fpg_title_color); ?>;
-        <?php endif; ?>
+        <?php if (!empty($fpg_secondary_color) || !empty($fpg_title_color)) : ?>
+            color: <?php echo esc_attr(!empty($fpg_secondary_color) ? $fpg_secondary_color : $fpg_title_color); ?>;
+        <?php endif; ?> 
         <?php if (!empty($fpg_title_font_size)) : ?>
             font-size: <?php echo esc_attr($fpg_title_font_size); ?>px;
         <?php endif; ?>
@@ -474,9 +476,9 @@ ob_start();
         <?php if (!empty($fpg_excerpt_order)) : ?>
             order: <?php echo esc_attr($fpg_excerpt_order); ?>;
         <?php endif; ?>
-        <?php if (!empty($fpg_excerpt_color)) : ?>
-            color: <?php echo esc_attr($fpg_excerpt_color); ?>;
-        <?php endif; ?>
+        <?php if (!empty($fpg_body_color) || !empty($fpg_excerpt_color)) : ?>
+            color: <?php echo esc_attr(!empty($fpg_body_color) ? $fpg_body_color : $fpg_excerpt_color); ?>;
+        <?php endif; ?> 
         <?php if (!empty($fpg_excerpt_size)) : ?>
             font-size: <?php echo esc_attr($fpg_excerpt_size); ?>px;
         <?php endif; ?>
@@ -500,9 +502,9 @@ ob_start();
     }
 
     .rs-blog-layout-26 .rs-grid .rs-grid-item .rs-blog-layout-26-item .rs-content .rs-btn.<?php echo esc_attr($button_class); ?>{
-        <?php if (!empty($fpg_button_background_color)) : ?>
-            background-color: <?php echo esc_attr($fpg_button_background_color); ?>;
-        <?php endif; ?>
+        <?php if (!empty($fpg_primary_color) || !empty($fpg_button_background_color)) : ?>
+            background-color: <?php echo esc_attr(!empty($fpg_primary_color) ? $fpg_primary_color : $fpg_button_background_color); ?>;
+        <?php endif; ?> 
         <?php if (!empty($fpg_button_text_color)) : ?>
             color: <?php echo esc_attr($fpg_button_text_color); ?>;
         <?php endif; ?>

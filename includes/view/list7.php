@@ -11,7 +11,6 @@ ob_start();
                     <a href="<?php echo esc_url(get_post_type_archive_link('post')); ?>">
                         <?php esc_html_e('See All Posts', 'fancy-post-grid'); ?> <i class="ri-arrow-right-up-line"></i>
                     </a>
-
                 </div>
             </div>
         </div>
@@ -344,10 +343,10 @@ ob_start();
        <?php endif; ?>
     }
     .rs-blog-layout-25 .rs-blog-layout-25-item .rs-content .blog-title a:hover{
-        <?php if (!empty($fpg_title_hover_color)) : ?>
-          color: <?php echo esc_attr($fpg_title_hover_color); ?>;
-       <?php endif; ?>
-       
+        
+       <?php if (!empty($fpg_primary_color) || !empty($fpg_title_hover_color)) : ?>
+            color: <?php echo esc_attr(!empty($fpg_primary_color) ? $fpg_primary_color : $fpg_title_hover_color); ?>;
+        <?php endif; ?>
     }
     
     .rs-blog-layout-25 .rs-blog-layout-25-item .rs-content .blog-btn{
@@ -383,10 +382,17 @@ ob_start();
     }
     .rs-blog-layout-25 .rs-blog-layout-25-item .rs-content .blog-btn a:hover{
         <?php if (!empty($fpg_button_hover_background_color)) : ?>
-            background-color: <?php echo esc_attr($fpg_button_hover_background_color); ?>;
+            
         <?php endif; ?>
-        <?php if (!empty($fpg_button_text_hover_color)) : ?>
-            color: <?php echo esc_attr($fpg_button_text_hover_color); ?>;
+
+        <?php if (!empty($fpg_primary_color) || !empty($fpg_button_text_hover_color)) : ?>
+            color: <?php echo esc_attr(!empty($fpg_primary_color) ? $fpg_primary_color : $fpg_button_text_hover_color); ?>;
+        <?php endif; ?>
+    }
+    .rs-blog-25-topbar > a:hover{
+        <?php if (!empty($fpg_primary_color) ) : ?>
+            background-color: <?php echo esc_attr($fpg_primary_color); ?>;
+            border-color: <?php echo esc_attr($fpg_primary_color); ?>;
         <?php endif; ?>
     }
 </style>
