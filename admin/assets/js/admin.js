@@ -916,12 +916,12 @@
                     $('#fpg_date_bg_color_main').hide();
                     $('#fpg_date_padding_main').hide();
                     $('#fpg_section_image_shape_main').hide();
-                    $('#fpg_meta_hover_color_main').hide();                    
+                    $('#fpg_meta_hover_color_main').show();                    
                     $('#fpg_single_content_section_padding_box').show();
                     $('#fpg_title_hover_color_box').show();
                     $('#fpg_meta_settings_main').show();
                     $('#fpg_meta_data_main').show();
-                    $('#fpg_meta_icon_color_main').hide();
+                    $('#fpg_meta_icon_color_main').show();
                     $('#fpg_meta_gap_main').show();
                     $('#fpg_meta_bgcolor_box').hide();               
                     $('#fancy_button_option_main').show();
@@ -957,7 +957,7 @@
                     $('#fpg_date_bg_color_main').hide();
                     $('#fpg_date_padding_main').hide();
                     $('#fpg_section_image_shape_main').hide();
-                    $('#fpg_meta_hover_color_main').hide();                
+                    $('#fpg_meta_hover_color_main').show();                
                     $('#fpg_single_content_section_padding_box').show();
                     $('#fpg_title_hover_color_box').show();
                     $('#fpg_meta_settings_main').show();
@@ -1011,20 +1011,21 @@
                     $('#fpg_button_settings_main').show();
                     $('#fpg_section_bg_hover_main').hide();  
                     $('#fpg_excerpt_setting_main').hide();
+                    $('#fpg_meta_icon_color_main').show();
 
                 }else if (selectedListStyle === 'liststyle5') {
                     $('#fpg_excerpt_setting_main').show();
                     $('#fpg_feature_image_size').show();
                     $('#fpg-feature-image-right').hide();
                     $('#fpg-feature-image-left').hide();
-                    $('#fpg_field_group_author_main').hide();
+                    $('#fpg_field_group_author_main').show();
                     $('#fpg_field_group_post_date_main').show();
                     $('#fpg_field_group_excerpt_main').show();
                     $('#fpg_field_group_categories_main').show();
-                    $('#fpg_field_group_tag_main').hide();
-                    $('#fpg_field_group_comment_count_main').hide(); 
+                    $('#fpg_field_group_tag_main').show();
+                    $('#fpg_field_group_comment_count_main').show(); 
                     $('#fpg_field_group_button_main').show();
-                    $('#fpg_meta_icon_color_main').hide(); 
+                    $('#fpg_meta_icon_color_main').show(); 
                     // Ordering
                     $('#fpg-read-more-alignment').show();
                     $('#fpg_title_order_main').show(); 
@@ -1389,6 +1390,7 @@
                     $('#fpg-feature-image-right').hide();
                     $('#fpg-feature-image-left').hide();
                     // Ordering
+                    $('#fpg_field_group_author_main').show();
                     $('#fpg_title_order_main').show(); 
                     $('#fpg_meta_order_main').show();
                     $('#fpg_excerpt_order_main').hide(); 
@@ -3429,10 +3431,17 @@
                 $('#fpg_field_group_comment_count_icon').prop('checked', false).change();
                 
             }else if (selectedStyle === 'liststyle4') {
-                settings['fpg_section_background_color'] = '#f3f3f3';
-                settings['fpg_section_padding'] = '120px 0px 120px';
-                settings['fpg_button_text_color'] = '#f79c53';
-                settings['fpg_button_padding'] = '0px';
+                settings['fpg_section_background_color'] = '#fbf9ff';
+                settings['fpg_section_padding'] = '90px 0 120px 0';
+                settings['fpg_single_section_background_color'] = '#ffffff';
+                settings['fpg_single_section_margin'] = '30px 0 0 0';
+                settings['fpg_single_section_padding'] = '35px';
+                settings['fancy_post_section_border_radius'] = '20px';
+                settings['fpg_title_margin'] = '10px 0 0 0';
+                settings['fpg_title_font_size'] = '26';
+                
+                settings['fpg_button_padding'] = '9px 18px';
+                settings['fpg_button_margin'] = '30px 0 0 0';
                 settings['fancy_button_option'] = 'flat';
                 settings['fancy_post_feature_image_size'] = 'fancy_post_landscape';
                 $('#fpg_field_group_title').prop('checked', true).change(); // Enable Title
@@ -3675,12 +3684,12 @@
                 $('#fpg_field_group_comment_count_icon').prop('checked', false).change();
                 $('#fpg_section_background_color').val('#ffffff'); 
                 $('#fpg_section_margin').val('0px');
-                $('#fpg_section_padding').val('30px 0px 0px 0px');
+                $('#fpg_section_padding').val('');
                 $('#fpg_single_section_background_color').val('#f7f7f7'); 
                 $('#fpg_single_section_background_hover_color').val(''); 
-                $('#fpg_single_section_margin').val('30px 0px 0px 0px');
+                $('#fpg_single_section_margin').val('');
                 $('#fpg_single_section_padding').val('0px 0px 0px 0px');
-                $('#fpg_single_content_section_padding').val('30px');
+                $('#fpg_single_content_section_padding').val('');
                 $('#fancy_post_border_style').val('unset').change();
                 $('#fancy_post_cl_lg').val('4').change();
                 $('#fpg_single_section_border_color').val(''); 
@@ -4088,7 +4097,7 @@
                 $('#fancy_post_cl_lg').val('4').change();
                 $('#fpg_section_background_color').val(''); 
                 $('#fpg_section_margin').val('');
-                $('#fpg_section_padding').val('0px');
+                $('#fpg_section_padding').val('20px');
                 $('#fpg_single_section_background_color').val(''); 
                 $('#fpg_single_section_background_hover_color').val(''); 
                 $('#fpg_single_section_margin').val('30px 0 0');

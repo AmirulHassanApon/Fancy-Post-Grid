@@ -296,8 +296,9 @@ ob_start();
 <style type="text/css">
     /* General Styles */
     .rs-blog-layout-15 {
-        <?php if (!empty($fpg_section_background_color)) : ?>
-            background-color: <?php echo esc_attr($fpg_section_background_color); ?>;
+        
+        <?php if (!empty($fpg_primary_color) || !empty($fpg_section_background_color)) : ?>
+            background-color: <?php echo esc_attr(!empty($fpg_primary_color) ? $fpg_primary_color : $fpg_section_background_color); ?>;
         <?php endif; ?>
         <?php if (!empty($fpg_section_margin)) : ?>
             margin: <?php echo esc_attr($fpg_section_margin); ?>;
@@ -374,8 +375,9 @@ ob_start();
         <?php if (!empty($fpg_title_margin)) : ?>
             margin: <?php echo esc_attr($fpg_title_margin); ?>;
         <?php endif; ?> 
-        <?php if (!empty($fpg_title_color)) : ?>
-            color: <?php echo esc_attr($fpg_title_color); ?>;
+        
+        <?php if (!empty($fpg_secondary_color) || !empty($fpg_title_color)) : ?>
+            color: <?php echo esc_attr(!empty($fpg_secondary_color) ? $fpg_secondary_color : $fpg_title_color); ?>;
         <?php endif; ?>
         <?php if (!empty($fpg_title_font_size)) : ?>
             font-size: <?php echo esc_attr($fpg_title_font_size); ?>px;
@@ -385,9 +387,11 @@ ob_start();
         <?php endif; ?>
     }
     .rs-blog-layout-15-item .rs-content .title a:hover {
-        <?php if (!empty($fpg_title_hover_color)) : ?>
-            color: <?php echo esc_attr($fpg_title_hover_color); ?>;
+        
+        <?php if (!empty($fpg_primary_color) || !empty($fpg_title_hover_color)) : ?>
+            color: <?php echo esc_attr(!empty($fpg_primary_color) ? $fpg_primary_color : $fpg_title_hover_color); ?>;
         <?php endif; ?>
+
     }
 
     /* Meta Data Styles */
@@ -418,6 +422,13 @@ ob_start();
         <?php endif; ?>
         <?php if (!empty($fpg_meta_margin)) : ?>
             margin: <?php echo esc_attr($fpg_meta_margin); ?>;
+        <?php endif; ?>
+    }
+
+    .rs-blog-layout-15-item .rs-content .rs-meta .meta-author a:hover{
+        
+        <?php if (!empty($fpg_primary_color) || !empty($fpg_meta_hover_color)) : ?>
+            color: <?php echo esc_attr(!empty($fpg_primary_color) ? $fpg_primary_color : $fpg_meta_hover_color); ?>;
         <?php endif; ?>
     }
     .fpg-pagination ul.page-numbers{

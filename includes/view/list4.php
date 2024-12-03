@@ -197,21 +197,49 @@ ob_start();
                             <ul class="<?php echo esc_attr($meta_alignment_class); ?>">
                                 <!-- META DATE -->
                                 <?php if ($fpg_field_group_post_date) : ?>
-                                    <li>
-                                        <i class="ri-calendar-line"> </i>
-                                        <?php echo esc_html( get_the_date( 'M d, Y' ) ); ?>
+                                    <li class="meta-date">
+                                        <?php if (!empty($fpg_field_group_date_icon) && empty($disabled_meta_icons['date_icon'])) {?>
+                                        <i class="ri-calendar-line"></i>
+                                        <?php } ?>
+                                        <?php echo get_the_date('M d, Y'); ?>
                                     </li>
                                 <?php endif; ?>
                                 <!-- AUTHOR -->
                                 <?php if ($fpg_field_group_author) : ?>
-                                <li>
-                                    <i class="ri-user-3-line"> </i> 
-                                    <a href="<?php echo esc_url(get_author_posts_url(get_the_author_meta('ID'))); ?>"
-                                        <?php echo esc_attr($target_blank); ?>>
-                                        <?php the_author(); ?>
-                                    </a> 
-                                </li>
-                                <?php endif; ?>                       
+                                    <li class="meta-author">
+                                        <?php if (!empty($fpg_field_group_author_icon) && empty($disabled_meta_icons['author_icon'])) { ?>
+                                        <i class="ri-user-3-line"></i>
+                                        <?php } ?>
+                                        <a href="<?php echo esc_url(get_author_posts_url(get_the_author_meta('ID'))); ?>"
+                                            <?php echo esc_attr($target_blank); ?>>
+                                            <?php the_author(); ?>
+                                        </a> 
+                                    </li>
+                                <?php endif; ?> 
+                                <?php if ($fpg_field_group_categories) : ?>
+                                    <li class="meta-categories">
+                                        <?php if (!empty($fpg_field_group_category_icon) && empty($disabled_meta_icons['category_icon'])) {?>
+                                        <i class="ri-folder-line"></i>
+                                        <?php } ?>
+                                        <?php the_category(', '); ?>
+                                    </li>
+                                <?php endif; ?>                                  
+                                <?php if ($fpg_field_group_comment_count && get_comments_number() > 0) : ?>
+                                    <li class="meta-comment-count">
+                                        <?php if (!empty($fpg_field_group_comment_count_icon) && empty($disabled_meta_icons['comment_count_icon'])) {?>
+                                        <i class="ri-chat-3-line"></i>
+                                        <?php } ?>
+                                        <?php comments_number('0 Comments', '1 Comment', '% Comments'); ?>
+                                    </li>
+                                <?php endif; ?>
+                                <?php if ($fpg_field_group_tag && has_tag()) : ?>
+                                    <li class="meta-tags">
+                                        <?php if (!empty($fpg_field_group_tags_icon) && empty($disabled_meta_icons['tags_icon'])) {?>
+                                        <i class="ri-price-tag-3-line"></i>
+                                        <?php } ?>
+                                        <?php the_tags('', ', ', ''); ?>
+                                    </li>
+                                <?php endif; ?>                     
                             </ul>
                         </div>
                         <!-- Title -->
@@ -325,11 +353,17 @@ ob_start();
         <?php if (!empty($fpg_meta_color)) : ?>
             color: <?php echo esc_attr($fpg_meta_color); ?>;
         <?php endif; ?>
+        
         <?php if (!empty($fpg_meta_size)) : ?>
             font-size: <?php echo esc_attr($fpg_meta_size); ?>px;
         <?php endif; ?>
         <?php if (!empty($fpg_meta_font_weight)) : ?>
             font-weight: <?php echo esc_attr($fpg_meta_font_weight); ?>;
+        <?php endif; ?>
+    }
+    .rs-blog-layout-20 .rs-blog-layout-20-item .rs-content .rs-meta ul li i{
+        <?php if (!empty($fpg_secondary_color) || !empty($fpg_meta_icon_color)) : ?>
+            color: <?php echo esc_attr(!empty($fpg_secondary_color) ? $fpg_secondary_color : $fpg_meta_icon_color); ?>;
         <?php endif; ?>
     }
     .rs-blog-layout-20 .rs-blog-layout-20-item .rs-content .title{
@@ -360,9 +394,10 @@ ob_start();
        <?php endif; ?>
     }
     .rs-blog-layout-20 .rs-blog-layout-20-item .rs-content .title a:hover{
-        <?php if (!empty($fpg_title_hover_color)) : ?>
-          color: <?php echo esc_attr($fpg_title_hover_color); ?>;
-       <?php endif; ?>
+        
+       <?php if (!empty($fpg_secondary_color) || !empty($fpg_title_hover_color)) : ?>
+            color: <?php echo esc_attr(!empty($fpg_secondary_color) ? $fpg_secondary_color : $fpg_title_hover_color); ?>;
+        <?php endif; ?>
        
     }
     .rs-blog-layout-20 .rs-blog-layout-20-item .rs-content .fpg-excerpt{
@@ -393,8 +428,9 @@ ob_start();
         <?php endif; ?>
     }
     .rs-blog-layout-20 .rs-blog-layout-20-item .rs-content .btn-wrapper a{
-        <?php if (!empty($fpg_button_background_color)) : ?>
-            background-color: <?php echo esc_attr($fpg_button_background_color); ?>;
+        
+        <?php if (!empty($fpg_primary_color) || !empty($fpg_button_background_color)) : ?>
+            background-color: <?php echo esc_attr(!empty($fpg_primary_color) ? $fpg_primary_color : $fpg_button_background_color); ?>;
         <?php endif; ?>
         <?php if (!empty($fpg_button_text_color)) : ?>
             color: <?php echo esc_attr($fpg_button_text_color); ?>;
@@ -402,8 +438,8 @@ ob_start();
         <?php if (!empty($fancy_post_read_more_border_radius)) : ?>
             border-radius: <?php echo esc_attr($fancy_post_read_more_border_radius); ?>;
         <?php endif; ?>
-        <?php if (!empty($fpg_border_color)) : ?>
-            border-color: <?php echo esc_attr($fpg_border_color); ?>;
+        <?php if (!empty($fpg_primary_color) || !empty($fpg_border_color)) : ?>
+            border-color: <?php echo esc_attr(!empty($fpg_primary_color) ? $fpg_primary_color : $fpg_border_color); ?>;
         <?php endif; ?>
         <?php if (!empty($fancy_button_border_style)) : ?>
             border-style: <?php echo esc_attr($fancy_button_border_style); ?>;
@@ -422,8 +458,12 @@ ob_start();
         <?php if (!empty($fpg_button_hover_background_color)) : ?>
             background-color: <?php echo esc_attr($fpg_button_hover_background_color); ?>;
         <?php endif; ?>
-        <?php if (!empty($fpg_button_text_hover_color)) : ?>
-            color: <?php echo esc_attr($fpg_button_text_hover_color); ?>;
+        
+        <?php if (!empty($fpg_primary_color) || !empty($fpg_button_text_hover_color)) : ?>
+            color: <?php echo esc_attr(!empty($fpg_primary_color) ? $fpg_primary_color : $fpg_button_text_hover_color); ?>;
+        <?php endif; ?>
+        <?php if (!empty($fpg_primary_color) || !empty($fpg_button_text_hover_color)) : ?>
+            border-color: <?php echo esc_attr(!empty($fpg_primary_color) ? $fpg_primary_color : $fpg_button_text_hover_color); ?>;
         <?php endif; ?>
     }
 </style>

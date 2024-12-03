@@ -456,7 +456,6 @@ ob_start();
         <?php if (!empty($fpg_excerpt_margin)) : ?>
             margin: <?php echo esc_attr($fpg_excerpt_margin); ?>;
         <?php endif; ?>
-
     }
 
     .rs-blog-layout-5 .rs-blog__single .rs-content .btn-wrapper{
@@ -467,8 +466,6 @@ ob_start();
             margin: <?php echo esc_attr($fpg_button_margin); ?>;
         <?php endif; ?>
     }
-
-
     /* Meta Data Styles */
 
     .rs-blog-layout-5 .rs-blog__single .rs-content ul{
@@ -490,7 +487,6 @@ ob_start();
         <?php if (!empty($fpg_meta_line_height)) : ?>
             line-height: <?php echo esc_attr($fpg_meta_line_height); ?>;
         <?php endif; ?>
-        
     }
 
     .rs-blog-layout-5 .rs-blog__single .rs-content ul li,
@@ -511,8 +507,6 @@ ob_start();
         <?php if (!empty($fpg_meta_font_weight)) : ?>
             font-weight: <?php echo esc_attr($fpg_meta_font_weight); ?>;
         <?php endif; ?>
-        
-        
     }
 
     .rs-blog-layout-5 .rs-blog__single .rs-content ul li i{
