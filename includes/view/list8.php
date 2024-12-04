@@ -536,11 +536,26 @@ ob_start();
        <?php endif; ?>
     }
     .rs-blog-layout-27 .rs-blog-layout-27-item .rs-content .title a:hover{
-        <?php if (!empty($fpg_title_hover_color)) : ?>
-          color: <?php echo esc_attr($fpg_title_hover_color); ?>;
-       <?php endif; ?>
+        <?php if (!empty($fpg_primary_color) || !empty($fpg_title_hover_color)) : ?>
+            color: <?php echo esc_attr(!empty($fpg_primary_color) ? $fpg_primary_color : $fpg_title_hover_color); ?>;
+        <?php endif; ?>
     }
-    
+    .rs-blog-layout-27-list-item .rs-content .title a{
+       <?php if (!empty($fpg_title_color)) : ?>
+          color: <?php echo esc_attr($fpg_title_color); ?>;
+       <?php endif; ?>
+       <?php if (!empty($fpg_title_font_size)) : ?>
+          font-size: <?php echo esc_attr($fpg_title_font_size); ?>px;
+       <?php endif; ?>
+       <?php if (!empty($fpg_title_font_weight)) : ?>
+          font-weight: <?php echo esc_attr($fpg_title_font_weight); ?>;
+       <?php endif; ?> 
+    }
+    .rs-blog-layout-27-list-item .rs-content .title a:hover{
+        <?php if (!empty($fpg_primary_color) || !empty($fpg_title_hover_color)) : ?>
+            color: <?php echo esc_attr(!empty($fpg_primary_color) ? $fpg_primary_color : $fpg_title_hover_color); ?>;
+        <?php endif; ?>
+    }
     .rs-blog-layout-27 .rs-blog-layout-27-item .rs-content .btn-wrapper{
         <?php if (!empty($fpg_button_padding)) : ?>
             padding: <?php echo esc_attr($fpg_button_padding); ?>;
@@ -576,8 +591,9 @@ ob_start();
         <?php if (!empty($fpg_button_hover_background_color)) : ?>
             background-color: <?php echo esc_attr($fpg_button_hover_background_color); ?>;
         <?php endif; ?>
-        <?php if (!empty($fpg_button_text_hover_color)) : ?>
-            color: <?php echo esc_attr($fpg_button_text_hover_color); ?>;
+        
+        <?php if (!empty($fpg_primary_color) || !empty($fpg_button_text_hover_color)) : ?>
+            color: <?php echo esc_attr(!empty($fpg_primary_color) ? $fpg_primary_color : $fpg_button_text_hover_color); ?>;
         <?php endif; ?>
     }
 </style>

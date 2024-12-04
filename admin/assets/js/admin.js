@@ -2082,9 +2082,9 @@
                 $('#fpg_field_group_tag').prop('checked', false).change(); // Enable Tags
                 $('#fpg_field_group_comment_count').prop('checked', false).change(); // Disable Comment Count
                
-                $('#fpg_field_group_date_icon').prop('checked', true).change();
-                $('#fpg_field_group_author_icon').prop('checked', true).change();
-                $('#fpg_field_group_category_icon').prop('checked', true).change();
+                $('#fpg_field_group_date_icon').prop('checked', false).change();
+                $('#fpg_field_group_author_icon').prop('checked', false).change();
+                $('#fpg_field_group_category_icon').prop('checked', false).change();
                 $('#fpg_field_group_tags_icon').prop('checked', false).change();
                 $('#fpg_field_group_comment_count_icon').prop('checked', false).change();
                 $('#fancy_post_cl_lg').val('4').change();
@@ -2179,7 +2179,7 @@
                 $('#fpg_field_group_tag').prop('checked', false).change(); // Enable Tags
                 $('#fpg_field_group_comment_count').prop('checked', false).change(); // Disable Comment Count
                 
-                $('#fpg_field_group_date_icon').prop('checked', true).change();
+                $('#fpg_field_group_date_icon').prop('checked', false).change();
                 $('#fpg_field_group_author_icon').prop('checked', true).change();
                 $('#fpg_field_group_category_icon').prop('checked', false).change();
                 $('#fpg_field_group_tags_icon').prop('checked', false).change();
@@ -2276,7 +2276,7 @@
                 $('#fpg_field_group_tag').prop('checked', false).change(); // Enable Tags
                 $('#fpg_field_group_comment_count').prop('checked', false).change(); // Disable Comment Count
                 
-                $('#fpg_field_group_date_icon').prop('checked', true).change();
+                $('#fpg_field_group_date_icon').prop('checked', false).change();
                 $('#fpg_field_group_author_icon').prop('checked', true).change();
                 $('#fpg_field_group_category_icon').prop('checked', false).change();
                 $('#fpg_field_group_tags_icon').prop('checked', false).change();
@@ -2371,8 +2371,8 @@
                 $('#fpg_field_group_categories').prop('checked', false).change(); // Enable Categories
                 $('#fpg_field_group_tag').prop('checked', false).change(); // Enable Tags
                 $('#fpg_field_group_comment_count').prop('checked', false).change(); // Disable Comment Count
-                $('#fpg_field_group_date_icon').prop('checked', true).change();
-                $('#fpg_field_group_author_icon').prop('checked', true).change();
+                $('#fpg_field_group_date_icon').prop('checked', false).change();
+                $('#fpg_field_group_author_icon').prop('checked', false).change();
                 $('#fpg_field_group_category_icon').prop('checked', false).change();
                 $('#fpg_field_group_tags_icon').prop('checked', false).change();
                 $('#fpg_field_group_comment_count_icon').prop('checked', false).change();
@@ -2466,8 +2466,8 @@
                 $('#fpg_field_group_categories').prop('checked', true).change(); // Enable Categories
                 $('#fpg_field_group_tag').prop('checked', false).change(); // Enable Tags
                 $('#fpg_field_group_comment_count').prop('checked', false).change(); // Disable Comment Count
-                $('#fpg_field_group_date_icon').prop('checked', true).change();
-                $('#fpg_field_group_author_icon').prop('checked', true).change();
+                $('#fpg_field_group_date_icon').prop('checked', false).change();
+                $('#fpg_field_group_author_icon').prop('checked', false).change();
                 $('#fpg_field_group_category_icon').prop('checked', true).change();
                 $('#fpg_field_group_tags_icon').prop('checked', false).change();
                 $('#fpg_field_group_comment_count_icon').prop('checked', false).change();
@@ -2847,9 +2847,9 @@
                 $('#fpg_field_group_categories').prop('checked', true).change(); // Enable Categories
                 $('#fpg_field_group_tag').prop('checked', false).change(); // Enable Tags
                 $('#fpg_field_group_comment_count').prop('checked', false).change(); // Disable Comment Count
-                $('#fpg_field_group_date_icon').prop('checked', true).change();
+                $('#fpg_field_group_date_icon').prop('checked', false).change();
                 $('#fpg_field_group_author_icon').prop('checked', false).change();
-                $('#fpg_field_group_category_icon').prop('checked', true).change();
+                $('#fpg_field_group_category_icon').prop('checked', false).change();
                 $('#fpg_field_group_tags_icon').prop('checked', false).change();
                 $('#fpg_field_group_comment_count_icon').prop('checked', false).change();
                 $('#fancy_post_cl_lg').val('4').change();
@@ -3161,9 +3161,9 @@
                 $('#fpg_field_group_categories').prop('checked', true).change(); // Enable Categories
                 $('#fpg_field_group_tag').prop('checked', false).change(); // Enable Tags
                 $('#fpg_field_group_comment_count').prop('checked', false).change(); // Disable Comment Count
-                $('#fpg_field_group_date_icon').prop('checked', true).change();
+                $('#fpg_field_group_date_icon').prop('checked', false).change();
                 $('#fpg_field_group_author_icon').prop('checked', true).change();
-                $('#fpg_field_group_category_icon').prop('checked', true).change();
+                $('#fpg_field_group_category_icon').prop('checked', false).change();
                 $('#fpg_field_group_tags_icon').prop('checked', false).change();
                 $('#fpg_field_group_comment_count_icon').prop('checked', false).change();
             }else if (selectedStyle === 'sliderstyle4') {
@@ -3188,7 +3188,7 @@
                 $('#fpg_field_group_comment_count').prop('checked', false).change(); // Disable Comment Count
                 $('#fpg_field_group_date_icon').prop('checked', false).change();
                 $('#fpg_field_group_author_icon').prop('checked', false).change();
-                $('#fpg_field_group_category_icon').prop('checked', true).change();
+                $('#fpg_field_group_category_icon').prop('checked', false).change();
                 $('#fpg_field_group_tags_icon').prop('checked', false).change();
                 $('#fpg_field_group_comment_count_icon').prop('checked', false).change();
             }else if (selectedStyle === 'sliderstyle5') {
@@ -3254,9 +3254,9 @@
                 $('#fpg_field_group_categories').prop('checked', true).change(); // Enable Categories
                 $('#fpg_field_group_tag').prop('checked', false).change(); // Enable Tags
                 $('#fpg_field_group_comment_count').prop('checked', false).change(); // Disable Comment Count
-                $('#fpg_field_group_date_icon').prop('checked', true).change();
+                $('#fpg_field_group_date_icon').prop('checked', false).change();
                 $('#fpg_field_group_author_icon').prop('checked', false).change();
-                $('#fpg_field_group_category_icon').prop('checked', true).change();
+                $('#fpg_field_group_category_icon').prop('checked', false).change();
                 $('#fpg_field_group_tags_icon').prop('checked', false).change();
                 $('#fpg_field_group_comment_count_icon').prop('checked', false).change();
             }
@@ -3424,8 +3424,8 @@
                 $('#fpg_field_group_categories').prop('checked', false).change(); // Enable Categories
                 $('#fpg_field_group_tag').prop('checked', false).change(); // Enable Tags
                 $('#fpg_field_group_comment_count').prop('checked', false).change(); // Disable Comment Count
-                $('#fpg_field_group_date_icon').prop('checked', true).change();
-                $('#fpg_field_group_author_icon').prop('checked', true).change();
+                $('#fpg_field_group_date_icon').prop('checked', false).change();
+                $('#fpg_field_group_author_icon').prop('checked', false).change();
                 $('#fpg_field_group_category_icon').prop('checked', false).change();
                 $('#fpg_field_group_tags_icon').prop('checked', false).change();
                 $('#fpg_field_group_comment_count_icon').prop('checked', false).change();
@@ -3522,7 +3522,7 @@
                 $('#fpg_field_group_comment_count').prop('checked', false).change(); // Disable Comment Count
                 $('#fpg_field_group_date_icon').prop('checked', false).change();
                 $('#fpg_field_group_author_icon').prop('checked', false).change();
-                $('#fpg_field_group_category_icon').prop('checked', true).change();
+                $('#fpg_field_group_category_icon').prop('checked', false).change();
                 $('#fpg_field_group_tags_icon').prop('checked', false).change();
                 $('#fpg_field_group_comment_count_icon').prop('checked', false).change();
             }else if (selectedStyle === 'liststyle8') {
@@ -3645,9 +3645,9 @@
                 $('#fpg_field_group_comment_count').prop('checked', true).change(); // Disable Comment Count
                 $('#fpg_field_group_date_icon').prop('checked', true).change();
                 $('#fpg_field_group_author_icon').prop('checked', false).change();
-                $('#fpg_field_group_category_icon').prop('checked', true).change();
+                $('#fpg_field_group_category_icon').prop('checked', false).change();
                 $('#fpg_field_group_tags_icon').prop('checked', false).change();
-                $('#fpg_field_group_comment_count_icon').prop('checked', false).change();
+                $('#fpg_field_group_comment_count_icon').prop('checked', true).change();
                 $('#fancy_post_filter_text_color').val('');
                 $('#fancy_post_filter_hover_color').val('');
                 $('#fancy_post_filter_active_color').val('');
@@ -3673,13 +3673,13 @@
                 $('#fpg_field_group_read_more').prop('checked', true).change(); // Enable Button
                 $('#fpg_field_group_image').prop('checked', true).change(); // Enable Image
                 $('#fpg_field_group_post_date').prop('checked', true).change(); // Disable Post Date
-                $('#fpg_field_group_author').prop('checked', false).change(); // Disable Author
-                $('#fpg_field_group_categories').prop('checked', true).change(); // Enable Categories
+                $('#fpg_field_group_author').prop('checked', true).change(); // Disable Author
+                $('#fpg_field_group_categories').prop('checked', false).change(); // Enable Categories
                 $('#fpg_field_group_tag').prop('checked', false).change(); // Enable Tags
                 $('#fpg_field_group_comment_count').prop('checked', false).change(); // Disable Comment Count
                 $('#fpg_field_group_date_icon').prop('checked', true).change();
-                $('#fpg_field_group_author_icon').prop('checked', false).change();
-                $('#fpg_field_group_category_icon').prop('checked', true).change();
+                $('#fpg_field_group_author_icon').prop('checked', true).change();
+                $('#fpg_field_group_category_icon').prop('checked', false).change();
                 $('#fpg_field_group_tags_icon').prop('checked', false).change();
                 $('#fpg_field_group_comment_count_icon').prop('checked', false).change();
                 $('#fpg_section_background_color').val('#ffffff'); 
@@ -3893,9 +3893,9 @@
                 $('#fpg_field_group_categories').prop('checked', true).change(); // Enable Categories
                 $('#fpg_field_group_tag').prop('checked', false).change(); // Enable Tags
                 $('#fpg_field_group_comment_count').prop('checked', false).change(); // Disable Comment Count
-                $('#fpg_field_group_date_icon').prop('checked', true).change();
-                $('#fpg_field_group_author_icon').prop('checked', true).change();
-                $('#fpg_field_group_category_icon').prop('checked', true).change();
+                $('#fpg_field_group_date_icon').prop('checked', false).change();
+                $('#fpg_field_group_author_icon').prop('checked', false).change();
+                $('#fpg_field_group_category_icon').prop('checked', false).change();
                 $('#fpg_field_group_tags_icon').prop('checked', false).change();
                 $('#fpg_field_group_comment_count_icon').prop('checked', false).change();
                 $('#fancy_post_cl_lg').val('4').change();
@@ -3991,7 +3991,7 @@
                 $('#fpg_field_group_categories').prop('checked', false).change(); // Enable Categories
                 $('#fpg_field_group_tag').prop('checked', false).change(); // Enable Tags
                 $('#fpg_field_group_comment_count').prop('checked', false).change(); // Disable Comment Count
-                $('#fpg_field_group_date_icon').prop('checked', true).change();
+                $('#fpg_field_group_date_icon').prop('checked', false).change();
                 $('#fpg_field_group_author_icon').prop('checked', true).change();
                 $('#fpg_field_group_category_icon').prop('checked', false).change();
                 $('#fpg_field_group_tags_icon').prop('checked', false).change();
@@ -4089,8 +4089,8 @@
                 $('#fpg_field_group_categories').prop('checked', true).change(); // Enable Categories
                 $('#fpg_field_group_tag').prop('checked', false).change(); // Enable Tags
                 $('#fpg_field_group_comment_count').prop('checked', false).change(); // Disable Comment Count
-                $('#fpg_field_group_date_icon').prop('checked', true).change();
-                $('#fpg_field_group_author_icon').prop('checked', true).change();
+                $('#fpg_field_group_date_icon').prop('checked', false).change();
+                $('#fpg_field_group_author_icon').prop('checked', false).change();
                 $('#fpg_field_group_category_icon').prop('checked', true).change();
                 $('#fpg_field_group_tags_icon').prop('checked', false).change();
                 $('#fpg_field_group_comment_count_icon').prop('checked', false).change();
@@ -4186,9 +4186,9 @@
                 $('#fpg_field_group_categories').prop('checked', true).change(); // Enable Categories
                 $('#fpg_field_group_tag').prop('checked', false).change(); // Enable Tags
                 $('#fpg_field_group_comment_count').prop('checked', false).change(); // Disable Comment Count
-                $('#fpg_field_group_date_icon').prop('checked', true).change();
+                $('#fpg_field_group_date_icon').prop('checked', false).change();
                 $('#fpg_field_group_author_icon').prop('checked', false).change();
-                $('#fpg_field_group_category_icon').prop('checked', true).change();
+                $('#fpg_field_group_category_icon').prop('checked', false).change();
                 $('#fpg_field_group_tags_icon').prop('checked', false).change();
                 $('#fpg_field_group_comment_count_icon').prop('checked', false).change();
                 $('#fancy_post_cl_lg').val('4').change();
