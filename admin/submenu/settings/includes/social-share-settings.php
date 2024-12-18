@@ -1,4 +1,10 @@
 <?php
+// Exit if accessed directly
+if (!defined('ABSPATH')) exit;
+
+/**
+ * Render Social Share Settings
+ */
 function fancy_post_grid_render_social_share_settings() {
     ?>
     <!-- Form for enabling/disabling social share -->
@@ -10,7 +16,6 @@ function fancy_post_grid_render_social_share_settings() {
         ?>
     </form>
 
-    <!-- Form for managing social media links -->
     <form method="post" action="options.php">
         <?php
         settings_fields('fancy_post_grid_social_share_settings_group_links');
@@ -18,91 +23,19 @@ function fancy_post_grid_render_social_share_settings() {
         submit_button(__('Save Social Media Links', 'fancy-post-grid'));
         ?>
     </form>
-
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        let socialMediaIndex = document.querySelectorAll('#fpg_social_media_repeater .social-media-row').length;
-        const addButton = document.querySelector('#add-social-media');
-        const container = document.querySelector('#fpg_social_media_repeater');
-        const template = document.querySelector('.social-media-template');
-
-        // Add new social media row when Add button is clicked
-        addButton.addEventListener('click', function (e) {
-            e.preventDefault();
-
-            const clone = template.cloneNode(true);
-            clone.classList.remove('social-media-template');
-            clone.style.display = 'flex';
-
-            // Update name attributes with unique indexes
-            clone.querySelectorAll('input, select').forEach(input => {
-                input.name = input.name.replace('[]', `[${socialMediaIndex}]`);
-            });
-
-            socialMediaIndex++; // Increment index for next addition
-            container.appendChild(clone);
-        });
-
-        // Prevent the "Remove" action from being triggered on page load or form submission
-        let isSubmitting = false;
-
-        // Prevent automatic deletion by tracking form submissions
-        container.addEventListener('click', function (e) {
-            if (e.target && e.target.classList.contains('remove-social-media') && !isSubmitting) {
-                e.preventDefault();
-                e.target.closest('.social-media-row').remove();
-            }
-        });
-
-        // Handle icon preview change based on selected platform
-        container.addEventListener('change', function (e) {
-            if (e.target && e.target.classList.contains('social-media-select')) {
-                const iconPreview = e.target.closest('.social-media-row').querySelector('.icon-preview');
-                const selectedValue = e.target.value;
-                iconPreview.innerHTML = selectedValue
-                    ? `<i class="dashicons dashicons-${selectedValue}"></i>`
-                    : '';
-            }
-        });
-
-        // Handle form submission logic
-        const form = document.querySelector('form');
-        if (form) {
-            form.addEventListener('submit', function () {
-                isSubmitting = true; // Set flag to prevent removal on form submit
-            });
-        }
-
-        // Reset the submission flag after page reload
-        window.addEventListener('load', function () {
-            isSubmitting = false;
-        });
-    });
-</script>
-
-
-    <style>
-        .social-media-row {
-            margin-bottom: 10px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        .social-media-row input[type="text"] {
-            flex: 1;
-        }
-        .remove-social-media {
-            color: red;
-            cursor: pointer;
-        }
-        .icon-preview i {
-            font-size: 18px;
-        }
-    </style>
     <?php
 }
 
+/**
+ * Register and Render Social Share Settings
+ */
 function fancy_post_grid_render_social_share_settings_main() {
+    // Register the setting for social media links
+    register_setting(
+        'fancy_post_grid_social_share_settings_group_links',
+        'fpg_social_media_links',
+        ['sanitize_callback' => 'fancy_post_grid_sanitize_social_links']
+    );
     // Register settings for enable/disable
     register_setting(
         'fancy_post_grid_social_share_settings_group_enable',
@@ -114,28 +47,14 @@ function fancy_post_grid_render_social_share_settings_main() {
         ]
     );
 
-    // Register settings for social media links
-    register_setting(
-        'fancy_post_grid_social_share_settings_group_links',
-        'fpg_social_media_links',
-        [
-            'sanitize_callback' => function ($value) {
-                $sanitized = [];
-                if (is_array($value)) {
-                    foreach ($value as $item) {
-                        if (!empty($item['platform']) && !empty($item['url'])) {
-                            $sanitized[] = [
-                                'platform' => sanitize_text_field($item['platform']),
-                                'url' => esc_url_raw($item['url']),
-                            ];
-                        }
-                    }
-                }
-                return $sanitized;
-            }
-        ]
+    add_settings_section(
+        'fancy_post_grid_social_share_section_links',
+        __('Social Media Links', 'fancy-post-grid'),
+        function () {
+            echo '<p>' . esc_html__('Add social media links for sharing posts.', 'fancy-post-grid') . '</p>';
+        },
+        'fancy_post_grid_social_share_settings_links'
     );
-
     // Add section for enable/disable
     add_settings_section(
         'fancy_post_grid_social_share_section_enable',
@@ -145,75 +64,206 @@ function fancy_post_grid_render_social_share_settings_main() {
         },
         'fancy_post_grid_social_share_settings_enable'
     );
-
+    // social icon repeater
+    add_settings_field(
+        'fpg_social_media_links',
+        __('Social Media Links', 'fancy-post-grid'),
+        'fancy_post_grid_render_social_links_repeater',
+        'fancy_post_grid_social_share_settings_links',
+        'fancy_post_grid_social_share_section_links'
+    );
+    // Enable Social Share    
     add_settings_field(
         'fpg_social_share_enable',
         __('Enable Social Share', 'fancy-post-grid'),
         function () {
             $value = get_option('fpg_enable_social_share', 'no');
-            echo '<input type="checkbox" id="fpg_enable_social_share" name="fpg_enable_social_share" value="yes" ' . checked('yes', $value, false) . ' />';
+            echo '<input type="checkbox" id="fpg_enable_social_share" name="fpg_enable_social_share" value="yes" ' . checked('yes', $value, false) . ' />'; 
         },
         'fancy_post_grid_social_share_settings_enable',
         'fancy_post_grid_social_share_section_enable'
     );
-
-    // Add section for social media links
-    add_settings_section(
-        'fancy_post_grid_social_share_section_links',
-        __('Social Media Links', 'fancy-post-grid'),
-        function () {
-            echo '<p>' . esc_html__('Manage social media links for sharing.', 'fancy-post-grid') . '</p>';
-        },
-        'fancy_post_grid_social_share_settings_links'
-    );
-
-    add_settings_field(
-        'fpg_social_media_links',
-        __('Social Media Links', 'fancy-post-grid'),
-        function () {
-            $links = get_option('fpg_social_media_links', []);
-            ?>
-            <div id="fpg_social_media_repeater">
-                <?php
-                if (!empty($links)) {
-                    foreach ($links as $index => $link) {
-                        $platform = isset($link['platform']) ? $link['platform'] : '';
-                        $url = isset($link['url']) ? $link['url'] : '';
-                        ?>
-                        <div class="social-media-row">
-                            <select class="social-media-select" name="fpg_social_media_links[<?php echo esc_attr($index); ?>][platform]">
-                                <option value="">Select</option>
-                                <option value="facebook" <?php selected('facebook', $platform); ?>>Facebook</option>
-                                <option value="twitter" <?php selected('twitter', $platform); ?>>Twitter</option>
-                                <option value="linkedin" <?php selected('linkedin', $platform); ?>>LinkedIn</option>
-                            </select>
-                            <span class="icon-preview"><i class="dashicons dashicons-<?php echo esc_attr($platform); ?>"></i></span>
-                            <input type="text" name="fpg_social_media_links[<?php echo esc_attr($index); ?>][url]" value="<?php echo esc_attr($url); ?>" placeholder="Enter social media URL" />
-                            <span class="remove-social-media">Remove</span>
-                        </div>
-                        <?php
-                    }
-                }
-                ?>
-                <div class="social-media-row social-media-template" style="display: none;">
-                    <select class="social-media-select" name="fpg_social_media_links[<?php echo esc_attr($index); ?>][platform]">
-                        <option value="">Select</option>
-                        <option value="facebook">Facebook</option>
-                        <option value="twitter">Twitter</option>
-                        <option value="linkedin">LinkedIn</option>
-                    </select>
-                    <span class="icon-preview"></span>
-                    <input type="text" name="fpg_social_media_links[<?php echo esc_attr($index); ?>][url]" placeholder="Enter social media URL" />
-                    <span class="remove-social-media">Remove</span>
-                </div>
-            </div>
-            <button id="add-social-media" class="button">Add Social Media</button>
-            <?php
-        },
-        'fancy_post_grid_social_share_settings_links',
-        'fancy_post_grid_social_share_section_links'
-    );
 }
 
 add_action('admin_init', 'fancy_post_grid_render_social_share_settings_main');
-?>
+
+/**
+ * Render Social Links Repeater
+ */
+function fancy_post_grid_render_social_links_repeater() {
+    $links = get_option('fpg_social_media_links', []);
+    ?>
+    <div id="fancy-post-social-links-repeater">
+        <?php
+        if (!empty($links) && is_array($links)) {
+            foreach ($links as $index => $link) {
+                fancy_post_grid_render_social_link_row($index, $link['platform'] ?? '', $link['url'] ?? '');
+            }
+        } else {
+            fancy_post_grid_render_social_link_row(0);
+        }
+        ?>
+    </div>
+    <button type="button" id="fancy-post-add-social-link" class="button"><?php esc_html_e('Add Social Media Link', 'fancy-post-grid'); ?></button>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const container = document.getElementById('fancy-post-social-links-repeater');
+            const addButton = document.getElementById('fancy-post-add-social-link');
+            let index = container.children.length;
+
+            addButton.addEventListener('click', function () {
+                const row = document.createElement('div');
+                row.innerHTML = `
+                    <select name="fpg_social_media_links[${index}][platform]" class="fancy-post-social-platform">
+                        <option value="facebook" class="fab fa-facebook">Facebook</option>
+                        <option value="twitter" class="fab fa-twitter">Twitter</option>
+                        <option value="linkedin" class="fab fa-linkedin">LinkedIn</option>
+                        <option value="instagram" class="fab fa-instagram">Instagram</option>
+                        <option value="pinterest" class="fab fa-pinterest">Pinterest</option>
+                        <option value="youtube" class="fab fa-youtube">YouTube</option>
+                    </select>
+                    <input type="url" name="fpg_social_media_links[${index}][url]" class="fancy-post-social-url" placeholder="<?php esc_attr_e('Enter URL', 'fancy-post-grid'); ?>" />
+                    <button type="button" class="fancy-post-remove-social-link button"><?php esc_html_e('Remove', 'fancy-post-grid'); ?></button>
+                `;
+                row.classList.add('fancy-post-social-link-row');
+                container.appendChild(row);
+                index++;
+                initialize_select2(); // Reinitialize select2 for the newly added row
+            });
+
+            container.addEventListener('click', function (e) {
+                if (e.target.classList.contains('fancy-post-remove-social-link')) {
+                    e.target.parentElement.remove();
+                }
+            });
+
+            // Reinitialize select2 after the page is loaded and after each click
+            function initialize_select2() {
+                jQuery('.fancy-post-social-platform').select2({
+                    templateResult: function (state) {
+                        if (!state.id) { return state.text; }
+                        var iconClass = 'fab fa-' + state.id; // Add 'fab' for Font Awesome icons
+                        return jQuery('<span><i class="' + iconClass + '"></i> ' + state.text + '</span>');
+                    },
+                    templateSelection: function (state) {
+                        if (!state.id) { return state.text; }
+                        var iconClass = 'fab fa-' + state.id; // Add 'fab' for Font Awesome icons
+                        return jQuery('<span><i class="' + iconClass + '"></i> ' + state.text + '</span>');
+                    }
+                });
+            }
+
+            initialize_select2(); // Initialize on page load for existing selects
+        });
+    </script>
+
+    <style>
+        #fancy-post-social-links-repeater {
+            margin-bottom: 20px;
+        }
+
+        .fancy-post-social-link-row {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 12px;
+            align-items: center;
+            border: 1px solid #e0e0e0;
+            padding: 12px;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+        }
+
+        .fancy-post-social-platform {
+            flex: 2;
+            padding: 10px;
+            font-size: 14px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        .fancy-post-social-url {
+            flex: 3;
+            padding: 10px;
+            font-size: 14px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .fancy-post-remove-social-link {
+            background-color: #ff4757;
+            color: white;
+            padding: 6px 12px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .fancy-post-remove-social-link:hover {
+            background-color: #ff6b81;
+        }
+
+        #fancy-post-add-social-link {
+            margin-top: 10px;
+            background-color: #1e90ff;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        #fancy-post-add-social-link:hover {
+            background-color: #007acc;
+        }
+
+        .fancy-post-social-platform .select2-selection__rendered {
+            display: flex;
+            align-items: center;
+        }
+
+        .fancy-post-social-platform .select2-selection__rendered span i {
+            margin-right: 8px;
+        }
+    </style>
+<?php
+}
+
+/**
+ * Render a single row of the social media link
+ */
+function fancy_post_grid_render_social_link_row($index, $platform = '', $url = '') {
+    ?>
+    <div class="fancy-post-social-link-row">
+        <select name="fpg_social_media_links[<?php echo $index; ?>][platform]" class="fancy-post-social-platform">
+            <option value=""><?php esc_html_e('Select Platform', 'fancy-post-grid'); ?></option>
+            <option value="facebook" <?php selected($platform, 'facebook'); ?> class="fab fa-facebook">Facebook</option>
+            <option value="twitter" <?php selected($platform, 'twitter'); ?> class="fab fa-twitter">Twitter</option>
+            <option value="linkedin" <?php selected($platform, 'linkedin'); ?> class="fab fa-linkedin">LinkedIn</option>
+            <option value="instagram" <?php selected($platform, 'instagram'); ?> class="fab fa-instagram">Instagram</option>
+            <option value="pinterest" <?php selected($platform, 'pinterest'); ?> class="fab fa-pinterest">Pinterest</option>
+            <option value="youtube" <?php selected($platform, 'youtube'); ?> class="fab fa-youtube">YouTube</option>
+        </select>
+        <input type="url" name="fpg_social_media_links[<?php echo $index; ?>][url]" class="fancy-post-social-url" placeholder="<?php esc_attr_e('Enter URL', 'fancy-post-grid'); ?>" value="<?php echo esc_attr($url); ?>" />
+        <button type="button" class="fancy-post-remove-social-link button"><?php esc_html_e('Remove', 'fancy-post-grid'); ?></button>
+    </div>
+    <?php
+}
+
+/**
+ * Sanitize social media links
+ */
+function fancy_post_grid_sanitize_social_links($input) {
+    $sanitized = [];
+    if (is_array($input)) {
+        foreach ($input as $item) {
+            $platform = sanitize_text_field($item['platform'] ?? '');
+            $url = esc_url_raw($item['url'] ?? '');
+            if (!empty($platform) && !empty($url)) {
+                $sanitized[] = ['platform' => $platform, 'url' => $url];
+            }
+        }
+    }
+    return $sanitized;
+}

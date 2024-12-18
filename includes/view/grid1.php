@@ -196,6 +196,35 @@ ob_start();
                                     <?php echo get_the_date('M d, Y'); ?>
                                 </li>
                             <?php endif; ?>
+                            <?php if (get_option('fpg_enable_social_share', 'no') === 'yes') : ?>
+                                <li class="meta-social-share">
+                                    <span><?php esc_html_e('Share:', 'fancy-post-grid'); ?></span>
+                                    <?php
+                                    // Fetch the saved social media links
+                                    $social_links = get_option('fpg_social_media_links', []);
+
+                                    if (!empty($social_links)) {
+                                        foreach ($social_links as $link) {
+                                            // Ensure platform and URL are set
+                                            $platform = $link['platform'] ?? '';
+                                            $url = $link['url'] ?? '';
+
+                                            if (!empty($platform) && !empty($url)) {
+                                                // Dynamically generate icons and links
+                                                echo sprintf(
+                                                    '<a href="%1$s" target="_blank" class="social-link %2$s">
+                                                        <i class="fab fa-%2$s"></i>
+                                                    </a>',
+                                                    esc_url($url),
+                                                    esc_attr($platform)
+                                                );
+                                            }
+                                        }
+                                    }
+                                    ?>
+                                </li>
+                            <?php endif; ?>
+                            
                             <?php if ($fpg_field_group_author) : ?>
                                 <li class="meta-author">
                                     <?php if (!empty($fpg_field_group_author_icon) && empty($disabled_meta_icons['author_icon'])) { ?>
