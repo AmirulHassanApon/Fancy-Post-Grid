@@ -1,6 +1,22 @@
 (function($){  
     "use strict";
-    
+    // Settings Tab
+     jQuery(document).ready(function($) {
+        var activeTab = localStorage.getItem('fancy_post_grid_active_tab') || '#fancy-grid-appearance-settings';
+        $('.fancy-grid-nav-tab').removeClass('fancy-grid-nav-tab-active');
+        $('.fancy-grid-tab-content').removeClass('fancy-grid-active');
+        $(`.fancy-grid-nav-tab[href="${activeTab}"]`).addClass('fancy-grid-nav-tab-active');
+        $(activeTab).addClass('fancy-grid-active');
+        $('.fancy-grid-nav-tab').click(function(e) {
+            e.preventDefault();
+            $('.fancy-grid-nav-tab').removeClass('fancy-grid-nav-tab-active');
+            $('.fancy-grid-tab-content').removeClass('fancy-grid-active');
+            $(this).addClass('fancy-grid-nav-tab-active');
+            $($(this).attr('href')).addClass('fancy-grid-active');
+            localStorage.setItem('fancy_post_grid_active_tab', $(this).attr('href'));
+        });
+    });
+
     jQuery(document).ready(function(){
         function filterMarkerMaker() {
             var marker = document.querySelector('#fpg_metabox_tabs .button-wrapper .filter-marker');

@@ -434,3 +434,202 @@ border-radius: 50%;
 .switch--horizontal input ~ input:checked ~ .toggle-outside .toggle-inside {
   left: 39px;
 }
+
+/* Style for the overall form layout */
+.social-media-links {
+    margin: 20px 0;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+/* Style for each social media row */
+.social-media-row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 15px;
+    padding: 5px 0;
+}
+
+/* Label styling */
+.social-media-row label {
+    font-weight: bold;
+    margin-right: 10px;
+    width: 120px;
+    text-align: right;
+}
+
+/* Input field styling */
+.social-media-row input[type="url"] {
+    width: 300px;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    box-sizing: border-box;
+}
+
+/* Checkbox styling for enabling/disabling */
+input[type="checkbox"] {
+    margin-right: 10px;
+}
+
+/* Button styling */
+button {
+    padding: 10px 20px;
+    background-color: #0073aa;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #005f8c;
+}
+
+/* Styling for the social media platform selector (icon preview) */
+.icon-preview {
+    margin-left: 10px;
+}
+
+/* Social media platform icons */
+.icon-preview i {
+    font-size: 20px;
+    color: #333;
+}
+
+/* Space between fields */
+.social-media-row + .social-media-row {
+    margin-top: 15px;
+}
+
+/* Space between form sections */
+.settings-section {
+    margin-bottom: 20px;
+}
+
+/* Error message styling */
+.error-message {
+    color: red;
+    font-size: 14px;
+}
+/* Tab Styles */
+/* Settings Tab Styles */
+.fancy-grid-nav-tab-wrapper {
+  margin-bottom: 20px;
+}
+
+.fancy-grid-nav-tab {
+            padding: 10px 20px;
+            background-color: #f1f1f1;
+            border: 1px solid #ddd;
+            margin-right: 5px;
+            border-radius: 4px 4px 0 0;
+            color: #333;
+            text-decoration: none;
+            font-weight: bold;
+            display: inline-block;
+        }
+
+.fancy-grid-nav-tab-active {
+            background-color: #0073aa;
+            color: #fff;
+            border-color: #0073aa;
+        }
+
+.fancy-grid-tab-content {
+            display: none;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-top: none;
+            border-radius: 0 0 4px 4px;
+            background-color: #fff;
+        }
+
+.fancy-grid-tab-content.fancy-grid-active {
+            display: block;
+        }
+
+/* Hover effect for tabs */
+.fancy-grid-nav-tab:hover {
+            background-color: #0073aa;
+            color: #fff;
+            border-color: #0073aa;
+        }        
+
+/* Form Styles */
+.fancy-post-form {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 6px;
+    border: 1px solid #ddd;
+    
+    max-width: 800px;
+}
+
+.fancy-post-textarea {
+    width: 100%;
+    padding: 12px;
+    border-radius: 6px;
+    border: 1px solid #ddd;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    resize: vertical;
+    box-sizing: border-box;
+}
+
+.fancy-post-textarea:focus {
+    border-color: #0073aa;
+    outline: none;
+    box-shadow: 0 0 8px rgba(0, 115, 170, 0.5);
+}
+
+/* Button Styles */
+.fancy-post-button {
+    background-color: #0073aa;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    font-size: 14px;
+    cursor: pointer;
+    display: inline-block;
+}
+
+.fancy-post-button:hover {
+    background-color: #005177;
+}
+
+/* Section Title Styles */
+.fancy-post-section-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+/* Info Text Styles */
+.fancy-post-info-text {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+/* Custom Section Styles */
+.fancy-post-custom-section {
+    margin-bottom: 30px;
+}
+
+/* Label Styles */
+.fancy-post-label {
+    font-size: 16px;
+    color: #333;
+    display: block;
+    margin-bottom: 8px;
+}
+       
+
+       

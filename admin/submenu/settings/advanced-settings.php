@@ -15,54 +15,29 @@ function fancy_post_grid_render_advanced_settings_page() {
         <h1><?php esc_html_e('Settings', 'fancy-post-grid'); ?></h1>
         
         <!-- Tabs navigation -->
-        <h2 class="nav-tab-wrapper">
-            <a href="#appearance-settings" class="nav-tab nav-tab-active"><?php esc_html_e('Appearance Settings', 'fancy-post-grid'); ?></a>
-            <a href="#additional-settings" class="nav-tab"><?php esc_html_e('Additional Settings', 'fancy-post-grid'); ?></a>
-            <a href="#social-share-settings" class="nav-tab"><?php esc_html_e('Social Share', 'fancy-post-grid'); ?></a>
-            <a href="#custom-css-js-settings" class="nav-tab"><?php esc_html_e('Custom CSS/JavaScript', 'fancy-post-grid'); ?></a>
+        <h2 class="fancy-grid-nav-tab-wrapper">
+            <a href="#fancy-grid-appearance-settings" class="fancy-grid-nav-tab fancy-grid-nav-tab-active"><?php esc_html_e('Appearance Settings', 'fancy-post-grid'); ?></a>
+            <a href="#fancy-grid-additional-settings" class="fancy-grid-nav-tab"><?php esc_html_e('Additional Settings', 'fancy-post-grid'); ?></a>
+            <a href="#fancy-grid-social-share-settings" class="fancy-grid-nav-tab"><?php esc_html_e('Social Share', 'fancy-post-grid'); ?></a>
+            <a href="#fancy-grid-custom-css-js-settings" class="fancy-grid-nav-tab"><?php esc_html_e('Custom CSS/JavaScript', 'fancy-post-grid'); ?></a>
         </h2>
 
         <!-- Tab contents -->
-        <div id="appearance-settings" class="tab-content active">
+        <div id="fancy-grid-appearance-settings" class="fancy-grid-tab-content fancy-grid-active">
             <?php fancy_post_grid_render_appearance_settings(); ?>
         </div>
 
-        <div id="additional-settings" class="tab-content">
+        <div id="fancy-grid-additional-settings" class="fancy-grid-tab-content">
             <?php fancy_post_grid_render_additional_settings(); ?>
         </div>
 
-        <div id="social-share-settings" class="tab-content">
+        <div id="fancy-grid-social-share-settings" class="fancy-grid-tab-content">
             <?php fancy_post_grid_render_social_share_settings(); ?>
         </div>
 
-        <div id="custom-css-js-settings" class="tab-content">
+        <div id="fancy-grid-custom-css-js-settings" class="fancy-grid-tab-content">
             <?php fancy_post_grid_render_custom_css_js_settings(); ?>
         </div>
     </div>
-
-    <style>
-        .tab-content { display: none; }
-        .tab-content.active { display: block; }
-    </style>
-
-    <script>
-    jQuery(document).ready(function($) {
-        var activeTab = localStorage.getItem('fancy_post_grid_active_tab') || '#appearance-settings';
-        $('.nav-tab').removeClass('nav-tab-active');
-        $('.tab-content').removeClass('active');
-        $(`.nav-tab[href="${activeTab}"]`).addClass('nav-tab-active');
-        $(activeTab).addClass('active');
-        $('.nav-tab').click(function(e) {
-            e.preventDefault();
-            $('.nav-tab').removeClass('nav-tab-active');
-            $('.tab-content').removeClass('active');
-            $(this).addClass('nav-tab-active');
-            $($(this).attr('href')).addClass('active');
-            localStorage.setItem('fancy_post_grid_active_tab', $(this).attr('href'));
-        });
-    });
-    </script>
     <?php
 }
-
-

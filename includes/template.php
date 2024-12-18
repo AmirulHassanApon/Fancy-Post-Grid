@@ -312,7 +312,8 @@ function fancy_post_grid_shortcode_pro( $atts ) {
         }
         
         $disabled_meta_icons = get_option('fpg_disable_meta_icon_fields', []);
-        // $fpg_meta_icon_settings = get_option('fpg_style_meta_icon_settings', []);
+        $fpg_social_media_links = get_option('fpg_social_media_links', []);
+        $fpg_enable_social_share = get_option('fpg_enable_social_share', '');
 	    	
 		$dir = plugin_dir_path( __FILE__ );
 
