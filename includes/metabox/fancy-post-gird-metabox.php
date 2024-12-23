@@ -1921,8 +1921,12 @@ function fancy_post_grid_metabox_shortcode_callback_pro( $post ) {
                         ];
                         foreach ($color_fields as $field_name => $label) { ?>
                             <div class="fpg-color-box">
-                                <label for="<?php echo esc_attr($field_name); ?>"><?php esc_html_e($label . ':', 'fancy-post-grid'); ?></label>
-                                <input type="text" class="color-field" id="<?php echo esc_attr($field_name); ?>" name="<?php echo esc_attr($field_name); ?>" value="<?php echo esc_attr($$field_name); ?>" />
+                                <label for="<?php echo esc_attr($field_name); ?>"><?php 
+                                    /* translators: %s is the label for the form field */
+                                    printf(esc_html__('%s:', 'fancy-post-grid'), esc_html($label));  
+                                ?>
+                                </label>
+                                <input type="text" class="color-field" id="<?php echo esc_attr($field_name); ?>" name="<?php echo esc_attr($field_name); ?>" value="<?php echo esc_attr($field_name); ?>" />
                             </div>
                         <?php } ?>
 
@@ -1936,14 +1940,18 @@ function fancy_post_grid_metabox_shortcode_callback_pro( $post ) {
                             'fancy_post_filter_border_width' => 'Border Width (px)',
                             'fancy_post_filter_box_padding' => 'Box Padding (px)',
                             'fancy_post_filter_box_margin' => 'Box Margin (px)',
-                            'fancy_post_filter_box_border_radius' => 'Box Border Radius (px)',
-                            
+                            'fancy_post_filter_box_border_radius' => 'Box Border Radius (px)',                           
                             'fancy_post_filter_item_gap' => 'Item Gap (px)',
                         ];
                         foreach ($numeric_fields as $field_name => $label) { ?>
                         <div class="fpg-numeric-box">
-                            <label for="<?php echo esc_attr($field_name); ?>"><?php esc_html_e($label . ':', 'fancy-post-grid'); ?></label>
-                            <input type="text" id="<?php echo esc_attr($field_name); ?>" name="<?php echo esc_attr($field_name); ?>" value="<?php echo esc_attr($$field_name); ?>" />
+                            <label for="<?php echo esc_attr($field_name); ?>">
+                                <?php 
+                                /* translators: %s is the label for the form field */
+                                printf(esc_html__('%s:', 'fancy-post-grid'), esc_html($label));  
+                                ?>
+                            </label>
+                            <input type="text" id="<?php echo esc_attr($field_name); ?>" name="<?php echo esc_attr($field_name); ?>" value="<?php echo esc_attr($field_name); ?>" />
                         </div>
 
                         <?php
