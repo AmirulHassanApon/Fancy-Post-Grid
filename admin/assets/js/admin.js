@@ -1,7 +1,7 @@
 (function($){  
     "use strict";
     // Settings Tab
-     jQuery(document).ready(function($) {
+    jQuery(document).ready(function($) {
         var activeTab = localStorage.getItem('fancy_post_grid_active_tab') || '#fancy-grid-appearance-settings';
         $('.fancy-grid-nav-tab').removeClass('fancy-grid-nav-tab-active');
         $('.fancy-grid-tab-content').removeClass('fancy-grid-active');

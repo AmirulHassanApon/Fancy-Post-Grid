@@ -1,16 +1,15 @@
-# Fancy Post Grid Pro- Ultimate Post Grid Builder Plugin #
+# Fancy Post Grid Pro- Ultimate Post Grid Builder #
   
-**Plugin Name:** Fancy Post Grid Pro - Ultimate Post Grid Builder Plugin
-**Plugin URI:** https://wordpress.org/plugins/fancy-post-grid/
+**Plugin Name:** Fancy Post Grid Pro - Ultimate Post Grid Builder
 **Author:** RSTheme 
 **Author URI:** http://rstheme.com 
 **Contributors:** rstheme2017, rubrash
 **Tags:** maintenance mode, coming soon, landing page, under construction, countdown   
-**Version:** 1.0.0
+**Version:** 1.0.1
 **License:** GPLv2 or later
 **License URI:** http://www.gnu.org/licenses/gpl-2.0.html 
-**Stable tag:** 1.0.0
-**Tested up to:** 6.7
+**Stable tag:** 1.0.1
+**Tested up to:** 6.7.1
 **Requires PHP:** 7.0.0
 **Requires at least:** 5.5
 
