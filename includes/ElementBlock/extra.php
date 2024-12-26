@@ -772,7 +772,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                 )
             );
 
-            // Title Styling: margin
+            // Title Styling: Padding
             $this->add_control(
                 'title_margin',
                 array(
@@ -954,113 +954,6 @@ add_action('elementor/widgets/widgets_registered', function () {
 
             $this->end_controls_section(); // End Post Title Style Section
 
-            $this->start_controls_section(
-                'excerpt_content_style',
-                array(
-                    'label' => __( 'Excerpt/Content', 'fancy-post-grid' ),
-                    'tab'   => \Elementor\Controls_Manager::TAB_STYLE,
-                )
-            );
-
-            // Typography Control
-            $this->add_group_control(
-                \Elementor\Group_Control_Typography::get_type(),
-                array(
-                    'name'     => 'excerpt_typography',
-                    'label'    => __( 'Typography', 'fancy-post-grid' ),
-                    'selector' => '{{WRAPPER}} .fancy-post-excerpt',
-                )
-            );
-
-            // Excerpt Spacing Control
-            $this->add_control(
-                'excerpt_spacing',
-                array(
-                    'label'      => __( 'Excerpt Spacing', 'fancy-post-grid' ),
-                    'type'       => \Elementor\Controls_Manager::DIMENSIONS,
-                    'size_units' => array( 'px', 'em', '%' ),
-                    'selectors'  => array(
-                        '{{WRAPPER}} .fancy-post-excerpt' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-                    ),
-                )
-            );
-
-            // Excerpt Alignment Control
-            $this->add_responsive_control(
-                'excerpt_alignment',
-                array(
-                    'label'        => __( 'Alignment', 'fancy-post-grid' ),
-                    'type'         => \Elementor\Controls_Manager::CHOOSE,
-                    'options'      => array(
-                        'left'   => array(
-                            'title' => __( 'Left', 'fancy-post-grid' ),
-                            'icon'  => 'eicon-text-align-left',
-                        ),
-                        'center' => array(
-                            'title' => __( 'Center', 'fancy-post-grid' ),
-                            'icon'  => 'eicon-text-align-center',
-                        ),
-                        'right'  => array(
-                            'title' => __( 'Right', 'fancy-post-grid' ),
-                            'icon'  => 'eicon-text-align-right',
-                        ),
-                    ),
-                    'selectors'    => array(
-                        '{{WRAPPER}} .fancy-post-excerpt' => 'text-align: {{VALUE}};',
-                    ),
-                )
-            );
-
-            // Tabs for Normal and Box Hover
-            $this->start_controls_tabs('excerpt_color_tabs');
-
-            // Normal Tab
-            $this->start_controls_tab(
-                'excerpt_normal_tab',
-                array(
-                    'label' => __( 'Normal', 'fancy-post-grid' ),
-                )
-            );
-
-            // Excerpt Color Control (Normal)
-            $this->add_control(
-                'excerpt_normal_color',
-                array(
-                    'label'     => __( 'Excerpt Color', 'fancy-post-grid' ),
-                    'type'      => \Elementor\Controls_Manager::COLOR,
-                    'selectors' => array(
-                        '{{WRAPPER}} .fancy-post-excerpt' => 'color: {{VALUE}};',
-                    ),
-                )
-            );
-
-            $this->end_controls_tab();
-
-            // Box Hover Tab
-            $this->start_controls_tab(
-                'excerpt_hover_tab',
-                array(
-                    'label' => __( 'Box Hover', 'fancy-post-grid' ),
-                )
-            );
-
-            // Excerpt Color on Hover Control
-            $this->add_control(
-                'excerpt_hover_color',
-                array(
-                    'label'     => __( 'Excerpt Color on Hover', 'fancy-post-grid' ),
-                    'type'      => \Elementor\Controls_Manager::COLOR,
-                    'selectors' => array(
-                        '{{WRAPPER}} .fancy-post:hover .fancy-post-excerpt' => 'color: {{VALUE}};',
-                    ),
-                )
-            );
-
-            $this->end_controls_tab();
-            $this->end_controls_tabs();
-
-            $this->end_controls_section();
-
 
             $this->start_controls_section(
                 'read_more_style',
@@ -1216,84 +1109,48 @@ add_action('elementor/widgets/widgets_registered', function () {
                         <?php } ?>
 
                         <!-- Post Title -->
-                        <?php
-                        if (!empty($settings['show_post_title']) && 'yes' === $settings['show_post_title']) {
-                            // Title Tag
-                            $title_tag = !empty($settings['title_tag']) ? esc_attr($settings['title_tag']) : 'h3';
+                        <?php if ('yes' === $settings['show_post_title']) { 
+                            // Set the dynamic title tag
+                            $title_tag = !empty($settings['title_tag']) ? $settings['title_tag'] : 'h3';
 
-                            // Title Content
+                            // Retrieve the title and apply cropping
                             $title = get_the_title();
                             if (!empty($settings['title_crop_by']) && !empty($settings['title_length'])) {
-                                $title = ('character' === $settings['title_crop_by'])
-                                    ? mb_substr($title, 0, (int)$settings['title_length'])
-                                    : implode(' ', array_slice(explode(' ', $title), 0, (int)$settings['title_length']));
+                                if ('character' === $settings['title_crop_by']) {
+                                    $title = mb_substr($title, 0, $settings['title_length']);
+                                } elseif ('word' === $settings['title_crop_by']) {
+                                    $words = explode(' ', $title);
+                                    $title = implode(' ', array_slice($words, 0, $settings['title_length']));
+                                }
                             }
 
-                            // Inline Styles
-                            $title_styles = [];
-                            if (!empty($settings['title_padding'])) {
-                                $padding = $settings['title_padding'];
-                                $title_styles[] = "padding: {$padding['top']}{$padding['unit']} {$padding['right']}{$padding['unit']} {$padding['bottom']}{$padding['unit']} {$padding['left']}{$padding['unit']};";
-                            }
-                            if (!empty($settings['title_margin'])) {
-                                $margin = $settings['title_margin'];
-                                $title_styles[] = "margin: {$margin['top']}{$margin['unit']} {$margin['right']}{$margin['unit']} {$margin['bottom']}{$margin['unit']} {$margin['left']}{$margin['unit']};";
-                            }
-                            if (!empty($settings['title_min_height'])) {
-                                $title_styles[] = "min-height: {$settings['title_min_height']}px;";
-                            }
-                            if (!empty($settings['title_alignment'])) {
-                                $title_styles[] = "text-align: {$settings['title_alignment']};";
-                            }
-                            if (!empty($settings['title_normal_color'])) {
-                                $title_styles[] = "color: {$settings['title_normal_color']};";
-                            }
-                            if (!empty($settings['title_normal_background'])) {
-                                $title_styles[] = "background-color: {$settings['title_normal_background']};";
-                            }
-                            $title_style_attr = !empty($title_styles) ? 'style="' . implode(' ', $title_styles) . '"' : '';
-
-                            // Title Classes
-                            $title_classes = ['fancy-post-title'];
-                            if ('enable' === $settings['title_hover_underline']) {
-                                $title_classes[] = 'hover-underline';
+                            // Add visibility styling
+                            $visibility_class = '';
+                            if ('show_1_line' === $settings['title_visibility_style']) {
+                                $visibility_class = 'fancy-title-one-line';
+                            } elseif ('show_2_lines' === $settings['title_visibility_style']) {
+                                $visibility_class = 'fancy-title-two-lines';
+                            } elseif ('show_3_lines' === $settings['title_visibility_style']) {
+                                $visibility_class = 'fancy-title-three-lines';
                             }
 
-                            // Rendering the Title
+                            // Check if hover underline is enabled
+                            $hover_class = ('enable' === $settings['title_hover_underline']) ? 'hover-underline' : '';
                             ?>
-                            <<?php echo $title_tag; ?> 
-                                class="fancy_title_elementor <?php echo esc_attr(implode(' ', $title_classes)); ?>"  
-                                style="
-                                    <?php echo !empty($settings['title_normal_background']) ? 'background-color: ' . esc_attr($settings['title_normal_background']) . ';' : ''; ?>"
-                                onmouseover="
-                                    this.style.backgroundColor='<?php echo esc_attr($settings['title_hover_background']); ?>';"
-                                onmouseout="
-                                    this.style.backgroundColor='<?php echo esc_attr($settings['title_normal_background']); ?>';">
+                            <<?php echo esc_attr($title_tag); ?> class="fancy-post-title <?php echo esc_attr($visibility_class . ' ' . $hover_class); ?>">
                                 <?php if ('link_details' === $settings['link_type']) { ?>
-                                    <a href="<?php the_permalink(); ?>" 
-                                       target="<?php echo ('new_window' === $settings['link_target']) ? '_blank' : '_self'; ?>"
-                                       style="
-                                           <?php echo !empty($settings['title_normal_color']) ? 'color: ' . esc_attr($settings['title_normal_color']) . ';' : ''; ?>"
-                                       onmouseover="this.style.color='<?php echo esc_attr($settings['title_hover_color']); ?>';"
-                                       onmouseout="this.style.color='<?php echo esc_attr($settings['title_normal_color']); ?>';">
-                                       <?php echo esc_html($title); ?>
+                                    <a href="<?php the_permalink(); ?>" target="<?php echo ('new_window' === $settings['link_target']) ? '_blank' : '_self'; ?>">
+                                        <?php echo esc_html($title); ?>
                                     </a>
                                 <?php } else { ?>
                                     <?php echo esc_html($title); ?>
                                 <?php } ?>
-                            </<?php echo $title_tag; ?>>
-
-                            <?php
-                        }
-                        ?>
+                            </<?php echo esc_attr($title_tag); ?>>
+                        <?php } ?>
 
                         <!-- Post Excerpt -->
                         <?php if ( 'yes' === $settings['show_post_excerpt'] ) { ?>
-                            <p class="fancy-post-excerpt" 
-                                style="
-                                    <?php echo !empty( $settings['excerpt_normal_color'] ) ? 'color: ' . esc_attr( $settings['excerpt_normal_color'] ) . ';' : ''; ?>
-                                    <?php echo isset( $settings['excerpt_spacing']['size'] ) ? 'margin: ' . esc_attr( $settings['excerpt_spacing']['top'] ) . $settings['excerpt_spacing']['unit'] . ' ' . esc_attr( $settings['excerpt_spacing']['right'] ) . $settings['excerpt_spacing']['unit'] . ' ' . esc_attr( $settings['excerpt_spacing']['bottom'] ) . $settings['excerpt_spacing']['unit'] . ' ' . esc_attr( $settings['excerpt_spacing']['left'] ) . $settings['excerpt_spacing']['unit'] . ';' : ''; ?>
-                                    text-align: <?php echo esc_attr( $settings['excerpt_alignment'] ); ?>;">
+                            <p class="fancy-post-excerpt">
                                 <?php
                                 $excerpt_type = $settings['excerpt_type'];
                                 $excerpt_length = $settings['excerpt_length'];
@@ -1312,12 +1169,6 @@ add_action('elementor/widgets/widgets_registered', function () {
                                 }
                                 ?>
                             </p>
-                            <style>
-                                /* Hover styling for the excerpt */
-                                .fancy-post:hover .fancy-post-excerpt {
-                                    <?php echo !empty( $settings['excerpt_hover_color'] ) ? 'color: ' . esc_attr( $settings['excerpt_hover_color'] ) . ';' : ''; ?>
-                                }
-                            </style>
                         <?php } ?>
 
                         <!-- Read More Button -->
