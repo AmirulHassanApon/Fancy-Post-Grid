@@ -568,6 +568,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                         'word' => __( 'Word', 'fancy-post-grid' ),
                     ),
                     'default' => 'character',
+                    'render_type' => 'template'
                 ]
             );
 
@@ -609,6 +610,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                         'fancy_post_list'       => __( 'List Size(1200 x 650)', 'fancy-post-grid' ),
                     ),
                     'default' => 'full',
+                    'render_type' => 'template'
                 ]
             );
 
@@ -634,6 +636,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                         'full_content' => __( 'Full Content', 'fancy-post-grid' ),
                     ),
                     'default' => 'character',
+                    'render_type' => 'template'
                 ]
             );
             // Excerpt Limit
@@ -788,6 +791,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                     'condition' => array(
                         'button_icon' => 'yes',
                     ),
+                    'render_type' => 'template'
                 ]
             );
                
@@ -805,6 +809,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                     'condition' => array(
                         'button_icon' => 'yes',
                     ),
+                    'render_type' => 'template'
                 ]
             );
 
@@ -829,6 +834,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                     'selectors'  => array(
                         '{{WRAPPER}} .fancy-post-title' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                     ),
+                    'render_type' => 'template'
                 ]
             );            
 
@@ -842,6 +848,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                     'selectors'  => array(
                         '{{WRAPPER}} .fancy-post-title' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                     ),
+                    'render_type' => 'template'
                 ]
             );
             // Title Styling: Typography
@@ -864,6 +871,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                     'selectors' => array(
                         '{{WRAPPER}} .fancy-post-title' => 'min-height: {{VALUE}}px;',
                     ),
+                    'render_type' => 'template'
                 ]
             );
 
@@ -895,6 +903,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                     'selectors' => array(
                         '{{WRAPPER}} .fancy-post-title' => 'text-align: {{VALUE}};',
                     ),
+                    'render_type' => 'template'
                 ]
             );
 
@@ -917,6 +926,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                     'selectors' => array(
                         '{{WRAPPER}} .fancy-post-title' => 'color: {{VALUE}};',
                     ),
+                    'render_type' => 'template'
                 ]
             );
 
@@ -928,6 +938,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                     'selectors' => array(
                         '{{WRAPPER}} .fancy-post-title' => 'background-color: {{VALUE}};',
                     ),
+                    'render_type' => 'template'
                 ]
             );
 
@@ -949,6 +960,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                     'selectors' => array(
                         '{{WRAPPER}} .fancy-post-title:hover' => 'color: {{VALUE}};',
                     ),
+                    'render_type' => 'template'
                 ]
             );
 
@@ -960,6 +972,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                     'selectors' => array(
                         '{{WRAPPER}} .fancy-post-title:hover' => 'background-color: {{VALUE}};',
                     ),
+                    'render_type' => 'template'
                 ]
             );
 
@@ -981,6 +994,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                     'selectors' => array(
                         '{{WRAPPER}} .fancy-post-title:hover' => 'color: {{VALUE}};',
                     ),
+                    'render_type' => 'template'
                 ]
             );
 
@@ -992,6 +1006,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                     'selectors' => array(
                         '{{WRAPPER}} .fancy-post-title:hover' => 'background-color: {{VALUE}};',
                     ),
+                    'render_type' => 'template'
                 ]
             );
 
@@ -1020,6 +1035,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                     'selectors'  => array(
                         '{{WRAPPER}} .fancy-post-thumbnail' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                     ),
+                    'render_type' => 'template'
                 ]
             );
 
@@ -1033,6 +1049,8 @@ add_action('elementor/widgets/widgets_registered', function () {
                     'selectors'  => array(
                         '{{WRAPPER}} .fancy-post-thumbnail img' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                     ),
+
+                    'render_type' => 'template'
                 ]
             );
 
@@ -1051,6 +1069,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                     'selectors' => array(
                         '{{WRAPPER}} .fancy-post-thumbnail img' => 'width: {{VALUE}};',
                     ),
+                    'render_type' => 'template'
                 ]
             );
 
@@ -1073,6 +1092,8 @@ add_action('elementor/widgets/widgets_registered', function () {
                     'selectors' => array(
                         '{{WRAPPER}} .fancy-post-thumbnail .overlay' => 'background-color: {{VALUE}};',
                     ),
+                    'render_type' => 'template'
+
                 ]
             );
 
@@ -1091,6 +1112,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                     'selectors'  => array(
                         '{{WRAPPER}} .fancy-post-thumbnail .overlay' => 'opacity: {{SIZE}};',
                     ),
+                    'render_type' => 'template'
                 ]
             );
 
@@ -1112,6 +1134,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                     'selectors' => array(
                         '{{WRAPPER}} .fancy-post-thumbnail:hover .overlay' => 'background-color: {{VALUE}};',
                     ),
+                    'render_type' => 'template'
                 ]
             );
 
@@ -1130,6 +1153,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                     'selectors'  => array(
                         '{{WRAPPER}} .fancy-post-thumbnail:hover .overlay' => 'opacity: {{SIZE}};',
                     ),
+                    'render_type' => 'template'
                 ]
             );
 
@@ -1151,6 +1175,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                     'selectors'  => array(
                         '{{WRAPPER}} .fancy-post-thumbnail .overlay' => 'transition-duration: {{SIZE}}s;',
                     ),
+                    'render_type' => 'template'
                 ]
             );
 
@@ -1189,6 +1214,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                     'selectors'  => array(
                         '{{WRAPPER}} .fancy-post-excerpt' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                     ),
+                     'render_type' => 'template'
                 ]
             );
 
@@ -1221,6 +1247,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                     'selectors' => array(
                         '{{WRAPPER}} .fancy-post-excerpt' => 'text-align: {{VALUE}};',
                     ),
+                     'render_type' => 'template'
                 ]
             );
 
@@ -1244,6 +1271,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                     'selectors' => array(
                         '{{WRAPPER}} .fancy-post-excerpt' => 'color: {{VALUE}};',
                     ),
+                     'render_type' => 'template'
                 ]
             );
 
@@ -1266,6 +1294,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                     'selectors' => array(
                         '{{WRAPPER}} .fancy-post:hover .fancy-post-excerpt' => 'color: {{VALUE}};',
                     ),
+                     'render_type' => 'template'
                 ]
             );
 
@@ -1316,6 +1345,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                     'selectors' => array(
                         '{{WRAPPER}} .fancy-post-meta' => 'text-align: {{VALUE}};',
                     ),
+                     'render_type' => 'template'
                 ]
             );
 
@@ -1329,6 +1359,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                     'selectors'  => array(
                         '{{WRAPPER}} .fancy-post-meta' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                     ),
+                     'render_type' => 'template'
                 ]
             );
 
@@ -1351,6 +1382,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                     'selectors' => array(
                         '{{WRAPPER}} .fancy-post-meta' => 'color: {{VALUE}};',
                     ),
+                     'render_type' => 'template'
                 ]
             );
 
@@ -1362,6 +1394,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                     'selectors' => array(
                         '{{WRAPPER}} .fancy-post-meta a' => 'color: {{VALUE}};',
                     ),
+                     'render_type' => 'template'
                 ]
             );
 
@@ -1373,6 +1406,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                     'selectors' => array(
                         '{{WRAPPER}} .fancy-post-meta i' => 'color: {{VALUE}};',
                     ),
+                     'render_type' => 'template'
                 ]
             );
 
@@ -1394,6 +1428,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                     'selectors' => array(
                         '{{WRAPPER}} .fancy-post-meta a:hover' => 'color: {{VALUE}};',
                     ),
+                     'render_type' => 'template'
                 ]
             );
 
@@ -1415,6 +1450,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                     'selectors' => array(
                         '{{WRAPPER}}:hover .fancy-post-meta' => 'color: {{VALUE}};',
                     ),
+                     'render_type' => 'template'
                 ]
             );
 
@@ -1454,6 +1490,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                     'selectors' => array(
                         '{{WRAPPER}} .readmore-button' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                     ),
+                     'render_type' => 'template'
                 ]
             );
 
@@ -1467,6 +1504,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                     'selectors' => array(
                         '{{WRAPPER}} .readmore-button' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                     ),
+                     'render_type' => 'template'
                 ]
             );
 
@@ -1493,6 +1531,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                     'selectors'    => array(
                         '{{WRAPPER}} .fancy-post-readmore' => 'text-align: {{VALUE}};',
                     ),
+                     'render_type' => 'template'
                 ]
             );
 
@@ -1515,6 +1554,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                     'selectors' => array(
                         '{{WRAPPER}} .readmore-button' => 'color: {{VALUE}};',
                     ),
+                     'render_type' => 'template'
                 ]
             );
 
@@ -1526,6 +1566,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                     'selectors' => array(
                         '{{WRAPPER}} .readmore-button' => 'background-color: {{VALUE}};',
                     ),
+                     'render_type' => 'template'
                 ]
             );
 
@@ -1547,6 +1588,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                     'selectors'  => array(
                         '{{WRAPPER}} .readmore-button' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                     ),
+                     'render_type' => 'template'
                 ]
             );
 
@@ -1568,6 +1610,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                     'selectors' => array(
                         '{{WRAPPER}} .readmore-button:hover' => 'color: {{VALUE}};',
                     ),
+                     'render_type' => 'template'
                 ]
             );
 
@@ -1579,6 +1622,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                     'selectors' => array(
                         '{{WRAPPER}} .readmore-button:hover' => 'background-color: {{VALUE}};',
                     ),
+                     'render_type' => 'template'
                 ]
             );
 
@@ -1600,6 +1644,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                     'selectors'  => array(
                         '{{WRAPPER}} .readmore-button:hover' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                     ),
+                     'render_type' => 'template'
                 ]
             );
 
@@ -1621,6 +1666,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                     'selectors' => array(
                         '{{WRAPPER}} .fancy-post:hover .readmore-button' => 'color: {{VALUE}};',
                     ),
+                    'render_type' => 'template'
                 ]
             );
 
@@ -1632,6 +1678,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                     'selectors' => array(
                         '{{WRAPPER}} .fancy-post:hover .readmore-button' => 'background-color: {{VALUE}};',
                     ),
+                    'render_type' => 'template'
                 ]
             );
 
@@ -1688,6 +1735,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                     'selectors'  => array(
                         '{{WRAPPER}} .fancy-post-card' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                     ),
+                    'render_type' => 'template'
                 ]
             );
 
@@ -1707,6 +1755,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                     'selectors'  => array(
                         '{{WRAPPER}} .fancy-post-card' => 'border-radius: {{SIZE}}{{UNIT}};',
                     ),
+                    'render_type' => 'template'
                 ]
             );
 
@@ -1717,6 +1766,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                     'label'   => __( 'Enable Border & Box Shadow', 'fancy-post-grid' ),
                     'type'    => \Elementor\Controls_Manager::SWITCHER,
                     'default' => '',
+                    'render_type' => 'template'
                 ]
             );
 
@@ -1731,6 +1781,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                     'condition' => array(
                         'enable_border_shadow' => 'yes',
                     ),
+                    'render_type' => 'template'
                 ]
             );
 
@@ -1743,6 +1794,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                     'condition' => array(
                         'enable_border_shadow' => 'yes',
                     ),
+                    'render_type' => 'template'
                 ]
             );
 
@@ -1753,6 +1805,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                     'label'   => __( 'Enable Border Bottom', 'fancy-post-grid' ),
                     'type'    => \Elementor\Controls_Manager::SWITCHER,
                     'default' => '',
+                    'render_type' => 'template'
                 ]
             );
 
@@ -1774,6 +1827,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                     'condition' => array(
                         'enable_border_bottom' => 'yes',
                     ),
+                    'render_type' => 'template'
                 ]
             );
 
@@ -1788,6 +1842,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                     'condition' => array(
                         'enable_border_bottom' => 'yes',
                     ),
+                    'render_type' => 'template'
                 ]
             );
 
@@ -1810,6 +1865,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                     'selectors' => array(
                         '{{WRAPPER}} .fancy-post-item' => 'background-color: {{VALUE}};',
                     ),
+                    'render_type' => 'template'
                 ]
             );
 
@@ -1822,6 +1878,8 @@ add_action('elementor/widgets/widgets_registered', function () {
                     'selectors' => array(
                         '{{WRAPPER}} .fancy-post-item' => 'background-image: url({{URL}});',
                     ),
+
+                    'render_type' => 'template'
                 ]
             );
 
@@ -1843,6 +1901,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                     'selectors' => array(
                         '{{WRAPPER}} .fancy-post-item:hover' => 'background-color: {{VALUE}};',
                     ),
+                    'render_type' => 'template'
                 ]
             );
 
