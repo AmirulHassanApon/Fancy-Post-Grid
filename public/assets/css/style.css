@@ -27,6 +27,18 @@ body {
     color: #454545;
     line-height: 1.6;
 }
+
+.fancy-post-thumbnail .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+}
+
+
+
 .fancy-title-one-line {
     display: -webkit-box;
     -webkit-line-clamp: 1;

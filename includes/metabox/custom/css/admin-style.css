@@ -710,3 +710,16 @@ background: transparent;
 .fpg-radio-list:hover img.fpg-style-image-2nd{
   display: inline-block;
 }
+
+.fancy-post-thumbnail .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+}
+
+.fancy-post-thumbnail:hover .overlay {
+    opacity: var(--hover-opacity); /* Replace with dynamic PHP value if needed */
+}

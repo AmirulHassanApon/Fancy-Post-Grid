@@ -35,7 +35,7 @@ add_action('elementor/widgets/widgets_registered', function () {
 
         // Get authors
         public function get_authors_list() {
-            $authors = get_users(array('who' => 'authors'));
+            $authors = get_users(array('capability' => 'edit_posts',));
             $author_list = [];
             foreach ($authors as $author) {
                 $author_list[$author->ID] = $author->display_name;
@@ -56,24 +56,31 @@ add_action('elementor/widgets/widgets_registered', function () {
             // Add control for Layout selection (Grid, Slider, etc.)
             $this->add_control(
                 'fancy_post_grid_layout',
-                array(
-                    'label'   => __( 'Grid Style', 'fancy-post-grid' ),
+                [                    'label'   => __( 'Grid Style', 'fancy-post-grid' ),
                     'type'    => \Elementor\Controls_Manager::SELECT,
                     'options' => array(
                         'gridstyle01' => __( 'Grid Style 01', 'fancy-post-grid' ),
                         'gridstyle02' => __( 'Grid Style 02', 'fancy-post-grid' ),
                         'gridstyle03' => __( 'Grid Style 03', 'fancy-post-grid' ),
                         'gridstyle04' => __( 'Grid Style 04', 'fancy-post-grid' ),
+                        'gridstyle05' => __( 'Grid Style 05', 'fancy-post-grid' ),
+                        'gridstyle06' => __( 'Grid Style 06', 'fancy-post-grid' ),
+                        'gridstyle07' => __( 'Grid Style 07', 'fancy-post-grid' ),
+                        'gridstyle08' => __( 'Grid Style 08', 'fancy-post-grid' ),
+                        'gridstyle09' => __( 'Grid Style 09', 'fancy-post-grid' ),
+                        'gridstyle10' => __( 'Grid Style 10', 'fancy-post-grid' ),
+                        'gridstyle11' => __( 'Grid Style 11', 'fancy-post-grid' ),
+                        'gridstyle12' => __( 'Grid Style 12', 'fancy-post-grid' ),
                     ),
                     'default' => 'gridstyle01',
-                )
+                ]
             );
 
 
             // Add control for number of columns
             $this->add_control(
                 'columns',
-                array(
+                [                    
                     'label'   => __( 'Number of Columns', 'fancy-post-grid' ),
                     'type'    => \Elementor\Controls_Manager::SELECT,
                     'options' => array(
@@ -84,13 +91,13 @@ add_action('elementor/widgets/widgets_registered', function () {
                         6 => __( '6 Columns', 'fancy-post-grid' ),
                     ),
                     'default' => 3,
-                )
+                ]
             );
 
             // Add control for text alignment
             $this->add_control(
                 'text_alignment',
-                array(
+                [
                     'label'   => __( 'Text Alignment', 'fancy-post-grid' ),
                     'type'    => \Elementor\Controls_Manager::CHOOSE,
                     'options' => array(
@@ -108,55 +115,55 @@ add_action('elementor/widgets/widgets_registered', function () {
                         ),
                     ),
                     'default' => 'center',
-                )
+                ]
             );
 
             $this->end_controls_section();
             // Layout Section
             $this->start_controls_section(
                 'query_builder_section',
-                array(
+                [
                     'label' => __( 'Query Builder', 'fancy-post-grid' ),
                     'tab'   => \Elementor\Controls_Manager::TAB_CONTENT,
-                )
+                ]
             );
             // Add Query Builder options
             $this->add_control(
                 'category_filter',
-                array(
+                [
                     'label'   => __( 'Select Category', 'fancy-post-grid' ),
                     'type'    => \Elementor\Controls_Manager::SELECT2,
                     'options' => $this->get_categories_list(),
                     'label_block' => true,
                     'multiple' => true,
-                )
+                ]
             );
 
             $this->add_control(
                 'tag_filter',
-                array(
+                [
                     'label'   => __( 'Select Tags', 'fancy-post-grid' ),
                     'type'    => \Elementor\Controls_Manager::SELECT2,
                     'options' => $this->get_tags_list(),
                     'label_block' => true,
                     'multiple' => true,
-                )
+                ]
             );
 
             $this->add_control(
                 'author_filter',
-                array(
+                [
                     'label'   => __( 'Select Author', 'fancy-post-grid' ),
                     'type'    => \Elementor\Controls_Manager::SELECT2,
                     'options' => $this->get_authors_list(),
                     'label_block' => true,
-                )
+                ]
             );
 
             // Sorting options
             $this->add_control(
                 'sort_order',
-                array(
+                [                    
                     'label'   => __( 'Sort Order', 'fancy-post-grid' ),
                     'type'    => \Elementor\Controls_Manager::SELECT,
                     'options' => array(
@@ -164,72 +171,74 @@ add_action('elementor/widgets/widgets_registered', function () {
                         'asc'  => __( 'Ascending', 'fancy-post-grid' ),
                     ),
                     'default' => 'desc',
-                )
+                ]
             );
 
             // Number of posts per page
             $this->add_control(
                 'posts_per_page',
-                array(
+                [                    
                     'label'       => __( 'Posts per Page', 'fancy-post-grid' ),
                     'type'        => \Elementor\Controls_Manager::NUMBER,
                     'default'     => 6,
                     'min'         => 1,
                     'step'        => 1,
-                )
+                ]
             );
 
             // Include/Exclude posts
             $this->add_control(
                 'include_posts',
-                array(
+                [
                     'label'   => __( 'Include Posts (IDs)', 'fancy-post-grid' ),
                     'type'    => \Elementor\Controls_Manager::TEXT,
                     'description' => __( 'Enter post IDs separated by commas', 'fancy-post-grid' ),
-                )
+                ]
             );
 
             $this->add_control(
                 'exclude_posts',
-                array(
+                [
                     'label'   => __( 'Exclude Posts (IDs)', 'fancy-post-grid' ),
                     'type'    => \Elementor\Controls_Manager::TEXT,
                     'description' => __( 'Enter post IDs separated by commas', 'fancy-post-grid' ),
-                )
+                ]
             );
 
             $this->end_controls_section();
             // Pagination Section
             $this->start_controls_section(
                 'pagination_section',
-                array(
+                [
                     'label' => __( 'Pagination', 'fancy-post-grid' ),
                     'tab'   => \Elementor\Controls_Manager::TAB_CONTENT,
-                )
+                ]
             );
             $this->add_control(
                 'show_pagination',
-                array(
+                [
                     'label'       => __( 'Show Pagination', 'fancy-post-grid' ),
                     'type'        => \Elementor\Controls_Manager::SWITCHER,
-                    'pagination_on'    => __( 'Show', 'fancy-post-grid' ),
-                    'pagination_off'   => __( 'Hide', 'fancy-post-grid' ),
-                    'default'     => 'pagination_on',
-                )
+                    'label_on' => esc_html__( 'Show', 'fancy-post-grid' ),
+                    'label_off' => esc_html__( 'Hide', 'fancy-post-grid' ),
+                    'return_value' => 'yes',
+                    'default' => 'yes',
+                    'render_type' => 'template'
+                ]
             );
             $this->end_controls_section();
 
             // Links Section
             $this->start_controls_section(
                 'link_section',
-                array(
+                [
                     'label' => __( 'Links', 'fancy-post-grid' ),
                     'tab'   => \Elementor\Controls_Manager::TAB_CONTENT,
-                )
+                ]
             );
             $this->add_control(
                 'link_type',
-                array(
+                [
                     'label'   => __( 'Post link type', 'fancy-post-grid' ),
                     'type'    => \Elementor\Controls_Manager::SELECT,
                     'options' => array(
@@ -237,237 +246,272 @@ add_action('elementor/widgets/widgets_registered', function () {
                         'no_link'  => __( 'No Link', 'fancy-post-grid' ),
                     ),
                     'default' => 'link_details',
-                )
+                ]
             );
             $this->add_control(
                 'link_target',
-                array(
-                    'label'   => __( 'Link Target', 'fancy-post-grid' ),
+                [                    'label'   => __( 'Link Target', 'fancy-post-grid' ),
                     'type'    => \Elementor\Controls_Manager::SELECT,
                     'options' => array(
                         'same_window' => __( 'Same Window', 'fancy-post-grid' ),
                         'new_window'  => __( 'New Window', 'fancy-post-grid' ),
                     ),
                     'default' => 'same_window',
-                )
+                ]
             );
             $this->add_control(
                 'thumbnail_link',
                 array(
                     'label'       => __( 'Thumbnail Link', 'fancy-post-grid' ),
                     'type'        => \Elementor\Controls_Manager::SWITCHER,
-                    'thumbnail_on'    => __( 'Show', 'fancy-post-grid' ),
-                    'thumbnail_off'   => __( 'Hide', 'fancy-post-grid' ),
-                    'default'     => 'thumbnail_on',
+                    'label_on' => esc_html__( 'Show', 'fancy-post-grid' ),
+                    'label_off' => esc_html__( 'Hide', 'fancy-post-grid' ),
+                    'return_value' => 'yes',
+                    'default' => 'yes',
+                    'render_type' => 'template'
                 )
             );
             $this->end_controls_section();
             // Style Section
             $this->start_controls_section(
                 'style_settings',
-                array(
+                [
                     'label' => __( ' Field Selection', 'fancy-post-grid' ),
                     'tab'   => \Elementor\Controls_Manager::TAB_SETTINGS,
-                )
+                ]
             );
             // Show/Hide controls for Post Elements
             $this->add_control(
                 'show_post_title',
-                array(
+                [
                     'label'   => __( 'Show Post Title', 'fancy-post-grid' ),
                     'type'    => \Elementor\Controls_Manager::SWITCHER,
-                    'title_on'  => __( 'Show', 'fancy-post-grid' ),
-                    'title_off' => __( 'Hide', 'fancy-post-grid' ),
-                    'default'   => 'title_on',
-                )
+                    'label_on' => esc_html__( 'Show', 'fancy-post-grid' ),
+                    'label_off' => esc_html__( 'Hide', 'fancy-post-grid' ),
+                    'return_value' => 'yes',
+                    'default' => 'yes',
+                    'render_type' => 'template'
+                ]
             );
 
             $this->add_control(
                 'show_post_thumbnail',
-                array(
+                [                    
                     'label'   => __( 'Show Thumbnail', 'fancy-post-grid' ),
                     'type'    => \Elementor\Controls_Manager::SWITCHER,
-                    'thumbnail_on'  => __( 'Show', 'fancy-post-grid' ),
-                    'thumbnail_off' => __( 'Hide', 'fancy-post-grid' ),
-                    'default'   => 'thumbnail_on',
-                )
+                    'label_on' => esc_html__( 'Show', 'fancy-post-grid' ),
+                    'label_off' => esc_html__( 'Hide', 'fancy-post-grid' ),
+                    'return_value' => 'yes',
+                    'default' => 'yes',
+                    'render_type' => 'template'
+                ]
             );
 
             
             $this->add_control(
                 'show_post_excerpt',
-                array(
+                [                    
                     'label'       => __( 'Show Post Excerpt', 'fancy-post-grid' ),
                     'type'        => \Elementor\Controls_Manager::SWITCHER,
-                    'excerpt_on'    => __( 'Show', 'fancy-post-grid' ),
-                    'excerpt_off'   => __( 'Hide', 'fancy-post-grid' ),
-                    'default'     => 'excerpt_on',
-                )
+                    'label_on' => esc_html__( 'Show', 'fancy-post-grid' ),
+                    'label_off' => esc_html__( 'Hide', 'fancy-post-grid' ),
+                    'return_value' => 'yes',
+                    'default' => 'yes',
+                    'render_type' => 'template'
+                ]
             );
 
             $this->add_control(
                 'show_post_readmore',
-                array(
+                [
                     'label'       => __( 'Show Read More Button', 'fancy-post-grid' ),
                     'type'        => \Elementor\Controls_Manager::SWITCHER,
-                    'button_on'    => __( 'Show', 'fancy-post-grid' ),
-                    'button_off'   => __( 'Hide', 'fancy-post-grid' ),
-                    'default'     => 'button_on',
-                )
+                    'label_on' => esc_html__( 'Show', 'fancy-post-grid' ),
+                    'label_off' => esc_html__( 'Hide', 'fancy-post-grid' ),
+                    'return_value' => 'yes',
+                    'default' => 'yes',
+                    'render_type' => 'template'
+                ]
             );
             $this->add_control(
                 'show_meta_data',
-                array(
+                [
                     'label'   => __( 'Meta Data', 'fancy-post-grid' ),
                     'type'    => \Elementor\Controls_Manager::SWITCHER,
-                    'metadata_on'  => __( 'Show', 'fancy-post-grid' ),
-                    'metadata_off' => __( 'Hide', 'fancy-post-grid' ),
-                    'default'   => 'metadata_on',
-                )
+                    'label_on' => esc_html__( 'Show', 'fancy-post-grid' ),
+                    'label_off' => esc_html__( 'Hide', 'fancy-post-grid' ),
+                    'return_value' => 'yes',
+                    'default' => 'yes',
+                    'render_type' => 'template'
+                ]
             );
 
             $this->add_control(
                 'show_post_date',
-                array(
+                [
                     'label'   => __( '- Show Post Date', 'fancy-post-grid' ),
                     'type'    => \Elementor\Controls_Manager::SWITCHER,
-                    'date_on'  => __( 'Show', 'fancy-post-grid' ),
-                    'date_off' => __( 'Hide', 'fancy-post-grid' ),
-                    'default'   => 'date_on',
-                )
+                    'label_on' => esc_html__( 'Show', 'fancy-post-grid' ),
+                    'label_off' => esc_html__( 'Hide', 'fancy-post-grid' ),
+                    'return_value' => 'yes',
+                    'default' => 'yes',
+                    'render_type' => 'template'
+                ]
             );
 
             $this->add_control(
                 'show_post_author',
-                array(
+                [
                     'label'   => __( '- Show Post Author', 'fancy-post-grid' ),
                     'type'    => \Elementor\Controls_Manager::SWITCHER,
-                    'author_on'  => __( 'Show', 'fancy-post-grid' ),
-                    'author_off' => __( 'Hide', 'fancy-post-grid' ),
-                    'default'   => 'author_on',
-                )
+                    'label_on' => esc_html__( 'Show', 'fancy-post-grid' ),
+                    'label_off' => esc_html__( 'Hide', 'fancy-post-grid' ),
+                    'return_value' => 'yes',
+                    'default' => 'yes',
+                    'render_type' => 'template'
+                ]
             );
 
             $this->add_control(
                 'show_post_categories',
-                array(
+                [
                     'label'   => __( '- Show Post Categories', 'fancy-post-grid' ),
                     'type'    => \Elementor\Controls_Manager::SWITCHER,
-                    'categories_on'  => __( 'Show', 'fancy-post-grid' ),
-                    'categories_off' => __( 'Hide', 'fancy-post-grid' ),
-                    'default'   => 'categories_on',
-                )
+                    'label_on' => esc_html__( 'Show', 'fancy-post-grid' ),
+                    'label_off' => esc_html__( 'Hide', 'fancy-post-grid' ),
+                    'return_value' => 'yes',
+                    'default' => 'yes',
+                    'render_type' => 'template'
+                ]
             );
 
             $this->add_control(
                 'show_post_tags',
-                array(
+                [
                     'label'   => __( '- Show Post Tags', 'fancy-post-grid' ),
                     'type'    => \Elementor\Controls_Manager::SWITCHER,
-                    'tags_on'  => __( 'Show', 'fancy-post-grid' ),
-                    'tags_off' => __( 'Hide', 'fancy-post-grid' ),
-                    'default'   => 'tags_on',
-                )
+                    'label_on' => esc_html__( 'Show', 'fancy-post-grid' ),
+                    'label_off' => esc_html__( 'Hide', 'fancy-post-grid' ),
+                    'return_value' => 'yes',
+                    'default' => 'yes',
+                    'render_type' => 'template'
+                ]
             );
 
             $this->add_control(
                 'show_comments_count',
-                array(
+                [
                     'label'   => __( '- Show Comments Count', 'fancy-post-grid' ),
                     'type'    => \Elementor\Controls_Manager::SWITCHER,
-                    'comments_on'  => __( 'Show', 'fancy-post-grid' ),
-                    'comments_off' => __( 'Hide', 'fancy-post-grid' ),
-                    'default'   => 'comments_on',
-                )
+                    'label_on' => esc_html__( 'Show', 'fancy-post-grid' ),
+                    'label_off' => esc_html__( 'Hide', 'fancy-post-grid' ),
+                    'return_value' => 'yes',
+                    'default' => 'yes',
+                    'render_type' => 'template'
+                ]
             );
             $this->add_control(
                 'show_meta_data_icon',
-                array(
+                [
                     'label'   => __( 'Meta Icon', 'fancy-post-grid' ),
                     'type'    => \Elementor\Controls_Manager::SWITCHER,
-                    'metadata_on'  => __( 'Show', 'fancy-post-grid' ),
-                    'metadata_off' => __( 'Hide', 'fancy-post-grid' ),
-                    'default'   => 'metadata_on',
-                )
+                    'label_on' => esc_html__( 'Show', 'fancy-post-grid' ),
+                    'label_off' => esc_html__( 'Hide', 'fancy-post-grid' ),
+                    'return_value' => 'yes',
+                    'default' => 'yes',
+                    'render_type' => 'template'
+                ]
             );
 
             $this->add_control(
                 'show_post_date_icon',
-                array(
+                [
                     'label'   => __( '- Show Post Date  Icon ', 'fancy-post-grid' ),
                     'type'    => \Elementor\Controls_Manager::SWITCHER,
-                    'date_on'  => __( 'Show', 'fancy-post-grid' ),
-                    'date_off' => __( 'Hide', 'fancy-post-grid' ),
-                    'default'   => 'date_on',
-                )
+                    'label_on' => esc_html__( 'Show', 'fancy-post-grid' ),
+                    'label_off' => esc_html__( 'Hide', 'fancy-post-grid' ),
+                    'return_value' => 'yes',
+                    'default' => 'yes',
+                    'render_type' => 'template'
+                ]
             );
 
             $this->add_control(
                 'show_post_author_icon',
-                array(
+                [
                     'label'   => __( '- Show Post Author  Icon', 'fancy-post-grid' ),
                     'type'    => \Elementor\Controls_Manager::SWITCHER,
-                    'author_on'  => __( 'Show', 'fancy-post-grid' ),
-                    'author_off' => __( 'Hide', 'fancy-post-grid' ),
-                    'default'   => 'author_on',
-                )
+                    'label_on' => esc_html__( 'Show', 'fancy-post-grid' ),
+                    'label_off' => esc_html__( 'Hide', 'fancy-post-grid' ),
+                    'return_value' => 'yes',
+                    'default' => 'yes',
+                    'render_type' => 'template'
+                ]
             );
 
             $this->add_control(
                 'show_post_categories_icon',
-                array(
+                [
                     'label'   => __( '- Show Post Categories Icon', 'fancy-post-grid' ),
                     'type'    => \Elementor\Controls_Manager::SWITCHER,
-                    'categories_on'  => __( 'Show', 'fancy-post-grid' ),
-                    'categories_off' => __( 'Hide', 'fancy-post-grid' ),
-                    'default'   => 'categories_on',
-                )
+                    'label_on' => esc_html__( 'Show', 'fancy-post-grid' ),
+                    'label_off' => esc_html__( 'Hide', 'fancy-post-grid' ),
+                    'return_value' => 'yes',
+                    'default' => 'yes',
+                    'render_type' => 'template'
+                ]
             );
 
             $this->add_control(
                 'show_post_tags_icon',
-                array(
+                [
                     'label'   => __( '- Show Post Tags Icon', 'fancy-post-grid' ),
                     'type'    => \Elementor\Controls_Manager::SWITCHER,
-                    'tags_on'  => __( 'Show', 'fancy-post-grid' ),
-                    'tags_off' => __( 'Hide', 'fancy-post-grid' ),
-                    'default'   => 'tags_on',
-                )
+                    'label_on' => esc_html__( 'Show', 'fancy-post-grid' ),
+                    'label_off' => esc_html__( 'Hide', 'fancy-post-grid' ),
+                    'return_value' => 'yes',
+                    'default' => 'yes',
+                    'render_type' => 'template'
+                ]
             );
 
             $this->add_control(
                 'show_comments_count_icon',
-                array(
+                [
                     'label'   => __( '- Show Comments Count Icon', 'fancy-post-grid' ),
                     'type'    => \Elementor\Controls_Manager::SWITCHER,
-                    'comments_on'  => __( 'Show', 'fancy-post-grid' ),
-                    'comments_off' => __( 'Hide', 'fancy-post-grid' ),
-                    'default'   => 'comments_on',
-                )
+                    'label_on' => esc_html__( 'Show', 'fancy-post-grid' ),
+                    'label_off' => esc_html__( 'Hide', 'fancy-post-grid' ),
+                    'return_value' => 'yes',
+                    'default' => 'yes',
+                    'render_type' => 'template'
+                ]
             );
 
             $this->add_control(
                 'show_post_social_share',
-                array(
+                [
                     'label'       => __( 'Show Social Share', 'fancy-post-grid' ),
                     'type'        => \Elementor\Controls_Manager::SWITCHER,
-                    'social_on'    => __( 'Show', 'fancy-post-grid' ),
-                    'social_off'   => __( 'Hide', 'fancy-post-grid' ),
-                    'default'     => 'social_on',
-                )
+                    'label_on' => esc_html__( 'Show', 'fancy-post-grid' ),
+                    'label_off' => esc_html__( 'Hide', 'fancy-post-grid' ),
+                    'return_value' => 'yes',
+                    'default' => 'yes',
+                    'render_type' => 'template'
+                ]
             );
             $this->end_controls_section();
             // Post Title
             $this->start_controls_section(
                 'post_title',
-                array(
+                [
                     'label' => __( ' Post Title', 'fancy-post-grid' ),
                     'tab'   => \Elementor\Controls_Manager::TAB_SETTINGS,
-                )
+                ]
             );
             $this->add_control(
                 'title_tag',
-                array(
+                [
                     'label'   => __( 'Title Tag', 'fancy-post-grid' ),
                     'type'    => \Elementor\Controls_Manager::SELECT,
                     'options' => array(
@@ -479,12 +523,13 @@ add_action('elementor/widgets/widgets_registered', function () {
                         'h6'  => __( 'H6', 'fancy-post-grid' ),
                     ),
                     'default' => 'h3',
-                )
+                    'render_type' => 'template'
+                ]
             );
             // Show/Hide Title Hover Underline
             $this->add_control(
                 'title_hover_underline',
-                array(
+                [
                     'label'   => __( 'Title Hover Underline', 'fancy-post-grid' ),
                     'type'    => \Elementor\Controls_Manager::SELECT,
                     'options' => array(
@@ -492,12 +537,13 @@ add_action('elementor/widgets/widgets_registered', function () {
                         'disable'  => __( 'Disable', 'fancy-post-grid' ),
                     ),
                     'default' => 'enable',
-                )
+                    'render_type' => 'template'
+                ]
             );
             // Title Visibility Style
             $this->add_control(
                 'title_visibility_style',
-                array(
+                [
                     'label'   => __( 'Title Visibility Style', 'fancy-post-grid' ),
                     'type'    => \Elementor\Controls_Manager::SELECT,
                     'options' => array(
@@ -507,13 +553,14 @@ add_action('elementor/widgets/widgets_registered', function () {
                         'show_3_lines' => __( 'Show in 3 Lines', 'fancy-post-grid' ),
                     ),
                     'default' => 'default',
-                )
+                    'render_type' => 'template'
+                ]
             );
 
             // Title Crop By
             $this->add_control(
                 'title_crop_by',
-                array(
+                [
                     'label'   => __( 'Title Crop By', 'fancy-post-grid' ),
                     'type'    => \Elementor\Controls_Manager::SELECT,
                     'options' => array(
@@ -521,33 +568,33 @@ add_action('elementor/widgets/widgets_registered', function () {
                         'word' => __( 'Word', 'fancy-post-grid' ),
                     ),
                     'default' => 'character',
-                )
+                ]
             );
 
             // Title Length
             $this->add_control(
                 'title_length',
-                array(
+                [
                     'label'   => __( 'Title Length', 'fancy-post-grid' ),
                     'type'    => \Elementor\Controls_Manager::NUMBER,
                     'default' => 50,
                     'min'     => 1,
-                )
+                ]
             );
 
             $this->end_controls_section();
             // Thumbnail Section
             $this->start_controls_section(
                 'thumbnail',
-                array(
+                [
                     'label' => __( ' Thumbnail', 'fancy-post-grid' ),
                     'tab'   => \Elementor\Controls_Manager::TAB_SETTINGS,
-                )
+                ]
             );
             // Thumbnail Styling
             $this->add_control(
                 'thumbnail_size',
-                array(
+                [
                     'label'   => __( 'Thumbnail Size', 'fancy-post-grid' ),
                     'type'    => \Elementor\Controls_Manager::SELECT,
                     'options' => array(
@@ -555,15 +602,14 @@ add_action('elementor/widgets/widgets_registered', function () {
                         'medium'     => __( 'Medium', 'fancy-post-grid' ),
                         'large'      => __( 'Large', 'fancy-post-grid' ),
                         'full'       => __( 'Full', 'fancy-post-grid' ),
-                        'fancy_post_custom_size'  => __( 'Custom Size (768x500)', 'fancy-post-grid' ),
+                        'fancy_post_custom_size'=> __( 'Custom Size (768x500)', 'fancy-post-grid' ),
                         'fancy_post_square'     => __( 'Square(500x500)', 'fancy-post-grid' ),
-                        'fancy_post_landscape'      => __( 'Landscape(834x550)', 'fancy-post-grid' ),
-                        'fancy_post_portrait'       => __( 'Portrait(421x550)', 'fancy-post-grid' ),
+                        'fancy_post_landscape'  => __( 'Landscape(834x550)', 'fancy-post-grid' ),
+                        'fancy_post_portrait'   => __( 'Portrait(421x550)', 'fancy-post-grid' ),
                         'fancy_post_list'       => __( 'List Size(1200 x 650)', 'fancy-post-grid' ),
-
                     ),
                     'default' => 'full',
-                )
+                ]
             );
 
             $this->end_controls_section();
@@ -571,15 +617,15 @@ add_action('elementor/widgets/widgets_registered', function () {
             // Excerpt / Content Section
             $this->start_controls_section(
                 'excerpt_content',
-                array(
+                [
                     'label' => __( ' Excerpt / Content', 'fancy-post-grid' ),
                     'tab'   => \Elementor\Controls_Manager::TAB_SETTINGS,
-                )
+                ]
             );
             // Excerpt Type
             $this->add_control(
                 'excerpt_type',
-                array(
+                [
                     'label'   => __( 'Excerpt Type', 'fancy-post-grid' ),
                     'type'    => \Elementor\Controls_Manager::SELECT,
                     'options' => array(
@@ -588,26 +634,26 @@ add_action('elementor/widgets/widgets_registered', function () {
                         'full_content' => __( 'Full Content', 'fancy-post-grid' ),
                     ),
                     'default' => 'character',
-                )
+                ]
             );
             // Excerpt Limit
             $this->add_control(
                 'excerpt_length',
-                array(
+                [
                     'label'   => __( 'Excerpt Limit', 'fancy-post-grid' ),
                     'type'    => \Elementor\Controls_Manager::NUMBER,
                     'default' => 200,
                     'min'     => 1,
-                )
+                ]
             );
             // Excerpt Limit
             $this->add_control(
                 'expansion_indicator',
-                array(
+                [
                     'label'   => __( 'Expansion Indicator', 'fancy-post-grid' ),
                     'type'    => \Elementor\Controls_Manager::TEXT,
                     'default' => '...',    
-                )
+                ]
             );
 
             $this->end_controls_section();
@@ -615,16 +661,16 @@ add_action('elementor/widgets/widgets_registered', function () {
             // Meta Data Section
             $this->start_controls_section(
                 'meta_data_content',
-                array(
+                [
                     'label' => __( 'Meta Data', 'fancy-post-grid' ),
                     'tab'   => \Elementor\Controls_Manager::TAB_SETTINGS,
-                )
+                ]
             );
 
             // Meta Separator
             $this->add_control(
                 'meta_separator',
-                array(
+                [
                     'label'   => __( 'Meta Separator', 'fancy-post-grid' ),
                     'type'    => \Elementor\Controls_Manager::SELECT,
                     'options' => array(
@@ -636,37 +682,37 @@ add_action('elementor/widgets/widgets_registered', function () {
                         '|'  => __( 'Vertical Pipe (|)', 'fancy-post-grid' ),
                     ),
                     'default' => '-',
-                )
+                ]
             );
 
             // Author Prefix
             $this->add_control(
                 'author_prefix',
-                array(
+                [
                     'label'       => __( 'Author Prefix', 'fancy-post-grid' ),
                     'type'        => \Elementor\Controls_Manager::TEXT,
                     'default'     => __( 'By', 'fancy-post-grid' ),
                     'placeholder' => __( 'Enter prefix text', 'fancy-post-grid' ),
-                )
+                ]
             );
 
             // Author Icon Visibility
             $this->add_control(
                 'author_icon_visibility',
-                array(
+                [
                     'label'        => __( 'Show Author Icon', 'fancy-post-grid' ),
                     'type'         => \Elementor\Controls_Manager::SWITCHER,
                     'label_on'     => __( 'Show', 'fancy-post-grid' ),
                     'label_off'    => __( 'Hide', 'fancy-post-grid' ),
                     'return_value' => 'yes',
                     'default'      => '',
-                )
+                ]
             );
 
             // Author Image/Icon Selection
             $this->add_control(
                 'author_image_icon',
-                array(
+                [
                     'label'   => __( 'Author Image/Icon', 'fancy-post-grid' ),
                     'type'    => \Elementor\Controls_Manager::SELECT,
                     'options' => array(
@@ -677,7 +723,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                     'condition' => array(
                         'author_icon_visibility' => 'yes',
                     ),
-                )
+                ]
             );
 
 
@@ -686,16 +732,16 @@ add_action('elementor/widgets/widgets_registered', function () {
             // Read More Section
             $this->start_controls_section(
                 'read_more_content',
-                array(
+                [
                     'label' => __( 'Read More', 'fancy-post-grid' ),
                     'tab'   => \Elementor\Controls_Manager::TAB_SETTINGS,
-                )
+                ]
             );
             
             // Button Type
             $this->add_control(
                 'button_type',
-                array(
+                [
                     'label'   => __( 'Button Style', 'fancy-post-grid' ),
                     'type'    => \Elementor\Controls_Manager::SELECT,
                     'options' => array(
@@ -703,35 +749,36 @@ add_action('elementor/widgets/widgets_registered', function () {
                         'text_button' => __( 'Only Text Button', 'fancy-post-grid' ),
                     ),
                     'default' => 'default_style',
-                )
+                ]
             );
             // Read More Label
             $this->add_control(
                 'read_more_label',
-                array(
+                [
                     'label'   => __( 'Read More Label', 'fancy-post-grid' ),
                     'type'    => \Elementor\Controls_Manager::TEXT,
                     'default' => 'Read More',    
-                )
+                ]
             );   
 
             // Show Button Icon
             $this->add_control(
                 'button_icon',
-                array(
+                [
                     'label'   => __( 'Show Button Icon', 'fancy-post-grid' ),
                     'type'    => \Elementor\Controls_Manager::SWITCHER,
-                    'button_icon_show' => __( 'Show', 'fancy-post-grid' ),
-                    'button_icon_hide' => __( 'Hide', 'fancy-post-grid' ),
+                    'label_on' => esc_html__( 'Show', 'fancy-post-grid' ),
+                    'label_off' => esc_html__( 'Hide', 'fancy-post-grid' ),
                     'return_value' => 'yes',
-                    'default' => 'button_icon_hide',
-                )
+                    'default' => 'yes',
+                    'render_type' => 'template'
+                ]
             );
 
             // Icon Library
             $this->add_control(
                 'choose_icon',
-                array(
+                [
                     'label'     => __( 'Icon Library ', 'fancy-post-grid' ),
                     'type'      => \Elementor\Controls_Manager::ICONS,
                     'default'   => array(
@@ -741,13 +788,13 @@ add_action('elementor/widgets/widgets_registered', function () {
                     'condition' => array(
                         'button_icon' => 'yes',
                     ),
-                )
+                ]
             );
                
             // Icon Position
             $this->add_control(
                 'button_position',
-                array(
+                [
                     'label'   => __( 'Icon Position', 'fancy-post-grid' ),
                     'type'    => \Elementor\Controls_Manager::SELECT,
                     'options' => array(
@@ -758,7 +805,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                     'condition' => array(
                         'button_icon' => 'yes',
                     ),
-                )
+                ]
             );
 
             $this->end_controls_section();
@@ -766,64 +813,64 @@ add_action('elementor/widgets/widgets_registered', function () {
             // Style Section
             $this->start_controls_section(
                 'post_title_style',
-                array(
+                [
                     'label' => __( 'Post Title', 'fancy-post-grid' ),
                     'tab'   => \Elementor\Controls_Manager::TAB_STYLE,
-                )
+                ]
             );
 
             // Title Styling: margin
             $this->add_control(
                 'title_margin',
-                array(
+                [
                     'label'      => __( 'Title Margin', 'fancy-post-grid' ),
                     'type'       => \Elementor\Controls_Manager::DIMENSIONS,
                     'size_units' => array( 'px', 'em', '%' ),
                     'selectors'  => array(
                         '{{WRAPPER}} .fancy-post-title' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                     ),
-                )
+                ]
             );            
 
             // Title Styling: Padding
             $this->add_control(
                 'title_padding',
-                array(
+                [
                     'label'      => __( 'Title Padding', 'fancy-post-grid' ),
                     'type'       => \Elementor\Controls_Manager::DIMENSIONS,
                     'size_units' => array( 'px', 'em', '%' ),
                     'selectors'  => array(
                         '{{WRAPPER}} .fancy-post-title' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                     ),
-                )
+                ]
             );
             // Title Styling: Typography
             $this->add_group_control(
                 \Elementor\Group_Control_Typography::get_type(),
-                array(
+                [
                     'name'     => 'title_typography',
                     'label'    => __( 'Typography', 'fancy-post-grid' ),
                     'selector' => '{{WRAPPER}} .fancy-post-title',
-                )
+                ]
             );
 
             // Title Styling: Minimum Height
             $this->add_control(
                 'title_min_height',
-                array(
+                [
                     'label'     => __( 'Minimum Height', 'fancy-post-grid' ),
                     'type'      => \Elementor\Controls_Manager::NUMBER,
                     'default'   => '',
                     'selectors' => array(
                         '{{WRAPPER}} .fancy-post-title' => 'min-height: {{VALUE}}px;',
                     ),
-                )
+                ]
             );
 
             // Title Styling: Alignment
             $this->add_control(
                 'title_alignment',
-                array(
+                [
                     'label'     => __( 'Alignment', 'fancy-post-grid' ),
                     'type'      => \Elementor\Controls_Manager::CHOOSE,
                     'options'   => array(
@@ -848,7 +895,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                     'selectors' => array(
                         '{{WRAPPER}} .fancy-post-title' => 'text-align: {{VALUE}};',
                     ),
-                )
+                ]
             );
 
             // Title Styling: Tabs (Normal, Hover, Box Hover)
@@ -857,31 +904,31 @@ add_action('elementor/widgets/widgets_registered', function () {
             // Normal Tab
             $this->start_controls_tab(
                 'title_normal',
-                array(
+                [
                     'label' => __( 'Normal', 'fancy-post-grid' ),
-                )
+                ]
             );
 
             $this->add_control(
                 'title_normal_color',
-                array(
+                [
                     'label'     => __( 'Color', 'fancy-post-grid' ),
                     'type'      => \Elementor\Controls_Manager::COLOR,
                     'selectors' => array(
                         '{{WRAPPER}} .fancy-post-title' => 'color: {{VALUE}};',
                     ),
-                )
+                ]
             );
 
             $this->add_control(
                 'title_normal_background',
-                array(
+                [
                     'label'     => __( 'Background Color', 'fancy-post-grid' ),
                     'type'      => \Elementor\Controls_Manager::COLOR,
                     'selectors' => array(
                         '{{WRAPPER}} .fancy-post-title' => 'background-color: {{VALUE}};',
                     ),
-                )
+                ]
             );
 
             $this->end_controls_tab();
@@ -889,31 +936,31 @@ add_action('elementor/widgets/widgets_registered', function () {
             // Hover Tab
             $this->start_controls_tab(
                 'title_hover',
-                array(
+                [
                     'label' => __( 'Hover', 'fancy-post-grid' ),
-                )
+                ]
             );
 
             $this->add_control(
                 'title_hover_color',
-                array(
+                [
                     'label'     => __( 'Hover Color', 'fancy-post-grid' ),
                     'type'      => \Elementor\Controls_Manager::COLOR,
                     'selectors' => array(
                         '{{WRAPPER}} .fancy-post-title:hover' => 'color: {{VALUE}};',
                     ),
-                )
+                ]
             );
 
             $this->add_control(
                 'title_hover_background',
-                array(
+                [
                     'label'     => __( 'Hover Background Color', 'fancy-post-grid' ),
                     'type'      => \Elementor\Controls_Manager::COLOR,
                     'selectors' => array(
                         '{{WRAPPER}} .fancy-post-title:hover' => 'background-color: {{VALUE}};',
                     ),
-                )
+                ]
             );
 
             $this->end_controls_tab();
@@ -921,31 +968,31 @@ add_action('elementor/widgets/widgets_registered', function () {
             // Box Hover Tab
             $this->start_controls_tab(
                 'title_box_hover',
-                array(
+                [
                     'label' => __( 'Box Hover', 'fancy-post-grid' ),
-                )
+                ]
             );
 
             $this->add_control(
                 'title_box_hover_color',
-                array(
+                [
                     'label'     => __( 'Box Hover Color', 'fancy-post-grid' ),
                     'type'      => \Elementor\Controls_Manager::COLOR,
                     'selectors' => array(
                         '{{WRAPPER}} .fancy-post-title:hover' => 'color: {{VALUE}};',
                     ),
-                )
+                ]
             );
 
             $this->add_control(
                 'title_box_hover_background',
-                array(
+                [
                     'label'     => __( 'Box Hover Background Color', 'fancy-post-grid' ),
                     'type'      => \Elementor\Controls_Manager::COLOR,
                     'selectors' => array(
                         '{{WRAPPER}} .fancy-post-title:hover' => 'background-color: {{VALUE}};',
                     ),
-                )
+                ]
             );
 
             $this->end_controls_tab();
@@ -954,41 +1001,479 @@ add_action('elementor/widgets/widgets_registered', function () {
 
             $this->end_controls_section(); // End Post Title Style Section
 
+            // Thumbnail Style Section
+            $this->start_controls_section(
+                'thumbnail_style',
+                [
+                    'label' => __( 'Thumbnail', 'fancy-post-grid' ),
+                    'tab'   => \Elementor\Controls_Manager::TAB_STYLE,
+                ]
+            );
+
+            // Thumbnail Styling: Margin
+            $this->add_control(
+                'thumbnail_margin',
+                [
+                    'label'      => __( 'Thumbnail Margin', 'fancy-post-grid' ),
+                    'type'       => \Elementor\Controls_Manager::DIMENSIONS,
+                    'size_units' => array( 'px', 'em', '%' ),
+                    'selectors'  => array(
+                        '{{WRAPPER}} .fancy-post-thumbnail' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    ),
+                ]
+            );
+
+            // Thumbnail Styling: Border Radius
+            $this->add_control(
+                'thumbnail_border_radius',
+                [
+                    'label'      => __( 'Border Radius', 'fancy-post-grid' ),
+                    'type'       => \Elementor\Controls_Manager::DIMENSIONS,
+                    'size_units' => array( 'px', 'em', '%' ),
+                    'selectors'  => array(
+                        '{{WRAPPER}} .fancy-post-thumbnail img' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    ),
+                ]
+            );
+
+            // Thumbnail Styling: Image Width
+            $this->add_control(
+                'thumbnail_width',
+                [
+                    'label'   => __( 'Image Width', 'fancy-post-grid' ),
+                    'type'    => \Elementor\Controls_Manager::SELECT,
+                    'default' => 'default',
+                    'options' => array(
+                        'default' => __( 'Default', 'fancy-post-grid' ),
+                        '100%'    => __( '100%', 'fancy-post-grid' ),
+                        'auto'    => __( 'Auto', 'fancy-post-grid' ),
+                    ),
+                    'selectors' => array(
+                        '{{WRAPPER}} .fancy-post-thumbnail img' => 'width: {{VALUE}};',
+                    ),
+                ]
+            );
+
+            // Overlay Style Tabs
+            $this->start_controls_tabs('thumbnail_overlay_style_tabs');
+
+            // Normal Overlay Tab
+            $this->start_controls_tab(
+                'thumbnail_overlay_normal',
+                [
+                    'label' => __( 'Normal', 'fancy-post-grid' ),
+                ]
+            );
+
+            $this->add_control(
+                'thumbnail_overlay_background',
+                [
+                    'label'     => __( 'Overlay Background', 'fancy-post-grid' ),
+                    'type'      => \Elementor\Controls_Manager::COLOR,
+                    'selectors' => array(
+                        '{{WRAPPER}} .fancy-post-thumbnail .overlay' => 'background-color: {{VALUE}};',
+                    ),
+                ]
+            );
+
+            $this->add_control(
+                'thumbnail_overlay_opacity',
+                [
+                    'label'      => __( 'Opacity', 'fancy-post-grid' ),
+                    'type'       => \Elementor\Controls_Manager::SLIDER,
+                    'range'      => array(
+                        'px' => array(
+                            'min' => 0,
+                            'max' => 1,
+                            'step' => 0.1,
+                        ),
+                    ),
+                    'selectors'  => array(
+                        '{{WRAPPER}} .fancy-post-thumbnail .overlay' => 'opacity: {{SIZE}};',
+                    ),
+                ]
+            );
+
+            $this->end_controls_tab();
+
+            // Hover Overlay Tab
+            $this->start_controls_tab(
+                'thumbnail_overlay_hover',
+                [
+                    'label' => __( 'Hover', 'fancy-post-grid' ),
+                ]
+            );
+
+            $this->add_control(
+                'thumbnail_hover_background',
+                [
+                    'label'     => __( 'Overlay Background', 'fancy-post-grid' ),
+                    'type'      => \Elementor\Controls_Manager::COLOR,
+                    'selectors' => array(
+                        '{{WRAPPER}} .fancy-post-thumbnail:hover .overlay' => 'background-color: {{VALUE}};',
+                    ),
+                ]
+            );
+
+            $this->add_control(
+                'thumbnail_hover_opacity',
+                [
+                    'label'      => __( 'Opacity', 'fancy-post-grid' ),
+                    'type'       => \Elementor\Controls_Manager::SLIDER,
+                    'range'      => array(
+                        'px' => array(
+                            'min' => 0,
+                            'max' => 1,
+                            'step' => 0.1,
+                        ),
+                    ),
+                    'selectors'  => array(
+                        '{{WRAPPER}} .fancy-post-thumbnail:hover .overlay' => 'opacity: {{SIZE}};',
+                    ),
+                ]
+            );
+
+            $this->add_control(
+                'thumbnail_hover_transition',
+                [
+                    'label'      => __( 'Transition Duration', 'fancy-post-grid' ),
+                    'type'       => \Elementor\Controls_Manager::SLIDER,
+                    'range'      => array(
+                        'px' => array(
+                            'min' => 0,
+                            'max' => 3,
+                            'step' => 0.1,
+                        ),
+                    ),
+                    'default'    => array(
+                        'size' => 0.3, // Default transition duration
+                    ),
+                    'selectors'  => array(
+                        '{{WRAPPER}} .fancy-post-thumbnail .overlay' => 'transition-duration: {{SIZE}}s;',
+                    ),
+                ]
+            );
+
+
+            $this->end_controls_tab();
+            $this->end_controls_tabs();
+
+            $this->end_controls_section();
+
+            // Excerpt/Content Style
             $this->start_controls_section(
                 'excerpt_content_style',
-                array(
+                [
                     'label' => __( 'Excerpt/Content', 'fancy-post-grid' ),
                     'tab'   => \Elementor\Controls_Manager::TAB_STYLE,
-                )
+                ]
             );
 
             // Typography Control
             $this->add_group_control(
                 \Elementor\Group_Control_Typography::get_type(),
-                array(
+                [
                     'name'     => 'excerpt_typography',
                     'label'    => __( 'Typography', 'fancy-post-grid' ),
                     'selector' => '{{WRAPPER}} .fancy-post-excerpt',
-                )
+                ]
             );
 
             // Excerpt Spacing Control
             $this->add_control(
                 'excerpt_spacing',
-                array(
+                [
                     'label'      => __( 'Excerpt Spacing', 'fancy-post-grid' ),
                     'type'       => \Elementor\Controls_Manager::DIMENSIONS,
                     'size_units' => array( 'px', 'em', '%' ),
                     'selectors'  => array(
                         '{{WRAPPER}} .fancy-post-excerpt' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                     ),
-                )
+                ]
             );
 
             // Excerpt Alignment Control
-            $this->add_responsive_control(
+            
+            $this->add_control(
                 'excerpt_alignment',
-                array(
+                [
+                    'label'     => __( 'Alignment', 'fancy-post-grid' ),
+                    'type'      => \Elementor\Controls_Manager::CHOOSE,
+                    'options'   => array(
+                        'left'   => array(
+                            'title' => __( 'Left', 'fancy-post-grid' ),
+                            'icon'  => 'eicon-text-align-left',
+                        ),
+                        'center' => array(
+                            'title' => __( 'Center', 'fancy-post-grid' ),
+                            'icon'  => 'eicon-text-align-center',
+                        ),
+                        'right'  => array(
+                            'title' => __( 'Right', 'fancy-post-grid' ),
+                            'icon'  => 'eicon-text-align-right',
+                        ),
+                        'justify' => array(
+                            'title' => __( 'Justify', 'fancy-post-grid' ),
+                            'icon'  => 'eicon-text-align-justify',
+                        ),
+                    ),
+                    'default'   => 'left',
+                    'selectors' => array(
+                        '{{WRAPPER}} .fancy-post-excerpt' => 'text-align: {{VALUE}};',
+                    ),
+                ]
+            );
+
+            // Tabs for Normal and Box Hover
+            $this->start_controls_tabs('excerpt_color_tabs');
+
+            // Normal Tab
+            $this->start_controls_tab(
+                'excerpt_normal_tab',
+                [
+                    'label' => __( 'Normal', 'fancy-post-grid' ),
+                ]
+            );
+
+            // Excerpt Color Control (Normal)
+            $this->add_control(
+                'excerpt_normal_color',
+                [
+                    'label'     => __( 'Excerpt Color', 'fancy-post-grid' ),
+                    'type'      => \Elementor\Controls_Manager::COLOR,
+                    'selectors' => array(
+                        '{{WRAPPER}} .fancy-post-excerpt' => 'color: {{VALUE}};',
+                    ),
+                ]
+            );
+
+            $this->end_controls_tab();
+
+            // Box Hover Tab
+            $this->start_controls_tab(
+                'excerpt_hover_tab',
+                [
+                    'label' => __( 'Box Hover', 'fancy-post-grid' ),
+                ]
+            );
+
+            // Excerpt Color on Hover Control
+            $this->add_control(
+                'excerpt_hover_color',
+                [
+                    'label'     => __( 'Excerpt Color on Hover', 'fancy-post-grid' ),
+                    'type'      => \Elementor\Controls_Manager::COLOR,
+                    'selectors' => array(
+                        '{{WRAPPER}} .fancy-post:hover .fancy-post-excerpt' => 'color: {{VALUE}};',
+                    ),
+                ]
+            );
+
+            $this->end_controls_tab();
+            $this->end_controls_tabs();
+
+            $this->end_controls_section();
+
+            // Meta Data Style
+            $this->start_controls_section(
+                'meta_data_style',
+                [
+                    'label' => __( 'Meta Data', 'fancy-post-grid' ),
+                    'tab'   => \Elementor\Controls_Manager::TAB_STYLE,
+                ]
+            );
+
+            // Meta Data Typography
+            $this->add_group_control(
+                \Elementor\Group_Control_Typography::get_type(),
+                [
+                    'name'     => 'meta_typography',
+                    'label'    => __( 'Typography', 'fancy-post-grid' ),
+                    'selector' => '{{WRAPPER}} .fancy-post-meta',
+                ]
+            );
+
+            // Meta Data Alignment
+            $this->add_responsive_control(
+                'meta_alignment',
+                [
+                    'label'     => __( 'Alignment', 'fancy-post-grid' ),
+                    'type'      => \Elementor\Controls_Manager::CHOOSE,
+                    'options'   => array(
+                        'left'   => array(
+                            'title' => __( 'Left', 'fancy-post-grid' ),
+                            'icon'  => 'eicon-text-align-left',
+                        ),
+                        'center' => array(
+                            'title' => __( 'Center', 'fancy-post-grid' ),
+                            'icon'  => 'eicon-text-align-center',
+                        ),
+                        'right'  => array(
+                            'title' => __( 'Right', 'fancy-post-grid' ),
+                            'icon'  => 'eicon-text-align-right',
+                        ),
+                    ),
+                    'selectors' => array(
+                        '{{WRAPPER}} .fancy-post-meta' => 'text-align: {{VALUE}};',
+                    ),
+                ]
+            );
+
+            // Meta Data Margin
+            $this->add_control(
+                'meta_margin',
+                [
+                    'label'      => __( 'Margin', 'fancy-post-grid' ),
+                    'type'       => \Elementor\Controls_Manager::DIMENSIONS,
+                    'size_units' => array( 'px', 'em', '%' ),
+                    'selectors'  => array(
+                        '{{WRAPPER}} .fancy-post-meta' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    ),
+                ]
+            );
+
+            // Meta Color Tabs
+            $this->start_controls_tabs('meta_color_tabs');
+
+            // Normal Tab
+            $this->start_controls_tab(
+                'meta_normal_tab',
+                [
+                    'label' => __( 'Normal', 'fancy-post-grid' ),
+                ]
+            );
+
+            $this->add_control(
+                'meta_color',
+                [
+                    'label'     => __( 'Meta Color', 'fancy-post-grid' ),
+                    'type'      => \Elementor\Controls_Manager::COLOR,
+                    'selectors' => array(
+                        '{{WRAPPER}} .fancy-post-meta' => 'color: {{VALUE}};',
+                    ),
+                ]
+            );
+
+            $this->add_control(
+                'meta_link_color',
+                [
+                    'label'     => __( 'Meta Link Color', 'fancy-post-grid' ),
+                    'type'      => \Elementor\Controls_Manager::COLOR,
+                    'selectors' => array(
+                        '{{WRAPPER}} .fancy-post-meta a' => 'color: {{VALUE}};',
+                    ),
+                ]
+            );
+
+            $this->add_control(
+                'meta_icon_color',
+                [
+                    'label'     => __( 'Icon Color', 'fancy-post-grid' ),
+                    'type'      => \Elementor\Controls_Manager::COLOR,
+                    'selectors' => array(
+                        '{{WRAPPER}} .fancy-post-meta i' => 'color: {{VALUE}};',
+                    ),
+                ]
+            );
+
+            $this->end_controls_tab();
+
+            // Hover Tab
+            $this->start_controls_tab(
+                'meta_hover_tab',
+                [
+                    'label' => __( 'Hover', 'fancy-post-grid' ),
+                ]
+            );
+
+            $this->add_control(
+                'meta_link_hover_color',
+                [
+                    'label'     => __( 'Link Hover Color', 'fancy-post-grid' ),
+                    'type'      => \Elementor\Controls_Manager::COLOR,
+                    'selectors' => array(
+                        '{{WRAPPER}} .fancy-post-meta a:hover' => 'color: {{VALUE}};',
+                    ),
+                ]
+            );
+
+            $this->end_controls_tab();
+
+            // Box Hover Tab
+            $this->start_controls_tab(
+                'meta_box_hover_tab',
+                [
+                    'label' => __( 'Box Hover', 'fancy-post-grid' ),
+                ]
+            );
+
+            $this->add_control(
+                'meta_box_hover_color',
+                [
+                    'label'     => __( 'Meta Color', 'fancy-post-grid' ),
+                    'type'      => \Elementor\Controls_Manager::COLOR,
+                    'selectors' => array(
+                        '{{WRAPPER}}:hover .fancy-post-meta' => 'color: {{VALUE}};',
+                    ),
+                ]
+            );
+
+            $this->end_controls_tab();
+
+            $this->end_controls_tabs();
+
+            $this->end_controls_section();
+
+
+            // Read More Style
+            $this->start_controls_section(
+                'read_more_style',
+                [
+                    'label' => __( 'Read More', 'fancy-post-grid' ),
+                    'tab'   => \Elementor\Controls_Manager::TAB_STYLE,
+                ]
+            );
+
+            // Typography
+            $this->add_group_control(
+                \Elementor\Group_Control_Typography::get_type(),
+                [
+                    'name'     => 'readmore_typography',
+                    'label'    => __( 'Typography', 'fancy-post-grid' ),
+                    'selector' => '{{WRAPPER}} .readmore-button',
+                ]
+            );
+
+            // Button Space
+            $this->add_control(
+                'readmore_button_margin',
+                [
+                    'label'     => __( 'Button Space', 'fancy-post-grid' ),
+                    'type'      => \Elementor\Controls_Manager::DIMENSIONS,
+                    'size_units' => array( 'px', 'em', '%' ),
+                    'selectors' => array(
+                        '{{WRAPPER}} .readmore-button' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    ),
+                ]
+            );
+
+            // Button Padding
+            $this->add_control(
+                'readmore_button_padding',
+                [
+                    'label'     => __( 'Button Padding', 'fancy-post-grid' ),
+                    'type'      => \Elementor\Controls_Manager::DIMENSIONS,
+                    'size_units' => array( 'px', 'em', '%' ),
+                    'selectors' => array(
+                        '{{WRAPPER}} .readmore-button' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    ),
+                ]
+            );
+
+            // Button Alignment
+            $this->add_responsive_control(
+                'readmore_button_alignment',
+                [
                     'label'        => __( 'Alignment', 'fancy-post-grid' ),
                     'type'         => \Elementor\Controls_Manager::CHOOSE,
                     'options'      => array(
@@ -1006,54 +1491,157 @@ add_action('elementor/widgets/widgets_registered', function () {
                         ),
                     ),
                     'selectors'    => array(
-                        '{{WRAPPER}} .fancy-post-excerpt' => 'text-align: {{VALUE}};',
+                        '{{WRAPPER}} .fancy-post-readmore' => 'text-align: {{VALUE}};',
                     ),
-                )
+                ]
             );
 
-            // Tabs for Normal and Box Hover
-            $this->start_controls_tabs('excerpt_color_tabs');
+            // Start Tabs for Normal, Hover, and Box Hover
+            $this->start_controls_tabs('readmore_style_tabs');
 
             // Normal Tab
             $this->start_controls_tab(
-                'excerpt_normal_tab',
-                array(
+                'readmore_normal_tab',
+                [
                     'label' => __( 'Normal', 'fancy-post-grid' ),
-                )
+                ]
             );
 
-            // Excerpt Color Control (Normal)
             $this->add_control(
-                'excerpt_normal_color',
-                array(
-                    'label'     => __( 'Excerpt Color', 'fancy-post-grid' ),
+                'readmore_normal_text_color',
+                [
+                    'label'     => __( 'Text Color', 'fancy-post-grid' ),
                     'type'      => \Elementor\Controls_Manager::COLOR,
                     'selectors' => array(
-                        '{{WRAPPER}} .fancy-post-excerpt' => 'color: {{VALUE}};',
+                        '{{WRAPPER}} .readmore-button' => 'color: {{VALUE}};',
                     ),
-                )
+                ]
+            );
+
+            $this->add_control(
+                'readmore_normal_background_color',
+                [
+                    'label'     => __( 'Background Color', 'fancy-post-grid' ),
+                    'type'      => \Elementor\Controls_Manager::COLOR,
+                    'selectors' => array(
+                        '{{WRAPPER}} .readmore-button' => 'background-color: {{VALUE}};',
+                    ),
+                ]
+            );
+
+            $this->add_group_control(
+                \Elementor\Group_Control_Border::get_type(),
+                [
+                    'name'     => 'readmore_normal_border',
+                    'label'    => __( 'Border', 'fancy-post-grid' ),
+                    'selector' => '{{WRAPPER}} .readmore-button',
+                ]
+            );
+
+            $this->add_control(
+                'readmore_normal_border_radius',
+                [
+                    'label'      => __( 'Border Radius', 'fancy-post-grid' ),
+                    'type'       => \Elementor\Controls_Manager::DIMENSIONS,
+                    'size_units' => array( 'px', '%' ),
+                    'selectors'  => array(
+                        '{{WRAPPER}} .readmore-button' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    ),
+                ]
+            );
+
+            $this->end_controls_tab();
+
+            // Hover Tab
+            $this->start_controls_tab(
+                'readmore_hover_tab',
+                [
+                    'label' => __( 'Hover', 'fancy-post-grid' ),
+                ]
+            );
+
+            $this->add_control(
+                'readmore_hover_text_color',
+                [
+                    'label'     => __( 'Text Color on Hover', 'fancy-post-grid' ),
+                    'type'      => \Elementor\Controls_Manager::COLOR,
+                    'selectors' => array(
+                        '{{WRAPPER}} .readmore-button:hover' => 'color: {{VALUE}};',
+                    ),
+                ]
+            );
+
+            $this->add_control(
+                'readmore_hover_background_color',
+                [
+                    'label'     => __( 'Background Color on Hover', 'fancy-post-grid' ),
+                    'type'      => \Elementor\Controls_Manager::COLOR,
+                    'selectors' => array(
+                        '{{WRAPPER}} .readmore-button:hover' => 'background-color: {{VALUE}};',
+                    ),
+                ]
+            );
+
+            $this->add_group_control(
+                \Elementor\Group_Control_Border::get_type(),
+                [
+                    'name'     => 'readmore_hover_border',
+                    'label'    => __( 'Border', 'fancy-post-grid' ),
+                    'selector' => '{{WRAPPER}} .readmore-button:hover',
+                ]
+            );
+
+            $this->add_control(
+                'readmore_hover_border_radius',
+                [
+                    'label'      => __( 'Border Radius on Hover', 'fancy-post-grid' ),
+                    'type'       => \Elementor\Controls_Manager::DIMENSIONS,
+                    'size_units' => array( 'px', '%' ),
+                    'selectors'  => array(
+                        '{{WRAPPER}} .readmore-button:hover' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    ),
+                ]
             );
 
             $this->end_controls_tab();
 
             // Box Hover Tab
             $this->start_controls_tab(
-                'excerpt_hover_tab',
-                array(
+                'readmore_box_hover_tab',
+                [
                     'label' => __( 'Box Hover', 'fancy-post-grid' ),
-                )
+                ]
             );
 
-            // Excerpt Color on Hover Control
             $this->add_control(
-                'excerpt_hover_color',
-                array(
-                    'label'     => __( 'Excerpt Color on Hover', 'fancy-post-grid' ),
+                'readmore_box_hover_text_color',
+                [
+                    'label'     => __( 'Text Color on Box Hover', 'fancy-post-grid' ),
                     'type'      => \Elementor\Controls_Manager::COLOR,
                     'selectors' => array(
-                        '{{WRAPPER}} .fancy-post:hover .fancy-post-excerpt' => 'color: {{VALUE}};',
+                        '{{WRAPPER}} .fancy-post:hover .readmore-button' => 'color: {{VALUE}};',
                     ),
-                )
+                ]
+            );
+
+            $this->add_control(
+                'readmore_box_hover_background_color',
+                [
+                    'label'     => __( 'Background Color on Box Hover', 'fancy-post-grid' ),
+                    'type'      => \Elementor\Controls_Manager::COLOR,
+                    'selectors' => array(
+                        '{{WRAPPER}} .fancy-post:hover .readmore-button' => 'background-color: {{VALUE}};',
+                    ),
+                ]
+            );
+
+            $this->add_group_control(
+                \Elementor\Group_Control_Border::get_type(),
+                [                    
+                    'name'     => 'readmore_box_hover_border',
+                    'label'    => __( 'Border', 'fancy-post-grid' ),
+                    'selector' => '{{WRAPPER}} .fancy-post:hover .readmore-button',
+                ]
             );
 
             $this->end_controls_tab();
@@ -1061,315 +1649,378 @@ add_action('elementor/widgets/widgets_registered', function () {
 
             $this->end_controls_section();
 
-
+            // Card (Post Item) Style
             $this->start_controls_section(
-                'read_more_style',
-                array(
-                    'label' => __( 'Read More', 'fancy-post-grid' ),
+                'card_post_item_style',
+                [
+                    'label' => __( 'Card (Post Item)', 'fancy-post-grid' ),
                     'tab'   => \Elementor\Controls_Manager::TAB_STYLE,
-                )
+                ]
             );
-            // Read More Button Styling
+
+            // Card Gap
             $this->add_control(
-                'readmore_button_color',
-                array(
-                    'label'     => __( 'Read More Button Color', 'fancy-post-grid' ),
+                'card_gap',
+                [
+                    'label'      => __( 'Card Gap', 'fancy-post-grid' ),
+                    'type'       => \Elementor\Controls_Manager::SLIDER,
+                    'size_units' => array( 'px', 'em', '%' ),
+                    'range'      => array(
+                        'px' => array(
+                            'min' => 0,
+                            'max' => 100,
+                        ),
+                    ),
+                    'selectors'  => array(
+                        '{{WRAPPER}} .fancy-post-card' => 'gap: {{SIZE}}{{UNIT}};',
+                    ),
+                    'render_type' => 'template'
+                ]
+            );
+
+            // Content Padding
+            $this->add_control(
+                'content_padding',
+                [
+                    'label'      => __( 'Content Padding', 'fancy-post-grid' ),
+                    'type'       => \Elementor\Controls_Manager::DIMENSIONS,
+                    'size_units' => array( 'px', 'em', '%' ),
+                    'selectors'  => array(
+                        '{{WRAPPER}} .fancy-post-card' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    ),
+                ]
+            );
+
+            // Card Border Radius
+            $this->add_control(
+                'card_border_radius',
+                [
+                    'label'      => __( 'Border Radius', 'fancy-post-grid' ),
+                    'type'       => \Elementor\Controls_Manager::SLIDER,
+                    'size_units' => array( 'px', '%' ),
+                    'range'      => array(
+                        'px' => array(
+                            'min' => 0,
+                            'max' => 100,
+                        ),
+                    ),
+                    'selectors'  => array(
+                        '{{WRAPPER}} .fancy-post-card' => 'border-radius: {{SIZE}}{{UNIT}};',
+                    ),
+                ]
+            );
+
+            // Enable Border & Box Shadow
+            $this->add_control(
+                'enable_border_shadow',
+                [
+                    'label'   => __( 'Enable Border & Box Shadow', 'fancy-post-grid' ),
+                    'type'    => \Elementor\Controls_Manager::SWITCHER,
+                    'default' => '',
+                ]
+            );
+
+            $this->add_control(
+                'border_color',
+                [
+                    'label'     => __( 'Border Color', 'fancy-post-grid' ),
                     'type'      => \Elementor\Controls_Manager::COLOR,
                     'selectors' => array(
-                        '{{WRAPPER}} .readmore-button' => 'background-color: {{VALUE}};',
+                        '{{WRAPPER}} .fancy-post-card' => 'border-color: {{VALUE}};',
                     ),
-                )
+                    'condition' => array(
+                        'enable_border_shadow' => 'yes',
+                    ),
+                ]
+            );
+
+            $this->add_group_control(
+                \Elementor\Group_Control_Box_Shadow::get_type(),
+                [
+                    'name'      => 'box_shadow',
+                    'label'     => __( 'Box Shadow', 'fancy-post-grid' ),
+                    'selector'  => '{{WRAPPER}} .fancy-post-card',
+                    'condition' => array(
+                        'enable_border_shadow' => 'yes',
+                    ),
+                ]
+            );
+
+            // Enable Border Bottom
+            $this->add_control(
+                'enable_border_bottom',
+                [
+                    'label'   => __( 'Enable Border Bottom', 'fancy-post-grid' ),
+                    'type'    => \Elementor\Controls_Manager::SWITCHER,
+                    'default' => '',
+                ]
             );
 
             $this->add_control(
-                'readmore_button_padding',
-                array(
-                    'label'     => __( 'Read More Button Padding', 'fancy-post-grid' ),
-                    'type'      => \Elementor\Controls_Manager::DIMENSIONS,
-                    'selectors' => array(
-                        '{{WRAPPER}} .readmore-button' => 'padding: {{TOP}} {{RIGHT}} {{BOTTOM}} {{LEFT}};',
+                'border_bottom_spacing',
+                [
+                    'label'      => __( 'Border Bottom Spacing', 'fancy-post-grid' ),
+                    'type'       => \Elementor\Controls_Manager::SLIDER,
+                    'size_units' => array( 'px', '%' ),
+                    'range'      => array(
+                        'px' => array(
+                            'min' => 0,
+                            'max' => 100,
+                        ),
                     ),
-                )
+                    'selectors'  => array(
+                        '{{WRAPPER}} .fancy-post-card' => 'border-bottom-width: {{SIZE}}{{UNIT}};',
+                    ),
+                    'condition' => array(
+                        'enable_border_bottom' => 'yes',
+                    ),
+                ]
             );
 
-            $this->end_controls_section(); // End style section
-        }
+            $this->add_control(
+                'border_bottom_color',
+                [                    
+                    'label'     => __( 'Border Bottom Color', 'fancy-post-grid' ),
+                    'type'      => \Elementor\Controls_Manager::COLOR,
+                    'selectors' => array(
+                        '{{WRAPPER}} .fancy-post-card' => 'border-bottom-color: {{VALUE}};',
+                    ),
+                    'condition' => array(
+                        'enable_border_bottom' => 'yes',
+                    ),
+                ]
+            );
 
+            // Normal & Hover Tabs
+            $this->start_controls_tabs('card_background_tabs');
+
+            // Normal Tab
+            $this->start_controls_tab(
+                'card_normal_tab',
+                [
+                    'label' => __( 'Normal', 'fancy-post-grid' ),
+                ]
+            );
+
+            $this->add_control(
+                'card_background',
+                [
+                    'label'     => __( 'Background Color', 'fancy-post-grid' ),
+                    'type'      => \Elementor\Controls_Manager::COLOR,
+                    'selectors' => array(
+                        '{{WRAPPER}} .fancy-post-item' => 'background-color: {{VALUE}};',
+                    ),
+                ]
+            );
+
+
+            $this->add_control(
+                'card_image',
+                [
+                    'label'     => __( 'Background Image', 'fancy-post-grid' ),
+                    'type'      => \Elementor\Controls_Manager::MEDIA,
+                    'selectors' => array(
+                        '{{WRAPPER}} .fancy-post-item' => 'background-image: url({{URL}});',
+                    ),
+                ]
+            );
+
+            $this->end_controls_tab();
+
+            // Hover Tab
+            $this->start_controls_tab(
+                'card_hover_tab',
+                [
+                    'label' => __( 'Hover', 'fancy-post-grid' ),
+                ]
+            );
+
+            $this->add_control(
+                'card_background_hover',
+                [
+                    'label'     => __( 'Background Hover Color', 'fancy-post-grid' ),
+                    'type'      => \Elementor\Controls_Manager::COLOR,
+                    'selectors' => array(
+                        '{{WRAPPER}} .fancy-post-item:hover' => 'background-color: {{VALUE}};',
+                    ),
+                ]
+            );
+
+            $this->end_controls_tab();
+
+            $this->end_controls_tabs();
+
+            $this->end_controls_section();
+        }
         protected function render() {
             $settings = $this->get_settings_for_display();
-            // Get the current page number
-            $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
-            // Prepare arguments for WP_Query
-            $args = array(
-                'post_type'      => 'post',
-                'post_status'    => 'publish',
-                'posts_per_page' => $settings['posts_per_page'],
-                'orderby'        => 'date',
-                'order'          => $settings['sort_order'],
-                'category__in'   => !empty($settings['category_filter']) ? $settings['category_filter'] : '',
-                'tag__in'        => !empty($settings['tag_filter']) ? $settings['tag_filter'] : '',
-                'author'         => !empty($settings['author_filter']) ? $settings['author_filter'] : '',
-                'post__in'       => !empty($settings['include_posts']) ? explode(',', $settings['include_posts']) : '',
-                'post__not_in'   => !empty($settings['exclude_posts']) ? explode(',', $settings['exclude_posts']) : '',
-                'paged'          => $paged, // Add the paged parameter to handle pagination
-            );
 
-            // Query the posts
-            $query = new \WP_Query($args);
+            switch ( $settings['fancy_post_grid_layout'] ) {
+                case 'gridstyle01':
+                    $this->render_grid_style_01();
+                    break;
 
-            // Check if there are posts
-            if ($query->have_posts()) {
-                echo '<div class="fancy-post-grid" style="display: grid; grid-template-columns: repeat(' . esc_attr($settings['columns']) . ', 1fr);">';
-                
-                while ($query->have_posts()) {
-                    $query->the_post();
+                case 'gridstyle02':
+                    $this->render_grid_style_02();
+                    break;
 
-                    ?>
-                    <div class="fancy-post-item" style="text-align: <?php echo esc_attr($settings['text_alignment']); ?>;">
+                case 'gridstyle03':
+                    $this->render_grid_style_03();
+                    break;
 
-                        <!-- Featured Image -->
-                        <?php if ('yes' === $settings['show_post_thumbnail'] && has_post_thumbnail()) { ?>
-                            <div class="fancy-post-image">
-                                <?php 
-                                // Map the custom sizes to their actual dimensions
-                                $thumbnail_size = $settings['thumbnail_size'];
+                case 'gridstyle04':
+                    $this->render_grid_style_04();
+                    break;
 
-                                if ($thumbnail_size === 'fancy_post_custom_size') {
-                                    $thumbnail_size = array(768, 500); // Custom size
-                                } elseif ($thumbnail_size === 'fancy_post_square') {
-                                    $thumbnail_size = array(500, 500); // Square size
-                                } elseif ($thumbnail_size === 'fancy_post_landscape') {
-                                    $thumbnail_size = array(834, 550); // Landscape size
-                                } elseif ($thumbnail_size === 'fancy_post_portrait') {
-                                    $thumbnail_size = array(421, 550); // Portrait size
-                                } elseif ($thumbnail_size === 'fancy_post_list') {
-                                    $thumbnail_size = array(1200, 650); // List size
-                                } // Other sizes like 'thumbnail', 'medium', 'large', 'full' are supported natively
+                case 'gridstyle05':
+                    $this->render_grid_style_05();
+                    break;
 
-                                if ('thumbnail_on' === $settings['thumbnail_link']) { ?>
-                                    <a href="<?php the_permalink(); ?>" target="<?php echo ('new_window' === $settings['link_target']) ? '_blank' : '_self'; ?>">
-                                        <?php the_post_thumbnail($thumbnail_size); ?>
-                                    </a>
-                                <?php } else { ?>
-                                    <?php the_post_thumbnail($thumbnail_size); ?>
-                                <?php } ?>
-                            </div>
-                        <?php } ?>
+                case 'gridstyle06':
+                    $this->render_grid_style_06();
+                    break;
 
-                        <!-- Post Meta: Date, Author, Category, Tags, Comments -->
-                        <?php if ('yes' === $settings['show_meta_data']) { ?>
-                            <div class="fancy-post-meta">
-                                <?php
-                                // Array of meta items with their respective conditions and content.
-                                $meta_items = array(
-                                    'post_author' => array(
-                                        'condition' => 'yes' === $settings['show_post_author'],
-                                        'icon'      => ('yes' === $settings['show_meta_data_icon'] && 'yes' === $settings['author_icon_visibility']) 
-                                                        ? ('icon' === $settings['author_image_icon'] 
-                                                            ? '<i class="fas fa-user"></i>' 
-                                                            : '<img src="' . esc_url(get_avatar_url(get_the_author_meta('ID'))) . '" alt="' . esc_attr__('Author', 'fancy-post-grid') . '" class="author-avatar" />')
-                                                        : '',
-                                        'content'   => esc_html($settings['author_prefix']) . ' ' . esc_html(get_the_author()),
-                                    ),
-                                    'post_date' => array(
-                                        'condition' => 'yes' === $settings['show_post_date'],
-                                        'icon'      => ('yes' === $settings['show_meta_data_icon'] && 'yes' === $settings['show_post_date_icon']) ? '<i class="fas fa-calendar-alt"></i>' : '',
-                                        'content'   => esc_html(get_the_date()),
-                                    ),
-                                    
-                                    'post_categories' => array(
-                                        'condition' => 'yes' === $settings['show_post_categories'],
-                                        'icon'      => ('yes' === $settings['show_meta_data_icon'] && 'yes' === $settings['show_post_categories_icon']) ? '<i class="fas fa-folder"></i>' : '',
-                                        'content'   => get_the_category_list(', '),
-                                    ),
-                                    'post_tags' => array(
-                                        'condition' => 'yes' === $settings['show_post_tags'] && !empty(get_the_tag_list('', ', ')),
-                                        'icon'      => ('yes' === $settings['show_meta_data_icon'] && 'yes' === $settings['show_post_tags_icon']) ? '<i class="fas fa-tags"></i>' : '',
-                                        'content'   => get_the_tag_list('', ', '),
-                                    ),
-                                    'comments_count' => array(
-                                        'condition' => 'yes' === $settings['show_comments_count'],
-                                        'icon'      => ('yes' === $settings['show_meta_data_icon'] && 'yes' === $settings['show_comments_count_icon']) ? '<i class="fas fa-comments"></i>' : '',
-                                        'content'   => sprintf(
-                                            '<a href="%s">%s</a>',
-                                            esc_url(get_comments_link()),
-                                            esc_html(get_comments_number_text(__('0 Comments', 'fancy-post-grid'), __('1 Comment', 'fancy-post-grid'), __('% Comments', 'fancy-post-grid')))
-                                        ),
-                                    ),
-                                );
+                case 'gridstyle07':
+                    $this->render_grid_style_07();
+                    break;
 
-                                // Define the separator based on user settings (default: hyphen).
-                                $separator = ' ' . ($settings['meta_separator'] ?? '-') . ' ';
+                case 'gridstyle08':
+                    $this->render_grid_style_08();
+                    break;
 
-                                // Output meta items based on conditions.
-                                $output = array();
-                                foreach ($meta_items as $meta) {
-                                    if ($meta['condition']) {
-                                        $output[] = $meta['icon'] . ' ' . $meta['content'];
-                                    }
-                                }
+                case 'gridstyle09':
+                    $this->render_grid_style_09();
+                    break;
 
-                                // Echo the final output with separators.
-                                echo implode($separator, $output);
-                                ?>
-                            </div>
-                        <?php } ?>
+                case 'gridstyle10':
+                    $this->render_grid_style_10();
+                    break;
 
-                        <!-- Post Title -->
-                        <?php
-                        if (!empty($settings['show_post_title']) && 'yes' === $settings['show_post_title']) {
-                            // Title Tag
-                            $title_tag = !empty($settings['title_tag']) ? esc_attr($settings['title_tag']) : 'h3';
+                case 'gridstyle11':
+                    $this->render_grid_style_11();
+                    break;
 
-                            // Title Content
-                            $title = get_the_title();
-                            if (!empty($settings['title_crop_by']) && !empty($settings['title_length'])) {
-                                $title = ('character' === $settings['title_crop_by'])
-                                    ? mb_substr($title, 0, (int)$settings['title_length'])
-                                    : implode(' ', array_slice(explode(' ', $title), 0, (int)$settings['title_length']));
-                            }
+                case 'gridstyle12':
+                    $this->render_grid_style_12();
+                    break;
 
-                            // Inline Styles
-                            $title_styles = [];
-                            if (!empty($settings['title_padding'])) {
-                                $padding = $settings['title_padding'];
-                                $title_styles[] = "padding: {$padding['top']}{$padding['unit']} {$padding['right']}{$padding['unit']} {$padding['bottom']}{$padding['unit']} {$padding['left']}{$padding['unit']};";
-                            }
-                            if (!empty($settings['title_margin'])) {
-                                $margin = $settings['title_margin'];
-                                $title_styles[] = "margin: {$margin['top']}{$margin['unit']} {$margin['right']}{$margin['unit']} {$margin['bottom']}{$margin['unit']} {$margin['left']}{$margin['unit']};";
-                            }
-                            if (!empty($settings['title_min_height'])) {
-                                $title_styles[] = "min-height: {$settings['title_min_height']}px;";
-                            }
-                            if (!empty($settings['title_alignment'])) {
-                                $title_styles[] = "text-align: {$settings['title_alignment']};";
-                            }
-                            if (!empty($settings['title_normal_color'])) {
-                                $title_styles[] = "color: {$settings['title_normal_color']};";
-                            }
-                            if (!empty($settings['title_normal_background'])) {
-                                $title_styles[] = "background-color: {$settings['title_normal_background']};";
-                            }
-                            $title_style_attr = !empty($title_styles) ? 'style="' . implode(' ', $title_styles) . '"' : '';
-
-                            // Title Classes
-                            $title_classes = ['fancy-post-title'];
-                            if ('enable' === $settings['title_hover_underline']) {
-                                $title_classes[] = 'hover-underline';
-                            }
-
-                            // Rendering the Title
-                            ?>
-                            <<?php echo $title_tag; ?> 
-                                class="fancy_title_elementor <?php echo esc_attr(implode(' ', $title_classes)); ?>"  
-                                style="
-                                    <?php echo !empty($settings['title_normal_background']) ? 'background-color: ' . esc_attr($settings['title_normal_background']) . ';' : ''; ?>"
-                                onmouseover="
-                                    this.style.backgroundColor='<?php echo esc_attr($settings['title_hover_background']); ?>';"
-                                onmouseout="
-                                    this.style.backgroundColor='<?php echo esc_attr($settings['title_normal_background']); ?>';">
-                                <?php if ('link_details' === $settings['link_type']) { ?>
-                                    <a href="<?php the_permalink(); ?>" 
-                                       target="<?php echo ('new_window' === $settings['link_target']) ? '_blank' : '_self'; ?>"
-                                       style="
-                                           <?php echo !empty($settings['title_normal_color']) ? 'color: ' . esc_attr($settings['title_normal_color']) . ';' : ''; ?>"
-                                       onmouseover="this.style.color='<?php echo esc_attr($settings['title_hover_color']); ?>';"
-                                       onmouseout="this.style.color='<?php echo esc_attr($settings['title_normal_color']); ?>';">
-                                       <?php echo esc_html($title); ?>
-                                    </a>
-                                <?php } else { ?>
-                                    <?php echo esc_html($title); ?>
-                                <?php } ?>
-                            </<?php echo $title_tag; ?>>
-
-                            <?php
-                        }
-                        ?>
-
-                        <!-- Post Excerpt -->
-                        <?php if ( 'yes' === $settings['show_post_excerpt'] ) { ?>
-                            <p class="fancy-post-excerpt" 
-                                style="
-                                    <?php echo !empty( $settings['excerpt_normal_color'] ) ? 'color: ' . esc_attr( $settings['excerpt_normal_color'] ) . ';' : ''; ?>
-                                    <?php echo isset( $settings['excerpt_spacing']['size'] ) ? 'margin: ' . esc_attr( $settings['excerpt_spacing']['top'] ) . $settings['excerpt_spacing']['unit'] . ' ' . esc_attr( $settings['excerpt_spacing']['right'] ) . $settings['excerpt_spacing']['unit'] . ' ' . esc_attr( $settings['excerpt_spacing']['bottom'] ) . $settings['excerpt_spacing']['unit'] . ' ' . esc_attr( $settings['excerpt_spacing']['left'] ) . $settings['excerpt_spacing']['unit'] . ';' : ''; ?>
-                                    text-align: <?php echo esc_attr( $settings['excerpt_alignment'] ); ?>;">
-                                <?php
-                                $excerpt_type = $settings['excerpt_type'];
-                                $excerpt_length = $settings['excerpt_length'];
-                                $expansion_indicator = $settings['expansion_indicator'];
-
-                                if ( 'full_content' === $excerpt_type ) {
-                                    $content = get_the_content();
-                                    echo esc_html( $content );
-                                } elseif ( 'character' === $excerpt_type ) {
-                                    $excerpt = get_the_excerpt();
-                                    $trimmed_excerpt = mb_substr( $excerpt, 0, $excerpt_length ) . esc_html( $expansion_indicator );
-                                    echo esc_html( $trimmed_excerpt );
-                                } else { // Word-based excerpt
-                                    $excerpt = wp_trim_words( get_the_excerpt(), $excerpt_length, esc_html( $expansion_indicator ) );
-                                    echo esc_html( $excerpt );
-                                }
-                                ?>
-                            </p>
-                            <style>
-                                /* Hover styling for the excerpt */
-                                .fancy-post:hover .fancy-post-excerpt {
-                                    <?php echo !empty( $settings['excerpt_hover_color'] ) ? 'color: ' . esc_attr( $settings['excerpt_hover_color'] ) . ';' : ''; ?>
-                                }
-                            </style>
-                        <?php } ?>
-
-                        <!-- Read More Button -->
-                        <?php if ('yes' === $settings['show_post_readmore']) { ?>
-                        <div class="fancy-post-readmore">
-                            <a 
-                                href="<?php the_permalink(); ?>" 
-                                class="readmore-button 
-                                    <?php echo ('text_button' === $settings['button_type']) ? 'readmore-text-button' : 'readmore-default-button'; ?>" 
-                                target="<?php echo ('new_window' === $settings['link_target']) ? '_blank' : '_self'; ?>"
-                            >
-                                <?php
-                                // Icon on the left
-                                if ('button_position_left' === $settings['button_position'] && 'yes' === $settings['button_icon']) {
-                                    \Elementor\Icons_Manager::render_icon($settings['choose_icon'], array('aria-hidden' => 'true'));
-                                }
-                                ?>
-                                <?php echo esc_html($settings['read_more_label']); ?>
-                                <?php
-                                // Icon on the right
-                                if ('button_position_right' === $settings['button_position'] && 'yes' === $settings['button_icon']) {
-                                    \Elementor\Icons_Manager::render_icon($settings['choose_icon'], array('aria-hidden' => 'true'));
-                                }
-                                ?>
-                            </a>
-                        </div>
-                    <?php } ?>
-                      
-                    </div>
-                    <?php
-                }
-                // Pagination
-                if ('yes' === $settings['show_pagination']) {
-                    echo '<div class="fancy-post-pagination">';
-                    $big = 999999999; // Need an unlikely integer for pagination
-                    echo paginate_links(array(
-                        'base'      => str_replace($big, '%#%', esc_url(get_pagenum_link($big))),
-                        'format'    => '?paged=%#%',
-                        'current'   => max(1, $paged),
-                        'total'     => $query->max_num_pages,
-                        'prev_text' => __('« Prev', 'fancy-post-grid'),
-                        'next_text' => __('Next »', 'fancy-post-grid'),
-                    ));
-                    echo '</div>';
-                }
-                echo '</div>';
-            } else {
-                echo '<p>' . __('No posts found.', 'fancy-post-grid') . '</p>';
+                default:
+                    $this->render_grid_style_01();
+                    break;
             }
+        }
 
-            // Reset post data
-            wp_reset_postdata();
+
+        protected function render_grid_style_01() {
+            $file_path = plugin_dir_path( __FILE__ ) . 'render/grid-style-01.php'; // Adjust the path as needed.
+            
+            if ( file_exists( $file_path ) ) {
+                include $file_path;
+            } else {
+                echo '<div class="error">Grid Style 01 template not found.</div>';
+            }
+        }
+
+        protected function render_grid_style_02() {
+            $file_path = plugin_dir_path( __FILE__ ) . 'render/grid-style-02.php'; // Adjust the path as needed.
+            
+            if ( file_exists( $file_path ) ) {
+                include $file_path;
+            } else {
+                echo '<div class="error">Grid Style 02 template not found.</div>';
+            }
+        }
+        protected function render_grid_style_03() {
+            $file_path = plugin_dir_path( __FILE__ ) . 'render/grid-style-03.php'; // Adjust the path as needed.
+            
+            if ( file_exists( $file_path ) ) {
+                include $file_path;
+            } else {
+                echo '<div class="error">Grid Style 03 template not found.</div>';
+            }
+        }
+        protected function render_grid_style_04() {
+            $file_path = plugin_dir_path( __FILE__ ) . 'render/grid-style-04.php'; // Adjust the path as needed.
+            
+            if ( file_exists( $file_path ) ) {
+                include $file_path;
+            } else {
+                echo '<div class="error">Grid Style 04 template not found.</div>';
+            }
+        }
+        protected function render_grid_style_05() {
+            $file_path = plugin_dir_path( __FILE__ ) . 'render/grid-style-05.php'; // Adjust the path as needed.
+            
+            if ( file_exists( $file_path ) ) {
+                include $file_path;
+            } else {
+                echo '<div class="error">Grid Style 05 template not found.</div>';
+            }
+        }
+
+        protected function render_grid_style_06() {
+            $file_path = plugin_dir_path( __FILE__ ) . 'render/grid-style-06.php'; // Adjust the path as needed.
+            
+            if ( file_exists( $file_path ) ) {
+                include $file_path;
+            } else {
+                echo '<div class="error">Grid Style 06 template not found.</div>';
+            }
+        }
+        protected function render_grid_style_07() {
+            $file_path = plugin_dir_path( __FILE__ ) . 'render/grid-style-07.php'; // Adjust the path as needed.
+            
+            if ( file_exists( $file_path ) ) {
+                include $file_path;
+            } else {
+                echo '<div class="error">Grid Style 07 template not found.</div>';
+            }
+        }
+        protected function render_grid_style_08() {
+            $file_path = plugin_dir_path( __FILE__ ) . 'render/grid-style-08.php'; // Adjust the path as needed.
+            
+            if ( file_exists( $file_path ) ) {
+                include $file_path;
+            } else {
+                echo '<div class="error">Grid Style 08 template not found.</div>';
+            }
+        }
+        protected function render_grid_style_09() {
+            $file_path = plugin_dir_path( __FILE__ ) . 'render/grid-style-09.php'; // Adjust the path as needed.
+            
+            if ( file_exists( $file_path ) ) {
+                include $file_path;
+            } else {
+                echo '<div class="error">Grid Style 09 template not found.</div>';
+            }
+        }
+
+        protected function render_grid_style_10() {
+            $file_path = plugin_dir_path( __FILE__ ) . 'render/grid-style-10.php'; // Adjust the path as needed.
+            
+            if ( file_exists( $file_path ) ) {
+                include $file_path;
+            } else {
+                echo '<div class="error">Grid Style 10 template not found.</div>';
+            }
+        }
+        protected function render_grid_style_11() {
+            $file_path = plugin_dir_path( __FILE__ ) . 'render/grid-style-11.php'; // Adjust the path as needed.
+            
+            if ( file_exists( $file_path ) ) {
+                include $file_path;
+            } else {
+                echo '<div class="error">Grid Style 11 template not found.</div>';
+            }
+        }
+        protected function render_grid_style_12() {
+            $file_path = plugin_dir_path( __FILE__ ) . 'render/grid-style-12.php'; // Adjust the path as needed.
+            
+            if ( file_exists( $file_path ) ) {
+                include $file_path;
+            } else {
+                echo '<div class="error">Grid Style 12 template not found.</div>';
+            }
         }
     }
 
