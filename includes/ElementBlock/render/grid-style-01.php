@@ -22,11 +22,11 @@ $query = new \WP_Query($args);
 
 // Check if there are posts
 if ($query->have_posts()) {
-    echo '<div class="fancy-grid-style-01 fancy-post-grid" style="
+    echo '<div class="rs-blog-layout-5 fancy-grid-style-01 fancy-post-grid" style="
             display: grid; 
-            grid-template-columns: repeat(' . esc_attr($settings['columns']) . ', 1fr); 
-            gap: ' . (isset($settings['card_gap']['size'], $settings['card_gap']['unit']) 
-                ? esc_attr($settings['card_gap']['size'] . $settings['card_gap']['unit']) 
+            grid-template-columns: repeat(' . esc_attr($settings['col_desktop']) . ', 1fr); 
+            gap: ' . (isset($settings['space_between']['size'], $settings['space_between']['unit']) 
+                ? esc_attr($settings['space_between']['size'] . $settings['space_between']['unit']) 
                 : '0px') . '; 
         ">';
     
@@ -180,87 +180,85 @@ if ($query->have_posts()) {
             <?php } ?>
 
             <!-- Post Title -->
-            <?php
-            if (!empty($settings['show_post_title']) && 'yes' === $settings['show_post_title']) {
-                // Title Tag
-                $title_tag = !empty($settings['title_tag']) ? esc_attr($settings['title_tag']) : 'h3';
+            <?php if (!empty($settings['show_post_title']) && 'yes' === $settings['show_post_title']) {
+                    // Title Tag
+                    $title_tag = !empty($settings['title_tag']) ? esc_attr($settings['title_tag']) : 'h3';
 
-                // Title Content
-                $title = get_the_title();
-                if (!empty($settings['title_crop_by']) && !empty($settings['title_length'])) {
-                    $title = ('character' === $settings['title_crop_by'])
-                        ? mb_substr($title, 0, (int)$settings['title_length'])
-                        : implode(' ', array_slice(explode(' ', $title), 0, (int)$settings['title_length']));
-                }
-
-                // Inline Styles
-                $title_styles = [];
-                if (!empty($settings['title_padding'])) {
-                    $padding = $settings['title_padding'];
-                    $title_styles[] = "padding: {$padding['top']}{$padding['unit']} {$padding['right']}{$padding['unit']} {$padding['bottom']}{$padding['unit']} {$padding['left']}{$padding['unit']};";
-                }
-                if (!empty($settings['title_margin'])) {
-                    $margin = $settings['title_margin'];
-                    $title_styles[] = "margin: {$margin['top']}{$margin['unit']} {$margin['right']}{$margin['unit']} {$margin['bottom']}{$margin['unit']} {$margin['left']}{$margin['unit']};";
-                }
-                if (!empty($settings['title_min_height'])) {
-                    $title_styles[] = "min-height: {$settings['title_min_height']}px;";
-                }
-                if (!empty($settings['title_alignment'])) {
-                    $title_styles[] = "text-align: {$settings['title_alignment']};";
-                }
-                if (!empty($settings['title_normal_color'])) {
-                    $title_styles[] = "color: {$settings['title_normal_color']};";
-                }
-                if (!empty($settings['title_normal_background'])) {
-                    $title_styles[] = "background-color: {$settings['title_normal_background']};";
-                }
-
-                // Title Visibility Style
-                if (!empty($settings['title_visibility_style'])) {
-                    switch ($settings['title_visibility_style']) {
-                        case 'show_1_line':
-                            $title_styles[] = 'display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden';
-                            break;
-                        case 'show_2_lines':
-                            $title_styles[] = 'display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;';
-                            break;
-                        case 'show_3_lines':
-                            $title_styles[] = 'display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;';
-                            break;
+                    // Title Content
+                    $title = get_the_title();
+                    if (!empty($settings['title_crop_by']) && !empty($settings['title_length'])) {
+                        $title = ('character' === $settings['title_crop_by'])
+                            ? mb_substr($title, 0, (int)$settings['title_length'])
+                            : implode(' ', array_slice(explode(' ', $title), 0, (int)$settings['title_length']));
                     }
+
+                    // Inline Styles
+                    $title_styles = [];
+                    if (!empty($settings['title_padding'])) {
+                        $padding = $settings['title_padding'];
+                        $title_styles[] = "padding: {$padding['top']}{$padding['unit']} {$padding['right']}{$padding['unit']} {$padding['bottom']}{$padding['unit']} {$padding['left']}{$padding['unit']};";
+                    }
+                    if (!empty($settings['title_margin'])) {
+                        $margin = $settings['title_margin'];
+                        $title_styles[] = "margin: {$margin['top']}{$margin['unit']} {$margin['right']}{$margin['unit']} {$margin['bottom']}{$margin['unit']} {$margin['left']}{$margin['unit']};";
+                    }
+                    if (!empty($settings['title_min_height'])) {
+                        $title_styles[] = "min-height: {$settings['title_min_height']}px;";
+                    }
+                    if (!empty($settings['title_alignment'])) {
+                        $title_styles[] = "text-align: {$settings['title_alignment']};";
+                    }
+                    if (!empty($settings['title_normal_color'])) {
+                        $title_styles[] = "color: {$settings['title_normal_color']};";
+                    }
+                    if (!empty($settings['title_normal_background'])) {
+                        $title_styles[] = "background-color: {$settings['title_normal_background']};";
+                    }
+
+                    // Title Visibility Style
+                    if (!empty($settings['title_visibility_style'])) {
+                        switch ($settings['title_visibility_style']) {
+                            case 'show_1_line':
+                                $title_styles[] = 'display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden';
+                                break;
+                            case 'show_2_lines':
+                                $title_styles[] = 'display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;';
+                                break;
+                            case 'show_3_lines':
+                                $title_styles[] = 'display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;';
+                                break;
+                        }
+                    }
+
+                    $title_style_attr = !empty($title_styles) ? 'style="' . implode(' ', $title_styles) . '"' : '';
+
+                    // Title Classes
+                    $title_classes = ['fancy-post-title'];
+                    if ('enable' === $settings['title_hover_underline']) {
+                        $title_classes[] = 'hover-underline';
+                    }
+
+                    // Rendering the Title
+                    ?>
+                    <<?php echo esc_attr($title_tag); ?>
+                        class="fancy_title_elementor <?php echo esc_attr(implode(' ', $title_classes)); ?>"
+                        <?php echo $title_style_attr; ?>
+                        onmouseover="this.style.backgroundColor='<?php echo esc_attr($settings['title_hover_background']); ?>';"
+                        onmouseout="this.style.backgroundColor='<?php echo esc_attr($settings['title_normal_background']); ?>';">
+                        <?php if ('link_details' === $settings['link_type']) { ?>
+                            <a href="<?php the_permalink(); ?>"
+                               target="<?php echo ('new_window' === $settings['link_target']) ? '_blank' : '_self'; ?>"
+                               style="color: <?php echo esc_attr($settings['title_normal_color']); ?>;"
+                               onmouseover="this.style.color='<?php echo esc_attr($settings['title_hover_color']); ?>';"
+                               onmouseout="this.style.color='<?php echo esc_attr($settings['title_normal_color']); ?>';">
+                               <?php echo esc_html($title); ?>
+                            </a>
+                        <?php } else { ?>
+                            <?php echo esc_html($title); ?>
+                        <?php } ?>
+                    </<?php echo esc_attr($title_tag); ?>>
+                    <?php
                 }
-
-                $title_style_attr = !empty($title_styles) ? 'style="' . implode(' ', $title_styles) . '"' : '';
-
-                // Title Classes
-                $title_classes = ['fancy-post-title'];
-                if ('enable' === $settings['title_hover_underline']) {
-                    $title_classes[] = 'hover-underline';
-                }
-
-                // Rendering the Title
-                ?>
-                <<?php echo esc_attr($title_tag); ?>
-                    class="fancy_title_elementor <?php echo esc_attr(implode(' ', $title_classes)); ?>"
-                    <?php echo $title_style_attr; ?>
-                    onmouseover="this.style.backgroundColor='<?php echo esc_attr($settings['title_hover_background']); ?>';"
-                    onmouseout="this.style.backgroundColor='<?php echo esc_attr($settings['title_normal_background']); ?>';">
-                    <?php if ('link_details' === $settings['link_type']) { ?>
-                        <a href="<?php the_permalink(); ?>"
-                           target="<?php echo ('new_window' === $settings['link_target']) ? '_blank' : '_self'; ?>"
-                           style="color: <?php echo esc_attr($settings['title_normal_color']); ?>;"
-                           onmouseover="this.style.color='<?php echo esc_attr($settings['title_hover_color']); ?>';"
-                           onmouseout="this.style.color='<?php echo esc_attr($settings['title_normal_color']); ?>';">
-                           <?php echo esc_html($title); ?>
-                        </a>
-                    <?php } else { ?>
-                        <?php echo esc_html($title); ?>
-                    <?php } ?>
-                </<?php echo esc_attr($title_tag); ?>>
-                <?php
-            }
-
             ?>
 
             <!-- Post Excerpt -->
