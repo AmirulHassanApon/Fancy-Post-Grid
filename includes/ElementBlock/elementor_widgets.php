@@ -108,49 +108,49 @@ add_action('elementor/widgets/widgets_registered', function () {
                 );
             }
 
-            if (!in_array('fancy_post_slider_layout-NEW', $this->exclude_controls)) {
-    $this->add_control(
-    'fancy_post_slider_layout-NEW',
-    [
-        'label'       => esc_html__( 'Slider Style NEW', 'fancy-post-grid' ),
-        'type'        => \Elementor\Controls_Manager::CHOOSE,
-        'label_block' => true, // Ensure label is always visible
-        'options'     => [
-            'sliderstyle01' => [
-                'title' => esc_html__( 'Style 01', 'fancy-post-grid' ),
-                
-            ],
-            'sliderstyle02' => [
-                'title' => esc_html__( 'Style 02', 'fancy-post-grid' ),
-                'icon'  => 'dashicons dashicons-images-alt2',
-            ],
-            'sliderstyle03' => [
-                'title' => esc_html__( 'Style 03', 'fancy-post-grid' ),
-                'icon'  => 'dashicons dashicons-format-image',
-            ],
-            'sliderstyle04' => [
-                'title' => esc_html__( 'Style 04', 'fancy-post-grid' ),
-                'icon'  => 'dashicons dashicons-slides',
-            ],
-            'sliderstyle05' => [
-                'title' => esc_html__( 'Style 05', 'fancy-post-grid' ),
-                'icon'  => 'dashicons dashicons-format-aside',
-            ],
-            'sliderstyle06' => [
-                'title' => esc_html__( 'Style 06', 'fancy-post-grid' ),
-                'icon'  => 'dashicons dashicons-screenoptions',
-            ],
-            'sliderstyle07' => [
-                'title' => esc_html__( 'Style 07', 'fancy-post-grid' ),
-                'icon'  => 'dashicons dashicons-format-video',
-            ],
-        ],
-        'toggle'      => false, // Disables collapsing toggle behavior
-        'default'     => 'sliderstyle01',
-    ]
-);
+            // if (!in_array('fancy_post_slider_layout-NEW', $this->exclude_controls)) {
+            //     $this->add_control(
+            //     'fancy_post_slider_layout-NEW',
+            //     [
+            //         'label'       => esc_html__( 'Slider Style NEW', 'fancy-post-grid' ),
+            //         'type'        => \Elementor\Controls_Manager::CHOOSE,
+            //         'label_block' => true, // Ensure label is always visible
+            //         'options'     => [
+            //             'sliderstyle01' => [
+            //                 'title' => esc_html__( 'Style 01', 'fancy-post-grid' ),
+                            
+            //             ],
+            //             'sliderstyle02' => [
+            //                 'title' => esc_html__( 'Style 02', 'fancy-post-grid' ),
+            //                 'icon'  => 'dashicons dashicons-images-alt2',
+            //             ],
+            //             'sliderstyle03' => [
+            //                 'title' => esc_html__( 'Style 03', 'fancy-post-grid' ),
+            //                 'icon'  => 'dashicons dashicons-format-image',
+            //             ],
+            //             'sliderstyle04' => [
+            //                 'title' => esc_html__( 'Style 04', 'fancy-post-grid' ),
+            //                 'icon'  => 'dashicons dashicons-slides',
+            //             ],
+            //             'sliderstyle05' => [
+            //                 'title' => esc_html__( 'Style 05', 'fancy-post-grid' ),
+            //                 'icon'  => 'dashicons dashicons-format-aside',
+            //             ],
+            //             'sliderstyle06' => [
+            //                 'title' => esc_html__( 'Style 06', 'fancy-post-grid' ),
+            //                 'icon'  => 'dashicons dashicons-screenoptions',
+            //             ],
+            //             'sliderstyle07' => [
+            //                 'title' => esc_html__( 'Style 07', 'fancy-post-grid' ),
+            //                 'icon'  => 'dashicons dashicons-format-video',
+            //             ],
+            //         ],
+            //         'toggle'      => false, // Disables collapsing toggle behavior
+            //         'default'     => 'sliderstyle01',
+            //     ]
+            // );
 
-}
+            // }
 
             // Add control for Isotope Layout selection 
             // Check if the control is excluded before adding it
@@ -189,6 +189,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                             'liststyle05' => esc_html__( 'List Style 05', 'fancy-post-grid' ),
                             'liststyle06' => esc_html__( 'List Style 06', 'fancy-post-grid' ),
                             'liststyle07' => esc_html__( 'List Style 07', 'fancy-post-grid' ),
+                            'liststyle08' => esc_html__( 'List Style 08', 'fancy-post-grid' ),
                             
                         ),
                         'default' => 'liststyle01',
@@ -206,12 +207,11 @@ add_action('elementor/widgets/widgets_registered', function () {
                         'label_block' => true,
                         'default' => 4,
                         'options' => [
-                            '1' => esc_html__('1 Column', 'fancy-post-grid'),
-                            '2' => esc_html__('2 Column', 'fancy-post-grid'),
-                            '3' => esc_html__('3 Column', 'fancy-post-grid'),
-                            '4' => esc_html__('4 Column', 'fancy-post-grid'),
-                            '5' => esc_html__('5 Column', 'fancy-post-grid'),
-                            '6' => esc_html__('6 Column', 'fancy-post-grid'),
+                            '12' => esc_html__('1 Column', 'fancy-post-grid'),
+                            '6' => esc_html__('2 Columns', 'fancy-post-grid'),
+                            '4' => esc_html__('3 Columns', 'fancy-post-grid'),
+                            '3' => esc_html__('4 Columns', 'fancy-post-grid'),
+                            '2' => esc_html__('6 Columns', 'fancy-post-grid'),
                             'auto' => esc_html__('Auto', 'fancy-post-grid'),
                         ],
                         'separator' => 'before',
@@ -238,17 +238,18 @@ add_action('elementor/widgets/widgets_registered', function () {
                     ]
                 );
             }
-
-            $this->add_control(
-                'space_between',
-                [
-                    'label' => esc_html__( 'Desktop Space Between', 'fancy-post-grid' ),
-                    'type' => \Elementor\Controls_Manager::SLIDER,
-                    'default' => [
-                        'size' => 0,
-                    ],
-                ]
-            );
+            if (!in_array('space_between', $this->exclude_controls)) {
+                $this->add_control(
+                    'space_between',
+                    [
+                        'label' => esc_html__( 'Desktop Space Between', 'fancy-post-grid' ),
+                        'type' => \Elementor\Controls_Manager::SLIDER,
+                        'default' => [
+                            'size' => 0,
+                        ],
+                    ]
+                );
+            }
             if (!in_array('col_lg', $this->exclude_controls)) {
                 $this->add_control(
                     'col_lg',
@@ -258,12 +259,11 @@ add_action('elementor/widgets/widgets_registered', function () {
                         'label_block' => true,
                         'default' => 3,
                         'options' => [
-                            '1' => esc_html__('1 Column', 'fancy-post-grid'),
-                            '2' => esc_html__('2 Column', 'fancy-post-grid'),
-                            '3' => esc_html__('3 Column', 'fancy-post-grid'),
-                            '4' => esc_html__('4 Column', 'fancy-post-grid'),
-                            '5' => esc_html__('5 Column', 'fancy-post-grid'),
-                            '6' => esc_html__('6 Column', 'fancy-post-grid'),
+                            '12' => esc_html__('1 Column', 'fancy-post-grid'),
+                            '6' => esc_html__('2 Columns', 'fancy-post-grid'),
+                            '4' => esc_html__('3 Columns', 'fancy-post-grid'),
+                            '3' => esc_html__('4 Columns', 'fancy-post-grid'),
+                            '2' => esc_html__('6 Columns', 'fancy-post-grid'),
                             'auto' => esc_html__('Auto', 'fancy-post-grid'),
                         ],
                         'separator' => 'before',
@@ -280,28 +280,29 @@ add_action('elementor/widgets/widgets_registered', function () {
                         'label_block' => true,
                         'default' => 6,
                         'options' => [
-                            '12' => esc_html__('1 Item', 'fancy-post-grid'),
-                            '6' => esc_html__('2 Items', 'fancy-post-grid'),
-                            '4' => esc_html__('3 Items', 'fancy-post-grid'),
-                            '3' => esc_html__('4 Items', 'fancy-post-grid'),
-                            '2' => esc_html__('6 Items', 'fancy-post-grid'),
+                            '12' => esc_html__('1 Column', 'fancy-post-grid'),
+                            '6' => esc_html__('2 Columns', 'fancy-post-grid'),
+                            '4' => esc_html__('3 Columns', 'fancy-post-grid'),
+                            '3' => esc_html__('4 Columns', 'fancy-post-grid'),
+                            '2' => esc_html__('6 Columns', 'fancy-post-grid'),
                             'auto' => esc_html__('Auto', 'fancy-post-grid'),
                         ],
                         'separator' => 'before',
                     ]
                 );
             }
-                
-            $this->add_control(
-                'space_between_lg',
-                [
-                    'label' => esc_html__( 'Large Space Between', 'fancy-post-grid' ),
-                    'type' => \Elementor\Controls_Manager::SLIDER,
-                    'default' => [
-                        'size' => 0,
-                    ],
-                ]
-            );
+            if (!in_array('space_between_lg', $this->exclude_controls)) {    
+                $this->add_control(
+                    'space_between_lg',
+                    [
+                        'label' => esc_html__( 'Large Space Between', 'fancy-post-grid' ),
+                        'type' => \Elementor\Controls_Manager::SLIDER,
+                        'default' => [
+                            'size' => 0,
+                        ],
+                    ]
+                );
+            }
             if (!in_array('col_md', $this->exclude_controls)) {
                 $this->add_control(
                     'col_md',
@@ -311,11 +312,11 @@ add_action('elementor/widgets/widgets_registered', function () {
                         'label_block' => true,
                         'default' => 3,
                         'options' => [
-                            '1' => esc_html__('1 Column', 'fancy-post-grid'),
-                            '2' => esc_html__('2 Column', 'fancy-post-grid'),
-                            '3' => esc_html__('3 Column', 'fancy-post-grid'),
-                            '4' => esc_html__('4 Column', 'fancy-post-grid'),
-                            '6' => esc_html__('6 Column', 'fancy-post-grid'),
+                            '12' => esc_html__('1 Column', 'fancy-post-grid'),
+                            '6' => esc_html__('2 Columns', 'fancy-post-grid'),
+                            '4' => esc_html__('3 Columns', 'fancy-post-grid'),
+                            '3' => esc_html__('4 Columns', 'fancy-post-grid'),
+                            '2' => esc_html__('6 Columns', 'fancy-post-grid'),
                             'auto' => esc_html__('Auto', 'fancy-post-grid'),
                         ],
                         'separator' => 'before',
@@ -341,17 +342,19 @@ add_action('elementor/widgets/widgets_registered', function () {
                         'separator' => 'before',
                     ]
                 );
-            }    
-            $this->add_control(
-                'space_between_md',
-                [
-                    'label' => esc_html__( 'Medium Space Between', 'fancy-post-grid' ),
-                    'type' => \Elementor\Controls_Manager::SLIDER,
-                    'default' => [
-                        'size' => 0,
-                    ],
-                ]
-            );
+            }   
+            if (!in_array('space_between_md', $this->exclude_controls)) { 
+                $this->add_control(
+                    'space_between_md',
+                    [
+                        'label' => esc_html__( 'Medium Space Between', 'fancy-post-grid' ),
+                        'type' => \Elementor\Controls_Manager::SLIDER,
+                        'default' => [
+                            'size' => 0,
+                        ],
+                    ]
+                );
+            }
 
             if (!in_array('col_sm', $this->exclude_controls)) {
                 $this->add_control(
@@ -362,11 +365,11 @@ add_action('elementor/widgets/widgets_registered', function () {
                         'label_block' => true,
                         'default' => 1,
                         'options' => [
-                            '1' => esc_html__('1 Column', 'fancy-post-grid'),
-                            '2' => esc_html__('2 Column', 'fancy-post-grid'),
-                            '3' => esc_html__('3 Column', 'fancy-post-grid'),
-                            '4' => esc_html__('4 Column', 'fancy-post-grid'),
-                            '6' => esc_html__('6 Column', 'fancy-post-grid'),
+                            '12' => esc_html__('1 Column', 'fancy-post-grid'),
+                            '6' => esc_html__('2 Columns', 'fancy-post-grid'),
+                            '4' => esc_html__('3 Columns', 'fancy-post-grid'),
+                            '3' => esc_html__('4 Columns', 'fancy-post-grid'),
+                            '2' => esc_html__('6 Columns', 'fancy-post-grid'),
                             'auto' => esc_html__('Auto', 'fancy-post-grid'),
                         ],
                         'separator' => 'before',
@@ -395,17 +398,18 @@ add_action('elementor/widgets/widgets_registered', function () {
                 );
             }
             
-
-            $this->add_control(
-                'space_between_sm',
-                [
-                    'label' => esc_html__( 'Small Space Between', 'fancy-post-grid' ),
-                    'type' => \Elementor\Controls_Manager::SLIDER,
-                    'default' => [
-                        'size' => 0,
-                    ],
-                ]
-            );
+            if (!in_array('space_between_sm', $this->exclude_controls)) {
+                $this->add_control(
+                    'space_between_sm',
+                    [
+                        'label' => esc_html__( 'Small Space Between', 'fancy-post-grid' ),
+                        'type' => \Elementor\Controls_Manager::SLIDER,
+                        'default' => [
+                            'size' => 0,
+                        ],
+                    ]
+                );
+            }
 
             if (!in_array('col_xs', $this->exclude_controls)) {
                 $this->add_control(
@@ -416,11 +420,11 @@ add_action('elementor/widgets/widgets_registered', function () {
                         'label_block' => true,
                         'default' => 2,
                         'options' => [
-                            '1' => esc_html__('1 Column', 'fancy-post-grid'),
-                            '2' => esc_html__('2 Column', 'fancy-post-grid'),
-                            '3' => esc_html__('3 Column', 'fancy-post-grid'),
-                            '4' => esc_html__('4 Column', 'fancy-post-grid'),
-                            '6' => esc_html__('6 Column', 'fancy-post-grid'),
+                            '12' => esc_html__('1 Column', 'fancy-post-grid'),
+                            '6' => esc_html__('2 Columns', 'fancy-post-grid'),
+                            '4' => esc_html__('3 Columns', 'fancy-post-grid'),
+                            '3' => esc_html__('4 Columns', 'fancy-post-grid'),
+                            '2' => esc_html__('6 Columns', 'fancy-post-grid'),
                             'auto' => esc_html__('Auto', 'fancy-post-grid'),
                         ],
                         'separator' => 'before',
@@ -448,17 +452,18 @@ add_action('elementor/widgets/widgets_registered', function () {
                     ]
                 );
             }
-
-            $this->add_control(
-                'space_between_xs',
-                [
-                    'label' => esc_html__( 'Mobile Space Between', 'fancy-post-grid' ),
-                    'type' => \Elementor\Controls_Manager::SLIDER,
-                    'default' => [
-                        'size' => 0,
-                    ],
-                ]
-            );
+            if (!in_array('space_between_xs', $this->exclude_controls)) {
+                $this->add_control(
+                    'space_between_xs',
+                    [
+                        'label' => esc_html__( 'Mobile Space Between', 'fancy-post-grid' ),
+                        'type' => \Elementor\Controls_Manager::SLIDER,
+                        'default' => [
+                            'size' => 0,
+                        ],
+                    ]
+                );
+            }
 
             // Add control for text alignment
             $this->add_control(
@@ -742,6 +747,57 @@ add_action('elementor/widgets/widgets_registered', function () {
                 $this->end_controls_section();
             }
 
+            // Isotope Section
+            // Check if the control is excluded before adding it
+            if (!in_array('isotope_section', $this->exclude_controls)) {
+                $this->start_controls_section(
+                    'isotope_section',
+                    [
+                        'label' => esc_html__('Isotope', 'fancy-post-grid'),
+                        'tab'   => \Elementor\Controls_Manager::TAB_CONTENT,
+                    ]
+                );
+
+                // Add filter_alignment control
+                $this->add_control(
+                    'filter_alignment',
+                    [
+                        'label'   => esc_html__('Filter Alignment', 'fancy-post-grid'),
+                        'type'    => \Elementor\Controls_Manager::CHOOSE,
+                        'options' => [
+                            'left'   => [
+                                'title' => esc_html__('Left', 'fancy-post-grid'),
+                                'icon'  => 'eicon-text-align-left',
+                            ],
+                            'center' => [
+                                'title' => esc_html__('Center', 'fancy-post-grid'),
+                                'icon'  => 'eicon-text-align-center',
+                            ],
+                            'right'  => [
+                                'title' => esc_html__('Right', 'fancy-post-grid'),
+                                'icon'  => 'eicon-text-align-right',
+                            ],
+                        ],
+                        'default' => 'center',
+                        'toggle'  => true,
+                    ]
+                );
+
+                // Add filter_all_text control
+                $this->add_control(
+                    'filter_all_text',
+                    [
+                        'label'       => esc_html__('All Filter Text', 'fancy-post-grid'),
+                        'type'        => \Elementor\Controls_Manager::TEXT,
+                        'default'     => esc_html__('All', 'fancy-post-grid'),
+                        'placeholder' => esc_html__('Enter text for "All" filter', 'fancy-post-grid'),
+                    ]
+                );
+
+                $this->end_controls_section();
+            }
+
+
             // Links Section
             $this->start_controls_section(
                 'link_section',
@@ -786,6 +842,8 @@ add_action('elementor/widgets/widgets_registered', function () {
                 )
             );
             $this->end_controls_section();
+
+
             // Style Section
             $this->start_controls_section(
                 'style_settings',
@@ -2066,10 +2124,11 @@ add_action('elementor/widgets/widgets_registered', function () {
                 [
                     'label'     => esc_html__( 'Text Color', 'fancy-post-grid' ),
                     'type'      => \Elementor\Controls_Manager::COLOR,
+                    'default'   => '#333333', // Dynamically set the default color
                     'selectors' => array(
                         '{{WRAPPER}} .readmore-button' => 'color: {{VALUE}};',
                     ),
-                     'render_type' => 'template'
+                    'render_type' => 'template',
                 ]
             );
 
@@ -2211,7 +2270,192 @@ add_action('elementor/widgets/widgets_registered', function () {
 
             $this->end_controls_section();
 
-            
+            // Isotope Style Section
+            if (!in_array('isotope_style', $this->exclude_controls)) {
+                $this->start_controls_section(
+                    'isotope_style',
+                    [
+                        'label' => esc_html__('Filter Box', 'fancy-post-grid'),
+                        'tab'   => \Elementor\Controls_Manager::TAB_STYLE,
+                    ]
+                );
+
+                // Add Tabs for Normal, Hover, and Active
+                $this->start_controls_tabs('isotope_filter_tabs');
+
+                // Normal Tab
+                $this->start_controls_tab(
+                    'isotope_filter_normal',
+                    [
+                        'label' => esc_html__('Normal', 'fancy-post-grid'),
+                    ]
+                );
+
+                $this->add_control(
+                    'filter_text_color',
+                    [
+                        'label'     => esc_html__('Text Color', 'fancy-post-grid'),
+                        'type'      => \Elementor\Controls_Manager::COLOR,
+                        'selectors' => [
+                            '{{WRAPPER}} .filter-button-group button' => 'color: {{VALUE}};',
+                        ],
+                    ]
+                );
+
+                $this->add_control(
+                    'filter_background_color',
+                    [
+                        'label'     => esc_html__('Background Color', 'fancy-post-grid'),
+                        'type'      => \Elementor\Controls_Manager::COLOR,
+                        'selectors' => [
+                            '{{WRAPPER}} .filter-button-group button' => 'background-color: {{VALUE}};',
+                        ],
+                    ]
+                );
+
+                $this->add_control(
+                    'filter_border_color',
+                    [
+                        'label'     => esc_html__('Border Color', 'fancy-post-grid'),
+                        'type'      => \Elementor\Controls_Manager::COLOR,
+                        'selectors' => [
+                            '{{WRAPPER}} .filter-button-group button' => 'border-color: {{VALUE}};',
+                        ],
+                    ]
+                );
+
+                $this->end_controls_tab();
+
+                // Hover Tab
+                $this->start_controls_tab(
+                    'isotope_filter_hover',
+                    [
+                        'label' => esc_html__('Hover', 'fancy-post-grid'),
+                    ]
+                );
+
+                $this->add_control(
+                    'filter_hover_text_color',
+                    [
+                        'label'     => esc_html__('Text Color', 'fancy-post-grid'),
+                        'type'      => \Elementor\Controls_Manager::COLOR,
+                        'selectors' => [
+                            '{{WRAPPER}} .filter-button-group button:hover' => 'color: {{VALUE}};',
+                        ],
+                    ]
+                );
+
+                $this->add_control(
+                    'filter_hover_background_color',
+                    [
+                        'label'     => esc_html__('Background Color', 'fancy-post-grid'),
+                        'type'      => \Elementor\Controls_Manager::COLOR,
+                        'selectors' => [
+                            '{{WRAPPER}} .filter-button-group button:hover' => 'background-color: {{VALUE}};',
+                        ],
+                    ]
+                );
+
+                $this->end_controls_tab();
+
+                // Active Tab
+                $this->start_controls_tab(
+                    'isotope_filter_active',
+                    [
+                        'label' => esc_html__('Active', 'fancy-post-grid'),
+                    ]
+                );
+
+                $this->add_control(
+                    'filter_active_text_color',
+                    [
+                        'label'     => esc_html__('Text Color', 'fancy-post-grid'),
+                        'type'      => \Elementor\Controls_Manager::COLOR,
+                        'selectors' => [
+                            '{{WRAPPER}} .filter-button-group button.active' => 'color: {{VALUE}};',
+                        ],
+                    ]
+                );
+
+                $this->add_control(
+                    'filter_active_background_color',
+                    [
+                        'label'     => esc_html__('Background Color', 'fancy-post-grid'),
+                        'type'      => \Elementor\Controls_Manager::COLOR,
+                        'selectors' => [
+                            '{{WRAPPER}} .filter-button-group button.active' => 'background-color: {{VALUE}};',
+                        ],
+                    ]
+                );
+
+                $this->add_control(
+                    'filter_active_border_color',
+                    [
+                        'label'     => esc_html__('Border Color', 'fancy-post-grid'),
+                        'type'      => \Elementor\Controls_Manager::COLOR,
+                        'selectors' => [
+                            '{{WRAPPER}} .filter-button-group button.active' => 'border-color: {{VALUE}};',
+                        ],
+                    ]
+                );
+
+                $this->end_controls_tab();
+
+                $this->end_controls_tabs();
+
+                // Spacing and Styling Controls
+                $this->add_control(
+                    'filter_box_margin',
+                    [
+                        'label'      => esc_html__('Margin', 'fancy-post-grid'),
+                        'type'       => \Elementor\Controls_Manager::DIMENSIONS,
+                        'size_units' => ['px', '%', 'em'],
+                        'selectors'  => [
+                            '{{WRAPPER}} .filter-button-group' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                        ],
+                    ]
+                );
+
+                $this->add_control(
+                    'filter_box_padding',
+                    [
+                        'label'      => esc_html__('Padding', 'fancy-post-grid'),
+                        'type'       => \Elementor\Controls_Manager::DIMENSIONS,
+                        'size_units' => ['px', '%', 'em'],
+                        'selectors'  => [
+                            '{{WRAPPER}} .filter-button-group button' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                        ],
+                    ]
+                );
+
+                $this->add_control(
+                    'filter_font_size',
+                    [
+                        'label'     => esc_html__('Font Size', 'fancy-post-grid'),
+                        'type'      => \Elementor\Controls_Manager::SLIDER,
+                        'size_units' => ['px', 'em'],
+                        'selectors' => [
+                            '{{WRAPPER}} .filter-button-group button' => 'font-size: {{SIZE}}{{UNIT}};',
+                        ],
+                    ]
+                );
+
+                $this->add_control(
+                    'filter_item_gap',
+                    [
+                        'label'     => esc_html__('Item Gap', 'fancy-post-grid'),
+                        'type'      => \Elementor\Controls_Manager::SLIDER,
+                        'size_units' => ['px', '%'],
+                        'selectors' => [
+                            '{{WRAPPER}} .filter-button-group button' => 'margin-right: {{SIZE}}{{UNIT}};',
+                        ],
+                    ]
+                );
+
+                $this->end_controls_section();
+            }
+  
+
             // Slider Style Section
             if (!in_array('slider_style', $this->exclude_controls)) {
                 $this->start_controls_section(
@@ -2629,6 +2873,7 @@ add_action('elementor/widgets/widgets_registered', function () {
 
             $this->end_controls_section();
         }
+
         protected function render() {
             // Get the selected grid and slider layouts
             $grid_layout = $this->get_settings_for_display('fancy_post_grid_layout');
@@ -2695,10 +2940,29 @@ add_action('elementor/widgets/widgets_registered', function () {
                 $this->render_isotope_style_06();
             } elseif ($isotope_layout === 'isotopestyle07') {
                 $this->render_isotope_style_07();
+            }
+
+            // Render isotope layout
+            if ($list_layout === 'liststyle01') {
+                $this->render_list_style_01();
+            } elseif ($list_layout === 'liststyle02') {
+                $this->render_list_style_02();
+            } elseif ($list_layout === 'liststyle03') {
+                $this->render_list_style_03();
+            }elseif ($list_layout === 'liststyle04') {
+                $this->render_list_style_04();
+            } elseif ($list_layout === 'liststyle05') {
+                $this->render_list_style_05();
+            }elseif ($list_layout === 'liststyle06') {
+                $this->render_list_style_06();
+            } elseif ($list_layout === 'liststyle07') {
+                $this->render_list_style_07();
+            } elseif ($list_layout === 'liststyle08') {
+                $this->render_list_style_08();
             } 
         }
 
-
+       
         protected function render_grid_style_01() {
             $file_path = plugin_dir_path( __FILE__ ) . 'render/grid-style-01.php'; // Adjust the path as needed.
             
@@ -2819,6 +3083,54 @@ add_action('elementor/widgets/widgets_registered', function () {
             } else {
                 echo '<div class="error">Grid Style 02 template not found.</div>';
             }
+        }protected function render_slider_style_02() {
+            $file_path = plugin_dir_path( __FILE__ ) . 'render/slider-style-01.php'; // Adjust the path as needed.
+            
+            if ( file_exists( $file_path ) ) {
+                include $file_path;
+            } else {
+                echo '<div class="error">Grid Style 02 template not found.</div>';
+            }
+        }protected function render_slider_style_03() {
+            $file_path = plugin_dir_path( __FILE__ ) . 'render/slider-style-01.php'; // Adjust the path as needed.
+            
+            if ( file_exists( $file_path ) ) {
+                include $file_path;
+            } else {
+                echo '<div class="error">Grid Style 02 template not found.</div>';
+            }
+        }protected function render_slider_style_04() {
+            $file_path = plugin_dir_path( __FILE__ ) . 'render/slider-style-01.php'; // Adjust the path as needed.
+            
+            if ( file_exists( $file_path ) ) {
+                include $file_path;
+            } else {
+                echo '<div class="error">Grid Style 02 template not found.</div>';
+            }
+        }protected function render_slider_style_05() {
+            $file_path = plugin_dir_path( __FILE__ ) . 'render/slider-style-01.php'; // Adjust the path as needed.
+            
+            if ( file_exists( $file_path ) ) {
+                include $file_path;
+            } else {
+                echo '<div class="error">Grid Style 02 template not found.</div>';
+            }
+        }protected function render_slider_style_06() {
+            $file_path = plugin_dir_path( __FILE__ ) . 'render/slider-style-01.php'; // Adjust the path as needed.
+            
+            if ( file_exists( $file_path ) ) {
+                include $file_path;
+            } else {
+                echo '<div class="error">Grid Style 02 template not found.</div>';
+            }
+        }protected function render_slider_style_07() {
+            $file_path = plugin_dir_path( __FILE__ ) . 'render/slider-style-01.php'; // Adjust the path as needed.
+            
+            if ( file_exists( $file_path ) ) {
+                include $file_path;
+            } else {
+                echo '<div class="error">Grid Style 02 template not found.</div>';
+            }
         }
 
         protected function render_isotope_style_01() {
@@ -2829,13 +3141,124 @@ add_action('elementor/widgets/widgets_registered', function () {
             } else {
                 echo '<div class="error">Grid Style 02 template not found.</div>';
             }
-        }
-        
+        }protected function render_isotope_style_02() {
+            $file_path = plugin_dir_path( __FILE__ ) . 'render/isotope-style-01.php'; // Adjust the path as needed.
+            
+            if ( file_exists( $file_path ) ) {
+                include $file_path;
+            } else {
+                echo '<div class="error">Grid Style 02 template not found.</div>';
+            }
+        }protected function render_isotope_style_03() {
+            $file_path = plugin_dir_path( __FILE__ ) . 'render/isotope-style-01.php'; // Adjust the path as needed.
+            
+            if ( file_exists( $file_path ) ) {
+                include $file_path;
+            } else {
+                echo '<div class="error">Grid Style 02 template not found.</div>';
+            }
+        }protected function render_isotope_style_04() {
+            $file_path = plugin_dir_path( __FILE__ ) . 'render/isotope-style-01.php'; // Adjust the path as needed.
+            
+            if ( file_exists( $file_path ) ) {
+                include $file_path;
+            } else {
+                echo '<div class="error">Grid Style 02 template not found.</div>';
+            }
+        }protected function render_isotope_style_05() {
+            $file_path = plugin_dir_path( __FILE__ ) . 'render/isotope-style-01.php'; // Adjust the path as needed.
+            
+            if ( file_exists( $file_path ) ) {
+                include $file_path;
+            } else {
+                echo '<div class="error">Grid Style 02 template not found.</div>';
+            }
+        }protected function render_isotope_style_06() {
+            $file_path = plugin_dir_path( __FILE__ ) . 'render/isotope-style-01.php'; // Adjust the path as needed.
+            
+            if ( file_exists( $file_path ) ) {
+                include $file_path;
+            } else {
+                echo '<div class="error">Grid Style 02 template not found.</div>';
+            }
+        }protected function render_isotope_style_07() {
+            $file_path = plugin_dir_path( __FILE__ ) . 'render/isotope-style-01.php'; // Adjust the path as needed.
+            
+            if ( file_exists( $file_path ) ) {
+                include $file_path;
+            } else {
+                echo '<div class="error">Grid Style 02 template not found.</div>';
+            }
+        }protected function render_list_style_01() {
+            $file_path = plugin_dir_path( __FILE__ ) . 'render/list-style-01.php'; // Adjust the path as needed.
+            
+            if ( file_exists( $file_path ) ) {
+                include $file_path;
+            } else {
+                echo '<div class="error">Grid Style 02 template not found.</div>';
+            }
+        }protected function render_list_style_02() {
+            $file_path = plugin_dir_path( __FILE__ ) . 'render/list-style-01.php'; // Adjust the path as needed.
+            
+            if ( file_exists( $file_path ) ) {
+                include $file_path;
+            } else {
+                echo '<div class="error">Grid Style 02 template not found.</div>';
+            }
+        }protected function render_list_style_03() {
+            $file_path = plugin_dir_path( __FILE__ ) . 'render/list-style-01.php'; // Adjust the path as needed.
+            
+            if ( file_exists( $file_path ) ) {
+                include $file_path;
+            } else {
+                echo '<div class="error">Grid Style 02 template not found.</div>';
+            }
+        }protected function render_list_style_04() {
+            $file_path = plugin_dir_path( __FILE__ ) . 'render/list-style-01.php'; // Adjust the path as needed.
+            
+            if ( file_exists( $file_path ) ) {
+                include $file_path;
+            } else {
+                echo '<div class="error">Grid Style 02 template not found.</div>';
+            }
+        }protected function render_list_style_05() {
+            $file_path = plugin_dir_path( __FILE__ ) . 'render/list-style-01.php'; // Adjust the path as needed.
+            
+            if ( file_exists( $file_path ) ) {
+                include $file_path;
+            } else {
+                echo '<div class="error">Grid Style 02 template not found.</div>';
+            }
+        }protected function render_list_style_06() {
+            $file_path = plugin_dir_path( __FILE__ ) . 'render/list-style-01.php'; // Adjust the path as needed.
+            
+            if ( file_exists( $file_path ) ) {
+                include $file_path;
+            } else {
+                echo '<div class="error">Grid Style 02 template not found.</div>';
+            }
+        }protected function render_list_style_07() {
+            $file_path = plugin_dir_path( __FILE__ ) . 'render/list-style-01.php'; // Adjust the path as needed.
+            
+            if ( file_exists( $file_path ) ) {
+                include $file_path;
+            } else {
+                echo '<div class="error">Grid Style 02 template not found.</div>';
+            }
+        }protected function render_list_style_08() {
+            $file_path = plugin_dir_path( __FILE__ ) . 'render/list-style-01.php'; // Adjust the path as needed.
+            
+            if ( file_exists( $file_path ) ) {
+                include $file_path;
+            } else {
+                echo '<div class="error">Grid Style 02 template not found.</div>';
+            }
+        }  
     }
 
     // FPG-Grid Layout Widget
     class Fancy_Post_Grid_Layout_Widget extends Fancy_Post_Grid_Base_Widget {
-        protected $exclude_controls = ['fancy_post_slider_layout','fancy_post_list_layout','fancy_post_isotope_layout','slider_pagination_type','slider_section','slider_style','col_desktop_slider','col_lg_slider','col_md_slider','col_sm_slider','col_xs_slider'];
+        protected $exclude_controls = ['fancy_post_slider_layout','fancy_post_list_layout','fancy_post_isotope_layout','slider_pagination_type','slider_section','slider_style','col_desktop_slider','col_lg_slider','col_md_slider','col_sm_slider','col_xs_slider','isotope_section','isotope_style'];
         public function get_name() {
             return 'fpg_grid_layout';
         }
@@ -2857,7 +3280,7 @@ add_action('elementor/widgets/widgets_registered', function () {
     class Fancy_Post_Slider_Layout_Widget extends Fancy_Post_Grid_Base_Widget {
         
         // Specify which controls to exclude
-        protected $exclude_controls = ['fancy_post_grid_layout', 'fancy_post_list_layout','fancy_post_isotope_layout','columns','show_pagination','col_desktop','col_lg','col_md','col_sm','col_xs'];
+        protected $exclude_controls = ['fancy_post_grid_layout', 'fancy_post_list_layout','fancy_post_isotope_layout','columns','show_pagination','col_desktop','col_lg','col_md','col_sm','col_xs','isotope_section','isotope_style'];
         public function get_name() {
             return 'fpg_slider_layout';
         }
@@ -2880,7 +3303,7 @@ add_action('elementor/widgets/widgets_registered', function () {
     class Fancy_Post_Isotope_Layout_Widget extends Fancy_Post_Grid_Base_Widget {
         
         // Specify which controls to exclude
-        protected $exclude_controls = ['fancy_post_grid_layout', 'fancy_post_slider_layout','fancy_post_list_layout','slider_columns','slider_pagination_type','slider_section','slider_style'];
+        protected $exclude_controls = ['fancy_post_grid_layout', 'fancy_post_slider_layout','fancy_post_list_layout','slider_columns','slider_pagination_type','slider_section','slider_style','col_desktop_slider','col_lg_slider','col_md_slider','col_sm_slider','col_xs_slider'];
         public function get_name() {
             return 'fpg_isotope_layout';
         }
@@ -2902,7 +3325,7 @@ add_action('elementor/widgets/widgets_registered', function () {
     class Fancy_Post_List_Layout_Widget extends Fancy_Post_Grid_Base_Widget {
         
         // Specify which controls to exclude
-        protected $exclude_controls = ['fancy_post_grid_layout', 'fancy_post_slider_layout','fancy_post_isotope_layout','slider_columns','slider_pagination_type','slider_section','slider_style'];
+        protected $exclude_controls = ['fancy_post_grid_layout', 'fancy_post_slider_layout','fancy_post_isotope_layout','slider_columns','slider_pagination_type','slider_section','slider_style','col_desktop_slider','col_lg_slider','col_md_slider','col_sm_slider','col_xs_slider','isotope_section','isotope_style','col_desktop','col_lg','col_md','col_sm','col_xs','space_between','space_between_lg','space_between_md','space_between_sm','space_between_xs'];
         public function get_name() {
             return 'fpg_list_layout';
         }
@@ -2918,6 +3341,7 @@ add_action('elementor/widgets/widgets_registered', function () {
         public function get_categories() {
             return array('fancy-post-grid-category');
         }
+        
     }
     
 

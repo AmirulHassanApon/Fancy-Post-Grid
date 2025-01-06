@@ -22,14 +22,7 @@ $query = new \WP_Query($args);
 
 // Check if there are posts
 if ($query->have_posts()) {
-    echo '<div class="rs-blog-layout-5 fancy-grid-style-01 fancy-post-grid" style="
-            display: grid; 
-            grid-template-columns: repeat(' . esc_attr($settings['col_desktop']) . ', 1fr); 
-            gap: ' . (isset($settings['space_between']['size'], $settings['space_between']['unit']) 
-                ? esc_attr($settings['space_between']['size'] . $settings['space_between']['unit']) 
-                : '0px') . '; 
-        ">';
-    
+    echo '<div class="row">';
     while ($query->have_posts()) {
         $query->the_post();
         $background_color = isset($settings['card_background']) ? esc_attr($settings['card_background']) : '';
@@ -47,7 +40,7 @@ if ($query->have_posts()) {
             : '0';
 
         ?>
-        <div class="fancy-post-item" 
+        <div class="col-lg-<?php echo esc_attr($settings['col_lg']); ?> col-md-<?php echo esc_attr($settings['col_md']); ?> col-sm-<?php echo esc_attr($settings['col_sm']); ?> fancy-post-item" 
             style="<?php echo esc_attr(
                 'background-color: ' . $background_color . '; ' .
                 'background-image: ' . $background_image . '; ' .
@@ -356,6 +349,7 @@ if ($query->have_posts()) {
         )));
         echo '</div>';
     }
+    echo '</div>';
     echo '</div>';
 } else {
     echo '<p>' . esc_html__('No posts found.', 'fancy-post-grid') . '</p>';
