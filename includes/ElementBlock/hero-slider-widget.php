@@ -1,65 +1,21 @@
 <?php
 
-/**
- * Logo widget class
- *
- */
-
-use Elementor\Repeater;
-use Elementor\Utils;
-use Elementor\Control_Media;
-use Elementor\Controls_Manager;
-use Elementor\Group_Control_Border;
-use Elementor\Group_Control_Text_Stroke;
-use Elementor\Group_Control_Box_Shadow;
-use Elementor\Group_Control_Typography;
-use Elementor\Group_Control_Background;
-use Elementor\Group_Control_Image_Size;
-use Elementor\POPOVER_TOGGLE;
-use Elementor\Icons_Manager;
-
-defined('ABSPATH') || die();
 
 class Rsaddon_Elementor_pro_Hero_Slider_Widget extends \Elementor\Widget_Base
 {
-    /**
-     * Get widget name.
-     *
-     * Retrieve rsgallery widget name.
-     *
-     * @since 1.0.0
-     * @access public
-     *
-     * @return string Widget name.
-     */
+    
 
     public function get_name()
     {
         return 'rs-hero-slider';
     }
 
-    /**
-     * Get widget title.
-     *
-     * @since 1.0.0
-     * @access public
-     *
-     * @return string Widget title.
-     */
 
     public function get_title()
     {
         return esc_html__('RS Hero Slider', 'rsaddon');
     }
 
-    /**
-     * Get widget icon.
-     *
-     * @since 1.0.0
-     * @access public
-     *
-     * @return string Widget icon.
-     */
     public function get_icon()
     {
         return 'rs-badge';
