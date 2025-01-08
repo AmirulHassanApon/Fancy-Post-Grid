@@ -58,7 +58,7 @@ $query = new \WP_Query($args);
 
                             <?php 
                             // Map the custom sizes to their actual dimensions
-                            $thumbnail_size = $settings['thumbnail_size'];
+                            $thumbnail_size = $settings['thumbnail_left_size'];
 
                             if ($thumbnail_size === 'fancy_post_custom_size') {
                                 $thumbnail_size = array(768, 500); // Custom size
@@ -339,7 +339,7 @@ $query = new \WP_Query($args);
 
                                 <?php 
                                 // Map the custom sizes to their actual dimensions
-                                $thumbnail_size = $settings['thumbnail_size'];
+                                $thumbnail_size = $settings['thumbnail_right_size'];
 
                                 if ($thumbnail_size === 'fancy_post_custom_size') {
                                     $thumbnail_size = array(768, 500); // Custom size
@@ -559,4 +559,6 @@ $query = new \WP_Query($args);
     </div> <!-- End of main row -->
 <?php else : ?>
     <p>No posts found.</p>
-<?php endif; ?>
+<?php endif; 
+// Reset post data
+wp_reset_postdata();

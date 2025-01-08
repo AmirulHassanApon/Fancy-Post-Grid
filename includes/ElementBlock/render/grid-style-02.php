@@ -19,30 +19,10 @@ $args = array(
 
 // Query the posts
 $query = new \WP_Query($args);
-$fancy_post_filter_alignment = $settings['filter_alignment'] ?? 'center';
-$fancy_post_filter_text = $settings['filter_all_text'] ?? 'All';
 
 // Check if there are posts
 if ($query->have_posts()) {
-    // Isotope filter container
-    echo '<div class="rs-blog-layout-1-filter" style="display: flex; justify-content: ' . esc_attr($fancy_post_filter_alignment) . ';">
-            <div class="filter-button-group">
-                <button class="active" data-filter="*">' . esc_html($fancy_post_filter_text) . '</button>';
-    // Get unique categories from posts
-    $categories = get_categories();
-    foreach ($categories as $category) {
-        echo '<button data-filter=".' . esc_attr($category->slug) . '">' . esc_html($category->name) . '</button>';
-    }
-    echo '</div>
-        </div>';
-    echo '<div class="rs-blog-layout-5 fancy-grid-style-01 fancy-post-grid" style="
-            display: grid; 
-            grid-template-columns: repeat(' . esc_attr($settings['col_desktop']) . ', 1fr); 
-            gap: ' . (isset($settings['space_between']['size'], $settings['space_between']['unit']) 
-                ? esc_attr($settings['space_between']['size'] . $settings['space_between']['unit']) 
-                : '0px') . '; 
-        ">';
-    
+    echo '<div class="row">';
     while ($query->have_posts()) {
         $query->the_post();
         $background_color = isset($settings['card_background']) ? esc_attr($settings['card_background']) : '';
@@ -60,7 +40,7 @@ if ($query->have_posts()) {
             : '0';
 
         ?>
-        <div class="fancy-post-item" 
+        <div class="col-lg-<?php echo esc_attr($settings['col_lg']); ?> col-md-<?php echo esc_attr($settings['col_md']); ?> col-sm-<?php echo esc_attr($settings['col_sm']); ?> fancy-post-item" 
             style="<?php echo esc_attr(
                 'background-color: ' . $background_color . '; ' .
                 'background-image: ' . $background_image . '; ' .
@@ -276,29 +256,31 @@ if ($query->have_posts()) {
 
             <!-- Post Excerpt -->
             <?php if ( 'yes' === $settings['show_post_excerpt'] ) { ?>
-                <p class="fancy-post-excerpt" 
-                    style="
-                        <?php echo !empty( $settings['excerpt_normal_color'] ) ? 'color: ' . esc_attr( $settings['excerpt_normal_color'] ) . ';' : ''; ?>
-                        <?php echo isset( $settings['excerpt_spacing']['size'] ) ? 'margin: ' . esc_attr( $settings['excerpt_spacing']['top'] ) . esc_attr( $settings['excerpt_spacing']['unit'] ) . ' ' . esc_attr( $settings['excerpt_spacing']['right'] ) . esc_attr( $settings['excerpt_spacing']['unit'] ) . ' ' . esc_attr( $settings['excerpt_spacing']['bottom'] ) . esc_attr( $settings['excerpt_spacing']['unit'] ) . ' ' . esc_attr( $settings['excerpt_spacing']['left'] ) . esc_attr( $settings['excerpt_spacing']['unit'] ) . ';' : ''; ?>
-                    ">
-                    <?php
-                    $excerpt_type = $settings['excerpt_type'];
-                    $excerpt_length = $settings['excerpt_length'];
-                    $expansion_indicator = $settings['expansion_indicator'];
+                <div class="fpg-excerpt">
+                    <p class="fancy-post-excerpt" 
+                        style="
+                            <?php echo !empty( $settings['excerpt_normal_color'] ) ? 'color: ' . esc_attr( $settings['excerpt_normal_color'] ) . ';' : ''; ?>
+                            <?php echo isset( $settings['excerpt_spacing']['size'] ) ? 'margin: ' . esc_attr( $settings['excerpt_spacing']['top'] ) . esc_attr( $settings['excerpt_spacing']['unit'] ) . ' ' . esc_attr( $settings['excerpt_spacing']['right'] ) . esc_attr( $settings['excerpt_spacing']['unit'] ) . ' ' . esc_attr( $settings['excerpt_spacing']['bottom'] ) . esc_attr( $settings['excerpt_spacing']['unit'] ) . ' ' . esc_attr( $settings['excerpt_spacing']['left'] ) . esc_attr( $settings['excerpt_spacing']['unit'] ) . ';' : ''; ?>
+                        ">
+                        <?php
+                        $excerpt_type = $settings['excerpt_type'];
+                        $excerpt_length = $settings['excerpt_length'];
+                        $expansion_indicator = $settings['expansion_indicator'];
 
-                    if ( 'full_content' === $excerpt_type ) {
-                        $content = get_the_content();
-                        echo esc_html( $content );
-                    } elseif ( 'character' === $excerpt_type ) {
-                        $excerpt = get_the_excerpt();
-                        $trimmed_excerpt = mb_substr( $excerpt, 0, $excerpt_length ) . esc_html( $expansion_indicator );
-                        echo esc_html( $trimmed_excerpt );
-                    } else { // Word-based excerpt
-                        $excerpt = wp_trim_words( get_the_excerpt(), $excerpt_length, esc_html( $expansion_indicator ) );
-                        echo esc_html( $excerpt );
-                    }
-                    ?>
-                </p>
+                        if ( 'full_content' === $excerpt_type ) {
+                            $content = get_the_content();
+                            echo esc_html( $content );
+                        } elseif ( 'character' === $excerpt_type ) {
+                            $excerpt = get_the_excerpt();
+                            $trimmed_excerpt = mb_substr( $excerpt, 0, $excerpt_length ) . esc_html( $expansion_indicator );
+                            echo esc_html( $trimmed_excerpt );
+                        } else { // Word-based excerpt
+                            $excerpt = wp_trim_words( get_the_excerpt(), $excerpt_length, esc_html( $expansion_indicator ) );
+                            echo esc_html( $excerpt );
+                        }
+                        ?>
+                    </p>
+                </div>
                 <style>
                     /* Hover styling for the excerpt */
                     .fancy-post:hover .fancy-post-excerpt {
@@ -369,6 +351,7 @@ if ($query->have_posts()) {
         )));
         echo '</div>';
     }
+    echo '</div>';
     echo '</div>';
 } else {
     echo '<p>' . esc_html__('No posts found.', 'fancy-post-grid') . '</p>';
