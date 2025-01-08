@@ -47,7 +47,7 @@ if ($query->have_posts()) {
             col-md-<?php echo esc_attr($settings['col_md']); ?> 
             col-sm-<?php echo esc_attr($settings['col_sm']); ?> 
             col-xs-<?php echo esc_attr($settings['col_xs']); ?> 
-            fancy-post-item" >
+            " >
             <?php if (!empty($hover_background_color)) : ?>
                 <style>
                     .fancy-post-item:hover {
@@ -55,7 +55,7 @@ if ($query->have_posts()) {
                     }
                 </style>
             <?php endif; ?>
-            <div class="rs-blog__single mt-30" style="<?php echo esc_attr(
+            <div class="rs-blog__single fancy-post-item mt-30" style="<?php echo esc_attr(
                 'background-color: ' . $background_color . '; ' .
                 'background-image: ' . $background_image . '; ' .
                 'background-size: cover; ' .
