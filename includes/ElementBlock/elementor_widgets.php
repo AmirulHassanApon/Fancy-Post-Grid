@@ -2947,6 +2947,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                     'label'     => esc_html__('Border Style', 'fancy-post-grid'),
                     'type'      => \Elementor\Controls_Manager::SELECT,
                     'options'   => [
+                        'default'  => esc_html__('Default', 'fancy-post-grid'),
                         'solid'  => esc_html__('Solid', 'fancy-post-grid'),
                         'dashed' => esc_html__('Dashed', 'fancy-post-grid'),
                         'dotted' => esc_html__('Dotted', 'fancy-post-grid'),
@@ -2956,6 +2957,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                     'selectors' => [
                         '{{WRAPPER}} .fpg-pagination a' => 'border-style: {{VALUE}};',
                     ],
+                    'default'      => 'default',
                 ]
             );
             // Add Border Width
