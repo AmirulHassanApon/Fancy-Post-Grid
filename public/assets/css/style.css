@@ -7024,17 +7024,12 @@ img {
     justify-content: center;
     margin-top: 50px;
 }
-.fpg-pagination-elementor {
-    display: flex;
-    
-}
 .fpg-pagination ul.page-numbers {
     display: inline-flex;
     gap: 20px;
     list-style-type: none;
     margin: 0;
     padding: 0;
-    align-items: center;
 }
 
 .fpg-pagination ul.page-numbers li .page-numbers{
