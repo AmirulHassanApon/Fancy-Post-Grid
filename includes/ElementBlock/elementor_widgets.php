@@ -238,7 +238,18 @@ add_action('elementor/widgets/widgets_registered', function () {
                     ]
                 );
             }
-            
+            if (!in_array('space_between', $this->exclude_controls)) {
+                $this->add_control(
+                    'space_between',
+                    [
+                        'label' => esc_html__( 'Desktop Space Between', 'fancy-post-grid' ),
+                        'type' => \Elementor\Controls_Manager::SLIDER,
+                        'default' => [
+                            'size' => 0,
+                        ],
+                    ]
+                );
+            }
             if (!in_array('col_lg', $this->exclude_controls)) {
                 $this->add_control(
                     'col_lg',
@@ -246,7 +257,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                         'label'   => esc_html__('Large 1199px to 992px', 'fancy-post-grid'),
                         'type'    => \Elementor\Controls_Manager::SELECT,
                         'label_block' => true,
-                        'default' => 4,
+                        'default' => 3,
                         'options' => [
                             '12' => esc_html__('1 Column', 'fancy-post-grid'),
                             '6' => esc_html__('2 Columns', 'fancy-post-grid'),
@@ -280,7 +291,18 @@ add_action('elementor/widgets/widgets_registered', function () {
                     ]
                 );
             }
-            
+            if (!in_array('space_between_lg', $this->exclude_controls)) {    
+                $this->add_control(
+                    'space_between_lg',
+                    [
+                        'label' => esc_html__( 'Large Space Between', 'fancy-post-grid' ),
+                        'type' => \Elementor\Controls_Manager::SLIDER,
+                        'default' => [
+                            'size' => 0,
+                        ],
+                    ]
+                );
+            }
             if (!in_array('col_md', $this->exclude_controls)) {
                 $this->add_control(
                     'col_md',
@@ -321,7 +343,18 @@ add_action('elementor/widgets/widgets_registered', function () {
                     ]
                 );
             }   
-            
+            if (!in_array('space_between_md', $this->exclude_controls)) { 
+                $this->add_control(
+                    'space_between_md',
+                    [
+                        'label' => esc_html__( 'Medium Space Between', 'fancy-post-grid' ),
+                        'type' => \Elementor\Controls_Manager::SLIDER,
+                        'default' => [
+                            'size' => 0,
+                        ],
+                    ]
+                );
+            }
 
             if (!in_array('col_sm', $this->exclude_controls)) {
                 $this->add_control(
@@ -364,6 +397,19 @@ add_action('elementor/widgets/widgets_registered', function () {
                     ]
                 );
             }
+            
+            if (!in_array('space_between_sm', $this->exclude_controls)) {
+                $this->add_control(
+                    'space_between_sm',
+                    [
+                        'label' => esc_html__( 'Small Space Between', 'fancy-post-grid' ),
+                        'type' => \Elementor\Controls_Manager::SLIDER,
+                        'default' => [
+                            'size' => 0,
+                        ],
+                    ]
+                );
+            }
 
             if (!in_array('col_xs', $this->exclude_controls)) {
                 $this->add_control(
@@ -403,6 +449,18 @@ add_action('elementor/widgets/widgets_registered', function () {
                             'auto' => esc_html__('Auto', 'fancy-post-grid'),
                         ],
                         'separator' => 'before',
+                    ]
+                );
+            }
+            if (!in_array('space_between_xs', $this->exclude_controls)) {
+                $this->add_control(
+                    'space_between_xs',
+                    [
+                        'label' => esc_html__( 'Mobile Space Between', 'fancy-post-grid' ),
+                        'type' => \Elementor\Controls_Manager::SLIDER,
+                        'default' => [
+                            'size' => 0,
+                        ],
                     ]
                 );
             }
@@ -2924,7 +2982,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                 ]
             );
 
-
+            
             $this->add_responsive_control(
                 'pagination_padding',
                 [
@@ -3441,7 +3499,7 @@ add_action('elementor/widgets/widgets_registered', function () {
     class Fancy_Post_List_Layout_Widget extends Fancy_Post_Grid_Base_Widget {
         
         // Specify which controls to exclude
-        protected $exclude_controls = ['fancy_post_grid_layout', 'fancy_post_slider_layout','fancy_post_isotope_layout','slider_columns','slider_pagination_type','slider_section','slider_style','col_desktop_slider','col_lg_slider','col_md_slider','col_sm_slider','col_xs_slider','isotope_section','isotope_style','col_desktop','col_lg','col_md','col_sm','col_xs'];
+        protected $exclude_controls = ['fancy_post_grid_layout', 'fancy_post_slider_layout','fancy_post_isotope_layout','slider_columns','slider_pagination_type','slider_section','slider_style','col_desktop_slider','col_lg_slider','col_md_slider','col_sm_slider','col_xs_slider','isotope_section','isotope_style','col_desktop','col_lg','col_md','col_sm','col_xs','space_between','space_between_lg','space_between_md','space_between_sm','space_between_xs'];
         public function get_name() {
             return 'fpg_list_layout';
         }
