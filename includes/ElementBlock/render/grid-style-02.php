@@ -19,11 +19,11 @@ $args = array(
 
 // Query the posts
 $query = new \WP_Query($args);
+$fancy_post_filter_alignment = $settings['filter_alignment'] ?? 'center';
+$fancy_post_filter_text = $settings['filter_all_text'] ?? 'All';
 
 // Check if there are posts
 if ($query->have_posts()) {
-    echo '<div class="rs-blog-layout-5">';
-    echo '<div class="container">';
     echo '<div class="row">';
     while ($query->have_posts()) {
         $query->the_post();
@@ -42,13 +42,8 @@ if ($query->have_posts()) {
             : '0';
 
         ?>
-        <div class="col-xl-<?php echo esc_attr($settings['col_desktop']); ?> 
-            col-lg-<?php echo esc_attr($settings['col_lg']); ?> 
-            col-md-<?php echo esc_attr($settings['col_md']); ?> 
-            col-sm-<?php echo esc_attr($settings['col_sm']); ?> 
-            col-xs-<?php echo esc_attr($settings['col_xs']); ?> 
-            fancy-post-item" 
-         style="<?php echo esc_attr(
+        <div class="col-lg-<?php echo esc_attr($settings['col_lg']); ?> col-md-<?php echo esc_attr($settings['col_md']); ?> col-sm-<?php echo esc_attr($settings['col_sm']); ?> fancy-post-item" 
+            style="<?php echo esc_attr(
                 'background-color: ' . $background_color . '; ' .
                 'background-image: ' . $background_image . '; ' .
                 'background-size: cover; ' .
@@ -248,40 +243,40 @@ if ($query->have_posts()) {
                         }
                     ?>
 
-                    <!-- Post Excerpt -->
-                    <?php if ( 'yes' === $settings['show_post_excerpt'] ) { ?>
-                        <div class="fpg-excerpt">
-                            <p class="fancy-post-excerpt" 
-                                style="
-                                    <?php echo !empty( $settings['excerpt_normal_color'] ) ? 'color: ' . esc_attr( $settings['excerpt_normal_color'] ) . ';' : ''; ?>
-                                    <?php echo isset( $settings['excerpt_spacing']['size'] ) ? 'margin: ' . esc_attr( $settings['excerpt_spacing']['top'] ) . esc_attr( $settings['excerpt_spacing']['unit'] ) . ' ' . esc_attr( $settings['excerpt_spacing']['right'] ) . esc_attr( $settings['excerpt_spacing']['unit'] ) . ' ' . esc_attr( $settings['excerpt_spacing']['bottom'] ) . esc_attr( $settings['excerpt_spacing']['unit'] ) . ' ' . esc_attr( $settings['excerpt_spacing']['left'] ) . esc_attr( $settings['excerpt_spacing']['unit'] ) . ';' : ''; ?>
-                                ">
-                                <?php
-                                $excerpt_type = $settings['excerpt_type'];
-                                $excerpt_length = $settings['excerpt_length'];
-                                $expansion_indicator = $settings['expansion_indicator'];
+            <!-- Post Excerpt -->
+            <?php if ( 'yes' === $settings['show_post_excerpt'] ) { ?>
+                <div class="fpg-excerpt">
+                    <p class="fancy-post-excerpt" 
+                        style="
+                            <?php echo !empty( $settings['excerpt_normal_color'] ) ? 'color: ' . esc_attr( $settings['excerpt_normal_color'] ) . ';' : ''; ?>
+                            <?php echo isset( $settings['excerpt_spacing']['size'] ) ? 'margin: ' . esc_attr( $settings['excerpt_spacing']['top'] ) . esc_attr( $settings['excerpt_spacing']['unit'] ) . ' ' . esc_attr( $settings['excerpt_spacing']['right'] ) . esc_attr( $settings['excerpt_spacing']['unit'] ) . ' ' . esc_attr( $settings['excerpt_spacing']['bottom'] ) . esc_attr( $settings['excerpt_spacing']['unit'] ) . ' ' . esc_attr( $settings['excerpt_spacing']['left'] ) . esc_attr( $settings['excerpt_spacing']['unit'] ) . ';' : ''; ?>
+                        ">
+                        <?php
+                        $excerpt_type = $settings['excerpt_type'];
+                        $excerpt_length = $settings['excerpt_length'];
+                        $expansion_indicator = $settings['expansion_indicator'];
 
-                                if ( 'full_content' === $excerpt_type ) {
-                                    $content = get_the_content();
-                                    echo esc_html( $content );
-                                } elseif ( 'character' === $excerpt_type ) {
-                                    $excerpt = get_the_excerpt();
-                                    $trimmed_excerpt = mb_substr( $excerpt, 0, $excerpt_length ) . esc_html( $expansion_indicator );
-                                    echo esc_html( $trimmed_excerpt );
-                                } else { // Word-based excerpt
-                                    $excerpt = wp_trim_words( get_the_excerpt(), $excerpt_length, esc_html( $expansion_indicator ) );
-                                    echo esc_html( $excerpt );
-                                }
-                                ?>
-                            </p>
-                        </div>
-                        <style>
-                            /* Hover styling for the excerpt */
-                            .fancy-post:hover .fancy-post-excerpt {
-                                <?php echo !empty( $settings['excerpt_hover_color'] ) ? 'color: ' . esc_attr( $settings['excerpt_hover_color'] ) . ';' : ''; ?>
-                            }
-                        </style>
-                    <?php } ?>
+                        if ( 'full_content' === $excerpt_type ) {
+                            $content = get_the_content();
+                            echo esc_html( $content );
+                        } elseif ( 'character' === $excerpt_type ) {
+                            $excerpt = get_the_excerpt();
+                            $trimmed_excerpt = mb_substr( $excerpt, 0, $excerpt_length ) . esc_html( $expansion_indicator );
+                            echo esc_html( $trimmed_excerpt );
+                        } else { // Word-based excerpt
+                            $excerpt = wp_trim_words( get_the_excerpt(), $excerpt_length, esc_html( $expansion_indicator ) );
+                            echo esc_html( $excerpt );
+                        }
+                        ?>
+                    </p>
+                </div>
+                <style>
+                    /* Hover styling for the excerpt */
+                    .fancy-post:hover .fancy-post-excerpt {
+                        <?php echo !empty( $settings['excerpt_hover_color'] ) ? 'color: ' . esc_attr( $settings['excerpt_hover_color'] ) . ';' : ''; ?>
+                    }
+                </style>
+            <?php } ?>
 
                     <!-- Read More Button -->
                     <?php if (!empty($settings['show_post_readmore']) && 'yes' === $settings['show_post_readmore']) {
@@ -373,7 +368,6 @@ if ($query->have_posts()) {
     echo '</div>';
 }
 
-    echo '</div>';
     echo '</div>';
     echo '</div>';
 } else {
