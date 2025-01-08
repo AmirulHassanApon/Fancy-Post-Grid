@@ -47,8 +47,15 @@ if ($query->have_posts()) {
             col-md-<?php echo esc_attr($settings['col_md']); ?> 
             col-sm-<?php echo esc_attr($settings['col_sm']); ?> 
             col-xs-<?php echo esc_attr($settings['col_xs']); ?> 
-            fancy-post-item" 
-         style="<?php echo esc_attr(
+            fancy-post-item" >
+            <?php if (!empty($hover_background_color)) : ?>
+                <style>
+                    .fancy-post-item:hover {
+                        background-color: <?php echo esc_attr($hover_background_color); ?> !important;
+                    }
+                </style>
+            <?php endif; ?>
+            <div class="rs-blog__single mt-30" style="<?php echo esc_attr(
                 'background-color: ' . $background_color . '; ' .
                 'background-image: ' . $background_image . '; ' .
                 'background-size: cover; ' .
@@ -57,14 +64,6 @@ if ($query->have_posts()) {
                 'padding: ' . $padding . '; ' .
                 'border-radius: ' . $border_radius . ';'
             ); ?>">
-            <?php if (!empty($hover_background_color)) : ?>
-                <style>
-                    .fancy-post-item:hover {
-                        background-color: <?php echo esc_attr($hover_background_color); ?> !important;
-                    }
-                </style>
-            <?php endif; ?>
-            <div class="rs-blog__single mt-30">
                 <!-- Featured Image -->
                 <?php if ('yes' === $settings['show_post_thumbnail'] && has_post_thumbnail()) { ?>
                     <div class="rs-thumb" 
