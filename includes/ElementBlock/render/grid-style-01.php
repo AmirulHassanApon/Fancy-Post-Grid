@@ -357,4 +357,3 @@ if ($query->have_posts()) {
 
 // Reset post data
 wp_reset_postdata();
-        

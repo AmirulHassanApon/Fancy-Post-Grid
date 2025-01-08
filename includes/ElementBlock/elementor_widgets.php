@@ -2872,6 +2872,258 @@ add_action('elementor/widgets/widgets_registered', function () {
             $this->end_controls_tabs();
 
             $this->end_controls_section();
+
+            // Pagination Style
+            $this->start_controls_section(
+                'pagination_style',
+                [
+                    'label' => esc_html__('Pagination', 'fancy-post-grid'),
+                    'tab'   => \Elementor\Controls_Manager::TAB_STYLE,
+                    'condition' => [
+                        'show_pagination' => 'yes',
+                    ],
+                ]
+            );
+
+            // Start Normal Style Tab
+            $this->start_controls_tabs('pagination_tabs');
+
+            $this->start_controls_tab(
+                'pagination_normal',
+                [
+                    'label' => esc_html__('Normal', 'fancy-post-grid'),
+                ]
+            );
+
+            $this->add_control(
+                'pagination_text_color',
+                [
+                    'label'     => esc_html__('Text Color', 'fancy-post-grid'),
+                    'type'      => \Elementor\Controls_Manager::COLOR,
+                    'selectors' => [
+                        '{{WRAPPER}} .fpg-pagination a' => 'color: {{VALUE}};',
+                    ],
+                ]
+            );
+
+            $this->add_control(
+                'pagination_background_color',
+                [
+                    'label'     => esc_html__('Background Color', 'fancy-post-grid'),
+                    'type'      => \Elementor\Controls_Manager::COLOR,
+                    'selectors' => [
+                        '{{WRAPPER}} .fpg-pagination a' => 'background-color: {{VALUE}};',
+                    ],
+                ]
+            );
+
+            $this->add_control(
+                'pagination_border_color',
+                [
+                    'label'     => esc_html__('Border Color', 'fancy-post-grid'),
+                    'type'      => \Elementor\Controls_Manager::COLOR,
+                    'selectors' => [
+                        '{{WRAPPER}} .fpg-pagination a' => 'border-color: {{VALUE}};',
+                    ],
+                ]
+            );
+
+            
+
+            $this->end_controls_tab(); // End Normal Tab
+
+            // Start Hover Style Tab
+            $this->start_controls_tab(
+                'pagination_hover',
+                [
+                    'label' => esc_html__('Hover', 'fancy-post-grid'),
+                ]
+            );
+
+            $this->add_control(
+                'pagination_hover_text_color',
+                [
+                    'label'     => esc_html__('Text Color', 'fancy-post-grid'),
+                    'type'      => \Elementor\Controls_Manager::COLOR,
+                    'selectors' => [
+                        '{{WRAPPER}} .fpg-pagination a:hover' => 'color: {{VALUE}};',
+                    ],
+                ]
+            );
+
+            $this->add_control(
+                'pagination_hover_background_color',
+                [
+                    'label'     => esc_html__('Background Color', 'fancy-post-grid'),
+                    'type'      => \Elementor\Controls_Manager::COLOR,
+                    'selectors' => [
+                        '{{WRAPPER}} .fpg-pagination a:hover' => 'background-color: {{VALUE}};',
+                    ],
+                ]
+            );
+
+            $this->add_control(
+                'pagination_hover_border_color',
+                [
+                    'label'     => esc_html__('Border Color', 'fancy-post-grid'),
+                    'type'      => \Elementor\Controls_Manager::COLOR,
+                    'selectors' => [
+                        '{{WRAPPER}} .fpg-pagination a:hover' => 'border-color: {{VALUE}};',
+                    ],
+                ]
+            );
+
+            $this->end_controls_tab(); // End Hover Tab
+
+            // Start Active Style Tab
+            $this->start_controls_tab(
+                'pagination_active',
+                [
+                    'label' => esc_html__('Active', 'fancy-post-grid'),
+                ]
+            );
+
+            $this->add_control(
+                'pagination_active_text_color',
+                [
+                    'label'     => esc_html__('Text Color', 'fancy-post-grid'),
+                    'type'      => \Elementor\Controls_Manager::COLOR,
+                    'selectors' => [
+                        '{{WRAPPER}} .fpg-pagination .current' => 'color: {{VALUE}};',
+                    ],
+                ]
+            );
+
+            $this->add_control(
+                'pagination_active_background_color',
+                [
+                    'label'     => esc_html__('Background Color', 'fancy-post-grid'),
+                    'type'      => \Elementor\Controls_Manager::COLOR,
+                    'selectors' => [
+                        '{{WRAPPER}} .fpg-pagination .current' => 'background-color: {{VALUE}};',
+                    ],
+                ]
+            );
+
+            $this->add_control(
+                'pagination_active_border_color',
+                [
+                    'label'     => esc_html__('Border Color', 'fancy-post-grid'),
+                    'type'      => \Elementor\Controls_Manager::COLOR,
+                    'selectors' => [
+                        '{{WRAPPER}} .fpg-pagination .current' => 'border-color: {{VALUE}};',
+                    ],
+                ]
+            );
+
+            $this->end_controls_tab(); // End Active Tab
+
+            $this->end_controls_tabs(); // End Tabs
+            $this->add_control(
+                'pagination_border_style',
+                [
+                    'label'     => esc_html__('Border Style', 'fancy-post-grid'),
+                    'type'      => \Elementor\Controls_Manager::SELECT,
+                    'options'   => [
+                        'solid'  => esc_html__('Solid', 'fancy-post-grid'),
+                        'dashed' => esc_html__('Dashed', 'fancy-post-grid'),
+                        'dotted' => esc_html__('Dotted', 'fancy-post-grid'),
+                        'double' => esc_html__('Double', 'fancy-post-grid'),
+                        'none'   => esc_html__('None', 'fancy-post-grid'),
+                    ],
+                    'selectors' => [
+                        '{{WRAPPER}} .fpg-pagination a' => 'border-style: {{VALUE}};',
+                    ],
+                ]
+            );
+            // Add Border Width
+            $this->add_control(
+                'pagination_border_width',
+                [
+                    'label'      => esc_html__('Border Width', 'fancy-post-grid'),
+                    'type'       => \Elementor\Controls_Manager::DIMENSIONS,
+                    'selectors'  => [
+                        '{{WRAPPER}} .fpg-pagination a' => 'border-width: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    ],
+                ]
+            );
+
+            // Add Border Radius
+            $this->add_control(
+                'pagination_border_radius',
+                [
+                    'label'      => esc_html__('Border Radius', 'fancy-post-grid'),
+                    'type'       => \Elementor\Controls_Manager::DIMENSIONS,
+                    'selectors'  => [
+                        '{{WRAPPER}} .fpg-pagination a' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    ],
+                ]
+            );
+
+            
+            $this->add_responsive_control(
+                'pagination_padding',
+                [
+                    'label'      => esc_html__('Padding', 'fancy-post-grid'),
+                    'type'       => \Elementor\Controls_Manager::DIMENSIONS,
+                    'selectors'  => [
+                        '{{WRAPPER}} .fpg-pagination a' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    ],
+                ]
+            );
+
+            $this->add_responsive_control(
+                'pagination_margin',
+                [
+                    'label'      => esc_html__('Margin', 'fancy-post-grid'),
+                    'type'       => \Elementor\Controls_Manager::DIMENSIONS,
+                    'selectors'  => [
+                        '{{WRAPPER}} .fpg-pagination' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    ],
+                ]
+            );
+            $this->add_responsive_control(
+                'pagination_gap',
+                [
+                    'label'      => esc_html__('Gap', 'fancy-post-grid'),
+                    'type'       => \Elementor\Controls_Manager::DIMENSIONS,
+                    'selectors'  => [
+                        '{{WRAPPER}} .fpg-pagination a' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    ],
+                ]
+            );
+
+            // Add Alignment
+            $this->add_control(
+                'pagination_alignment',
+                [
+                    'label'        => esc_html__('Alignment', 'fancy-post-grid'),
+                    'type'         => \Elementor\Controls_Manager::CHOOSE,
+                    'options'      => [
+                        'left' => [
+                            'title' => esc_html__('Left', 'fancy-post-grid'),
+                            'icon'  => 'eicon-text-align-left',
+                        ],
+                        'center' => [
+                            'title' => esc_html__('Center', 'fancy-post-grid'),
+                            'icon'  => 'eicon-text-align-center',
+                        ],
+                        'right' => [
+                            'title' => esc_html__('Right', 'fancy-post-grid'),
+                            'icon'  => 'eicon-text-align-right',
+                        ],
+                    ],
+                    'default'      => 'center',
+                    'selectors'    => [
+                        '{{WRAPPER}} .fpg-pagination ul' => 'justify-content: {{VALUE}};',
+                    ],
+                ]
+            );
+
+            $this->end_controls_section();
+
+
+
         }
 
         protected function render() {
