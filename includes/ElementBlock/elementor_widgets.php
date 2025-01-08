@@ -3022,7 +3022,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                     'label'        => esc_html__('Alignment', 'fancy-post-grid'),
                     'type'         => \Elementor\Controls_Manager::CHOOSE,
                     'options'      => [
-                        'left' => [
+                        'flex-start' => [
                             'title' => esc_html__('Left', 'fancy-post-grid'),
                             'icon'  => 'eicon-text-align-left',
                         ],
@@ -3030,14 +3030,14 @@ add_action('elementor/widgets/widgets_registered', function () {
                             'title' => esc_html__('Center', 'fancy-post-grid'),
                             'icon'  => 'eicon-text-align-center',
                         ],
-                        'right' => [
+                        'flex-end' => [
                             'title' => esc_html__('Right', 'fancy-post-grid'),
                             'icon'  => 'eicon-text-align-right',
                         ],
                     ],
                     'default'      => 'center',
                     'selectors'    => [
-                        '{{WRAPPER}} .fpg-pagination ul' => 'justify-content: {{VALUE}};',
+                        '{{WRAPPER}} .fpg-pagination' => 'justify-content: {{VALUE}};',
                     ],
                 ]
             );
