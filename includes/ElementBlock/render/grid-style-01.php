@@ -118,7 +118,7 @@ if ($query->have_posts()) {
                                     'class'     => 'meta-author',
                                     'icon'      => ('yes' === $settings['show_meta_data_icon'] && 'yes' === $settings['author_icon_visibility']) 
                                                     ? ('icon' === $settings['author_image_icon'] 
-                                                        ? '<i class="fas fa-user"></i>' 
+                                                        ? '<i class="fa fa-user"></i>' 
                                                         : '<img src="' . esc_url(get_avatar_url(get_the_author_meta('ID'))) . '" alt="' . esc_attr__('Author', 'fancy-post-grid') . '" class="author-avatar" />')
                                                     : '',
                                     'content'   => esc_html($settings['author_prefix']) . ' ' . esc_html(get_the_author()),
@@ -126,25 +126,25 @@ if ($query->have_posts()) {
                                 'post_date' => array(
                                     'condition' => 'yes' === $settings['show_post_date'],
                                     'class'     => 'meta-date',
-                                    'icon'      => ('yes' === $settings['show_meta_data_icon'] && 'yes' === $settings['show_post_date_icon']) ? '<i class="fas fa-calendar-alt"></i>' : '',
+                                    'icon'      => ('yes' === $settings['show_meta_data_icon'] && 'yes' === $settings['show_post_date_icon']) ? '<i class="fa fa-calendar"></i>' : '',
                                     'content'   => esc_html(get_the_date()),
                                 ),
                                 'post_categories' => array(
                                     'condition' => 'yes' === $settings['show_post_categories'],
                                     'class'     => 'meta-categories',
-                                    'icon'      => ('yes' === $settings['show_meta_data_icon'] && 'yes' === $settings['show_post_categories_icon']) ? '<i class="fas fa-folder"></i>' : '',
+                                    'icon'      => ('yes' === $settings['show_meta_data_icon'] && 'yes' === $settings['show_post_categories_icon']) ? '<i class="fa fa-folder"></i>' : '',
                                     'content'   => get_the_category_list(', '),
                                 ),
                                 'post_tags' => array(
                                     'condition' => 'yes' === $settings['show_post_tags'] && !empty(get_the_tag_list('', ', ')),
                                     'class'     => 'meta-tags',
-                                    'icon'      => ('yes' === $settings['show_meta_data_icon'] && 'yes' === $settings['show_post_tags_icon']) ? '<i class="fas fa-tags"></i>' : '',
+                                    'icon'      => ('yes' === $settings['show_meta_data_icon'] && 'yes' === $settings['show_post_tags_icon']) ? '<i class="fa fa-tags"></i>' : '',
                                     'content'   => get_the_tag_list('', ', '),
                                 ),
                                 'comments_count' => array(
                                     'condition' => 'yes' === $settings['show_comments_count'],
                                     'class'     => 'meta-comments',
-                                    'icon'      => ('yes' === $settings['show_meta_data_icon'] && 'yes' === $settings['show_comments_count_icon']) ? '<i class="fas fa-comments"></i>' : '',
+                                    'icon'      => ('yes' === $settings['show_meta_data_icon'] && 'yes' === $settings['show_comments_count_icon']) ? '<i class="fa fa-comments"></i>' : '',
                                     'content'   => sprintf(
                                         '<a href="%s">%s</a>',
                                         esc_url(get_comments_link()),
