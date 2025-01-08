@@ -238,18 +238,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                     ]
                 );
             }
-            if (!in_array('space_between', $this->exclude_controls)) {
-                $this->add_control(
-                    'space_between',
-                    [
-                        'label' => esc_html__( 'Desktop Space Between', 'fancy-post-grid' ),
-                        'type' => \Elementor\Controls_Manager::SLIDER,
-                        'default' => [
-                            'size' => 0,
-                        ],
-                    ]
-                );
-            }
+            
             if (!in_array('col_lg', $this->exclude_controls)) {
                 $this->add_control(
                     'col_lg',
@@ -257,7 +246,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                         'label'   => esc_html__('Large 1199px to 992px', 'fancy-post-grid'),
                         'type'    => \Elementor\Controls_Manager::SELECT,
                         'label_block' => true,
-                        'default' => 3,
+                        'default' => 4,
                         'options' => [
                             '12' => esc_html__('1 Column', 'fancy-post-grid'),
                             '6' => esc_html__('2 Columns', 'fancy-post-grid'),
@@ -291,18 +280,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                     ]
                 );
             }
-            if (!in_array('space_between_lg', $this->exclude_controls)) {    
-                $this->add_control(
-                    'space_between_lg',
-                    [
-                        'label' => esc_html__( 'Large Space Between', 'fancy-post-grid' ),
-                        'type' => \Elementor\Controls_Manager::SLIDER,
-                        'default' => [
-                            'size' => 0,
-                        ],
-                    ]
-                );
-            }
+            
             if (!in_array('col_md', $this->exclude_controls)) {
                 $this->add_control(
                     'col_md',
@@ -343,18 +321,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                     ]
                 );
             }   
-            if (!in_array('space_between_md', $this->exclude_controls)) { 
-                $this->add_control(
-                    'space_between_md',
-                    [
-                        'label' => esc_html__( 'Medium Space Between', 'fancy-post-grid' ),
-                        'type' => \Elementor\Controls_Manager::SLIDER,
-                        'default' => [
-                            'size' => 0,
-                        ],
-                    ]
-                );
-            }
+            
 
             if (!in_array('col_sm', $this->exclude_controls)) {
                 $this->add_control(
@@ -397,19 +364,6 @@ add_action('elementor/widgets/widgets_registered', function () {
                     ]
                 );
             }
-            
-            if (!in_array('space_between_sm', $this->exclude_controls)) {
-                $this->add_control(
-                    'space_between_sm',
-                    [
-                        'label' => esc_html__( 'Small Space Between', 'fancy-post-grid' ),
-                        'type' => \Elementor\Controls_Manager::SLIDER,
-                        'default' => [
-                            'size' => 0,
-                        ],
-                    ]
-                );
-            }
 
             if (!in_array('col_xs', $this->exclude_controls)) {
                 $this->add_control(
@@ -449,18 +403,6 @@ add_action('elementor/widgets/widgets_registered', function () {
                             'auto' => esc_html__('Auto', 'fancy-post-grid'),
                         ],
                         'separator' => 'before',
-                    ]
-                );
-            }
-            if (!in_array('space_between_xs', $this->exclude_controls)) {
-                $this->add_control(
-                    'space_between_xs',
-                    [
-                        'label' => esc_html__( 'Mobile Space Between', 'fancy-post-grid' ),
-                        'type' => \Elementor\Controls_Manager::SLIDER,
-                        'default' => [
-                            'size' => 0,
-                        ],
                     ]
                 );
             }
@@ -1164,27 +1106,74 @@ add_action('elementor/widgets/widgets_registered', function () {
                     'tab'   => \Elementor\Controls_Manager::TAB_SETTINGS,
                 ]
             );
-            // Thumbnail Styling
-            $this->add_control(
-                'thumbnail_size',
-                [
-                    'label'   => esc_html__( 'Thumbnail Size', 'fancy-post-grid' ),
-                    'type'    => \Elementor\Controls_Manager::SELECT,
-                    'options' => array(
-                        'thumbnail'  => esc_html__( 'Thumbnail', 'fancy-post-grid' ),
-                        'medium'     => esc_html__( 'Medium', 'fancy-post-grid' ),
-                        'large'      => esc_html__( 'Large', 'fancy-post-grid' ),
-                        'full'       => esc_html__( 'Full', 'fancy-post-grid' ),
-                        'fancy_post_custom_size'=> esc_html__( 'Custom Size (768x500)', 'fancy-post-grid' ),
-                        'fancy_post_square'     => esc_html__( 'Square(500x500)', 'fancy-post-grid' ),
-                        'fancy_post_landscape'  => esc_html__( 'Landscape(834x550)', 'fancy-post-grid' ),
-                        'fancy_post_portrait'   => esc_html__( 'Portrait(421x550)', 'fancy-post-grid' ),
-                        'fancy_post_list'       => esc_html__( 'List Size(1200 x 650)', 'fancy-post-grid' ),
-                    ),
-                    'default' => 'full',
-                    'render_type' => 'template'
-                ]
-            );
+            // Thumbnail Main Styling
+            if (!in_array('thumbnail_size', $this->exclude_controls)) {
+                $this->add_control(
+                    'thumbnail_size',
+                    [
+                        'label'   => esc_html__( 'Thumbnail Size', 'fancy-post-grid' ),
+                        'type'    => \Elementor\Controls_Manager::SELECT,
+                        'options' => array(
+                            'thumbnail'  => esc_html__( 'Thumbnail', 'fancy-post-grid' ),
+                            'medium'     => esc_html__( 'Medium', 'fancy-post-grid' ),
+                            'large'      => esc_html__( 'Large', 'fancy-post-grid' ),
+                            'full'       => esc_html__( 'Full', 'fancy-post-grid' ),
+                            'fancy_post_custom_size'=> esc_html__( 'Custom Size (768x500)', 'fancy-post-grid' ),
+                            'fancy_post_square'     => esc_html__( 'Square(500x500)', 'fancy-post-grid' ),
+                            'fancy_post_landscape'  => esc_html__( 'Landscape(834x550)', 'fancy-post-grid' ),
+                            'fancy_post_portrait'   => esc_html__( 'Portrait(421x550)', 'fancy-post-grid' ),
+                            'fancy_post_list'       => esc_html__( 'List Size(1200 x 650)', 'fancy-post-grid' ),
+                        ),
+                        'default' => 'full',
+                        'render_type' => 'template'
+                    ]
+                );
+            }
+            // Thumbnail Left Styling
+            if (!in_array('thumbnail_left_size', $this->exclude_controls)) {
+                $this->add_control(
+                    'thumbnail_left_size',
+                    [
+                        'label'   => esc_html__( 'Left Thumbnail Size', 'fancy-post-grid' ),
+                        'type'    => \Elementor\Controls_Manager::SELECT,
+                        'options' => array(
+                            'thumbnail'  => esc_html__( 'Thumbnail', 'fancy-post-grid' ),
+                            'medium'     => esc_html__( 'Medium', 'fancy-post-grid' ),
+                            'large'      => esc_html__( 'Large', 'fancy-post-grid' ),
+                            'full'       => esc_html__( 'Full', 'fancy-post-grid' ),
+                            'fancy_post_custom_size'=> esc_html__( 'Custom Size (768x500)', 'fancy-post-grid' ),
+                            'fancy_post_square'     => esc_html__( 'Square(500x500)', 'fancy-post-grid' ),
+                            'fancy_post_landscape'  => esc_html__( 'Landscape(834x550)', 'fancy-post-grid' ),
+                            'fancy_post_portrait'   => esc_html__( 'Portrait(421x550)', 'fancy-post-grid' ),
+                            'fancy_post_list'       => esc_html__( 'List Size(1200 x 650)', 'fancy-post-grid' ),
+                        ),
+                        'default' => 'full',
+                        'render_type' => 'template'
+                    ]
+                );
+            }// Thumbnail Left Styling
+            if (!in_array('thumbnail_right_size', $this->exclude_controls)) {
+                $this->add_control(
+                    'thumbnail_right_size',
+                    [
+                        'label'   => esc_html__( 'Right Thumbnail Size', 'fancy-post-grid' ),
+                        'type'    => \Elementor\Controls_Manager::SELECT,
+                        'options' => array(
+                            'thumbnail'  => esc_html__( 'Thumbnail', 'fancy-post-grid' ),
+                            'medium'     => esc_html__( 'Medium', 'fancy-post-grid' ),
+                            'large'      => esc_html__( 'Large', 'fancy-post-grid' ),
+                            'full'       => esc_html__( 'Full', 'fancy-post-grid' ),
+                            'fancy_post_custom_size'=> esc_html__( 'Custom Size (768x500)', 'fancy-post-grid' ),
+                            'fancy_post_square'     => esc_html__( 'Square(500x500)', 'fancy-post-grid' ),
+                            'fancy_post_landscape'  => esc_html__( 'Landscape(834x550)', 'fancy-post-grid' ),
+                            'fancy_post_portrait'   => esc_html__( 'Portrait(421x550)', 'fancy-post-grid' ),
+                            'fancy_post_list'       => esc_html__( 'List Size(1200 x 650)', 'fancy-post-grid' ),
+                        ),
+                        'default' => 'full',
+                        'render_type' => 'template'
+                    ]
+                );
+            }
 
             $this->end_controls_section();
 
@@ -1347,23 +1336,6 @@ add_action('elementor/widgets/widgets_registered', function () {
                     'label_off' => esc_html__( 'Hide', 'fancy-post-grid' ),
                     'return_value' => 'yes',
                     'default' => 'yes',
-                    'render_type' => 'template'
-                ]
-            );
-
-            // Icon Library
-            $this->add_control(
-                'choose_icon',
-                [
-                    'label'     => esc_html__( 'Icon Library ', 'fancy-post-grid' ),
-                    'type'      => \Elementor\Controls_Manager::ICONS,
-                    'default'   => array(
-                        'value'   => 'fas fa-star',
-                        'library' => 'fa-solid',
-                    ),
-                    'condition' => array(
-                        'button_icon' => 'yes',
-                    ),
                     'render_type' => 'template'
                 ]
             );
@@ -1606,7 +1578,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                     'type'       => \Elementor\Controls_Manager::DIMENSIONS,
                     'size_units' => array( 'px', 'em', '%' ),
                     'selectors'  => array(
-                        '{{WRAPPER}} .fancy-post-thumbnail' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                        '{{WRAPPER}} .rs-thumb' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                     ),
                     'render_type' => 'template'
                 ]
@@ -1620,7 +1592,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                     'type'       => \Elementor\Controls_Manager::DIMENSIONS,
                     'size_units' => array( 'px', 'em', '%' ),
                     'selectors'  => array(
-                        '{{WRAPPER}} .fancy-post-thumbnail img' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                        '{{WRAPPER}} .rs-thumb img' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                     ),
 
                     'render_type' => 'template'
@@ -1640,121 +1612,13 @@ add_action('elementor/widgets/widgets_registered', function () {
                         'auto'    => esc_html__( 'Auto', 'fancy-post-grid' ),
                     ),
                     'selectors' => array(
-                        '{{WRAPPER}} .fancy-post-thumbnail img' => 'width: {{VALUE}};',
+                        '{{WRAPPER}} .rs-thumb img' => 'width: {{VALUE}};',
                     ),
                     'render_type' => 'template'
                 ]
             );
 
-            // Overlay Style Tabs
-            $this->start_controls_tabs('thumbnail_overlay_style_tabs');
-
-            // Normal Overlay Tab
-            $this->start_controls_tab(
-                'thumbnail_overlay_normal',
-                [
-                    'label' => esc_html__( 'Normal', 'fancy-post-grid' ),
-                ]
-            );
-
-            $this->add_control(
-                'thumbnail_overlay_background',
-                [
-                    'label'     => esc_html__( 'Overlay Background', 'fancy-post-grid' ),
-                    'type'      => \Elementor\Controls_Manager::COLOR,
-                    'selectors' => array(
-                        '{{WRAPPER}} .fancy-post-thumbnail .overlay' => 'background-color: {{VALUE}};',
-                    ),
-                    'render_type' => 'template'
-
-                ]
-            );
-
-            $this->add_control(
-                'thumbnail_overlay_opacity',
-                [
-                    'label'      => esc_html__( 'Opacity', 'fancy-post-grid' ),
-                    'type'       => \Elementor\Controls_Manager::SLIDER,
-                    'range'      => array(
-                        'px' => array(
-                            'min' => 0,
-                            'max' => 1,
-                            'step' => 0.1,
-                        ),
-                    ),
-                    'selectors'  => array(
-                        '{{WRAPPER}} .fancy-post-thumbnail .overlay' => 'opacity: {{SIZE}};',
-                    ),
-                    'render_type' => 'template'
-                ]
-            );
-
-            $this->end_controls_tab();
-
-            // Hover Overlay Tab
-            $this->start_controls_tab(
-                'thumbnail_overlay_hover',
-                [
-                    'label' => esc_html__( 'Hover', 'fancy-post-grid' ),
-                ]
-            );
-
-            $this->add_control(
-                'thumbnail_hover_background',
-                [
-                    'label'     => esc_html__( 'Overlay Background', 'fancy-post-grid' ),
-                    'type'      => \Elementor\Controls_Manager::COLOR,
-                    'selectors' => array(
-                        '{{WRAPPER}} .fancy-post-thumbnail:hover .overlay' => 'background-color: {{VALUE}};',
-                    ),
-                    'render_type' => 'template'
-                ]
-            );
-
-            $this->add_control(
-                'thumbnail_hover_opacity',
-                [
-                    'label'      => esc_html__( 'Opacity', 'fancy-post-grid' ),
-                    'type'       => \Elementor\Controls_Manager::SLIDER,
-                    'range'      => array(
-                        'px' => array(
-                            'min' => 0,
-                            'max' => 1,
-                            'step' => 0.1,
-                        ),
-                    ),
-                    'selectors'  => array(
-                        '{{WRAPPER}} .fancy-post-thumbnail:hover .overlay' => 'opacity: {{SIZE}};',
-                    ),
-                    'render_type' => 'template'
-                ]
-            );
-
-            $this->add_control(
-                'thumbnail_hover_transition',
-                [
-                    'label'      => esc_html__( 'Transition Duration', 'fancy-post-grid' ),
-                    'type'       => \Elementor\Controls_Manager::SLIDER,
-                    'range'      => array(
-                        'px' => array(
-                            'min' => 0,
-                            'max' => 3,
-                            'step' => 0.1,
-                        ),
-                    ),
-                    'default'    => array(
-                        'size' => 0.3, // Default transition duration
-                    ),
-                    'selectors'  => array(
-                        '{{WRAPPER}} .fancy-post-thumbnail .overlay' => 'transition-duration: {{SIZE}}s;',
-                    ),
-                    'render_type' => 'template'
-                ]
-            );
-
-
-            $this->end_controls_tab();
-            $this->end_controls_tabs();
+            
 
             $this->end_controls_section();
 
@@ -1891,7 +1755,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                 [
                     'name'     => 'meta_typography',
                     'label'    => esc_html__( 'Typography', 'fancy-post-grid' ),
-                    'selector' => '{{WRAPPER}} .fancy-post-meta',
+                    'selector' => '{{WRAPPER}} .meta-data-list',
                 ]
             );
 
@@ -1916,7 +1780,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                         ),
                     ),
                     'selectors' => array(
-                        '{{WRAPPER}} .fancy-post-meta' => 'text-align: {{VALUE}};',
+                        '{{WRAPPER}} .meta-data-list' => 'text-align: {{VALUE}};',
                     ),
                      'render_type' => 'template'
                 ]
@@ -1930,7 +1794,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                     'type'       => \Elementor\Controls_Manager::DIMENSIONS,
                     'size_units' => array( 'px', 'em', '%' ),
                     'selectors'  => array(
-                        '{{WRAPPER}} .fancy-post-meta' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                        '{{WRAPPER}} .meta-data-list' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                     ),
                      'render_type' => 'template'
                 ]
@@ -1965,7 +1829,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                     'label'     => esc_html__( 'Meta Link Color', 'fancy-post-grid' ),
                     'type'      => \Elementor\Controls_Manager::COLOR,
                     'selectors' => array(
-                        '{{WRAPPER}} .fancy-post-meta a' => 'color: {{VALUE}};',
+                        '{{WRAPPER}} .meta-data-list a' => 'color: {{VALUE}};',
                     ),
                      'render_type' => 'template'
                 ]
@@ -1977,7 +1841,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                     'label'     => esc_html__( 'Icon Color', 'fancy-post-grid' ),
                     'type'      => \Elementor\Controls_Manager::COLOR,
                     'selectors' => array(
-                        '{{WRAPPER}} .fancy-post-meta i' => 'color: {{VALUE}};',
+                        '{{WRAPPER}} .meta-data-list i' => 'color: {{VALUE}};',
                     ),
                      'render_type' => 'template'
                 ]
@@ -1999,7 +1863,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                     'label'     => esc_html__( 'Link Hover Color', 'fancy-post-grid' ),
                     'type'      => \Elementor\Controls_Manager::COLOR,
                     'selectors' => array(
-                        '{{WRAPPER}} .fancy-post-meta a:hover' => 'color: {{VALUE}};',
+                        '{{WRAPPER}} .meta-data-list a:hover' => 'color: {{VALUE}};',
                     ),
                      'render_type' => 'template'
                 ]
@@ -2021,7 +1885,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                     'label'     => esc_html__( 'Meta Color', 'fancy-post-grid' ),
                     'type'      => \Elementor\Controls_Manager::COLOR,
                     'selectors' => array(
-                        '{{WRAPPER}}:hover .fancy-post-meta' => 'color: {{VALUE}};',
+                        '{{WRAPPER}}:hover .meta-data-list' => 'color: {{VALUE}};',
                     ),
                      'render_type' => 'template'
                 ]
@@ -2049,7 +1913,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                 [
                     'name'     => 'readmore_typography',
                     'label'    => esc_html__( 'Typography', 'fancy-post-grid' ),
-                    'selector' => '{{WRAPPER}} .readmore-button',
+                    'selector' => '{{WRAPPER}} .rs-link',
                 ]
             );
 
@@ -2061,7 +1925,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                     'type'      => \Elementor\Controls_Manager::DIMENSIONS,
                     'size_units' => array( 'px', 'em', '%' ),
                     'selectors' => array(
-                        '{{WRAPPER}} .readmore-button' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                        '{{WRAPPER}} .rs-link' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                     ),
                      'render_type' => 'template'
                 ]
@@ -2075,7 +1939,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                     'type'      => \Elementor\Controls_Manager::DIMENSIONS,
                     'size_units' => array( 'px', 'em', '%' ),
                     'selectors' => array(
-                        '{{WRAPPER}} .readmore-button' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                        '{{WRAPPER}} .rs-link' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                     ),
                      'render_type' => 'template'
                 ]
@@ -2102,7 +1966,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                         ),
                     ),
                     'selectors'    => array(
-                        '{{WRAPPER}} .fancy-post-readmore' => 'text-align: {{VALUE}};',
+                        '{{WRAPPER}} .btn-wrapper' => 'text-align: {{VALUE}};',
                     ),
                      'render_type' => 'template'
                 ]
@@ -2124,9 +1988,9 @@ add_action('elementor/widgets/widgets_registered', function () {
                 [
                     'label'     => esc_html__( 'Text Color', 'fancy-post-grid' ),
                     'type'      => \Elementor\Controls_Manager::COLOR,
-                    'default'   => '#333333', // Dynamically set the default color
+                    
                     'selectors' => array(
-                        '{{WRAPPER}} .readmore-button' => 'color: {{VALUE}};',
+                        '{{WRAPPER}} .rs-link' => 'color: {{VALUE}};',
                     ),
                     'render_type' => 'template',
                 ]
@@ -2138,7 +2002,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                     'label'     => esc_html__( 'Background Color', 'fancy-post-grid' ),
                     'type'      => \Elementor\Controls_Manager::COLOR,
                     'selectors' => array(
-                        '{{WRAPPER}} .readmore-button' => 'background-color: {{VALUE}};',
+                        '{{WRAPPER}} .rs-link' => 'background-color: {{VALUE}};',
                     ),
                      'render_type' => 'template'
                 ]
@@ -2149,7 +2013,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                 [
                     'name'     => 'readmore_normal_border',
                     'label'    => esc_html__( 'Border', 'fancy-post-grid' ),
-                    'selector' => '{{WRAPPER}} .readmore-button',
+                    'selector' => '{{WRAPPER}} .rs-link',
                 ]
             );
 
@@ -2160,7 +2024,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                     'type'       => \Elementor\Controls_Manager::DIMENSIONS,
                     'size_units' => array( 'px', '%' ),
                     'selectors'  => array(
-                        '{{WRAPPER}} .readmore-button' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                        '{{WRAPPER}} .rs-link' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                     ),
                      'render_type' => 'template'
                 ]
@@ -2182,7 +2046,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                     'label'     => esc_html__( 'Text Color on Hover', 'fancy-post-grid' ),
                     'type'      => \Elementor\Controls_Manager::COLOR,
                     'selectors' => array(
-                        '{{WRAPPER}} .readmore-button:hover' => 'color: {{VALUE}};',
+                        '{{WRAPPER}} .rs-link:hover' => 'color: {{VALUE}};',
                     ),
                      'render_type' => 'template'
                 ]
@@ -2194,7 +2058,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                     'label'     => esc_html__( 'Background Color on Hover', 'fancy-post-grid' ),
                     'type'      => \Elementor\Controls_Manager::COLOR,
                     'selectors' => array(
-                        '{{WRAPPER}} .readmore-button:hover' => 'background-color: {{VALUE}};',
+                        '{{WRAPPER}} .rs-link:hover' => 'background-color: {{VALUE}};',
                     ),
                      'render_type' => 'template'
                 ]
@@ -2205,7 +2069,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                 [
                     'name'     => 'readmore_hover_border',
                     'label'    => esc_html__( 'Border', 'fancy-post-grid' ),
-                    'selector' => '{{WRAPPER}} .readmore-button:hover',
+                    'selector' => '{{WRAPPER}} .rs-link:hover',
                 ]
             );
 
@@ -2216,7 +2080,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                     'type'       => \Elementor\Controls_Manager::DIMENSIONS,
                     'size_units' => array( 'px', '%' ),
                     'selectors'  => array(
-                        '{{WRAPPER}} .readmore-button:hover' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                        '{{WRAPPER}} .rs-link:hover' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                     ),
                      'render_type' => 'template'
                 ]
@@ -2238,7 +2102,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                     'label'     => esc_html__( 'Text Color on Box Hover', 'fancy-post-grid' ),
                     'type'      => \Elementor\Controls_Manager::COLOR,
                     'selectors' => array(
-                        '{{WRAPPER}} .fancy-post:hover .readmore-button' => 'color: {{VALUE}};',
+                        '{{WRAPPER}} .fancy-post:hover .rs-link' => 'color: {{VALUE}};',
                     ),
                     'render_type' => 'template'
                 ]
@@ -2250,7 +2114,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                     'label'     => esc_html__( 'Background Color on Box Hover', 'fancy-post-grid' ),
                     'type'      => \Elementor\Controls_Manager::COLOR,
                     'selectors' => array(
-                        '{{WRAPPER}} .fancy-post:hover .readmore-button' => 'background-color: {{VALUE}};',
+                        '{{WRAPPER}} .fancy-post:hover .rs-link' => 'background-color: {{VALUE}};',
                     ),
                     'render_type' => 'template'
                 ]
@@ -2261,7 +2125,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                 [                    
                     'name'     => 'readmore_box_hover_border',
                     'label'    => esc_html__( 'Border', 'fancy-post-grid' ),
-                    'selector' => '{{WRAPPER}} .fancy-post:hover .readmore-button',
+                    'selector' => '{{WRAPPER}} .fancy-post:hover .rs-link',
                 ]
             );
 
@@ -2681,7 +2545,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                         ),
                     ),
                     'selectors'  => array(
-                        '{{WRAPPER}} .fancy-post-card' => 'gap: {{SIZE}}{{UNIT}};',
+                        '{{WRAPPER}} .rs-blog__single' => 'gap: {{SIZE}}{{UNIT}};',
                     ),
                     'render_type' => 'template'
                 ]
@@ -2695,7 +2559,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                     'type'       => \Elementor\Controls_Manager::DIMENSIONS,
                     'size_units' => array( 'px', 'em', '%' ),
                     'selectors'  => array(
-                        '{{WRAPPER}} .fancy-post-card' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                        '{{WRAPPER}} .rs-blog__single' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                     ),
                     'render_type' => 'template'
                 ]
@@ -2715,7 +2579,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                         ),
                     ),
                     'selectors'  => array(
-                        '{{WRAPPER}} .fancy-post-card' => 'border-radius: {{SIZE}}{{UNIT}};',
+                        '{{WRAPPER}} .rs-blog__single' => 'border-radius: {{SIZE}}{{UNIT}};',
                     ),
                     'render_type' => 'template'
                 ]
@@ -2738,7 +2602,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                     'label'     => esc_html__( 'Border Color', 'fancy-post-grid' ),
                     'type'      => \Elementor\Controls_Manager::COLOR,
                     'selectors' => array(
-                        '{{WRAPPER}} .fancy-post-card' => 'border-color: {{VALUE}};',
+                        '{{WRAPPER}} .rs-blog__single' => 'border-color: {{VALUE}};',
                     ),
                     'condition' => array(
                         'enable_border_shadow' => 'yes',
@@ -2752,7 +2616,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                 [
                     'name'      => 'box_shadow',
                     'label'     => esc_html__( 'Box Shadow', 'fancy-post-grid' ),
-                    'selector'  => '{{WRAPPER}} .fancy-post-card',
+                    'selector'  => '{{WRAPPER}} .rs-blog__single',
                     'condition' => array(
                         'enable_border_shadow' => 'yes',
                     ),
@@ -2784,7 +2648,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                         ),
                     ),
                     'selectors'  => array(
-                        '{{WRAPPER}} .fancy-post-card' => 'border-bottom-width: {{SIZE}}{{UNIT}};',
+                        '{{WRAPPER}} .rs-blog__single' => 'border-bottom-width: {{SIZE}}{{UNIT}};',
                     ),
                     'condition' => array(
                         'enable_border_bottom' => 'yes',
@@ -2799,7 +2663,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                     'label'     => esc_html__( 'Border Bottom Color', 'fancy-post-grid' ),
                     'type'      => \Elementor\Controls_Manager::COLOR,
                     'selectors' => array(
-                        '{{WRAPPER}} .fancy-post-card' => 'border-bottom-color: {{VALUE}};',
+                        '{{WRAPPER}} .rs-blog__single' => 'border-bottom-color: {{VALUE}};',
                     ),
                     'condition' => array(
                         'enable_border_bottom' => 'yes',
@@ -2872,6 +2736,258 @@ add_action('elementor/widgets/widgets_registered', function () {
             $this->end_controls_tabs();
 
             $this->end_controls_section();
+
+            // Pagination Style
+            $this->start_controls_section(
+                'pagination_style',
+                [
+                    'label' => esc_html__('Pagination', 'fancy-post-grid'),
+                    'tab'   => \Elementor\Controls_Manager::TAB_STYLE,
+                    'condition' => [
+                        'show_pagination' => 'yes',
+                    ],
+                ]
+            );
+
+            // Start Normal Style Tab
+            $this->start_controls_tabs('pagination_tabs');
+
+            $this->start_controls_tab(
+                'pagination_normal',
+                [
+                    'label' => esc_html__('Normal', 'fancy-post-grid'),
+                ]
+            );
+
+            $this->add_control(
+                'pagination_text_color',
+                [
+                    'label'     => esc_html__('Text Color', 'fancy-post-grid'),
+                    'type'      => \Elementor\Controls_Manager::COLOR,
+                    'selectors' => [
+                        '{{WRAPPER}} .fpg-pagination a' => 'color: {{VALUE}};',
+                    ],
+                ]
+            );
+
+            $this->add_control(
+                'pagination_background_color',
+                [
+                    'label'     => esc_html__('Background Color', 'fancy-post-grid'),
+                    'type'      => \Elementor\Controls_Manager::COLOR,
+                    'selectors' => [
+                        '{{WRAPPER}} .fpg-pagination a' => 'background-color: {{VALUE}};',
+                    ],
+                ]
+            );
+
+            $this->add_control(
+                'pagination_border_color',
+                [
+                    'label'     => esc_html__('Border Color', 'fancy-post-grid'),
+                    'type'      => \Elementor\Controls_Manager::COLOR,
+                    'selectors' => [
+                        '{{WRAPPER}} .fpg-pagination a' => 'border-color: {{VALUE}};',
+                    ],
+                ]
+            );
+
+            
+
+            $this->end_controls_tab(); // End Normal Tab
+
+            // Start Hover Style Tab
+            $this->start_controls_tab(
+                'pagination_hover',
+                [
+                    'label' => esc_html__('Hover', 'fancy-post-grid'),
+                ]
+            );
+
+            $this->add_control(
+                'pagination_hover_text_color',
+                [
+                    'label'     => esc_html__('Text Color', 'fancy-post-grid'),
+                    'type'      => \Elementor\Controls_Manager::COLOR,
+                    'selectors' => [
+                        '{{WRAPPER}} .fpg-pagination a:hover' => 'color: {{VALUE}};',
+                    ],
+                ]
+            );
+
+            $this->add_control(
+                'pagination_hover_background_color',
+                [
+                    'label'     => esc_html__('Background Color', 'fancy-post-grid'),
+                    'type'      => \Elementor\Controls_Manager::COLOR,
+                    'selectors' => [
+                        '{{WRAPPER}} .fpg-pagination a:hover' => 'background-color: {{VALUE}};',
+                    ],
+                ]
+            );
+
+            $this->add_control(
+                'pagination_hover_border_color',
+                [
+                    'label'     => esc_html__('Border Color', 'fancy-post-grid'),
+                    'type'      => \Elementor\Controls_Manager::COLOR,
+                    'selectors' => [
+                        '{{WRAPPER}} .fpg-pagination a:hover' => 'border-color: {{VALUE}};',
+                    ],
+                ]
+            );
+
+            $this->end_controls_tab(); // End Hover Tab
+
+            // Start Active Style Tab
+            $this->start_controls_tab(
+                'pagination_active',
+                [
+                    'label' => esc_html__('Active', 'fancy-post-grid'),
+                ]
+            );
+
+            $this->add_control(
+                'pagination_active_text_color',
+                [
+                    'label'     => esc_html__('Text Color', 'fancy-post-grid'),
+                    'type'      => \Elementor\Controls_Manager::COLOR,
+                    'selectors' => [
+                        '{{WRAPPER}} .fpg-pagination .current' => 'color: {{VALUE}};',
+                    ],
+                ]
+            );
+
+            $this->add_control(
+                'pagination_active_background_color',
+                [
+                    'label'     => esc_html__('Background Color', 'fancy-post-grid'),
+                    'type'      => \Elementor\Controls_Manager::COLOR,
+                    'selectors' => [
+                        '{{WRAPPER}} .fpg-pagination .current' => 'background-color: {{VALUE}};',
+                    ],
+                ]
+            );
+
+            $this->add_control(
+                'pagination_active_border_color',
+                [
+                    'label'     => esc_html__('Border Color', 'fancy-post-grid'),
+                    'type'      => \Elementor\Controls_Manager::COLOR,
+                    'selectors' => [
+                        '{{WRAPPER}} .fpg-pagination .current' => 'border-color: {{VALUE}};',
+                    ],
+                ]
+            );
+
+            $this->end_controls_tab(); // End Active Tab
+
+            $this->end_controls_tabs(); // End Tabs
+            $this->add_control(
+                'pagination_border_style',
+                [
+                    'label'     => esc_html__('Border Style', 'fancy-post-grid'),
+                    'type'      => \Elementor\Controls_Manager::SELECT,
+                    'options'   => [
+                        'solid'  => esc_html__('Solid', 'fancy-post-grid'),
+                        'dashed' => esc_html__('Dashed', 'fancy-post-grid'),
+                        'dotted' => esc_html__('Dotted', 'fancy-post-grid'),
+                        'double' => esc_html__('Double', 'fancy-post-grid'),
+                        'none'   => esc_html__('None', 'fancy-post-grid'),
+                    ],
+                    'selectors' => [
+                        '{{WRAPPER}} .fpg-pagination a' => 'border-style: {{VALUE}};',
+                    ],
+                ]
+            );
+            // Add Border Width
+            $this->add_control(
+                'pagination_border_width',
+                [
+                    'label'      => esc_html__('Border Width', 'fancy-post-grid'),
+                    'type'       => \Elementor\Controls_Manager::DIMENSIONS,
+                    'selectors'  => [
+                        '{{WRAPPER}} .fpg-pagination a' => 'border-width: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    ],
+                ]
+            );
+
+            // Add Border Radius
+            $this->add_control(
+                'pagination_border_radius',
+                [
+                    'label'      => esc_html__('Border Radius', 'fancy-post-grid'),
+                    'type'       => \Elementor\Controls_Manager::DIMENSIONS,
+                    'selectors'  => [
+                        '{{WRAPPER}} .fpg-pagination a' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    ],
+                ]
+            );
+
+
+            $this->add_responsive_control(
+                'pagination_padding',
+                [
+                    'label'      => esc_html__('Padding', 'fancy-post-grid'),
+                    'type'       => \Elementor\Controls_Manager::DIMENSIONS,
+                    'selectors'  => [
+                        '{{WRAPPER}} .fpg-pagination a' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    ],
+                ]
+            );
+
+            $this->add_responsive_control(
+                'pagination_margin',
+                [
+                    'label'      => esc_html__('Margin', 'fancy-post-grid'),
+                    'type'       => \Elementor\Controls_Manager::DIMENSIONS,
+                    'selectors'  => [
+                        '{{WRAPPER}} .fpg-pagination' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    ],
+                ]
+            );
+            $this->add_responsive_control(
+                'pagination_gap',
+                [
+                    'label'      => esc_html__('Gap', 'fancy-post-grid'),
+                    'type'       => \Elementor\Controls_Manager::DIMENSIONS,
+                    'selectors'  => [
+                        '{{WRAPPER}} .fpg-pagination a' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    ],
+                ]
+            );
+
+            // Add Alignment
+            $this->add_control(
+                'pagination_alignment',
+                [
+                    'label'        => esc_html__('Alignment', 'fancy-post-grid'),
+                    'type'         => \Elementor\Controls_Manager::CHOOSE,
+                    'options'      => [
+                        'left' => [
+                            'title' => esc_html__('Left', 'fancy-post-grid'),
+                            'icon'  => 'eicon-text-align-left',
+                        ],
+                        'center' => [
+                            'title' => esc_html__('Center', 'fancy-post-grid'),
+                            'icon'  => 'eicon-text-align-center',
+                        ],
+                        'right' => [
+                            'title' => esc_html__('Right', 'fancy-post-grid'),
+                            'icon'  => 'eicon-text-align-right',
+                        ],
+                    ],
+                    'default'      => 'center',
+                    'selectors'    => [
+                        '{{WRAPPER}} .fpg-pagination ul' => 'justify-content: {{VALUE}};',
+                    ],
+                ]
+            );
+
+            $this->end_controls_section();
+
+
+
         }
 
         protected function render() {
@@ -3258,7 +3374,7 @@ add_action('elementor/widgets/widgets_registered', function () {
 
     // FPG-Grid Layout Widget
     class Fancy_Post_Grid_Layout_Widget extends Fancy_Post_Grid_Base_Widget {
-        protected $exclude_controls = ['fancy_post_slider_layout','fancy_post_list_layout','fancy_post_isotope_layout','slider_pagination_type','slider_section','slider_style','col_desktop_slider','col_lg_slider','col_md_slider','col_sm_slider','col_xs_slider','isotope_section','isotope_style'];
+        protected $exclude_controls = ['fancy_post_slider_layout','fancy_post_list_layout','fancy_post_isotope_layout','slider_pagination_type','slider_section','slider_style','col_desktop_slider','col_lg_slider','col_md_slider','col_sm_slider','col_xs_slider','isotope_section','isotope_style','thumbnail_left_size','thumbnail_right_size'];
         public function get_name() {
             return 'fpg_grid_layout';
         }
@@ -3280,7 +3396,7 @@ add_action('elementor/widgets/widgets_registered', function () {
     class Fancy_Post_Slider_Layout_Widget extends Fancy_Post_Grid_Base_Widget {
         
         // Specify which controls to exclude
-        protected $exclude_controls = ['fancy_post_grid_layout', 'fancy_post_list_layout','fancy_post_isotope_layout','columns','show_pagination','col_desktop','col_lg','col_md','col_sm','col_xs','isotope_section','isotope_style'];
+        protected $exclude_controls = ['fancy_post_grid_layout', 'fancy_post_list_layout','fancy_post_isotope_layout','columns','show_pagination','col_desktop','col_lg','col_md','col_sm','col_xs','isotope_section','isotope_style','thumbnail_left_size','thumbnail_right_size'];
         public function get_name() {
             return 'fpg_slider_layout';
         }
@@ -3303,7 +3419,7 @@ add_action('elementor/widgets/widgets_registered', function () {
     class Fancy_Post_Isotope_Layout_Widget extends Fancy_Post_Grid_Base_Widget {
         
         // Specify which controls to exclude
-        protected $exclude_controls = ['fancy_post_grid_layout', 'fancy_post_slider_layout','fancy_post_list_layout','slider_columns','slider_pagination_type','slider_section','slider_style','col_desktop_slider','col_lg_slider','col_md_slider','col_sm_slider','col_xs_slider'];
+        protected $exclude_controls = ['fancy_post_grid_layout', 'fancy_post_slider_layout','fancy_post_list_layout','slider_columns','slider_pagination_type','slider_section','slider_style','col_desktop_slider','col_lg_slider','col_md_slider','col_sm_slider','col_xs_slider','thumbnail_left_size','thumbnail_right_size'];
         public function get_name() {
             return 'fpg_isotope_layout';
         }
@@ -3325,7 +3441,7 @@ add_action('elementor/widgets/widgets_registered', function () {
     class Fancy_Post_List_Layout_Widget extends Fancy_Post_Grid_Base_Widget {
         
         // Specify which controls to exclude
-        protected $exclude_controls = ['fancy_post_grid_layout', 'fancy_post_slider_layout','fancy_post_isotope_layout','slider_columns','slider_pagination_type','slider_section','slider_style','col_desktop_slider','col_lg_slider','col_md_slider','col_sm_slider','col_xs_slider','isotope_section','isotope_style','col_desktop','col_lg','col_md','col_sm','col_xs','space_between','space_between_lg','space_between_md','space_between_sm','space_between_xs'];
+        protected $exclude_controls = ['fancy_post_grid_layout', 'fancy_post_slider_layout','fancy_post_isotope_layout','slider_columns','slider_pagination_type','slider_section','slider_style','col_desktop_slider','col_lg_slider','col_md_slider','col_sm_slider','col_xs_slider','isotope_section','isotope_style','col_desktop','col_lg','col_md','col_sm','col_xs'];
         public function get_name() {
             return 'fpg_list_layout';
         }
