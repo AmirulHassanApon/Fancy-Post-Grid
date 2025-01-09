@@ -1700,6 +1700,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                 [
                     'name' => 'thumb_border_color',
                     'selector' => '{{WRAPPER}} .rs-thumb',
+                    'render_type' => 'template'
                 ]
             );
 
