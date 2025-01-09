@@ -1357,7 +1357,7 @@ add_action('elementor/widgets/widgets_registered', function () {
             );
 
             // Title Styling: margin
-            $this->add_control(
+            $this->add_responsive_control(
                 'title_margin',
                 [
                     'label'      => esc_html__( 'Title Margin', 'fancy-post-grid' ),
@@ -1371,7 +1371,7 @@ add_action('elementor/widgets/widgets_registered', function () {
             );            
 
             // Title Styling: Padding
-            $this->add_control(
+            $this->add_responsive_control(
                 'title_padding',
                 [
                     'label'      => esc_html__( 'Title Padding', 'fancy-post-grid' ),
@@ -1393,22 +1393,10 @@ add_action('elementor/widgets/widgets_registered', function () {
                 ]
             );
 
-            // Title Styling: Minimum Height
-            $this->add_control(
-                'title_min_height',
-                [
-                    'label'     => esc_html__( 'Minimum Height', 'fancy-post-grid' ),
-                    'type'      => \Elementor\Controls_Manager::NUMBER,
-                    'default'   => '',
-                    'selectors' => array(
-                        '{{WRAPPER}} .fancy-post-title' => 'min-height: {{VALUE}}px;',
-                    ),
-                    'render_type' => 'template'
-                ]
-            );
+            
 
             // Title Styling: Alignment
-            $this->add_control(
+            $this->add_responsive_control(
                 'title_alignment',
                 [
                     'label'     => esc_html__( 'Alignment', 'fancy-post-grid' ),
