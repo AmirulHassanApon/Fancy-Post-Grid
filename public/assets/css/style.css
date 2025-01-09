@@ -1676,6 +1676,10 @@ img {
     order: 2;
     margin-bottom: 0;
 }
+
+.rs-blog-layout-5 .rs-blog__single .rs-content .title.hover-underline:hover a{
+    text-decoration: underline;
+}
 .rs-blog-layout-5 .rs-blog__single .rs-content .title a {
     transition: all linear 0.3s;
     color: #003A37;
