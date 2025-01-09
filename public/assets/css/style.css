@@ -1553,6 +1553,7 @@ img {
     border-radius: 4px;
     overflow: hidden;
     margin: 40px 0px 0;
+    transition: all linear 0.3s;
 }
 
 .rs-blog-layout-5 .rs-blog-layout-2-filter {
@@ -1622,6 +1623,8 @@ img {
 .rs-blog-layout-5 .rs-blog__single .rs-thumb a img {
     transition: all linear 0.3s;
     width: 100%;
+    object-fit: cover;
+    object-position: center;
 }
 
 .rs-blog-layout-5 .rs-blog__single .rs-content {
