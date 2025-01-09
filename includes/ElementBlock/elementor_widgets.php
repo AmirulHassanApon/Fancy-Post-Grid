@@ -1001,18 +1001,6 @@ add_action('elementor/widgets/widgets_registered', function () {
                 ]
             );
 
-            $this->add_control(
-                'show_post_social_share',
-                [
-                    'label'       => esc_html__( 'Show Social Share', 'fancy-post-grid' ),
-                    'type'        => \Elementor\Controls_Manager::SWITCHER,
-                    'label_on' => esc_html__( 'Show', 'fancy-post-grid' ),
-                    'label_off' => esc_html__( 'Hide', 'fancy-post-grid' ),
-                    'return_value' => 'yes',
-                    'default' => 'yes',
-                    'render_type' => 'template'
-                ]
-            );
             $this->end_controls_section();
             // Post Title
             $this->start_controls_section(
