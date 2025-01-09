@@ -178,45 +178,7 @@ if ($query->have_posts()) {
                                     : implode(' ', array_slice(explode(' ', $title), 0, (int)$settings['title_length']));
                             }
 
-                            // Inline Styles
-                            $title_styles = [];
-                            if (!empty($settings['title_padding'])) {
-                                $padding = $settings['title_padding'];
-                                $title_styles[] = "padding: {$padding['top']}{$padding['unit']} {$padding['right']}{$padding['unit']} {$padding['bottom']}{$padding['unit']} {$padding['left']}{$padding['unit']};";
-                            }
-                            if (!empty($settings['title_margin'])) {
-                                $margin = $settings['title_margin'];
-                                $title_styles[] = "margin: {$margin['top']}{$margin['unit']} {$margin['right']}{$margin['unit']} {$margin['bottom']}{$margin['unit']} {$margin['left']}{$margin['unit']};";
-                            }
-                            if (!empty($settings['title_min_height'])) {
-                                $title_styles[] = "min-height: {$settings['title_min_height']}px;";
-                            }
-                            if (!empty($settings['title_alignment'])) {
-                                $title_styles[] = "text-align: {$settings['title_alignment']};";
-                            }
-                            if (!empty($settings['title_normal_color'])) {
-                                $title_styles[] = "color: {$settings['title_normal_color']};";
-                            }
-                            if (!empty($settings['title_normal_background'])) {
-                                $title_styles[] = "background-color: {$settings['title_normal_background']};";
-                            }
-
-                            // Title Visibility Style
-                            if (!empty($settings['title_visibility_style'])) {
-                                switch ($settings['title_visibility_style']) {
-                                    case 'show_1_line':
-                                        $title_styles[] = 'display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden';
-                                        break;
-                                    case 'show_2_lines':
-                                        $title_styles[] = 'display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;';
-                                        break;
-                                    case 'show_3_lines':
-                                        $title_styles[] = 'display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;';
-                                        break;
-                                }
-                            }
-
-                            $title_style_attr = !empty($title_styles) ? 'style="' . implode(' ', $title_styles) . '"' : '';
+                            
 
                             // Title Classes
                             $title_classes = ['fancy-post-title'];
@@ -229,15 +191,11 @@ if ($query->have_posts()) {
                             ?>
                             <<?php echo esc_attr($title_tag); ?>
                                 class="title <?php echo esc_attr(implode(' ', $title_classes)); ?>"
-                                <?php echo $title_style_attr; ?>
-                                onmouseover="this.style.backgroundColor='<?php echo esc_attr($settings['title_hover_background']); ?>';"
-                                onmouseout="this.style.backgroundColor='<?php echo esc_attr($settings['title_normal_background']); ?>';">
+                                >
                                 <?php if ('link_details' === $settings['link_type']) { ?>
                                     <a href="<?php the_permalink(); ?>"
                                        target="<?php echo ('new_window' === $settings['link_target']) ? '_blank' : '_self'; ?>"
-                                       style="color: <?php echo esc_attr($settings['title_normal_color']); ?>;"
-                                       onmouseover="this.style.color='<?php echo esc_attr($settings['title_hover_color']); ?>';"
-                                       onmouseout="this.style.color='<?php echo esc_attr($settings['title_normal_color']); ?>';">
+                                       >
                                        <?php echo esc_html($title); ?>
                                     </a>
                                 <?php } else { ?>
