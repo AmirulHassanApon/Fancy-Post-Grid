@@ -1389,7 +1389,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                 [
                     'name'     => 'title_typography',
                     'label'    => esc_html__( 'Typography', 'fancy-post-grid' ),
-                    'selector' => '{{WRAPPER}} .fancy-post-title',
+                    'selector' => '{{WRAPPER}} .fancy-post-title a',
                 ]
             );
 
@@ -1455,9 +1455,12 @@ add_action('elementor/widgets/widgets_registered', function () {
                 [
                     'label'     => esc_html__( 'Color', 'fancy-post-grid' ),
                     'type'      => \Elementor\Controls_Manager::COLOR,
+                    
                     'selectors' => array(
+                        '{{WRAPPER}} .fancy-post-title a' => 'color: {{VALUE}};',
                         '{{WRAPPER}} .fancy-post-title' => 'color: {{VALUE}};',
                     ),
+
                     'render_type' => 'template'
                 ]
             );
@@ -1490,6 +1493,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                     'label'     => esc_html__( 'Hover Color', 'fancy-post-grid' ),
                     'type'      => \Elementor\Controls_Manager::COLOR,
                     'selectors' => array(
+                        '{{WRAPPER}} .fancy-post-title a:hover' => 'color: {{VALUE}};',
                         '{{WRAPPER}} .fancy-post-title:hover' => 'color: {{VALUE}};',
                     ),
                     'render_type' => 'template'
@@ -1524,7 +1528,8 @@ add_action('elementor/widgets/widgets_registered', function () {
                     'label'     => esc_html__( 'Box Hover Color', 'fancy-post-grid' ),
                     'type'      => \Elementor\Controls_Manager::COLOR,
                     'selectors' => array(
-                        '{{WRAPPER}} .fancy-post-title:hover' => 'color: {{VALUE}};',
+                        '{{WRAPPER}} .rs-blog__single:hover .rs-content .fancy-post-title a:hover' => 'color: {{VALUE}};',
+                        '{{WRAPPER}} .rs-blog__single:hover .rs-content .fancy-post-title:hover' => 'color: {{VALUE}};',
                     ),
                     'render_type' => 'template'
                 ]
@@ -1536,7 +1541,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                     'label'     => esc_html__( 'Box Hover Background Color', 'fancy-post-grid' ),
                     'type'      => \Elementor\Controls_Manager::COLOR,
                     'selectors' => array(
-                        '{{WRAPPER}} .fancy-post-title:hover' => 'background-color: {{VALUE}};',
+                        '{{WRAPPER}} .rs-blog__single:hover .rs-content .fancy-post-title:hover' => 'background-color: {{VALUE}};',
                     ),
                     'render_type' => 'template'
                 ]
