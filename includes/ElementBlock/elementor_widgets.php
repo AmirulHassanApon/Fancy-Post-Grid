@@ -1528,8 +1528,8 @@ add_action('elementor/widgets/widgets_registered', function () {
                     'label'     => esc_html__( 'Box Hover Color', 'fancy-post-grid' ),
                     'type'      => \Elementor\Controls_Manager::COLOR,
                     'selectors' => array(
-                        '{{WRAPPER}} .rs-blog__single:hover .rs-content .fancy-post-title a:hover' => 'color: {{VALUE}};',
-                        '{{WRAPPER}} .rs-blog__single:hover .rs-content .fancy-post-title:hover' => 'color: {{VALUE}};',
+                        '{{WRAPPER}} .rs-blog__single:hover .rs-content .fancy-post-title a' => 'color: {{VALUE}};',
+                        '{{WRAPPER}} .rs-blog__single:hover .rs-content .fancy-post-title' => 'color: {{VALUE}};',
                     ),
                     'render_type' => 'template'
                 ]
@@ -1541,7 +1541,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                     'label'     => esc_html__( 'Box Hover Background Color', 'fancy-post-grid' ),
                     'type'      => \Elementor\Controls_Manager::COLOR,
                     'selectors' => array(
-                        '{{WRAPPER}} .rs-blog__single:hover .rs-content .fancy-post-title:hover' => 'background-color: {{VALUE}};',
+                        '{{WRAPPER}} .rs-blog__single:hover .rs-content .fancy-post-title' => 'background-color: {{VALUE}};',
                     ),
                     'render_type' => 'template'
                 ]
