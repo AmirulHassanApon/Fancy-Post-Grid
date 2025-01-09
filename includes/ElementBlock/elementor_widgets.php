@@ -1879,9 +1879,6 @@ add_action('elementor/widgets/widgets_registered', function () {
                 ]
             );
 
-
-            
-
             $this->end_controls_section();
 
             // Excerpt/Content Style
