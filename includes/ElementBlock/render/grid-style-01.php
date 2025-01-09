@@ -220,6 +220,9 @@ if ($query->have_posts()) {
 
                             // Title Classes
                             $title_classes = ['fancy-post-title'];
+                            if ('enable' === $settings['title_hover_underline']) {
+                                $title_classes[] = 'hover-underline';
+                            }
                             
 
                             // Rendering the Title
