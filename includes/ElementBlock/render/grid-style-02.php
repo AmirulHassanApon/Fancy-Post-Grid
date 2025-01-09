@@ -27,43 +27,15 @@ if ($query->have_posts()) {
     echo '<div class="row">';
     while ($query->have_posts()) {
         $query->the_post();
-        $background_color = isset($settings['card_background']) ? esc_attr($settings['card_background']) : '';
-        $background_image = isset($settings['card_image']['url']) ? 'url(' . esc_url($settings['card_image']['url']) . ')' : '';
-        $hover_background_color = isset($settings['card_background_hover']) ? esc_attr($settings['card_background_hover']) : '';
-        $text_alignment = isset($settings['text_alignment']) ? esc_attr($settings['text_alignment']) : 'left';
-        $padding = isset($settings['content_padding'])
-            ? esc_attr($settings['content_padding']['top'] . $settings['content_padding']['unit'] . ' ' .
-                $settings['content_padding']['right'] . $settings['content_padding']['unit'] . ' ' .
-                $settings['content_padding']['bottom'] . $settings['content_padding']['unit'] . ' ' .
-                $settings['content_padding']['left'] . $settings['content_padding']['unit'])
-            : '0';
-        $border_radius = isset($settings['card_border_radius']['size'], $settings['card_border_radius']['unit'])
-            ? esc_attr($settings['card_border_radius']['size'] . $settings['card_border_radius']['unit'])
-            : '0';
 
         ?>
         <div class="col-xl-<?php echo esc_attr($settings['col_desktop']); ?> 
             col-lg-<?php echo esc_attr($settings['col_lg']); ?> 
             col-md-<?php echo esc_attr($settings['col_md']); ?> 
             col-sm-<?php echo esc_attr($settings['col_sm']); ?> 
-            col-xs-<?php echo esc_attr($settings['col_xs']); ?> 
-            fancy-post-item" >
-            <?php if (!empty($hover_background_color)) : ?>
-                <style>
-                    .fancy-post-item:hover {
-                        background-color: <?php echo esc_attr($hover_background_color); ?> !important;
-                    }
-                </style>
-            <?php endif; ?>
-            <div class="rs-blog__single mt-30" style="<?php echo esc_attr(
-                'background-color: ' . $background_color . '; ' .
-                'background-image: ' . $background_image . '; ' .
-                'background-size: cover; ' .
-                'background-position: center; ' .
-                'text-align: ' . $text_alignment . '; ' .
-                'padding: ' . $padding . '; ' .
-                'border-radius: ' . $border_radius . ';'
-            ); ?>">
+            col-xs-<?php echo esc_attr($settings['col_xs']); ?> " >
+            
+            <div class="rs-blog__single fancy-post-item mt-30">
                 <div class="rs-content">
 
                     <!-- Post Title -->
@@ -79,46 +51,6 @@ if ($query->have_posts()) {
                                     : implode(' ', array_slice(explode(' ', $title), 0, (int)$settings['title_length']));
                             }
 
-                            // Inline Styles
-                            $title_styles = [];
-                            if (!empty($settings['title_padding'])) {
-                                $padding = $settings['title_padding'];
-                                $title_styles[] = "padding: {$padding['top']}{$padding['unit']} {$padding['right']}{$padding['unit']} {$padding['bottom']}{$padding['unit']} {$padding['left']}{$padding['unit']};";
-                            }
-                            if (!empty($settings['title_margin'])) {
-                                $margin = $settings['title_margin'];
-                                $title_styles[] = "margin: {$margin['top']}{$margin['unit']} {$margin['right']}{$margin['unit']} {$margin['bottom']}{$margin['unit']} {$margin['left']}{$margin['unit']};";
-                            }
-                            if (!empty($settings['title_min_height'])) {
-                                $title_styles[] = "min-height: {$settings['title_min_height']}px;";
-                            }
-                            if (!empty($settings['title_alignment'])) {
-                                $title_styles[] = "text-align: {$settings['title_alignment']};";
-                            }
-                            if (!empty($settings['title_normal_color'])) {
-                                $title_styles[] = "color: {$settings['title_normal_color']};";
-                            }
-                            if (!empty($settings['title_normal_background'])) {
-                                $title_styles[] = "background-color: {$settings['title_normal_background']};";
-                            }
-
-                            // Title Visibility Style
-                            if (!empty($settings['title_visibility_style'])) {
-                                switch ($settings['title_visibility_style']) {
-                                    case 'show_1_line':
-                                        $title_styles[] = 'display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden';
-                                        break;
-                                    case 'show_2_lines':
-                                        $title_styles[] = 'display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;';
-                                        break;
-                                    case 'show_3_lines':
-                                        $title_styles[] = 'display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;';
-                                        break;
-                                }
-                            }
-
-                            $title_style_attr = !empty($title_styles) ? 'style="' . implode(' ', $title_styles) . '"' : '';
-
                             // Title Classes
                             $title_classes = ['fancy-post-title'];
                             if ('enable' === $settings['title_hover_underline']) {
@@ -129,15 +61,10 @@ if ($query->have_posts()) {
                             ?>
                             <<?php echo esc_attr($title_tag); ?>
                                 class="title <?php echo esc_attr(implode(' ', $title_classes)); ?>"
-                                <?php echo $title_style_attr; ?>
-                                onmouseover="this.style.backgroundColor='<?php echo esc_attr($settings['title_hover_background']); ?>';"
-                                onmouseout="this.style.backgroundColor='<?php echo esc_attr($settings['title_normal_background']); ?>';">
+                                <?php echo $title_style_attr; ?>>
                                 <?php if ('link_details' === $settings['link_type']) { ?>
                                     <a href="<?php the_permalink(); ?>"
-                                       target="<?php echo ('new_window' === $settings['link_target']) ? '_blank' : '_self'; ?>"
-                                       style="color: <?php echo esc_attr($settings['title_normal_color']); ?>;"
-                                       onmouseover="this.style.color='<?php echo esc_attr($settings['title_hover_color']); ?>';"
-                                       onmouseout="this.style.color='<?php echo esc_attr($settings['title_normal_color']); ?>';">
+                                       target="<?php echo ('new_window' === $settings['link_target']) ? '_blank' : '_self'; ?>">
                                        <?php echo esc_html($title); ?>
                                     </a>
                                 <?php } else { ?>
@@ -210,11 +137,7 @@ if ($query->have_posts()) {
                     <!-- Post Excerpt -->
                     <?php if ( 'yes' === $settings['show_post_excerpt'] ) { ?>
                         <div class="fpg-excerpt">
-                            <p class="fancy-post-excerpt" 
-                                style="
-                                    <?php echo !empty( $settings['excerpt_normal_color'] ) ? 'color: ' . esc_attr( $settings['excerpt_normal_color'] ) . ';' : ''; ?>
-                                    <?php echo isset( $settings['excerpt_spacing']['size'] ) ? 'margin: ' . esc_attr( $settings['excerpt_spacing']['top'] ) . esc_attr( $settings['excerpt_spacing']['unit'] ) . ' ' . esc_attr( $settings['excerpt_spacing']['right'] ) . esc_attr( $settings['excerpt_spacing']['unit'] ) . ' ' . esc_attr( $settings['excerpt_spacing']['bottom'] ) . esc_attr( $settings['excerpt_spacing']['unit'] ) . ' ' . esc_attr( $settings['excerpt_spacing']['left'] ) . esc_attr( $settings['excerpt_spacing']['unit'] ) . ';' : ''; ?>
-                                ">
+                            <p class="fancy-post-excerpt">
                                 <?php
                                 $excerpt_type = $settings['excerpt_type'];
                                 $excerpt_length = $settings['excerpt_length'];
@@ -234,40 +157,16 @@ if ($query->have_posts()) {
                                 ?>
                             </p>
                         </div>
-                        <style>
-                            /* Hover styling for the excerpt */
-                            .fancy-post:hover .fancy-post-excerpt {
-                                <?php echo !empty( $settings['excerpt_hover_color'] ) ? 'color: ' . esc_attr( $settings['excerpt_hover_color'] ) . ';' : ''; ?>
-                            }
-                        </style>
+                        
                     <?php } ?>
 
                     <!-- Read More Button -->
-                    <?php if (!empty($settings['show_post_readmore']) && 'yes' === $settings['show_post_readmore']) {
-                        $readmore_styles = [
-                            'margin' => isset($settings['readmore_button_margin']) ? implode(' ', $settings['readmore_button_margin']) : '0',
-                            'padding' => isset($settings['readmore_button_padding']) ? implode(' ', $settings['readmore_button_padding']) : '0',
-                            'color' => $settings['readmore_normal_text_color'] ?? '#000',
-                            'background-color' => $settings['readmore_normal_background_color'] ?? 'transparent',
-                            'border' => (!empty($settings['readmore_normal_border_width']) && !empty($settings['readmore_normal_border_border']) && !empty($settings['readmore_normal_border_color']))
-                                    ? implode(' ', array_map('esc_attr', [
-                                        $settings['readmore_normal_border_width'],
-                                        $settings['readmore_normal_border_border'],
-                                        $settings['readmore_normal_border_color']
-                                    ]))
-                                    : 'none',
-
-                            'border-radius' => isset($settings['readmore_normal_border_radius']) ? implode(' ', $settings['readmore_normal_border_radius']) : '0',];
-                        ?>
+                    <?php if (!empty($settings['show_post_readmore']) && 'yes' === $settings['show_post_readmore']) { ?>
                         <div class="btn-wrapper">
                             <a href="<?php echo esc_url(get_permalink()); ?>" 
                                class="rs-link read-more <?php echo esc_attr($settings['button_type']); ?>"
                                target="<?php echo 'new_window' === $settings['link_target'] ? '_blank' : '_self'; ?>"
-                               style="<?php foreach ($readmore_styles as $key => $value) echo esc_attr($key . ': ' . $value . '; '); ?>"
-                               onmouseover="this.style.color='<?php echo esc_attr($settings['readmore_hover_text_color'] ?? $settings['readmore_normal_text_color']); ?>';
-                                            this.style.backgroundColor='<?php echo esc_attr($settings['readmore_hover_background_color'] ?? $settings['readmore_normal_background_color']); ?>';"
-                               onmouseout="this.style.color='<?php echo esc_attr($settings['readmore_normal_text_color'] ?? '#000'); ?>';
-                                            this.style.backgroundColor='<?php echo esc_attr($settings['readmore_normal_background_color'] ?? 'transparent'); ?>';">
+                               >
                                 <?php
                                 if (!empty($settings['button_icon']) && 'yes' === $settings['button_icon']) {
                                     if ('button_position_left' === $settings['button_position']) {
@@ -293,18 +192,7 @@ if ($query->have_posts()) {
                 </div>   
                 <!-- Featured Image -->
                 <?php if ('yes' === $settings['show_post_thumbnail'] && has_post_thumbnail()) { ?>
-                    <div class="rs-thumb" 
-                        style="
-                            margin: <?php echo esc_attr($settings['thumbnail_margin']['top'] . $settings['thumbnail_margin']['unit'] . ' ' . 
-                                $settings['thumbnail_margin']['right'] . $settings['thumbnail_margin']['unit'] . ' ' . 
-                                $settings['thumbnail_margin']['bottom'] . $settings['thumbnail_margin']['unit'] . ' ' . 
-                                $settings['thumbnail_margin']['left'] . $settings['thumbnail_margin']['unit']); ?>;
-                            border-radius: <?php echo esc_attr($settings['thumbnail_border_radius']['top'] . $settings['thumbnail_border_radius']['unit'] . ' ' . 
-                                $settings['thumbnail_border_radius']['right'] . $settings['thumbnail_border_radius']['unit'] . ' ' . 
-                                $settings['thumbnail_border_radius']['bottom'] . $settings['thumbnail_border_radius']['unit'] . ' ' . 
-                                $settings['thumbnail_border_radius']['left'] . $settings['thumbnail_border_radius']['unit']); ?>;
-                            width: <?php echo ('default' !== $settings['thumbnail_width']) ? esc_attr($settings['thumbnail_width']) : 'auto'; ?>;
-                        ">
+                    <div class="rs-thumb">
                         
                         <?php 
                         // Map the custom sizes to their actual dimensions
