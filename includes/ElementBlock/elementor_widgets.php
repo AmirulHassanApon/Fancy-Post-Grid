@@ -1296,11 +1296,11 @@ add_action('elementor/widgets/widgets_registered', function () {
                     'label'   => esc_html__( 'Button Style', 'fancy-post-grid' ),
                     'type'    => \Elementor\Controls_Manager::SELECT,
                     'options' => array(
-                        'filled' => esc_html__( 'Filled', 'fancy-post-grid' ),
-                        'border' => esc_html__( 'Border', 'fancy-post-grid' ),
-                        'flat' => esc_html__( 'Flat', 'fancy-post-grid' ),
+                        'fpg-filled' => esc_html__( 'Filled', 'fancy-post-grid' ),
+                        'fpg-border' => esc_html__( 'Border', 'fancy-post-grid' ),
+                        'fpg-flat' => esc_html__( 'Flat', 'fancy-post-grid' ),
                     ),
-                    'default' => 'filled',
+                    'default' => 'fpg-filled',
                 ]
             );
             // Read More Label
