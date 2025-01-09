@@ -1371,7 +1371,7 @@ add_action('elementor/widgets/widgets_registered', function () {
             );            
 
             // Title Styling: Padding
-            $this->add_control(
+            $this->add_responsive_control(
                 'title_padding',
                 [
                     'label'      => esc_html__( 'Title Padding', 'fancy-post-grid' ),
@@ -1396,7 +1396,7 @@ add_action('elementor/widgets/widgets_registered', function () {
             
 
             // Title Styling: Alignment
-            $this->add_control(
+            $this->add_responsive_control(
                 'title_alignment',
                 [
                     'label'     => esc_html__( 'Alignment', 'fancy-post-grid' ),
