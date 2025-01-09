@@ -48,13 +48,7 @@ if ($query->have_posts()) {
             col-sm-<?php echo esc_attr($settings['col_sm']); ?> 
             col-xs-<?php echo esc_attr($settings['col_xs']); ?> 
             " >
-            <?php if (!empty($hover_background_color)) : ?>
-                <style>
-                    .fancy-post-item:hover {
-                        background-color: <?php echo esc_attr($hover_background_color); ?> !important;
-                    }
-                </style>
-            <?php endif; ?>
+            
             <div class="rs-blog__single fancy-post-item mt-30" style="<?php echo esc_attr(
                 'background-color: ' . $background_color . '; ' .
                 'background-image: ' . $background_image . '; ' .
@@ -66,18 +60,7 @@ if ($query->have_posts()) {
             ); ?>">
                 <!-- Featured Image -->
                 <?php if ('yes' === $settings['show_post_thumbnail'] && has_post_thumbnail()) { ?>
-                    <div class="rs-thumb" 
-                        style="
-                            margin: <?php echo esc_attr($settings['thumbnail_margin']['top'] . $settings['thumbnail_margin']['unit'] . ' ' . 
-                                $settings['thumbnail_margin']['right'] . $settings['thumbnail_margin']['unit'] . ' ' . 
-                                $settings['thumbnail_margin']['bottom'] . $settings['thumbnail_margin']['unit'] . ' ' . 
-                                $settings['thumbnail_margin']['left'] . $settings['thumbnail_margin']['unit']); ?>;
-                            border-radius: <?php echo esc_attr($settings['thumbnail_border_radius']['top'] . $settings['thumbnail_border_radius']['unit'] . ' ' . 
-                                $settings['thumbnail_border_radius']['right'] . $settings['thumbnail_border_radius']['unit'] . ' ' . 
-                                $settings['thumbnail_border_radius']['bottom'] . $settings['thumbnail_border_radius']['unit'] . ' ' . 
-                                $settings['thumbnail_border_radius']['left'] . $settings['thumbnail_border_radius']['unit']); ?>;
-                            width: <?php echo ('default' !== $settings['thumbnail_width']) ? esc_attr($settings['thumbnail_width']) : 'auto'; ?>;
-                        ">
+                    <div class="rs-thumb">
                         
                         <?php 
                         // Map the custom sizes to their actual dimensions
@@ -209,11 +192,7 @@ if ($query->have_posts()) {
                     <!-- Post Excerpt -->
                     <?php if ( 'yes' === $settings['show_post_excerpt'] ) { ?>
                         <div class="fpg-excerpt">
-                            <p class="fancy-post-excerpt" 
-                                style="
-                                    <?php echo !empty( $settings['excerpt_normal_color'] ) ? 'color: ' . esc_attr( $settings['excerpt_normal_color'] ) . ';' : ''; ?>
-                                    <?php echo isset( $settings['excerpt_spacing']['size'] ) ? 'margin: ' . esc_attr( $settings['excerpt_spacing']['top'] ) . esc_attr( $settings['excerpt_spacing']['unit'] ) . ' ' . esc_attr( $settings['excerpt_spacing']['right'] ) . esc_attr( $settings['excerpt_spacing']['unit'] ) . ' ' . esc_attr( $settings['excerpt_spacing']['bottom'] ) . esc_attr( $settings['excerpt_spacing']['unit'] ) . ' ' . esc_attr( $settings['excerpt_spacing']['left'] ) . esc_attr( $settings['excerpt_spacing']['unit'] ) . ';' : ''; ?>
-                                ">
+                            <p class="fancy-post-excerpt" >
                                 <?php
                                 $excerpt_type = $settings['excerpt_type'];
                                 $excerpt_length = $settings['excerpt_length'];
@@ -233,12 +212,7 @@ if ($query->have_posts()) {
                                 ?>
                             </p>
                         </div>
-                        <style>
-                            /* Hover styling for the excerpt */
-                            .fancy-post:hover .fancy-post-excerpt {
-                                <?php echo !empty( $settings['excerpt_hover_color'] ) ? 'color: ' . esc_attr( $settings['excerpt_hover_color'] ) . ';' : ''; ?>
-                            }
-                        </style>
+                        
                     <?php } ?>
 
                     <!-- Read More Button -->
