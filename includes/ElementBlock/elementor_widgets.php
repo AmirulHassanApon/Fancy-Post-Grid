@@ -1347,6 +1347,274 @@ add_action('elementor/widgets/widgets_registered', function () {
 
             $this->end_controls_section();
 
+            // Card (Post Item) Style
+
+
+
+            // Style Section
+            $this->start_controls_section(
+                'section_style_style',
+                [
+                    'label' => esc_html__( 'Full Area/ Section Style', 'fancy-post-grid' ),
+                    'tab'   => \Elementor\Controls_Manager::TAB_STYLE,
+                ]
+            );
+
+            // Background Color
+            $this->add_control(
+                'section_background_color',
+                [
+                    'label'     => esc_html__( 'Background Color', 'fancy-post-grid' ),
+                    'type'      => \Elementor\Controls_Manager::COLOR,
+                    'selectors' => [
+                        '{{WRAPPER}} .fancy-post-grid-section' => 'background-color: {{VALUE}};',
+                    ],
+                ]
+            );
+
+            // Margin
+            $this->add_responsive_control(
+                'section_margin',
+                [
+                    'label'      => esc_html__( 'Margin', 'fancy-post-grid' ),
+                    'type'       => \Elementor\Controls_Manager::DIMENSIONS,
+                    'size_units' => [ 'px', 'em', '%' ],
+                    'selectors'  => [
+                        '{{WRAPPER}} .fancy-post-grid-section' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    ],
+                ]
+            );
+
+            // Padding
+            $this->add_responsive_control(
+                'section_padding',
+                [
+                    'label'      => esc_html__( 'Padding', 'fancy-post-grid' ),
+                    'type'       => \Elementor\Controls_Manager::DIMENSIONS,
+                    'size_units' => [ 'px', 'em', '%' ],
+                    'selectors'  => [
+                        '{{WRAPPER}} .fancy-post-grid-section' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    ],
+                ]
+            );
+
+            $this->end_controls_section();
+
+
+            $this->start_controls_section(
+                'card_post_item_style',
+                [
+                    'label' => esc_html__( 'Card (Post Item)', 'fancy-post-grid' ),
+                    'tab'   => \Elementor\Controls_Manager::TAB_STYLE,
+                ]
+            );
+
+            // Card Gap
+            $this->add_responsive_control(
+                'card_gap',
+                [
+                    'label'      => esc_html__( 'Card Gap', 'fancy-post-grid' ),
+                    'type'       => \Elementor\Controls_Manager::SLIDER,
+                    'size_units' => array( 'px', 'em', '%' ),
+                    'range'      => array(
+                        'px' => array(
+                            'min' => 0,
+                            'max' => 100,
+                        ),
+                    ),
+                    'selectors'  => array(
+                        '{{WRAPPER}} .rs-blog__single' => 'gap: {{SIZE}}{{UNIT}};',
+                    ),
+                    'render_type' => 'template'
+                ]
+            );
+
+            // Content Padding
+            $this->add_responsive_control(
+                'content_padding',
+                [
+                    'label'      => esc_html__( 'Content Padding', 'fancy-post-grid' ),
+                    'type'       => \Elementor\Controls_Manager::DIMENSIONS,
+                    'size_units' => array( 'px', 'em', '%' ),
+                    'selectors'  => array(
+                        '{{WRAPPER}} .rs-blog__single' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    ),
+                    'render_type' => 'template'
+                ]
+            );
+
+            // Card Border Radius
+            $this->add_responsive_control(
+                'card_border_radius',
+                [
+                    'label'      => esc_html__( 'Border Radius', 'fancy-post-grid' ),
+                    'type'       => \Elementor\Controls_Manager::SLIDER,
+                    'size_units' => array( 'px', '%' ),
+                    'range'      => array(
+                        'px' => array(
+                            'min' => 0,
+                            'max' => 100,
+                        ),
+                    ),
+                    'selectors'  => array(
+                        '{{WRAPPER}} .rs-blog__single' => 'border-radius: {{SIZE}}{{UNIT}};',
+                    ),
+                    'render_type' => 'template'
+                ]
+            );
+
+            // Enable Border & Box Shadow
+            $this->add_control(
+                'enable_border_shadow',
+                [
+                    'label'   => esc_html__( 'Enable Border & Box Shadow', 'fancy-post-grid' ),
+                    'type'    => \Elementor\Controls_Manager::SWITCHER,
+                    'default' => '',
+                    'render_type' => 'template'
+                ]
+            );
+
+            $this->add_control(
+                'border_color',
+                [
+                    'label'     => esc_html__( 'Border Color', 'fancy-post-grid' ),
+                    'type'      => \Elementor\Controls_Manager::COLOR,
+                    'selectors' => array(
+                        '{{WRAPPER}} .rs-blog__single' => 'border-color: {{VALUE}};',
+                    ),
+                    'condition' => array(
+                        'enable_border_shadow' => 'yes',
+                    ),
+                    'render_type' => 'template'
+                ]
+            );
+
+            $this->add_group_control(
+                \Elementor\Group_Control_Box_Shadow::get_type(),
+                [
+                    'name'      => 'box_shadow',
+                    'label'     => esc_html__( 'Box Shadow', 'fancy-post-grid' ),
+                    'selector'  => '{{WRAPPER}} .rs-blog__single',
+                    'condition' => array(
+                        'enable_border_shadow' => 'yes',
+                    ),
+                    'render_type' => 'template'
+                ]
+            );
+
+            // Enable Border Bottom
+            $this->add_control(
+                'enable_border_bottom',
+                [
+                    'label'   => esc_html__( 'Enable Border Bottom', 'fancy-post-grid' ),
+                    'type'    => \Elementor\Controls_Manager::SWITCHER,
+                    'default' => '',
+                    'render_type' => 'template'
+                ]
+            );
+
+            $this->add_control(
+                'border_bottom_spacing',
+                [
+                    'label'      => esc_html__( 'Border Bottom Spacing', 'fancy-post-grid' ),
+                    'type'       => \Elementor\Controls_Manager::SLIDER,
+                    'size_units' => array( 'px', '%' ),
+                    'range'      => array(
+                        'px' => array(
+                            'min' => 0,
+                            'max' => 100,
+                        ),
+                    ),
+                    'selectors'  => array(
+                        '{{WRAPPER}} .rs-blog__single' => 'border-bottom-width: {{SIZE}}{{UNIT}};',
+                    ),
+                    'condition' => array(
+                        'enable_border_bottom' => 'yes',
+                    ),
+                    'render_type' => 'template'
+                ]
+            );
+
+            $this->add_control(
+                'border_bottom_color',
+                [                    
+                    'label'     => esc_html__( 'Border Bottom Color', 'fancy-post-grid' ),
+                    'type'      => \Elementor\Controls_Manager::COLOR,
+                    'selectors' => array(
+                        '{{WRAPPER}} .rs-blog__single' => 'border-bottom-color: {{VALUE}};',
+                    ),
+                    'condition' => array(
+                        'enable_border_bottom' => 'yes',
+                    ),
+                    'render_type' => 'template'
+                ]
+            );
+
+            // Normal & Hover Tabs
+            $this->start_controls_tabs('card_background_tabs');
+
+            // Normal Tab
+            $this->start_controls_tab(
+                'card_normal_tab',
+                [
+                    'label' => esc_html__( 'Normal', 'fancy-post-grid' ),
+                ]
+            );
+
+            $this->add_control(
+                'card_background',
+                [
+                    'label'     => esc_html__( 'Background Color', 'fancy-post-grid' ),
+                    'type'      => \Elementor\Controls_Manager::COLOR,
+                    'selectors' => array(
+                        '{{WRAPPER}} .fancy-post-item' => 'background-color: {{VALUE}};',
+                    ),
+                    'render_type' => 'template'
+                ]
+            );
+
+
+            $this->add_control(
+                'card_image',
+                [
+                    'label'     => esc_html__( 'Background Image', 'fancy-post-grid' ),
+                    'type'      => \Elementor\Controls_Manager::MEDIA,
+                    'selectors' => array(
+                        '{{WRAPPER}} .fancy-post-item' => 'background-image: url({{URL}});',
+                    ),
+
+                    'render_type' => 'template'
+                ]
+            );
+
+            $this->end_controls_tab();
+
+            // Hover Tab
+            $this->start_controls_tab(
+                'card_hover_tab',
+                [
+                    'label' => esc_html__( 'Hover', 'fancy-post-grid' ),
+                ]
+            );
+
+            $this->add_control(
+                'card_background_hover',
+                [
+                    'label'     => esc_html__( 'Background Hover Color', 'fancy-post-grid' ),
+                    'type'      => \Elementor\Controls_Manager::COLOR,
+                    'selectors' => array(
+                        '{{WRAPPER}} .fancy-post-item:hover' => 'background-color: {{VALUE}};',
+                    ),
+                    'render_type' => 'template'
+                ]
+            );
+
+            $this->end_controls_tab();
+
+            $this->end_controls_tabs();
+
+            $this->end_controls_section();
+
             // Style Section
             $this->start_controls_section(
                 'post_title_style',
@@ -1584,20 +1852,33 @@ add_action('elementor/widgets/widgets_registered', function () {
             $this->add_responsive_control(
                 'thumbnail_width',
                 [
-                    'label'   => esc_html__( 'Image Width', 'fancy-post-grid' ),
-                    'type'    => \Elementor\Controls_Manager::SELECT,
-                    'default' => 'default',
-                    'options' => array(
-                        'default' => esc_html__( 'Default', 'fancy-post-grid' ),
-                        '100%'    => esc_html__( '100%', 'fancy-post-grid' ),
-                        'auto'    => esc_html__( 'Auto', 'fancy-post-grid' ),
-                    ),
-                    'selectors' => array(
-                        '{{WRAPPER}} .rs-thumb img' => 'width: {{VALUE}};',
-                    ),
-                    'render_type' => 'template'
+                    'label'      => esc_html__( 'Image Width', 'fancy-post-grid' ),
+                    'type'       => \Elementor\Controls_Manager::SLIDER,
+                    'size_units' => [ 'px', '%', 'vw' ],
+                    'range'      => [
+                        'px' => [
+                            'min' => 10,
+                            'max' => 2000,
+                            'step' => 1,
+                        ],
+                        '%' => [
+                            'min' => 10,
+                            'max' => 100,
+                            'step' => 1,
+                        ],
+                        'vw' => [
+                            'min' => 1,
+                            'max' => 100,
+                            'step' => 0.1,
+                        ],
+                    ],
+                    'selectors'  => [
+                        '{{WRAPPER}} .rs-thumb img' => 'width: {{SIZE}}{{UNIT}};',
+                    ],
+                    'render_type' => 'template',
                 ]
             );
+
 
             
 
@@ -2503,220 +2784,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                 $this->end_controls_section();
             }
 
-            // Card (Post Item) Style
-            $this->start_controls_section(
-                'card_post_item_style',
-                [
-                    'label' => esc_html__( 'Card (Post Item)', 'fancy-post-grid' ),
-                    'tab'   => \Elementor\Controls_Manager::TAB_STYLE,
-                ]
-            );
-
-            // Card Gap
-            $this->add_responsive_control(
-                'card_gap',
-                [
-                    'label'      => esc_html__( 'Card Gap', 'fancy-post-grid' ),
-                    'type'       => \Elementor\Controls_Manager::SLIDER,
-                    'size_units' => array( 'px', 'em', '%' ),
-                    'range'      => array(
-                        'px' => array(
-                            'min' => 0,
-                            'max' => 100,
-                        ),
-                    ),
-                    'selectors'  => array(
-                        '{{WRAPPER}} .rs-blog__single' => 'gap: {{SIZE}}{{UNIT}};',
-                    ),
-                    'render_type' => 'template'
-                ]
-            );
-
-            // Content Padding
-            $this->add_responsive_control(
-                'content_padding',
-                [
-                    'label'      => esc_html__( 'Content Padding', 'fancy-post-grid' ),
-                    'type'       => \Elementor\Controls_Manager::DIMENSIONS,
-                    'size_units' => array( 'px', 'em', '%' ),
-                    'selectors'  => array(
-                        '{{WRAPPER}} .rs-blog__single' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-                    ),
-                    'render_type' => 'template'
-                ]
-            );
-
-            // Card Border Radius
-            $this->add_responsive_control(
-                'card_border_radius',
-                [
-                    'label'      => esc_html__( 'Border Radius', 'fancy-post-grid' ),
-                    'type'       => \Elementor\Controls_Manager::SLIDER,
-                    'size_units' => array( 'px', '%' ),
-                    'range'      => array(
-                        'px' => array(
-                            'min' => 0,
-                            'max' => 100,
-                        ),
-                    ),
-                    'selectors'  => array(
-                        '{{WRAPPER}} .rs-blog__single' => 'border-radius: {{SIZE}}{{UNIT}};',
-                    ),
-                    'render_type' => 'template'
-                ]
-            );
-
-            // Enable Border & Box Shadow
-            $this->add_control(
-                'enable_border_shadow',
-                [
-                    'label'   => esc_html__( 'Enable Border & Box Shadow', 'fancy-post-grid' ),
-                    'type'    => \Elementor\Controls_Manager::SWITCHER,
-                    'default' => '',
-                    'render_type' => 'template'
-                ]
-            );
-
-            $this->add_control(
-                'border_color',
-                [
-                    'label'     => esc_html__( 'Border Color', 'fancy-post-grid' ),
-                    'type'      => \Elementor\Controls_Manager::COLOR,
-                    'selectors' => array(
-                        '{{WRAPPER}} .rs-blog__single' => 'border-color: {{VALUE}};',
-                    ),
-                    'condition' => array(
-                        'enable_border_shadow' => 'yes',
-                    ),
-                    'render_type' => 'template'
-                ]
-            );
-
-            $this->add_group_control(
-                \Elementor\Group_Control_Box_Shadow::get_type(),
-                [
-                    'name'      => 'box_shadow',
-                    'label'     => esc_html__( 'Box Shadow', 'fancy-post-grid' ),
-                    'selector'  => '{{WRAPPER}} .rs-blog__single',
-                    'condition' => array(
-                        'enable_border_shadow' => 'yes',
-                    ),
-                    'render_type' => 'template'
-                ]
-            );
-
-            // Enable Border Bottom
-            $this->add_control(
-                'enable_border_bottom',
-                [
-                    'label'   => esc_html__( 'Enable Border Bottom', 'fancy-post-grid' ),
-                    'type'    => \Elementor\Controls_Manager::SWITCHER,
-                    'default' => '',
-                    'render_type' => 'template'
-                ]
-            );
-
-            $this->add_control(
-                'border_bottom_spacing',
-                [
-                    'label'      => esc_html__( 'Border Bottom Spacing', 'fancy-post-grid' ),
-                    'type'       => \Elementor\Controls_Manager::SLIDER,
-                    'size_units' => array( 'px', '%' ),
-                    'range'      => array(
-                        'px' => array(
-                            'min' => 0,
-                            'max' => 100,
-                        ),
-                    ),
-                    'selectors'  => array(
-                        '{{WRAPPER}} .rs-blog__single' => 'border-bottom-width: {{SIZE}}{{UNIT}};',
-                    ),
-                    'condition' => array(
-                        'enable_border_bottom' => 'yes',
-                    ),
-                    'render_type' => 'template'
-                ]
-            );
-
-            $this->add_control(
-                'border_bottom_color',
-                [                    
-                    'label'     => esc_html__( 'Border Bottom Color', 'fancy-post-grid' ),
-                    'type'      => \Elementor\Controls_Manager::COLOR,
-                    'selectors' => array(
-                        '{{WRAPPER}} .rs-blog__single' => 'border-bottom-color: {{VALUE}};',
-                    ),
-                    'condition' => array(
-                        'enable_border_bottom' => 'yes',
-                    ),
-                    'render_type' => 'template'
-                ]
-            );
-
-            // Normal & Hover Tabs
-            $this->start_controls_tabs('card_background_tabs');
-
-            // Normal Tab
-            $this->start_controls_tab(
-                'card_normal_tab',
-                [
-                    'label' => esc_html__( 'Normal', 'fancy-post-grid' ),
-                ]
-            );
-
-            $this->add_control(
-                'card_background',
-                [
-                    'label'     => esc_html__( 'Background Color', 'fancy-post-grid' ),
-                    'type'      => \Elementor\Controls_Manager::COLOR,
-                    'selectors' => array(
-                        '{{WRAPPER}} .fancy-post-item' => 'background-color: {{VALUE}};',
-                    ),
-                    'render_type' => 'template'
-                ]
-            );
-
-
-            $this->add_control(
-                'card_image',
-                [
-                    'label'     => esc_html__( 'Background Image', 'fancy-post-grid' ),
-                    'type'      => \Elementor\Controls_Manager::MEDIA,
-                    'selectors' => array(
-                        '{{WRAPPER}} .fancy-post-item' => 'background-image: url({{URL}});',
-                    ),
-
-                    'render_type' => 'template'
-                ]
-            );
-
-            $this->end_controls_tab();
-
-            // Hover Tab
-            $this->start_controls_tab(
-                'card_hover_tab',
-                [
-                    'label' => esc_html__( 'Hover', 'fancy-post-grid' ),
-                ]
-            );
-
-            $this->add_control(
-                'card_background_hover',
-                [
-                    'label'     => esc_html__( 'Background Hover Color', 'fancy-post-grid' ),
-                    'type'      => \Elementor\Controls_Manager::COLOR,
-                    'selectors' => array(
-                        '{{WRAPPER}} .fancy-post-item:hover' => 'background-color: {{VALUE}};',
-                    ),
-                    'render_type' => 'template'
-                ]
-            );
-
-            $this->end_controls_tab();
-
-            $this->end_controls_tabs();
-
-            $this->end_controls_section();
+            
 
             // Pagination Style
             $this->start_controls_section(
