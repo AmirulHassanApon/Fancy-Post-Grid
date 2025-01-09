@@ -95,7 +95,7 @@ if ($query->have_posts()) {
                             $thumbnail_size = array(1200, 650); // List size
                         } // Other sizes like 'thumbnail', 'medium', 'large', 'full' are supported natively
 
-                        if ('thumbnail_on' === $settings['thumbnail_link']) { ?>
+                        if ('yes' === $settings['thumbnail_link']) { ?>
                             <a href="<?php the_permalink(); ?>" target="<?php echo ('new_window' === $settings['link_target']) ? '_blank' : '_self'; ?>">
                                 <?php the_post_thumbnail($thumbnail_size); ?>
                             </a>
