@@ -27,21 +27,8 @@ if ($query->have_posts()) {
     echo '<div class="row">';
     while ($query->have_posts()) {
         $query->the_post();
-        $background_color = isset($settings['card_background']) ? esc_attr($settings['card_background']) : '';
-        $background_image = isset($settings['card_image']['url']) ? 'url(' . esc_url($settings['card_image']['url']) . ')' : '';
-        $hover_background_color = isset($settings['card_background_hover']) ? esc_attr($settings['card_background_hover']) : '';
-        $text_alignment = isset($settings['text_alignment']) ? esc_attr($settings['text_alignment']) : 'left';
-        $padding = isset($settings['content_padding'])
-            ? esc_attr($settings['content_padding']['top'] . $settings['content_padding']['unit'] . ' ' .
-                $settings['content_padding']['right'] . $settings['content_padding']['unit'] . ' ' .
-                $settings['content_padding']['bottom'] . $settings['content_padding']['unit'] . ' ' .
-                $settings['content_padding']['left'] . $settings['content_padding']['unit'])
-            : '0';
-        $border_radius = isset($settings['card_border_radius']['size'], $settings['card_border_radius']['unit'])
-            ? esc_attr($settings['card_border_radius']['size'] . $settings['card_border_radius']['unit'])
-            : '0';
-
-        ?>
+        
+    ?>
         <div class="col-xl-<?php echo esc_attr($settings['col_desktop']); ?> 
             col-lg-<?php echo esc_attr($settings['col_lg']); ?> 
             col-md-<?php echo esc_attr($settings['col_md']); ?> 
@@ -49,15 +36,7 @@ if ($query->have_posts()) {
             col-xs-<?php echo esc_attr($settings['col_xs']); ?> 
             " >
             
-            <div class="rs-blog__single fancy-post-item mt-30" style="<?php echo esc_attr(
-                'background-color: ' . $background_color . '; ' .
-                'background-image: ' . $background_image . '; ' .
-                'background-size: cover; ' .
-                'background-position: center; ' .
-                'text-align: ' . $text_alignment . '; ' .
-                'padding: ' . $padding . '; ' .
-                'border-radius: ' . $border_radius . ';'
-            ); ?>">
+            <div class="rs-blog__single fancy-post-item mt-30">
                 <!-- Featured Image -->
                 <?php if ('yes' === $settings['show_post_thumbnail'] && has_post_thumbnail()) { ?>
                     <div class="rs-thumb">
@@ -160,15 +139,11 @@ if ($query->have_posts()) {
                                     ? mb_substr($title, 0, (int)$settings['title_length'])
                                     : implode(' ', array_slice(explode(' ', $title), 0, (int)$settings['title_length']));
                             }
-
-                            
-
                             // Title Classes
                             $title_classes = ['fancy-post-title'];
                             if ('enable' === $settings['title_hover_underline']) {
                                 $title_classes[] = 'hover-underline';
-                            }
-                            
+                            }                            
 
                             // Rendering the Title
                             ?>
@@ -216,31 +191,11 @@ if ($query->have_posts()) {
                     <?php } ?>
 
                     <!-- Read More Button -->
-                    <?php if (!empty($settings['show_post_readmore']) && 'yes' === $settings['show_post_readmore']) {
-                        $readmore_styles = [
-                            'margin' => isset($settings['readmore_button_margin']) ? implode(' ', $settings['readmore_button_margin']) : '0',
-                            'padding' => isset($settings['readmore_button_padding']) ? implode(' ', $settings['readmore_button_padding']) : '0',
-                            'color' => $settings['readmore_normal_text_color'] ?? '#000',
-                            'background-color' => $settings['readmore_normal_background_color'] ?? 'transparent',
-                            'border' => (!empty($settings['readmore_normal_border_width']) && !empty($settings['readmore_normal_border_border']) && !empty($settings['readmore_normal_border_color']))
-                                    ? implode(' ', array_map('esc_attr', [
-                                        $settings['readmore_normal_border_width'],
-                                        $settings['readmore_normal_border_border'],
-                                        $settings['readmore_normal_border_color']
-                                    ]))
-                                    : 'none',
-
-                            'border-radius' => isset($settings['readmore_normal_border_radius']) ? implode(' ', $settings['readmore_normal_border_radius']) : '0',];
-                        ?>
+                    <?php if (!empty($settings['show_post_readmore']) && 'yes' === $settings['show_post_readmore']) { ?>
                         <div class="btn-wrapper">
                             <a href="<?php echo esc_url(get_permalink()); ?>" 
                                class="rs-link read-more <?php echo esc_attr($settings['button_type']); ?>"
-                               target="<?php echo 'new_window' === $settings['link_target'] ? '_blank' : '_self'; ?>"
-                               style="<?php foreach ($readmore_styles as $key => $value) echo esc_attr($key . ': ' . $value . '; '); ?>"
-                               onmouseover="this.style.color='<?php echo esc_attr($settings['readmore_hover_text_color'] ?? $settings['readmore_normal_text_color']); ?>';
-                                            this.style.backgroundColor='<?php echo esc_attr($settings['readmore_hover_background_color'] ?? $settings['readmore_normal_background_color']); ?>';"
-                               onmouseout="this.style.color='<?php echo esc_attr($settings['readmore_normal_text_color'] ?? '#000'); ?>';
-                                            this.style.backgroundColor='<?php echo esc_attr($settings['readmore_normal_background_color'] ?? 'transparent'); ?>';">
+                               target="<?php echo 'new_window' === $settings['link_target'] ? '_blank' : '_self'; ?>">
                                 <?php
                                 if (!empty($settings['button_icon']) && 'yes' === $settings['button_icon']) {
                                     if ('button_position_left' === $settings['button_position']) {
