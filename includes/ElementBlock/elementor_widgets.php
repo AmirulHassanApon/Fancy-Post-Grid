@@ -1389,7 +1389,8 @@ add_action('elementor/widgets/widgets_registered', function () {
                 [
                     'name'     => 'title_typography',
                     'label'    => esc_html__( 'Typography', 'fancy-post-grid' ),
-                    'selector' => '{{WRAPPER}} .fancy-post-title a',
+                    'selector' => '{{WRAPPER}} .fancy-post-title a, {{WRAPPER}} .fancy-post-title',
+
                 ]
             );
 
@@ -1551,7 +1552,7 @@ add_action('elementor/widgets/widgets_registered', function () {
             );
 
             // Thumbnail Styling: Margin
-            $this->add_control(
+            $this->add_responsive_control(
                 'thumbnail_margin',
                 [
                     'label'      => esc_html__( 'Thumbnail Margin', 'fancy-post-grid' ),
@@ -1565,7 +1566,7 @@ add_action('elementor/widgets/widgets_registered', function () {
             );
 
             // Thumbnail Styling: Border Radius
-            $this->add_control(
+            $this->add_responsive_control(
                 'thumbnail_border_radius',
                 [
                     'label'      => esc_html__( 'Border Radius', 'fancy-post-grid' ),
@@ -1580,7 +1581,7 @@ add_action('elementor/widgets/widgets_registered', function () {
             );
 
             // Thumbnail Styling: Image Width
-            $this->add_control(
+            $this->add_responsive_control(
                 'thumbnail_width',
                 [
                     'label'   => esc_html__( 'Image Width', 'fancy-post-grid' ),
@@ -1622,7 +1623,7 @@ add_action('elementor/widgets/widgets_registered', function () {
             );
 
             // Excerpt Spacing Control
-            $this->add_control(
+            $this->add_responsive_control(
                 'excerpt_spacing',
                 [
                     'label'      => esc_html__( 'Excerpt Spacing', 'fancy-post-grid' ),
@@ -1637,7 +1638,7 @@ add_action('elementor/widgets/widgets_registered', function () {
 
             // Excerpt Alignment Control
             
-            $this->add_control(
+            $this->add_responsive_control(
                 'excerpt_alignment',
                 [
                     'label'     => esc_html__( 'Alignment', 'fancy-post-grid' ),
@@ -1767,7 +1768,7 @@ add_action('elementor/widgets/widgets_registered', function () {
             );
 
             // Meta Data Margin
-            $this->add_control(
+            $this->add_responsive_control(
                 'meta_margin',
                 [
                     'label'      => esc_html__( 'Margin', 'fancy-post-grid' ),
@@ -1898,7 +1899,7 @@ add_action('elementor/widgets/widgets_registered', function () {
             );
 
             // Button Space
-            $this->add_control(
+            $this->add_responsive_control(
                 'readmore_button_margin',
                 [
                     'label'     => esc_html__( 'Button Space', 'fancy-post-grid' ),
@@ -1912,7 +1913,7 @@ add_action('elementor/widgets/widgets_registered', function () {
             );
 
             // Button Padding
-            $this->add_control(
+            $this->add_responsive_control(
                 'readmore_button_padding',
                 [
                     'label'     => esc_html__( 'Button Padding', 'fancy-post-grid' ),
@@ -1997,7 +1998,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                 ]
             );
 
-            $this->add_control(
+            $this->add_responsive_control(
                 'readmore_normal_border_radius',
                 [
                     'label'      => esc_html__( 'Border Radius', 'fancy-post-grid' ),
@@ -2053,7 +2054,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                 ]
             );
 
-            $this->add_control(
+            $this->add_responsive_control(
                 'readmore_hover_border_radius',
                 [
                     'label'      => esc_html__( 'Border Radius on Hover', 'fancy-post-grid' ),
@@ -2248,7 +2249,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                 $this->end_controls_tabs();
 
                 // Spacing and Styling Controls
-                $this->add_control(
+                $this->add_responsive_control(
                     'filter_box_margin',
                     [
                         'label'      => esc_html__('Margin', 'fancy-post-grid'),
@@ -2260,7 +2261,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                     ]
                 );
 
-                $this->add_control(
+                $this->add_responsive_control(
                     'filter_box_padding',
                     [
                         'label'      => esc_html__('Padding', 'fancy-post-grid'),
@@ -2272,7 +2273,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                     ]
                 );
 
-                $this->add_control(
+                $this->add_responsive_control(
                     'filter_font_size',
                     [
                         'label'     => esc_html__('Font Size', 'fancy-post-grid'),
@@ -2284,7 +2285,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                     ]
                 );
 
-                $this->add_control(
+                $this->add_responsive_control(
                     'filter_item_gap',
                     [
                         'label'     => esc_html__('Item Gap', 'fancy-post-grid'),
@@ -2468,7 +2469,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                 $this->end_controls_tabs();
 
                 // Arrow Icon Font Size
-                $this->add_control(
+                $this->add_responsive_control(
                     'arrow_icon_font_size',
                     [
                         'label'     => esc_html__( 'Arrow Icon Font Size', 'fancy-post-grid' ),
@@ -2512,7 +2513,7 @@ add_action('elementor/widgets/widgets_registered', function () {
             );
 
             // Card Gap
-            $this->add_control(
+            $this->add_responsive_control(
                 'card_gap',
                 [
                     'label'      => esc_html__( 'Card Gap', 'fancy-post-grid' ),
@@ -2532,7 +2533,7 @@ add_action('elementor/widgets/widgets_registered', function () {
             );
 
             // Content Padding
-            $this->add_control(
+            $this->add_responsive_control(
                 'content_padding',
                 [
                     'label'      => esc_html__( 'Content Padding', 'fancy-post-grid' ),
@@ -2546,7 +2547,7 @@ add_action('elementor/widgets/widgets_registered', function () {
             );
 
             // Card Border Radius
-            $this->add_control(
+            $this->add_responsive_control(
                 'card_border_radius',
                 [
                     'label'      => esc_html__( 'Border Radius', 'fancy-post-grid' ),
@@ -2883,7 +2884,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                 ]
             );
             // Add Border Width
-            $this->add_control(
+            $this->add_responsive_control(
                 'pagination_border_width',
                 [
                     'label'      => esc_html__('Border Width', 'fancy-post-grid'),
@@ -2895,7 +2896,7 @@ add_action('elementor/widgets/widgets_registered', function () {
             );
 
             // Add Border Radius
-            $this->add_control(
+            $this->add_responsive_control(
                 'pagination_border_radius',
                 [
                     'label'      => esc_html__('Border Radius', 'fancy-post-grid'),
@@ -2940,7 +2941,7 @@ add_action('elementor/widgets/widgets_registered', function () {
             );
 
             // Add Alignment
-            $this->add_control(
+            $this->add_responsive_control(
                 'pagination_alignment',
                 [
                     'label'        => esc_html__('Alignment', 'fancy-post-grid'),
