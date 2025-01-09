@@ -238,18 +238,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                     ]
                 );
             }
-            if (!in_array('space_between', $this->exclude_controls)) {
-                $this->add_control(
-                    'space_between',
-                    [
-                        'label' => esc_html__( 'Desktop Space Between', 'fancy-post-grid' ),
-                        'type' => \Elementor\Controls_Manager::SLIDER,
-                        'default' => [
-                            'size' => 0,
-                        ],
-                    ]
-                );
-            }
+            
             if (!in_array('col_lg', $this->exclude_controls)) {
                 $this->add_control(
                     'col_lg',
@@ -291,18 +280,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                     ]
                 );
             }
-            if (!in_array('space_between_lg', $this->exclude_controls)) {    
-                $this->add_control(
-                    'space_between_lg',
-                    [
-                        'label' => esc_html__( 'Large Space Between', 'fancy-post-grid' ),
-                        'type' => \Elementor\Controls_Manager::SLIDER,
-                        'default' => [
-                            'size' => 0,
-                        ],
-                    ]
-                );
-            }
+            
             if (!in_array('col_md', $this->exclude_controls)) {
                 $this->add_control(
                     'col_md',
@@ -343,19 +321,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                     ]
                 );
             }   
-            if (!in_array('space_between_md', $this->exclude_controls)) { 
-                $this->add_control(
-                    'space_between_md',
-                    [
-                        'label' => esc_html__( 'Medium Space Between', 'fancy-post-grid' ),
-                        'type' => \Elementor\Controls_Manager::SLIDER,
-                        'default' => [
-                            'size' => 0,
-                        ],
-                    ]
-                );
-            }
-
+            
             if (!in_array('col_sm', $this->exclude_controls)) {
                 $this->add_control(
                     'col_sm',
@@ -398,19 +364,6 @@ add_action('elementor/widgets/widgets_registered', function () {
                 );
             }
             
-            if (!in_array('space_between_sm', $this->exclude_controls)) {
-                $this->add_control(
-                    'space_between_sm',
-                    [
-                        'label' => esc_html__( 'Small Space Between', 'fancy-post-grid' ),
-                        'type' => \Elementor\Controls_Manager::SLIDER,
-                        'default' => [
-                            'size' => 0,
-                        ],
-                    ]
-                );
-            }
-
             if (!in_array('col_xs', $this->exclude_controls)) {
                 $this->add_control(
                     'col_xs',
@@ -451,19 +404,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                         'separator' => 'before',
                     ]
                 );
-            }
-            if (!in_array('space_between_xs', $this->exclude_controls)) {
-                $this->add_control(
-                    'space_between_xs',
-                    [
-                        'label' => esc_html__( 'Mobile Space Between', 'fancy-post-grid' ),
-                        'type' => \Elementor\Controls_Manager::SLIDER,
-                        'default' => [
-                            'size' => 0,
-                        ],
-                    ]
-                );
-            }
+            }           
 
             // Add control for text alignment
             $this->add_control(
