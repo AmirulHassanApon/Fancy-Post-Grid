@@ -2,7 +2,6 @@
 $settings = $this->get_settings_for_display();
 // Get the current page number
 $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
-
 // Prepare arguments for WP_Query
 $args = array(
     'post_type'      => 'post',
@@ -12,126 +11,264 @@ $args = array(
     'order'          => $settings['sort_order'],
     'category__in'   => !empty($settings['category_filter']) ? $settings['category_filter'] : '',
     'tag__in'        => !empty($settings['tag_filter']) ? $settings['tag_filter'] : '',
-    'paged'          => $paged,
+    'author'         => !empty($settings['author_filter']) ? $settings['author_filter'] : '',
+    'post__in'       => !empty($settings['include_posts']) ? explode(',', $settings['include_posts']) : '',
+    'post__not_in'   => !empty($settings['exclude_posts']) ? explode(',', $settings['exclude_posts']) : '',
+    'paged'          => $paged, // Add the paged parameter to handle pagination
 );
 
 // Query the posts
 $query = new \WP_Query($args);
 
-$fancy_post_filter_alignment = $settings['filter_alignment'] ?? 'center';
-$fancy_post_filter_text = $settings['filter_all_text'] ?? 'All';
-
+// Check if there are posts
 if ($query->have_posts()) {
-    // Isotope filter container
-    echo '<div class="rs-blog-layout-1-filter" style="display: flex; justify-content: ' . esc_attr($fancy_post_filter_alignment) . ';">
-            <div class="filter-button-group">
-                <button class="active" data-filter="*">' . esc_html($fancy_post_filter_text) . '</button>';
-    // Get unique categories from posts
-    $categories = get_categories();
-    foreach ($categories as $category) {
-        echo '<button data-filter=".' . esc_attr($category->slug) . '">' . esc_html($category->name) . '</button>';
-    }
-    echo '</div>
-        </div>';
-
-    // Grid container
-    echo '<div class="row">';    
-    echo '<div class="col-4 fancy-grid-style-01 fancy-post-grid " style="'
-        . 'gap: ' . esc_attr($settings['space_between']['size'] . $settings['space_between']['unit']) . ';'
-        . '" id="isotope-grid">';
-
+    echo '<div class="fpg-section-area rs-blog-layout-28">';
+    echo '<div class="container">';
+    echo '<div class="row">';
     while ($query->have_posts()) {
         $query->the_post();
-        $post_classes = join(' ', get_post_class(get_the_category(get_the_ID())[0]->slug));
-        $background_color = esc_attr($settings['card_background']);
-        $hover_background_color = esc_attr($settings['card_background_hover']);
-        $text_alignment = esc_attr($settings['text_alignment']);
-        $padding = $settings['content_padding']['top'] . $settings['content_padding']['unit'] . ' ' .
-            $settings['content_padding']['right'] . $settings['content_padding']['unit'] . ' ' .
-            $settings['content_padding']['bottom'] . $settings['content_padding']['unit'] . ' ' .
-            $settings['content_padding']['left'] . $settings['content_padding']['unit'];
-        $border_radius = esc_attr($settings['card_border_radius']['size'] . $settings['card_border_radius']['unit']);
+        
+    ?>
+        <div class="col-xl-<?php echo esc_attr($settings['col_desktop']); ?> 
+            col-lg-<?php echo esc_attr($settings['col_lg']); ?> 
+            col-md-<?php echo esc_attr($settings['col_md']); ?> 
+            col-sm-<?php echo esc_attr($settings['col_sm']); ?> 
+            col-xs-<?php echo esc_attr($settings['col_xs']); ?> 
+            " >
+            
+            <div class="blog__single rs-blog-layout-28-item fancy-post-item mt-30">
+                <!-- Featured Image -->
+                <?php if ('yes' === $settings['show_post_thumbnail'] && has_post_thumbnail()) { ?>
+                    <div class="rs-thumb">
+                        
+                        <?php 
+                        // Map the custom sizes to their actual dimensions
+                        $thumbnail_size = $settings['thumbnail_size'];
 
-        echo '<div class="fancy-post-item ' . esc_attr($post_classes) . '" style="'
-            . 'background-color: ' . $background_color . '; text-align: ' . $text_alignment . '; '
-            . 'padding: ' . esc_attr($padding) . '; border-radius: ' . $border_radius . ';'
-            . '">';
+                        if ($thumbnail_size === 'fancy_post_custom_size') {
+                            $thumbnail_size = array(768, 500); // Custom size
+                        } elseif ($thumbnail_size === 'fancy_post_square') {
+                            $thumbnail_size = array(500, 500); // Square size
+                        } elseif ($thumbnail_size === 'fancy_post_landscape') {
+                            $thumbnail_size = array(834, 550); // Landscape size
+                        } elseif ($thumbnail_size === 'fancy_post_portrait') {
+                            $thumbnail_size = array(421, 550); // Portrait size
+                        } elseif ($thumbnail_size === 'fancy_post_list') {
+                            $thumbnail_size = array(1200, 650); // List size
+                        } // Other sizes like 'thumbnail', 'medium', 'large', 'full' are supported natively
 
-        // Hover background color
-        if (!empty($hover_background_color)) {
-            echo '<style>.fancy-post-item:hover {background-color: ' . $hover_background_color . ';}</style>';
-        }
+                        if ('yes' === $settings['thumbnail_link']) { ?>
+                            <a href="<?php the_permalink(); ?>" target="<?php echo ('new_window' === $settings['link_target']) ? '_blank' : '_self'; ?>">
+                                <?php the_post_thumbnail($thumbnail_size); ?>
+                            </a>
+                        <?php } else { ?>
+                            <?php the_post_thumbnail($thumbnail_size); ?>
+                        <?php } ?>
 
-        // Post thumbnail
-        if ('yes' === $settings['show_post_thumbnail'] && has_post_thumbnail()) {
-            $thumbnail_size = $settings['thumbnail_size'];
-            $thumbnail_size_map = array(
-                'fancy_post_custom_size' => array(768, 500),
-                'fancy_post_square'     => array(500, 500),
-                'fancy_post_landscape'  => array(834, 550),
-                'fancy_post_portrait'   => array(421, 550),
-                'fancy_post_list'       => array(1200, 650),
-            );
-            $thumbnail_size = $thumbnail_size_map[$thumbnail_size] ?? $thumbnail_size;
+                        <!-- Post Meta: Date, Author, Category, Tags, Comments -->
+                        <?php if ('yes' === $settings['show_meta_data']) { ?>
+                            <div class="rs-meta">
+                                <ul class="meta-data-list">
+                                    <?php
+                                    // Array of meta items with their respective conditions, content, and class names.
+                                    $meta_items = array(
+                                        'post_author' => array(
+                                            'condition' => 'yes' === $settings['show_post_author'],
+                                            'class'     => 'meta-author',
+                                            'icon'      => ('yes' === $settings['show_meta_data_icon'] && 'yes' === $settings['author_icon_visibility']) 
+                                                            ? ('icon' === $settings['author_image_icon'] 
+                                                                ? '<i class="fa fa-user"></i>' 
+                                                                : '<img src="' . esc_url(get_avatar_url(get_the_author_meta('ID'))) . '" alt="' . esc_attr__('Author', 'fancy-post-grid') . '" class="author-avatar" />')
+                                                            : '',
+                                            'content'   => esc_html($settings['author_prefix']) . ' ' . esc_html(get_the_author()),
+                                        ),
+                                        'post_date' => array(
+                                            'condition' => 'yes' === $settings['show_post_date'],
+                                            'class'     => 'meta-date',
+                                            'icon'      => ('yes' === $settings['show_meta_data_icon'] && 'yes' === $settings['show_post_date_icon']) ? '<i class="fa fa-calendar"></i>' : '',
+                                            'content'   => esc_html(get_the_date()),
+                                        ),
+                                        'post_categories' => array(
+                                            'condition' => 'yes' === $settings['show_post_categories'],
+                                            'class'     => 'meta-categories',
+                                            'icon'      => ('yes' === $settings['show_meta_data_icon'] && 'yes' === $settings['show_post_categories_icon']) ? '<i class="fa fa-folder"></i>' : '',
+                                            'content'   => get_the_category_list(', '),
+                                        ),
+                                        'post_tags' => array(
+                                            'condition' => 'yes' === $settings['show_post_tags'] && !empty(get_the_tag_list('', ', ')),
+                                            'class'     => 'meta-tags',
+                                            'icon'      => ('yes' === $settings['show_meta_data_icon'] && 'yes' === $settings['show_post_tags_icon']) ? '<i class="fa fa-tags"></i>' : '',
+                                            'content'   => get_the_tag_list('', ', '),
+                                        ),
+                                        'comments_count' => array(
+                                            'condition' => 'yes' === $settings['show_comments_count'],
+                                            'class'     => 'meta-comments',
+                                            'icon'      => ('yes' === $settings['show_meta_data_icon'] && 'yes' === $settings['show_comments_count_icon']) ? '<i class="fa fa-comments"></i>' : '',
+                                            'content'   => sprintf(
+                                                '<a href="%s">%s</a>',
+                                                esc_url(get_comments_link()),
+                                                esc_html(get_comments_number_text(__('0 Comments', 'fancy-post-grid'), __('1 Comment', 'fancy-post-grid'), __('% Comments', 'fancy-post-grid')))
+                                            ),
+                                        ),
+                                    );
 
-            echo '<div class="fancy-post-thumbnail">';
-            echo '<a href="' . esc_url(get_the_permalink()) . '">';
-            the_post_thumbnail($thumbnail_size);
-            echo '</a>';
-            echo '</div>';
-        }
+                                    // Output each meta item as a list item with the respective class.
+                                    foreach ($meta_items as $meta) {
+                                        if ($meta['condition']) {
+                                            echo '<li class="' . esc_attr($meta['class']) . '">';
+                                            echo $meta['icon'] . ' ' . $meta['content'];
+                                            echo '</li>';
+                                        }
+                                    }
+                                    ?>
+                                </ul>
+                            </div>
+                        <?php } ?>
 
-        // Post meta
-        if ('yes' === $settings['show_meta_data']) {
-            echo '<div class="fancy-post-meta">';
-            $meta_output = array();
-            if ('yes' === $settings['show_post_author']) {
-                $meta_output[] = '<span class="meta-author">' . esc_html(get_the_author()) . '</span>';
+                    </div>
+                <?php } ?>
+
+                <div class="rs-content">
+                    
+
+                    <!-- Post Title -->
+                    <?php if (!empty($settings['show_post_title']) && 'yes' === $settings['show_post_title']) {
+                            // Title Tag
+                            $title_tag = !empty($settings['title_tag']) ? esc_attr($settings['title_tag']) : 'h3';
+
+                            // Title Content
+                            $title = get_the_title();
+                            if (!empty($settings['title_crop_by']) && !empty($settings['title_length'])) {
+                                $title = ('character' === $settings['title_crop_by'])
+                                    ? mb_substr($title, 0, (int)$settings['title_length'])
+                                    : implode(' ', array_slice(explode(' ', $title), 0, (int)$settings['title_length']));
+                            }
+                            // Title Classes
+                            $title_classes = ['fancy-post-title'];
+                            if ('enable' === $settings['title_hover_underline']) {
+                                $title_classes[] = 'hover-underline';
+                            }                            
+
+                            // Rendering the Title
+                            ?>
+                            <<?php echo esc_attr($title_tag); ?>
+                                class="title <?php echo esc_attr(implode(' ', $title_classes)); ?>"
+                                >
+                                <?php if ('link_details' === $settings['link_type']) { ?>
+                                    <a href="<?php the_permalink(); ?>"
+                                       target="<?php echo ('new_window' === $settings['link_target']) ? '_blank' : '_self'; ?>"
+                                       >
+                                       <?php echo esc_html($title); ?>
+                                    </a>
+                                <?php } else { ?>
+                                    <?php echo esc_html($title); ?>
+                                <?php } ?>
+                            </<?php echo esc_attr($title_tag); ?>>
+                            <?php
+                        }
+                    ?>
+
+                    <!-- Post Excerpt -->
+                    <?php if ( 'yes' === $settings['show_post_excerpt'] ) { ?>
+                        <div class="fpg-excerpt">
+                            <p class="fancy-post-excerpt" >
+                                <?php
+                                $excerpt_type = $settings['excerpt_type'];
+                                $excerpt_length = $settings['excerpt_length'];
+                                $expansion_indicator = $settings['expansion_indicator'];
+
+                                if ( 'full_content' === $excerpt_type ) {
+                                    $content = get_the_content();
+                                    echo esc_html( $content );
+                                } elseif ( 'character' === $excerpt_type ) {
+                                    $excerpt = get_the_excerpt();
+                                    $trimmed_excerpt = mb_substr( $excerpt, 0, $excerpt_length ) . esc_html( $expansion_indicator );
+                                    echo esc_html( $trimmed_excerpt );
+                                } else { // Word-based excerpt
+                                    $excerpt = wp_trim_words( get_the_excerpt(), $excerpt_length, esc_html( $expansion_indicator ) );
+                                    echo esc_html( $excerpt );
+                                }
+                                ?>
+                            </p>
+                        </div>
+                        
+                    <?php } ?>
+
+                    <!-- Read More Button -->
+                    <?php if (!empty($settings['show_post_readmore']) && 'yes' === $settings['show_post_readmore']) { ?>
+                        <div class="btn-wrapper">
+                            <a href="<?php echo esc_url(get_permalink()); ?>" 
+                               class="rs-btn read-more <?php echo esc_attr($settings['button_type']); ?>"
+                               target="<?php echo 'new_window' === $settings['link_target'] ? '_blank' : '_self'; ?>">
+                                <?php
+                                if (!empty($settings['button_icon']) && 'yes' === $settings['button_icon']) {
+                                    if ('button_position_left' === $settings['button_position']) {
+                                        ?>
+                                        <i class="ri-arrow-right-line"></i>
+                                        <?php
+                                    }
+                                }
+                                ?>
+                                <?php echo esc_html($settings['read_more_label'] ?? 'Read More'); ?>
+                                <?php
+                                if (!empty($settings['button_icon']) && 'yes' === $settings['button_icon']) {
+                                    if ('button_position_right' === $settings['button_position']) {
+                                        ?>
+                                        <i class="ri-arrow-right-line"></i>
+                                        <?php
+                                    }
+                                }
+                                ?>
+                            </a>
+                        </div>
+                    <?php } ?> 
+                </div>                    
+            </div>                    
+        </div>
+        <?php
+
+    }
+    echo '</div>';
+    // Pagination
+    if ('yes' === $settings['show_pagination']) {
+    echo '<div class="fpg-pagination">';
+
+    $big = 999999999; // Large number unlikely to be in a URL
+    $pagination_links = paginate_links(array(
+        'base'      => str_replace($big, '%#%', esc_url(get_pagenum_link($big))),
+        'format'    => '?paged=%#%',
+        'current'   => max(1, get_query_var('paged')),
+        'total'     => $query->max_num_pages,
+        'type'      => 'array', // Get an array of pagination links
+        'prev_text' => esc_html__('« Prev', 'fancy-post-grid'),
+        'next_text' => esc_html__('Next »', 'fancy-post-grid'),
+        'show_all'  => false,
+    ));
+
+    if (!empty($pagination_links)) {
+        echo '<ul class="fpg-pagination-elementor">';
+        foreach ($pagination_links as $link) {
+            // Replace <span> tags with <a> tags for the current page
+            if (strpos($link, 'span') !== false) {
+                $link = preg_replace(
+                    '/<span.*?>(.*?)<\/span>/i',
+                    '<a href="#" class="current">$1</a>',
+                    $link
+                );
             }
-            if ('yes' === $settings['show_post_date']) {
-                $meta_output[] = '<span class="meta-date">' . esc_html(get_the_date()) . '</span>';
-            }
-            echo implode(' | ', $meta_output);
-            echo '</div>';
+            echo '<li>' . wp_kses_post($link) . '</li>';
         }
-
-        // Post title
-        if ('yes' === $settings['show_post_title']) {
-            $title_tag = $settings['title_tag'] ?? 'h3';
-            $title = get_the_title();
-            echo '<' . esc_attr($title_tag) . ' class="fancy-post-title">'
-                . esc_html($title) . '</' . esc_attr($title_tag) . '>';
-        }
-
-        echo '</div>'; // End fancy-post-item
+        echo '</ul>';
     }
 
-    echo '</div>'; // End grid container
-    echo '</div>'; // End grid container
-} else {
-    echo '<p>' . esc_html__('No posts found.', 'fancy-post-grid') . '</p>';
+    echo '</div>';
 }
 
+    echo '</div>';
+    echo '</div>';
+    echo '</div>';
+} else {
+}
+
+// Reset post data
 wp_reset_postdata();
-?>
-
-<script>
-document.addEventListener('DOMContentLoaded', function () {
-    const grid = document.querySelector('#isotope-grid');
-    const iso = new Isotope(grid, {
-        itemSelector: '.fancy-post-item',
-        layoutMode: 'fitRows',
-    });
-
-    // Filter buttons
-    const filters = document.querySelectorAll('.filter-button-group button');
-    filters.forEach(button => {
-        button.addEventListener('click', function () {
-            const filterValue = this.getAttribute('data-filter');
-            iso.arrange({ filter: filterValue });
-            filters.forEach(btn => btn.classList.remove('active'));
-            this.classList.add('active');
-        });
-    });
-});
-</script>
