@@ -406,30 +406,6 @@ add_action('elementor/widgets/widgets_registered', function () {
                 );
             }           
 
-            // Add control for text alignment
-            $this->add_control(
-                'text_alignment',
-                [
-                    'label'   => esc_html__( 'Text Alignment', 'fancy-post-grid' ),
-                    'type'    => \Elementor\Controls_Manager::CHOOSE,
-                    'options' => array(
-                        'left'   => array(
-                            'title' => esc_html__( 'Left', 'fancy-post-grid' ),
-                            'icon'  => 'eicon-text-align-left', // Elementor's built-in icon
-                        ),
-                        'center' => array(
-                            'title' => esc_html__( 'Center', 'fancy-post-grid' ),
-                            'icon'  => 'eicon-text-align-center', // Elementor's built-in icon
-                        ),
-                        'right'  => array(
-                            'title' => esc_html__( 'Right', 'fancy-post-grid' ),
-                            'icon'  => 'eicon-text-align-right', // Elementor's built-in icon
-                        ),
-                    ),
-                    'default' => 'center',
-                ]
-            );
-
             $this->end_controls_section();
             // Layout Section
             $this->start_controls_section(
@@ -1420,7 +1396,18 @@ add_action('elementor/widgets/widgets_registered', function () {
                     'selectors'  => array(
                         '{{WRAPPER}} .rs-blog__single' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                     ),
-                    'render_type' => 'template'
+                ]
+            );
+            // Content Padding
+            $this->add_responsive_control(
+                'item_margin',
+                [
+                    'label'      => esc_html__( 'Margin', 'fancy-post-grid' ),
+                    'type'       => \Elementor\Controls_Manager::DIMENSIONS,
+                    'size_units' => array( 'px', 'em', '%' ),
+                    'selectors'  => array(
+                        '{{WRAPPER}} .rs-blog__single' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    ),
                 ]
             );
 
@@ -1429,55 +1416,39 @@ add_action('elementor/widgets/widgets_registered', function () {
                 'card_border_radius',
                 [
                     'label'      => esc_html__( 'Border Radius', 'fancy-post-grid' ),
-                    'type'       => \Elementor\Controls_Manager::SLIDER,
-                    'size_units' => array( 'px', '%' ),
-                    'range'      => array(
-                        'px' => array(
-                            'min' => 0,
-                            'max' => 100,
+                    'type'       => \Elementor\Controls_Manager::DIMENSIONS,
+                    'size_units' => array( 'px', 'em', '%' ),
+                    'selectors'  => array(
+                        '{{WRAPPER}} .rs-blog__single' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    ),
+                ]
+            );
+            // Add control for Box Alignment
+            $this->add_control(
+                'box_alignment',
+                [
+                    'label'   => esc_html__( 'Box Alignment', 'fancy-post-grid' ),
+                    'type'    => \Elementor\Controls_Manager::CHOOSE,
+                    'options' => array(
+                        'left'   => array(
+                            'title' => esc_html__( 'Left', 'fancy-post-grid' ),
+                            'icon'  => 'eicon-text-align-left', // Elementor's built-in icon
+                        ),
+                        'center' => array(
+                            'title' => esc_html__( 'Center', 'fancy-post-grid' ),
+                            'icon'  => 'eicon-text-align-center', // Elementor's built-in icon
+                        ),
+                        'right'  => array(
+                            'title' => esc_html__( 'Right', 'fancy-post-grid' ),
+                            'icon'  => 'eicon-text-align-right', // Elementor's built-in icon
                         ),
                     ),
-                    'selectors'  => array(
-                        '{{WRAPPER}} .rs-blog__single' => 'border-radius: {{SIZE}}{{UNIT}};',
-                    ),
-                    'render_type' => 'template'
-                ]
-            );
-
-            // Enable Border & Box Shadow
-            $this->add_control(
-                'enable_border_shadow',
-                [
-                    'label'   => esc_html__( 'Enable Border & Box Shadow', 'fancy-post-grid' ),
-                    'type'    => \Elementor\Controls_Manager::SWITCHER,
-                    'default' => '',
-                    'render_type' => 'template'
-                ]
-            );
-
-            $this->add_group_control(
-                \Elementor\Group_Control_Border::get_type(),
-                [
-                    'name' => 'border_color',
-                    'selector' => '{{WRAPPER}} .rs-blog__single',
-                    'condition' => array(
-                        'enable_border_shadow' => 'yes',
+                    'selectors' => array(
+                        '{{WRAPPER}} .fpg-section-area .fancy-post-item' => 'text-align: {{VALUE}};',
                     ),
                 ]
             );
 
-            $this->add_group_control(
-                \Elementor\Group_Control_Box_Shadow::get_type(),
-                [
-                    'name'      => 'box_shadow',
-                    'label'     => esc_html__( 'Box Shadow', 'fancy-post-grid' ),
-                    'selector'  => '{{WRAPPER}} .rs-blog__single',
-                    'condition' => array(
-                        'enable_border_shadow' => 'yes',
-                    ),
-                    'render_type' => 'template'
-                ]
-            );
 
             // Normal & Hover Tabs
             $this->start_controls_tabs('card_background_tabs');
@@ -1495,6 +1466,23 @@ add_action('elementor/widgets/widgets_registered', function () {
                     'name' => 'card_background',
                     'types' => [ 'classic', 'gradient' ],
                     'selector' => '{{WRAPPER}} .fancy-post-item',
+                ]
+            );
+            $this->add_group_control(
+                \Elementor\Group_Control_Border::get_type(),
+                [
+                    'name' => 'item_border_color',
+                    'selector' => '{{WRAPPER}} .rs-blog__single',
+                ]
+            );
+
+            $this->add_group_control(
+                \Elementor\Group_Control_Box_Shadow::get_type(),
+                [
+                    'name'      => 'box_shadow',
+                    'label'     => esc_html__( 'Box Shadow', 'fancy-post-grid' ),
+                    'selector'  => '{{WRAPPER}} .rs-blog__single',
+                    'render_type' => 'template'
                 ]
             );
 
@@ -1516,6 +1504,26 @@ add_action('elementor/widgets/widgets_registered', function () {
                     'selector' => '{{WRAPPER}} .fancy-post-item:hover',
                 ]
             );
+            // Background Color
+            $this->add_control(
+                'item_border_color_hover',
+                [
+                    'label'     => esc_html__( 'Border Color', 'fancy-post-grid' ),
+                    'type'      => \Elementor\Controls_Manager::COLOR,
+                    'selectors' => [
+                        '{{WRAPPER}} .rs-blog__single:hover' => 'border-color: {{VALUE}};',
+                    ],
+                ]
+            );
+            $this->add_group_control(
+                \Elementor\Group_Control_Box_Shadow::get_type(),
+                [
+                    'name'      => 'item_box_shadow_hover',
+                    'label'     => esc_html__( 'Box Shadow', 'fancy-post-grid' ),
+                    'selector'  => '{{WRAPPER}} .rs-blog__single:hover',
+                    'render_type' => 'template'
+                ]
+            );
 
             $this->end_controls_tab();
 
@@ -1529,6 +1537,16 @@ add_action('elementor/widgets/widgets_registered', function () {
                 [
                     'label' => esc_html__( 'Content Box', 'fancy-post-grid' ),
                     'tab'   => \Elementor\Controls_Manager::TAB_STYLE,
+                ]
+            );
+
+            // Content Styling: Background
+            $this->add_group_control(
+                \Elementor\Group_Control_Background::get_type(),
+                [
+                    'name' => 'card_background',
+                    'types' => [ 'classic', 'gradient' ],
+                    'selector' => '{{WRAPPER}} .fancy-post-item',
                 ]
             );
 
@@ -1667,17 +1685,28 @@ add_action('elementor/widgets/widgets_registered', function () {
                     'render_type' => 'template',
                 ]
             );
+            // Thumbnail Styling: Padding
+            $this->add_responsive_control(
+                'thumbnail_padding',
+                [
+                    'label'      => esc_html__( 'Padding', 'fancy-post-grid' ),
+                    'type'       => \Elementor\Controls_Manager::DIMENSIONS,
+                    'size_units' => array( 'px', 'em', '%' ),
+                    'selectors'  => array(
+                        '{{WRAPPER}} .rs-thumb' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    ),
+                ]
+            );
             // Thumbnail Styling: Margin
             $this->add_responsive_control(
                 'thumbnail_margin',
                 [
-                    'label'      => esc_html__( 'Thumbnail Margin', 'fancy-post-grid' ),
+                    'label'      => esc_html__( 'Margin', 'fancy-post-grid' ),
                     'type'       => \Elementor\Controls_Manager::DIMENSIONS,
                     'size_units' => array( 'px', 'em', '%' ),
                     'selectors'  => array(
                         '{{WRAPPER}} .rs-thumb' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                     ),
-                    'render_type' => 'template'
                 ]
             );
 
@@ -1736,24 +1765,6 @@ add_action('elementor/widgets/widgets_registered', function () {
                 ]
             );
 
-            $this->add_group_control(
-                \Elementor\Group_Control_Border::get_type(),
-                [
-                    'name' => 'title_border_color',
-                    'selector' => '{{WRAPPER}} .fancy-post-title',
-                ]
-            );
-
-            $this->add_group_control(
-                \Elementor\Group_Control_Box_Shadow::get_type(),
-                [
-                    'name'      => 'title_box_shadow',
-                    'label'     => esc_html__( 'Box Shadow', 'fancy-post-grid' ),
-                    'selector'  => '{{WRAPPER}} .fancy-post-title',
-                    'render_type' => 'template'
-                ]
-            );
-
             // Title Styling: Alignment
             $this->add_responsive_control(
                 'title_alignment',
@@ -1778,13 +1789,37 @@ add_action('elementor/widgets/widgets_registered', function () {
                             'icon'  => 'eicon-text-align-justify',
                         ),
                     ),
-                    'default'   => 'left',
                     'selectors' => array(
                         '{{WRAPPER}} .fancy-post-title' => 'text-align: {{VALUE}};',
                     ),
-                    'render_type' => 'template'
+                ]
+            );           
+
+            // Title Styling: Padding
+            $this->add_responsive_control(
+                'title_padding',
+                [
+                    'label'      => esc_html__( 'Padding', 'fancy-post-grid' ),
+                    'type'       => \Elementor\Controls_Manager::DIMENSIONS,
+                    'size_units' => array( 'px', 'em', '%' ),
+                    'selectors'  => array(
+                        '{{WRAPPER}} .fancy-post-title' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    ),
                 ]
             );
+
+            // Title Styling: margin
+            $this->add_responsive_control(
+                'title_margin',
+                [
+                    'label'      => esc_html__( 'Margin', 'fancy-post-grid' ),
+                    'type'       => \Elementor\Controls_Manager::DIMENSIONS,
+                    'size_units' => array( 'px', 'em', '%' ),
+                    'selectors'  => array(
+                        '{{WRAPPER}} .fancy-post-title' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    ),
+                ]
+            ); 
 
             // Title Styling: Tabs (Normal, Hover, Box Hover)
             $this->start_controls_tabs('title_style_tabs');
@@ -1807,8 +1842,22 @@ add_action('elementor/widgets/widgets_registered', function () {
                         '{{WRAPPER}} .fancy-post-title a' => 'color: {{VALUE}};',
                         '{{WRAPPER}} .fancy-post-title' => 'color: {{VALUE}};',
                     ),
+                ]
+            );
+            $this->add_group_control(
+                \Elementor\Group_Control_Border::get_type(),
+                [
+                    'name' => 'title_border_color',
+                    'selector' => '{{WRAPPER}} .fancy-post-title',
+                ]
+            );
 
-                    'render_type' => 'template'
+            $this->add_group_control(
+                \Elementor\Group_Control_Box_Shadow::get_type(),
+                [
+                    'name'      => 'title_box_shadow',
+                    'label'     => esc_html__( 'Box Shadow', 'fancy-post-grid' ),
+                    'selector'  => '{{WRAPPER}} .fancy-post-title',
                 ]
             );
 
@@ -1820,7 +1869,6 @@ add_action('elementor/widgets/widgets_registered', function () {
                     'selectors' => array(
                         '{{WRAPPER}} .fancy-post-title' => 'background-color: {{VALUE}};',
                     ),
-                    'render_type' => 'template'
                 ]
             );
 
@@ -1843,7 +1891,6 @@ add_action('elementor/widgets/widgets_registered', function () {
                         '{{WRAPPER}} .fancy-post-title a:hover' => 'color: {{VALUE}};',
                         '{{WRAPPER}} .fancy-post-title:hover' => 'color: {{VALUE}};',
                     ),
-                    'render_type' => 'template'
                 ]
             );
 
@@ -1855,6 +1902,26 @@ add_action('elementor/widgets/widgets_registered', function () {
                     'selectors' => array(
                         '{{WRAPPER}} .fancy-post-title:hover' => 'background-color: {{VALUE}};',
                     ),
+                    'render_type' => 'template'
+                ]
+            );
+            $this->add_control(
+                'title_hover_broder_color',
+                [
+                    'label'     => esc_html__( 'Border Color', 'fancy-post-grid' ),
+                    'type'      => \Elementor\Controls_Manager::COLOR,
+                    'selectors' => array(
+                        '{{WRAPPER}} .fancy-post-title a:hover' => 'border-color: {{VALUE}};',
+                    ),
+                ]
+            );
+
+            $this->add_group_control(
+                \Elementor\Group_Control_Box_Shadow::get_type(),
+                [
+                    'name'      => 'title_hover_box_shadow',
+                    'label'     => esc_html__( 'Box Shadow', 'fancy-post-grid' ),
+                    'selector'  => '{{WRAPPER}} .fancy-post-title:hover',
                     'render_type' => 'template'
                 ]
             );
@@ -1897,33 +1964,6 @@ add_action('elementor/widgets/widgets_registered', function () {
             $this->end_controls_tab();
 
             $this->end_controls_tabs(); // End Title Tabs
-            // Title Styling: margin
-            $this->add_responsive_control(
-                'title_margin',
-                [
-                    'label'      => esc_html__( 'Title Margin', 'fancy-post-grid' ),
-                    'type'       => \Elementor\Controls_Manager::DIMENSIONS,
-                    'size_units' => array( 'px', 'em', '%' ),
-                    'selectors'  => array(
-                        '{{WRAPPER}} .fancy-post-title' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-                    ),
-                    'render_type' => 'template'
-                ]
-            );            
-
-            // Title Styling: Padding
-            $this->add_responsive_control(
-                'title_padding',
-                [
-                    'label'      => esc_html__( 'Title Padding', 'fancy-post-grid' ),
-                    'type'       => \Elementor\Controls_Manager::DIMENSIONS,
-                    'size_units' => array( 'px', 'em', '%' ),
-                    'selectors'  => array(
-                        '{{WRAPPER}} .fancy-post-title' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-                    ),
-                    'render_type' => 'template'
-                ]
-            );
 
             $this->end_controls_section(); // End Post Title Style Section
 
@@ -1931,7 +1971,7 @@ add_action('elementor/widgets/widgets_registered', function () {
             $this->start_controls_section(
                 'excerpt_content_style',
                 [
-                    'label' => esc_html__( 'Excerpt/Content', 'fancy-post-grid' ),
+                    'label' => esc_html__( 'Excerpt', 'fancy-post-grid' ),
                     'tab'   => \Elementor\Controls_Manager::TAB_STYLE,
                 ]
             );
@@ -1946,17 +1986,29 @@ add_action('elementor/widgets/widgets_registered', function () {
                 ]
             );
 
-            // Excerpt Spacing Control
+            // Excerpt Padding Control
             $this->add_responsive_control(
-                'excerpt_spacing',
+                'excerpt_padding',
                 [
-                    'label'      => esc_html__( 'Excerpt Spacing', 'fancy-post-grid' ),
+                    'label'      => esc_html__( 'Padding', 'fancy-post-grid' ),
+                    'type'       => \Elementor\Controls_Manager::DIMENSIONS,
+                    'size_units' => array( 'px', 'em', '%' ),
+                    'selectors'  => array(
+                        '{{WRAPPER}} .fancy-post-excerpt' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    ),
+                ]
+            );
+
+            // Excerpt Margin Control
+            $this->add_responsive_control(
+                'excerpt_margin',
+                [
+                    'label'      => esc_html__( 'Margin', 'fancy-post-grid' ),
                     'type'       => \Elementor\Controls_Manager::DIMENSIONS,
                     'size_units' => array( 'px', 'em', '%' ),
                     'selectors'  => array(
                         '{{WRAPPER}} .fancy-post-excerpt' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                     ),
-                     'render_type' => 'template'
                 ]
             );
 
@@ -1985,11 +2037,9 @@ add_action('elementor/widgets/widgets_registered', function () {
                             'icon'  => 'eicon-text-align-justify',
                         ),
                     ),
-                    'default'   => 'left',
                     'selectors' => array(
                         '{{WRAPPER}} .fancy-post-excerpt' => 'text-align: {{VALUE}};',
                     ),
-                     'render_type' => 'template'
                 ]
             );
 
@@ -2071,7 +2121,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                     'label'     => esc_html__( 'Alignment', 'fancy-post-grid' ),
                     'type'      => \Elementor\Controls_Manager::CHOOSE,
                     'options'   => array(
-                        'left'   => array(
+                        'flex-Start'   => array(
                             'title' => esc_html__( 'Left', 'fancy-post-grid' ),
                             'icon'  => 'eicon-text-align-left',
                         ),
@@ -2079,15 +2129,14 @@ add_action('elementor/widgets/widgets_registered', function () {
                             'title' => esc_html__( 'Center', 'fancy-post-grid' ),
                             'icon'  => 'eicon-text-align-center',
                         ),
-                        'right'  => array(
+                        'flex-end'  => array(
                             'title' => esc_html__( 'Right', 'fancy-post-grid' ),
                             'icon'  => 'eicon-text-align-right',
                         ),
                     ),
                     'selectors' => array(
-                        '{{WRAPPER}} .meta-data-list' => 'text-align: {{VALUE}};',
+                        '{{WRAPPER}} .meta-data-list' => 'justify-content: {{VALUE}};',
                     ),
-                     'render_type' => 'template'
                 ]
             );
 
@@ -2273,7 +2322,6 @@ add_action('elementor/widgets/widgets_registered', function () {
                     'selectors'    => array(
                         '{{WRAPPER}} .btn-wrapper' => 'text-align: {{VALUE}};',
                     ),
-                     'render_type' => 'template'
                 ]
             );
 
@@ -3071,7 +3119,6 @@ add_action('elementor/widgets/widgets_registered', function () {
                             'icon'  => 'eicon-text-align-right',
                         ],
                     ],
-                    'default'      => 'center',
                     'selectors'    => [
                         '{{WRAPPER}} .fpg-pagination' => 'justify-content: {{VALUE}};',
                     ],
