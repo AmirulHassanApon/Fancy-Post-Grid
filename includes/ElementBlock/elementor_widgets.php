@@ -1844,6 +1844,17 @@ add_action('elementor/widgets/widgets_registered', function () {
                     ),
                 ]
             );
+
+            $this->add_control(
+                'title_normal_background',
+                [
+                    'label'     => esc_html__( 'Background Color', 'fancy-post-grid' ),
+                    'type'      => \Elementor\Controls_Manager::COLOR,
+                    'selectors' => array(
+                        '{{WRAPPER}} .fancy-post-title' => 'background-color: {{VALUE}};',
+                    ),
+                ]
+            );
             $this->add_group_control(
                 \Elementor\Group_Control_Border::get_type(),
                 [
@@ -1858,17 +1869,6 @@ add_action('elementor/widgets/widgets_registered', function () {
                     'name'      => 'title_box_shadow',
                     'label'     => esc_html__( 'Box Shadow', 'fancy-post-grid' ),
                     'selector'  => '{{WRAPPER}} .fancy-post-title',
-                ]
-            );
-
-            $this->add_control(
-                'title_normal_background',
-                [
-                    'label'     => esc_html__( 'Background Color', 'fancy-post-grid' ),
-                    'type'      => \Elementor\Controls_Manager::COLOR,
-                    'selectors' => array(
-                        '{{WRAPPER}} .fancy-post-title' => 'background-color: {{VALUE}};',
-                    ),
                 ]
             );
 
@@ -2066,6 +2066,32 @@ add_action('elementor/widgets/widgets_registered', function () {
                      'render_type' => 'template'
                 ]
             );
+            $this->add_control(
+                'excerpt_normal_background',
+                [
+                    'label'     => esc_html__( 'Background Color', 'fancy-post-grid' ),
+                    'type'      => \Elementor\Controls_Manager::COLOR,
+                    'selectors' => array(
+                        '{{WRAPPER}} .fancy-post-excerpt' => 'background-color: {{VALUE}};',
+                    ),
+                ]
+            );
+            $this->add_group_control(
+                \Elementor\Group_Control_Border::get_type(),
+                [
+                    'name' => 'excerpt_border_color',
+                    'selector' => '{{WRAPPER}} .fancy-post-excerpt',
+                ]
+            );
+
+            $this->add_group_control(
+                \Elementor\Group_Control_Box_Shadow::get_type(),
+                [
+                    'name'      => 'excerpt_box_shadow',
+                    'label'     => esc_html__( 'Box Shadow', 'fancy-post-grid' ),
+                    'selector'  => '{{WRAPPER}} .fancy-post-excerpt',
+                ]
+            );
 
             $this->end_controls_tab();
 
@@ -2073,7 +2099,7 @@ add_action('elementor/widgets/widgets_registered', function () {
             $this->start_controls_tab(
                 'excerpt_hover_tab',
                 [
-                    'label' => esc_html__( 'Box Hover', 'fancy-post-grid' ),
+                    'label' => esc_html__( 'Hover', 'fancy-post-grid' ),
                 ]
             );
 
@@ -2084,9 +2110,38 @@ add_action('elementor/widgets/widgets_registered', function () {
                     'label'     => esc_html__( 'Excerpt Color on Hover', 'fancy-post-grid' ),
                     'type'      => \Elementor\Controls_Manager::COLOR,
                     'selectors' => array(
-                        '{{WRAPPER}} .fancy-post:hover .fancy-post-excerpt' => 'color: {{VALUE}};',
+                        '{{WRAPPER}} .fancy-post-excerpt:hover' => 'color: {{VALUE}};',
                     ),
-                     'render_type' => 'template'
+                ]
+            );
+            // Excerpt Color Control (Normal)
+            $this->add_control(
+                'excerpt_hover_background',
+                [
+                    'label'     => esc_html__( 'Background Color', 'fancy-post-grid' ),
+                    'type'      => \Elementor\Controls_Manager::COLOR,
+                    'selectors' => array(
+                        '{{WRAPPER}} .fancy-post-excerpt:hover' => 'color: {{VALUE}};',
+                    ),
+                ]
+            );  
+            // Excerpt Color on Hover Control
+            $this->add_control(
+                'excerpt_hover_border_color',
+                [
+                    'label'     => esc_html__( 'Border Color', 'fancy-post-grid' ),
+                    'type'      => \Elementor\Controls_Manager::COLOR,
+                    'selectors' => array(
+                        '{{WRAPPER}} .fancy-post-excerpt:hover' => 'border-color: {{VALUE}};',
+                    ),
+                ]
+            );          
+            $this->add_group_control(
+                \Elementor\Group_Control_Box_Shadow::get_type(),
+                [
+                    'name'      => 'excerpt_hover_box_shadow',
+                    'label'     => esc_html__( 'Box Shadow', 'fancy-post-grid' ),
+                    'selector'  => '{{WRAPPER}} .fancy-post-excerpt:hover',
                 ]
             );
 
@@ -2110,7 +2165,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                 [
                     'name'     => 'meta_typography',
                     'label'    => esc_html__( 'Typography', 'fancy-post-grid' ),
-                    'selector' => '{{WRAPPER}} .meta-data-list',
+                    'selector' => '{{WRAPPER}} .meta-data-list li',
                 ]
             );
 
@@ -2150,7 +2205,6 @@ add_action('elementor/widgets/widgets_registered', function () {
                     'selectors'  => array(
                         '{{WRAPPER}} .meta-data-list' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                     ),
-                     'render_type' => 'template'
                 ]
             );
 
@@ -2171,9 +2225,8 @@ add_action('elementor/widgets/widgets_registered', function () {
                     'label'     => esc_html__( 'Meta Color', 'fancy-post-grid' ),
                     'type'      => \Elementor\Controls_Manager::COLOR,
                     'selectors' => array(
-                        '{{WRAPPER}} .fancy-post-meta' => 'color: {{VALUE}};',
+                        '{{WRAPPER}} .meta-data-list li,{{WRAPPER}} .meta-data-list li a' => 'color: {{VALUE}};',
                     ),
-                     'render_type' => 'template'
                 ]
             );
 
@@ -2185,7 +2238,6 @@ add_action('elementor/widgets/widgets_registered', function () {
                     'selectors' => array(
                         '{{WRAPPER}} .meta-data-list a' => 'color: {{VALUE}};',
                     ),
-                     'render_type' => 'template'
                 ]
             );
 
@@ -2197,7 +2249,6 @@ add_action('elementor/widgets/widgets_registered', function () {
                     'selectors' => array(
                         '{{WRAPPER}} .meta-data-list i' => 'color: {{VALUE}};',
                     ),
-                     'render_type' => 'template'
                 ]
             );
 
@@ -2219,29 +2270,6 @@ add_action('elementor/widgets/widgets_registered', function () {
                     'selectors' => array(
                         '{{WRAPPER}} .meta-data-list a:hover' => 'color: {{VALUE}};',
                     ),
-                     'render_type' => 'template'
-                ]
-            );
-
-            $this->end_controls_tab();
-
-            // Box Hover Tab
-            $this->start_controls_tab(
-                'meta_box_hover_tab',
-                [
-                    'label' => esc_html__( 'Box Hover', 'fancy-post-grid' ),
-                ]
-            );
-
-            $this->add_control(
-                'meta_box_hover_color',
-                [
-                    'label'     => esc_html__( 'Meta Color', 'fancy-post-grid' ),
-                    'type'      => \Elementor\Controls_Manager::COLOR,
-                    'selectors' => array(
-                        '{{WRAPPER}}:hover .meta-data-list' => 'color: {{VALUE}};',
-                    ),
-                     'render_type' => 'template'
                 ]
             );
 
@@ -2275,13 +2303,12 @@ add_action('elementor/widgets/widgets_registered', function () {
             $this->add_responsive_control(
                 'readmore_button_margin',
                 [
-                    'label'     => esc_html__( 'Button Space', 'fancy-post-grid' ),
+                    'label'     => esc_html__( 'margin', 'fancy-post-grid' ),
                     'type'      => \Elementor\Controls_Manager::DIMENSIONS,
                     'size_units' => array( 'px', 'em', '%' ),
                     'selectors' => array(
                         '{{WRAPPER}} .rs-link' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                     ),
-                     'render_type' => 'template'
                 ]
             );
 
@@ -2289,13 +2316,12 @@ add_action('elementor/widgets/widgets_registered', function () {
             $this->add_responsive_control(
                 'readmore_button_padding',
                 [
-                    'label'     => esc_html__( 'Button Padding', 'fancy-post-grid' ),
+                    'label'     => esc_html__( 'Padding', 'fancy-post-grid' ),
                     'type'      => \Elementor\Controls_Manager::DIMENSIONS,
                     'size_units' => array( 'px', 'em', '%' ),
                     'selectors' => array(
                         '{{WRAPPER}} .rs-link' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                     ),
-                     'render_type' => 'template'
                 ]
             );
 
@@ -2345,7 +2371,6 @@ add_action('elementor/widgets/widgets_registered', function () {
                     'selectors' => array(
                         '{{WRAPPER}} .rs-link' => 'color: {{VALUE}};',
                     ),
-                    'render_type' => 'template',
                 ]
             );
 
@@ -2357,7 +2382,6 @@ add_action('elementor/widgets/widgets_registered', function () {
                     'selectors' => array(
                         '{{WRAPPER}} .rs-link' => 'background-color: {{VALUE}};',
                     ),
-                     'render_type' => 'template'
                 ]
             );
 
@@ -2379,7 +2403,6 @@ add_action('elementor/widgets/widgets_registered', function () {
                     'selectors'  => array(
                         '{{WRAPPER}} .rs-link' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                     ),
-                     'render_type' => 'template'
                 ]
             );
 
@@ -2401,7 +2424,6 @@ add_action('elementor/widgets/widgets_registered', function () {
                     'selectors' => array(
                         '{{WRAPPER}} .rs-link:hover' => 'color: {{VALUE}};',
                     ),
-                     'render_type' => 'template'
                 ]
             );
 
@@ -2413,7 +2435,6 @@ add_action('elementor/widgets/widgets_registered', function () {
                     'selectors' => array(
                         '{{WRAPPER}} .rs-link:hover' => 'background-color: {{VALUE}};',
                     ),
-                     'render_type' => 'template'
                 ]
             );
 
@@ -2435,54 +2456,11 @@ add_action('elementor/widgets/widgets_registered', function () {
                     'selectors'  => array(
                         '{{WRAPPER}} .rs-link:hover' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                     ),
-                     'render_type' => 'template'
                 ]
             );
 
             $this->end_controls_tab();
 
-            // Box Hover Tab
-            $this->start_controls_tab(
-                'readmore_box_hover_tab',
-                [
-                    'label' => esc_html__( 'Box Hover', 'fancy-post-grid' ),
-                ]
-            );
-
-            $this->add_control(
-                'readmore_box_hover_text_color',
-                [
-                    'label'     => esc_html__( 'Text Color on Box Hover', 'fancy-post-grid' ),
-                    'type'      => \Elementor\Controls_Manager::COLOR,
-                    'selectors' => array(
-                        '{{WRAPPER}} .fancy-post:hover .rs-link' => 'color: {{VALUE}};',
-                    ),
-                    'render_type' => 'template'
-                ]
-            );
-
-            $this->add_control(
-                'readmore_box_hover_background_color',
-                [
-                    'label'     => esc_html__( 'Background Color on Box Hover', 'fancy-post-grid' ),
-                    'type'      => \Elementor\Controls_Manager::COLOR,
-                    'selectors' => array(
-                        '{{WRAPPER}} .fancy-post:hover .rs-link' => 'background-color: {{VALUE}};',
-                    ),
-                    'render_type' => 'template'
-                ]
-            );
-
-            $this->add_group_control(
-                \Elementor\Group_Control_Border::get_type(),
-                [                    
-                    'name'     => 'readmore_box_hover_border',
-                    'label'    => esc_html__( 'Border', 'fancy-post-grid' ),
-                    'selector' => '{{WRAPPER}} .fancy-post:hover .rs-link',
-                ]
-            );
-
-            $this->end_controls_tab();
             $this->end_controls_tabs();
 
             $this->end_controls_section();
