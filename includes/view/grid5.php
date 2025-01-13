@@ -183,7 +183,7 @@ ob_start();
                                 <span class="pre-month" > <?php echo get_the_date('F'); ?></span>                
                             </div>
                         </div>
-                    <?php endif; ?>
+                        <?php endif; ?>
                         
                         <div class="pre-blog-content <?php echo esc_attr($main_alignment_class); ?>">
                             
@@ -266,7 +266,7 @@ ob_start();
                                         echo esc_html(mb_strimwidth($excerpt, 0, $fancy_post_excerpt_limit, $excerpt_more_text));
                                     }
                                     ?>
-                                </p>
+                                    </p>
                                 
                             <?php endif; ?>
 

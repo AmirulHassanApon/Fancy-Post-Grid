@@ -36,10 +36,11 @@ if ($query->have_posts()) {
             col-xs-<?php echo esc_attr($settings['col_xs']); ?> 
             " >
             
-            <div class="rs-blog-layout-30-item rs-blog__single fancy-post-item mt-30">
-                <!-- Featured Image -->
-                <?php if ('yes' === $settings['show_post_thumbnail'] && has_post_thumbnail()) { ?>
-                    <div class="rs-thumb">
+            <div class="pre-blog-item style_12 pre-blog-meta-style2 default rs-blog__single fancy-post-item mt-30">
+                <div class="blog-inner-wrap pre-thum-default pre-meta-blocks top">
+                    <!-- Featured Image -->
+                    <?php if ('yes' === $settings['show_post_thumbnail'] && has_post_thumbnail()) { ?>
+                    <div class="pre-image-wrap rs-thumb">
                         
                         <?php 
                         // Map the custom sizes to their actual dimensions
@@ -64,7 +65,7 @@ if ($query->have_posts()) {
                         <?php } else { ?>
                             <?php the_post_thumbnail($thumbnail_size); ?>
                         <?php } ?>
-                        <div class="meta-date">
+                        <div class="pre-blog-meta meta-date">
                             <?php
                                 // Array of meta items with their respective conditions, content, and class names.
                                 $meta_items = array( 
@@ -87,50 +88,12 @@ if ($query->have_posts()) {
                                 ?>                       
                         </div>
                     </div>
-                <?php } ?>
+                    <?php } ?>
 
-                <div class="rs-content">
-
-                    <!-- Post Title -->
-                    <?php if (!empty($settings['show_post_title']) && 'yes' === $settings['show_post_title']) {
-                            // Title Tag
-                            $title_tag = !empty($settings['title_tag']) ? esc_attr($settings['title_tag']) : 'h3';
-
-                            // Title Content
-                            $title = get_the_title();
-                            if (!empty($settings['title_crop_by']) && !empty($settings['title_length'])) {
-                                $title = ('character' === $settings['title_crop_by'])
-                                    ? mb_substr($title, 0, (int)$settings['title_length'])
-                                    : implode(' ', array_slice(explode(' ', $title), 0, (int)$settings['title_length']));
-                            }
-                            // Title Classes
-                            $title_classes = ['fancy-post-title'];
-                            if ('enable' === $settings['title_hover_underline']) {
-                                $title_classes[] = 'hover-underline';
-                            }                            
-
-                            // Rendering the Title
-                            ?>
-                            <<?php echo esc_attr($title_tag); ?>
-                                class="title <?php echo esc_attr(implode(' ', $title_classes)); ?>"
-                                >
-                                <?php if ('link_details' === $settings['link_type']) { ?>
-                                    <a href="<?php the_permalink(); ?>"
-                                       target="<?php echo ('new_window' === $settings['link_target']) ? '_blank' : '_self'; ?>"
-                                       >
-                                       <?php echo esc_html($title); ?>
-                                    </a>
-                                <?php } else { ?>
-                                    <?php echo esc_html($title); ?>
-                                <?php } ?>
-                            </<?php echo esc_attr($title_tag); ?>>
-                            <?php
-                        }
-                    ?>
-
-                    <!-- Post Meta: Date, Author, Category, Tags, Comments -->
-                    <?php if ('yes' === $settings['show_meta_data']) { ?>
-                        <div class="rs-meta">
+                    <div class="pre-blog-content rs-content">
+                        <!-- Post Meta: Date, Author, Category, Tags, Comments -->
+                        <?php if ('yes' === $settings['show_meta_data']) { ?>
+                            
                             <ul class="meta-data-list">
                                 <?php
                                 // Array of meta items with their respective conditions, content, and class names.
@@ -145,12 +108,7 @@ if ($query->have_posts()) {
                                                         : '',
                                         'content'   => esc_html($settings['author_prefix']) . ' ' . esc_html(get_the_author()),
                                     ),
-                                    'post_date' => array(
-                                        'condition' => 'yes' === $settings['show_post_date'],
-                                        'class'     => 'meta-date',
-                                        'icon'      => ('yes' === $settings['show_meta_data_icon'] && 'yes' === $settings['show_post_date_icon']) ? '<i class="fa fa-calendar"></i>' : '',
-                                        'content'   => esc_html(get_the_date()),
-                                    ),
+                                    
                                     'post_categories' => array(
                                         'condition' => 'yes' === $settings['show_post_categories'],
                                         'class'     => 'meta-categories',
@@ -185,36 +143,99 @@ if ($query->have_posts()) {
                                 }
                                 ?>
                             </ul>
-                        </div>
+                            
+                        <?php } ?>
+                        <!-- Post Title -->
+                        <?php if (!empty($settings['show_post_title']) && 'yes' === $settings['show_post_title']) {
+                                // Title Tag
+                                $title_tag = !empty($settings['title_tag']) ? esc_attr($settings['title_tag']) : 'h3';
 
-                    <?php } ?>
-                    
-                    <!-- Post Excerpt -->
-                    <?php if ( 'yes' === $settings['show_post_excerpt'] ) { ?>
-                        <div class="fpg-excerpt">
-                            <p class="fancy-post-excerpt" >
-                                <?php
-                                $excerpt_type = $settings['excerpt_type'];
-                                $excerpt_length = $settings['excerpt_length'];
-                                $expansion_indicator = $settings['expansion_indicator'];
-
-                                if ( 'full_content' === $excerpt_type ) {
-                                    $content = get_the_content();
-                                    echo esc_html( $content );
-                                } elseif ( 'character' === $excerpt_type ) {
-                                    $excerpt = get_the_excerpt();
-                                    $trimmed_excerpt = mb_substr( $excerpt, 0, $excerpt_length ) . esc_html( $expansion_indicator );
-                                    echo esc_html( $trimmed_excerpt );
-                                } else { // Word-based excerpt
-                                    $excerpt = wp_trim_words( get_the_excerpt(), $excerpt_length, esc_html( $expansion_indicator ) );
-                                    echo esc_html( $excerpt );
+                                // Title Content
+                                $title = get_the_title();
+                                if (!empty($settings['title_crop_by']) && !empty($settings['title_length'])) {
+                                    $title = ('character' === $settings['title_crop_by'])
+                                        ? mb_substr($title, 0, (int)$settings['title_length'])
+                                        : implode(' ', array_slice(explode(' ', $title), 0, (int)$settings['title_length']));
                                 }
-                                ?>
-                            </p>
-                        </div>
-                        
-                    <?php } ?>
+                                // Title Classes
+                                $title_classes = ['fancy-post-title'];
+                                if ('enable' === $settings['title_hover_underline']) {
+                                    $title_classes[] = 'hover-underline';
+                                }                            
 
+                                // Rendering the Title
+                                ?>
+                                <<?php echo esc_attr($title_tag); ?>
+                                    class="pre-post-title title <?php echo esc_attr(implode(' ', $title_classes)); ?>"
+                                    >
+                                    <?php if ('link_details' === $settings['link_type']) { ?>
+                                        <a href="<?php the_permalink(); ?>"
+                                           target="<?php echo ('new_window' === $settings['link_target']) ? '_blank' : '_self'; ?>"
+                                           >
+                                           <?php echo esc_html($title); ?>
+                                        </a>
+                                    <?php } else { ?>
+                                        <?php echo esc_html($title); ?>
+                                    <?php } ?>
+                                </<?php echo esc_attr($title_tag); ?>>
+                                <?php
+                            }
+                        ?>
+
+                        <!-- Post Excerpt -->
+                        <?php if ( 'yes' === $settings['show_post_excerpt'] ) { ?>
+                            <div class="fpg-excerpt">
+                                <p class="pre-content fancy-post-excerpt" >
+                                    <?php
+                                    $excerpt_type = $settings['excerpt_type'];
+                                    $excerpt_length = $settings['excerpt_length'];
+                                    $expansion_indicator = $settings['expansion_indicator'];
+
+                                    if ( 'full_content' === $excerpt_type ) {
+                                        $content = get_the_content();
+                                        echo esc_html( $content );
+                                    } elseif ( 'character' === $excerpt_type ) {
+                                        $excerpt = get_the_excerpt();
+                                        $trimmed_excerpt = mb_substr( $excerpt, 0, $excerpt_length ) . esc_html( $expansion_indicator );
+                                        echo esc_html( $trimmed_excerpt );
+                                    } else { // Word-based excerpt
+                                        $excerpt = wp_trim_words( get_the_excerpt(), $excerpt_length, esc_html( $expansion_indicator ) );
+                                        echo esc_html( $excerpt );
+                                    }
+                                    ?>
+                                </p>
+                            </div>
+                            
+                        <?php } ?>
+                        <!-- Read More Button -->
+                        <?php if (!empty($settings['show_post_readmore']) && 'yes' === $settings['show_post_readmore']) { ?>
+                            <div class="blog-btn-part btn-wrapper">
+                                <a href="<?php echo esc_url(get_permalink()); ?>" 
+                                   class="blog-btn icon-after rs-link read-more <?php echo esc_attr($settings['button_type']); ?>"
+                                   target="<?php echo 'new_window' === $settings['link_target'] ? '_blank' : '_self'; ?>">
+                                    <?php
+                                    if (!empty($settings['button_icon']) && 'yes' === $settings['button_icon']) {
+                                        if ('button_position_left' === $settings['button_position']) {
+                                            ?>
+                                            <i class="ri-arrow-right-line"></i>
+                                            <?php
+                                        }
+                                    }
+                                    ?>
+                                    <?php echo esc_html($settings['read_more_label'] ?? 'Read More'); ?>
+                                    <?php
+                                    if (!empty($settings['button_icon']) && 'yes' === $settings['button_icon']) {
+                                        if ('button_position_right' === $settings['button_position']) {
+                                            ?>
+                                            <i class="ri-arrow-right-line"></i>
+                                            <?php
+                                        }
+                                    }
+                                    ?>
+                                </a>
+                            </div>
+                        <?php } ?> 
+                    </div> 
                 </div>                    
             </div>                    
         </div>
