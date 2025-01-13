@@ -137,6 +137,10 @@ add_action('elementor/widgets/widgets_registered', function () {
                                 'title' => esc_html__( 'Grid Style 11', 'fancy-post-grid' ),
                                 'icon' => 'eicon-text-align-right',
                             ],
+                            'gridstyle12' => [
+                                'title' => esc_html__( 'Grid Style 12', 'fancy-post-grid' ),
+                                'icon' => 'eicon-text-align-right',
+                            ],
                         ],
                         'default' => 'gridstyle01',
                         'toggle' => true,
