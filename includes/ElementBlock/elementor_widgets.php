@@ -62,26 +62,84 @@ add_action('elementor/widgets/widgets_registered', function () {
             // Add control for Grid Layout selection 
             // Check if the control is excluded before adding it
             if (!in_array('fancy_post_grid_layout', $this->exclude_controls)) {
+                // $this->add_control(
+                //     'fancy_post_grid_layout',
+                //     [                    
+                //         'label'   => esc_html__( 'Grid Style', 'fancy-post-grid' ),
+                //         'type'    => \Elementor\Controls_Manager::SELECT,
+                //         'classes' => 'fpg-el-control-post-chooser-thumb',
+                //         'options' => array(
+                //             'gridstyle01' => esc_html__( 'Grid Style 01', 'fancy-post-grid' ),
+                //             'gridstyle02' => esc_html__( 'Grid Style 02', 'fancy-post-grid' ),
+                //             'gridstyle03' => esc_html__( 'Grid Style 03', 'fancy-post-grid' ),
+                //             'gridstyle04' => esc_html__( 'Grid Style 04', 'fancy-post-grid' ),
+                //             'gridstyle05' => esc_html__( 'Grid Style 05', 'fancy-post-grid' ),
+                //             'gridstyle06' => esc_html__( 'Grid Style 06', 'fancy-post-grid' ),
+                //             'gridstyle07' => esc_html__( 'Grid Style 07', 'fancy-post-grid' ),
+                //             'gridstyle08' => esc_html__( 'Grid Style 08', 'fancy-post-grid' ),
+                //             'gridstyle09' => esc_html__( 'Grid Style 09', 'fancy-post-grid' ),
+                //             'gridstyle10' => esc_html__( 'Grid Style 10', 'fancy-post-grid' ),
+                //             'gridstyle11' => esc_html__( 'Grid Style 11', 'fancy-post-grid' ),
+                //             'gridstyle12' => esc_html__( 'Grid Style 12', 'fancy-post-grid' ),
+                //         ),
+                //         'default' => 'gridstyle01',
+                //     ]
+                // );
+
                 $this->add_control(
                     'fancy_post_grid_layout',
-                    [                    
-                        'label'   => esc_html__( 'Grid Style', 'fancy-post-grid' ),
-                        'type'    => \Elementor\Controls_Manager::SELECT,
-                        'options' => array(
-                            'gridstyle01' => esc_html__( 'Grid Style 01', 'fancy-post-grid' ),
-                            'gridstyle02' => esc_html__( 'Grid Style 02', 'fancy-post-grid' ),
-                            'gridstyle03' => esc_html__( 'Grid Style 03', 'fancy-post-grid' ),
-                            'gridstyle04' => esc_html__( 'Grid Style 04', 'fancy-post-grid' ),
-                            'gridstyle05' => esc_html__( 'Grid Style 05', 'fancy-post-grid' ),
-                            'gridstyle06' => esc_html__( 'Grid Style 06', 'fancy-post-grid' ),
-                            'gridstyle07' => esc_html__( 'Grid Style 07', 'fancy-post-grid' ),
-                            'gridstyle08' => esc_html__( 'Grid Style 08', 'fancy-post-grid' ),
-                            'gridstyle09' => esc_html__( 'Grid Style 09', 'fancy-post-grid' ),
-                            'gridstyle10' => esc_html__( 'Grid Style 10', 'fancy-post-grid' ),
-                            'gridstyle11' => esc_html__( 'Grid Style 11', 'fancy-post-grid' ),
-                            'gridstyle12' => esc_html__( 'Grid Style 12', 'fancy-post-grid' ),
-                        ),
+                    [
+                        'label' => esc_html__( 'Grid Style', 'fancy-post-grid' ),
+                        'type' => \Elementor\Controls_Manager::CHOOSE,
+                        'classes' => 'fpg-el-control-post-chooser-thumb',
+                        'options' => [
+                            'gridstyle01' => [
+                                'title' => esc_html__( 'Grid Style 01', 'fancy-post-grid' ),
+                                'icon' => 'eicon-text-align-left',
+                            ],
+                            'gridstyle02' => [
+                                'title' => esc_html__( 'Grid Style 02', 'fancy-post-grid' ),
+                                'icon' => 'eicon-text-align-center',
+                            ],
+                            'gridstyle03' => [
+                                'title' => esc_html__( 'Grid Style 03', 'fancy-post-grid' ),
+                                'icon' => 'eicon-text-align-right',
+                            ],
+                            'gridstyle04' => [
+                                'title' => esc_html__( 'Grid Style 04', 'fancy-post-grid' ),
+                                'icon' => 'eicon-text-align-right',
+                            ],
+                            'gridstyle05' => [
+                                'title' => esc_html__( 'Grid Style 05', 'fancy-post-grid' ),
+                                'icon' => 'eicon-text-align-right',
+                            ],
+                            'gridstyle06' => [
+                                'title' => esc_html__( 'Grid Style 06', 'fancy-post-grid' ),
+                                'icon' => 'eicon-text-align-right',
+                            ],
+                            'gridstyle07' => [
+                                'title' => esc_html__( 'Grid Style 07', 'fancy-post-grid' ),
+                                'icon' => 'eicon-text-align-right',
+                            ],
+                            'gridstyle08' => [
+                                'title' => esc_html__( 'Grid Style 08', 'fancy-post-grid' ),
+                                'icon' => 'eicon-text-align-right',
+                            ],
+                            'gridstyle09' => [
+                                'title' => esc_html__( 'Grid Style 09', 'fancy-post-grid' ),
+                                'icon' => 'eicon-text-align-right',
+                            ],
+                            'gridstyle10' => [
+                                'title' => esc_html__( 'Grid Style 10', 'fancy-post-grid' ),
+                                'icon' => 'eicon-text-align-right',
+                            ],
+                            'gridstyle11' => [
+                                'title' => esc_html__( 'Grid Style 11', 'fancy-post-grid' ),
+                                'icon' => 'eicon-text-align-right',
+                            ],
+                        ],
                         'default' => 'gridstyle01',
+                        'toggle' => true,
                     ]
                 );
             }
@@ -988,14 +1046,51 @@ add_action('elementor/widgets/widgets_registered', function () {
                 ]
             );
 
-            // Title Length
-            $this->add_control(
+            // Item Order: Meta
+            $this->add_responsive_control(
                 'meta_order',
                 [
-                    'label'   => esc_html__( 'Meta', 'fancy-post-grid' ),
-                    'type'    => \Elementor\Controls_Manager::NUMBER,
-                    'default' => 1,
-                    'min'     => 1,
+                    'label'      => esc_html__( 'Meta', 'fancy-post-grid' ),
+                    'type'       => \Elementor\Controls_Manager::SLIDER,
+                    'selectors'  => [
+                        '{{WRAPPER}} .fpg-section-area .meta-data-list' => 'order: {{SIZE}};',
+                    ],
+                ]
+            );
+
+            // Item Order: Title
+            $this->add_responsive_control(
+                'title_order',
+                [
+                    'label'      => esc_html__( 'Title', 'fancy-post-grid' ),
+                    'type'       => \Elementor\Controls_Manager::SLIDER,
+                    'selectors'  => [
+                        '{{WRAPPER}} .fpg-section-area .fancy-post-title' => 'order: {{SIZE}};',
+                    ],
+                ]
+            );
+
+            // Item Order: Excerpt
+            $this->add_responsive_control(
+                'excerpt_order',
+                [
+                    'label'      => esc_html__( 'Excerpt', 'fancy-post-grid' ),
+                    'type'       => \Elementor\Controls_Manager::SLIDER,
+                    'selectors'  => [
+                        '{{WRAPPER}} .fpg-section-area .fpg-excerpt' => 'order: {{SIZE}};',
+                    ],
+                ]
+            );
+
+            // Item Order: Button
+            $this->add_responsive_control(
+                'button_order',
+                [
+                    'label'      => esc_html__( 'Button', 'fancy-post-grid' ),
+                    'type'       => \Elementor\Controls_Manager::SLIDER,
+                    'selectors'  => [
+                        '{{WRAPPER}} .fpg-section-area .btn-wrapper' => 'order: {{SIZE}};',
+                    ],
                 ]
             );
 
@@ -1644,7 +1739,6 @@ add_action('elementor/widgets/widgets_registered', function () {
                     'selectors'  => [
                         '{{WRAPPER}} .rs-thumb img' => 'width: {{SIZE}}{{UNIT}};',
                     ],
-                    'render_type' => 'template',
                 ]
             );
             // Wrapper Thumbnail Styling: Wrapper Width
@@ -1674,7 +1768,6 @@ add_action('elementor/widgets/widgets_registered', function () {
                     'selectors'  => [
                         '{{WRAPPER}} .rs-thumb' => 'width: {{SIZE}}{{UNIT}};',
                     ],
-                    'render_type' => 'template',
                 ]
             );
             // Wrapper Thumbnail Styling: Wrapper Width
@@ -1704,7 +1797,6 @@ add_action('elementor/widgets/widgets_registered', function () {
                     'selectors'  => [
                         '{{WRAPPER}} .rs-thumb' => 'height: {{SIZE}}{{UNIT}};',
                     ],
-                    'render_type' => 'template',
                 ]
             );
             // Thumbnail Styling: Padding
@@ -1742,8 +1834,6 @@ add_action('elementor/widgets/widgets_registered', function () {
                     'selectors'  => array(
                         '{{WRAPPER}} .rs-thumb' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                     ),
-
-                    'render_type' => 'template'
                 ]
             );
             $this->add_group_control(
@@ -1751,7 +1841,6 @@ add_action('elementor/widgets/widgets_registered', function () {
                 [
                     'name' => 'thumb_border_color',
                     'selector' => '{{WRAPPER}} .rs-thumb',
-                    'render_type' => 'template'
                 ]
             );
 
@@ -1761,7 +1850,6 @@ add_action('elementor/widgets/widgets_registered', function () {
                     'name'      => 'thumb_box_shadow',
                     'label'     => esc_html__( 'Box Shadow', 'fancy-post-grid' ),
                     'selector'  => '{{WRAPPER}} .rs-thumb',
-                    'render_type' => 'template'
                 ]
             );
 
