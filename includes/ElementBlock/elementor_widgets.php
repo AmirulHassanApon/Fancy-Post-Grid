@@ -978,6 +978,28 @@ add_action('elementor/widgets/widgets_registered', function () {
             );
 
             $this->end_controls_section();
+
+            // Item Order
+            $this->start_controls_section(
+                'item_order',
+                [
+                    'label' => esc_html__( 'Item Order', 'fancy-post-grid' ),
+                    'tab'   => \Elementor\Controls_Manager::TAB_SETTINGS,
+                ]
+            );
+
+            // Title Length
+            $this->add_control(
+                'meta_order',
+                [
+                    'label'   => esc_html__( 'Meta', 'fancy-post-grid' ),
+                    'type'    => \Elementor\Controls_Manager::NUMBER,
+                    'default' => 1,
+                    'min'     => 1,
+                ]
+            );
+
+            $this->end_controls_section();
             // Post Title
             $this->start_controls_section(
                 'post_title',
