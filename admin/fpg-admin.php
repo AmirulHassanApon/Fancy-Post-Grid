@@ -10,7 +10,6 @@ function fancy_post_grid_admin_styles_pro( $screen ) {
 	wp_enqueue_style( 'fancy_post_grid_main_admin', plugins_url('/assets/css/admin.css', __FILE__), array(), $ufpg_version, 'all' );
 	wp_enqueue_style( 'fpg_admin-font-awesome', plugins_url('/assets/css/all.min.css', __FILE__), array(), $ufpg_version, 'all' );
 	wp_enqueue_style( 'fpg-bootstrap-admin', plugins_url('/assets/css/fpg_bootstrap.css', __FILE__), array(), $ufpg_version, 'all' );
-    wp_enqueue_style( 'fpg-tabs', plugins_url('/assets/css/tabs.css', __FILE__), array(), $ufpg_version, 'all' );
     // Enqueue Select2 CSS
     wp_enqueue_style( 'select2-css', plugins_url('/assets/css/select2.min.css', __FILE__), array(), $ufpg_version, 'all' );
 
@@ -49,3 +48,11 @@ function fancy_output_custom_css_js_backend() {
 
 // Hook the function into the admin_head action to output both CSS and JS
 add_action('admin_head', 'fancy_output_custom_css_js_backend');
+/**
+ * Enqueue Elementor editor styles
+ */
+add_action( 'elementor/editor/after_enqueue_styles', 'rs_elementor_editor_css' );
+function rs_elementor_editor_css() {
+    $dir = plugin_dir_url( __FILE__ );
+    wp_enqueue_style( 'rs-elementor-editor-css', $dir . 'assets/css/rs-elementor-editor.css', array(), '1.0.0', 'all' );
+}
