@@ -676,3 +676,7 @@ button:hover {
 }
 
        
+
+.elementor-control-fancy_post_grid_layout.fpg-el-control-post-chooser-thumb{
+  display: none;
+}

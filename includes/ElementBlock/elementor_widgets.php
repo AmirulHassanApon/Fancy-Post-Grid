@@ -62,26 +62,84 @@ add_action('elementor/widgets/widgets_registered', function () {
             // Add control for Grid Layout selection 
             // Check if the control is excluded before adding it
             if (!in_array('fancy_post_grid_layout', $this->exclude_controls)) {
+                // $this->add_control(
+                //     'fancy_post_grid_layout',
+                //     [                    
+                //         'label'   => esc_html__( 'Grid Style', 'fancy-post-grid' ),
+                //         'type'    => \Elementor\Controls_Manager::SELECT,
+                //         'classes' => 'fpg-el-control-post-chooser-thumb',
+                //         'options' => array(
+                //             'gridstyle01' => esc_html__( 'Grid Style 01', 'fancy-post-grid' ),
+                //             'gridstyle02' => esc_html__( 'Grid Style 02', 'fancy-post-grid' ),
+                //             'gridstyle03' => esc_html__( 'Grid Style 03', 'fancy-post-grid' ),
+                //             'gridstyle04' => esc_html__( 'Grid Style 04', 'fancy-post-grid' ),
+                //             'gridstyle05' => esc_html__( 'Grid Style 05', 'fancy-post-grid' ),
+                //             'gridstyle06' => esc_html__( 'Grid Style 06', 'fancy-post-grid' ),
+                //             'gridstyle07' => esc_html__( 'Grid Style 07', 'fancy-post-grid' ),
+                //             'gridstyle08' => esc_html__( 'Grid Style 08', 'fancy-post-grid' ),
+                //             'gridstyle09' => esc_html__( 'Grid Style 09', 'fancy-post-grid' ),
+                //             'gridstyle10' => esc_html__( 'Grid Style 10', 'fancy-post-grid' ),
+                //             'gridstyle11' => esc_html__( 'Grid Style 11', 'fancy-post-grid' ),
+                //             'gridstyle12' => esc_html__( 'Grid Style 12', 'fancy-post-grid' ),
+                //         ),
+                //         'default' => 'gridstyle01',
+                //     ]
+                // );
+
                 $this->add_control(
                     'fancy_post_grid_layout',
-                    [                    
-                        'label'   => esc_html__( 'Grid Style', 'fancy-post-grid' ),
-                        'type'    => \Elementor\Controls_Manager::SELECT,
-                        'options' => array(
-                            'gridstyle01' => esc_html__( 'Grid Style 01', 'fancy-post-grid' ),
-                            'gridstyle02' => esc_html__( 'Grid Style 02', 'fancy-post-grid' ),
-                            'gridstyle03' => esc_html__( 'Grid Style 03', 'fancy-post-grid' ),
-                            'gridstyle04' => esc_html__( 'Grid Style 04', 'fancy-post-grid' ),
-                            'gridstyle05' => esc_html__( 'Grid Style 05', 'fancy-post-grid' ),
-                            'gridstyle06' => esc_html__( 'Grid Style 06', 'fancy-post-grid' ),
-                            'gridstyle07' => esc_html__( 'Grid Style 07', 'fancy-post-grid' ),
-                            'gridstyle08' => esc_html__( 'Grid Style 08', 'fancy-post-grid' ),
-                            'gridstyle09' => esc_html__( 'Grid Style 09', 'fancy-post-grid' ),
-                            'gridstyle10' => esc_html__( 'Grid Style 10', 'fancy-post-grid' ),
-                            'gridstyle11' => esc_html__( 'Grid Style 11', 'fancy-post-grid' ),
-                            'gridstyle12' => esc_html__( 'Grid Style 12', 'fancy-post-grid' ),
-                        ),
+                    [
+                        'label' => esc_html__( 'Grid Style', 'fancy-post-grid' ),
+                        'type' => \Elementor\Controls_Manager::CHOOSE,
+                        'classes' => 'fpg-el-control-post-chooser-thumb',
+                        'options' => [
+                            'gridstyle01' => [
+                                'title' => esc_html__( 'Grid Style 01', 'fancy-post-grid' ),
+                                'icon' => 'eicon-text-align-left',
+                            ],
+                            'gridstyle02' => [
+                                'title' => esc_html__( 'Grid Style 02', 'fancy-post-grid' ),
+                                'icon' => 'eicon-text-align-center',
+                            ],
+                            'gridstyle03' => [
+                                'title' => esc_html__( 'Grid Style 03', 'fancy-post-grid' ),
+                                'icon' => 'eicon-text-align-right',
+                            ],
+                            'gridstyle04' => [
+                                'title' => esc_html__( 'Grid Style 04', 'fancy-post-grid' ),
+                                'icon' => 'eicon-text-align-right',
+                            ],
+                            'gridstyle05' => [
+                                'title' => esc_html__( 'Grid Style 05', 'fancy-post-grid' ),
+                                'icon' => 'eicon-text-align-right',
+                            ],
+                            'gridstyle06' => [
+                                'title' => esc_html__( 'Grid Style 06', 'fancy-post-grid' ),
+                                'icon' => 'eicon-text-align-right',
+                            ],
+                            'gridstyle07' => [
+                                'title' => esc_html__( 'Grid Style 07', 'fancy-post-grid' ),
+                                'icon' => 'eicon-text-align-right',
+                            ],
+                            'gridstyle08' => [
+                                'title' => esc_html__( 'Grid Style 08', 'fancy-post-grid' ),
+                                'icon' => 'eicon-text-align-right',
+                            ],
+                            'gridstyle09' => [
+                                'title' => esc_html__( 'Grid Style 09', 'fancy-post-grid' ),
+                                'icon' => 'eicon-text-align-right',
+                            ],
+                            'gridstyle10' => [
+                                'title' => esc_html__( 'Grid Style 10', 'fancy-post-grid' ),
+                                'icon' => 'eicon-text-align-right',
+                            ],
+                            'gridstyle11' => [
+                                'title' => esc_html__( 'Grid Style 11', 'fancy-post-grid' ),
+                                'icon' => 'eicon-text-align-right',
+                            ],
+                        ],
                         'default' => 'gridstyle01',
+                        'toggle' => true,
                     ]
                 );
             }
