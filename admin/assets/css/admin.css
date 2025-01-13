@@ -674,9 +674,3 @@ button:hover {
         padding: 8px 16px;
     }
 }
-
-       
-
-.elementor-control-fancy_post_grid_layout.fpg-el-control-post-chooser-thumb{
-  display: none !important;
-}

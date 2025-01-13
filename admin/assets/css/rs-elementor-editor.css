@@ -1,3 +1,21 @@
-.elementor-control-fancy_post_grid_layout.fpg-el-control-post-chooser-thumb{
-  
+.elementor-control-fancy_post_grid_layout.fpg-el-control-post-chooser-thumb .elementor-control-field {
+  flex-direction: column;
+  gap: 15px;
+  align-items: flex-start;
+}
+.elementor-control-fancy_post_grid_layout.fpg-el-control-post-chooser-thumb .elementor-control-field .elementor-control-input-wrapper .elementor-choices {
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  height: auto;
+  gap: 10px;
+}
+.elementor-control-fancy_post_grid_layout.fpg-el-control-post-chooser-thumb .elementor-control-field .elementor-control-input-wrapper .elementor-choices label.elementor-control-unit-1 {
+  width: 80px;
+}
+.elementor-control-fancy_post_grid_layout.fpg-el-control-post-chooser-thumb .elementor-control-field .elementor-control-input-wrapper .elementor-choices label .elementor-screen-only {
+  height: auto;
+  width: auto;
+  overflow: visible;
+  position: static;
+  display: block;
 }
