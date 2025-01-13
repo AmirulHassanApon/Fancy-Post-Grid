@@ -988,14 +988,51 @@ add_action('elementor/widgets/widgets_registered', function () {
                 ]
             );
 
-            // Title Length
-            $this->add_control(
+            // Item Order: Meta
+            $this->add_responsive_control(
                 'meta_order',
                 [
-                    'label'   => esc_html__( 'Meta', 'fancy-post-grid' ),
-                    'type'    => \Elementor\Controls_Manager::NUMBER,
-                    'default' => 1,
-                    'min'     => 1,
+                    'label'      => esc_html__( 'Meta', 'fancy-post-grid' ),
+                    'type'       => \Elementor\Controls_Manager::SLIDER,
+                    'selectors'  => [
+                        '{{WRAPPER}} .fpg-section-area .meta-data-list' => 'order: {{SIZE}};',
+                    ],
+                ]
+            );
+
+            // Item Order: Title
+            $this->add_responsive_control(
+                'title_order',
+                [
+                    'label'      => esc_html__( 'Title', 'fancy-post-grid' ),
+                    'type'       => \Elementor\Controls_Manager::SLIDER,
+                    'selectors'  => [
+                        '{{WRAPPER}} .fpg-section-area .fancy-post-title' => 'order: {{SIZE}};',
+                    ],
+                ]
+            );
+
+            // Item Order: Excerpt
+            $this->add_responsive_control(
+                'excerpt_order',
+                [
+                    'label'      => esc_html__( 'Excerpt', 'fancy-post-grid' ),
+                    'type'       => \Elementor\Controls_Manager::SLIDER,
+                    'selectors'  => [
+                        '{{WRAPPER}} .fpg-section-area .fpg-excerpt' => 'order: {{SIZE}};',
+                    ],
+                ]
+            );
+
+            // Item Order: Button
+            $this->add_responsive_control(
+                'button_order',
+                [
+                    'label'      => esc_html__( 'Button', 'fancy-post-grid' ),
+                    'type'       => \Elementor\Controls_Manager::SLIDER,
+                    'selectors'  => [
+                        '{{WRAPPER}} .fpg-section-area .btn-wrapper' => 'order: {{SIZE}};',
+                    ],
                 ]
             );
 
@@ -1644,7 +1681,6 @@ add_action('elementor/widgets/widgets_registered', function () {
                     'selectors'  => [
                         '{{WRAPPER}} .rs-thumb img' => 'width: {{SIZE}}{{UNIT}};',
                     ],
-                    'render_type' => 'template',
                 ]
             );
             // Wrapper Thumbnail Styling: Wrapper Width
@@ -1674,7 +1710,6 @@ add_action('elementor/widgets/widgets_registered', function () {
                     'selectors'  => [
                         '{{WRAPPER}} .rs-thumb' => 'width: {{SIZE}}{{UNIT}};',
                     ],
-                    'render_type' => 'template',
                 ]
             );
             // Wrapper Thumbnail Styling: Wrapper Width
@@ -1704,7 +1739,6 @@ add_action('elementor/widgets/widgets_registered', function () {
                     'selectors'  => [
                         '{{WRAPPER}} .rs-thumb' => 'height: {{SIZE}}{{UNIT}};',
                     ],
-                    'render_type' => 'template',
                 ]
             );
             // Thumbnail Styling: Padding
@@ -1742,8 +1776,6 @@ add_action('elementor/widgets/widgets_registered', function () {
                     'selectors'  => array(
                         '{{WRAPPER}} .rs-thumb' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                     ),
-
-                    'render_type' => 'template'
                 ]
             );
             $this->add_group_control(
@@ -1751,7 +1783,6 @@ add_action('elementor/widgets/widgets_registered', function () {
                 [
                     'name' => 'thumb_border_color',
                     'selector' => '{{WRAPPER}} .rs-thumb',
-                    'render_type' => 'template'
                 ]
             );
 
@@ -1761,7 +1792,6 @@ add_action('elementor/widgets/widgets_registered', function () {
                     'name'      => 'thumb_box_shadow',
                     'label'     => esc_html__( 'Box Shadow', 'fancy-post-grid' ),
                     'selector'  => '{{WRAPPER}} .rs-thumb',
-                    'render_type' => 'template'
                 ]
             );
 
