@@ -11,6 +11,11 @@
 }
 .elementor-control-fancy_post_grid_layout.fpg-el-control-post-chooser-thumb .elementor-control-field .elementor-control-input-wrapper .elementor-choices label.elementor-control-unit-1 {
   width: 80px;
+  background-image: url('../../../includes/metabox/img/style1.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  
 }
 .elementor-control-fancy_post_grid_layout.fpg-el-control-post-chooser-thumb .elementor-control-field .elementor-control-input-wrapper .elementor-choices label .elementor-screen-only {
   height: auto;

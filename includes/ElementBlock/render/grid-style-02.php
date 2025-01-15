@@ -198,18 +198,6 @@ if ($query->have_posts()) {
                         // Map the custom sizes to their actual dimensions
                         $thumbnail_size = $settings['thumbnail_size'];
 
-                        if ($thumbnail_size === 'fancy_post_custom_size') {
-                            $thumbnail_size = array(768, 500); // Custom size
-                        } elseif ($thumbnail_size === 'fancy_post_square') {
-                            $thumbnail_size = array(500, 500); // Square size
-                        } elseif ($thumbnail_size === 'fancy_post_landscape') {
-                            $thumbnail_size = array(834, 550); // Landscape size
-                        } elseif ($thumbnail_size === 'fancy_post_portrait') {
-                            $thumbnail_size = array(421, 550); // Portrait size
-                        } elseif ($thumbnail_size === 'fancy_post_list') {
-                            $thumbnail_size = array(1200, 650); // List size
-                        } // Other sizes like 'thumbnail', 'medium', 'large', 'full' are supported natively
-
                         if ('thumbnail_on' === $settings['thumbnail_link']) { ?>
                             <a href="<?php the_permalink(); ?>" target="<?php echo ('new_window' === $settings['link_target']) ? '_blank' : '_self'; ?>">
                                 <?php the_post_thumbnail($thumbnail_size); ?>
