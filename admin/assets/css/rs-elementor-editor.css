@@ -1,31 +1,53 @@
-.elementor-control-fancy_post_grid_layout.fpg-el-control-post-chooser-thumb .elementor-control-field {
+.elementor-control-fancy_post_grid_layout.fpg-el-control-post-chooser-thumb .elementor-control-field,
+.elementor-control-fancy_post_slider_layout.fpg-el-control-post-chooser-slider-thumb .elementor-control-field,
+.elementor-control-fancy_post_isotope_layout.fpg-el-control-post-chooser-isotope-thumb .elementor-control-field,
+.elementor-control-fancy_post_list_layout.fpg-el-control-post-chooser-list-thumb .elementor-control-field {
   flex-direction: column;
   gap: 15px;
   align-items: flex-start;
 }
-.elementor-control-fancy_post_grid_layout.fpg-el-control-post-chooser-thumb .elementor-control-field .elementor-control-input-wrapper .elementor-choices {
+.elementor-control-fancy_post_grid_layout.fpg-el-control-post-chooser-thumb .elementor-control-field .elementor-control-input-wrapper .elementor-choices,
+.elementor-control-fancy_post_slider_layout.fpg-el-control-post-chooser-slider-thumb .elementor-control-field .elementor-control-input-wrapper .elementor-choices,
+.elementor-control-fancy_post_isotope_layout.fpg-el-control-post-chooser-isotope-thumb .elementor-control-field .elementor-control-input-wrapper .elementor-choices,
+.elementor-control-fancy_post_list_layout.fpg-el-control-post-chooser-list-thumb .elementor-control-field .elementor-control-input-wrapper .elementor-choices {
   justify-content: flex-start;
   flex-wrap: wrap;
   height: auto;
   gap: 10px;
 }
-.elementor-control-fancy_post_grid_layout.fpg-el-control-post-chooser-thumb .elementor-control-field .elementor-control-input-wrapper .elementor-choices label.elementor-control-unit-1 {
+
+.elementor-control-fancy_post_grid_layout.fpg-el-control-post-chooser-thumb .elementor-control-field .elementor-control-input-wrapper .elementor-choices label.elementor-control-unit-1, 
+.elementor-control-fancy_post_slider_layout.fpg-el-control-post-chooser-slider-thumb .elementor-control-field .elementor-control-input-wrapper .elementor-choices label.elementor-control-unit-1,
+.elementor-control-fancy_post_isotope_layout.fpg-el-control-post-chooser-isotope-thumb .elementor-control-field .elementor-control-input-wrapper .elementor-choices label.elementor-control-unit-1, 
+.elementor-control-fancy_post_list_layout.fpg-el-control-post-chooser-list-thumb .elementor-control-field .elementor-control-input-wrapper .elementor-choices label.elementor-control-unit-1 {
   width: 30%;
   border: 1px solid #d5d8dc !important;
   padding-bottom: 10px;
   
 }
-.elementor-control-fancy_post_grid_layout.fpg-el-control-post-chooser-thumb .elementor-control-field .elementor-control-input-wrapper .elementor-choices label.elementor-control-unit-1 i{
+
+.elementor-control-fancy_post_grid_layout.fpg-el-control-post-chooser-thumb .elementor-control-field .elementor-control-input-wrapper .elementor-choices label.elementor-control-unit-1 i,
+.elementor-control-fancy_post_slider_layout.fpg-el-control-post-chooser-slider-thumb .elementor-control-field .elementor-control-input-wrapper .elementor-choices label.elementor-control-unit-1 i,
+.elementor-control-fancy_post_isotope_layout.fpg-el-control-post-chooser-isotope-thumb .elementor-control-field .elementor-control-input-wrapper .elementor-choices label.elementor-control-unit-1 i,
+.elementor-control-fancy_post_list_layout.fpg-el-control-post-chooser-list-thumb .elementor-control-field .elementor-control-input-wrapper .elementor-choices label.elementor-control-unit-1 i{
   background-size: 95%;
   background-position: center;
   background-repeat: no-repeat;
   width: 100%;
   height: 60px;
 }
-.elementor-control-fancy_post_grid_layout.fpg-el-control-post-chooser-thumb .elementor-control-field .elementor-control-input-wrapper .elementor-choices label.elementor-control-unit-1 i::before{
+
+.elementor-control-fancy_post_grid_layout.fpg-el-control-post-chooser-thumb .elementor-control-field .elementor-control-input-wrapper .elementor-choices label.elementor-control-unit-1 i::before, 
+.elementor-control-fancy_post_slider_layout.fpg-el-control-post-chooser-slider-thumb .elementor-control-field .elementor-control-input-wrapper .elementor-choices label.elementor-control-unit-1 i::before,
+.elementor-control-fancy_post_isotope_layout.fpg-el-control-post-chooser-isotope-thumb .elementor-control-field .elementor-control-input-wrapper .elementor-choices label.elementor-control-unit-1 i::before, 
+.elementor-control-fancy_post_list_layout.fpg-el-control-post-chooser-list-thumb .elementor-control-field .elementor-control-input-wrapper .elementor-choices label.elementor-control-unit-1 i::before{
   font-size: 0;
 }
-.elementor-control-fancy_post_grid_layout.fpg-el-control-post-chooser-thumb .elementor-control-field .elementor-control-input-wrapper .elementor-choices label .elementor-screen-only {
+
+.elementor-control-fancy_post_grid_layout.fpg-el-control-post-chooser-thumb .elementor-control-field .elementor-control-input-wrapper .elementor-choices label .elementor-screen-only,
+.elementor-control-fancy_post_slider_layout.fpg-el-control-post-chooser-slider-thumb .elementor-control-field .elementor-control-input-wrapper .elementor-choices label .elementor-screen-only,
+.elementor-control-fancy_post_isotope_layout.fpg-el-control-post-chooser-isotope-thumb .elementor-control-field .elementor-control-input-wrapper .elementor-choices label .elementor-screen-only,
+.elementor-control-fancy_post_list_layout.fpg-el-control-post-chooser-list-thumb .elementor-control-field .elementor-control-input-wrapper .elementor-choices label .elementor-screen-only {
   height: auto;
   width: auto;
   overflow: visible;
@@ -35,50 +57,238 @@
   padding-top: 5px;
 }
 
+/*Grid*/
 .elementor-control-fancy_post_grid_layout.fpg-el-control-post-chooser-thumb .elementor-control-field .elementor-control-input-wrapper .elementor-choices label.elementor-control-unit-1:nth-child(2) i{
   background-image: url('../../../includes/metabox/img/style1.png');
+}
+.elementor-control-fancy_post_grid_layout.fpg-el-control-post-chooser-thumb .elementor-control-field .elementor-control-input-wrapper .elementor-choices label.elementor-control-unit-1:nth-child(2) i:hover{
+  background-image: url('../../../includes/metabox/img/style1_hover.png');
 }
 
 .elementor-control-fancy_post_grid_layout.fpg-el-control-post-chooser-thumb .elementor-control-field .elementor-control-input-wrapper .elementor-choices label.elementor-control-unit-1:nth-child(4) i{
   background-image: url('../../../includes/metabox/img/style2.png');
 }
-
+.elementor-control-fancy_post_grid_layout.fpg-el-control-post-chooser-thumb .elementor-control-field .elementor-control-input-wrapper .elementor-choices label.elementor-control-unit-1:nth-child(4) i:hover{
+  background-image: url('../../../includes/metabox/img/style2_hover.png');
+}
 .elementor-control-fancy_post_grid_layout.fpg-el-control-post-chooser-thumb .elementor-control-field .elementor-control-input-wrapper .elementor-choices label.elementor-control-unit-1:nth-child(6) i{
   background-image: url('../../../includes/metabox/img/style3.png');
+}
+.elementor-control-fancy_post_grid_layout.fpg-el-control-post-chooser-thumb .elementor-control-field .elementor-control-input-wrapper .elementor-choices label.elementor-control-unit-1:nth-child(6) i:hover{
+  background-image: url('../../../includes/metabox/img/style3_hover.png');
 }
 
 .elementor-control-fancy_post_grid_layout.fpg-el-control-post-chooser-thumb .elementor-control-field .elementor-control-input-wrapper .elementor-choices label.elementor-control-unit-1:nth-child(8) i{
   background-image: url('../../../includes/metabox/img/style4.png');
 }
+.elementor-control-fancy_post_grid_layout.fpg-el-control-post-chooser-thumb .elementor-control-field .elementor-control-input-wrapper .elementor-choices label.elementor-control-unit-1:nth-child(8) i:hover{
+  background-image: url('../../../includes/metabox/img/style4_hover.png');
+}
 
 .elementor-control-fancy_post_grid_layout.fpg-el-control-post-chooser-thumb .elementor-control-field .elementor-control-input-wrapper .elementor-choices label.elementor-control-unit-1:nth-child(10) i{
   background-image: url('../../../includes/metabox/img/style5.png');
+}
+.elementor-control-fancy_post_grid_layout.fpg-el-control-post-chooser-thumb .elementor-control-field .elementor-control-input-wrapper .elementor-choices label.elementor-control-unit-1:nth-child(10) i:hover{
+  background-image: url('../../../includes/metabox/img/style5_hover.png');
 }
 
 .elementor-control-fancy_post_grid_layout.fpg-el-control-post-chooser-thumb .elementor-control-field .elementor-control-input-wrapper .elementor-choices label.elementor-control-unit-1:nth-child(12) i{
   background-image: url('../../../includes/metabox/img/style6.png');
 }
+.elementor-control-fancy_post_grid_layout.fpg-el-control-post-chooser-thumb .elementor-control-field .elementor-control-input-wrapper .elementor-choices label.elementor-control-unit-1:nth-child(12) i:hover{
+  background-image: url('../../../includes/metabox/img/style6_hover.png');
+}
 
 .elementor-control-fancy_post_grid_layout.fpg-el-control-post-chooser-thumb .elementor-control-field .elementor-control-input-wrapper .elementor-choices label.elementor-control-unit-1:nth-child(14) i{
   background-image: url('../../../includes/metabox/img/style7.png');
+}
+.elementor-control-fancy_post_grid_layout.fpg-el-control-post-chooser-thumb .elementor-control-field .elementor-control-input-wrapper .elementor-choices label.elementor-control-unit-1:nth-child(14) i:hover{
+  background-image: url('../../../includes/metabox/img/style7_hover.png');
 }
 
 .elementor-control-fancy_post_grid_layout.fpg-el-control-post-chooser-thumb .elementor-control-field .elementor-control-input-wrapper .elementor-choices label.elementor-control-unit-1:nth-child(16) i{
   background-image: url('../../../includes/metabox/img/style8.png');
 }
+.elementor-control-fancy_post_grid_layout.fpg-el-control-post-chooser-thumb .elementor-control-field .elementor-control-input-wrapper .elementor-choices label.elementor-control-unit-1:nth-child(16) i:hover{
+  background-image: url('../../../includes/metabox/img/style8_hover.png');
+}
 
 .elementor-control-fancy_post_grid_layout.fpg-el-control-post-chooser-thumb .elementor-control-field .elementor-control-input-wrapper .elementor-choices label.elementor-control-unit-1:nth-child(18) i{
   background-image: url('../../../includes/metabox/img/style9.png');
 }
-
+.elementor-control-fancy_post_grid_layout.fpg-el-control-post-chooser-thumb .elementor-control-field .elementor-control-input-wrapper .elementor-choices label.elementor-control-unit-1:nth-child(18) i:hover{
+  background-image: url('../../../includes/metabox/img/style9_hover.png');
+}
 .elementor-control-fancy_post_grid_layout.fpg-el-control-post-chooser-thumb .elementor-control-field .elementor-control-input-wrapper .elementor-choices label.elementor-control-unit-1:nth-child(20) i{
   background-image: url('../../../includes/metabox/img/style10.png');
+}
+.elementor-control-fancy_post_grid_layout.fpg-el-control-post-chooser-thumb .elementor-control-field .elementor-control-input-wrapper .elementor-choices label.elementor-control-unit-1:nth-child(20) i:hover{
+  background-image: url('../../../includes/metabox/img/style10_hover.png');
 }
 
 .elementor-control-fancy_post_grid_layout.fpg-el-control-post-chooser-thumb .elementor-control-field .elementor-control-input-wrapper .elementor-choices label.elementor-control-unit-1:nth-child(22) i{
   background-image: url('../../../includes/metabox/img/style11.png');
 }
-
+.elementor-control-fancy_post_grid_layout.fpg-el-control-post-chooser-thumb .elementor-control-field .elementor-control-input-wrapper .elementor-choices label.elementor-control-unit-1:nth-child(22) i:hover{
+  background-image: url('../../../includes/metabox/img/style11_hover.png');
+}
 .elementor-control-fancy_post_grid_layout.fpg-el-control-post-chooser-thumb .elementor-control-field .elementor-control-input-wrapper .elementor-choices label.elementor-control-unit-1:nth-child(24) i{
   background-image: url('../../../includes/metabox/img/style12.png');
+}
+.elementor-control-fancy_post_grid_layout.fpg-el-control-post-chooser-thumb .elementor-control-field .elementor-control-input-wrapper .elementor-choices label.elementor-control-unit-1:nth-child(24) i:hover{
+  background-image: url('../../../includes/metabox/img/style12_hover.png');
+}
+
+/*Slider*/
+.elementor-control-fancy_post_slider_layout.fpg-el-control-post-chooser-slider-thumb .elementor-control-field .elementor-control-input-wrapper .elementor-choices label.elementor-control-unit-1:nth-child(2) i{
+  background-image: url('../../../includes/metabox/img/sliderstyle1.png');
+}
+.elementor-control-fancy_post_slider_layout.fpg-el-control-post-chooser-slider-thumb .elementor-control-field .elementor-control-input-wrapper .elementor-choices label.elementor-control-unit-1:nth-child(2) i:hover{
+  background-image: url('../../../includes/metabox/img/sliderstyle1_hover.png');
+}
+
+.elementor-control-fancy_post_slider_layout.fpg-el-control-post-chooser-slider-thumb .elementor-control-field .elementor-control-input-wrapper .elementor-choices label.elementor-control-unit-1:nth-child(4) i{
+  background-image: url('../../../includes/metabox/img/sliderstyle2.png');
+}
+.elementor-control-fancy_post_slider_layout.fpg-el-control-post-chooser-slider-thumb .elementor-control-field .elementor-control-input-wrapper .elementor-choices label.elementor-control-unit-1:nth-child(4) i:hover{
+  background-image: url('../../../includes/metabox/img/sliderstyle2_hover.png');
+}
+.elementor-control-fancy_post_slider_layout.fpg-el-control-post-chooser-slider-thumb .elementor-control-field .elementor-control-input-wrapper .elementor-choices label.elementor-control-unit-1:nth-child(6) i{
+  background-image: url('../../../includes/metabox/img/sliderstyle3.png');
+}
+.elementor-control-fancy_post_slider_layout.fpg-el-control-post-chooser-slider-thumb .elementor-control-field .elementor-control-input-wrapper .elementor-choices label.elementor-control-unit-1:nth-child(6) i:hover{
+  background-image: url('../../../includes/metabox/img/sliderstyle3_hover.png');
+}
+
+.elementor-control-fancy_post_slider_layout.fpg-el-control-post-chooser-slider-thumb .elementor-control-field .elementor-control-input-wrapper .elementor-choices label.elementor-control-unit-1:nth-child(8) i{
+  background-image: url('../../../includes/metabox/img/sliderstyle4.png');
+}
+.elementor-control-fancy_post_slider_layout.fpg-el-control-post-chooser-slider-thumb .elementor-control-field .elementor-control-input-wrapper .elementor-choices label.elementor-control-unit-1:nth-child(8) i:hover{
+  background-image: url('../../../includes/metabox/img/sliderstyle4_hover.png');
+}
+
+.elementor-control-fancy_post_slider_layout.fpg-el-control-post-chooser-slider-thumb .elementor-control-field .elementor-control-input-wrapper .elementor-choices label.elementor-control-unit-1:nth-child(10) i{
+  background-image: url('../../../includes/metabox/img/sliderstyle5.png');
+}
+.elementor-control-fancy_post_slider_layout.fpg-el-control-post-chooser-slider-thumb .elementor-control-field .elementor-control-input-wrapper .elementor-choices label.elementor-control-unit-1:nth-child(10) i:hover{
+  background-image: url('../../../includes/metabox/img/sliderstyle5_hover.png');
+}
+
+.elementor-control-fancy_post_slider_layout.fpg-el-control-post-chooser-slider-thumb .elementor-control-field .elementor-control-input-wrapper .elementor-choices label.elementor-control-unit-1:nth-child(12) i{
+  background-image: url('../../../includes/metabox/img/sliderstyle6.png');
+}
+.elementor-control-fancy_post_slider_layout.fpg-el-control-post-chooser-slider-thumb .elementor-control-field .elementor-control-input-wrapper .elementor-choices label.elementor-control-unit-1:nth-child(12) i:hover{
+  background-image: url('../../../includes/metabox/img/sliderstyle6_hover.png');
+}
+
+.elementor-control-fancy_post_slider_layout.fpg-el-control-post-chooser-slider-thumb .elementor-control-field .elementor-control-input-wrapper .elementor-choices label.elementor-control-unit-1:nth-child(14) i{
+  background-image: url('../../../includes/metabox/img/sliderstyle7.png');
+}
+.elementor-control-fancy_post_slider_layout.fpg-el-control-post-chooser-slider-thumb .elementor-control-field .elementor-control-input-wrapper .elementor-choices label.elementor-control-unit-1:nth-child(14) i:hover{
+  background-image: url('../../../includes/metabox/img/sliderstyle7_hover.png');
+}
+
+/*Isotope*/
+.elementor-control-fancy_post_isotope_layout.fpg-el-control-post-chooser-isotope-thumb .elementor-control-field .elementor-control-input-wrapper .elementor-choices label.elementor-control-unit-1:nth-child(2) i{
+  background-image: url('../../../includes/metabox/img/isotopestyle1.png');
+}
+.elementor-control-fancy_post_isotope_layout.fpg-el-control-post-chooser-isotope-thumb .elementor-control-field .elementor-control-input-wrapper .elementor-choices label.elementor-control-unit-1:nth-child(2) i:hover{
+  background-image: url('../../../includes/metabox/img/isotopestyle1_hover.png');
+}
+
+.elementor-control-fancy_post_isotope_layout.fpg-el-control-post-chooser-isotope-thumb .elementor-control-field .elementor-control-input-wrapper .elementor-choices label.elementor-control-unit-1:nth-child(4) i{
+  background-image: url('../../../includes/metabox/img/isotopestyle2.png');
+}
+.elementor-control-fancy_post_isotope_layout.fpg-el-control-post-chooser-isotope-thumb .elementor-control-field .elementor-control-input-wrapper .elementor-choices label.elementor-control-unit-1:nth-child(4) i:hover{
+  background-image: url('../../../includes/metabox/img/isotopestyle2_hover.png');
+}
+.elementor-control-fancy_post_isotope_layout.fpg-el-control-post-chooser-isotope-thumb .elementor-control-field .elementor-control-input-wrapper .elementor-choices label.elementor-control-unit-1:nth-child(6) i{
+  background-image: url('../../../includes/metabox/img/isotopestyle3.png');
+}
+.elementor-control-fancy_post_isotope_layout.fpg-el-control-post-chooser-isotope-thumb .elementor-control-field .elementor-control-input-wrapper .elementor-choices label.elementor-control-unit-1:nth-child(6) i:hover{
+  background-image: url('../../../includes/metabox/img/isotopestyle3_hover.png');
+}
+
+.elementor-control-fancy_post_isotope_layout.fpg-el-control-post-chooser-isotope-thumb .elementor-control-field .elementor-control-input-wrapper .elementor-choices label.elementor-control-unit-1:nth-child(8) i{
+  background-image: url('../../../includes/metabox/img/isotopestyle4.png');
+}
+.elementor-control-fancy_post_isotope_layout.fpg-el-control-post-chooser-isotope-thumb .elementor-control-field .elementor-control-input-wrapper .elementor-choices label.elementor-control-unit-1:nth-child(8) i:hover{
+  background-image: url('../../../includes/metabox/img/isotopestyle4_hover.png');
+}
+
+.elementor-control-fancy_post_isotope_layout.fpg-el-control-post-chooser-isotope-thumb .elementor-control-field .elementor-control-input-wrapper .elementor-choices label.elementor-control-unit-1:nth-child(10) i{
+  background-image: url('../../../includes/metabox/img/isotopestyle5.png');
+}
+.elementor-control-fancy_post_isotope_layout.fpg-el-control-post-chooser-isotope-thumb .elementor-control-field .elementor-control-input-wrapper .elementor-choices label.elementor-control-unit-1:nth-child(10) i:hover{
+  background-image: url('../../../includes/metabox/img/isotopestyle5_hover.png');
+}
+
+.elementor-control-fancy_post_isotope_layout.fpg-el-control-post-chooser-isotope-thumb .elementor-control-field .elementor-control-input-wrapper .elementor-choices label.elementor-control-unit-1:nth-child(12) i{
+  background-image: url('../../../includes/metabox/img/isotopestyle6.png');
+}
+.elementor-control-fancy_post_isotope_layout.fpg-el-control-post-chooser-isotope-thumb .elementor-control-field .elementor-control-input-wrapper .elementor-choices label.elementor-control-unit-1:nth-child(12) i:hover{
+  background-image: url('../../../includes/metabox/img/isotopestyle6_hover.png');
+}
+
+.elementor-control-fancy_post_isotope_layout.fpg-el-control-post-chooser-isotope-thumb .elementor-control-field .elementor-control-input-wrapper .elementor-choices label.elementor-control-unit-1:nth-child(14) i{
+  background-image: url('../../../includes/metabox/img/isotopestyle7.png');
+}
+.elementor-control-fancy_post_isotope_layout.fpg-el-control-post-chooser-isotope-thumb .elementor-control-field .elementor-control-input-wrapper .elementor-choices label.elementor-control-unit-1:nth-child(14) i:hover{
+  background-image: url('../../../includes/metabox/img/isotopestyle7_hover.png');
+}
+
+/*List*/
+.elementor-control-fancy_post_list_layout.fpg-el-control-post-chooser-list-thumb .elementor-control-field .elementor-control-input-wrapper .elementor-choices label.elementor-control-unit-1:nth-child(2) i{
+  background-image: url('../../../includes/metabox/img/liststyle1.png');
+}
+.elementor-control-fancy_post_list_layout.fpg-el-control-post-chooser-list-thumb .elementor-control-field .elementor-control-input-wrapper .elementor-choices label.elementor-control-unit-1:nth-child(2) i:hover{
+  background-image: url('../../../includes/metabox/img/liststyle1_hover.png');
+}
+
+.elementor-control-fancy_post_list_layout.fpg-el-control-post-chooser-list-thumb .elementor-control-field .elementor-control-input-wrapper .elementor-choices label.elementor-control-unit-1:nth-child(4) i{
+  background-image: url('../../../includes/metabox/img/liststyle2.png');
+}
+.elementor-control-fancy_post_list_layout.fpg-el-control-post-chooser-list-thumb .elementor-control-field .elementor-control-input-wrapper .elementor-choices label.elementor-control-unit-1:nth-child(4) i:hover{
+  background-image: url('../../../includes/metabox/img/liststyle2_hover.png');
+}
+.elementor-control-fancy_post_list_layout.fpg-el-control-post-chooser-list-thumb .elementor-control-field .elementor-control-input-wrapper .elementor-choices label.elementor-control-unit-1:nth-child(6) i{
+  background-image: url('../../../includes/metabox/img/liststyle3.png');
+}
+.elementor-control-fancy_post_list_layout.fpg-el-control-post-chooser-list-thumb .elementor-control-field .elementor-control-input-wrapper .elementor-choices label.elementor-control-unit-1:nth-child(6) i:hover{
+  background-image: url('../../../includes/metabox/img/liststyle3_hover.png');
+}
+
+.elementor-control-fancy_post_list_layout.fpg-el-control-post-chooser-list-thumb .elementor-control-field .elementor-control-input-wrapper .elementor-choices label.elementor-control-unit-1:nth-child(8) i{
+  background-image: url('../../../includes/metabox/img/liststyle4.png');
+}
+.elementor-control-fancy_post_list_layout.fpg-el-control-post-chooser-list-thumb .elementor-control-field .elementor-control-input-wrapper .elementor-choices label.elementor-control-unit-1:nth-child(8) i:hover{
+  background-image: url('../../../includes/metabox/img/liststyle4_hover.png');
+}
+
+.elementor-control-fancy_post_list_layout.fpg-el-control-post-chooser-list-thumb .elementor-control-field .elementor-control-input-wrapper .elementor-choices label.elementor-control-unit-1:nth-child(10) i{
+  background-image: url('../../../includes/metabox/img/liststyle5.png');
+}
+.elementor-control-fancy_post_list_layout.fpg-el-control-post-chooser-list-thumb .elementor-control-field .elementor-control-input-wrapper .elementor-choices label.elementor-control-unit-1:nth-child(10) i:hover{
+  background-image: url('../../../includes/metabox/img/liststyle5_hover.png');
+}
+
+.elementor-control-fancy_post_list_layout.fpg-el-control-post-chooser-list-thumb .elementor-control-field .elementor-control-input-wrapper .elementor-choices label.elementor-control-unit-1:nth-child(12) i{
+  background-image: url('../../../includes/metabox/img/liststyle6.png');
+}
+.elementor-control-fancy_post_list_layout.fpg-el-control-post-chooser-list-thumb .elementor-control-field .elementor-control-input-wrapper .elementor-choices label.elementor-control-unit-1:nth-child(12) i:hover{
+  background-image: url('../../../includes/metabox/img/liststyle6_hover.png');
+}
+
+.elementor-control-fancy_post_list_layout.fpg-el-control-post-chooser-list-thumb .elementor-control-field .elementor-control-input-wrapper .elementor-choices label.elementor-control-unit-1:nth-child(14) i{
+  background-image: url('../../../includes/metabox/img/liststyle7.png');
+}
+.elementor-control-fancy_post_list_layout.fpg-el-control-post-chooser-list-thumb .elementor-control-field .elementor-control-input-wrapper .elementor-choices label.elementor-control-unit-1:nth-child(14) i:hover{
+  background-image: url('../../../includes/metabox/img/liststyle7_hover.png');
+}
+
+.elementor-control-fancy_post_list_layout.fpg-el-control-post-chooser-list-thumb .elementor-control-field .elementor-control-input-wrapper .elementor-choices label.elementor-control-unit-1:nth-child(16) i{
+  background-image: url('../../../includes/metabox/img/liststyle8.png');
+}
+.elementor-control-fancy_post_list_layout.fpg-el-control-post-chooser-list-thumb .elementor-control-field .elementor-control-input-wrapper .elementor-choices label.elementor-control-unit-1:nth-child(16) i:hover{
+  background-image: url('../../../includes/metabox/img/liststyle8_hover.png');
 }

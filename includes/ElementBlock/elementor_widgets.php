@@ -62,30 +62,7 @@ add_action('elementor/widgets/widgets_registered', function () {
             // Add control for Grid Layout selection 
             // Check if the control is excluded before adding it
             if (!in_array('fancy_post_grid_layout', $this->exclude_controls)) {
-                // $this->add_control(
-                //     'fancy_post_grid_layout',
-                //     [                    
-                //         'label'   => esc_html__( 'Grid Style', 'fancy-post-grid' ),
-                //         'type'    => \Elementor\Controls_Manager::SELECT,
-                //         'classes' => 'fpg-el-control-post-chooser-thumb',
-                //         'options' => array(
-                //             'gridstyle01' => esc_html__( 'Grid Style 01', 'fancy-post-grid' ),
-                //             'gridstyle02' => esc_html__( 'Grid Style 02', 'fancy-post-grid' ),
-                //             'gridstyle03' => esc_html__( 'Grid Style 03', 'fancy-post-grid' ),
-                //             'gridstyle04' => esc_html__( 'Grid Style 04', 'fancy-post-grid' ),
-                //             'gridstyle05' => esc_html__( 'Grid Style 05', 'fancy-post-grid' ),
-                //             'gridstyle06' => esc_html__( 'Grid Style 06', 'fancy-post-grid' ),
-                //             'gridstyle07' => esc_html__( 'Grid Style 07', 'fancy-post-grid' ),
-                //             'gridstyle08' => esc_html__( 'Grid Style 08', 'fancy-post-grid' ),
-                //             'gridstyle09' => esc_html__( 'Grid Style 09', 'fancy-post-grid' ),
-                //             'gridstyle10' => esc_html__( 'Grid Style 10', 'fancy-post-grid' ),
-                //             'gridstyle11' => esc_html__( 'Grid Style 11', 'fancy-post-grid' ),
-                //             'gridstyle12' => esc_html__( 'Grid Style 12', 'fancy-post-grid' ),
-                //         ),
-                //         'default' => 'gridstyle01',
-                //     ]
-                // );
-
+                
                 $this->add_control(
                     'fancy_post_grid_layout',
                     [
@@ -154,66 +131,43 @@ add_action('elementor/widgets/widgets_registered', function () {
                     'fancy_post_slider_layout',
                     [                    
                         'label'   => esc_html__( 'Slider Style', 'fancy-post-grid' ),
-                        'type'    => \Elementor\Controls_Manager::SELECT,
-                        'options' => array(
-                            'sliderstyle01' => esc_html__( 'Slider Style 01', 'fancy-post-grid' ),
-                            'sliderstyle02' => esc_html__( 'Slider Style 02', 'fancy-post-grid' ),
-                            'sliderstyle03' => esc_html__( 'Slider Style 03', 'fancy-post-grid' ),
-                            'sliderstyle04' => esc_html__( 'Slider Style 04', 'fancy-post-grid' ),
-                            'sliderstyle05' => esc_html__( 'Slider Style 05', 'fancy-post-grid' ),
-                            'sliderstyle06' => esc_html__( 'Slider Style 06', 'fancy-post-grid' ),
-                            'sliderstyle07' => esc_html__( 'Slider Style 07', 'fancy-post-grid' ),
-                            
-                        ),
+                        'type'    => \Elementor\Controls_Manager::CHOOSE,
+                        'classes' => 'fpg-el-control-post-chooser-slider-thumb',
+                        'options' => [
+                            'sliderstyle01' => [
+                                'title' => esc_html__( 'Slider Style 01', 'fancy-post-grid' ),
+                                'icon' => 'eicon-text-align-left',
+                            ],
+                            'sliderstyle02' => [
+                                'title' => esc_html__( 'Slider Style 02', 'fancy-post-grid' ),
+                                'icon' => 'eicon-text-align-center',
+                            ],
+                            'sliderstyle03' => [
+                                'title' => esc_html__( 'Slider Style 03', 'fancy-post-grid' ),
+                                'icon' => 'eicon-text-align-right',
+                            ],
+                            'sliderstyle04' => [
+                                'title' => esc_html__( 'Slider Style 04', 'fancy-post-grid' ),
+                                'icon' => 'eicon-text-align-right',
+                            ],
+                            'sliderstyle05' => [
+                                'title' => esc_html__( 'Slider Style 05', 'fancy-post-grid' ),
+                                'icon' => 'eicon-text-align-right',
+                            ],
+                            'sliderstyle06' => [
+                                'title' => esc_html__( 'Slider Style 06', 'fancy-post-grid' ),
+                                'icon' => 'eicon-text-align-right',
+                            ],
+                            'sliderstyle07' => [
+                                'title' => esc_html__( 'Slider Style 07', 'fancy-post-grid' ),
+                                'icon' => 'eicon-text-align-right',
+                            ],
+                        ],
                         'default' => 'sliderstyle01',
+                        'toggle' => true,
                     ]
                 );
             }
-
-            // if (!in_array('fancy_post_slider_layout-NEW', $this->exclude_controls)) {
-            //     $this->add_control(
-            //     'fancy_post_slider_layout-NEW',
-            //     [
-            //         'label'       => esc_html__( 'Slider Style NEW', 'fancy-post-grid' ),
-            //         'type'        => \Elementor\Controls_Manager::CHOOSE,
-            //         'label_block' => true, // Ensure label is always visible
-            //         'options'     => [
-            //             'sliderstyle01' => [
-            //                 'title' => esc_html__( 'Style 01', 'fancy-post-grid' ),
-                            
-            //             ],
-            //             'sliderstyle02' => [
-            //                 'title' => esc_html__( 'Style 02', 'fancy-post-grid' ),
-            //                 'icon'  => 'dashicons dashicons-images-alt2',
-            //             ],
-            //             'sliderstyle03' => [
-            //                 'title' => esc_html__( 'Style 03', 'fancy-post-grid' ),
-            //                 'icon'  => 'dashicons dashicons-format-image',
-            //             ],
-            //             'sliderstyle04' => [
-            //                 'title' => esc_html__( 'Style 04', 'fancy-post-grid' ),
-            //                 'icon'  => 'dashicons dashicons-slides',
-            //             ],
-            //             'sliderstyle05' => [
-            //                 'title' => esc_html__( 'Style 05', 'fancy-post-grid' ),
-            //                 'icon'  => 'dashicons dashicons-format-aside',
-            //             ],
-            //             'sliderstyle06' => [
-            //                 'title' => esc_html__( 'Style 06', 'fancy-post-grid' ),
-            //                 'icon'  => 'dashicons dashicons-screenoptions',
-            //             ],
-            //             'sliderstyle07' => [
-            //                 'title' => esc_html__( 'Style 07', 'fancy-post-grid' ),
-            //                 'icon'  => 'dashicons dashicons-format-video',
-            //             ],
-            //         ],
-            //         'toggle'      => false, // Disables collapsing toggle behavior
-            //         'default'     => 'sliderstyle01',
-            //     ]
-            // );
-
-            // }
-
             // Add control for Isotope Layout selection 
             // Check if the control is excluded before adding it
             if (!in_array('fancy_post_isotope_layout', $this->exclude_controls)) {
@@ -221,17 +175,40 @@ add_action('elementor/widgets/widgets_registered', function () {
                     'fancy_post_isotope_layout',
                     [                    
                         'label'   => esc_html__( 'Isotope Style', 'fancy-post-grid' ),
-                        'type'    => \Elementor\Controls_Manager::SELECT,
-                        'options' => array(
-                            'isotopestyle01' => esc_html__( 'Isotope Style 01', 'fancy-post-grid' ),
-                            'isotopestyle02' => esc_html__( 'Isotope Style 02', 'fancy-post-grid' ),
-                            'isotopestyle03' => esc_html__( 'Isotope Style 03', 'fancy-post-grid' ),
-                            'isotopestyle04' => esc_html__( 'Isotope Style 04', 'fancy-post-grid' ),
-                            'isotopestyle05' => esc_html__( 'Isotope Style 05', 'fancy-post-grid' ),
-                            'isotopestyle06' => esc_html__( 'Isotope Style 06', 'fancy-post-grid' ),
-                            'isotopestyle07' => esc_html__( 'Isotope Style 07', 'fancy-post-grid' ),
-                        ),
+                        'type'    => \Elementor\Controls_Manager::CHOOSE,
+                        'classes' => 'fpg-el-control-post-chooser-isotope-thumb',
+                        'options' => [
+                            'isotopestyle01' => [
+                                'title' => esc_html__( 'Isotope Style 01', 'fancy-post-grid' ),
+                                'icon' => 'eicon-text-align-left',
+                            ],
+                            'isotopestyle02' => [
+                                'title' => esc_html__( 'Isotope Style 02', 'fancy-post-grid' ),
+                                'icon' => 'eicon-text-align-center',
+                            ],
+                            'isotopestyle03' => [
+                                'title' => esc_html__( 'Isotope Style 03', 'fancy-post-grid' ),
+                                'icon' => 'eicon-text-align-right',
+                            ],
+                            'isotopestyle04' => [
+                                'title' => esc_html__( 'Isotope Style 04', 'fancy-post-grid' ),
+                                'icon' => 'eicon-text-align-right',
+                            ],
+                            'isotopestyle05' => [
+                                'title' => esc_html__( 'Isotope Style 05', 'fancy-post-grid' ),
+                                'icon' => 'eicon-text-align-right',
+                            ],
+                            'isotopestyle06' => [
+                                'title' => esc_html__( 'Isotope Style 06', 'fancy-post-grid' ),
+                                'icon' => 'eicon-text-align-right',
+                            ],
+                            'isotopestyle07' => [
+                                'title' => esc_html__( 'Isotope Style 07', 'fancy-post-grid' ),
+                                'icon' => 'eicon-text-align-right',
+                            ],
+                        ],
                         'default' => 'isotopestyle01',
+                        'toggle' => true,
                     ]
                 );
             }
@@ -242,19 +219,45 @@ add_action('elementor/widgets/widgets_registered', function () {
                     'fancy_post_list_layout',
                     [                    
                         'label'   => esc_html__( 'List Style', 'fancy-post-grid' ),
-                        'type'    => \Elementor\Controls_Manager::SELECT,
-                        'options' => array(
-                            'liststyle01' => esc_html__( 'List Style 01', 'fancy-post-grid' ),
-                            'liststyle02' => esc_html__( 'List Style 02', 'fancy-post-grid' ),
-                            'liststyle03' => esc_html__( 'List Style 03', 'fancy-post-grid' ),
-                            'liststyle04' => esc_html__( 'List Style 04', 'fancy-post-grid' ),
-                            'liststyle05' => esc_html__( 'List Style 05', 'fancy-post-grid' ),
-                            'liststyle06' => esc_html__( 'List Style 06', 'fancy-post-grid' ),
-                            'liststyle07' => esc_html__( 'List Style 07', 'fancy-post-grid' ),
-                            'liststyle08' => esc_html__( 'List Style 08', 'fancy-post-grid' ),
-                            
-                        ),
+                        'type'    => \Elementor\Controls_Manager::CHOOSE,
+                        'classes' => 'fpg-el-control-post-chooser-list-thumb',
+                        'options' => [
+                            'liststyle01' => [
+                                'title' => esc_html__( 'List Style 01', 'fancy-post-grid' ),
+                                'icon' => 'eicon-text-align-left',
+                            ],
+                            'liststyle02' => [
+                                'title' => esc_html__( 'List Style 02', 'fancy-post-grid' ),
+                                'icon' => 'eicon-text-align-center',
+                            ],
+                            'liststyle03' => [
+                                'title' => esc_html__( 'List Style 03', 'fancy-post-grid' ),
+                                'icon' => 'eicon-text-align-right',
+                            ],
+                            'liststyle04' => [
+                                'title' => esc_html__( 'List Style 04', 'fancy-post-grid' ),
+                                'icon' => 'eicon-text-align-right',
+                            ],
+                            'liststyle05' => [
+                                'title' => esc_html__( 'List Style 05', 'fancy-post-grid' ),
+                                'icon' => 'eicon-text-align-right',
+                            ],
+                            'liststyle06' => [
+                                'title' => esc_html__( 'List Style 06', 'fancy-post-grid' ),
+                                'icon' => 'eicon-text-align-right',
+                            ],
+                            'liststyle07' => [
+                                'title' => esc_html__( 'List Style 07', 'fancy-post-grid' ),
+                                'icon' => 'eicon-text-align-right',
+                            ],
+                            'liststyle08' => [
+                                'title' => esc_html__( 'List Style 08', 'fancy-post-grid' ),
+                                'icon' => 'eicon-text-align-right',
+                            ],
+                        ],
+                        
                         'default' => 'liststyle01',
+                        'toggle' => true,
                     ]
                 );
             }
@@ -1135,22 +1138,6 @@ add_action('elementor/widgets/widgets_registered', function () {
                         'disable'  => esc_html__( 'Disable', 'fancy-post-grid' ),
                     ),
                     'default' => 'enable',
-                    'render_type' => 'template'
-                ]
-            );
-            // Title Visibility Style
-            $this->add_control(
-                'title_visibility_style',
-                [
-                    'label'   => esc_html__( 'Title Visibility Style', 'fancy-post-grid' ),
-                    'type'    => \Elementor\Controls_Manager::SELECT,
-                    'options' => array(
-                        'default' => esc_html__( 'Default', 'fancy-post-grid' ),
-                        'show_1_line' => esc_html__( 'Show in 1 Line', 'fancy-post-grid' ),
-                        'show_2_lines' => esc_html__( 'Show in 2 Lines', 'fancy-post-grid' ),
-                        'show_3_lines' => esc_html__( 'Show in 3 Lines', 'fancy-post-grid' ),
-                    ),
-                    'default' => 'default',
                     'render_type' => 'template'
                 ]
             );
