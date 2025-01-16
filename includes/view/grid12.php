@@ -266,9 +266,7 @@ ob_start();
             <?php
                 endwhile;
                 wp_reset_postdata(); // Reset post data to the main query
-            
             ?>
-
         </div>
         <?php if ($fancy_post_pagination === 'on') : ?>
             <div class="fpg-pagination">

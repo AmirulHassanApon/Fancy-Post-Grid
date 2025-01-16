@@ -394,7 +394,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                         'label'   => esc_html__('Small 767px to 576px', 'fancy-post-grid'),
                         'type'    => \Elementor\Controls_Manager::SELECT,
                         'label_block' => true,
-                        'default' => 1,
+                        'default' => 12,
                         'options' => [
                             '12' => esc_html__('1 Column', 'fancy-post-grid'),
                             '6' => esc_html__('2 Columns', 'fancy-post-grid'),
@@ -934,7 +934,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                     'label_on' => esc_html__( 'Show', 'fancy-post-grid' ),
                     'label_off' => esc_html__( 'Hide', 'fancy-post-grid' ),
                     'return_value' => 'yes',
-                    'default' => 'yes',
+                    'default' => 'no',
                     'render_type' => 'template'
                 ]
             );
@@ -947,7 +947,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                     'label_on' => esc_html__( 'Show', 'fancy-post-grid' ),
                     'label_off' => esc_html__( 'Hide', 'fancy-post-grid' ),
                     'return_value' => 'yes',
-                    'default' => 'yes',
+                    'default' => 'no',
                     'render_type' => 'template'
                 ]
             );
@@ -960,7 +960,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                     'label_on' => esc_html__( 'Show', 'fancy-post-grid' ),
                     'label_off' => esc_html__( 'Hide', 'fancy-post-grid' ),
                     'return_value' => 'yes',
-                    'default' => 'yes',
+                    'default' => 'no',
                     'render_type' => 'template'
                 ]
             );
@@ -1011,7 +1011,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                     'label_on' => esc_html__( 'Show', 'fancy-post-grid' ),
                     'label_off' => esc_html__( 'Hide', 'fancy-post-grid' ),
                     'return_value' => 'yes',
-                    'default' => 'yes',
+                    'default' => 'no',
                     'render_type' => 'template'
                 ]
             );
@@ -1024,7 +1024,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                     'label_on' => esc_html__( 'Show', 'fancy-post-grid' ),
                     'label_off' => esc_html__( 'Hide', 'fancy-post-grid' ),
                     'return_value' => 'yes',
-                    'default' => 'yes',
+                    'default' => 'no',
                     'render_type' => 'template'
                 ]
             );
@@ -1037,7 +1037,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                     'label_on' => esc_html__( 'Show', 'fancy-post-grid' ),
                     'label_off' => esc_html__( 'Hide', 'fancy-post-grid' ),
                     'return_value' => 'yes',
-                    'default' => 'yes',
+                    'default' => 'no',
                     'render_type' => 'template'
                 ]
             );
@@ -1340,7 +1340,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                     'label_on'     => esc_html__( 'Show', 'fancy-post-grid' ),
                     'label_off'    => esc_html__( 'Hide', 'fancy-post-grid' ),
                     'return_value' => 'yes',
-                    'default'      => '',
+                    'default'      => 'yes',
                 ]
             );
 
