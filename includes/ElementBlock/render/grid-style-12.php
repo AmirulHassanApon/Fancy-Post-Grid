@@ -182,7 +182,7 @@ if ($query->have_posts()) {
                     <?php if (!empty($settings['show_post_readmore']) && 'yes' === $settings['show_post_readmore']) { ?>
                         <div class="btn-wrapper">
                             <a href="<?php echo esc_url(get_permalink()); ?>" 
-                               class="rs-link read-more <?php echo esc_attr($settings['button_type']); ?>"
+                               class="rs-btn rs-link read-more <?php echo esc_attr($settings['button_type']); ?>"
                                target="<?php echo 'new_window' === $settings['link_target'] ? '_blank' : '_self'; ?>">
                                 <?php
                                 if (!empty($settings['button_icon']) && 'yes' === $settings['button_icon']) {

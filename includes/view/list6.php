@@ -222,17 +222,17 @@ ob_start();
                                 <<?php echo esc_attr($title_tag); ?> class="title <?php echo esc_attr($title_alignment_class); ?>">
 
                                 <?php if ($fancy_link_details === 'on') : ?>
-                                        <a href="<?php the_permalink(); ?>"
-                                           <?php echo esc_attr($target_blank); ?>
-                                           class="title-link">
-                                            <?php
-                                                if ($fancy_post_title_limit_type === 'words') {
-                                                    echo esc_html(wp_trim_words(get_the_title(), $fancy_post_title_limit, $title_more_text));
-                                                } elseif ($fancy_post_title_limit_type === 'characters') {
-                                                    echo esc_html(mb_strimwidth(get_the_title(), 0, $fancy_post_title_limit, $title_more_text));
-                                                }
-                                            ?>
-                                        </a>
+                                    <a href="<?php the_permalink(); ?>"
+                                       <?php echo esc_attr($target_blank); ?>
+                                       class="title-link">
+                                        <?php
+                                            if ($fancy_post_title_limit_type === 'words') {
+                                                echo esc_html(wp_trim_words(get_the_title(), $fancy_post_title_limit, $title_more_text));
+                                            } elseif ($fancy_post_title_limit_type === 'characters') {
+                                                echo esc_html(mb_strimwidth(get_the_title(), 0, $fancy_post_title_limit, $title_more_text));
+                                            }
+                                        ?>
+                                    </a>
                                     <?php else : ?>
                                         <?php
                                         if ($fancy_post_title_limit_type === 'words') {

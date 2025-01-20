@@ -236,7 +236,6 @@ if ($query->have_posts()) {
             </div>
         </div>
     </div>
-    
     <?php
 } else {
     
