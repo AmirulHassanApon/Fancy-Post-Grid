@@ -1302,24 +1302,6 @@ add_action('elementor/widgets/widgets_registered', function () {
                 ]
             );
 
-            // Meta Separator
-            $this->add_control(
-                'meta_separator',
-                [
-                    'label'   => esc_html__( 'Meta Separator', 'fancy-post-grid' ),
-                    'type'    => \Elementor\Controls_Manager::SELECT,
-                    'options' => array(
-                        '-'   => esc_html__( 'Hyphen (-)', 'fancy-post-grid' ),
-                        '.'   => esc_html__( 'Dot (.)', 'fancy-post-grid' ),
-                        ''    => esc_html__( 'None', 'fancy-post-grid' ),
-                        '/'   => esc_html__( 'Single Slash (/)', 'fancy-post-grid' ),
-                        '//'  => esc_html__( 'Double Slash (//)', 'fancy-post-grid' ),
-                        '|'   => esc_html__( 'Vertical Pipe (|)', 'fancy-post-grid' ),
-                    ),
-                    'default' => '-',
-                ]
-            );
-
             // Author Prefix
             $this->add_control(
                 'author_prefix',
@@ -3420,7 +3402,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                 echo '<div class="error">Grid Style 02 template not found.</div>';
             }
         }protected function render_slider_style_02() {
-            $file_path = plugin_dir_path( __FILE__ ) . 'render/slider-style-01.php'; // Adjust the path as needed.
+            $file_path = plugin_dir_path( __FILE__ ) . 'render/slider-style-02.php'; // Adjust the path as needed.
             
             if ( file_exists( $file_path ) ) {
                 include $file_path;
@@ -3428,7 +3410,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                 echo '<div class="error">Grid Style 02 template not found.</div>';
             }
         }protected function render_slider_style_03() {
-            $file_path = plugin_dir_path( __FILE__ ) . 'render/slider-style-01.php'; // Adjust the path as needed.
+            $file_path = plugin_dir_path( __FILE__ ) . 'render/slider-style-03.php'; // Adjust the path as needed.
             
             if ( file_exists( $file_path ) ) {
                 include $file_path;
@@ -3436,7 +3418,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                 echo '<div class="error">Grid Style 02 template not found.</div>';
             }
         }protected function render_slider_style_04() {
-            $file_path = plugin_dir_path( __FILE__ ) . 'render/slider-style-01.php'; // Adjust the path as needed.
+            $file_path = plugin_dir_path( __FILE__ ) . 'render/slider-style-04.php'; // Adjust the path as needed.
             
             if ( file_exists( $file_path ) ) {
                 include $file_path;
@@ -3444,7 +3426,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                 echo '<div class="error">Grid Style 02 template not found.</div>';
             }
         }protected function render_slider_style_05() {
-            $file_path = plugin_dir_path( __FILE__ ) . 'render/slider-style-01.php'; // Adjust the path as needed.
+            $file_path = plugin_dir_path( __FILE__ ) . 'render/slider-style-05.php'; // Adjust the path as needed.
             
             if ( file_exists( $file_path ) ) {
                 include $file_path;
@@ -3452,7 +3434,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                 echo '<div class="error">Grid Style 02 template not found.</div>';
             }
         }protected function render_slider_style_06() {
-            $file_path = plugin_dir_path( __FILE__ ) . 'render/slider-style-01.php'; // Adjust the path as needed.
+            $file_path = plugin_dir_path( __FILE__ ) . 'render/slider-style-06.php'; // Adjust the path as needed.
             
             if ( file_exists( $file_path ) ) {
                 include $file_path;
@@ -3460,7 +3442,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                 echo '<div class="error">Grid Style 02 template not found.</div>';
             }
         }protected function render_slider_style_07() {
-            $file_path = plugin_dir_path( __FILE__ ) . 'render/slider-style-01.php'; // Adjust the path as needed.
+            $file_path = plugin_dir_path( __FILE__ ) . 'render/slider-style-07.php'; // Adjust the path as needed.
             
             if ( file_exists( $file_path ) ) {
                 include $file_path;
@@ -3534,7 +3516,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                 echo '<div class="error">Grid Style 02 template not found.</div>';
             }
         }protected function render_list_style_02() {
-            $file_path = plugin_dir_path( __FILE__ ) . 'render/list-style-01.php'; // Adjust the path as needed.
+            $file_path = plugin_dir_path( __FILE__ ) . 'render/list-style-02.php'; // Adjust the path as needed.
             
             if ( file_exists( $file_path ) ) {
                 include $file_path;
@@ -3542,7 +3524,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                 echo '<div class="error">Grid Style 02 template not found.</div>';
             }
         }protected function render_list_style_03() {
-            $file_path = plugin_dir_path( __FILE__ ) . 'render/list-style-01.php'; // Adjust the path as needed.
+            $file_path = plugin_dir_path( __FILE__ ) . 'render/list-style-03.php'; // Adjust the path as needed.
             
             if ( file_exists( $file_path ) ) {
                 include $file_path;
@@ -3550,7 +3532,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                 echo '<div class="error">Grid Style 02 template not found.</div>';
             }
         }protected function render_list_style_04() {
-            $file_path = plugin_dir_path( __FILE__ ) . 'render/list-style-01.php'; // Adjust the path as needed.
+            $file_path = plugin_dir_path( __FILE__ ) . 'render/list-style-04.php'; // Adjust the path as needed.
             
             if ( file_exists( $file_path ) ) {
                 include $file_path;
@@ -3558,7 +3540,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                 echo '<div class="error">Grid Style 02 template not found.</div>';
             }
         }protected function render_list_style_05() {
-            $file_path = plugin_dir_path( __FILE__ ) . 'render/list-style-01.php'; // Adjust the path as needed.
+            $file_path = plugin_dir_path( __FILE__ ) . 'render/list-style-05.php'; // Adjust the path as needed.
             
             if ( file_exists( $file_path ) ) {
                 include $file_path;
@@ -3566,7 +3548,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                 echo '<div class="error">Grid Style 02 template not found.</div>';
             }
         }protected function render_list_style_06() {
-            $file_path = plugin_dir_path( __FILE__ ) . 'render/list-style-01.php'; // Adjust the path as needed.
+            $file_path = plugin_dir_path( __FILE__ ) . 'render/list-style-06.php'; // Adjust the path as needed.
             
             if ( file_exists( $file_path ) ) {
                 include $file_path;
@@ -3574,7 +3556,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                 echo '<div class="error">Grid Style 02 template not found.</div>';
             }
         }protected function render_list_style_07() {
-            $file_path = plugin_dir_path( __FILE__ ) . 'render/list-style-01.php'; // Adjust the path as needed.
+            $file_path = plugin_dir_path( __FILE__ ) . 'render/list-style-07.php'; // Adjust the path as needed.
             
             if ( file_exists( $file_path ) ) {
                 include $file_path;
@@ -3582,7 +3564,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                 echo '<div class="error">Grid Style 02 template not found.</div>';
             }
         }protected function render_list_style_08() {
-            $file_path = plugin_dir_path( __FILE__ ) . 'render/list-style-01.php'; // Adjust the path as needed.
+            $file_path = plugin_dir_path( __FILE__ ) . 'render/list-style-08.php'; // Adjust the path as needed.
             
             if ( file_exists( $file_path ) ) {
                 include $file_path;
