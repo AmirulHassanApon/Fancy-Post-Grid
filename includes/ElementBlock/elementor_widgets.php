@@ -762,6 +762,9 @@ add_action('elementor/widgets/widgets_registered', function () {
                         ],
                         'default' => 'center',
                         'toggle'  => true,
+                        'selectors' => array(
+                            '{{WRAPPER}} .rs-blog-layout-1-filter' => 'justify-content: {{VALUE}};',
+                        ),
                     ]
                 );
 
@@ -3287,7 +3290,7 @@ add_action('elementor/widgets/widgets_registered', function () {
             if ( file_exists( $file_path ) ) {
                 include $file_path;
             } else {
-                echo '<div class="error">Grid Style 01 template not found.</div>';
+                echo '<div class="error">' . esc_html__('Grid Style 01 template not found.', 'fancy-post-grid') . '</div>';
             }
         }
 
@@ -3297,7 +3300,7 @@ add_action('elementor/widgets/widgets_registered', function () {
             if ( file_exists( $file_path ) ) {
                 include $file_path;
             } else {
-                echo '<div class="error">Grid Style 02 template not found.</div>';
+                echo '<div class="error">' . esc_html__('Grid Style 02 template not found.', 'fancy-post-grid') . '</div>';
             }
         }
         protected function render_grid_style_03() {
@@ -3306,7 +3309,7 @@ add_action('elementor/widgets/widgets_registered', function () {
             if ( file_exists( $file_path ) ) {
                 include $file_path;
             } else {
-                echo '<div class="error">Grid Style 03 template not found.</div>';
+                echo '<div class="error">' . esc_html__('Grid Style 03 template not found.', 'fancy-post-grid') . '</div>';
             }
         }
         protected function render_grid_style_04() {
@@ -3315,7 +3318,7 @@ add_action('elementor/widgets/widgets_registered', function () {
             if ( file_exists( $file_path ) ) {
                 include $file_path;
             } else {
-                echo '<div class="error">Grid Style 04 template not found.</div>';
+                echo '<div class="error">' . esc_html__('Grid Style 04 template not found.', 'fancy-post-grid') . '</div>';
             }
         }
         protected function render_grid_style_05() {
@@ -3324,7 +3327,7 @@ add_action('elementor/widgets/widgets_registered', function () {
             if ( file_exists( $file_path ) ) {
                 include $file_path;
             } else {
-                echo '<div class="error">Grid Style 05 template not found.</div>';
+                echo '<div class="error">' . esc_html__('Grid Style 05 template not found.', 'fancy-post-grid') . '</div>';
             }
         }
 
@@ -3334,7 +3337,7 @@ add_action('elementor/widgets/widgets_registered', function () {
             if ( file_exists( $file_path ) ) {
                 include $file_path;
             } else {
-                echo '<div class="error">Grid Style 06 template not found.</div>';
+                echo '<div class="error">' . esc_html__('Grid Style 06 template not found.', 'fancy-post-grid') . '</div>';
             }
         }
         protected function render_grid_style_07() {
@@ -3343,7 +3346,7 @@ add_action('elementor/widgets/widgets_registered', function () {
             if ( file_exists( $file_path ) ) {
                 include $file_path;
             } else {
-                echo '<div class="error">Grid Style 07 template not found.</div>';
+                echo '<div class="error">' . esc_html__('Grid Style 07 template not found.', 'fancy-post-grid') . '</div>';
             }
         }
         protected function render_grid_style_08() {
@@ -3352,7 +3355,7 @@ add_action('elementor/widgets/widgets_registered', function () {
             if ( file_exists( $file_path ) ) {
                 include $file_path;
             } else {
-                echo '<div class="error">Grid Style 08 template not found.</div>';
+                echo '<div class="error">' . esc_html__('Grid Style 08 template not found.', 'fancy-post-grid') . '</div>';
             }
         }
         protected function render_grid_style_09() {
@@ -3361,7 +3364,7 @@ add_action('elementor/widgets/widgets_registered', function () {
             if ( file_exists( $file_path ) ) {
                 include $file_path;
             } else {
-                echo '<div class="error">Grid Style 09 template not found.</div>';
+                echo '<div class="error">' . esc_html__('Grid Style 09 template not found.', 'fancy-post-grid') . '</div>';
             }
         }
 
@@ -3371,7 +3374,7 @@ add_action('elementor/widgets/widgets_registered', function () {
             if ( file_exists( $file_path ) ) {
                 include $file_path;
             } else {
-                echo '<div class="error">Grid Style 10 template not found.</div>';
+                echo '<div class="error">' . esc_html__('Grid Style 10 template not found.', 'fancy-post-grid') . '</div>';
             }
         }
         protected function render_grid_style_11() {
@@ -3380,7 +3383,7 @@ add_action('elementor/widgets/widgets_registered', function () {
             if ( file_exists( $file_path ) ) {
                 include $file_path;
             } else {
-                echo '<div class="error">Grid Style 11 template not found.</div>';
+                echo '<div class="error">' . esc_html__('Grid Style 11 template not found.', 'fancy-post-grid') . '</div>';
             }
         }
         protected function render_grid_style_12() {
@@ -3389,7 +3392,7 @@ add_action('elementor/widgets/widgets_registered', function () {
             if ( file_exists( $file_path ) ) {
                 include $file_path;
             } else {
-                echo '<div class="error">Grid Style 12 template not found.</div>';
+                echo '<div class="error">' . esc_html__('Grid Style 12 template not found.', 'fancy-post-grid') . '</div>';
             }
         }
 
@@ -3399,7 +3402,7 @@ add_action('elementor/widgets/widgets_registered', function () {
             if ( file_exists( $file_path ) ) {
                 include $file_path;
             } else {
-                echo '<div class="error">Grid Style 02 template not found.</div>';
+                echo '<div class="error">' . esc_html__('Slider Style 01 template not found.', 'fancy-post-grid') . '</div>';
             }
         }protected function render_slider_style_02() {
             $file_path = plugin_dir_path( __FILE__ ) . 'render/slider-style-02.php'; // Adjust the path as needed.
@@ -3407,7 +3410,7 @@ add_action('elementor/widgets/widgets_registered', function () {
             if ( file_exists( $file_path ) ) {
                 include $file_path;
             } else {
-                echo '<div class="error">Grid Style 02 template not found.</div>';
+                echo '<div class="error">' . esc_html__('Slider Style 02 template not found.', 'fancy-post-grid') . '</div>';
             }
         }protected function render_slider_style_03() {
             $file_path = plugin_dir_path( __FILE__ ) . 'render/slider-style-03.php'; // Adjust the path as needed.
@@ -3415,7 +3418,7 @@ add_action('elementor/widgets/widgets_registered', function () {
             if ( file_exists( $file_path ) ) {
                 include $file_path;
             } else {
-                echo '<div class="error">Grid Style 02 template not found.</div>';
+                echo '<div class="error">' . esc_html__('Slider Style 03 template not found.', 'fancy-post-grid') . '</div>';
             }
         }protected function render_slider_style_04() {
             $file_path = plugin_dir_path( __FILE__ ) . 'render/slider-style-04.php'; // Adjust the path as needed.
@@ -3423,7 +3426,7 @@ add_action('elementor/widgets/widgets_registered', function () {
             if ( file_exists( $file_path ) ) {
                 include $file_path;
             } else {
-                echo '<div class="error">Grid Style 02 template not found.</div>';
+                echo '<div class="error">' . esc_html__('Slider Style 04 template not found.', 'fancy-post-grid') . '</div>';
             }
         }protected function render_slider_style_05() {
             $file_path = plugin_dir_path( __FILE__ ) . 'render/slider-style-05.php'; // Adjust the path as needed.
@@ -3431,7 +3434,7 @@ add_action('elementor/widgets/widgets_registered', function () {
             if ( file_exists( $file_path ) ) {
                 include $file_path;
             } else {
-                echo '<div class="error">Grid Style 02 template not found.</div>';
+                echo '<div class="error">' . esc_html__('Slider Style 05 template not found.', 'fancy-post-grid') . '</div>';
             }
         }protected function render_slider_style_06() {
             $file_path = plugin_dir_path( __FILE__ ) . 'render/slider-style-06.php'; // Adjust the path as needed.
@@ -3439,7 +3442,7 @@ add_action('elementor/widgets/widgets_registered', function () {
             if ( file_exists( $file_path ) ) {
                 include $file_path;
             } else {
-                echo '<div class="error">Grid Style 02 template not found.</div>';
+                echo '<div class="error">' . esc_html__('Slider Style 06 template not found.', 'fancy-post-grid') . '</div>';
             }
         }protected function render_slider_style_07() {
             $file_path = plugin_dir_path( __FILE__ ) . 'render/slider-style-07.php'; // Adjust the path as needed.
@@ -3447,7 +3450,7 @@ add_action('elementor/widgets/widgets_registered', function () {
             if ( file_exists( $file_path ) ) {
                 include $file_path;
             } else {
-                echo '<div class="error">Grid Style 02 template not found.</div>';
+                echo '<div class="error">' . esc_html__('Slider Style 07 template not found.', 'fancy-post-grid') . '</div>';
             }
         }
 
@@ -3457,55 +3460,56 @@ add_action('elementor/widgets/widgets_registered', function () {
             if ( file_exists( $file_path ) ) {
                 include $file_path;
             } else {
-                echo '<div class="error">Grid Style 02 template not found.</div>';
+                echo '<div class="error">' . esc_html__('Isotope Style 01 template not found.', 'fancy-post-grid') . '</div>';
             }
         }protected function render_isotope_style_02() {
-            $file_path = plugin_dir_path( __FILE__ ) . 'render/isotope-style-01.php'; // Adjust the path as needed.
+            $file_path = plugin_dir_path( __FILE__ ) . 'render/isotope-style-02.php'; // Adjust the path as needed.
             
             if ( file_exists( $file_path ) ) {
                 include $file_path;
             } else {
-                echo '<div class="error">Grid Style 02 template not found.</div>';
+                echo '<div class="error">' . esc_html__('Isotope Style 02 template not found.', 'fancy-post-grid') . '</div>';
             }
         }protected function render_isotope_style_03() {
-            $file_path = plugin_dir_path( __FILE__ ) . 'render/isotope-style-01.php'; // Adjust the path as needed.
+            $file_path = plugin_dir_path( __FILE__ ) . 'render/isotope-style-03.php'; // Adjust the path as needed.
             
             if ( file_exists( $file_path ) ) {
                 include $file_path;
             } else {
-                echo '<div class="error">Grid Style 02 template not found.</div>';
+                echo '<div class="error">' . esc_html__('Isotope Style 03 template not found.', 'fancy-post-grid') . '</div>';
             }
         }protected function render_isotope_style_04() {
-            $file_path = plugin_dir_path( __FILE__ ) . 'render/isotope-style-01.php'; // Adjust the path as needed.
+            $file_path = plugin_dir_path( __FILE__ ) . 'render/isotope-style-04.php'; // Adjust the path as needed.
             
             if ( file_exists( $file_path ) ) {
                 include $file_path;
             } else {
-                echo '<div class="error">Grid Style 02 template not found.</div>';
+                echo '<div class="error">' . esc_html__('Isotope Style 04 template not found.', 'fancy-post-grid') . '</div>';
             }
         }protected function render_isotope_style_05() {
-            $file_path = plugin_dir_path( __FILE__ ) . 'render/isotope-style-01.php'; // Adjust the path as needed.
+            $file_path = plugin_dir_path( __FILE__ ) . 'render/isotope-style-05.php'; // Adjust the path as needed.
             
             if ( file_exists( $file_path ) ) {
                 include $file_path;
             } else {
-                echo '<div class="error">Grid Style 02 template not found.</div>';
+                echo '<div class="error">' . esc_html__('Isotope Style 05 template not found.', 'fancy-post-grid') . '</div>';
             }
         }protected function render_isotope_style_06() {
-            $file_path = plugin_dir_path( __FILE__ ) . 'render/isotope-style-01.php'; // Adjust the path as needed.
+            $file_path = plugin_dir_path( __FILE__ ) . 'render/isotope-style-06.php'; // Adjust the path as needed.
             
             if ( file_exists( $file_path ) ) {
                 include $file_path;
             } else {
-                echo '<div class="error">Grid Style 02 template not found.</div>';
+                echo '<div class="error">' . esc_html__('Isotope Style 06 template not found.', 'fancy-post-grid') . '</div>';
+
             }
         }protected function render_isotope_style_07() {
-            $file_path = plugin_dir_path( __FILE__ ) . 'render/isotope-style-01.php'; // Adjust the path as needed.
+            $file_path = plugin_dir_path( __FILE__ ) . 'render/isotope-style-07.php'; // Adjust the path as needed.
             
             if ( file_exists( $file_path ) ) {
                 include $file_path;
             } else {
-                echo '<div class="error">Grid Style 02 template not found.</div>';
+               echo '<div class="error">' . esc_html__('Isotope Style 07 template not found.', 'fancy-post-grid') . '</div>';
             }
         }protected function render_list_style_01() {
             $file_path = plugin_dir_path( __FILE__ ) . 'render/list-style-01.php'; // Adjust the path as needed.
@@ -3513,7 +3517,7 @@ add_action('elementor/widgets/widgets_registered', function () {
             if ( file_exists( $file_path ) ) {
                 include $file_path;
             } else {
-                echo '<div class="error">Grid Style 02 template not found.</div>';
+                echo '<div class="error">' . esc_html__('List Style 01 template not found.', 'fancy-post-grid') . '</div>';
             }
         }protected function render_list_style_02() {
             $file_path = plugin_dir_path( __FILE__ ) . 'render/list-style-02.php'; // Adjust the path as needed.
@@ -3521,7 +3525,7 @@ add_action('elementor/widgets/widgets_registered', function () {
             if ( file_exists( $file_path ) ) {
                 include $file_path;
             } else {
-                echo '<div class="error">Grid Style 02 template not found.</div>';
+                echo '<div class="error">' . esc_html__('List Style 02 template not found.', 'fancy-post-grid') . '</div>';
             }
         }protected function render_list_style_03() {
             $file_path = plugin_dir_path( __FILE__ ) . 'render/list-style-03.php'; // Adjust the path as needed.
@@ -3529,7 +3533,7 @@ add_action('elementor/widgets/widgets_registered', function () {
             if ( file_exists( $file_path ) ) {
                 include $file_path;
             } else {
-                echo '<div class="error">Grid Style 02 template not found.</div>';
+                echo '<div class="error">' . esc_html__('List Style 03 template not found.', 'fancy-post-grid') . '</div>';
             }
         }protected function render_list_style_04() {
             $file_path = plugin_dir_path( __FILE__ ) . 'render/list-style-04.php'; // Adjust the path as needed.
@@ -3537,7 +3541,7 @@ add_action('elementor/widgets/widgets_registered', function () {
             if ( file_exists( $file_path ) ) {
                 include $file_path;
             } else {
-                echo '<div class="error">Grid Style 02 template not found.</div>';
+                echo '<div class="error">' . esc_html__('List Style 04 template not found.', 'fancy-post-grid') . '</div>';
             }
         }protected function render_list_style_05() {
             $file_path = plugin_dir_path( __FILE__ ) . 'render/list-style-05.php'; // Adjust the path as needed.
@@ -3545,7 +3549,7 @@ add_action('elementor/widgets/widgets_registered', function () {
             if ( file_exists( $file_path ) ) {
                 include $file_path;
             } else {
-                echo '<div class="error">Grid Style 02 template not found.</div>';
+                echo '<div class="error">' . esc_html__('List Style 05 template not found.', 'fancy-post-grid') . '</div>';
             }
         }protected function render_list_style_06() {
             $file_path = plugin_dir_path( __FILE__ ) . 'render/list-style-06.php'; // Adjust the path as needed.
@@ -3553,7 +3557,7 @@ add_action('elementor/widgets/widgets_registered', function () {
             if ( file_exists( $file_path ) ) {
                 include $file_path;
             } else {
-                echo '<div class="error">Grid Style 02 template not found.</div>';
+                echo '<div class="error">' . esc_html__('List Style 06 template not found.', 'fancy-post-grid') . '</div>';
             }
         }protected function render_list_style_07() {
             $file_path = plugin_dir_path( __FILE__ ) . 'render/list-style-07.php'; // Adjust the path as needed.
@@ -3561,7 +3565,7 @@ add_action('elementor/widgets/widgets_registered', function () {
             if ( file_exists( $file_path ) ) {
                 include $file_path;
             } else {
-                echo '<div class="error">Grid Style 02 template not found.</div>';
+                echo '<div class="error">' . esc_html__('List Style 07 template not found.', 'fancy-post-grid') . '</div>';
             }
         }protected function render_list_style_08() {
             $file_path = plugin_dir_path( __FILE__ ) . 'render/list-style-08.php'; // Adjust the path as needed.
@@ -3569,7 +3573,7 @@ add_action('elementor/widgets/widgets_registered', function () {
             if ( file_exists( $file_path ) ) {
                 include $file_path;
             } else {
-                echo '<div class="error">Grid Style 02 template not found.</div>';
+                echo '<div class="error">' . esc_html__('List Style 08 template not found.', 'fancy-post-grid') . '</div>';
             }
         }  
     }

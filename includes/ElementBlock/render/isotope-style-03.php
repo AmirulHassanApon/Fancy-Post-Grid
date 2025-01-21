@@ -17,7 +17,7 @@ $args = array(
 );
 
 $query = new \WP_Query($args);
-
+$fancy_post_filter_alignment = $settings['filter_alignment'] ?? 'center';
 $fancy_post_filter_text = $settings['filter_all_text'] ?? 'All';
 
 if ($query->have_posts()) { 
