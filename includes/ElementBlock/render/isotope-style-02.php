@@ -22,7 +22,7 @@ $fancy_post_filter_text = $settings['filter_all_text'] ?? 'All';
 
 if ($query->have_posts()) { 
     ?>
-    <section class="rs-blog-layout-4 rs-blog-layout-10 grey">
+    <section class="rs-blog-layout-5 rs-blog-layout-10">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
