@@ -26,7 +26,7 @@ if ($query->have_posts()) {
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <div class="rs-blog-layout-1-filter">
+                    <div class="rs-blog-layout-1-filter rs-blog-layout-filter">
                         <div class="filter-button-group">
                             <button class="active" data-filter="*"><?php echo esc_attr($fancy_post_filter_text); ?></button>
                             <?php
@@ -170,37 +170,37 @@ if ($query->have_posts()) {
                     <div class="rs-blog-footer">
                         <span>
                             <!-- Post Meta: Date, Author, Category, Tags, Comments -->
-                    <?php if ('yes' === $settings['show_meta_data']) { ?>
-                        
-                        <?php
-                            // Array of meta items with their respective conditions, content, and class names.
-                            $meta_items = array(
+                            <?php if ('yes' === $settings['show_meta_data']) { ?>
                                 
+                                <?php
+                                    // Array of meta items with their respective conditions, content, and class names.
+                                    $meta_items = array(
+                                        
+                                        
+                                        'comments_count' => array(
+                                            'condition' => 'yes' === $settings['show_comments_count'],
+                                            'class'     => 'meta-comment-count',
+                                            'icon'      => ('yes' === $settings['show_meta_data_icon'] && 'yes' === $settings['show_comments_count_icon']) ? '<i class="fa fa-comments"></i>' : '',
+                                            'content'   => sprintf(
+                                                '<a href="%s">%s</a>',
+                                                esc_url(get_comments_link()),
+                                                esc_html(get_comments_number_text(__('0 Comments', 'fancy-post-grid'), __('1 Comment', 'fancy-post-grid'), __('% Comments', 'fancy-post-grid')))
+                                            ),
+                                        ),
+                                    );
+
+                                    // Output each meta item as a list item with the respective class.
+                                    foreach ($meta_items as $meta) {
+                                        if ($meta['condition']) {
+                                            echo '<div class="' . esc_attr($meta['class']) . '">';
+                                            echo $meta['icon'] . ' ' . $meta['content'];
+                                            echo '</div>';
+                                        }
+                                    }
+                                ?>
                                 
-                                'comments_count' => array(
-                                    'condition' => 'yes' === $settings['show_comments_count'],
-                                    'class'     => 'meta-comment-count',
-                                    'icon'      => ('yes' === $settings['show_meta_data_icon'] && 'yes' === $settings['show_comments_count_icon']) ? '<i class="fa fa-comments"></i>' : '',
-                                    'content'   => sprintf(
-                                        '<a href="%s">%s</a>',
-                                        esc_url(get_comments_link()),
-                                        esc_html(get_comments_number_text(__('0 Comments', 'fancy-post-grid'), __('1 Comment', 'fancy-post-grid'), __('% Comments', 'fancy-post-grid')))
-                                    ),
-                                ),
-                            );
 
-                            // Output each meta item as a list item with the respective class.
-                            foreach ($meta_items as $meta) {
-                                if ($meta['condition']) {
-                                    echo '<div class="' . esc_attr($meta['class']) . '">';
-                                    echo $meta['icon'] . ' ' . $meta['content'];
-                                    echo '</div>';
-                                }
-                            }
-                        ?>
-                        
-
-                    <?php } ?>
+                            <?php } ?>
                         </span>
                         <!-- Read More Button -->
                         <?php if (!empty($settings['show_post_readmore']) && 'yes' === $settings['show_post_readmore']) { ?>

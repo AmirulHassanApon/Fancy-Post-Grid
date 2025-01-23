@@ -763,7 +763,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                         'default' => 'center',
                         'toggle'  => true,
                         'selectors' => array(
-                            '{{WRAPPER}} .rs-blog-layout-1-filter' => 'justify-content: {{VALUE}};',
+                            '{{WRAPPER}} .rs-blog-layout-filter' => 'justify-content: {{VALUE}};',
                         ),
                     ]
                 );
