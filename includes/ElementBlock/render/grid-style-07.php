@@ -103,64 +103,88 @@ if ($query->have_posts()) {
                     <!-- Post Meta: Date, Author, Category, Tags, Comments -->
                     <?php if ('yes' === $settings['show_meta_data']) { ?>
                         <div class="rs-meta">
-                            <?php
-                            // Array of meta items with their respective conditions, content, and class names.
-                            $meta_items = array(
-                                'post_author' => array(
-                                    'condition' => 'yes' === $settings['show_post_author'],
-                                    'class'     => 'meta-author',
-                                    'icon'      => ('yes' === $settings['show_meta_data_icon'] && 'yes' === $settings['author_icon_visibility']) 
-                                                    ? ('icon' === $settings['author_image_icon'] 
-                                                        ? '<i class="fa fa-user"></i>' 
-                                                        : '<img src="' . esc_url(get_avatar_url(get_the_author_meta('ID'))) . '" alt="' . esc_attr__('Author', 'fancy-post-grid') . '" class="author-avatar" />')
-                                                    : '',
-                                    'content'   => esc_html($settings['author_prefix']) . ' ' . esc_html(get_the_author()),
-                                ),
-                                'post_date' => array(
-                                    'condition' => 'yes' === $settings['show_post_date'],
-                                    'class'     => 'meta-date',
-                                    'icon'      => ('yes' === $settings['show_meta_data_icon'] && 'yes' === $settings['show_post_date_icon']) ? '<i class="fa fa-calendar"></i>' : '',
-                                    'content'   => esc_html(get_the_date()),
-                                ),
-                                'post_categories' => array(
-                                    'condition' => 'yes' === $settings['show_post_categories'],
-                                    'class'     => 'meta-categories',
-                                    'icon'      => ('yes' === $settings['show_meta_data_icon'] && 'yes' === $settings['show_post_categories_icon']) ? '<i class="fa fa-folder"></i>' : '',
-                                    'content'   => get_the_category_list(', '),
-                                ),
-                                'post_tags' => array(
-                                    'condition' => 'yes' === $settings['show_post_tags'] && !empty(get_the_tag_list('', ', ')),
-                                    'class'     => 'meta-tags',
-                                    'icon'      => ('yes' === $settings['show_meta_data_icon'] && 'yes' === $settings['show_post_tags_icon']) ? '<i class="fa fa-tags"></i>' : '',
-                                    'content'   => get_the_tag_list('', ', '),
-                                ),
-                                'comments_count' => array(
-                                    'condition' => 'yes' === $settings['show_comments_count'],
-                                    'class'     => 'meta-comments',
-                                    'icon'      => ('yes' === $settings['show_meta_data_icon'] && 'yes' === $settings['show_comments_count_icon']) ? '<i class="fa fa-comments"></i>' : '',
-                                    'content'   => sprintf(
-                                        '<a href="%s">%s</a>',
-                                        esc_url(get_comments_link()),
-                                        esc_html(get_comments_number_text(__('0 Comments', 'fancy-post-grid'), __('1 Comment', 'fancy-post-grid'), __('% Comments', 'fancy-post-grid')))
+                            <div class="rs-meta-all">
+                                <?php
+                                // Array of meta items with their respective conditions, content, and class names.
+                                $meta_items = array(
+                                    
+                                    'post_date' => array(
+                                        'condition' => 'yes' === $settings['show_post_date'],
+                                        'class'     => 'meta-date',
+                                        'icon'      => ('yes' === $settings['show_meta_data_icon'] && 'yes' === $settings['show_post_date_icon']) ? '<i class="fa fa-calendar"></i>' : '',
+                                        'content'   => esc_html(get_the_date()),
                                     ),
-                                ),
-                            );
+                                    'post_categories' => array(
+                                        'condition' => 'yes' === $settings['show_post_categories'],
+                                        'class'     => 'meta-categories',
+                                        'icon'      => ('yes' === $settings['show_meta_data_icon'] && 'yes' === $settings['show_post_categories_icon']) ? '<i class="fa fa-folder"></i>' : '',
+                                        'content'   => get_the_category_list(', '),
+                                    ),
+                                    'post_tags' => array(
+                                        'condition' => 'yes' === $settings['show_post_tags'] && !empty(get_the_tag_list('', ', ')),
+                                        'class'     => 'meta-tags',
+                                        'icon'      => ('yes' === $settings['show_meta_data_icon'] && 'yes' === $settings['show_post_tags_icon']) ? '<i class="fa fa-tags"></i>' : '',
+                                        'content'   => get_the_tag_list('', ', '),
+                                    ),
+                                    'comments_count' => array(
+                                        'condition' => 'yes' === $settings['show_comments_count'],
+                                        'class'     => 'meta-comments',
+                                        'icon'      => ('yes' === $settings['show_meta_data_icon'] && 'yes' === $settings['show_comments_count_icon']) ? '<i class="fa fa-comments"></i>' : '',
+                                        'content'   => sprintf(
+                                            '<a href="%s">%s</a>',
+                                            esc_url(get_comments_link()),
+                                            esc_html(get_comments_number_text(__('0 Comments', 'fancy-post-grid'), __('1 Comment', 'fancy-post-grid'), __('% Comments', 'fancy-post-grid')))
+                                        ),
+                                    ),
+                                );
 
-                            $meta_items_output = []; // Array to store individual meta item outputs.
-                            foreach ($meta_items as $meta) {
-                                if ($meta['condition']) {
-                                    // Build the meta item output with its icon and content.
-                                    $meta_items_output[] = '<span class="' . esc_attr($meta['class']) . '">' 
-                                        . $meta['icon'] . ' ' . $meta['content'] 
-                                        . '</span>';
+                                $meta_items_output = []; // Array to store individual meta item outputs.
+                                foreach ($meta_items as $meta) {
+                                    if ($meta['condition']) {
+                                        // Build the meta item output with its icon and content.
+                                        $meta_items_output[] = '<div class="' . esc_attr($meta['class']) . '">' 
+                                            . $meta['icon'] . ' ' . $meta['content'] 
+                                            . '</div>';
+                                    }
                                 }
-                            }
-                            // Only wrap the separator in a <span> if it's not empty.
-                            $separator = $separator_value !== '' ? '<span>' . esc_html($separator_value) . '</span>' : '';
+                                // Only wrap the separator in a <span> if it's not empty.
+                                $separator = $separator_value !== '' ? '<div>' . esc_html($separator_value) . '</div>' : '';
 
-                            // Join the meta items with the selected separator.
-                            echo implode($separator, $meta_items_output);
-                            ?>
+                                // Join the meta items with the selected separator.
+                                echo implode($separator, $meta_items_output);
+                                ?>
+                            </div>
+                            <?php
+                                // Array of meta items with their respective conditions, content, and class names.
+                                $meta_items = array(
+                                    'post_author' => array(
+                                        'condition' => 'yes' === $settings['show_post_author'],
+                                        'class'     => 'meta-author',
+                                        'icon'      => ('yes' === $settings['show_meta_data_icon'] && 'yes' === $settings['author_icon_visibility']) 
+                                                        ? ('icon' === $settings['author_image_icon'] 
+                                                            ? '<i class="fa fa-user"></i>' 
+                                                            : '<img src="' . esc_url(get_avatar_url(get_the_author_meta('ID'))) . '" alt="' . esc_attr__('Author', 'fancy-post-grid') . '" class="author-avatar" />')
+                                                        : '',
+                                        'content'   => esc_html($settings['author_prefix']) . ' ' . esc_html(get_the_author()),
+                                    ),
+                                    
+                                );
+
+                                $meta_items_output = []; // Array to store individual meta item outputs.
+                                foreach ($meta_items as $meta) {
+                                    if ($meta['condition']) {
+                                        // Build the meta item output with its icon and content.
+                                        $meta_items_output[] = '<div class="' . esc_attr($meta['class']) . '">' 
+                                            . $meta['icon'] . ' ' . $meta['content'] 
+                                            . '</div>';
+                                    }
+                                }
+                                // Only wrap the separator in a <span> if it's not empty.
+                                $separator = $separator_value !== '' ? '<div>' . esc_html($separator_value) . '</div>' : '';
+
+                                // Join the meta items with the selected separator.
+                                echo implode($separator, $meta_items_output);
+                                ?>
                         </div>
 
                     <?php } ?>
