@@ -149,9 +149,11 @@ if ($query->have_posts()) {
                             foreach ($meta_items as $meta) {
                                 if ($meta['condition']) {
                                     // Build the meta item output with its icon and content.
+
                                     $meta_items_output[] = '<div class="' . esc_attr($meta['class']) . '">' 
                                         . $meta['icon'] . ' ' . $meta['content'] 
                                         . '</div>';
+
                                 }
                             }
                             // Only wrap the separator in a <span> if it's not empty.
