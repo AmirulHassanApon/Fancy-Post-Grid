@@ -29,20 +29,20 @@ function fancy_post_grid_admin_script_pro( $screen ){
 }
 add_action( 'admin_enqueue_scripts', 'fancy_post_grid_admin_script_pro' );
 
-// Function to output custom CSS in the backend
+// Function to output custom CSS and JS in the backend
 function fancy_output_custom_css_js_backend() {
     // Get custom CSS from the options
     $custom_css = get_option('fpg_custom_css');
     if (!empty($custom_css)) {
         // Output the custom CSS in the head section
-        echo '<style type="text/css">' . wp_strip_all_tags($custom_css) . '</style>';
+        echo '<style type="text/css">' . esc_html($custom_css) . '</style>';
     }
 
     // Get custom JS from the options
     $custom_js = get_option('fpg_custom_js');
     if (!empty($custom_js)) {
         // Output the custom JS in the head section
-        echo '<script type="text/javascript">' . wp_strip_all_tags($custom_js) . '</script>';
+        echo '<script type="text/javascript">' . esc_js($custom_js) . '</script>';
     }
 }
 

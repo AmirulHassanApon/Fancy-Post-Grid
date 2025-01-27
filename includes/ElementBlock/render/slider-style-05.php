@@ -31,7 +31,7 @@ if ($query->have_posts()) {
         <div class="container">
             <div class="row fancy-post-grid">
                 <div class="col-lg-12">
-                    <div class="swiper mySwiper" data-swiper='<?php echo json_encode([
+                    <div class="swiper mySwiper" data-swiper='<?php echo wp_json_encode([
                             'loop' => $settings['enable_looping'] === 'yes',
                             'autoplay' => $settings['auto_play_speed'] > 0 ? ['delay' => intval($settings['auto_play_speed']), 'disableOnInteraction' => false] : false,
                             'pagination' => [

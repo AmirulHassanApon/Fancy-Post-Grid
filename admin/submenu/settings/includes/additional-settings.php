@@ -37,6 +37,7 @@ function fancy_post_grid_render_additional_settings_main(){
     foreach ($meta_fields as $field_key => $field_label) {
         add_settings_field(
             "fpg_disable_meta_icon_{$field_key}",
+            /* translators: %s: Field label to disable */
             sprintf(__('Disable %s', 'fancy-post-grid'), $field_label),
             function() use ($field_key) {
                 $options = get_option('fpg_disable_meta_icon_fields', []);

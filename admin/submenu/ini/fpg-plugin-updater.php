@@ -240,6 +240,7 @@ class Fpg_Plugin_Updater {
 		} elseif ( ! empty( $changelog_link ) ) {
 			echo ' ';
 			printf(
+				/* translators: 1: Opening link tag for version details, 2: Version number, 3: Closing link tag for version details, 4: Opening link tag for update, 5: Closing link tag for update */
 				__( '%1$sView version %2$s details%3$s or %4$supdate now%5$s.', 'fancy-post-grid' ),
 				'<a target="_blank" class="thickbox open-plugin-details-modal" href="' . esc_url( $changelog_link ) . '">',
 				esc_html( $update_cache->response[ $this->name ]->new_version ),
