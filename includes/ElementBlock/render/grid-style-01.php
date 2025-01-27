@@ -24,7 +24,7 @@ $separator_map = [
     'double_slash'=> ' // ',
     'pipe'        => ' | ',
 ];
-$separator = isset($separator_map[$settings['meta_separator']]) ? $separator_map[$settings['meta_separator']] : '';
+$separator_value = isset($separator_map[$settings['meta_separator']]) ? $separator_map[$settings['meta_separator']] : '';
 
 // Query the posts
 $query = new \WP_Query($args);
@@ -119,6 +119,8 @@ if ($query->have_posts()) {
                                         . '</li>';
                                 }
                             }
+                            // Set the separator with a <span> wrapper.
+                            $separator = '<span class="meta-separator">' . esc_html($separator_value) . '</span>';
 
                             // Join the meta items with the selected separator.
                             echo implode($separator, $meta_items_output);
