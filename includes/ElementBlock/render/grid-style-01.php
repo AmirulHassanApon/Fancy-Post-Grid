@@ -23,7 +23,7 @@ $query = new \WP_Query($args);
 // Check if there are posts
 if ($query->have_posts()) {
     echo '<div class="fpg-section-area rs-blog-layout-5">';
-    echo '<div class="container">';
+    
     echo '<div class="row">';
     while ($query->have_posts()) {
         $query->the_post();
@@ -110,6 +110,7 @@ if ($query->have_posts()) {
                                     echo '</li>';
                                 }
                             }
+
                             ?>
                         </ul>
 
@@ -248,7 +249,7 @@ if ($query->have_posts()) {
     echo '</div>';
 }
 
-    echo '</div>';
+    
     echo '</div>';
     echo '</div>';
 } else {

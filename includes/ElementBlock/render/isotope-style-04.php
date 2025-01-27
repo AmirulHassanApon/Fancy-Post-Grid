@@ -123,12 +123,7 @@ if ($query->have_posts()) {
                                                                 : '',
                                                 'content'   => esc_html($settings['author_prefix']) . ' ' . esc_html(get_the_author()),
                                             ),
-                                            'post_date' => array(
-                                                'condition' => 'yes' === $settings['show_post_date'],
-                                                'class'     => 'meta-date',
-                                                'icon'      => ('yes' === $settings['show_meta_data_icon'] && 'yes' === $settings['show_post_date_icon']) ? '<i class="fa fa-calendar"></i>' : '',
-                                                'content'   => esc_html(get_the_date()),
-                                            ),
+                                            
                                             'post_categories' => array(
                                                 'condition' => 'yes' === $settings['show_post_categories'],
                                                 'class'     => 'meta-categories',
