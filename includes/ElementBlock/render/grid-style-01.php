@@ -119,14 +119,13 @@ if ($query->have_posts()) {
                                         . '</li>';
                                 }
                             }
-                            // Set the separator with a <span> wrapper.
-                            $separator = '<span class="meta-separator">' . esc_html($separator_value) . '</span>';
+                            // Only wrap the separator in a <span> if it's not empty.
+                            $separator = $separator_value !== '' ? '<span>' . esc_html($separator_value) . '</span>' : '';
 
                             // Join the meta items with the selected separator.
                             echo implode($separator, $meta_items_output);
                             ?>
                         </ul>
-
                     <?php } ?>
 
                     <!-- Post Title -->

@@ -16,14 +16,22 @@ $args = array(
     'post__not_in'   => !empty($settings['exclude_posts']) ? explode(',', $settings['exclude_posts']) : '',
     'paged'          => $paged, // Add the paged parameter to handle pagination
 );
-
+$separator_map = [
+    'none'        => '',
+    'dot'         => ' · ',
+    'hyphen'      => ' - ',
+    'slash'       => ' / ',
+    'double_slash'=> ' // ',
+    'pipe'        => ' | ',
+];
+$separator_value = isset($separator_map[$settings['meta_separator']]) ? $separator_map[$settings['meta_separator']] : '';
 // Query the posts
 $query = new \WP_Query($args);
 
 // Check if there are posts
 if ($query->have_posts()) {
     echo '<div class="fpg-section-area rs-blog-layout-15">';
-    echo '<div class="container">';
+    
     echo '<div class="row">';
     while ($query->have_posts()) {
         $query->the_post();
@@ -82,14 +90,20 @@ if ($query->have_posts()) {
                                     ),
                                 );
 
-                                // Output each meta item as a list item with the respective class.
+                                $meta_items_output = []; // Array to store individual meta item outputs.
                                 foreach ($meta_items as $meta) {
                                     if ($meta['condition']) {
-                                        echo '<div class="' . esc_attr($meta['class']) . '">';
-                                        echo $meta['icon'] . ' ' . $meta['content'];
-                                        echo '</div>';
+                                        // Build the meta item output with its icon and content.
+                                        $meta_items_output[] = '<li class="' . esc_attr($meta['class']) . '">' 
+                                            . $meta['icon'] . ' ' . $meta['content'] 
+                                            . '</li>';
                                     }
                                 }
+                                // Only wrap the separator in a <span> if it's not empty.
+                                $separator = $separator_value !== '' ? '<span>' . esc_html($separator_value) . '</span>' : '';
+
+                                // Join the meta items with the selected separator.
+                                echo implode($separator, $meta_items_output);
                                 ?>
                             
                         </div>
@@ -218,7 +232,6 @@ if ($query->have_posts()) {
     echo '</div>';
 }
 
-    echo '</div>';
     echo '</div>';
     echo '</div>';
 } else {
