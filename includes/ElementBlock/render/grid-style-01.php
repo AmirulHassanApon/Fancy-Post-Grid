@@ -124,7 +124,6 @@ if ($query->have_posts()) {
 
                             // Join the meta items with the selected separator.
                             echo implode($separator, $meta_items_output);
-                            
                             ?>
                         </ul>
 
