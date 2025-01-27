@@ -3928,26 +3928,36 @@ img {
         margin-top: 15px;
         order: 2;
     }
-    .rs-blog-layout-14-item .rs-content .rs-meta span{
+    .rs-blog-layout-14-item .rs-content .rs-meta div{
         color: #7A7A7A;
         font-size: 14px;
     }
-    .rs-blog-layout-14-item .rs-content .rs-meta a{
+    .rs-blog-layout-14-item .rs-content .rs-meta div a{
+        color: #7A7A7A;
+    }
+    .rs-blog-layout-14-item .rs-content .rs-meta div a:hover{
+        color: #337ccf;
+
+    }
+    .rs-blog-layout-14-item .rs-content div.meta-author{
         background: #337ccf;
         color: #fff;
-        padding: 2px 10px 2px 15px;
+        padding: 6px 10px 6px 10px;
         border-radius: 30px;
         position: relative;
         font-size: 14px;
         font-weight: 600;
-        text-decoration: none;
+        display: flex;
+        align-items: center;
+        gap: 5px;
     }
-    .rs-blog-layout-14-item .rs-content .rs-meta a::before{
-        position: absolute;
+    .rs-blog-layout-14-item .rs-content .meta-author img{
+        width: 20px;
+        border-radius: 50%;
+    }
+    .rs-blog-layout-14-item .rs-content .meta-author::before{
+        position: relative;
         content: '';
-        left: 8px;
-        top: 50%;
-        transform: translateY(-50%);
         height: 5px;
         width: 5px;
         border-radius: 50%;
