@@ -4208,6 +4208,11 @@ img {
         display: inline-block;
         margin-right: 6px;
     }
+    .rs-blog-layout-16-item .rs-content .rs-meta .meta-categories a,
+    .rs-blog-layout-16-item .rs-content .rs-meta .meta-comments a,
+    .rs-blog-layout-16-item .rs-content .rs-meta .meta-tags a{
+        color: #333;
+    } 
     /* blog layout 16 css */
 
     /* blog layout 17 css */
