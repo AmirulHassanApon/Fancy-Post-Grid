@@ -4060,6 +4060,12 @@ img {
         width: 20px;
         margin-right: 5px;
     }
+    .rs-blog-layout-15-item .rs-content .rs-meta .meta-tags a{
+        color: #333;
+    }
+    .rs-blog-layout-15-item .rs-content .rs-meta .meta-comments a{
+        color: #333;
+    }
     .rs-blog-layout-15-item .rs-content .rs-meta.align-start{
         justify-content: flex-start;
     }
