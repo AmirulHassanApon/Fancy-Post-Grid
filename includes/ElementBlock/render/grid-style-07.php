@@ -148,7 +148,7 @@ if ($query->have_posts()) {
                                     }
                                 }
                                 // Only wrap the separator in a <span> if it's not empty.
-                                $separator = $separator_value !== '' ? '<div>' . esc_html($separator_value) . '</div>' : '';
+                                $separator = $separator_value !== '' ? '' : '';
 
                                 // Join the meta items with the selected separator.
                                 echo implode($separator, $meta_items_output);
@@ -180,7 +180,7 @@ if ($query->have_posts()) {
                                     }
                                 }
                                 // Only wrap the separator in a <span> if it's not empty.
-                                $separator = $separator_value !== '' ? '<div>' . esc_html($separator_value) . '</div>' : '';
+                                $separator = $separator_value !== '' ? '' : '';
 
                                 // Join the meta items with the selected separator.
                                 echo implode($separator, $meta_items_output);
