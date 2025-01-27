@@ -2272,6 +2272,15 @@ add_action('elementor/widgets/widgets_registered', function () {
                     'selector' => '{{WRAPPER}} .meta-data-list li',
                 ]
             );
+            // Meta Data separator Typography
+            $this->add_group_control(
+                \Elementor\Group_Control_Typography::get_type(),
+                [
+                    'name'     => 'meta_separator_typography',
+                    'label'    => esc_html__( 'Separator Typography', 'fancy-post-grid' ),
+                    'selector' => '{{WRAPPER}} .meta-data-list span',
+                ]
+            );
 
             // Meta Data Alignment
             $this->add_responsive_control(
@@ -2330,6 +2339,16 @@ add_action('elementor/widgets/widgets_registered', function () {
                     'type'      => \Elementor\Controls_Manager::COLOR,
                     'selectors' => array(
                         '{{WRAPPER}} .meta-data-list li,{{WRAPPER}} .meta-data-list li a' => 'color: {{VALUE}};',
+                    ),
+                ]
+            );
+            $this->add_control(
+                'meta_separator_color',
+                [
+                    'label'     => esc_html__( 'Meta Separator Color', 'fancy-post-grid' ),
+                    'type'      => \Elementor\Controls_Manager::COLOR,
+                    'selectors' => array(
+                        '{{WRAPPER}} .meta-data-list span' => 'color: {{VALUE}};',
                     ),
                 ]
             );

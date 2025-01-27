@@ -197,12 +197,12 @@ ob_start();
                             <?php endif; ?>
 
                             <?php if ($fpg_field_group_categories) : ?>
-                            <div class="meta-category">
-                                <?php if (!empty($fpg_field_group_category_icon) && empty($disabled_meta_icons['category_icon'])) {?>
-                                    <i class="ri-folder-line"></i>
-                                <?php } ?>
-                                <?php the_category(', '); ?>
-                            </div>
+                                <div class="meta-category">
+                                    <?php if (!empty($fpg_field_group_category_icon) && empty($disabled_meta_icons['category_icon'])) {?>
+                                        <i class="ri-folder-line"></i>
+                                    <?php } ?>
+                                    <?php the_category(', '); ?>
+                                </div>
                             <?php endif; ?> 
                             <?php if ($fpg_field_group_author) : ?>
                                 <div class="meta-author">
