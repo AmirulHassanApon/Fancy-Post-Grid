@@ -43,7 +43,7 @@ if ($query->have_posts()) {
             col-xs-<?php echo esc_attr($settings['col_xs']); ?> 
             " >
             
-            <div class="rs-blog-layout-14-item fancy-post-item">
+            <div class="rs-blog__single rs-blog-layout-14-item fancy-post-item">
                 <!-- Featured Image -->
                 <?php if ('yes' === $settings['show_post_thumbnail'] && has_post_thumbnail()) { ?>
                     <div class="rs-thumb">

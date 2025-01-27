@@ -70,6 +70,37 @@ if ($query->have_posts()) {
                             <?php
                             // Array of meta items with their respective conditions, content, and class names.
                             $meta_items = array(
+                                'post_date' => array(
+                                    'condition' => 'yes' === $settings['show_post_date'],
+                                    'class'     => 'meta-date',
+                                    'icon'      => ('yes' === $settings['show_meta_data_icon'] && 'yes' === $settings['show_post_date_icon']) ? '<i class="fa fa-calendar"></i>' : '',
+                                    'content'   => esc_html(get_the_date()),
+                                ),
+                            );
+
+                            $meta_items_output = []; // Array to store individual meta item outputs.
+                            foreach ($meta_items as $meta) {
+                                if ($meta['condition']) {
+                                    // Build the meta item output with its icon and content.
+                                    $meta_items_output[] = '<div class="' . esc_attr($meta['class']) . '">'
+                                        . '<span class="meta-icon">' . $meta['icon'] . '</span> ' 
+                                        . '<span class="meta-content">' . $meta['content'] . '</span>'
+                                        . '</div>';
+
+                                }
+                            }
+                            // Only wrap the separator in a <span> if it's not empty.
+                            $separator = $separator_value !== '' ? '' : '';
+
+                            // Join the meta items with the selected separator.
+                            echo implode($separator, $meta_items_output);
+                            ?>
+                            
+                            <div class="rs-meta-all">
+                                <?php
+                            // Array of meta items with their respective conditions, content, and class names.
+                            $meta_items = array(
+                                
                                 'post_author' => array(
                                     'condition' => 'yes' === $settings['show_post_author'],
                                     'class'     => 'meta-author',
@@ -80,12 +111,7 @@ if ($query->have_posts()) {
                                                     : '',
                                     'content'   => esc_html($settings['author_prefix']) . ' ' . esc_html(get_the_author()),
                                 ),
-                                'post_date' => array(
-                                    'condition' => 'yes' === $settings['show_post_date'],
-                                    'class'     => 'meta-date',
-                                    'icon'      => ('yes' === $settings['show_meta_data_icon'] && 'yes' === $settings['show_post_date_icon']) ? '<i class="fa fa-calendar"></i>' : '',
-                                    'content'   => esc_html(get_the_date()),
-                                ),
+                                
                                 'post_categories' => array(
                                     'condition' => 'yes' === $settings['show_post_categories'],
                                     'class'     => 'meta-categories',
@@ -114,9 +140,9 @@ if ($query->have_posts()) {
                             foreach ($meta_items as $meta) {
                                 if ($meta['condition']) {
                                     // Build the meta item output with its icon and content.
-                                    $meta_items_output[] = '<li class="' . esc_attr($meta['class']) . '">' 
+                                    $meta_items_output[] = '<div class="' . esc_attr($meta['class']) . '">' 
                                         . $meta['icon'] . ' ' . $meta['content'] 
-                                        . '</li>';
+                                        . '</div>';
                                 }
                             }
                             // Only wrap the separator in a <span> if it's not empty.
@@ -125,6 +151,7 @@ if ($query->have_posts()) {
                             // Join the meta items with the selected separator.
                             echo implode($separator, $meta_items_output);
                             ?>
+                            </div>   
                         </div>
                     <?php } ?>
 
@@ -166,29 +193,26 @@ if ($query->have_posts()) {
                     ?>
 
                     <!-- Post Excerpt -->
-                    <?php if ( 'yes' === $settings['show_post_excerpt'] ) { ?>
-                        <div class="fpg-excerpt">
-                            <p class="fancy-post-excerpt" >
-                                <?php
-                                $excerpt_type = $settings['excerpt_type'];
-                                $excerpt_length = $settings['excerpt_length'];
-                                $expansion_indicator = $settings['expansion_indicator'];
+                    <?php if ( 'yes' === $settings['show_post_excerpt'] ) { ?>                    
+                        <p class="fpg-excerpt fancy-post-excerpt" >
+                            <?php
+                            $excerpt_type = $settings['excerpt_type'];
+                            $excerpt_length = $settings['excerpt_length'];
+                            $expansion_indicator = $settings['expansion_indicator'];
 
-                                if ( 'full_content' === $excerpt_type ) {
-                                    $content = get_the_content();
-                                    echo esc_html( $content );
-                                } elseif ( 'character' === $excerpt_type ) {
-                                    $excerpt = get_the_excerpt();
-                                    $trimmed_excerpt = mb_substr( $excerpt, 0, $excerpt_length ) . esc_html( $expansion_indicator );
-                                    echo esc_html( $trimmed_excerpt );
-                                } else { // Word-based excerpt
-                                    $excerpt = wp_trim_words( get_the_excerpt(), $excerpt_length, esc_html( $expansion_indicator ) );
-                                    echo esc_html( $excerpt );
-                                }
-                                ?>
-                            </p>
-                        </div>
-                        
+                            if ( 'full_content' === $excerpt_type ) {
+                                $content = get_the_content();
+                                echo esc_html( $content );
+                            } elseif ( 'character' === $excerpt_type ) {
+                                $excerpt = get_the_excerpt();
+                                $trimmed_excerpt = mb_substr( $excerpt, 0, $excerpt_length ) . esc_html( $expansion_indicator );
+                                echo esc_html( $trimmed_excerpt );
+                            } else { // Word-based excerpt
+                                $excerpt = wp_trim_words( get_the_excerpt(), $excerpt_length, esc_html( $expansion_indicator ) );
+                                echo esc_html( $excerpt );
+                            }
+                            ?>
+                        </p>
                     <?php } ?>
 
                     <!-- Read More Button -->
