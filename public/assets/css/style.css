@@ -5578,7 +5578,7 @@ img {
         width: 100%;
         background: #FEFCF2;
         transition: all linear 0.3s;
-        padding: 70px 45px;
+        padding: 40px 35px 50px 35px;
         display: flex;
         flex-direction: column;
     }
@@ -5603,6 +5603,12 @@ img {
     .rs-blog-layout-26-item .rs-content .rs-meta.align-end{
         text-align: right;
     }
+    .rs-blog-layout-26-item .rs-content .rs-meta .meta-date {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        margin-bottom: 15px;
+    }
     .rs-blog-layout-26-item .rs-content .rs-meta .meta-date span{
         font-size: 22px;
         font-weight: 600;
@@ -5610,10 +5616,21 @@ img {
         transition: all linear 0.3s;
         display: block;
     }
-    .rs-blog-layout-26-item .rs-content .rs-meta .meta-category {
-        margin-top: 8px;
+    .rs-blog-layout-26-item .rs-content .rs-meta .rs-meta-all {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px 15px;
     }
-    .rs-blog-layout-26-item .rs-content .rs-meta .meta-category a{
+    .rs-blog-layout-26-item .rs-content .rs-meta .rs-meta-all .meta-author img{
+        width: 20px;
+        border-radius: 50%;
+        margin-right: 15px;
+    }
+    .rs-blog-layout-26-item .rs-content .rs-meta .rs-meta-all .meta-author {
+        color: #003B40;
+    }
+
+    .rs-blog-layout-26-item .rs-content .rs-meta .rs-meta-all .meta-categories a{
         font-size: 14px;
         font-weight: 500;
         color: #003B40;
