@@ -170,7 +170,6 @@ if ($query->have_posts()) {
                                     ),
                                 ),
                             );
-
                             $meta_items_output = []; // Array to store individual meta item outputs.
                             foreach ($meta_items as $meta) {
                                 if ($meta['condition']) {
