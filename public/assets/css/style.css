@@ -4652,6 +4652,10 @@ img {
     .rs-blog-layout-19-item .rs-content .rs-meta ul{
         position: relative;
         padding-bottom: 24px;
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 8px 15px;
     }
     .rs-blog-layout-19-item .rs-content .rs-meta ul::before{
         position: absolute;
@@ -4681,19 +4685,10 @@ img {
     .rs-blog-layout-19-item .rs-content .rs-meta ul li a:hover{
         color: #634bf8;
     }
-    .rs-blog-layout-19-item .rs-content .rs-meta ul li:first-child{
-        margin-right: 40px;
-        position: relative;
-    }
-    .rs-blog-layout-19-item .rs-content .rs-meta ul li:first-child::before{
-        position: absolute;
-        content: '';
-        right: -20px;
-        top: 50%;
-        transform: translateY(-50%);
-        width: 1px;
-        height: 10px;
-        background: rgba(62, 62, 62, 0.3);
+    .rs-blog-layout-19-item .rs-content .rs-meta ul li.meta-author img{
+        width: 20px;
+        border-radius: 50%;
+        margin-right: 5px;
     }
     .rs-blog-layout-19-item .rs-content .rs-meta.align-start{
         text-align: left;
@@ -4935,17 +4930,20 @@ img {
     .rs-blog-layout-21-item .rs-content .rs-meta{
         order: 1;
     }
+    .rs-blog-layout-21-item .rs-content .rs-meta ul {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px 15px;
+    }
     .rs-blog-layout-21-item .rs-content .rs-meta ul li{
         display: inline-block;
         color: #E25A42;
         font-size: 15px;
-        margin-right: 15px;
     }
-    .rs-blog-layout-21-item .rs-content .rs-meta ul li:last-child{
-        margin-right: 0;
-    }
+
     .rs-blog-layout-21-item .rs-content .rs-meta ul li i{
         transition: all .31s ease;
+        margin-right: 5px;
     }
     .rs-blog-layout-21-item .rs-content .rs-meta ul li svg{
         margin-right: 15px;
@@ -4954,6 +4952,11 @@ img {
     .rs-blog-layout-21-item .rs-content .rs-meta ul li a{
         color: #E25A42; 
         text-decoration: none;                                       
+    }
+    .rs-blog-layout-21-item .rs-content .rs-meta ul li.meta-author img{
+        width: 20px;
+        border-radius: 50%;
+        margin-right: 5px;
     }
     .rs-blog-layout-21-item .rs-content .rs-meta ul.align-start{
         text-align: left;
