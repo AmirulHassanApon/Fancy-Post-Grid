@@ -76,6 +76,31 @@ if ($query->have_posts()) {
                                     'icon'      => ('yes' === $settings['show_meta_data_icon'] && 'yes' === $settings['show_post_date_icon']) ? '<i class="fa fa-calendar"></i>' : '',
                                     'content'   => esc_html(get_the_date()),
                                 ),
+                            );
+
+                            $meta_items_output = []; // Array to store individual meta item outputs.
+                            foreach ($meta_items as $meta) {
+                                if ($meta['condition']) {
+                                    // Build the meta item output with its icon and content.
+                                    $meta_items_output[] = '<div class="' . esc_attr($meta['class']) . '">'
+                                        . '<span class="meta-icon">' . $meta['icon'] . '</span> ' 
+                                        . '<span class="meta-content">' . $meta['content'] . '</span>'
+                                        . '</div>';
+
+                                }
+                            }
+                            // Only wrap the separator in a <span> if it's not empty.
+                            $separator = $separator_value !== '' ? '' : '';
+
+                            // Join the meta items with the selected separator.
+                            echo implode($separator, $meta_items_output);
+                            ?>
+                            
+                            <div class="rs-meta-all">
+                                <?php
+                            // Array of meta items with their respective conditions, content, and class names.
+                            $meta_items = array(
+                                
                                 'post_author' => array(
                                     'condition' => 'yes' === $settings['show_post_author'],
                                     'class'     => 'meta-author',
@@ -126,6 +151,7 @@ if ($query->have_posts()) {
                             // Join the meta items with the selected separator.
                             echo implode($separator, $meta_items_output);
                             ?>
+                            </div>   
                         </div>
                     <?php } ?>
 
