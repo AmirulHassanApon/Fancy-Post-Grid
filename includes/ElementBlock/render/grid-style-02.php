@@ -60,8 +60,7 @@ if ($query->have_posts()) {
                             // Rendering the Title
                             ?>
                             <<?php echo esc_attr($title_tag); ?>
-                                class="title <?php echo esc_attr(implode(' ', $title_classes)); ?>"
-                                <?php echo $title_style_attr; ?>>
+                                class="title <?php echo esc_attr(implode(' ', $title_classes)); ?>">
                                 <?php if ('link_details' === $settings['link_type']) { ?>
                                     <a href="<?php the_permalink(); ?>"
                                        target="<?php echo ('new_window' === $settings['link_target']) ? '_blank' : '_self'; ?>">

@@ -289,15 +289,17 @@ ob_start();
         <?php if ($fancy_post_pagination === 'on') : ?>
             <div class="fpg-pagination">
                 <?php
-                echo paginate_links(array(
-                    'total'   => $query->max_num_pages,
-                    'current' => max(1, get_query_var('paged')),
-                    'format'  => '?paged=%#%',
-                    'show_all' => false,
-                    'type'     => 'list',
-                    'prev_text' => __('« Prev', 'fancy-post-grid'),
-                    'next_text' => __('Next »', 'fancy-post-grid'),
-                ));
+                echo wp_kses_post(
+                    paginate_links(array(
+                        'total'     => $query->max_num_pages,
+                        'current'   => max(1, get_query_var('paged')),
+                        'format'    => '?paged=%#%',
+                        'show_all'  => false,
+                        'type'      => 'list',
+                        'prev_text' => __('« Prev', 'fancy-post-grid'),
+                        'next_text' => __('Next »', 'fancy-post-grid'),
+                    ))
+                );
                 ?>
             </div>
         <?php endif; ?>                                         

@@ -1315,6 +1315,24 @@ add_action('elementor/widgets/widgets_registered', function () {
                     'placeholder' => esc_html__( 'Enter prefix text', 'fancy-post-grid' ),
                 ]
             );
+            // Meta Separator
+            $this->add_control(
+                'meta_separator',
+                [
+                    'label'   => esc_html__( 'Meta Separator', 'fancy-post-grid' ),
+                    'type'    => \Elementor\Controls_Manager::SELECT,
+                    'default' => 'none', // Default value
+                    'options' => [
+                        'none'        => esc_html__( 'None', 'fancy-post-grid' ),
+                        'dot'         => esc_html__( 'Dot (·)', 'fancy-post-grid' ),
+                        'hyphen'      => esc_html__( 'Hyphen (-)', 'fancy-post-grid' ),
+                        'slash'       => esc_html__( 'Single Slash (/)', 'fancy-post-grid' ),
+                        'double_slash'=> esc_html__( 'Double Slash (//)', 'fancy-post-grid' ),
+                        'pipe'        => esc_html__( 'Vertical Pipe (|)', 'fancy-post-grid' ),
+                    ],
+                    'description' => esc_html__( 'Select the separator to display between meta data items.', 'fancy-post-grid' ),
+                ]
+            );
 
             // Author Icon Visibility
             $this->add_control(
