@@ -30,7 +30,7 @@ $query = new \WP_Query($args);
 
 // Check if there are posts
 if ($query->have_posts()) {
-    echo '<div class="fpg-section-area rs-blog-layout-14">';
+    echo '<div class="fpg-section-area rs-blog-layout-14 grey">';
     echo '<div class="row">';
     while ($query->have_posts()) {
         $query->the_post();
@@ -43,7 +43,7 @@ if ($query->have_posts()) {
             col-xs-<?php echo esc_attr($settings['col_xs']); ?> 
             " >
             
-            <div class="rs-blog-layout-14-item rs-blog__single fancy-post-item">
+            <div class="rs-blog-layout-14-item fancy-post-item">
                 <!-- Featured Image -->
                 <?php if ('yes' === $settings['show_post_thumbnail'] && has_post_thumbnail()) { ?>
                     <div class="rs-thumb">
@@ -63,9 +63,46 @@ if ($query->have_posts()) {
                 <?php } ?>
 
                 <div class="rs-content">
+                    <!-- Post Title -->
+                    <?php if (!empty($settings['show_post_title']) && 'yes' === $settings['show_post_title']) {
+                            // Title Tag
+                            $title_tag = !empty($settings['title_tag']) ? esc_attr($settings['title_tag']) : 'h3';
+
+                            // Title Content
+                            $title = get_the_title();
+                            if (!empty($settings['title_crop_by']) && !empty($settings['title_length'])) {
+                                $title = ('character' === $settings['title_crop_by'])
+                                    ? mb_substr($title, 0, (int)$settings['title_length'])
+                                    : implode(' ', array_slice(explode(' ', $title), 0, (int)$settings['title_length']));
+                            }
+                            // Title Classes
+                            $title_classes = ['fancy-post-title'];
+                            if ('enable' === $settings['title_hover_underline']) {
+                                $title_classes[] = 'hover-underline';
+                            }                            
+
+                            // Rendering the Title
+                            ?>
+                            <<?php echo esc_attr($title_tag); ?>
+                                class="title <?php echo esc_attr(implode(' ', $title_classes)); ?>"
+                                >
+                                <?php if ('link_details' === $settings['link_type']) { ?>
+                                    <a href="<?php the_permalink(); ?>"
+                                       target="<?php echo ('new_window' === $settings['link_target']) ? '_blank' : '_self'; ?>"
+                                       >
+                                       <?php echo esc_html($title); ?>
+                                    </a>
+                                <?php } else { ?>
+                                    <?php echo esc_html($title); ?>
+                                <?php } ?>
+                            </<?php echo esc_attr($title_tag); ?>>
+                            <?php
+                        }
+                    ?>
+
                     <!-- Post Meta: Date, Author, Category, Tags, Comments -->
                     <?php if ('yes' === $settings['show_meta_data']) { ?>
-                        <ul class="meta-data-list">
+                        <div class="rs-meta">
                             <?php
                             // Array of meta items with their respective conditions, content, and class names.
                             $meta_items = array(
@@ -124,46 +161,9 @@ if ($query->have_posts()) {
                             // Join the meta items with the selected separator.
                             echo implode($separator, $meta_items_output);
                             ?>
-                        </ul>
+                        </div>
 
                     <?php } ?>
-
-                    <!-- Post Title -->
-                    <?php if (!empty($settings['show_post_title']) && 'yes' === $settings['show_post_title']) {
-                            // Title Tag
-                            $title_tag = !empty($settings['title_tag']) ? esc_attr($settings['title_tag']) : 'h3';
-
-                            // Title Content
-                            $title = get_the_title();
-                            if (!empty($settings['title_crop_by']) && !empty($settings['title_length'])) {
-                                $title = ('character' === $settings['title_crop_by'])
-                                    ? mb_substr($title, 0, (int)$settings['title_length'])
-                                    : implode(' ', array_slice(explode(' ', $title), 0, (int)$settings['title_length']));
-                            }
-                            // Title Classes
-                            $title_classes = ['fancy-post-title'];
-                            if ('enable' === $settings['title_hover_underline']) {
-                                $title_classes[] = 'hover-underline';
-                            }                            
-
-                            // Rendering the Title
-                            ?>
-                            <<?php echo esc_attr($title_tag); ?>
-                                class="title <?php echo esc_attr(implode(' ', $title_classes)); ?>"
-                                >
-                                <?php if ('link_details' === $settings['link_type']) { ?>
-                                    <a href="<?php the_permalink(); ?>"
-                                       target="<?php echo ('new_window' === $settings['link_target']) ? '_blank' : '_self'; ?>"
-                                       >
-                                       <?php echo esc_html($title); ?>
-                                    </a>
-                                <?php } else { ?>
-                                    <?php echo esc_html($title); ?>
-                                <?php } ?>
-                            </<?php echo esc_attr($title_tag); ?>>
-                            <?php
-                        }
-                    ?>
 
                 </div>                    
             </div>                    
