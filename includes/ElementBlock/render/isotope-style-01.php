@@ -15,7 +15,15 @@ $args = array(
     'post__not_in'   => !empty($settings['exclude_posts']) ? explode(',', $settings['exclude_posts']) : '',
     'paged'          => $paged,
 );
-
+$separator_map = [
+    'none'        => '',
+    'dot'         => ' · ',
+    'hyphen'      => ' - ',
+    'slash'       => ' / ',
+    'double_slash'=> ' // ',
+    'pipe'        => ' | ',
+];
+$separator_value = isset($separator_map[$settings['meta_separator']]) ? $separator_map[$settings['meta_separator']] : '';
 $query = new \WP_Query($args);
 
 $fancy_post_filter_text = $settings['filter_all_text'] ?? 'All';
@@ -23,24 +31,23 @@ $fancy_post_filter_text = $settings['filter_all_text'] ?? 'All';
 if ($query->have_posts()) { 
     ?>
     <section class="rs-blog-layout-4 rs-blog-layout-10 grey">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="rs-blog-layout-1-filter rs-blog-layout-filter">
-                        <div class="filter-button-group">
-                            <button class="active" data-filter="*"><?php echo esc_attr($fancy_post_filter_text); ?></button>
-                            <?php
-                            // Get unique categories from posts
-                            $categories = get_categories();
-                            foreach ($categories as $category) {
-                                echo '<button data-filter=".' . esc_attr($category->slug) . '">' . esc_html($category->name) . '</button>';
-                            }
-                            ?>
-                        </div>       
-                    </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="rs-blog-layout-1-filter rs-blog-layout-filter">
+                    <div class="filter-button-group">
+                        <button class="active" data-filter="*"><?php echo esc_attr($fancy_post_filter_text); ?></button>
+                        <?php
+                        // Get unique categories from posts
+                        $categories = get_categories();
+                        foreach ($categories as $category) {
+                            echo '<button data-filter=".' . esc_attr($category->slug) . '">' . esc_html($category->name) . '</button>';
+                        }
+                        ?>
+                    </div>       
                 </div>
             </div>
-            <div class="row rs-grid" id="isotope-container">
+        </div>
+        <div class="row rs-grid" id="isotope-container">
     <?php
     
         while ($query->have_posts()) {
@@ -237,10 +244,7 @@ if ($query->have_posts()) {
         <?php
     }
     echo '</div>';
-
     ?>
-    </div>
-    
     </section>
     <?php
     wp_reset_postdata();
