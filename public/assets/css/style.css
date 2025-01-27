@@ -3928,14 +3928,20 @@ img {
         margin-top: 15px;
         order: 2;
     }
+    .rs-blog-layout-14-item .rs-content .rs-meta .rs-meta-all{
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        width: 50%;
+    }
     .rs-blog-layout-14-item .rs-content .rs-meta div{
         color: #7A7A7A;
         font-size: 14px;
     }
-    .rs-blog-layout-14-item .rs-content .rs-meta div a{
+    .rs-blog-layout-14-item .rs-content .rs-meta .rs-meta-all a{
         color: #7A7A7A;
     }
-    .rs-blog-layout-14-item .rs-content .rs-meta div a:hover{
+    .rs-blog-layout-14-item .rs-content .rs-meta .rs-meta-all a:hover{
         color: #337ccf;
 
     }
