@@ -1986,7 +1986,7 @@ img {
     color: #25826A;
 }
 
-.rs-blog-layout-6 .rs-blog__single .rs-content ul li img{
+.rs-blog-layout-6 .rs-blog__single .rs-content ul li.meta-author img{
     width: 20px;
     border-radius: 50%;
     margin-right: 5px;
@@ -3323,7 +3323,7 @@ img {
 
 .pre-blog-item.style_12 .blog-inner-wrap .pre-blog-content ul {
     display: flex;
-    gap: 0px 20px;
+    gap: 8px 20px;
     flex-wrap: wrap;
     padding: 0px;
     margin: 0px;
@@ -3342,6 +3342,12 @@ img {
     display: inline-block;
     font-size: 15px;
     margin-right: 0px;
+}
+
+.pre-blog-item.style_12 .blog-inner-wrap .pre-blog-content ul li.meta-author img{
+    width: 20px;
+    border-radius: 50%;
+    margin-right: 5px;
 }
 
 .pre-blog-item.style_12 .blog-inner-wrap .pre-blog-content ul li i {
@@ -3613,13 +3619,13 @@ img {
         display: flex;
         align-items: center;
         flex-wrap: wrap;
+        gap: 8px 0;
     }
     .rs-blog-layout-13-item .rs-content .rs-meta ul li{
         margin-right: 23px;
         font-size: 15px;
         color: #515261;
         position: relative;
-        line-height: 36px;
     }
     .rs-blog-layout-13-item .rs-content .rs-meta ul li::before{
         position: absolute;
@@ -3635,8 +3641,11 @@ img {
     .rs-blog-layout-13-item .rs-content .rs-meta ul li:last-child:before{
         display: none;
     }
+    .rs-blog-layout-13-item .rs-content .rs-meta ul li i{
+        margin-right: 5px;
+    }
     .rs-blog-layout-13-item .rs-content .rs-meta ul li img{
-        width: 40px;
+        width: 20px;
         margin-right: 5px;
         border-radius: 50%;
     }
@@ -4032,34 +4041,24 @@ img {
     .rs-blog-layout-15-item .rs-content .rs-meta{
         display: flex;
         align-items: center;
+        flex-wrap: wrap;
         order: 1;
+        gap: 8px 20px;
     }
     .rs-blog-layout-15-item .rs-content .rs-meta .meta-date{
-        padding-right: 12px;
-        margin-right: 9px;
         position: relative;
-    }
-    .rs-blog-layout-15-item .rs-content .rs-meta .meta-date::before{
-        position: absolute;
-        content: '';
-        right: 0px;
-        top: 50%;
-        transform: translateY(-50%);
-        background: rgba(101, 101, 103, 0.3490196078);
-        width: 2px;
-        height: 8px;
     }
     .rs-blog-layout-15-item .rs-content .rs-meta .meta-date span{
         color: #7A7A7A;
         font-size: 14px;
     }
-    .rs-blog-layout-15-item .rs-content .rs-meta .meta-author a{
-        color: #7A7A7A;
-        font-size: 14px;
+    .rs-blog-layout-15-item .rs-content .rs-meta .meta-author {
         text-decoration: none;
     }
-    .rs-blog-layout-15-item .rs-content .rs-meta .meta-author a:hover{
-        color: #267ece;
+    .rs-blog-layout-15-item .rs-content .rs-meta .meta-author img{
+        border-radius: 50%;
+        width: 20px;
+        margin-right: 5px;
     }
     .rs-blog-layout-15-item .rs-content .rs-meta.align-start{
         justify-content: flex-start;
