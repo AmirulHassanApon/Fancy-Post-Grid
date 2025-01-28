@@ -101,7 +101,7 @@ if ($query->have_posts()) {
                     ?>
                     <!-- Post Meta: Date, Author, Category, Tags, Comments -->
                     <?php if ('yes' === $settings['show_meta_data']) { ?>
-                        <div class="rs-meta ">
+                        <div class="rs-meta meta-data-list">
                             <?php
                             // Array of meta items with their respective conditions, content, and class names.
                             $meta_items = array(
@@ -133,7 +133,7 @@ if ($query->have_posts()) {
                                 }
                             }
                             // Only wrap the separator in a <span> if it's not empty.
-                            $separator = $separator_value !== '' ? '' : '';
+                            $separator = $separator_value !== '' ? '<span>' . esc_html($separator_value) . '</span>' : '';
 
                             // Join the meta items with the selected separator.
                             echo implode($separator, $meta_items_output);
@@ -142,7 +142,7 @@ if ($query->have_posts()) {
                     <?php } ?>
                     <!-- Post Meta: Date, Author, Category, Tags, Comments -->
                     <?php if ('yes' === $settings['show_meta_data']) { ?>
-                        <div class="rs-meta">
+                        <div class="rs-meta meta-data-list">
                             <?php
                             // Array of meta items with their respective conditions, content, and class names.
                             $meta_items = array(

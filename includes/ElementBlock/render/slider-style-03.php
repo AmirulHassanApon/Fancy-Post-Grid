@@ -159,22 +159,6 @@ if ($query->have_posts()) {
                                                     'content'   => esc_html(get_the_date()),
                                                 ),
                                                 
-                                                'post_tags' => array(
-                                                    'condition' => 'yes' === $settings['show_post_tags'] && !empty(get_the_tag_list('', ', ')),
-                                                    'class'     => 'meta-tags',
-                                                    'icon'      => ('yes' === $settings['show_meta_data_icon'] && 'yes' === $settings['show_post_tags_icon']) ? '<i class="fa fa-tags"></i>' : '',
-                                                    'content'   => get_the_tag_list('', ', '),
-                                                ),
-                                                'comments_count' => array(
-                                                    'condition' => 'yes' === $settings['show_comments_count'],
-                                                    'class'     => 'meta-comment-count',
-                                                    'icon'      => ('yes' === $settings['show_meta_data_icon'] && 'yes' === $settings['show_comments_count_icon']) ? '<i class="fa fa-comments"></i>' : '',
-                                                    'content'   => sprintf(
-                                                        '<a href="%s">%s</a>',
-                                                        esc_url(get_comments_link()),
-                                                        esc_html(get_comments_number_text(__('0 Comments', 'fancy-post-grid'), __('1 Comment', 'fancy-post-grid'), __('% Comments', 'fancy-post-grid')))
-                                                    ),
-                                                ),
                                             );
 
                                             $meta_items_output = []; // Array to store individual meta item outputs.
