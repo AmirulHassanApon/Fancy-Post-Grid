@@ -1280,7 +1280,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                 [
                     'label'   => esc_html__( 'Excerpt Limit', 'fancy-post-grid' ),
                     'type'    => \Elementor\Controls_Manager::NUMBER,
-                    'default' => 200,
+                    'default' => 20,
                     'min'     => 1,
                 ]
             );
@@ -2269,7 +2269,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                 [
                     'name'     => 'meta_typography',
                     'label'    => esc_html__( 'Typography', 'fancy-post-grid' ),
-                    'selector' => '{{WRAPPER}} .meta-data-list li',
+                    'selector' => '{{WRAPPER}} .meta-data-list li,{{WRAPPER}} .pre-blog-item.style_12 .blog-inner-wrap .pre-blog-content ul li, {{WRAPPER}} .meta-date span, {{WRAPPER}} .rs-blog-layout-14-item .rs-content .rs-meta div, {{WRAPPER}} .rs-blog-layout-15-item .rs-content .rs-meta, {{WRAPPER}} .rs-blog-layout-16-item .rs-content .rs-meta, {{WRAPPER}} .rs-blog-layout-26-item .rs-content .rs-meta .rs-meta-all, {{WRAPPER}} .rs-blog-layout-26-item .rs-content .rs-meta .rs-meta-all .meta-categories a, {{WRAPPER}} .rs-blog-layout-1 .blog-item .blog-content .blog-meta li a, .rs-blog-layout-1 .blog-item .blog-content .blog-meta li, .rs-blog-layout-1 .blog-item-wrap .blog-content .blog-meta li a',
                 ]
             );
             // Meta Data separator Typography
@@ -2278,7 +2278,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                 [
                     'name'     => 'meta_separator_typography',
                     'label'    => esc_html__( 'Separator Typography', 'fancy-post-grid' ),
-                    'selector' => '{{WRAPPER}} .meta-data-list span',
+                    'selector' => '{{WRAPPER}} .meta-data-list span,{{WRAPPER}} .rs-blog-layout-1 .blog-item-wrap .blog-content .blog-meta span',
                 ]
             );
 
