@@ -242,7 +242,7 @@ ob_start();
                                             <<?php echo esc_attr($title_tag); ?> class="title <?php echo esc_attr($title_alignment_class); ?>">
                                                 <?php if ($fancy_link_details === 'on') : ?>
                                                     <a href="<?php the_permalink(); ?>"
-                                                       <?php echo $target_blank; ?>
+                                                       <?php echo esc_attr($target_blank); ?>
                                                        class="title-link">
                                                         <?php echo esc_html(
                                                             wp_trim_words(get_the_title(), $fancy_post_title_limit, esc_html($title_more_text))

@@ -263,7 +263,9 @@ ob_start();
                                                         ); ?>
                                                     </a>
                                                 <?php else : ?>
-                                                    <?php echo wp_trim_words(get_the_title(), $fancy_post_title_limit, $title_more_text); ?>
+                                                    <?php echo esc_html(
+                                                        wp_trim_words(get_the_title(), $fancy_post_title_limit, esc_html($title_more_text))
+                                                    );?>
                                                 <?php endif; ?>
                                             </<?php echo esc_attr($title_tag); ?>>
                                         <?php endif; ?>
