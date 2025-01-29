@@ -302,7 +302,7 @@ ob_start();
                                 $excerpt = get_the_content();
 
                                 if ($fancy_post_excerpt_limit_type === 'words') {
-                                    echo wp_trim_words($excerpt, $fancy_post_excerpt_limit, $excerpt_more_text);
+                                    echo esc_html(wp_trim_words($excerpt, $fancy_post_excerpt_limit, $excerpt_more_text));
                                 } else {
                                     // Strip tags to avoid breaking HTML, then apply character limit
                                     $excerpt = wp_strip_all_tags($excerpt);

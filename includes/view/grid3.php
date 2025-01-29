@@ -175,7 +175,7 @@ ob_start();
 
                                     ?>
                                     <a href="<?php the_permalink(); ?>" <?php echo esc_attr($target_blank); ?>>
-                                        <img src="<?php echo esc_url($feature_image_url); ?>" alt="<?php echo $alt_text; ?>">
+                                        <img src="<?php echo esc_url($feature_image_url); ?>" alt="<?php echo esc_attr($alt_text); ?>">
                                     </a>
                                     <div class="rs-meta">
                                         <ul class="meta-data-list">
@@ -238,7 +238,7 @@ ob_start();
                             <<?php echo esc_attr($title_tag); ?> class="title <?php echo esc_attr($title_alignment_class); ?>" >
                                 <?php if ($fancy_link_details === 'on') : ?>
                                     <a href="<?php the_permalink(); ?>"
-                                       <?php echo $target_blank; ?>
+                                       <?php echo esc_attr($target_blank); ?>
                                        class="title-link">
                                         <?php
                                         if ($fancy_post_title_limit_type === 'words') {
