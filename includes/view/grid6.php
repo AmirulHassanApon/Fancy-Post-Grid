@@ -282,7 +282,7 @@ ob_start();
                         <!-- Display the custom button here -->
                         <?php if ($fpg_field_group_read_more) : ?>    
                             <div class="btn-wrapper <?php echo esc_attr($button_alignment_class); ?>">
-                                <a class="blog-btn <?php echo esc_attr($button_class); ?>" href="<?php the_permalink(); ?>" <?php echo $target_blank; ?>>
+                                <a class="blog-btn <?php echo esc_attr($button_class); ?>" href="<?php the_permalink(); ?>" <?php echo esc_attr($target_blank); ?>>
                                         <?php echo esc_html($fancy_post_read_more_text); ?>
                                     <i class="ri-arrow-right-line"></i>
                                 </a>

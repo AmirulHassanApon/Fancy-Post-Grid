@@ -8,7 +8,6 @@ ob_start();
         <div class="row">
 
         <?php
-            // =======Pagination==========
             
             // Check if pagination is on or off
             if ($fancy_post_pagination === 'off') {
@@ -111,8 +110,7 @@ ob_start();
                 if (!empty($tax_query)) {
                     $args['tax_query'] = $tax_query;
                 }
-                
-                
+
             $query = new WP_Query($args);
 
             // Loop through the custom query
@@ -180,7 +178,7 @@ ob_start();
 
                                 ?>
                                 <a href="<?php the_permalink(); ?>" <?php echo esc_attr($target_blank); ?>>
-                                    <img src="<?php echo esc_url($feature_image_url); ?>" alt="<?php echo $alt_text; ?>">
+                                    <img src="<?php echo esc_url($feature_image_url); ?>" alt="<?php echo esc_attr($alt_text); ?>">
                                 </a>
                             <?php endif; ?>
                         </div>
@@ -237,23 +235,48 @@ ob_start();
                             <<?php echo esc_attr($title_tag); ?> class="title <?php echo esc_attr($title_alignment_class); ?>">
                                 <?php if ($fancy_link_details === 'on') : ?>
                                     <a href="<?php the_permalink(); ?>"
-                                       <?php echo $target_blank; ?>
+                                       <?php echo esc_attr($target_blank); ?>
                                        class="title-link">
-                                        <?php echo wp_trim_words(get_the_title(), $fancy_post_title_limit, $title_more_text); ?>
+                                        <?php
+                                        if ($fancy_post_title_limit_type === 'words') {
+                                            echo esc_html(
+                                                wp_trim_words(get_the_title(), $fancy_post_title_limit, esc_html($title_more_text))
+                                            );
+                                        } elseif ($fancy_post_title_limit_type === 'characters') {
+                                            echo esc_html(mb_strimwidth(get_the_title(), 0, $fancy_post_title_limit, $title_more_text));
+                                        }
+                                        ?>
                                     </a>
                                 <?php else : ?>
-                                    <?php echo wp_trim_words(get_the_title(), $fancy_post_title_limit, $title_more_text); ?>
+                                    <?php
+                                    if ($fancy_post_title_limit_type === 'words') {
+                                        echo esc_html(
+                                            wp_trim_words(get_the_title(), $fancy_post_title_limit, esc_html($title_more_text))
+                                        );
+                                    } elseif ($fancy_post_title_limit_type === 'characters') {
+                                        echo esc_html(mb_strimwidth(get_the_title(), 0, $fancy_post_title_limit, $title_more_text));
+                                    }
+                                    ?>
                                 <?php endif; ?>
                             </<?php echo esc_attr($title_tag); ?>>
                         <?php endif; ?>
                         <?php if ($fpg_field_group_excerpt) : ?>
                             <p class="<?php echo esc_attr($excerpt_alignment_class); ?>">
-                                <?php echo wp_trim_words(get_the_content(), $fancy_post_excerpt_limit, $excerpt_more_text); ?>
+                                <?php 
+                                $excerpt = get_the_content();
+
+                                if ($fancy_post_excerpt_limit_type === 'words') {
+                                    echo esc_html(wp_trim_words($excerpt, $fancy_post_excerpt_limit, $excerpt_more_text));
+                                } else {
+                                    // Strip tags to avoid breaking HTML, then apply character limit
+                                    $excerpt = wp_strip_all_tags($excerpt);
+                                    echo esc_html(mb_strimwidth($excerpt, 0, $fancy_post_excerpt_limit, $excerpt_more_text));
+                                } ?>
                             </p>
                         <?php endif; ?>
                         <?php if ($fancy_link_details === 'on' && $fpg_field_group_read_more) : ?>
                             <div class="btn-wrapper <?php echo esc_attr($button_alignment_class); ?>">
-                                <a class="rs-btn <?php echo esc_attr($button_class); ?>" href="<?php the_permalink(); ?>" <?php echo $target_blank; ?>>
+                                <a class="rs-btn <?php echo esc_attr($button_class); ?>" href="<?php the_permalink(); ?>" <?php echo esc_attr($target_blank); ?>>
                                     <?php echo esc_html($fancy_post_read_more_text); ?>
                                     <i class="ri-arrow-right-line"></i>
                                 </a>

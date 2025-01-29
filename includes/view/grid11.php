@@ -8,8 +8,7 @@ ob_start();
         <div class="row">
 
         <?php
-            // =======Pagination==========
-            
+        
             // Check if pagination is on or off
             if ($fancy_post_pagination === 'off') {
                 $fpg_post_per_page = -1;
@@ -178,7 +177,7 @@ ob_start();
 
                                 ?>
                                 <a href="<?php the_permalink(); ?>" <?php echo esc_attr($target_blank); ?>>
-                                    <img src="<?php echo esc_url($feature_image_url); ?>" alt="<?php echo $alt_text; ?>">
+                                    <img src="<?php echo esc_url($feature_image_url); ?>" alt="<?php echo esc_attr($alt_text); ?>">
                                 </a>
                                 <svg viewBox="0 0 410 32" fill="none" xmlns="http://www.w3.org/2000/svg" class="shape__rs_course">
                                     <path fill-rule="evenodd" clip-rule="evenodd" d="M346.69 23.5159C371.59 23.3769 398.013 17.3185 410 4.85404V32H0V9.75773C2.99658 0.284217 26.1914 -2.12936 41.5898 1.81449C49.0762 3.72855 55.7041 6.53361 62.3281 9.33695C69.3286 12.2997 76.3247 15.2605 84.3242 17.1654C111.49 25.8323 134.405 18.6565 157.427 11.4472C171.419 7.06559 185.451 2.67167 200.5 1.81449C217.549 0.842933 234.721 5.15653 251.493 9.36967C259.098 11.2798 266.62 13.1693 274.011 14.5363C278.288 15.3272 282.339 16.1309 286.297 16.9161C304.269 20.4812 320.31 23.6632 346.69 23.5159Z" fill="#ffffff"></path>
@@ -248,11 +247,13 @@ ob_start();
                             <<?php echo esc_attr($title_tag); ?> class="title <?php echo esc_attr($title_alignment_class); ?>" >
                                 <?php if ($fancy_link_details === 'on') : ?>
                                     <a href="<?php the_permalink(); ?>"
-                                       <?php echo $target_blank; ?>
+                                       <?php echo esc_attr($target_blank); ?>
                                        class="title-link">
                                         <?php
                                         if ($fancy_post_title_limit_type === 'words') {
-                                            echo wp_trim_words(get_the_title(), $fancy_post_title_limit, $title_more_text);
+                                            echo esc_html(
+                                                wp_trim_words(get_the_title(), $fancy_post_title_limit, esc_html($title_more_text))
+                                            );
                                         } elseif ($fancy_post_title_limit_type === 'characters') {
                                             echo esc_html(mb_strimwidth(get_the_title(), 0, $fancy_post_title_limit, $title_more_text));
                                         }
@@ -261,7 +262,9 @@ ob_start();
                                 <?php else : ?>
                                     <?php
                                     if ($fancy_post_title_limit_type === 'words') {
-                                        echo wp_trim_words(get_the_title(), $fancy_post_title_limit, $title_more_text);
+                                        echo esc_html(
+                                            wp_trim_words(get_the_title(), $fancy_post_title_limit, esc_html($title_more_text))
+                                        );
                                     } elseif ($fancy_post_title_limit_type === 'characters') {
                                         echo esc_html(mb_strimwidth(get_the_title(), 0, $fancy_post_title_limit, $title_more_text));
                                     }
@@ -272,7 +275,7 @@ ob_start();
 
                         <?php if ($fpg_field_group_read_more) : ?>
                             <div class="btn-wrapper <?php echo esc_attr($button_alignment_class); ?>">
-                                <a class="rs-btn <?php echo esc_attr($button_class); ?>" href="<?php the_permalink(); ?>" <?php echo $target_blank; ?>>
+                                <a class="rs-btn <?php echo esc_attr($button_class); ?>" href="<?php the_permalink(); ?>" <?php echo esc_attr($target_blank); ?>>
                                     <?php echo esc_html($fancy_post_read_more_text); ?>
                                     <i class="ri-arrow-right-line"></i>
                                 </a>

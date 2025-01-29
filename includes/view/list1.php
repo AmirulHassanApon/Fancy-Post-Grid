@@ -206,7 +206,7 @@ ob_start();
                                             <?php if (!empty($fpg_field_group_category_icon) && empty($disabled_meta_icons['category_icon'])) {?>
                                             <i class="ri-price-tag-3-line"></i>
                                             <?php } ?>
-                                             <?php echo get_the_category_list(', '); ?>
+                                            <?php echo wp_kses_post(get_the_category_list(', ')); ?>
                                         </div>
                                         <?php endif; ?>
                                         
@@ -352,7 +352,7 @@ ob_start();
                                                 <?php if (!empty($fpg_field_group_category_icon) && empty($disabled_meta_icons['category_icon'])) {?>
                                                 <i class="ri-price-tag-3-line"></i>
                                                 <?php } ?>
-                                                 <?php echo get_the_category_list(', '); ?>
+                                                <?php echo wp_kses_post(get_the_category_list(', ')); ?>
                                             </div>
                                             <?php endif; ?>
                                         <?php endif; ?>
@@ -474,7 +474,7 @@ ob_start();
                                                 <?php if (!empty($fpg_field_group_category_icon) && empty($disabled_meta_icons['category_icon'])) {?>
                                                 <i class="ri-price-tag-3-line"></i>
                                                 <?php } ?>
-                                                 <?php echo get_the_category_list(', '); ?>
+                                                <?php echo wp_kses_post(get_the_category_list(', ')); ?>
                                             </div>
                                             <?php endif; ?>
                                         <?php endif; ?>
