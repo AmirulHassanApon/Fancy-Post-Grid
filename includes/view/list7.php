@@ -195,7 +195,8 @@ ob_start();
                             <!-- CATEGORY -->
                             <?php if ($fpg_field_group_categories) : ?>
                             <div class="rs-cat">
-                                <?php echo get_the_category_list(', '); ?>
+                                
+                                <?php echo wp_kses_post(get_the_category_list(', ')); ?>
                             </div>
                             <?php endif; ?>
                             <!-- Title -->

@@ -425,7 +425,7 @@ ob_start();
                             </div>
                             <div class="rs-content">
                                 <div class="rs-meta-category">
-                                    <i class="ri-price-tag-3-line"></i> <a href="#"><?php echo get_the_category_list(', '); ?></a>
+                                    <i class="ri-price-tag-3-line"></i> <a href="#"><?php echo wp_kses_post(get_the_category_list(', ')); ?></a>
                                 </div>
                                 <h4 class="title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h4> <!-- Post Title -->
                             </div>

@@ -3090,73 +3090,73 @@ function fancy_post_grid_save_metabox_data_pro( $post_id ) {
     }
     // Save Filter Alignment
     if (isset($_POST['fancy_post_filter_alignment'])) {
-        update_post_meta($post_id, 'fancy_post_filter_alignment', sanitize_text_field($_POST['fancy_post_filter_alignment']));
+        update_post_meta($post_id, 'fancy_post_filter_alignment', sanitize_text_field(wp_unslash($_POST['fancy_post_filter_alignment'])));
     }
     if (isset($_POST['fancy_post_filter_border_style'])) {
-        update_post_meta($post_id, 'fancy_post_filter_border_style', sanitize_text_field($_POST['fancy_post_filter_border_style']));
+        update_post_meta($post_id, 'fancy_post_filter_border_style', sanitize_text_field(wp_unslash($_POST['fancy_post_filter_border_style'])));
     }
 
     if (isset($_POST['fancy_post_filter_text_color'])) {
-        update_post_meta($post_id, 'fancy_post_filter_text_color', sanitize_hex_color($_POST['fancy_post_filter_text_color']));
+        update_post_meta($post_id, 'fancy_post_filter_text_color', sanitize_hex_color(wp_unslash($_POST['fancy_post_filter_text_color'])));
     }
     if (isset($_POST['fancy_post_filter_hover_color'])) {
-        update_post_meta($post_id, 'fancy_post_filter_hover_color', sanitize_hex_color($_POST['fancy_post_filter_hover_color']));
+        update_post_meta($post_id, 'fancy_post_filter_hover_color', sanitize_hex_color(wp_unslash($_POST['fancy_post_filter_hover_color'])));
     }
     if (isset($_POST['fancy_post_filter_active_color'])) {
-        update_post_meta($post_id, 'fancy_post_filter_active_color', sanitize_hex_color($_POST['fancy_post_filter_active_color']));
+        update_post_meta($post_id, 'fancy_post_filter_active_color', sanitize_hex_color(wp_unslash($_POST['fancy_post_filter_active_color'])));
     }
     if (isset($_POST['fancy_post_filter_bg_color'])) {
-        update_post_meta($post_id, 'fancy_post_filter_bg_color', sanitize_hex_color($_POST['fancy_post_filter_bg_color']));
+        update_post_meta($post_id, 'fancy_post_filter_bg_color', sanitize_hex_color(wp_unslash($_POST['fancy_post_filter_bg_color'])));
     }
     if (isset($_POST['fancy_post_filter_hover_bg_color'])) {
-        update_post_meta($post_id, 'fancy_post_filter_hover_bg_color', sanitize_hex_color($_POST['fancy_post_filter_hover_bg_color']));
+        update_post_meta($post_id, 'fancy_post_filter_hover_bg_color', sanitize_hex_color(wp_unslash($_POST['fancy_post_filter_hover_bg_color'])));
     }
     if (isset($_POST['fancy_post_filter_active_bg_color'])) {
-        update_post_meta($post_id, 'fancy_post_filter_active_bg_color', sanitize_hex_color($_POST['fancy_post_filter_active_bg_color']));
+        update_post_meta($post_id, 'fancy_post_filter_active_bg_color', sanitize_hex_color(wp_unslash($_POST['fancy_post_filter_active_bg_color'])));
     }
     if (isset($_POST['fancy_post_filter_border_color'])) {
-        update_post_meta($post_id, 'fancy_post_filter_border_color', sanitize_hex_color($_POST['fancy_post_filter_border_color']));
+        update_post_meta($post_id, 'fancy_post_filter_border_color', sanitize_hex_color(wp_unslash($_POST['fancy_post_filter_border_color'])));
     }
     if (isset($_POST['fancy_post_filter_active_border_color'])) {
-        update_post_meta($post_id, 'fancy_post_filter_active_border_color', sanitize_hex_color($_POST['fancy_post_filter_active_border_color']));
+        update_post_meta($post_id, 'fancy_post_filter_active_border_color', sanitize_hex_color(wp_unslash($_POST['fancy_post_filter_active_border_color'])));
     }
     if (isset($_POST['fancy_post_filter_box_bg_color'])) {
-        update_post_meta($post_id, 'fancy_post_filter_box_bg_color', sanitize_hex_color($_POST['fancy_post_filter_box_bg_color']));
+        update_post_meta($post_id, 'fancy_post_filter_box_bg_color', sanitize_hex_color(wp_unslash($_POST['fancy_post_filter_box_bg_color'])));
     }
     // Save Filter Text
     if (isset($_POST['fancy_post_filter_text'])) {
-        update_post_meta($post_id, 'fancy_post_filter_text', sanitize_text_field($_POST['fancy_post_filter_text']));
+        update_post_meta($post_id, 'fancy_post_filter_text', sanitize_text_field(wp_unslash($_POST['fancy_post_filter_text'])));
     }
 
     // Save Filter Padding
     if (isset($_POST['fancy_post_filter_padding'])) {
-        update_post_meta($post_id, 'fancy_post_filter_padding', sanitize_text_field($_POST['fancy_post_filter_padding']));
+        update_post_meta($post_id, 'fancy_post_filter_padding', sanitize_text_field(wp_unslash($_POST['fancy_post_filter_padding'])));
     }
     // Save Filter Margin
     if (isset($_POST['fancy_post_filter_margin'])) {
-        update_post_meta($post_id, 'fancy_post_filter_margin', sanitize_text_field($_POST['fancy_post_filter_margin']));
+        update_post_meta($post_id, 'fancy_post_filter_margin', sanitize_text_field(wp_unslash($_POST['fancy_post_filter_margin'])));
     }
     // Save Filter Font Size
     if (isset($_POST['fancy_post_filter_font_size'])) {
-        update_post_meta($post_id, 'fancy_post_filter_font_size', sanitize_text_field($_POST['fancy_post_filter_font_size']));
+        update_post_meta($post_id, 'fancy_post_filter_font_size', sanitize_text_field(wp_unslash($_POST['fancy_post_filter_font_size'])));
     }
     if (isset($_POST['fancy_post_filter_border_radius'])) {
-        update_post_meta($post_id, 'fancy_post_filter_border_radius', sanitize_text_field($_POST['fancy_post_filter_border_radius']));
+        update_post_meta($post_id, 'fancy_post_filter_border_radius', sanitize_text_field(wp_unslash($_POST['fancy_post_filter_border_radius'])));
     }
     if (isset($_POST['fancy_post_filter_box_border_radius'])) {
-        update_post_meta($post_id, 'fancy_post_filter_box_border_radius', sanitize_text_field($_POST['fancy_post_filter_box_border_radius']));
+        update_post_meta($post_id, 'fancy_post_filter_box_border_radius', sanitize_text_field(wp_unslash($_POST['fancy_post_filter_box_border_radius'])));
     }
     if (isset($_POST['fancy_post_filter_border_width'])) {
-        update_post_meta($post_id, 'fancy_post_filter_border_width', sanitize_text_field($_POST['fancy_post_filter_border_width']));
+        update_post_meta($post_id, 'fancy_post_filter_border_width', sanitize_text_field(wp_unslash($_POST['fancy_post_filter_border_width'])));
     }
     if (isset($_POST['fancy_post_filter_box_padding'])) {
-        update_post_meta($post_id, 'fancy_post_filter_box_padding', sanitize_text_field($_POST['fancy_post_filter_box_padding']));
+        update_post_meta($post_id, 'fancy_post_filter_box_padding', sanitize_text_field(wp_unslash($_POST['fancy_post_filter_box_padding'])));
     }
     if (isset($_POST['fancy_post_filter_box_margin'])) {
-        update_post_meta($post_id, 'fancy_post_filter_box_margin', sanitize_text_field($_POST['fancy_post_filter_box_margin']));
+        update_post_meta($post_id, 'fancy_post_filter_box_margin', sanitize_text_field(wp_unslash($_POST['fancy_post_filter_box_margin'])));
     }
     if (isset($_POST['fancy_post_filter_item_gap'])) {
-        update_post_meta($post_id, 'fancy_post_filter_item_gap', sanitize_text_field($_POST['fancy_post_filter_item_gap']));
+        update_post_meta($post_id, 'fancy_post_filter_item_gap', sanitize_text_field(wp_unslash($_POST['fancy_post_filter_item_gap'])));
     }
     if ( isset( $_POST['fpg_pagination_active_background'] ) ) {
         update_post_meta( $post_id, 'fpg_pagination_active_background', sanitize_text_field( wp_unslash($_POST['fpg_pagination_active_background'] ) ));

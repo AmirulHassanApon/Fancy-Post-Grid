@@ -174,7 +174,7 @@ ob_start();
 
                                 ?>
                                 <a href="<?php the_permalink(); ?>" <?php echo esc_attr($target_blank); ?>>
-                                    <img src="<?php echo esc_url($feature_image_url); ?>" alt="<?php echo $alt_text; ?>">
+                                    <img src="<?php echo esc_url($feature_image_url); ?>" alt="<?php echo esc_attr($alt_text); ?>">
                                 </a>
                             <?php endif; ?>
 
@@ -198,11 +198,13 @@ ob_start();
                             <<?php echo esc_attr($title_tag); ?> class="title <?php echo esc_attr($title_alignment_class); ?>" >
                                 <?php if ($fancy_link_details === 'on') : ?>
                                     <a href="<?php the_permalink(); ?>"
-                                       <?php echo $target_blank; ?>
+                                       <?php echo esc_attr($target_blank); ?>
                                        class="title-link">
                                         <?php
                                         if ($fancy_post_title_limit_type === 'words') {
-                                            echo wp_trim_words(get_the_title(), $fancy_post_title_limit, $title_more_text);
+                                            echo esc_html(
+                                            wp_trim_words(get_the_title(), $fancy_post_title_limit, esc_html($title_more_text))
+                                        );
                                         } elseif ($fancy_post_title_limit_type === 'characters') {
                                             echo esc_html(mb_strimwidth(get_the_title(), 0, $fancy_post_title_limit, $title_more_text));
                                         }
@@ -211,7 +213,9 @@ ob_start();
                                 <?php else : ?>
                                     <?php
                                     if ($fancy_post_title_limit_type === 'words') {
-                                        echo wp_trim_words(get_the_title(), $fancy_post_title_limit, $title_more_text);
+                                        echo esc_html(
+                                            wp_trim_words(get_the_title(), $fancy_post_title_limit, esc_html($title_more_text))
+                                        );
                                     } elseif ($fancy_post_title_limit_type === 'characters') {
                                         echo esc_html(mb_strimwidth(get_the_title(), 0, $fancy_post_title_limit, $title_more_text));
                                     }
@@ -270,7 +274,7 @@ ob_start();
                                 $excerpt = get_the_content();
 
                                 if ($fancy_post_excerpt_limit_type === 'words') {
-                                    echo wp_trim_words($excerpt, $fancy_post_excerpt_limit, $excerpt_more_text);
+                                    echo esc_html(wp_trim_words($excerpt, $fancy_post_excerpt_limit, $excerpt_more_text));
                                 } else {
                                     // Strip tags to avoid breaking HTML, then apply character limit
                                     $excerpt = wp_strip_all_tags($excerpt);

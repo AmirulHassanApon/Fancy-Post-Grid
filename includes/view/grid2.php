@@ -112,8 +112,7 @@ ob_start();
                 if (!empty($tax_query)) {
                     $args['tax_query'] = $tax_query;
                 }
-                // echo '<pre>' . print_r($args, true) . '</pre>';
-                
+
             $query = new WP_Query($args);
 
             // Loop through the custom query
@@ -170,7 +169,9 @@ ob_start();
                                         class="title-link">
                                         <?php
                                         if ($fancy_post_title_limit_type === 'words') {
-                                            echo wp_trim_words(get_the_title(), $fancy_post_title_limit, $title_more_text);
+                                            echo esc_html(
+                                            wp_trim_words(get_the_title(), $fancy_post_title_limit, esc_html($title_more_text))
+                                        );
                                         } elseif ($fancy_post_title_limit_type === 'characters') {
                                             echo esc_html(mb_strimwidth(get_the_title(), 0, $fancy_post_title_limit, $title_more_text));
                                         }
@@ -179,7 +180,9 @@ ob_start();
                                 <?php else : ?>
                                     <?php
                                     if ($fancy_post_title_limit_type === 'words') {
-                                        echo wp_trim_words(get_the_title(), $fancy_post_title_limit, $title_more_text);
+                                        echo esc_html(
+                                            wp_trim_words(get_the_title(), $fancy_post_title_limit, esc_html($title_more_text))
+                                        );
                                     } elseif ($fancy_post_title_limit_type === 'characters') {
                                         echo esc_html(mb_strimwidth(get_the_title(), 0, $fancy_post_title_limit, $title_more_text));
                                     }
