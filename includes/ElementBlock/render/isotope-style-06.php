@@ -30,7 +30,7 @@ $fancy_post_filter_text = $settings['filter_all_text'] ?? 'All';
 
 if ($query->have_posts()) { 
     ?>
-    <section class="rs-blog-layout-15">
+    <section class="rs-blog-layout-15 fpg-section-area">
         
         <div class="row">
             <div class="col-lg-12">

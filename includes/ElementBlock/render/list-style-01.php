@@ -31,7 +31,7 @@ $query = new \WP_Query($args);
 ?>
 
 <?php if ($query->have_posts()) : ?>
-    <section class="rs-blog-layout-8">
+    <section class="rs-blog-layout-8 fpg-section-area">
         <div class="row">
             <?php while ($query->have_posts()) : $query->the_post(); ?>
                 <?php if ($query->current_post === 0) : ?>
