@@ -69,7 +69,7 @@ if ($query->have_posts()) {
                     <div class="rs-content">
                         <!-- Post Meta: Date, Author, Category, Tags, Comments -->
                         <?php if ('yes' === $settings['show_meta_data']) { ?>
-                            <div class="rs-meta">
+                            <div class="rs-meta meta-data-list">
                                 
                                     <?php
                                     // Array of meta items with their respective conditions, content, and class names.
