@@ -2997,6 +2997,7 @@ img {
     padding: 0 0 8px;
     margin: 0;
     list-style-type: none;
+    flex-wrap: wrap;
 }
 
 .rs-blog-layout-1.rs-blog-layout-9 .blog-horizontal .blog-meta .blog-item-wrap .blog-content .blog-meta .admin {
@@ -4251,6 +4252,7 @@ img {
         list-style-type: none;
         display: flex;
         align-items: center;
+        flex-wrap: wrap;
     }
     .rs-blog-layout-17-item .rs-content .rs-meta ul li{
         padding-right: 20px;
@@ -4432,21 +4434,7 @@ img {
         text-decoration: none;
         color: #fff ;
     }
-    .rs-blog-layout-18-item .rs-content .rs-meta ul li:first-child{
-        padding-right: 20px;
-        margin-right: 20px;
-        position: relative;
-    }
-    .rs-blog-layout-18-item .rs-content .rs-meta ul li:first-child::before{
-        position: absolute;
-        content: '';
-        right: 0;
-        top: 50%;
-        transform: translateY(-50%);
-        width: 1px;
-        height: 10px;
-        background: #fff;
-    }
+    
     .swiper .rs-blog-layout-18-item  .rs-content .rs-meta ul li.meta-author img{
         border-radius: 50%;
         width: 20px;
@@ -4822,6 +4810,7 @@ img {
         align-items: center;
         border-bottom: 1px solid #AD87FF47;
         padding: 0 0 10px 0;
+        flex-wrap: wrap;
     }
     .rs-blog-layout-20-item .rs-content .rs-meta ul li,.rs-blog-layout-20 .rs-blog-layout-20-item .rs-content .rs-meta ul li a{
         color: #6d6d6d;
@@ -4837,16 +4826,7 @@ img {
         margin-right: 40px;
         position: relative;
     }
-    .rs-blog-layout-20-item .rs-content .rs-meta ul li:first-child::before{
-        position: absolute;
-        content: '';
-        right: -20px;
-        top: 50%;
-        transform: translateY(-50%);
-        width: 1px;
-        height: 10px;
-        background: #999;
-    }
+    
     .rs-blog-layout-20-item .rs-content .title a{
         font-size: 26px;
         line-height: 36px;
@@ -5089,6 +5069,7 @@ img {
     .rs-blog-layout-22-item .rs-content .rs-meta ul{
         display: flex;
         align-items: center;
+        flex-wrap: wrap;
     }
     .rs-blog-layout-22-item .rs-content .rs-meta ul li{
         color: #6d6d6d;
@@ -5391,6 +5372,7 @@ img {
         align-items: center;
         margin-bottom: 10px;
         padding: 0;
+        flex-wrap: wrap;
     }
     .rs-blog-layout-24-item .rs-content .rs-meta ul li {
         font-size: 15px;
