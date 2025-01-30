@@ -242,14 +242,20 @@ if ($query->have_posts()) {
                                     ),
                                 );
 
-                                // Output each meta item as a list item with the respective class.
+                                $meta_items_output = []; // Array to store individual meta item outputs.
                                 foreach ($meta_items as $meta) {
                                     if ($meta['condition']) {
-                                        echo '<li class="' . esc_attr($meta['class']) . '">';
-                                        echo $meta['icon'] . ' ' . $meta['content'];
-                                        echo '</li>';
+                                        // Build the meta item output with its icon and content.
+                                        $meta_items_output[] = '<li class="' . esc_attr($meta['class']) . '">' 
+                                            . $meta['icon'] . ' ' . $meta['content'] 
+                                            . '</li>';
                                     }
                                 }
+                                // Only wrap the separator in a <span> if it's not empty.
+                                $separator = $separator_value !== '' ? '<span>' . esc_html($separator_value) . '</span>' : '';
+
+                                // Join the meta items with the selected separator.
+                                echo implode($separator, $meta_items_output);
                                 ?>
                             </ul>
                         </div>
