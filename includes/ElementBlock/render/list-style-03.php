@@ -59,7 +59,7 @@ $query = new \WP_Query($args);
                             <div class="rs-content">
                                 <!-- Post Meta: Date, Author, Category, Tags, Comments -->
                                 <?php if ('yes' === $settings['show_meta_data']) { ?>
-                                    <div class="rs-meta">
+                                    <div class="rs-meta meta-data-list">
                                         <ul class="blog-meta">
                                             <?php
                                             // Array of meta items with their respective conditions, content, and class names.
