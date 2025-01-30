@@ -134,7 +134,6 @@ if ($query->have_posts()) {
                                             </a>
                                         </div>
                                     <?php } ?>
-
                                 </div>
                             </div>
 
