@@ -144,8 +144,6 @@ if ($query->have_posts()) {
                                 <?php } ?>
 
                                 <div class="rs-content">
-                                    
-
                                     <!-- Post Title -->
                                     <?php if (!empty($settings['show_post_title']) && 'yes' === $settings['show_post_title']) {
                                             // Title Tag
