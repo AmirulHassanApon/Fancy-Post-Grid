@@ -3649,7 +3649,7 @@ add_action('elementor/widgets/widgets_registered', function () {
         }
 
         public function get_icon() {
-            return 'eicon-gallery-grid';
+            return 'eicon-slider-album';
         }
 
         public function get_categories() {
@@ -3672,7 +3672,7 @@ add_action('elementor/widgets/widgets_registered', function () {
         }
 
         public function get_icon() {
-            return 'eicon-gallery-grid';
+            return 'eicon-posts-grid';
         }
 
         public function get_categories() {
@@ -3694,7 +3694,7 @@ add_action('elementor/widgets/widgets_registered', function () {
         }
 
         public function get_icon() {
-            return 'eicon-gallery-grid';
+            return 'eicon-post-list';
         }
 
         public function get_categories() {

@@ -45,6 +45,8 @@ include_once  FANCY_POST_GRID_PATH_PRO.'includes/shortcode_generate.php';
 include_once  FANCY_POST_GRID_PATH_PRO.'includes/metabox/fancy-post-gird-metabox.php';
 include_once  FANCY_POST_GRID_PATH_PRO.'includes/ElementBlock/elementor_widgets.php';
 include_once  FANCY_POST_GRID_PATH_PRO.'admin/submenu/admin-submenu.php';
+// Gutenberg
+include_once  FANCY_POST_GRID_PATH_PRO.'includes/Gutenberg/gutenberg-init.php';
 
 /**
  * Register custom image sizes for Fancy Post Grid
