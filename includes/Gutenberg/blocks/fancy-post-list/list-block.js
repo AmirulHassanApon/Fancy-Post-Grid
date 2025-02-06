@@ -5,9 +5,9 @@
     const { useSelect } = wp.data;
     const { PanelBody, TabPanel, RangeControl, ColorPalette, ToggleControl, TextControl, SelectControl } = wp.components;
 
-    registerBlockType('fancy-post-grid/block', {
-        title: __('Grid Layout', 'fancy-post-grid'),
-        icon: 'grid-view',
+    registerBlockType('fancy-post-list/block', {
+        title: __('List Layout', 'fancy-post-grid'),
+        icon: 'list-view',
         category: 'fancy-post-grid-category',
 
         attributes: {

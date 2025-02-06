@@ -119,7 +119,7 @@ function fancy_post_grid_render_callback($attributes) {
         return '<p>' . esc_html__('No posts found.', 'fancy-post-grid') . '</p>';
     }
 
-    $output = '<div class="fancy-post-grid">';
+    $output = '<div class="rs-blog-layout-5 fancy-post-grid">';
 
     while ($query->have_posts()) {
         $query->the_post();
@@ -134,21 +134,28 @@ function fancy_post_grid_render_callback($attributes) {
         $comments_count = get_comments_number();
         $thumbnail = get_the_post_thumbnail($post_id, 'medium', ['class' => 'fancy-post-thumbnail']);
 
-        $output .= '<div class="fancy-post-item">';
+        $output .= '<div class="fancy-post-item rs-blog__single">';
         if ($thumbnail) {
-            $output .= '<div class="fancy-post-image"><a href="' . esc_url($permalink) . '">' . $thumbnail . '</a></div>';
+            $output .= '<div class="fancy-post-image rs-thumb"><a href="' . esc_url($permalink) . '">' . $thumbnail . '</a></div>';
         }
-        $output .= '<h3><a href="' . esc_url($permalink) . '">' . esc_html($title) . '</a></h3>';
-        $output .= '<div class="fancy-post-meta">';
-        $output .= '<span class="post-date">' . esc_html($date) . '</span> | ';
-        $output .= '<span class="post-author">' . esc_html__('By', 'fancy-post-grid') . ' ' . esc_html($author) . '</span> | ';
-        $output .= '<span class="post-categories">' . $categories . '</span> | ';
+        $output .= '<div class="rs-content">';
+        $output .= '<h3 class="title"><a href="' . esc_url($permalink) . '">' . esc_html($title) . '</a></h3>';
+        $output .= '<ul class="meta-data-list">';
+        $output .= '<li class="post-date">' . esc_html($date) . '</li> | ';
+        $output .= '<li class="post-author">' . esc_html__('By', 'fancy-post-grid') . ' ' . esc_html($author) . '</li> | ';
+        $output .= '<li class="post-categories">' . $categories . '</li> | ';
         if (!empty($tags)) {
-            $output .= '<span class="post-tags">' . esc_html__('Tags:', 'fancy-post-grid') . ' ' . $tags . '</span> | ';
+            $output .= '<li class="post-tags">' . esc_html__('Tags:', 'fancy-post-grid') . ' ' . $tags . '</li> | ';
         }
-        $output .= '<span class="post-comments">' . esc_html($comments_count) . ' ' . esc_html__('Comments', 'fancy-post-grid') . '</span>';
-        $output .= '</div>';
+        $output .= '<li class="post-comments">' . esc_html($comments_count) . ' ' . esc_html__('Comments', 'fancy-post-grid') . '</li>';
+        $output .= '</ul>';
+        $output .= '<div class="fpg-excerpt">';
         $output .= '<p>' . esc_html($excerpt) . '</p>';
+        $output .= '</div>';
+        $output .= '<div class="btn-wrapper">';
+        $output .= '<a class="rs-link read-more" >'. "Read More ".'</a>';
+        $output .= '</div>';
+        $output .= '</div>';
         $output .= '</div>';
     }
 

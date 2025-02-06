@@ -7,7 +7,7 @@
 
     registerBlockType('fancy-post-slider/block', {
         title: __('Slider Layout', 'fancy-post-grid'),
-        icon: 'grid-view',
+        icon: 'slides',
         category: 'fancy-post-grid-category',
 
         attributes: {
