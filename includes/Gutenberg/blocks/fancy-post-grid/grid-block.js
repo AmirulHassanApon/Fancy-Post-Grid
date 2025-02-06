@@ -35,13 +35,61 @@
         },
 
         edit: function ({ attributes, setAttributes }) {
-             const { titleColor, buttonColor, titleFontSize, imageSize, gridColumns, excerptLength, showMeta, readMoreText, postType, orderBy, order, layoutStyle, textAlign, includePosts, excludePosts, postLimit, filterCategory, filterTag, filterAuthor, filterDate, enablePagination } = attributes;
-            
-            const posts = useSelect((select) => select('core').getEntityRecords('postType', postType, { per_page: postLimit, _embed: true, orderby: orderBy, order: order }), [postType, orderBy, order, postLimit]);
+            const { titleColor, buttonColor, titleFontSize, imageSize, gridColumns, excerptLength, readMoreText, postType, orderBy, order, layoutStyle, textAlign, includePosts, excludePosts, postLimit, enablePagination } = attributes;
 
-            return (
-                wp.element.createElement('div', { ...useBlockProps() },
-                    wp.element.createElement(InspectorControls, {},
+            const posts = useSelect((select) =>
+                select('core').getEntityRecords('postType', postType, {
+                    per_page: postLimit,
+                    _embed: true,
+                    orderby: orderBy,
+                    order: order
+                }),
+                [postType, orderBy, order, postLimit]
+            );
+
+            let content;
+
+            if (layoutStyle === 'style1' && posts && posts.length) {
+                content = wp.element.createElement(
+                    'div',
+                    { className: 'rs-blog-layout-5 fancy-post-grid', style: { display: 'grid', gridTemplateColumns: `repeat(${gridColumns}, 1fr)`, gap: '20px' } },
+                    posts.map((post) => {
+                        const thumbnail = post._embedded?.['wp:featuredmedia']?.[0]?.source_url || '';
+                        const excerpt = post.excerpt.rendered.replace(/(<([^>]+)>)/gi, '').split(' ').slice(0, excerptLength).join(' ') + '...';
+
+                        return wp.element.createElement('div', { key: post.id, className: 'fancy-post-item rs-blog__single' },
+                            thumbnail && wp.element.createElement('img', { src: thumbnail, alt: post.title.rendered, className: 'rs-thumb post-thumbnail', style: { width: imageSize, height: imageSize } }),
+                            wp.element.createElement('h3', { style: { color: titleColor, fontSize: titleFontSize } },
+                                wp.element.createElement('a', { href: post.link }, post.title.rendered)
+                            ),
+                            wp.element.createElement('p', {}, excerpt),
+                            wp.element.createElement('a', { href: post.link, className: 'read-more', style: { backgroundColor: buttonColor } }, readMoreText)
+                        );
+                    })
+                );
+            } else if (layoutStyle === 'style2' && posts && posts.length) {
+                content = wp.element.createElement(
+                    'div',
+                    { className: 'fancy-post-grid', style: { display: 'grid', gridTemplateColumns: `repeat(${gridColumns}, 1fr)`, gap: '20px' } },
+                    posts.map((post) => {
+                        const thumbnail = post._embedded?.['wp:featuredmedia']?.[0]?.source_url || '';
+                        return wp.element.createElement('div', { key: post.id, className: 'fancy-post-item' },
+                            thumbnail && wp.element.createElement('img', { src: thumbnail, alt: post.title.rendered, className: 'post-thumbnail', style: { width: imageSize, height: imageSize } }),
+                            wp.element.createElement('h3', { style: { color: titleColor, fontSize: titleFontSize } },
+                                wp.element.createElement('a', { href: post.link }, post.title.rendered)
+                            ),
+                            wp.element.createElement('a', { href: post.link, className: 'read-more', style: { backgroundColor: buttonColor } }, readMoreText)
+                        );
+                    })
+                );
+            } else {
+                content = wp.element.createElement('p', {}, __('Select a style to display posts.', 'fancy-post-grid'));
+            }
+
+            return wp.element.createElement(
+                'div',
+                { ...useBlockProps() },
+                wp.element.createElement(InspectorControls, {},
                         wp.element.createElement(TabPanel, {
                             className: "fancy-post-tabs",
                             activeClass: "active-tab",
@@ -149,30 +197,7 @@
                             )
                         ))
                     ),
-
-                    posts && posts.length
-                        ? wp.element.createElement(
-                              'div',
-                              {
-                                  className: 'fancy-post-grid',
-                                  style: { display: 'grid', gridTemplateColumns: `repeat(${gridColumns}, 1fr)`, gap: '20px' }
-                              },
-                              posts.map((post) => {
-                                  const thumbnail = post._embedded?.['wp:featuredmedia']?.[0]?.source_url || '';
-                                  const excerpt = post.excerpt.rendered.replace(/(<([^>]+)>)/gi, '').split(' ').slice(0, excerptLength).join(' ') + '...';
-
-                                  return wp.element.createElement('div', { key: post.id, className: 'fancy-post-item' },
-                                      thumbnail && wp.element.createElement('img', { src: thumbnail, alt: post.title.rendered, className: 'post-thumbnail', style: { width: imageSize, height: imageSize } }),
-                                      wp.element.createElement('h3', { style: { color: titleColor, fontSize: titleFontSize } },
-                                          wp.element.createElement('a', { href: post.link }, post.title.rendered)
-                                      ),
-                                      wp.element.createElement('p', {}, excerpt),
-                                      wp.element.createElement('a', { href: post.link, className: 'read-more', style: { backgroundColor: buttonColor } }, readMoreText)
-                                  );
-                              })
-                          )
-                        : __('Loading posts...', 'fancy-post-grid')
-                )
+                content
             );
         },
 
