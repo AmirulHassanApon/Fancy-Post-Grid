@@ -153,7 +153,8 @@ function fancy_post_grid_render_callback($attributes) {
         $output .= '<p>' . esc_html($excerpt) . '</p>';
         $output .= '</div>';
         $output .= '<div class="btn-wrapper">';
-        $output .= '<a class="rs-link read-more" >'. "Read More ".'</a>';
+        $output .= '<a class="rs-link read-more" href="' . get_permalink() . '"> Read More</a>';
+
         $output .= '</div>';
         $output .= '</div>';
         $output .= '</div>';
