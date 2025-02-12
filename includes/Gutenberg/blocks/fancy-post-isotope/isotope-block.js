@@ -35,7 +35,37 @@
         },
 
         edit: function ({ attributes, setAttributes }) {
-             const { titleColor, buttonColor, titleFontSize, imageSize, gridColumns, excerptLength, showMeta, readMoreText, postType, orderBy, order, layoutStyle, textAlign, includePosts, excludePosts, postLimit, filterCategory, filterTag, filterAuthor, filterDate, enablePagination } = attributes;
+             const { titleColor,titleHoverColor,titleFontSize,titleFontWeight,titleFontFamily,
+
+                showPostTitle,showThumbnail,showPostExcerpt,showReadMoreButton,showMetaData,showPostDate
+                ,showPostAuthor,showPostCategory,showPostTags,showPostCommentsCount,showMetaIcon,
+                showPostDateIcon,showPostAuthorIcon,showPostCategoryIcon,showPostTagsIcon,
+                showPostCommentsCountIcon,titleTag,titleHoverUnderLine,titleCropBy,titleLength,
+                thumbnailSize,excerptType,excerptIndicator,excerptLimit,metaAuthorPrefix,metaSeperator,
+                authorIcon,metaAuthorIcon,showButtonIcon,iconPosition,buttonStyle,readMoreLabel,
+                sectionBgColor,sectionMargin,sectionPadding,itemPadding,itemMargin,itemBorderRadius,
+                itemBoxAlignment,
+                normalBgType,normalBorderType,normalBoxShadow,hoverBgType,hoverBorderColor,
+                hoverBoxShadow,contentitemMargin,contentitemPadding,contentnormalBorderType,
+                thumbnailImageWidth,thumbnailWrapperWidth,thumbnailWrapperHeight,thumbnailMargin,
+                thumbnailPadding,thumbnailBorderRadius,thumbnailBorderType,thumbnailBoxShadowColor,
+                postTitleFontSize,postTitleLineHeight,postTitleLetterSpacing,postTitleFontWeight,
+                postTitleAlignment,postTitleMargin,postTitlePadding,postTitleColor,postTitleBgColor,
+                postTitleBorderType,postTitleHoverColor,postTitleHoverBgColor,postTitleHoverBorderColor,
+                postTitleBoxHoverColor,postTitleBoxHoverBgColor,excerptFontSize,excerptLineHeight,
+                excerptLetterSpacing,excerptFontWeight,excerptAlignment,excerptMargin,excerptPadding,
+                excerptColor,excerptBgColor,excerptBorderType,excerptHoverColor,excerptHoverBgColor,
+                excerptHoverBorderColor,metaAlignment,metaMargin,metaTextColor,separatorColor,
+                metaLinkColor,metaIconColor,metaLinkHoverColor,buttonAlignment,buttonMargin,
+                buttonPadding,buttonTextColor,buttonBackgroundColor,buttonBorderType,buttonBorderRadius,
+                buttonHoverTextColor,buttonHoverBackgroundColor,buttonHoverBorderType,
+                buttonHoverBorderRadius,paginationMargin,paginationPadding,paginationAlignment,
+                paginationBorderStyle,paginationBorderWidth,paginationBorderRadius,paginationGap,
+                paginationTextColor,paginationBackgroundColor,paginationBorderColor,
+                paginationHoverTextColor,paginationHoverBackgroundColor,paginationHoverBorderColor,
+                paginationActiveTextColor,paginationActiveBackgroundColor,paginationActiveBorderColor,
+
+                 buttonColor, imageSize, gridColumns, excerptLength, readMoreText, postType, orderBy, order, layoutStyle, textAlign, includePosts, excludePosts, postLimit, enablePagination } = attributes;
             
             const posts = useSelect((select) => select('core').getEntityRecords('postType', postType, { per_page: postLimit, _embed: true, orderby: orderBy, order: order }), [postType, orderBy, order, postLimit]);
 
