@@ -16,6 +16,7 @@ function fancy_post_grid_add_custom_block_category($categories) {
 }
 add_filter('block_categories_all', 'fancy_post_grid_add_custom_block_category');
 
+
 function fancy_post_grid_register_gutenberg_block() {  
 
     wp_register_script(
