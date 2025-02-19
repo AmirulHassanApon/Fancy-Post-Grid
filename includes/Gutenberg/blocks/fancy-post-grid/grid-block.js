@@ -703,7 +703,9 @@
                                     ),
 
                                 
-                                showReadMoreButton && wp.element.createElement('div', { className: 'btn-wrapper' }, 
+                                showReadMoreButton && wp.element.createElement('div', { className: 'btn-wrapper',style: { 
+                                            order: buttonOrder,  }, 
+                                        }, 
                                     wp.element.createElement('a', { 
                                         href: post.link, 
                                         target: postLinkTarget === 'newWindow' ? '_blank' : '_self', 
@@ -715,7 +717,6 @@
                                             margin: getSpacingValue(attributes.buttonMargin),
                                             padding: getSpacingValue(attributes.buttonPadding),
                                             borderRadius: getSpacingValue(attributes.buttonBorderRadius),
-                                            order: buttonOrder,
                                             textDecoration: buttonStyle === 'flat' ? 'none' : 'inherit'
                                         },
                                         onMouseEnter: (e) => {
