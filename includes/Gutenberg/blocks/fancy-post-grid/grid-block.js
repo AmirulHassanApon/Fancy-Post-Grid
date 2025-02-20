@@ -12,10 +12,7 @@
         category: 'fancy-post-grid-category',
 
         attributes: {
-            titleColor: { type: 'string', default: '#000000' },
-            titleHoverColor: { type: 'string', default: '#ff0000' }, // New: Title hover color
-            titleFontWeight: { type: 'string', default: 'normal' }, // New: Font weight
-            titleFontFamily: { type: 'string', default: 'Arial' }, // New: Font family
+           
             //Field Selector
             showPostTitle: { type: 'boolean', default: true },
             showThumbnail: { type: 'boolean', default: true },
@@ -337,9 +334,6 @@
             paginationActiveTextColor: { type: 'string', default: '' },
             paginationActiveBackgroundColor: { type: 'string', default: '' },
             paginationActiveBorderColor: { type: 'string', default: '' },
-
-            titleFontSize: { type: 'number', default: 20 },
-
             buttonColor: { type: 'string', default: '#0073aa' },
             
             gridColumns: { type: 'number', default: 3 },
@@ -382,7 +376,7 @@
         },
 
         edit: function ({ attributes, setAttributes }) {
-            const { titleColor,titleHoverColor,titleFontSize,titleFontWeight,titleFontFamily,
+            const { 
                 selectedAuthor,selectedCategory, selectedTag,sortOrder,postLinkTarget,thumbnailLink,postLinkType,
 
                 showPostTitle,showThumbnail,showPostExcerpt,showReadMoreButton,showMetaData,showPostDate
@@ -636,7 +630,6 @@
                                                     color: postTitleColor,
                                                     fontSize: `${postTitleFontSize}px`,
                                                     fontWeight: postTitleFontWeight,
-                                                    fontFamily: titleFontFamily,
                                                     lineHeight: postTitleLineHeight,
                                                     letterSpacing: postTitleLetterSpacing,
                                                     borderStyle: postTitleBorderType,
@@ -798,7 +791,6 @@
                                             color: postTitleColor, 
                                             fontSize: `${postTitleFontSize}px`, 
                                             fontWeight: postTitleFontWeight, 
-                                            fontFamily: titleFontFamily, 
                                             transition: 'color 0.3s ease',
                                             backgroundColor: postTitleBgColor
                                         },
