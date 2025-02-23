@@ -110,101 +110,149 @@ function fancy_post_grid_render_callback($attributes) {
 
     $layoutStyle = isset($attributes['layoutStyle']) ? $attributes['layoutStyle'] : 'style1';
     
-    // Retrieve and sanitize all dynamic values
-$selectedAuthor = isset($attributes['selectedAuthor']) ? sanitize_text_field($attributes['selectedAuthor']) : '';
-$selectedCategory = isset($attributes['selectedCategory']) ? sanitize_text_field($attributes['selectedCategory']) : '';
-$selectedTag = isset($attributes['selectedTag']) ? sanitize_text_field($attributes['selectedTag']) : '';
-$sortOrder = isset($attributes['sortOrder']) ? sanitize_text_field($attributes['sortOrder']) : 'DESC';
-$postLinkTarget = isset($attributes['postLinkTarget']) ? sanitize_text_field($attributes['postLinkTarget']) : '_self';
-$thumbnailLink = isset($attributes['thumbnailLink']) ? sanitize_text_field($attributes['thumbnailLink']) : 'post';
-$postLinkType = isset($attributes['postLinkType']) ? sanitize_text_field($attributes['postLinkType']) : 'default';
+    $selectedAuthor = isset($attributes['selectedAuthor']) ? sanitize_text_field($attributes['selectedAuthor']) : '';
+    $selectedCategory = isset($attributes['selectedCategory']) ? sanitize_text_field($attributes['selectedCategory']) : '';
+    $selectedTag = isset($attributes['selectedTag']) ? sanitize_text_field($attributes['selectedTag']) : '';
+    $sortOrder = isset($attributes['sortOrder']) ? sanitize_text_field($attributes['sortOrder']) : 'DESC';
+    $postLinkTarget = isset($attributes['postLinkTarget']) ? sanitize_text_field($attributes['postLinkTarget']) : '_self';
+    $thumbnailLink = isset($attributes['thumbnailLink']) ? sanitize_text_field($attributes['thumbnailLink']) : 'post';
+    $postLinkType = isset($attributes['postLinkType']) ? sanitize_text_field($attributes['postLinkType']) : 'default';
 
-// Boolean values
-$showPostTitle = !empty($attributes['showPostTitle']);
-$showThumbnail = !empty($attributes['showThumbnail']);
-$showPostExcerpt = !empty($attributes['showPostExcerpt']);
-$showReadMoreButton = !empty($attributes['showReadMoreButton']);
-$showMetaData = !empty($attributes['showMetaData']);
-$showPostDate = !empty($attributes['showPostDate']);
-$showPostAuthor = !empty($attributes['showPostAuthor']);
-$showPostCategory = !empty($attributes['showPostCategory']);
-$showPostTags = !empty($attributes['showPostTags']);
-$showPostCommentsCount = !empty($attributes['showPostCommentsCount']);
-$showMetaIcon = !empty($attributes['showMetaIcon']);
-$showPostDateIcon = !empty($attributes['showPostDateIcon']);
-$showPostAuthorIcon = !empty($attributes['showPostAuthorIcon']);
-$showPostCategoryIcon = !empty($attributes['showPostCategoryIcon']);
-$showPostTagsIcon = !empty($attributes['showPostTagsIcon']);
-$showPostCommentsCountIcon = !empty($attributes['showPostCommentsCountIcon']);
+    // Boolean values
+    $showPostTitle = !empty($attributes['showPostTitle']);
+    $showThumbnail = !empty($attributes['showThumbnail']);
+    $showPostExcerpt = !empty($attributes['showPostExcerpt']);
+    $showReadMoreButton = !empty($attributes['showReadMoreButton']);
+    $showMetaData = !empty($attributes['showMetaData']);
+    $showPostDate = !empty($attributes['showPostDate']);
+    $showPostAuthor = !empty($attributes['showPostAuthor']);
+    $showPostCategory = !empty($attributes['showPostCategory']);
+    $showPostTags = !empty($attributes['showPostTags']);
+    $showPostCommentsCount = !empty($attributes['showPostCommentsCount']);
+    $showMetaIcon = !empty($attributes['showMetaIcon']);
+    $showPostDateIcon = !empty($attributes['showPostDateIcon']);
+    $showPostAuthorIcon = !empty($attributes['showPostAuthorIcon']);
+    $showPostCategoryIcon = !empty($attributes['showPostCategoryIcon']);
+    $showPostTagsIcon = !empty($attributes['showPostTagsIcon']);
+    $showPostCommentsCountIcon = !empty($attributes['showPostCommentsCountIcon']);
 
-// Styling
-$itemBackgroundColor = isset($attributes['itemBackgroundColor']) ? sanitize_hex_color($attributes['itemBackgroundColor']) : '';
-$itemBorderWidth = isset($attributes['itemBorderWidth']) ? absint($attributes['itemBorderWidth']) : 1;
-$itemBorderType = isset($attributes['itemBorderType']) ? sanitize_text_field($attributes['itemBorderType']) : 'solid';
+    // Styling
+    $itemBackgroundColor = isset($attributes['itemBackgroundColor']) ? sanitize_hex_color($attributes['itemBackgroundColor']) : '';
+    $itemBorderWidth = isset($attributes['itemBorderWidth']) ? absint($attributes['itemBorderWidth']) : 1;
+    $itemBorderType = isset($attributes['itemBorderType']) ? sanitize_text_field($attributes['itemBorderType']) : 'solid';
 
-// Order values
-$metaOrder = isset($attributes['metaOrder']) ? absint($attributes['metaOrder']) : 2;
-$titleOrder = isset($attributes['titleOrder']) ? absint($attributes['titleOrder']) : 1;
-$excerptOrder = isset($attributes['excerptOrder']) ? absint($attributes['excerptOrder']) : 3;
-$buttonOrder = isset($attributes['buttonOrder']) ? absint($attributes['buttonOrder']) : 4;
+    // Order values
+    $metaOrder = isset($attributes['metaOrder']) ? absint($attributes['metaOrder']) : 2;
+    $titleOrder = isset($attributes['titleOrder']) ? absint($attributes['titleOrder']) : 1;
+    $excerptOrder = isset($attributes['excerptOrder']) ? absint($attributes['excerptOrder']) : 3;
+    $buttonOrder = isset($attributes['buttonOrder']) ? absint($attributes['buttonOrder']) : 4;
 
-// Post title settings
-$titleTag = isset($attributes['titleTag']) ? sanitize_text_field($attributes['titleTag']) : 'h3';
-$titleHoverUnderLine = !empty($attributes['titleHoverUnderLine']);
-$titleCropBy = isset($attributes['titleCropBy']) ? sanitize_text_field($attributes['titleCropBy']) : 'words';
-$titleLength = isset($attributes['titleLength']) ? absint($attributes['titleLength']) : 10;
+    // Post title settings
+    $titleTag = isset($attributes['titleTag']) ? sanitize_text_field($attributes['titleTag']) : 'h3';
+    $titleHoverUnderLine = !empty($attributes['titleHoverUnderLine']);
+    $titleCropBy = isset($attributes['titleCropBy']) ? sanitize_text_field($attributes['titleCropBy']) : 'words';
+    $titleLength = isset($attributes['titleLength']) ? absint($attributes['titleLength']) : 10;
 
-// Thumbnail
-$thumbnailSize = isset($attributes['thumbnailSize']) ? sanitize_text_field($attributes['thumbnailSize']) : 'medium';
+    // Thumbnail
+    $thumbnailSize = isset($attributes['thumbnailSize']) ? sanitize_text_field($attributes['thumbnailSize']) : 'medium';
+    $thumbnailImageWidth = isset($attributes['thumbnailImageWidth']) ? absint($attributes['thumbnailImageWidth']) : '';
+    $thumbnailWrapperWidth = isset($attributes['thumbnailWrapperWidth']) ? absint($attributes['thumbnailWrapperWidth']) : '';
+    $thumbnailWrapperHeight = isset($attributes['thumbnailWrapperHeight']) ? absint($attributes['thumbnailWrapperHeight']) : '';
+    $thumbnailMargin = isset($attributes['thumbnailMargin']) ? sanitize_text_field($attributes['thumbnailMargin']) : '';
+    $thumbnailPadding = isset($attributes['thumbnailPadding']) ? sanitize_text_field($attributes['thumbnailPadding']) : '';
+    $thumbnailBorderRadius = isset($attributes['thumbnailBorderRadius']) ? sanitize_text_field($attributes['thumbnailBorderRadius']) : '';
+    $thumbnailBorderType = isset($attributes['thumbnailBorderType']) ? sanitize_text_field($attributes['thumbnailBorderType']) : '';
+    $thumbnailBoxShadowColor = isset($attributes['thumbnailBoxShadowColor']) ? sanitize_hex_color($attributes['thumbnailBoxShadowColor']) : '';
 
-// Excerpt
-$excerptType = isset($attributes['excerptType']) ? sanitize_text_field($attributes['excerptType']) : 'words';
-$excerptIndicator = isset($attributes['excerptIndicator']) ? sanitize_text_field($attributes['excerptIndicator']) : '...';
-$excerptLimit = isset($attributes['excerptLimit']) ? absint($attributes['excerptLimit']) : 20;
+    // Excerpt
+    $excerptType = isset($attributes['excerptType']) ? sanitize_text_field($attributes['excerptType']) : 'words';
+    $excerptIndicator = isset($attributes['excerptIndicator']) ? sanitize_text_field($attributes['excerptIndicator']) : '...';
+    $excerptLimit = isset($attributes['excerptLimit']) ? absint($attributes['excerptLimit']) : 20;
 
-// Meta
-$metaAuthorPrefix = isset($attributes['metaAuthorPrefix']) ? sanitize_text_field($attributes['metaAuthorPrefix']) : __('By', 'fancy-post-grid');
-$metaSeperator = isset($attributes['metaSeperator']) ? sanitize_text_field($attributes['metaSeperator']) : '|';
+    // Meta
+    $metaAuthorPrefix = isset($attributes['metaAuthorPrefix']) ? sanitize_text_field($attributes['metaAuthorPrefix']) : __('By', 'fancy-post-grid');
+    $metaSeperator = isset($attributes['metaSeperator']) ? sanitize_text_field($attributes['metaSeperator']) : '|';
+    $authorIcon = isset($attributes['authorIcon']) ? sanitize_text_field($attributes['authorIcon']) : '';
+    $metaAuthorIcon = isset($attributes['metaAuthorIcon']) ? sanitize_text_field($attributes['metaAuthorIcon']) : '';
 
-// Icons
-$authorIcon = isset($attributes['authorIcon']) ? sanitize_text_field($attributes['authorIcon']) : '';
-$metaAuthorIcon = isset($attributes['metaAuthorIcon']) ? sanitize_text_field($attributes['metaAuthorIcon']) : '';
+    // Read More Button
+    $showButtonIcon = !empty($attributes['showButtonIcon']);
+    $iconPosition = isset($attributes['iconPosition']) ? sanitize_text_field($attributes['iconPosition']) : 'left';
+    $buttonStyle = isset($attributes['buttonStyle']) ? sanitize_text_field($attributes['buttonStyle']) : 'default';
+    $readMoreLabel = isset($attributes['readMoreLabel']) ? sanitize_text_field($attributes['readMoreLabel']) : __('Read More', 'fancy-post-grid');
 
-// Read More Button
-$showButtonIcon = !empty($attributes['showButtonIcon']);
-$iconPosition = isset($attributes['iconPosition']) ? sanitize_text_field($attributes['iconPosition']) : 'left';
-$buttonStyle = isset($attributes['buttonStyle']) ? sanitize_text_field($attributes['buttonStyle']) : 'default';
-$readMoreLabel = isset($attributes['readMoreLabel']) ? sanitize_text_field($attributes['readMoreLabel']) : __('Read More', 'fancy-post-grid');
+    // Button Alignment
+    $buttonAlignment = isset($attributes['buttonAlignment']) ? sanitize_text_field($attributes['buttonAlignment']) : 'center';
 
-// Section Styling
-$sectionBgColor = isset($attributes['sectionBgColor']) ? sanitize_hex_color($attributes['sectionBgColor']) : '';
-$sectionMargin = isset($attributes['sectionMargin']) ? sanitize_text_field($attributes['sectionMargin']) : '';
-$sectionPadding = isset($attributes['sectionPadding']) ? sanitize_text_field($attributes['sectionPadding']) : '';
+    // Button Margin
+    $buttonMargin = isset($attributes['buttonMargin']) ? $attributes['buttonMargin'] : ['top' => '0px', 'right' => '0px', 'bottom' => '0px', 'left' => '0px'];
 
-// Item Styling
-$itemPadding = isset($attributes['itemPadding']) ? sanitize_text_field($attributes['itemPadding']) : '';
-$itemMargin = isset($attributes['itemMargin']) ? sanitize_text_field($attributes['itemMargin']) : '';
-$itemBorderRadius = isset($attributes['itemBorderRadius']) ? sanitize_text_field($attributes['itemBorderRadius']) : '';
+    // Button Padding
+    $buttonPadding = isset($attributes['buttonPadding']) ? $attributes['buttonPadding'] : ['top' => '10px', 'right' => '20px', 'bottom' => '10px', 'left' => '20px'];
 
-// Pagination
-$enablePagination = !empty($attributes['enablePagination']);
-$paginationAlignment = isset($attributes['paginationAlignment']) ? sanitize_text_field($attributes['paginationAlignment']) : 'center';
-$paginationTextColor = isset($attributes['paginationTextColor']) ? sanitize_hex_color($attributes['paginationTextColor']) : '';
-$paginationBackgroundColor = isset($attributes['paginationBackgroundColor']) ? sanitize_hex_color($attributes['paginationBackgroundColor']) : '';
-$paginationBorderColor = isset($attributes['paginationBorderColor']) ? sanitize_hex_color($attributes['paginationBorderColor']) : '';
-$paginationHoverTextColor = isset($attributes['paginationHoverTextColor']) ? sanitize_hex_color($attributes['paginationHoverTextColor']) : '';
-$paginationHoverBackgroundColor = isset($attributes['paginationHoverBackgroundColor']) ? sanitize_hex_color($attributes['paginationHoverBackgroundColor']) : '';
+    // Normal State
+    $buttonTextColor = isset($attributes['buttonTextColor']) ? sanitize_hex_color($attributes['buttonTextColor']) : '#ffffff';
+    $buttonBackgroundColor = isset($attributes['buttonBackgroundColor']) ? sanitize_hex_color($attributes['buttonBackgroundColor']) : '#0073aa';
+    $buttonBorderType = isset($attributes['buttonBorderType']) ? sanitize_text_field($attributes['buttonBorderType']) : 'solid';
+    $buttonBorderRadius = isset($attributes['buttonBorderRadius']) ? sanitize_text_field($attributes['buttonBorderRadius']) : '5px';
 
-// General Layout
-$textAlign = isset($attributes['textAlign']) ? sanitize_text_field($attributes['textAlign']) : 'left';
-$gridColumns = isset($attributes['gridColumns']) ? absint($attributes['gridColumns']) : 3;
-$postType = isset($attributes['postType']) ? sanitize_text_field($attributes['postType']) : 'post';
-$order = isset($attributes['order']) ? sanitize_text_field($attributes['order']) : 'DESC';
-$postLimit = isset($attributes['postLimit']) ? absint($attributes['postLimit']) : 10;
+    // Hover State
+    $buttonHoverTextColor = isset($attributes['buttonHoverTextColor']) ? sanitize_hex_color($attributes['buttonHoverTextColor']) : '#ffffff';
+    $buttonHoverBackgroundColor = isset($attributes['buttonHoverBackgroundColor']) ? sanitize_hex_color($attributes['buttonHoverBackgroundColor']) : '#005177';
+    $buttonHoverBorderType = isset($attributes['buttonHoverBorderType']) ? sanitize_text_field($attributes['buttonHoverBorderType']) : 'solid';
+    $buttonHoverBorderRadius = isset($attributes['buttonHoverBorderRadius']) ? sanitize_text_field($attributes['buttonHoverBorderRadius']) : '5px';
 
-// Include/Exclude Posts
-$includePosts = isset($attributes['includePosts']) ? array_map('absint', explode(',', $attributes['includePosts'])) : [];
-$excludePosts = isset($attributes['excludePosts']) ? array_map('absint', explode(',', $attributes['excludePosts'])) : [];
+    // Icon (Optional)
+    $buttonIcon = $showButtonIcon ? '<span class="button-icon"><i class="ri-arrow-right-line"></i></span>' : ''; // Using Font Awesome icon
+
+    // Button Style
+    $buttonStyles = 'display: inline-flex; align-items: center; justify-content: center; text-decoration: none;';
+    $buttonStyles .= ' color: ' . esc_attr($buttonTextColor) . ';';
+    $buttonStyles .= ' background-color: ' . esc_attr($buttonBackgroundColor) . ';';
+    $buttonStyles .= ' border: 1px ' . esc_attr($buttonBorderType) . ' ' . esc_attr($buttonTextColor) . ';';
+    $buttonStyles .= ' border-radius: ' . esc_attr($buttonBorderRadius) . ';';
+    $buttonStyles .= ' padding: ' . esc_attr($buttonPadding['top']) . ' ' . esc_attr($buttonPadding['right']) . ' ' . esc_attr($buttonPadding['bottom']) . ' ' . esc_attr($buttonPadding['left']) . ';';
+    $buttonStyles .= ' margin: ' . esc_attr($buttonMargin['top']) . ' ' . esc_attr($buttonMargin['right']) . ' ' . esc_attr($buttonMargin['bottom']) . ' ' . esc_attr($buttonMargin['left']) . ';';
+    $buttonStyles .= ' transition: all 0.3s ease-in-out;';
+
+    // Button Hover Styles
+    $buttonHoverStyles = 'this.style.color=\'' . esc_attr($buttonHoverTextColor) . '\';';
+    $buttonHoverStyles .= ' this.style.backgroundColor=\'' . esc_attr($buttonHoverBackgroundColor) . '\';';
+    $buttonHoverStyles .= ' this.style.border=\'' . esc_attr($buttonHoverBorderType) . ' ' . esc_attr($buttonHoverTextColor) . '\';';
+    $buttonHoverStyles .= ' this.style.borderRadius=\'' . esc_attr($buttonHoverBorderRadius) . '\';';
+
+    // Button Alignment
+    $alignmentStyle = 'text-align: ' . esc_attr($buttonAlignment) . ';';
+
+    // Section Styling
+    $sectionBgColor = isset($attributes['sectionBgColor']) ? sanitize_hex_color($attributes['sectionBgColor']) : '';
+    $sectionMargin = isset($attributes['sectionMargin']) ? sanitize_text_field($attributes['sectionMargin']) : '';
+    $sectionPadding = isset($attributes['sectionPadding']) ? sanitize_text_field($attributes['sectionPadding']) : '';
+
+    // Item Styling
+    $itemPadding = isset($attributes['itemPadding']) ? sanitize_text_field($attributes['itemPadding']) : '';
+    $itemMargin = isset($attributes['itemMargin']) ? sanitize_text_field($attributes['itemMargin']) : '';
+    $itemBorderRadius = isset($attributes['itemBorderRadius']) ? sanitize_text_field($attributes['itemBorderRadius']) : '';
+    $itemHoverBackgroundColor = isset($attributes['itemHoverBackgroundColor']) ? sanitize_hex_color($attributes['itemHoverBackgroundColor']) : '';
+    $itemBoxAlignment = isset($attributes['itemBoxAlignment']) ? sanitize_text_field($attributes['itemBoxAlignment']) : '';
+    $normalBorderType = isset($attributes['normalBorderType']) ? sanitize_text_field($attributes['normalBorderType']) : '';
+    $itemBoxShadow = isset($attributes['itemBoxShadow']) ? sanitize_text_field($attributes['itemBoxShadow']) : '';
+    $itemBorderColor = isset($attributes['itemBorderColor']) ? sanitize_hex_color($attributes['itemBorderColor']) : '';
+
+    // Pagination
+    $enablePagination = !empty($attributes['enablePagination']);
+    $paginationAlignment = isset($attributes['paginationAlignment']) ? sanitize_text_field($attributes['paginationAlignment']) : 'center';
+
+    // General Layout
+    $textAlign = isset($attributes['textAlign']) ? sanitize_text_field($attributes['textAlign']) : 'left';
+    $gridColumns = isset($attributes['gridColumns']) ? absint($attributes['gridColumns']) : 3;
+    $postType = isset($attributes['postType']) ? sanitize_text_field($attributes['postType']) : 'post';
+    $order = isset($attributes['order']) ? sanitize_text_field($attributes['order']) : 'DESC';
+    $postLimit = isset($attributes['postLimit']) ? absint($attributes['postLimit']) : 10;
+
+    // Include/Exclude Posts
+    $includePosts = isset($attributes['includePosts']) ? array_map('absint', explode(',', $attributes['includePosts'])) : [];
+    $excludePosts = isset($attributes['excludePosts']) ? array_map('absint', explode(',', $attributes['excludePosts'])) : [];
 
 
 
@@ -212,7 +260,7 @@ $excludePosts = isset($attributes['excludePosts']) ? array_map('absint', explode
 
     $query_args = array(
         'post_type'      => 'post',
-        'posts_per_page' => 6, // Adjust as needed
+        'posts_per_page' => $postLimit, // Adjust as needed
         'paged'          => $paged,
     );
 
@@ -221,7 +269,8 @@ $excludePosts = isset($attributes['excludePosts']) ? array_map('absint', explode
         return '<p>' . esc_html__('No posts found.', 'fancy-post-grid') . '</p>';
     }
 
-    $output = '<div class="rs-blog-layout-5 fancy-post-grid ' . esc_attr($layoutStyle) . '">';
+    // $output = '<div class="rs-blog-layout-5 fancy-post-grid ' . esc_attr($layoutStyle) . '">';
+    $output = '<div class="rs-blog-layout-5 fancy-post-grid ' . esc_attr($layoutStyle) . '" style="grid-template-columns: repeat(' . esc_attr($gridColumns) . ', 1fr);">';
 
     while ($query->have_posts()) {
         $query->the_post();
@@ -234,37 +283,75 @@ $excludePosts = isset($attributes['excludePosts']) ? array_map('absint', explode
         $categories = get_the_category_list(', ');
         $tags = get_the_tag_list('', ', ');
         $comments_count = get_comments_number();
-        $thumbnail = get_the_post_thumbnail($post_id, 'medium', ['class' => 'fancy-post-thumbnail']);
+        $thumbnail = get_the_post_thumbnail($post_id, $thumbnailSize, ['class' => 'fancy-post-thumbnail']);
         
 
         // Style-based output
         if ($layoutStyle === 'style1') {
             // Full post layout
             $output .= '<div class="fancy-post-item rs-blog__single">';
+
+            // Thumbnail
             if ($thumbnail) {
                 $output .= '<div class="fancy-post-image rs-thumb"><a href="' . esc_url($permalink) . '">' . $thumbnail . '</a></div>';
             }
-            
+            // END Thumbnail
+
+            // MAIN Content
             $output .= '<div class="rs-content" style="background-color:' . esc_attr($itemBackgroundColor) . ';">';
-            $output .= '<h3 class="title"><a href="' . esc_url($permalink) . '">' . esc_html($title) . '</a></h3>';
+
+            // Meta Data
             $output .= '<ul class="meta-data-list">';
-            $output .= '<li class="post-date">' . esc_html($date) . '</li> | ';
-            $output .= '<li class="post-author">' . esc_html__('By', 'fancy-post-grid') . ' ' . esc_html($author) . '</li> | ';
-            $output .= '<li class="post-categories">' . $categories . '</li> | ';
+            $output .= '<li class="meta-date">' . esc_html($date) . '</li> | ';
+            $output .= '<li class="meta-author">' . esc_html__('By', 'fancy-post-grid') . ' ' . esc_html($author) . '</li> | ';
+            $output .= '<li class="meta-categories">' . $categories . '</li> | ';
             if (!empty($tags)) {
-                $output .= '<li class="post-tags">' . esc_html__('Tags:', 'fancy-post-grid') . ' ' . $tags . '</li> | ';
+                $output .= '<li class="meta-tags">' . esc_html__('Tags:', 'fancy-post-grid') . ' ' . $tags . '</li> | ';
             }
-            $output .= '<li class="post-comments">' . esc_html($comments_count) . ' ' . esc_html__('Comments', 'fancy-post-grid') . '</li>';
+            $output .= '<li class="meta-comment-count">' . esc_html($comments_count) . ' ' . esc_html__('Comments', 'fancy-post-grid') . '</li>';
             $output .= '</ul>';
+            // End Meta Data
+
+            // Title
+            $output .= '<h3 class="title"><a href="' . esc_url($permalink) . '">' . esc_html($title) . '</a></h3>';
+            // End Title
+
+            // Excerpt
             $output .= '<div class="fpg-excerpt">';
             $output .= '<p>' . esc_html($excerpt) . '</p>';
             $output .= '</div>';
-            $output .= '<div class="btn-wrapper">';
-            $output .= '<a class="rs-link read-more" href="' . get_permalink() . '"> Read More</a>';
+            // End Excerpt
+
+            
+            // Button Output
+            $output .= '<div class="btn-wrapper" style="' . esc_attr($alignmentStyle) . '">';
+            $output .= '<a class="rs-link read-more" href="' . esc_url(get_permalink()) . '" style="' . esc_attr($buttonStyles) . '" 
+                        onmouseover="' . esc_attr($buttonHoverStyles) . '" 
+                        onmouseout="this.style.color=\'' . esc_attr($buttonTextColor) . '\';
+                                    this.style.backgroundColor=\'' . esc_attr($buttonBackgroundColor) . '\';
+                                    this.style.border=\'1px ' . esc_attr($buttonBorderType) . ' ' . esc_attr($buttonTextColor) . '\';
+                                    this.style.borderRadius=\'' . esc_attr($buttonBorderRadius) . '\';">';
+                        
+            // Icon Positioning
+            if ($iconPosition === 'left' && $showButtonIcon) {
+                $output .= $buttonIcon . ' ';
+                echo $buttonIcon;
+            }
+            $output .= esc_html($readMoreLabel);
+            if ($iconPosition === 'right' && $showButtonIcon) {
+                $output .= ' ' . $buttonIcon;
+                echo $buttonIcon;
+
+            }
+
+            $output .= '</a>';
+            $output .= '</div>';
+            // End Button
 
             $output .= '</div>';
+            // End MAIN Content
             $output .= '</div>';
-            $output .= '</div>';
+            // End Full post layout
         }
         
         
@@ -296,18 +383,32 @@ $excludePosts = isset($attributes['excludePosts']) ? array_map('absint', explode
             $output .= '<div class="fpg-excerpt">';
             $output .= '<p>' . esc_html($excerpt) . '</p>';
             $output .= '</div>';
-            $output .= '<div class="btn-wrapper">';
-            $output .= '<a class="rs-link read-more" href="' . get_permalink() . '"> Read More</a>';
+            // Button Output
+            $output .= '<div class="btn-wrapper" style="' . esc_attr($alignmentStyle) . '">';
+            $output .= '<a class="rs-link read-more" href="' . esc_url(get_permalink()) . '" style="' . esc_attr($buttonStyles) . '" 
+                        onmouseover="' . esc_attr($buttonHoverStyles) . '" 
+                        onmouseout="this.style.color=\'' . esc_attr($buttonTextColor) . '\';
+                                    this.style.backgroundColor=\'' . esc_attr($buttonBackgroundColor) . '\';
+                                    this.style.border=\'1px ' . esc_attr($buttonBorderType) . ' ' . esc_attr($buttonTextColor) . '\';
+                                    this.style.borderRadius=\'' . esc_attr($buttonBorderRadius) . '\';">';
+                        
+            // Icon Positioning
+            if ($iconPosition === 'left' && $showButtonIcon) {
+                $output .= $buttonIcon . ' ';
+            }
+            $output .= esc_html($readMoreLabel);
+            if ($iconPosition === 'right' && $showButtonIcon) {
+                $output .= ' ' . $buttonIcon;
+            }
 
+            $output .= '</a>';
             $output .= '</div>';
             $output .= '</div>';
             $output .= '</div>';
         }
-
-
         
     }
-
+    
     $output .= '</div>'; // End .fancy-post-grid
 
     // Pagination
@@ -376,7 +477,7 @@ function fancy_post_slider_render_callback($attributes) {
     $output .= '</div>'; // End .fancy-post-grid
 
     // Pagination
-    $output .= '<div class="fancy-pagination">';
+    $output .= '<div class="fancy-pagination fpg-pagination">';
     $output .= paginate_links(array(
         'total'   => $query->max_num_pages,
         'current' => $paged,
