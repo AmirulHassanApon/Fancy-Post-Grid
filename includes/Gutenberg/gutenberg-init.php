@@ -119,27 +119,56 @@ function fancy_post_grid_render_callback($attributes) {
     $postLinkType = isset($attributes['postLinkType']) ? sanitize_text_field($attributes['postLinkType']) : 'default';
 
     // Boolean values
-    $showPostTitle = !empty($attributes['showPostTitle']);
-    $showThumbnail = !empty($attributes['showThumbnail']);
-    $showPostExcerpt = !empty($attributes['showPostExcerpt']);
-    $showReadMoreButton = !empty($attributes['showReadMoreButton']);
-    $showMetaData = !empty($attributes['showMetaData']);
-    $showPostDate = !empty($attributes['showPostDate']);
-    $showPostAuthor = !empty($attributes['showPostAuthor']);
-    $showPostCategory = !empty($attributes['showPostCategory']);
-    $showPostTags = !empty($attributes['showPostTags']);
-    $showPostCommentsCount = !empty($attributes['showPostCommentsCount']);
-    $showMetaIcon = !empty($attributes['showMetaIcon']);
-    $showPostDateIcon = !empty($attributes['showPostDateIcon']);
-    $showPostAuthorIcon = !empty($attributes['showPostAuthorIcon']);
-    $showPostCategoryIcon = !empty($attributes['showPostCategoryIcon']);
-    $showPostTagsIcon = !empty($attributes['showPostTagsIcon']);
-    $showPostCommentsCountIcon = !empty($attributes['showPostCommentsCountIcon']);
+    $showPostTitle = isset($attributes['showPostTitle']) ? filter_var($attributes['showPostTitle'], FILTER_VALIDATE_BOOLEAN) : true;
+    $showThumbnail = isset($attributes['showThumbnail']) ? filter_var($attributes['showThumbnail'], FILTER_VALIDATE_BOOLEAN) : true;
+    $showPostExcerpt = isset($attributes['showPostExcerpt']) ? filter_var($attributes['showPostExcerpt'], FILTER_VALIDATE_BOOLEAN) : true;
+    $showReadMoreButton = isset($attributes['showReadMoreButton']) ? filter_var($attributes['showReadMoreButton'], FILTER_VALIDATE_BOOLEAN) : true;
+    $showMetaData = isset($attributes['showMetaData']) ? filter_var($attributes['showMetaData'], FILTER_VALIDATE_BOOLEAN) : true;
+    $showPostDate = isset($attributes['showPostDate']) ? filter_var($attributes['showPostDate'], FILTER_VALIDATE_BOOLEAN) : true;
+    $showPostAuthor = isset($attributes['showPostAuthor']) ? filter_var($attributes['showPostAuthor'], FILTER_VALIDATE_BOOLEAN) : true;
+    $showPostCategory = isset($attributes['showPostCategory']) ? filter_var($attributes['showPostCategory'], FILTER_VALIDATE_BOOLEAN) : true;
+    $showPostTags = isset($attributes['showPostTags']) ? filter_var($attributes['showPostTags'], FILTER_VALIDATE_BOOLEAN) : true;
+    $showPostCommentsCount = isset($attributes['showPostCommentsCount']) ? filter_var($attributes['showPostCommentsCount'], FILTER_VALIDATE_BOOLEAN) : true;
+    $showMetaIcon = isset($attributes['showMetaIcon']) ? filter_var($attributes['showMetaIcon'], FILTER_VALIDATE_BOOLEAN) : true;
+    $showPostDateIcon = isset($attributes['showPostDateIcon']) ? filter_var($attributes['showPostDateIcon'], FILTER_VALIDATE_BOOLEAN) : true;
+    $showPostAuthorIcon = isset($attributes['showPostAuthorIcon']) ? filter_var($attributes['showPostAuthorIcon'], FILTER_VALIDATE_BOOLEAN) : true;
+    $showPostCategoryIcon = isset($attributes['showPostCategoryIcon']) ? filter_var($attributes['showPostCategoryIcon'], FILTER_VALIDATE_BOOLEAN) : true;
+    $showPostTagsIcon = isset($attributes['showPostTagsIcon']) ? filter_var($attributes['showPostTagsIcon'], FILTER_VALIDATE_BOOLEAN) : true;
+    $showPostCommentsCountIcon = isset($attributes['showPostCommentsCountIcon']) ? filter_var($attributes['showPostCommentsCountIcon'], FILTER_VALIDATE_BOOLEAN) : true;
 
     // Styling
+
+    // Section Background
+    
+    $sectionBgColor    = isset($attributes['sectionBgColor']) ? sanitize_hex_color($attributes['sectionBgColor']) : '';
+    // Section Margin & Padding
+    
+    $sectionMargin = isset($attributes['sectionMargin']) ? $attributes['sectionMargin'] : ['top' => '', 'right' => '', 'bottom' => '10px', 'left' => '20px'];
+    $sectionPadding = isset($attributes['sectionPadding']) ? $attributes['sectionPadding'] : ['top' => '', 'right' => '', 'bottom' => '', 'left' => ''];
+
+    // Item Box
+    
+
+    $itemPadding = isset($attributes['itemPadding']) ? $attributes['itemPadding'] : ['top' => '', 'right' => '', 'bottom' => '', 'left' => ''];
+    $itemMargin = isset($attributes['itemMargin']) ? $attributes['itemMargin'] : ['top' => '', 'right' => '', 'bottom' => '', 'left' => ''];
+    $itemBorderRadius = isset($attributes['itemBorderRadius']) ? $attributes['itemBorderRadius'] : ['top' => '', 'right' => '', 'bottom' => '', 'left' => ''];
+    $itemBorderWidth = isset($attributes['itemBorderWidth']) ? $attributes['itemBorderWidth'] : ['top' => '', 'right' => '', 'bottom' => '', 'left' => ''];
+
+    $itemBoxAlignment   = isset($attributes['itemBoxAlignment']) ? sanitize_text_field($attributes['itemBoxAlignment']) : 'center';
+    $itemBorderType     = isset($attributes['itemBorderType']) ? sanitize_text_field($attributes['itemBorderType']) : 'solid';
+    $itemBoxShadow      = isset($attributes['itemBoxShadow']) ? sanitize_text_field($attributes['itemBoxShadow']) : '';
     $itemBackgroundColor = isset($attributes['itemBackgroundColor']) ? sanitize_hex_color($attributes['itemBackgroundColor']) : '';
-    $itemBorderWidth = isset($attributes['itemBorderWidth']) ? absint($attributes['itemBorderWidth']) : 1;
-    $itemBorderType = isset($attributes['itemBorderType']) ? sanitize_text_field($attributes['itemBorderType']) : 'solid';
+    $itemBorderColor    = isset($attributes['itemBorderColor']) ? sanitize_hex_color($attributes['itemBorderColor']) : '';
+    $itemHoverBoxShadow = isset($attributes['itemHoverBoxShadow']) ? sanitize_text_field($attributes['itemHoverBoxShadow']) : '';
+    $itemHoverBackgroundColor = isset($attributes['itemHoverBackgroundColor']) ? sanitize_hex_color($attributes['itemHoverBackgroundColor']) : '';
+
+    // Content Box
+    
+    $contentItemPadding = isset($attributes['contentItemPadding']) ? $attributes['contentItemPadding'] : ['top' => '', 'right' => '', 'bottom' => '', 'left' => ''];
+    $contentItemMargin = isset($attributes['contentItemMargin']) ? $attributes['contentItemMargin'] : ['top' => '', 'right' => '', 'bottom' => '', 'left' => ''];
+    $contentBorderWidth = isset($attributes['contentBorderWidth']) ? $attributes['contentBorderWidth'] : ['top' => '', 'right' => '', 'bottom' => '', 'left' => ''];
+    $contentNormalBorderType = isset($attributes['contentnormalBorderType']) ? sanitize_text_field($attributes['contentnormalBorderType']) : 'none';
+    
 
     // Order values
     $metaOrder = isset($attributes['metaOrder']) ? absint($attributes['metaOrder']) : 2;
@@ -148,10 +177,26 @@ function fancy_post_grid_render_callback($attributes) {
     $buttonOrder = isset($attributes['buttonOrder']) ? absint($attributes['buttonOrder']) : 4;
 
     // Post title settings
-    $titleTag = isset($attributes['titleTag']) ? sanitize_text_field($attributes['titleTag']) : 'h3';
-    $titleHoverUnderLine = !empty($attributes['titleHoverUnderLine']);
-    $titleCropBy = isset($attributes['titleCropBy']) ? sanitize_text_field($attributes['titleCropBy']) : 'words';
-    $titleLength = isset($attributes['titleLength']) ? absint($attributes['titleLength']) : 10;
+
+    $titleTag               = isset($attributes['titleTag']) ? sanitize_text_field($attributes['titleTag']) : 'h3';
+    $titleHoverUnderLine    = !empty($attributes['titleHoverUnderLine']);
+    $titleCropBy            = isset($attributes['titleCropBy']) ? sanitize_text_field($attributes['titleCropBy']) : 'words';
+    $titleLength            = isset($attributes['titleLength']) ? absint($attributes['titleLength']) : 10;
+    $postTitleFontSize      = isset($attributes['postTitleFontSize']) ? absint($attributes['postTitleFontSize']) : 16;
+    $postTitleLineHeight    = isset($attributes['postTitleLineHeight']) ? floatval($attributes['postTitleLineHeight']) : 1.5;
+    $postTitleLetterSpacing = isset($attributes['postTitleLetterSpacing']) ? floatval($attributes['postTitleLetterSpacing']) : 1;
+    $postTitleFontWeight    = isset($attributes['postTitleFontWeight']) ? sanitize_text_field($attributes['postTitleFontWeight']) : '400';
+    $postTitleAlignment     = isset($attributes['postTitleAlignment']) ? sanitize_text_field($attributes['postTitleAlignment']) : 'left';
+    $postTitleColor         = isset($attributes['postTitleColor']) ? sanitize_hex_color($attributes['postTitleColor']) : '#000000';
+    $postTitleBgColor       = isset($attributes['postTitleBgColor']) ? sanitize_hex_color($attributes['postTitleBgColor']) : '';
+    $postTitleBorderType    = isset($attributes['postTitleBorderType']) ? sanitize_text_field($attributes['postTitleBorderType']) : 'none';
+    $postTitleHoverColor    = isset($attributes['postTitleHoverColor']) ? sanitize_hex_color($attributes['postTitleHoverColor']) : '';
+    $postTitleHoverBgColor  = isset($attributes['postTitleHoverBgColor']) ? sanitize_hex_color($attributes['postTitleHoverBgColor']) : '';
+    $postTitleHoverBorderColor = isset($attributes['postTitleHoverBorderColor']) ? sanitize_hex_color($attributes['postTitleHoverBorderColor']) : '';
+
+    // Sanitize margins and paddings
+    $postTitleMargin  = isset($attributes['postTitleMargin']) ? array_map('sanitize_text_field', $attributes['postTitleMargin']) : ['top' => '', 'right' => '', 'bottom' => '', 'left' => ''];
+    $postTitlePadding = isset($attributes['postTitlePadding']) ? array_map('sanitize_text_field', $attributes['postTitlePadding']) : ['top' => '', 'right' => '', 'bottom' => '', 'left' => ''];
 
     // Thumbnail
     $thumbnailSize = isset($attributes['thumbnailSize']) ? sanitize_text_field($attributes['thumbnailSize']) : 'medium';
@@ -165,15 +210,39 @@ function fancy_post_grid_render_callback($attributes) {
     $thumbnailBoxShadowColor = isset($attributes['thumbnailBoxShadowColor']) ? sanitize_hex_color($attributes['thumbnailBoxShadowColor']) : '';
 
     // Excerpt
+
     $excerptType = isset($attributes['excerptType']) ? sanitize_text_field($attributes['excerptType']) : 'words';
     $excerptIndicator = isset($attributes['excerptIndicator']) ? sanitize_text_field($attributes['excerptIndicator']) : '...';
     $excerptLimit = isset($attributes['excerptLimit']) ? absint($attributes['excerptLimit']) : 20;
+    $excerptFontSize = isset($attributes['excerptFontSize']) ? absint($attributes['excerptFontSize']) : 16;
+    $excerptLineHeight = isset($attributes['excerptLineHeight']) ? floatval($attributes['excerptLineHeight']) : 1.5;
+    $excerptLetterSpacing = isset($attributes['excerptLetterSpacing']) ? floatval($attributes['excerptLetterSpacing']) : 1;
+    $excerptFontWeight = isset($attributes['excerptFontWeight']) ? sanitize_text_field($attributes['excerptFontWeight']) : '400';
+    $excerptAlignment = isset($attributes['excerptAlignment']) ? sanitize_text_field($attributes['excerptAlignment']) : 'left';
+
+    $excerptMargin = isset($attributes['excerptMargin']) ? array_map('sanitize_text_field', $attributes['excerptMargin']) : ['top' => '', 'right' => '', 'bottom' => '', 'left' => ''];
+    $excerptPadding = isset($attributes['excerptPadding']) ? array_map('sanitize_text_field', $attributes['excerptPadding']) : ['top' => '', 'right' => '', 'bottom' => '', 'left' => ''];
+
+    $excerptColor = isset($attributes['excerptColor']) ? sanitize_hex_color($attributes['excerptColor']) : '#000000';
+    $excerptBgColor = isset($attributes['excerptBgColor']) ? sanitize_hex_color($attributes['excerptBgColor']) : '';
+    $excerptBorderType = isset($attributes['excerptBorderType']) ? sanitize_text_field($attributes['excerptBorderType']) : 'none';
+    $excerptHoverColor = isset($attributes['excerptHoverColor']) ? sanitize_hex_color($attributes['excerptHoverColor']) : '';
+    $excerptHoverBgColor = isset($attributes['excerptHoverBgColor']) ? sanitize_hex_color($attributes['excerptHoverBgColor']) : '';
+    $excerptHoverBorderColor = isset($attributes['excerptHoverBorderColor']) ? sanitize_hex_color($attributes['excerptHoverBorderColor']) : '';
 
     // Meta
     $metaAuthorPrefix = isset($attributes['metaAuthorPrefix']) ? sanitize_text_field($attributes['metaAuthorPrefix']) : __('By', 'fancy-post-grid');
     $metaSeperator = isset($attributes['metaSeperator']) ? sanitize_text_field($attributes['metaSeperator']) : '|';
     $authorIcon = isset($attributes['authorIcon']) ? sanitize_text_field($attributes['authorIcon']) : '';
     $metaAuthorIcon = isset($attributes['metaAuthorIcon']) ? sanitize_text_field($attributes['metaAuthorIcon']) : '';
+    // Meta Data Attributes
+    $metaAlignment = isset($attributes['metaAlignment']) ? sanitize_text_field($attributes['metaAlignment']) : 'left';
+    $metaMargin = isset($attributes['metaMargin']) ? $attributes['metaMargin'] : ['top' => '', 'right' => '', 'bottom' => '', 'left' => ''];
+    $metaTextColor = isset($attributes['metaTextColor']) ? sanitize_hex_color($attributes['metaTextColor']) : '#333333';
+    $separatorColor = isset($attributes['separatorColor']) ? sanitize_hex_color($attributes['separatorColor']) : '#cccccc';
+    $metaLinkColor = isset($attributes['metaLinkColor']) ? sanitize_hex_color($attributes['metaLinkColor']) : '#0073aa';
+    $metaIconColor = isset($attributes['metaIconColor']) ? sanitize_hex_color($attributes['metaIconColor']) : '#555555';
+    $metaLinkHoverColor = isset($attributes['metaLinkHoverColor']) ? sanitize_hex_color($attributes['metaLinkHoverColor']) : '#005177';
 
     // Read More Button
     $showButtonIcon = !empty($attributes['showButtonIcon']);
@@ -204,6 +273,7 @@ function fancy_post_grid_render_callback($attributes) {
 
     // Icon (Optional)
     $buttonIcon = $showButtonIcon ? '<span class="button-icon"><i class="ri-arrow-right-line"></i></span>' : ''; // Using Font Awesome icon
+    
 
     // Button Style
     $buttonStyles = 'display: inline-flex; align-items: center; justify-content: center; text-decoration: none;';
@@ -224,24 +294,29 @@ function fancy_post_grid_render_callback($attributes) {
     // Button Alignment
     $alignmentStyle = 'text-align: ' . esc_attr($buttonAlignment) . ';';
 
-    // Section Styling
-    $sectionBgColor = isset($attributes['sectionBgColor']) ? sanitize_hex_color($attributes['sectionBgColor']) : '';
-    $sectionMargin = isset($attributes['sectionMargin']) ? sanitize_text_field($attributes['sectionMargin']) : '';
-    $sectionPadding = isset($attributes['sectionPadding']) ? sanitize_text_field($attributes['sectionPadding']) : '';
+    // Pagination Attributes
+    $enablePagination = isset($attributes['enablePagination']) ? filter_var($attributes['enablePagination'], FILTER_VALIDATE_BOOLEAN) : true;
 
-    // Item Styling
-    $itemPadding = isset($attributes['itemPadding']) ? sanitize_text_field($attributes['itemPadding']) : '';
-    $itemMargin = isset($attributes['itemMargin']) ? sanitize_text_field($attributes['itemMargin']) : '';
-    $itemBorderRadius = isset($attributes['itemBorderRadius']) ? sanitize_text_field($attributes['itemBorderRadius']) : '';
-    $itemHoverBackgroundColor = isset($attributes['itemHoverBackgroundColor']) ? sanitize_hex_color($attributes['itemHoverBackgroundColor']) : '';
-    $itemBoxAlignment = isset($attributes['itemBoxAlignment']) ? sanitize_text_field($attributes['itemBoxAlignment']) : '';
-    $normalBorderType = isset($attributes['normalBorderType']) ? sanitize_text_field($attributes['normalBorderType']) : '';
-    $itemBoxShadow = isset($attributes['itemBoxShadow']) ? sanitize_text_field($attributes['itemBoxShadow']) : '';
-    $itemBorderColor = isset($attributes['itemBorderColor']) ? sanitize_hex_color($attributes['itemBorderColor']) : '';
-
-    // Pagination
-    $enablePagination = !empty($attributes['enablePagination']);
     $paginationAlignment = isset($attributes['paginationAlignment']) ? sanitize_text_field($attributes['paginationAlignment']) : 'center';
+    $paginationMargin = isset($attributes['paginationMargin']) ? $attributes['paginationMargin'] : ['top' => 0, 'right' => 0, 'bottom' => 0, 'left' => 0];
+    $paginationPadding = isset($attributes['paginationPadding']) ? $attributes['paginationPadding'] : ['top' => 0, 'right' => 0, 'bottom' => 0, 'left' => 0];
+
+    $paginationBorderStyle = isset($attributes['paginationBorderStyle']) ? sanitize_text_field($attributes['paginationBorderStyle']) : 'solid';
+    $paginationBorderWidth = isset($attributes['paginationBorderWidth']) ? absint($attributes['paginationBorderWidth']) : 1;
+    $paginationBorderRadius = isset($attributes['paginationBorderRadius']) ? absint($attributes['paginationBorderRadius']) : 4;
+    $paginationGap = isset($attributes['paginationGap']) ? absint($attributes['paginationGap']) : 10;
+
+    $paginationTextColor = isset($attributes['paginationTextColor']) ? sanitize_hex_color($attributes['paginationTextColor']) : '';
+    $paginationBackgroundColor = isset($attributes['paginationBackgroundColor']) ? sanitize_hex_color($attributes['paginationBackgroundColor']) : '';
+    $paginationBorderColor = isset($attributes['paginationBorderColor']) ? sanitize_hex_color($attributes['paginationBorderColor']) : '';
+
+    $paginationHoverTextColor = isset($attributes['paginationHoverTextColor']) ? sanitize_hex_color($attributes['paginationHoverTextColor']) : '';
+    $paginationHoverBackgroundColor = isset($attributes['paginationHoverBackgroundColor']) ? sanitize_hex_color($attributes['paginationHoverBackgroundColor']) : '';
+    $paginationHoverBorderColor = isset($attributes['paginationHoverBorderColor']) ? sanitize_hex_color($attributes['paginationHoverBorderColor']) : '';
+
+    $paginationActiveTextColor = isset($attributes['paginationActiveTextColor']) ? sanitize_hex_color($attributes['paginationActiveTextColor']) : '';
+    $paginationActiveBackgroundColor = isset($attributes['paginationActiveBackgroundColor']) ? sanitize_hex_color($attributes['paginationActiveBackgroundColor']) : '';
+    $paginationActiveBorderColor = isset($attributes['paginationActiveBorderColor']) ? sanitize_hex_color($attributes['paginationActiveBorderColor']) : '';
 
     // General Layout
     $textAlign = isset($attributes['textAlign']) ? sanitize_text_field($attributes['textAlign']) : 'left';
@@ -269,158 +344,394 @@ function fancy_post_grid_render_callback($attributes) {
         return '<p>' . esc_html__('No posts found.', 'fancy-post-grid') . '</p>';
     }
 
-    // $output = '<div class="rs-blog-layout-5 fancy-post-grid ' . esc_attr($layoutStyle) . '">';
-    $output = '<div class="rs-blog-layout-5 fancy-post-grid ' . esc_attr($layoutStyle) . '" style="grid-template-columns: repeat(' . esc_attr($gridColumns) . ', 1fr);">';
-
-    while ($query->have_posts()) {
-        $query->the_post();
-        $post_id = get_the_ID();
-        $permalink = get_permalink($post_id);
-        $title = get_the_title();
-        $excerpt = wp_trim_words(get_the_excerpt(), 20);
-        $date = get_the_date();
-        $author = get_the_author();
-        $categories = get_the_category_list(', ');
-        $tags = get_the_tag_list('', ', ');
-        $comments_count = get_comments_number();
-        $thumbnail = get_the_post_thumbnail($post_id, $thumbnailSize, ['class' => 'fancy-post-thumbnail']);
-        
-
-        // Style-based output
-        if ($layoutStyle === 'style1') {
-            // Full post layout
-            $output .= '<div class="fancy-post-item rs-blog__single">';
-
-            // Thumbnail
-            if ($thumbnail) {
-                $output .= '<div class="fancy-post-image rs-thumb"><a href="' . esc_url($permalink) . '">' . $thumbnail . '</a></div>';
-            }
-            // END Thumbnail
-
-            // MAIN Content
-            $output .= '<div class="rs-content" style="background-color:' . esc_attr($itemBackgroundColor) . ';">';
-
-            // Meta Data
-            $output .= '<ul class="meta-data-list">';
-            $output .= '<li class="meta-date">' . esc_html($date) . '</li> | ';
-            $output .= '<li class="meta-author">' . esc_html__('By', 'fancy-post-grid') . ' ' . esc_html($author) . '</li> | ';
-            $output .= '<li class="meta-categories">' . $categories . '</li> | ';
-            if (!empty($tags)) {
-                $output .= '<li class="meta-tags">' . esc_html__('Tags:', 'fancy-post-grid') . ' ' . $tags . '</li> | ';
-            }
-            $output .= '<li class="meta-comment-count">' . esc_html($comments_count) . ' ' . esc_html__('Comments', 'fancy-post-grid') . '</li>';
-            $output .= '</ul>';
-            // End Meta Data
-
-            // Title
-            $output .= '<h3 class="title"><a href="' . esc_url($permalink) . '">' . esc_html($title) . '</a></h3>';
-            // End Title
-
-            // Excerpt
-            $output .= '<div class="fpg-excerpt">';
-            $output .= '<p>' . esc_html($excerpt) . '</p>';
-            $output .= '</div>';
-            // End Excerpt
-
-            
-            // Button Output
-            $output .= '<div class="btn-wrapper" style="' . esc_attr($alignmentStyle) . '">';
-            $output .= '<a class="rs-link read-more" href="' . esc_url(get_permalink()) . '" style="' . esc_attr($buttonStyles) . '" 
-                        onmouseover="' . esc_attr($buttonHoverStyles) . '" 
-                        onmouseout="this.style.color=\'' . esc_attr($buttonTextColor) . '\';
-                                    this.style.backgroundColor=\'' . esc_attr($buttonBackgroundColor) . '\';
-                                    this.style.border=\'1px ' . esc_attr($buttonBorderType) . ' ' . esc_attr($buttonTextColor) . '\';
-                                    this.style.borderRadius=\'' . esc_attr($buttonBorderRadius) . '\';">';
-                        
-            // Icon Positioning
-            if ($iconPosition === 'left' && $showButtonIcon) {
-                $output .= $buttonIcon . ' ';
-                echo $buttonIcon;
-            }
-            $output .= esc_html($readMoreLabel);
-            if ($iconPosition === 'right' && $showButtonIcon) {
-                $output .= ' ' . $buttonIcon;
-                echo $buttonIcon;
-
-            }
-
-            $output .= '</a>';
-            $output .= '</div>';
-            // End Button
-
-            $output .= '</div>';
-            // End MAIN Content
-            $output .= '</div>';
-            // End Full post layout
-        }
-        
-        
-         elseif ($layoutStyle === 'style2') {
-            // Only Title, Image, and Excerpt
-            $output .= '<div class="fancy-post-image"><a href="' . esc_url($permalink) . '">' . $thumbnail . '</a></div>';
-            $output .= '<h3><a href="' . esc_url($permalink) . '">' . esc_html($title) . '</a></h3>';
-            $output .= '<p>' . esc_html($excerpt) . '</p>';
-        } elseif ($layoutStyle === 'style3') {
-            // Only Title & Image
-            $output .= '<div class="fancy-post-image"><a href="' . esc_url($permalink) . '">' . $thumbnail . '</a></div>';
-            $output .= '<h3><a href="' . esc_url($permalink) . '">' . esc_html($title) . '</a></h3>';
-        } elseif ($layoutStyle === 'style4') {
-            $output .= '<div class="fancy-post-item rs-blog__single">';
-            if ($thumbnail) {
-            $output .= '<div class="fancy-post-image rs-thumb"><a href="' . esc_url($permalink) . '">' . $thumbnail . '</a></div>';
-            }
-            $output .= '<div class="rs-content">';
-            $output .= '<h3 class="title"><a href="' . esc_url($permalink) . '">' . esc_html($title) . '</a></h3>';
-            $output .= '<ul class="meta-data-list">';
-            $output .= '<li class="post-date">' . esc_html($date) . '</li> | ';
-            $output .= '<li class="post-author">' . esc_html__('By', 'fancy-post-grid') . ' ' . esc_html($author) . '</li> | ';
-            $output .= '<li class="post-categories">' . $categories . '</li> | ';
-            if (!empty($tags)) {
-                $output .= '<li class="post-tags">' . esc_html__('Tags:', 'fancy-post-grid') . ' ' . $tags . '</li> | ';
-            }
-            $output .= '<li class="post-comments">' . esc_html($comments_count) . ' ' . esc_html__('Comments', 'fancy-post-grid') . '</li>';
-            $output .= '</ul>';
-            $output .= '<div class="fpg-excerpt">';
-            $output .= '<p>' . esc_html($excerpt) . '</p>';
-            $output .= '</div>';
-            // Button Output
-            $output .= '<div class="btn-wrapper" style="' . esc_attr($alignmentStyle) . '">';
-            $output .= '<a class="rs-link read-more" href="' . esc_url(get_permalink()) . '" style="' . esc_attr($buttonStyles) . '" 
-                        onmouseover="' . esc_attr($buttonHoverStyles) . '" 
-                        onmouseout="this.style.color=\'' . esc_attr($buttonTextColor) . '\';
-                                    this.style.backgroundColor=\'' . esc_attr($buttonBackgroundColor) . '\';
-                                    this.style.border=\'1px ' . esc_attr($buttonBorderType) . ' ' . esc_attr($buttonTextColor) . '\';
-                                    this.style.borderRadius=\'' . esc_attr($buttonBorderRadius) . '\';">';
-                        
-            // Icon Positioning
-            if ($iconPosition === 'left' && $showButtonIcon) {
-                $output .= $buttonIcon . ' ';
-            }
-            $output .= esc_html($readMoreLabel);
-            if ($iconPosition === 'right' && $showButtonIcon) {
-                $output .= ' ' . $buttonIcon;
-            }
-
-            $output .= '</a>';
-            $output .= '</div>';
-            $output .= '</div>';
-            $output .= '</div>';
-        }
-        
-    }
     
-    $output .= '</div>'; // End .fancy-post-grid
+    
+    $output = '<div class="rs-blog-layout-5 fancy-post-grid ' . esc_attr($layoutStyle) . '" 
+                style="grid-template-columns: repeat(' . esc_attr($gridColumns) . ', 1fr); 
+                background-color: ' . esc_attr($sectionBgColor) . '; 
+                margin: ' . esc_attr($sectionMargin['top']) . ' ' . esc_attr($sectionMargin['right']) . ' ' . esc_attr($sectionMargin['bottom']) . ' ' . esc_attr($sectionMargin['left']) . '; 
+                padding: ' . esc_attr($sectionPadding['top']) . ' ' . esc_attr($sectionPadding['right']) . ' ' . esc_attr($sectionPadding['bottom']) . ' ' . esc_attr($sectionPadding['left']) . ';">';
 
-    // Pagination
-    $output .= '<div class="fancy-pagination">';
-    $output .= paginate_links(array(
-        'total'   => $query->max_num_pages,
-        'current' => $paged,
-        'format'  => '?paged=%#%',
-        'prev_text' => esc_html__('« Prev', 'fancy-post-grid'),
-        'next_text' => esc_html__('Next »', 'fancy-post-grid'),
-    ));
-    $output .= '</div>';
+        while ($query->have_posts()) {
+            $query->the_post();
+            $post_id = get_the_ID();
+            $permalink = get_permalink($post_id);
+            $title = get_the_title();
+            $excerpt = wp_trim_words(get_the_excerpt(), 20);
+            $date = get_the_date();
+            $author = get_the_author();
+            $categories = get_the_category_list(', ');
+            $tags = get_the_tag_list('', ', ');
+            $comments_count = get_comments_number();
+            $thumbnail = get_the_post_thumbnail($post_id, $thumbnailSize, ['class' => 'fancy-post-thumbnail']);
+            
+
+            // Style-based output
+            if ($layoutStyle === 'style1') {
+                // Full post layout
+                $output .= '<div class="fancy-post-item rs-blog__single" 
+                            style="
+                                
+                                padding: ' . esc_attr($itemPadding['top']) . ' ' . esc_attr($itemPadding['right']) . ' ' . esc_attr($itemPadding['bottom']) . ' ' . esc_attr($itemPadding['left']) . '; 
+                                margin: ' . esc_attr($itemMargin['top']) . ' ' . esc_attr($itemMargin['right']) . ' ' . esc_attr($itemMargin['bottom']) . ' ' . esc_attr($itemMargin['left']) . '; 
+                                border-radius: ' . esc_attr($itemBorderRadius['top']) . ' ' . esc_attr($itemBorderRadius['right']) . ' ' . esc_attr($itemBorderRadius['bottom']) . ' ' . esc_attr($itemBorderRadius['left']) . '; 
+                                border-width: ' . esc_attr($itemBorderWidth['top']) . ' ' . esc_attr($itemBorderWidth['right']) . ' ' . esc_attr($itemBorderWidth['bottom']) . ' ' . esc_attr($itemBorderWidth['left']) . '; 
+                                border-style: ' . esc_attr($itemBorderType) . ';
+                                border-color: ' . esc_attr($itemBorderColor) . ';
+                                background-color: ' . esc_attr($itemBackgroundColor) . ';
+                                box-shadow: ' . esc_attr($itemBoxShadow) . ';
+                                text-align: ' . esc_attr($itemBoxAlignment) . ';">';
+
+                // Thumbnail
+                if ($thumbnail) {
+                    $output .= '<div class="fancy-post-image rs-thumb"><a href="' . esc_url($permalink) . '">' . $thumbnail . '</a></div>';
+                }
+                // END Thumbnail
+
+                // MAIN Content
+                // $output .= '<div class="rs-content" style="">';
+                $output .= '<div class="rs-content" style="
+                    padding: ' . esc_attr($contentItemPadding['top']) . ' ' . esc_attr($contentItemPadding['right']) . ' ' . esc_attr($contentItemPadding['bottom']) . ' ' . esc_attr($contentItemPadding['left']) . '; 
+                    margin: ' . esc_attr($contentItemMargin['top']) . ' ' . esc_attr($contentItemMargin['right']) . ' ' . esc_attr($contentItemMargin['bottom']) . ' ' . esc_attr($contentItemMargin['left']) . '; 
+                    border-width: ' . esc_attr($contentBorderWidth['top']) . ' ' . esc_attr($contentBorderWidth['right']) . ' ' . esc_attr($contentBorderWidth['bottom']) . ' ' . esc_attr($contentBorderWidth['left']) . '; 
+
+                    border-style: ' . esc_attr($contentNormalBorderType) . ';
+                    
+                ">';
+
+                // Meta Data
+                // Generate Meta Data Output
+                $output .= '<ul class="meta-data-list" style="
+                    text-align: ' . esc_attr($metaAlignment) . ';
+                    margin: ' . esc_attr($metaMargin['top']) . ' ' . esc_attr($metaMargin['right']) . ' ' . esc_attr($metaMargin['bottom']) . ' ' . esc_attr($metaMargin['left']) . ';
+                    color: ' . esc_attr($metaTextColor) . ';
+                ">';
+
+                // Date
+                $output .= '<li class="meta-date" style="color:' . esc_attr($metaTextColor) . ';">' . esc_html($date) . '</li> ' . esc_html($metaSeparator) . ' ';
+
+                // Author
+                $output .= '<li class="meta-author" style="color:' . esc_attr($metaTextColor) . ';">';
+                if (!empty($metaAuthorIcon)) {
+                    $output .= '<span class="meta-icon" style="color:' . esc_attr($metaIconColor) . ';">' . esc_html($metaAuthorIcon) . '</span> ';
+                }
+                $output .= esc_html($metaAuthorPrefix) . ' ' . esc_html($author) . '</li> ' . esc_html($metaSeparator) . ' ';
+
+                // Categories
+                $output .= '<li class="meta-categories" style="color:' . esc_attr($metaTextColor) . ';">' . $categories . '</li> ' . esc_html($metaSeparator) . ' ';
+
+                // Tags (if available)
+                if (!empty($tags)) {
+                    $output .= '<li class="meta-tags" style="color:' . esc_attr($metaTextColor) . ';">' . esc_html__('Tags:', 'fancy-post-grid') . ' ' . $tags . '</li> ' . esc_html($metaSeparator) . ' ';
+                }
+
+                // Comment Count
+                $output .= '<li class="meta-comment-count" style="color:' . esc_attr($metaTextColor) . ';">' . esc_html($comments_count) . ' ' . esc_html__('Comments', 'fancy-post-grid') . '</li>';
+
+                $output .= '</ul>';
+                // End Meta Data
+
+                // Title
+                $output .= '<' . esc_attr($titleTag) . ' class="title" 
+                                style="font-size: ' . esc_attr($postTitleFontSize) . 'px; 
+                                line-height: ' . esc_attr($postTitleLineHeight) . '; 
+                                letter-spacing: ' . esc_attr($postTitleLetterSpacing) . 'px; 
+                                font-weight: ' . esc_attr($postTitleFontWeight) . '; 
+                                text-align: ' . esc_attr($postTitleAlignment) . '; 
+                                color: ' . esc_attr($postTitleColor) . '; 
+                                background-color: ' . esc_attr($postTitleBgColor) . '; 
+                                border-style: ' . esc_attr($postTitleBorderType) . '; 
+                                margin: ' . esc_attr($postTitleMargin['top']) . ' ' . esc_attr($postTitleMargin['right']) . ' ' . esc_attr($postTitleMargin['bottom']) . ' ' . esc_attr($postTitleMargin['left']) . '; 
+                                padding: ' . esc_attr($postTitlePadding['top']) . ' ' . esc_attr($postTitlePadding['right']) . ' ' . esc_attr($postTitlePadding['bottom']) . ' ' . esc_attr($postTitlePadding['left']) . ';"
+                                onmouseover="this.style.color=\'' . esc_attr($postTitleHoverColor) . '\';
+                                             this.style.backgroundColor=\'' . esc_attr($postTitleHoverBgColor) . '\';
+                                             this.style.borderColor=\'' . esc_attr($postTitleHoverBorderColor) . '\';" 
+                                onmouseout="this.style.color=\'' . esc_attr($postTitleColor) . '\';
+                                            this.style.backgroundColor=\'' . esc_attr($postTitleBgColor) . '\';
+                                            this.style.borderColor=\'inherit\';">';
+
+                $output .= '<a href="' . esc_url($permalink) . '" 
+                                style="display: inline-block; width: 100%; text-decoration: none;"
+                                onmouseover="this.style.textDecoration=\'' . ($titleHoverUnderLine === 'enable' ? 'underline' : 'none') . '\';"
+                                onmouseout="this.style.textDecoration=\'none\';">' . esc_html($title) . '</a>';
+
+                $output .= '</' . esc_attr($titleTag) . '>';
+
+
+                // Excerpt
+                $output .= '<div class="fpg-excerpt" 
+                                style="font-size: ' . esc_attr($excerptFontSize) . 'px; 
+                                line-height: ' . esc_attr($excerptLineHeight) . '; 
+                                letter-spacing: ' . esc_attr($excerptLetterSpacing) . 'px; 
+                                font-weight: ' . esc_attr($excerptFontWeight) . '; 
+                                text-align: ' . esc_attr($excerptAlignment) . '; 
+                                color: ' . esc_attr($excerptColor) . '; 
+                                background-color: ' . esc_attr($excerptBgColor) . '; 
+                                border-style: ' . esc_attr($excerptBorderType) . '; 
+                                margin: ' . esc_attr($excerptMargin['top']) . 'px ' . esc_attr($excerptMargin['right']) . 'px ' . esc_attr($excerptMargin['bottom']) . 'px ' . esc_attr($excerptMargin['left']) . 'px; 
+                                padding: ' . esc_attr($excerptPadding['top']) . 'px ' . esc_attr($excerptPadding['right']) . 'px ' . esc_attr($excerptPadding['bottom']) . 'px ' . esc_attr($excerptPadding['left']) . 'px;' . '"
+                                onmouseover="this.style.color=\'' . esc_attr($excerptHoverColor) . '\';
+                                             this.style.backgroundColor=\'' . esc_attr($excerptHoverBgColor) . '\';
+                                             this.style.borderColor=\'' . esc_attr($excerptHoverBorderColor) . '\';" 
+                                onmouseout="this.style.color=\'' . esc_attr($excerptColor) . '\';
+                                            this.style.backgroundColor=\'' . esc_attr($excerptBgColor) . '\';
+                                            this.style.borderColor=\'inherit\';">';
+
+                $output .= '<p>' . esc_html($excerpt) . '</p>';
+                $output .= '</div>';
+
+
+
+                // End Excerpt
+
+                
+                // Button Output
+                $output .= '<div class="btn-wrapper" style="' . esc_attr($alignmentStyle) . '">';
+                $output .= '<a class="rs-link read-more" href="' . esc_url(get_permalink()) . '" style="' . esc_attr($buttonStyles) . '" 
+                            onmouseover="' . esc_attr($buttonHoverStyles) . '" 
+                            onmouseout="this.style.color=\'' . esc_attr($buttonTextColor) . '\';
+                                        this.style.backgroundColor=\'' . esc_attr($buttonBackgroundColor) . '\';
+                                        this.style.border=\'1px ' . esc_attr($buttonBorderType) . ' ' . esc_attr($buttonTextColor) . '\';
+                                        this.style.borderRadius=\'' . esc_attr($buttonBorderRadius) . '\';">';
+                            
+                // Icon Positioning
+                if ($iconPosition === 'left' && $showButtonIcon) {
+                    $output .= $buttonIcon . ' ';
+                    
+                }
+                $output .= esc_html($readMoreLabel);
+                if ($iconPosition === 'right' && $showButtonIcon) {
+                    $output .= ' ' . $buttonIcon;
+                    
+
+                }
+
+                $output .= '</a>';
+                $output .= '</div>';
+                // End Button
+
+                $output .= '</div>';
+                // End MAIN Content
+                $output .= '</div>';
+                // End Full post layout
+            }
+            
+            
+             elseif ($layoutStyle === 'style2') {
+                // Only Title, Image, and Excerpt
+                // Full post layout
+                $output .= '<div class="fancy-post-item rs-blog__single" 
+                            style="
+                                
+                                padding: ' . esc_attr($itemPadding['top']) . 'px ' . esc_attr($itemPadding['right']) . 'px ' . esc_attr($itemPadding['bottom']) . 'px ' . esc_attr($itemPadding['left']) . 'px; 
+                                margin: ' . esc_attr($itemMargin['top']) . 'px ' . esc_attr($itemMargin['right']) . 'px ' . esc_attr($itemMargin['bottom']) . 'px ' . esc_attr($itemMargin['left']) . 'px; 
+                                border-radius: ' . esc_attr($itemBorderRadius['top']) . 'px ' . esc_attr($itemBorderRadius['right']) . 'px ' . esc_attr($itemBorderRadius['bottom']) . 'px ' . esc_attr($itemBorderRadius['left']) . 'px; 
+                                border-width: ' . esc_attr($itemBorderWidth['top']) . 'px ' . esc_attr($itemBorderWidth['right']) . 'px ' . esc_attr($itemBorderWidth['bottom']) . 'px ' . esc_attr($itemBorderWidth['left']) . 'px; 
+                                border-style: ' . esc_attr($itemBorderType) . ';
+                                border-color: ' . esc_attr($itemBorderColor) . ';
+                                background-color: ' . esc_attr($itemBackgroundColor) . ';
+                                box-shadow: ' . esc_attr($itemBoxShadow) . ';
+                                text-align: ' . esc_attr($itemBoxAlignment) . ';">';
+
+                // Thumbnail
+                if ($thumbnail) {
+                    $output .= '<div class="fancy-post-image rs-thumb"><a href="' . esc_url($permalink) . '">' . $thumbnail . '</a></div>';
+                }
+                // END Thumbnail
+
+                // MAIN Content
+                $output .= '<div class="rs-content" style="background-color:' . esc_attr($itemBackgroundColor) . ';">';
+
+                // Meta Data
+                $output .= '<ul class="meta-data-list">';
+                $output .= '<li class="meta-date">' . esc_html($date) . '</li> | ';
+                $output .= '<li class="meta-author">' . esc_html__('By', 'fancy-post-grid') . ' ' . esc_html($author) . '</li> | ';
+                $output .= '<li class="meta-categories">' . $categories . '</li> | ';
+                if (!empty($tags)) {
+                    $output .= '<li class="meta-tags">' . esc_html__('Tags:', 'fancy-post-grid') . ' ' . $tags . '</li> | ';
+                }
+                $output .= '<li class="meta-comment-count">' . esc_html($comments_count) . ' ' . esc_html__('Comments', 'fancy-post-grid') . '</li>';
+                $output .= '</ul>';
+                // End Meta Data
+
+                // Title
+                $output .= '<' . esc_attr($titleTag) . ' class="title" 
+                                style="font-size: ' . esc_attr($postTitleFontSize) . 'px; 
+                                line-height: ' . esc_attr($postTitleLineHeight) . '; 
+                                letter-spacing: ' . esc_attr($postTitleLetterSpacing) . 'px; 
+                                font-weight: ' . esc_attr($postTitleFontWeight) . '; 
+                                text-align: ' . esc_attr($postTitleAlignment) . '; 
+                                color: ' . esc_attr($postTitleColor) . '; 
+                                background-color: ' . esc_attr($postTitleBgColor) . '; 
+                                border-style: ' . esc_attr($postTitleBorderType) . '; 
+                                margin: ' . esc_attr($postTitleMargin['top']) . 'px ' . esc_attr($postTitleMargin['right']) . 'px ' . esc_attr($postTitleMargin['bottom']) . 'px ' . esc_attr($postTitleMargin['left']) . 'px; 
+                                padding: ' . esc_attr($postTitlePadding['top']) . 'px ' . esc_attr($postTitlePadding['right']) . 'px ' . esc_attr($postTitlePadding['bottom']) . 'px ' . esc_attr($postTitlePadding['left']) . 'px;"
+                                onmouseover="this.style.color=\'' . esc_attr($postTitleHoverColor) . '\';
+                                             this.style.backgroundColor=\'' . esc_attr($postTitleHoverBgColor) . '\';
+                                             this.style.borderColor=\'' . esc_attr($postTitleHoverBorderColor) . '\';" 
+                                onmouseout="this.style.color=\'' . esc_attr($postTitleColor) . '\';
+                                            this.style.backgroundColor=\'' . esc_attr($postTitleBgColor) . '\';
+                                            this.style.borderColor=\'inherit\';">';
+
+                $output .= '<a href="' . esc_url($permalink) . '" 
+                                style="display: inline-block; width: 100%; text-decoration: none;"
+                                onmouseover="this.style.textDecoration=\'' . ($titleHoverUnderLine === 'enable' ? 'underline' : 'none') . '\';"
+                                onmouseout="this.style.textDecoration=\'none\';">' . esc_html($title) . '</a>';
+
+                $output .= '</' . esc_attr($titleTag) . '>';
+
+
+                // Excerpt
+                $output .= '<div class="fpg-excerpt" 
+                                style="font-size: ' . esc_attr($excerptFontSize) . 'px; 
+                                line-height: ' . esc_attr($excerptLineHeight) . '; 
+                                letter-spacing: ' . esc_attr($excerptLetterSpacing) . 'px; 
+                                font-weight: ' . esc_attr($excerptFontWeight) . '; 
+                                text-align: ' . esc_attr($excerptAlignment) . '; 
+                                color: ' . esc_attr($excerptColor) . '; 
+                                background-color: ' . esc_attr($excerptBgColor) . '; 
+                                border-style: ' . esc_attr($excerptBorderType) . '; 
+                                margin: ' . esc_attr($excerptMargin['top']) . 'px ' . esc_attr($excerptMargin['right']) . 'px ' . esc_attr($excerptMargin['bottom']) . 'px ' . esc_attr($excerptMargin['left']) . 'px; 
+                                padding: ' . esc_attr($excerptPadding['top']) . 'px ' . esc_attr($excerptPadding['right']) . 'px ' . esc_attr($excerptPadding['bottom']) . 'px ' . esc_attr($excerptPadding['left']) . 'px;' . '"
+                                onmouseover="this.style.color=\'' . esc_attr($excerptHoverColor) . '\';
+                                             this.style.backgroundColor=\'' . esc_attr($excerptHoverBgColor) . '\';
+                                             this.style.borderColor=\'' . esc_attr($excerptHoverBorderColor) . '\';" 
+                                onmouseout="this.style.color=\'' . esc_attr($excerptColor) . '\';
+                                            this.style.backgroundColor=\'' . esc_attr($excerptBgColor) . '\';
+                                            this.style.borderColor=\'inherit\';">';
+
+                $output .= '<p>' . esc_html($excerpt) . '</p>';
+                $output .= '</div>';
+
+
+
+                // End Excerpt
+
+                
+                // Button Output
+                $output .= '<div class="btn-wrapper" style="' . esc_attr($alignmentStyle) . '">';
+                $output .= '<a class="rs-link read-more" href="' . esc_url(get_permalink()) . '" style="' . esc_attr($buttonStyles) . '" 
+                            onmouseover="' . esc_attr($buttonHoverStyles) . '" 
+                            onmouseout="this.style.color=\'' . esc_attr($buttonTextColor) . '\';
+                                        this.style.backgroundColor=\'' . esc_attr($buttonBackgroundColor) . '\';
+                                        this.style.border=\'1px ' . esc_attr($buttonBorderType) . ' ' . esc_attr($buttonTextColor) . '\';
+                                        this.style.borderRadius=\'' . esc_attr($buttonBorderRadius) . '\';">';
+                            
+                // Icon Positioning
+                if ($iconPosition === 'left' && $showButtonIcon) {
+                    $output .= $buttonIcon . ' ';
+                    
+                }
+                $output .= esc_html($readMoreLabel);
+                if ($iconPosition === 'right' && $showButtonIcon) {
+                    $output .= ' ' . $buttonIcon;
+                    
+
+                }
+
+                $output .= '</a>';
+                $output .= '</div>';
+                // End Button
+
+                $output .= '</div>';
+                // End MAIN Content
+                $output .= '</div>';
+                // End Full post layout
+            } elseif ($layoutStyle === 'style3') {
+                // Only Title & Image
+                $output .= '<div class="fancy-post-image"><a href="' . esc_url($permalink) . '">' . $thumbnail . '</a></div>';
+                $output .= '<h3><a href="' . esc_url($permalink) . '">' . esc_html($title) . '</a></h3>';
+            } elseif ($layoutStyle === 'style4') {
+                $output .= '<div class="fancy-post-item rs-blog__single">';
+                if ($thumbnail) {
+                $output .= '<div class="fancy-post-image rs-thumb"><a href="' . esc_url($permalink) . '">' . $thumbnail . '</a></div>';
+                }
+                $output .= '<div class="rs-content">';
+                $output .= '<h3 class="title"><a href="' . esc_url($permalink) . '">' . esc_html($title) . '</a></h3>';
+                $output .= '<ul class="meta-data-list">';
+                $output .= '<li class="post-date">' . esc_html($date) . '</li> | ';
+                $output .= '<li class="post-author">' . esc_html__('By', 'fancy-post-grid') . ' ' . esc_html($author) . '</li> | ';
+                $output .= '<li class="post-categories">' . $categories . '</li> | ';
+                if (!empty($tags)) {
+                    $output .= '<li class="post-tags">' . esc_html__('Tags:', 'fancy-post-grid') . ' ' . $tags . '</li> | ';
+                }
+                $output .= '<li class="post-comments">' . esc_html($comments_count) . ' ' . esc_html__('Comments', 'fancy-post-grid') . '</li>';
+                $output .= '</ul>';
+                $output .= '<div class="fpg-excerpt">';
+                $output .= '<p>' . esc_html($excerpt) . '</p>';
+                $output .= '</div>';
+                // Button Output
+                $output .= '<div class="btn-wrapper" style="' . esc_attr($alignmentStyle) . '">';
+                $output .= '<a class="rs-link read-more" href="' . esc_url(get_permalink()) . '" style="' . esc_attr($buttonStyles) . '" 
+                            onmouseover="' . esc_attr($buttonHoverStyles) . '" 
+                            onmouseout="this.style.color=\'' . esc_attr($buttonTextColor) . '\';
+                                        this.style.backgroundColor=\'' . esc_attr($buttonBackgroundColor) . '\';
+                                        this.style.border=\'1px ' . esc_attr($buttonBorderType) . ' ' . esc_attr($buttonTextColor) . '\';
+                                        this.style.borderRadius=\'' . esc_attr($buttonBorderRadius) . '\';">';
+                            
+                // Icon Positioning
+                if ($iconPosition === 'left' && $showButtonIcon) {
+                    $output .= $buttonIcon . ' ';
+                }
+                $output .= esc_html($readMoreLabel);
+                if ($iconPosition === 'right' && $showButtonIcon) {
+                    $output .= ' ' . $buttonIcon;
+                }
+
+                $output .= '</a>';
+                $output .= '</div>';
+                $output .= '</div>';
+                $output .= '</div>';
+            }
+            
+        }
+        
+        $output .= '</div>'; // End .fancy-post-grid
+
+        // Check if pagination is enabled
+        if ($enablePagination) {
+
+            $output .= '<div class="fancy-pagination fpg-pagination" style="
+                text-align: ' . esc_attr($paginationAlignment) . ';
+                margin: ' . esc_attr($paginationMargin['top']) . ' ' . esc_attr($paginationMargin['right']) . ' ' . esc_attr($paginationMargin['bottom']) . ' ' . esc_attr($paginationMargin['left']) . ';
+                padding: ' . esc_attr($paginationPadding['top']) . ' ' . esc_attr($paginationPadding['right']) . ' ' . esc_attr($paginationPadding['bottom']) . ' ' . esc_attr($paginationPadding['left']) . ';
+            ">';
+            $output .= paginate_links(array(
+                'total'   => $query->max_num_pages,
+                'current' => $paged,
+                'format'  => '?paged=%#%',
+                'prev_text' => esc_html__('« Prev', 'fancy-post-grid'),
+                'next_text' => esc_html__('Next »', 'fancy-post-grid'),
+            ));
+            $output .= '</div>';
+        }
+        // Custom CSS for pagination styles
+        $output .= '<style>
+            .fpg-pagination a, .fpg-pagination span {
+                display: inline-block;
+                text-decoration: none;
+                padding: ' . esc_attr($paginationPadding['top']) . ' ' . esc_attr($paginationPadding['right']) . ' ' . esc_attr($paginationPadding['bottom']) . ' ' . esc_attr($paginationPadding['left']) . ';
+                margin-right: ' . esc_attr($paginationGap) . 'px;
+                border-style: ' . esc_attr($paginationBorderStyle) . ';
+                border-width: ' . esc_attr($paginationBorderWidth) . 'px;
+                border-radius: ' . esc_attr($paginationBorderRadius) . 'px;
+                border-color: ' . esc_attr($paginationBorderColor) . ';
+                color: ' . esc_attr($paginationTextColor) . ';
+                background-color: ' . esc_attr($paginationBackgroundColor) . ';
+            }
+
+            .fpg-pagination a:hover {
+                color: ' . esc_attr($paginationHoverTextColor) . ';
+                background-color: ' . esc_attr($paginationHoverBackgroundColor) . ';
+                border-color: ' . esc_attr($paginationHoverBorderColor) . ';
+            }
+
+            .fpg-pagination .current {
+                color: ' . esc_attr($paginationActiveTextColor) . ';
+                background-color: ' . esc_attr($paginationActiveBackgroundColor) . ';
+                border-color: ' . esc_attr($paginationActiveBorderColor) . ';
+            }
+        </style>';
 
     wp_reset_postdata();
 

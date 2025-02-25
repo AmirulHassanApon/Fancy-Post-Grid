@@ -1411,10 +1411,11 @@
                                 wp.element.createElement(PanelBody, { title: __('Section Area', 'fancy-post-grid'), initialOpen: true },
                                     
                                     wp.element.createElement('p', {}, __('Background Color', 'fancy-post-grid')),
-                                    wp.element.createElement(ColorPicker, {
-                                        color: attributes.sectionBgColor,
-                                        onChangeComplete: (value) => setAttributes({ sectionBgColor: value.hex }),
-                                        disableAlpha: false,
+                                    
+                                    wp.element.createElement(ColorPalette, {
+                                        label: __('Background Color', 'fancy-post-grid'),
+                                        value: attributes.sectionBgColor,
+                                        onChange: (value) => setAttributes({ sectionBgColor: value }),
                                     }),
                                     wp.element.createElement(__experimentalBoxControl, {
                                         label: __('Margin (e.g., 10px, 5%)', 'fancy-post-grid'),
