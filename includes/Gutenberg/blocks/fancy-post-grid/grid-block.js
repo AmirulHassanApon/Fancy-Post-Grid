@@ -145,6 +145,7 @@
                 type: 'object',
                 default: { top: '', right: '', bottom: '', left: '' }
             },
+
             contentnormalBorderType: {
                 type: 'string',
                 default: 'none'
@@ -409,7 +410,7 @@
                 paginationActiveTextColor,paginationActiveBackgroundColor,paginationActiveBorderColor,
 
                 buttonColor, gridColumns, excerptLength, readMoreText, postType, order, layoutStyle, textAlign, includePosts, excludePosts, postLimit, enablePagination } = attributes;
-
+                
             const posts = useSelect((select) =>
                 select('core').getEntityRecords('postType', postType, {
                     per_page: postLimit,
@@ -456,7 +457,7 @@
                 
                 return `${value.top || 0}px ${value.right || 0}px ${value.bottom || 0}px ${value.left || 0}px`;
             };
-
+            
 
             let content;
 
