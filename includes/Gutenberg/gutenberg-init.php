@@ -245,14 +245,21 @@ function fancy_post_grid_render_callback($attributes) {
     $metaLinkHoverColor = isset($attributes['metaLinkHoverColor']) ? sanitize_hex_color($attributes['metaLinkHoverColor']) : '#005177';
 
     // Read More Button
-    $showButtonIcon = !empty($attributes['showButtonIcon']);
-    $iconPosition = isset($attributes['iconPosition']) ? sanitize_text_field($attributes['iconPosition']) : 'left';
+    
+    $showButtonIcon = isset($attributes['showButtonIcon']) ? filter_var($attributes['showPostCommentsCountIcon'], FILTER_VALIDATE_BOOLEAN) : true;
+
+    $iconPosition = isset($attributes['iconPosition']) ? sanitize_text_field($attributes['iconPosition']) : 'right';
+    var_dump($iconPosition);
+    $iconPosition = !empty($attributes['iconPosition']) ? sanitize_text_field($attributes['iconPosition']) : 'right';
+
+    var_dump($iconPosition);
     $buttonStyle = isset($attributes['buttonStyle']) ? sanitize_text_field($attributes['buttonStyle']) : 'default';
     $readMoreLabel = isset($attributes['readMoreLabel']) ? sanitize_text_field($attributes['readMoreLabel']) : __('Read More', 'fancy-post-grid');
 
     // Button Alignment
     $buttonAlignment = isset($attributes['buttonAlignment']) ? sanitize_text_field($attributes['buttonAlignment']) : 'center';
 
+    var_dump($buttonAlignment);
     // Button Margin
     $buttonMargin = isset($attributes['buttonMargin']) ? $attributes['buttonMargin'] : ['top' => '0px', 'right' => '0px', 'bottom' => '0px', 'left' => '0px'];
 
@@ -270,10 +277,6 @@ function fancy_post_grid_render_callback($attributes) {
     $buttonHoverBackgroundColor = isset($attributes['buttonHoverBackgroundColor']) ? sanitize_hex_color($attributes['buttonHoverBackgroundColor']) : '#005177';
     $buttonHoverBorderType = isset($attributes['buttonHoverBorderType']) ? sanitize_text_field($attributes['buttonHoverBorderType']) : 'solid';
     $buttonHoverBorderRadius = isset($attributes['buttonHoverBorderRadius']) ? sanitize_text_field($attributes['buttonHoverBorderRadius']) : '5px';
-
-    // Icon (Optional)
-    $buttonIcon = $showButtonIcon ? '<span class="button-icon"><i class="ri-arrow-right-line"></i></span>' : ''; // Using Font Awesome icon
-    
 
     // Button Style
     $buttonStyles = 'display: inline-flex; align-items: center; justify-content: center; text-decoration: none;';
@@ -383,7 +386,7 @@ function fancy_post_grid_render_callback($attributes) {
                                 text-align: ' . esc_attr($itemBoxAlignment) . ';">';
 
                 // Thumbnail
-                if ($thumbnail) {
+                if ($thumbnail && $showThumbnail) {
                     $output .= '<div class="fancy-post-image rs-thumb"><a href="' . esc_url($permalink) . '">' . $thumbnail . '</a></div>';
                 }
                 // END Thumbnail
@@ -400,38 +403,67 @@ function fancy_post_grid_render_callback($attributes) {
                 ">';
 
                 // Meta Data
-                // Generate Meta Data Output
-                $output .= '<ul class="meta-data-list" style="
-                    text-align: ' . esc_attr($metaAlignment) . ';
-                    margin: ' . esc_attr($metaMargin['top']) . ' ' . esc_attr($metaMargin['right']) . ' ' . esc_attr($metaMargin['bottom']) . ' ' . esc_attr($metaMargin['left']) . ';
-                    color: ' . esc_attr($metaTextColor) . ';
-                ">';
+                if ($showMetaData) {
+                    $output .= '<ul class="meta-data-list" style="
+                        text-align: ' . esc_attr($metaAlignment) . ';
+                        margin: ' . esc_attr($metaMargin['top']) . ' ' . esc_attr($metaMargin['right']) . ' ' . esc_attr($metaMargin['bottom']) . ' ' . esc_attr($metaMargin['left']) . ';
+                        color: ' . esc_attr($metaTextColor) . ';
+                    ">';
 
-                // Date
-                $output .= '<li class="meta-date" style="color:' . esc_attr($metaTextColor) . ';">' . esc_html($date) . '</li> ' . esc_html($metaSeparator) . ' ';
+                    // Date
+                    if ($showPostDate) {
+                        $output .= '<li class="meta-date" style="color:' . esc_attr($metaTextColor) . ';">';
+                        if ($showPostDateIcon && $showMetaIcon) {
+                            $output .= '<i class="ri-calendar-line" style="color:' . esc_attr($metaIconColor) . ';"></i> ';
+                        }
+                        $output .= esc_html($date) . '</li> ' . esc_html($metaSeparator) . ' ';
+                    }
 
-                // Author
-                $output .= '<li class="meta-author" style="color:' . esc_attr($metaTextColor) . ';">';
-                if (!empty($metaAuthorIcon)) {
-                    $output .= '<span class="meta-icon" style="color:' . esc_attr($metaIconColor) . ';">' . esc_html($metaAuthorIcon) . '</span> ';
+                    // Author
+                    if ($showPostAuthor) {
+                        $output .= '<li class="meta-author" style="color:' . esc_attr($metaTextColor) . ';">';
+                        if ($showPostAuthorIcon && $showMetaIcon) {
+                            $output .= '<i class="ri-user-line" style="color:' . esc_attr($metaIconColor) . ';"></i> ';
+                        }
+                        $output .= esc_html($metaAuthorPrefix) . ' ' . esc_html($author) . '</li> ' . esc_html($metaSeparator) . ' ';
+                    }
+
+                    // Categories
+                    if ($showPostCategory) {
+                        $output .= '<li class="meta-categories" style="color:' . esc_attr($metaTextColor) . ';">';
+                        if ($showPostCategoryIcon && $showMetaIcon) {
+                            $output .= '<i class="ri-folder-line" style="color:' . esc_attr($metaIconColor) . ';"></i> ';
+                        }
+                        $output .= $categories . '</li> ' . esc_html($metaSeparator) . ' ';
+                    }
+
+                    // Tags
+                    if ($showPostTags && !empty($tags)) {
+                        $output .= '<li class="meta-tags" style="color:' . esc_attr($metaTextColor) . ';">';
+                        if ($showPostTagsIcon && $showMetaIcon) {
+                            $output .= '<i class="ri-price-tag-3-line" style="color:' . esc_attr($metaIconColor) . ';"></i> ';
+                        }
+                        $output .= esc_html__('Tags:', 'fancy-post-grid') . ' ' . $tags . '</li> ' . esc_html($metaSeparator) . ' ';
+                    }
+
+                    // Comment Count
+                    if ($showPostCommentsCount) {
+                        $output .= '<li class="meta-comment-count" style="color:' . esc_attr($metaTextColor) . ';">';
+                        if ($showPostCommentsCountIcon && $showMetaIcon) {
+                            $output .= '<i class="ri-chat-3-line" style="color:' . esc_attr($metaIconColor) . ';"></i> ';
+                        }
+                        $output .= esc_html($comments_count) . ' ' . esc_html__('Comments', 'fancy-post-grid') . '</li>';
+                    }
+
+                    $output .= '</ul>';
                 }
-                $output .= esc_html($metaAuthorPrefix) . ' ' . esc_html($author) . '</li> ' . esc_html($metaSeparator) . ' ';
 
-                // Categories
-                $output .= '<li class="meta-categories" style="color:' . esc_attr($metaTextColor) . ';">' . $categories . '</li> ' . esc_html($metaSeparator) . ' ';
 
-                // Tags (if available)
-                if (!empty($tags)) {
-                    $output .= '<li class="meta-tags" style="color:' . esc_attr($metaTextColor) . ';">' . esc_html__('Tags:', 'fancy-post-grid') . ' ' . $tags . '</li> ' . esc_html($metaSeparator) . ' ';
-                }
 
-                // Comment Count
-                $output .= '<li class="meta-comment-count" style="color:' . esc_attr($metaTextColor) . ';">' . esc_html($comments_count) . ' ' . esc_html__('Comments', 'fancy-post-grid') . '</li>';
-
-                $output .= '</ul>';
                 // End Meta Data
 
                 // Title
+                if ($showPostTitle) {
                 $output .= '<' . esc_attr($titleTag) . ' class="title" 
                                 style="font-size: ' . esc_attr($postTitleFontSize) . 'px; 
                                 line-height: ' . esc_attr($postTitleLineHeight) . '; 
@@ -455,30 +487,32 @@ function fancy_post_grid_render_callback($attributes) {
                                 onmouseover="this.style.textDecoration=\'' . ($titleHoverUnderLine === 'enable' ? 'underline' : 'none') . '\';"
                                 onmouseout="this.style.textDecoration=\'none\';">' . esc_html($title) . '</a>';
 
-                $output .= '</' . esc_attr($titleTag) . '>';
+                $output .= '</' . esc_attr($titleTag) . '>';}
 
 
                 // Excerpt
-                $output .= '<div class="fpg-excerpt" 
-                                style="font-size: ' . esc_attr($excerptFontSize) . 'px; 
-                                line-height: ' . esc_attr($excerptLineHeight) . '; 
-                                letter-spacing: ' . esc_attr($excerptLetterSpacing) . 'px; 
-                                font-weight: ' . esc_attr($excerptFontWeight) . '; 
-                                text-align: ' . esc_attr($excerptAlignment) . '; 
-                                color: ' . esc_attr($excerptColor) . '; 
-                                background-color: ' . esc_attr($excerptBgColor) . '; 
-                                border-style: ' . esc_attr($excerptBorderType) . '; 
-                                margin: ' . esc_attr($excerptMargin['top']) . 'px ' . esc_attr($excerptMargin['right']) . 'px ' . esc_attr($excerptMargin['bottom']) . 'px ' . esc_attr($excerptMargin['left']) . 'px; 
-                                padding: ' . esc_attr($excerptPadding['top']) . 'px ' . esc_attr($excerptPadding['right']) . 'px ' . esc_attr($excerptPadding['bottom']) . 'px ' . esc_attr($excerptPadding['left']) . 'px;' . '"
-                                onmouseover="this.style.color=\'' . esc_attr($excerptHoverColor) . '\';
-                                             this.style.backgroundColor=\'' . esc_attr($excerptHoverBgColor) . '\';
-                                             this.style.borderColor=\'' . esc_attr($excerptHoverBorderColor) . '\';" 
-                                onmouseout="this.style.color=\'' . esc_attr($excerptColor) . '\';
-                                            this.style.backgroundColor=\'' . esc_attr($excerptBgColor) . '\';
-                                            this.style.borderColor=\'inherit\';">';
+                if ($showPostExcerpt) {
+                    $output .= '<div class="fpg-excerpt" 
+                                    style="font-size: ' . esc_attr($excerptFontSize) . 'px; 
+                                    line-height: ' . esc_attr($excerptLineHeight) . '; 
+                                    letter-spacing: ' . esc_attr($excerptLetterSpacing) . 'px; 
+                                    font-weight: ' . esc_attr($excerptFontWeight) . '; 
+                                    text-align: ' . esc_attr($excerptAlignment) . '; 
+                                    color: ' . esc_attr($excerptColor) . '; 
+                                    background-color: ' . esc_attr($excerptBgColor) . '; 
+                                    border-style: ' . esc_attr($excerptBorderType) . '; 
+                                    margin: ' . esc_attr($excerptMargin['top']) . 'px ' . esc_attr($excerptMargin['right']) . 'px ' . esc_attr($excerptMargin['bottom']) . 'px ' . esc_attr($excerptMargin['left']) . 'px; 
+                                    padding: ' . esc_attr($excerptPadding['top']) . 'px ' . esc_attr($excerptPadding['right']) . 'px ' . esc_attr($excerptPadding['bottom']) . 'px ' . esc_attr($excerptPadding['left']) . 'px;' . '"
+                                    onmouseover="this.style.color=\'' . esc_attr($excerptHoverColor) . '\';
+                                                 this.style.backgroundColor=\'' . esc_attr($excerptHoverBgColor) . '\';
+                                                 this.style.borderColor=\'' . esc_attr($excerptHoverBorderColor) . '\';" 
+                                    onmouseout="this.style.color=\'' . esc_attr($excerptColor) . '\';
+                                                this.style.backgroundColor=\'' . esc_attr($excerptBgColor) . '\';
+                                                this.style.borderColor=\'inherit\';">';
 
-                $output .= '<p>' . esc_html($excerpt) . '</p>';
-                $output .= '</div>';
+                    $output .= '<p>' . esc_html($excerpt) . '</p>';
+                    $output .= '</div>';
+                }
 
 
 
@@ -486,28 +520,35 @@ function fancy_post_grid_render_callback($attributes) {
 
                 
                 // Button Output
-                $output .= '<div class="btn-wrapper" style="' . esc_attr($alignmentStyle) . '">';
-                $output .= '<a class="rs-link read-more" href="' . esc_url(get_permalink()) . '" style="' . esc_attr($buttonStyles) . '" 
-                            onmouseover="' . esc_attr($buttonHoverStyles) . '" 
-                            onmouseout="this.style.color=\'' . esc_attr($buttonTextColor) . '\';
-                                        this.style.backgroundColor=\'' . esc_attr($buttonBackgroundColor) . '\';
-                                        this.style.border=\'1px ' . esc_attr($buttonBorderType) . ' ' . esc_attr($buttonTextColor) . '\';
-                                        this.style.borderRadius=\'' . esc_attr($buttonBorderRadius) . '\';">';
-                            
-                // Icon Positioning
-                if ($iconPosition === 'left' && $showButtonIcon) {
-                    $output .= $buttonIcon . ' ';
-                    
-                }
-                $output .= esc_html($readMoreLabel);
-                if ($iconPosition === 'right' && $showButtonIcon) {
-                    $output .= ' ' . $buttonIcon;
-                    
+                // Button Output
+if ($showReadMoreButton) {
+    $output .= '<div class="btn-wrapper" style="' . esc_attr($alignmentStyle) . '">';
+    $output .= '<a class="rs-link read-more" href="' . esc_url(get_permalink()) . '" style="' . esc_attr($buttonStyles) . '" 
+                onmouseover="' . esc_attr($buttonHoverStyles) . '" 
+                onmouseout="this.style.color=\'' . esc_attr($buttonTextColor) . '\';
+                            this.style.backgroundColor=\'' . esc_attr($buttonBackgroundColor) . '\';
+                            this.style.border=\'1px ' . esc_attr($buttonBorderType) . ' ' . esc_attr($buttonTextColor) . '\';
+                            this.style.borderRadius=\'' . esc_attr($buttonBorderRadius) . '\';">';
 
-                }
+    // Icon setup (Remix Arrow Icons)
+    $leftIcon = '<i class="ri-arrow-right-line"></i>';  // Right arrow icon
+    $rightIcon = '<i class="ri-arrow-right-line"></i>'; // Right arrow icon
 
-                $output .= '</a>';
-                $output .= '</div>';
+    // Icon Positioning
+    if ($iconPosition === 'left' && $showButtonIcon) {
+        $output .= $leftIcon . ' ';
+    }
+    
+    $output .= esc_html($readMoreLabel);
+
+    if ($iconPosition === 'right' && $showButtonIcon) {
+        $output .= ' ' . $rightIcon;
+    }
+
+    $output .= '</a>';
+    $output .= '</div>';
+}
+
                 // End Button
 
                 $output .= '</div>';
