@@ -20,10 +20,9 @@
             // Query Builder
             selectedCategory: { type: 'string', default: '' },
             selectedTag: { type: 'string', default: '' },
-            selectedAuthor: { type: 'string', default: '' },
-            sortOrder: { type: 'string', default: 'DESC' },
-            includePosts: { type: 'string', default: '' },
-            excludePosts: { type: 'string', default: '' },
+            
+            orderBy: { type: 'string', default: '' },
+            
             postLimit: { type: 'number', default: 3 },           
             // Pagination settings
             enablePagination: { type: 'boolean', default: true },
@@ -182,8 +181,8 @@
 
         edit: function ({ attributes, setAttributes }) {
             const { 
-                gridColumns,gridLayoutStyle,
-                selectedAuthor,selectedCategory, selectedTag,sortOrder,includePosts, excludePosts, postLimit,enablePagination,
+                gridColumns,gridLayoutStyle
+                ,selectedCategory, selectedTag,orderBy, postLimit,enablePagination,
                 postLinkTarget,thumbnailLink,postLinkType,
 
                 showPostTitle,showThumbnail,showPostExcerpt,showReadMoreButton,showMetaData,showPostDate
@@ -227,15 +226,10 @@
                 paginationActiveTextColor,paginationActiveBackgroundColor,paginationActiveBorderColor, 
                 postType  } = attributes;
 
-            const posts = useSelect((select) =>
-                select('core').getEntityRecords('postType', postType, {
-                    per_page: postLimit,
-                    _embed: true,
-                    sortOrder: sortOrder,
-                    
-                }),
-                [postType, sortOrder, postLimit]
-            );
+            
+
+
+                
             const authors = useSelect((select) => {
                 const users = select('core').getUsers({ per_page: -1 });
                 if (!users) return [];
@@ -253,11 +247,8 @@
                     value: term.id
                 }));
             }, []);
-            // Sorting options (ASC / DESC)
-            const sortingOptions = [
-                { label: __('Ascending', 'fancy-post-grid'), value: 'ASC' },
-                { label: __('Descending', 'fancy-post-grid'), value: 'DESC' }
-            ];
+            
+            const [currentPage, setCurrentPage] = wp.element.useState(1);
 
             // Fetch tags dynamically
             const tags = useSelect((select) => {
@@ -268,21 +259,60 @@
                     value: term.id
                 }));
             }, []);
+
             const getSpacingValue = (value) => {
                 if (!value) return '0px';
                 
                 return `${value.top || 0}px ${value.right || 0}px ${value.bottom || 0}px ${value.left || 0}px`;
             };
-            // const getSpacingValue = (value) => {
-            //     if (!value) return '0px';
+            
+            // Query to get posts
+            const posts = useSelect((select) => {
 
-            //     return `${value.top || '0'}${value.topUnit || 'px'} 
-            //             ${value.right || '0'}${value.rightUnit || 'px'} 
-            //             ${value.bottom || '0'}${value.bottomUnit || 'px'} 
-            //             ${value.left || '0'}${value.leftUnit || 'px'}`.trim();
-            // };
+                return select('core').getEntityRecords('postType', postType, {
+                    per_page: postLimit,
+                    _embed: true,
+                    page: currentPage, // Track the current page
+                    orderby: orderBy, // Dynamic sorting field (e.g., 'date', 'title', etc.)
+                    categories: selectedCategory ? selectedCategory : undefined, // Apply category filter if selected
+                    tags: selectedTag ? selectedTag : undefined, // Apply tag filter if selected
+                    
+                });
+            }, [postType, postLimit, currentPage,selectedCategory, selectedTag, orderBy]);
+
+            const handlePreviousPage = () => {
+                if (currentPage > 1) setCurrentPage(currentPage - 1);
+            };
+
+            const handleNextPage = () => {
+                setCurrentPage(currentPage + 1);
+            };
+
+            const paginationControls = wp.element.createElement(
+                'div',
+                { className: 'pagination-controls', style: { textAlign: 'center', marginTop: '20px' } },
+                wp.element.createElement(
+                    'button',
+                    { 
+                        onClick: handlePreviousPage, 
+                        disabled: currentPage === 1, 
+                        style: { marginRight: '10px', padding: '5px 10px' }
+                    }, 
+                    __('Previous', 'fancy-post-grid')
+                ),
+                wp.element.createElement(
+                    'button',
+                    { 
+                        onClick: handleNextPage, 
+                        style: { padding: '5px 10px' }
+                    }, 
+                    __('Next', 'fancy-post-grid')
+                )
+            );
 
 
+            console.log('Filtered Posts:', enablePagination); 
+            console.log('Filtered Posts:', paginationControls); 
             let content;
 
             if (gridLayoutStyle === 'style1' && posts && posts.length) {
@@ -320,12 +350,12 @@
                                     borderColor: attributes.itemBorderColor,
                                 },
                                 onMouseEnter: (e) => {
-                                    e.target.style.backgroundColor = attributes.itemHoverBackgroundColor;
-                                    
+                                    e.currentTarget.style.backgroundColor = attributes.itemHoverBackgroundColor;
+                                    // e.currentTarget.style.boxShadow = attributes.itemHoverBoxShadow;
                                 },
                                 onMouseLeave: (e) => {
-                                    e.target.style.backgroundColor = attributes.itemBackgroundColor;
-                                    e.target.style.boxShadow = attributes.itemBoxShadow;                             
+                                    e.currentTarget.style.backgroundColor = attributes.itemBackgroundColor;
+                                    // e.currentTarget.style.boxShadow = attributes.itemBoxShadow;
                                 },
                             },
                         
@@ -440,10 +470,10 @@
                                                 backgroundColor: postTitleBgColor, // Background only for title div
                                             },
                                             onMouseEnter: (e) => {
-                                                e.target.style.backgroundColor = postTitleHoverBgColor;
+                                                e.currentTarget.style.backgroundColor = postTitleHoverBgColor;
                                             },
                                             onMouseLeave: (e) => {
-                                                e.target.style.backgroundColor = postTitleBgColor;
+                                                e.currentTarget.style.backgroundColor = postTitleBgColor;
                                             },
                                         },
                                         wp.element.createElement(
@@ -469,10 +499,10 @@
 
                                                         },
                                                         onMouseEnter: (e) => {
-                                                            e.target.style.color = postTitleHoverColor;
+                                                            e.currentTarget.style.color = postTitleHoverColor;
                                                         },
                                                         onMouseLeave: (e) => {
-                                                            e.target.style.color = postTitleColor;
+                                                            e.currentTarget.style.color = postTitleColor;
                                                         },
                                                     },
                                                     titleCropBy === 'word'
@@ -489,24 +519,24 @@
                                 showPostExcerpt &&
                                     wp.element.createElement('div', { 
                                         className: 'fpg-excerpt', 
-                                        style: { order: excerptOrder } // Apply order to the div container
+                                        style: { order: excerptOrder,
+                                                margin: getSpacingValue(attributes.excerptMargin),
+                                                padding: getSpacingValue(attributes.excerptPadding) } // Apply order to the div container
                                     }, 
                                         wp.element.createElement('p', { 
                                             style: { 
                                                 fontSize: excerptFontSize, 
                                                 lineHeight: excerptLineHeight, 
                                                 color: excerptColor, 
-                                                backgroundColor: excerptBgColor,
-                                                margin: getSpacingValue(attributes.excerptMargin),
-                                                padding: getSpacingValue(attributes.excerptPadding),
+                                                backgroundColor: excerptBgColor                                                
                                             },
                                             onMouseEnter: (e) => {
-                                                e.target.style.color = excerptHoverColor;
-                                                e.target.style.backgroundColor = excerptHoverBgColor;
+                                                e.currentTarget.style.color = excerptHoverColor;
+                                                e.currentTarget.style.backgroundColor = excerptHoverBgColor;
                                             },
                                             onMouseLeave: (e) => {
-                                                e.target.style.color = excerptColor;
-                                                e.target.style.backgroundColor = excerptBgColor;
+                                                e.currentTarget.style.color = excerptColor;
+                                                e.currentTarget.style.backgroundColor = excerptBgColor;
                                                 
                                             }, 
                                         }, 
@@ -520,7 +550,9 @@
 
                                 
                                 showReadMoreButton && wp.element.createElement('div', { className: 'btn-wrapper',style: { 
-                                            order: buttonOrder,  }, 
+                                            order: buttonOrder,
+                                            margin: getSpacingValue(attributes.buttonMargin),
+                                            padding: getSpacingValue(attributes.buttonPadding)  }, 
                                         }, 
                                     wp.element.createElement('a', { 
                                         href: post.link, 
@@ -530,18 +562,17 @@
                                             backgroundColor: buttonStyle === 'filled' ? buttonBackgroundColor : 'transparent',
                                             color: buttonTextColor,
                                             border: buttonStyle === 'border' ? `1px solid ${buttonBackgroundColor}` : 'none', // Border style
-                                            margin: getSpacingValue(attributes.buttonMargin),
-                                            padding: getSpacingValue(attributes.buttonPadding),
+                                            
                                             borderRadius: getSpacingValue(attributes.buttonBorderRadius),
                                             textDecoration: buttonStyle === 'flat' ? 'none' : 'inherit'
                                         },
                                         onMouseEnter: (e) => {
-                                            e.target.style.color = buttonHoverTextColor;
-                                            e.target.style.backgroundColor = buttonHoverBackgroundColor;
+                                            e.currentTarget.style.color = buttonHoverTextColor;
+                                            e.currentTarget.style.backgroundColor = buttonHoverBackgroundColor;
                                         },
                                         onMouseLeave: (e) => {
-                                            e.target.style.color = buttonTextColor;
-                                            e.target.style.backgroundColor = buttonBackgroundColor;
+                                            e.currentTarget.style.color = buttonTextColor;
+                                            e.currentTarget.style.backgroundColor = buttonBackgroundColor;
                                         },
                                     }, 
                                         iconPosition === 'left' && showButtonIcon && wp.element.createElement('i', { className: 'fas fa-arrow-right', style: { marginRight: '5px' } }), 
@@ -550,12 +581,13 @@
                                     )
                                 )
 
-
                             )    
 
                         );
-                    })
+                    }),
+                    paginationControls
                 );
+                
             }
             else if (gridLayoutStyle === 'style2' && posts && posts.length) {
                 content = wp.element.createElement(
@@ -803,51 +835,42 @@
                                 ),
                                 wp.element.createElement(PanelBody, { title: __('Query Build', 'fancy-post-grid'), initialOpen: false },
 
-                                    wp.element.createElement(SelectControl, {
-                                        label: __('Select Author', 'fancy-post-grid'),
-                                        value: selectedAuthor,
-                                        options: [{ label: __('All Authors', 'fancy-post-grid'), value: '' }, ...authors],
-                                        onChange: (value) => setAttributes({ selectedAuthor: value })
-                                    }),
+                                    
                                     // Select Category
                                     wp.element.createElement(SelectControl, {
                                         label: __('Select Category', 'fancy-post-grid'),
-                                        value: selectedCategory,
+                                        value: selectedCategory || '', // Default to '' if selectedCategory is not set
                                         options: [{ label: __('All Categories', 'fancy-post-grid'), value: '' }, ...categories],
-                                        onChange: (value) => setAttributes({ selectedCategory: value })
+                                        onChange: (value) => setAttributes({ selectedCategory: value }) // Update selectedCategory value
                                     }),
+
                                     // Select Tag
                                     wp.element.createElement(SelectControl, {
                                         label: __('Select Tag', 'fancy-post-grid'),
-                                        value: selectedTag,
+                                        value: selectedTag || '',
                                         options: [{ label: __('All Tags', 'fancy-post-grid'), value: '' }, ...tags],
                                         onChange: (value) => setAttributes({ selectedTag: value })
                                     }),
                                     
-                                    // Sort Order (ASC/DESC)
+                                    // Create SelectControl for selecting orderBy field (sorting field)
                                     wp.element.createElement(SelectControl, {
-                                        label: __('Sort Order', 'fancy-post-grid'),
-                                        value: sortOrder,
-                                        options: sortingOptions,
-                                        onChange: (value) => setAttributes({ sortOrder: value })
+                                        label: __('Order By', 'fancy-post-grid'),
+                                        value: orderBy,  // orderBy is the state variable
+                                        
+                                        options: [
+                                            { label: __('Date', 'fancy-post-grid'), value: 'date' },
+                                            { label: __('Title', 'fancy-post-grid'), value: 'title' },
+                                            { label: __('Modified', 'fancy-post-grid'), value: 'modified' },
+                                        ],
+                                        onChange: (value) => setAttributes({ orderBy: value }) // Set the selected field as orderBy
                                     }),
-
-                                    wp.element.createElement(TextControl, {
-                                        label: __('Include Posts (IDs)', 'fancy-post-grid'),
-                                        value: includePosts,
-                                        onChange: (value) => setAttributes({ includePosts: value })
-                                    }),
-                                    wp.element.createElement(TextControl, {
-                                        label: __('Exclude Posts (IDs)', 'fancy-post-grid'),
-                                        value: excludePosts,
-                                        onChange: (value) => setAttributes({ excludePosts: value })
-                                    }),
+                                    
                                     wp.element.createElement(RangeControl, {
                                         label: __('Post Limit', 'fancy-post-grid'),
                                         value: postLimit,
                                         onChange: (limit) => setAttributes({ postLimit: limit }),
                                         min: 1,
-                                        max: 20
+                                        max: 50
                                     }),
                                 ),
                                 wp.element.createElement(PanelBody, { title: __('Pagination Settings', 'fancy-post-grid'), initialOpen: false },
