@@ -21,7 +21,7 @@
             selectedCategory: { type: 'string', default: '' },
             selectedTag: { type: 'string', default: '' },
             
-            orderBy: { type: 'string', default: 'title' },
+            orderBy: { type: 'string', default: '' },
             
             postLimit: { type: 'number', default: 3 },           
             // Pagination settings
@@ -79,7 +79,7 @@
             sectionMargin: { type: 'object', default: { top: '', right: '', bottom: '', left: '' }, },
             sectionPadding: { type: 'object', default: { top: '', right: '', bottom: '', left: '' }, },            
             //ITEM Box
-            
+            // itemMargin: { type: 'object', default: { top: '', right: '', bottom: '', left: '' }, },
             itemMargin: {
                 type: 'object',
                 default: {
@@ -244,11 +244,8 @@
                 }));
             }, []);
             
-            const [currentPage, setCurrentPage] = wp.element.useState(1);
-            console.log(paginationMargin);
-            console.log(paginationPadding);
-            console.log('Filtered Posts:', enablePagination); 
-            console.log('Filtered Posts:', paginationPadding); 
+            // const [currentPage, setCurrentPage] = wp.element.useState(1);
+
             // Fetch tags dynamically
             const tags = useSelect((select) => {
                 const terms = select('core').getEntityRecords('taxonomy', 'post_tag', { per_page: -1 });
@@ -271,79 +268,47 @@
                 return select('core').getEntityRecords('postType', postType, {
                     per_page: postLimit,
                     _embed: true,
-                    page: currentPage, // Track the current page
+                    // page: currentPage, // Track the current page
                     orderby: orderBy, // Dynamic sorting field (e.g., 'date', 'title', etc.)
                     categories: selectedCategory ? selectedCategory : undefined, // Apply category filter if selected
                     tags: selectedTag ? selectedTag : undefined, // Apply tag filter if selected
                     
                 });
-            }, [postType, postLimit,currentPage,selectedCategory, selectedTag, orderBy]);
+            }, [postType, postLimit,selectedCategory, selectedTag, orderBy]);
+
+            // const handlePreviousPage = () => {
+            //     if (currentPage > 1) setCurrentPage(currentPage - 1);
+            // };
+
+            // const handleNextPage = () => {
+            //     setCurrentPage(currentPage + 1);
+            // };
+
+            // const paginationControls = wp.element.createElement(
+            //     'div',
+            //     { className: 'pagination-controls', style: { textAlign: 'center', marginTop: '20px' } },
+            //     wp.element.createElement(
+            //         'button',
+            //         { 
+            //             onClick: handlePreviousPage, 
+            //             disabled: currentPage === 1, 
+            //             style: { marginRight: '10px', padding: '5px 10px' }
+            //         }, 
+            //         __('Previous', 'fancy-post-grid')
+            //     ),
+            //     wp.element.createElement(
+            //         'button',
+            //         { 
+            //             onClick: handleNextPage, 
+            //             style: { padding: '5px 10px' }
+            //         }, 
+            //         __('Next', 'fancy-post-grid')
+            //     )
+            // );
 
 
-            const handlePreviousPage = () => {
-                if (currentPage > 1) setCurrentPage(currentPage - 1);
-            };
-
-            const handleNextPage = () => {
-                setCurrentPage(currentPage + 1);
-            };
-
-            // Define the pagination controls with Bootstrap grid structure
-            const paginationControls = wp.element.createElement(
-                'div',
-                { className: 'row' }, // Bootstrap row
-                wp.element.createElement(
-                    'div',
-                    { className: 'col-12' }, // Bootstrap column (full width)
-                    wp.element.createElement(
-                        'div',
-                        { 
-                            className: 'fpg-pagination', 
-                            style: { 
-                                textAlign: attributes.paginationAlignment, 
-                                display: 'flex', // Align items in a row
-                                gap: attributes.paginationGap + 'px',
-                                justifyContent: attributes.paginationAlignment // Align based on user selection
-                            }  
-                        },
-                        wp.element.createElement(
-                            'button',
-                            { 
-                                onClick: handlePreviousPage, 
-                                disabled: currentPage === 1, 
-                                style: { 
-                                    backgroundColor: attributes.paginationBackgroundColor,
-                                    color: attributes.paginationTextColor, 
-                                    borderStyle: attributes.paginationBorderStyle,
-                                    borderWidth: attributes.paginationBorderWidth + 'px',
-                                    borderRadius: attributes.paginationBorderRadius + 'px',
-                                    gap: attributes.paginationGap + 'px',
-                                    borderColor: attributes.paginationBorderColor
-                                }
-                            }, 
-                            __('Previous', 'fancy-post-grid')
-                        ),
-                        wp.element.createElement(
-                            'button',
-                            { 
-                                onClick: handleNextPage, 
-                                style: { 
-                                    backgroundColor: attributes.paginationBackgroundColor,
-                                    color: attributes.paginationTextColor,
-                                    borderStyle: attributes.paginationBorderStyle,
-                                    borderWidth: attributes.paginationBorderWidth + 'px',
-                                    borderRadius: attributes.paginationBorderRadius + 'px',
-                                    gap: attributes.paginationGap + 'px',
-                                    borderColor: attributes.paginationBorderColor 
-                                }
-                            }, 
-                            __('Next', 'fancy-post-grid')
-                        )
-                    )
-                )
-            );
-
-
+            // console.log('Filtered Posts:', enablePagination); 
+            // console.log('Filtered Posts:', paginationControls); 
             let content;
 
             if (gridLayoutStyle === 'style1' && posts && posts.length) {
@@ -616,18 +581,8 @@
 
                         );
                     }),
-                    
+                    // paginationControls
                 );
-                
-                // Add pagination below the posts
-                if (enablePagination) {
-                    content = wp.element.createElement(
-                        wp.element.Fragment, 
-                        null,
-                        content, // The grid posts
-                        wp.element.createElement('div', { className: 'pagination-container' }, paginationControls) // Pagination below
-                    );
-                }
                 
             }
             else if (gridLayoutStyle === 'style2' && posts && posts.length) {
@@ -1231,6 +1186,7 @@
                                         values: attributes.sectionMargin,
                                         onChange: (value) => setAttributes({ sectionMargin: value }),
                                     }),
+                                    
                                     
                                 ),
                                 //Item Box

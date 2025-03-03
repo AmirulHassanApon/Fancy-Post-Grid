@@ -111,10 +111,10 @@ function fancy_post_grid_render_callback($attributes) {
     $gridLayoutStyle = isset($attributes['gridLayoutStyle']) ? $attributes['gridLayoutStyle'] : 'style1';
     $gridColumns = isset($attributes['gridColumns']) ? absint($attributes['gridColumns']) : 3;
     //Query Builder
-    $selectedAuthor = isset($attributes['selectedAuthor']) ? sanitize_text_field($attributes['selectedAuthor']) : '';
+    
     $selectedCategory = isset($attributes['selectedCategory']) ? sanitize_text_field($attributes['selectedCategory']) : '';
     $selectedTag = isset($attributes['selectedTag']) ? sanitize_text_field($attributes['selectedTag']) : '';
-    $sortOrder = isset($attributes['sortOrder']) ? sanitize_text_field($attributes['sortOrder']) : 'DESC';
+    $orderBy = isset($attributes['orderBy']) ? sanitize_text_field($attributes['orderBy']) : 'title';
     $postLimit = isset($attributes['postLimit']) ? absint($attributes['postLimit']) : 3;
     $includePosts = isset($attributes['includePosts']) ? array_map('absint', explode(',', $attributes['includePosts'])) : [];
     $excludePosts = isset($attributes['excludePosts']) ? array_map('absint', explode(',', $attributes['excludePosts'])) : [];  
@@ -467,15 +467,13 @@ function fancy_post_grid_render_callback($attributes) {
                                     text-align: ' . esc_attr($postTitleAlignment) . '; 
                                     color: ' . esc_attr($postTitleColor) . '; 
                                     background-color: ' . esc_attr($postTitleBgColor) . '; 
-                                    border-style: ' . esc_attr($postTitleBorderType) . '; 
+                                    
                                     margin: ' . esc_attr($postTitleMargin['top']) . ' ' . esc_attr($postTitleMargin['right']) . ' ' . esc_attr($postTitleMargin['bottom']) . ' ' . esc_attr($postTitleMargin['left']) . '; 
                                     padding: ' . esc_attr($postTitlePadding['top']) . ' ' . esc_attr($postTitlePadding['right']) . ' ' . esc_attr($postTitlePadding['bottom']) . ' ' . esc_attr($postTitlePadding['left']) . ';"
                                     onmouseover="this.style.color=\'' . esc_attr($postTitleHoverColor) . '\';
-                                                 this.style.backgroundColor=\'' . esc_attr($postTitleHoverBgColor) . '\';
-                                                 this.style.borderColor=\'' . esc_attr($postTitleHoverBorderColor) . '\';" 
+                                                 this.style.backgroundColor=\'' . esc_attr($postTitleHoverBgColor) . '\';" 
                                     onmouseout="this.style.color=\'' . esc_attr($postTitleColor) . '\';
-                                                this.style.backgroundColor=\'' . esc_attr($postTitleBgColor) . '\';
-                                                this.style.borderColor=\'inherit\';">';
+                                                this.style.backgroundColor=\'' . esc_attr($postTitleBgColor) . '\';">';
 
                     $output .= '<a href="' . esc_url($permalink) . '" 
                                     style="display: inline-block; width: 100%; text-decoration: none;"
@@ -600,12 +598,11 @@ function fancy_post_grid_render_callback($attributes) {
                                 text-align: ' . esc_attr($postTitleAlignment) . '; 
                                 color: ' . esc_attr($postTitleColor) . '; 
                                 background-color: ' . esc_attr($postTitleBgColor) . '; 
-                                border-style: ' . esc_attr($postTitleBorderType) . '; 
+                                
                                 margin: ' . esc_attr($postTitleMargin['top']) . 'px ' . esc_attr($postTitleMargin['right']) . 'px ' . esc_attr($postTitleMargin['bottom']) . 'px ' . esc_attr($postTitleMargin['left']) . 'px; 
                                 padding: ' . esc_attr($postTitlePadding['top']) . 'px ' . esc_attr($postTitlePadding['right']) . 'px ' . esc_attr($postTitlePadding['bottom']) . 'px ' . esc_attr($postTitlePadding['left']) . 'px;"
                                 onmouseover="this.style.color=\'' . esc_attr($postTitleHoverColor) . '\';
-                                             this.style.backgroundColor=\'' . esc_attr($postTitleHoverBgColor) . '\';
-                                             this.style.borderColor=\'' . esc_attr($postTitleHoverBorderColor) . '\';" 
+                                             this.style.backgroundColor=\'' . esc_attr($postTitleHoverBgColor) . '\';" 
                                 onmouseout="this.style.color=\'' . esc_attr($postTitleColor) . '\';
                                             this.style.backgroundColor=\'' . esc_attr($postTitleBgColor) . '\';
                                             this.style.borderColor=\'inherit\';">';
