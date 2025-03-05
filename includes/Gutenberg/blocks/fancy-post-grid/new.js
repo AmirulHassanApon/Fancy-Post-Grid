@@ -3,7 +3,8 @@
     const { __ } = wp.i18n;
     const { useBlockProps, InspectorControls } = wp.blockEditor;
     const { useSelect } = wp.data;
-    const { Fragment } = wp.element;
+    
+    const { Fragment,useState, useEffect  } = wp.element;
     const { PanelBody, TabPanel,__experimentalBoxControl  , RangeControl,ColorPicker, ColorPalette, ToggleControl, TextControl, SelectControl  } = wp.components;
 
     registerBlockType('fancy-post-grid/block', {
@@ -21,7 +22,7 @@
             selectedCategory: { type: 'string', default: '' },
             selectedTag: { type: 'string', default: '' },
             
-            orderBy: { type: 'string', default: '' },
+            orderBy: { type: 'string', default: 'title' },
             
             postLimit: { type: 'number', default: 3 },           
             // Pagination settings
@@ -79,7 +80,7 @@
             sectionMargin: { type: 'object', default: { top: '', right: '', bottom: '', left: '' }, },
             sectionPadding: { type: 'object', default: { top: '', right: '', bottom: '', left: '' }, },            
             //ITEM Box
-            // itemMargin: { type: 'object', default: { top: '', right: '', bottom: '', left: '' }, },
+            
             itemMargin: {
                 type: 'object',
                 default: {
@@ -148,19 +149,20 @@
             metaLinkHoverColor: { type: 'string', default: '#005177' },
             //Button
             buttonAlignment: { type: 'string', default: 'center' },
-            buttonMargin: { type: 'object', default: { top: '', right: '', bottom: '', left: '' }, },
-            buttonPadding: { type: 'object', default: { top: '', right: '', bottom: '', left: '' }, },  
+            buttonMarginNew: { type: 'object', default: { top: '', right: '', bottom: '', left: '' }, },
+            buttonPaddingNew: { type: 'object', default: { top: '', right: '', bottom: '', left: '' }, },  
             buttonTextColor: { type: 'string', default: '#ffffff' },
             buttonBackgroundColor: { type: 'string', default: '#0073aa' },
             buttonBorderType: { type: 'string', default: 'solid' },
             buttonBorderRadius: { type: 'string', default: '5px' },
+            buttonBorderWidth: { type: 'string', default: '5px' },
             buttonHoverTextColor: { type: 'string', default: '#ffffff' },
             buttonHoverBackgroundColor: { type: 'string', default: '#005177' },
-            buttonHoverBorderType: { type: 'string', default: 'solid' },
-            buttonHoverBorderRadius: { type: 'string', default: '5px' },
+           
             //Pagination
-            paginationMargin: { type: 'object', default: { top: 0, right: 0, bottom: 0, left: 0 } },
-            paginationPadding: { type: 'object', default: { top: 0, right: 0, bottom: 0, left: 0 } },
+            paginationMarginNew: { type: 'object', default: { top: '', right: '', bottom: '', left: '' }, },
+            paginationPaddingNew: { type: 'object', default: { top: '', right: '', bottom: '', left: '' }, },  
+            
             paginationAlignment: { type: 'string', default: 'center' },
             paginationBorderStyle: { type: 'string', default: 'solid' },
             paginationBorderWidth: { type: 'number', default: 1 },
@@ -215,11 +217,11 @@
 
                 metaAlignment,metaMargin,metaTextColor,separatorColor,metaLinkColor,metaIconColor,metaLinkHoverColor,
 
-                buttonAlignment,buttonMargin,buttonPadding,buttonTextColor,buttonBackgroundColor,buttonBorderType,
-                buttonBorderRadius,buttonHoverTextColor,buttonHoverBackgroundColor,buttonHoverBorderType,
-                buttonHoverBorderRadius,
+                buttonAlignment,buttonMarginNew,buttonPaddingNew,buttonTextColor,buttonBackgroundColor,buttonBorderType
+                ,buttonBorderWidth,
+                buttonBorderRadius,buttonHoverTextColor,buttonHoverBackgroundColor,
 
-                paginationMargin,paginationPadding,paginationAlignment,
+                paginationMarginNew,paginationPaddingNew,paginationAlignment,
                 paginationBorderStyle,paginationBorderWidth,paginationBorderRadius,paginationGap,
                 paginationTextColor,paginationBackgroundColor,paginationBorderColor,
                 paginationHoverTextColor,paginationHoverBackgroundColor,paginationHoverBorderColor,
@@ -244,8 +246,9 @@
                 }));
             }, []);
             
-            // const [currentPage, setCurrentPage] = wp.element.useState(1);
+            
 
+            
             // Fetch tags dynamically
             const tags = useSelect((select) => {
                 const terms = select('core').getEntityRecords('taxonomy', 'post_tag', { per_page: -1 });
@@ -262,53 +265,156 @@
                 return `${value.top || 0}px ${value.right || 0}px ${value.bottom || 0}px ${value.left || 0}px`;
             };
             
-            // Query to get posts
-            const posts = useSelect((select) => {
+            const [currentPage, setCurrentPage] = useState(1);
+            const [totalPages, setTotalPages] = useState(1);
 
-                return select('core').getEntityRecords('postType', postType, {
+            // Fetch posts dynamically based on the current page
+            const { posts, totalPagesFromAPI } = useSelect((select) => {
+                const query = {
                     per_page: postLimit,
                     _embed: true,
-                    // page: currentPage, // Track the current page
+                    page: currentPage,
                     orderby: orderBy, // Dynamic sorting field (e.g., 'date', 'title', etc.)
                     categories: selectedCategory ? selectedCategory : undefined, // Apply category filter if selected
                     tags: selectedTag ? selectedTag : undefined, // Apply tag filter if selected
-                    
-                });
-            }, [postType, postLimit,selectedCategory, selectedTag, orderBy]);
+                };
 
-            // const handlePreviousPage = () => {
-            //     if (currentPage > 1) setCurrentPage(currentPage - 1);
-            // };
+                // Fetch posts
+                const postsData = select('core').getEntityRecords('postType', postType, query);
+                
+                // Fetch total pages from response headers
+                const totalPagesFromAPI = select('core').getEntityRecords('postType', postType, {
+                    per_page: 1, // Fetching only 1 to get total count
+                })?._paging?.totalPages || 1; // Ensure fallback value
 
-            // const handleNextPage = () => {
-            //     setCurrentPage(currentPage + 1);
-            // };
+                return {
+                    posts: postsData,
+                    totalPagesFromAPI,
+                };
+            }, [postType, postLimit, currentPage, selectedCategory, selectedTag, orderBy]);
 
-            // const paginationControls = wp.element.createElement(
-            //     'div',
-            //     { className: 'pagination-controls', style: { textAlign: 'center', marginTop: '20px' } },
-            //     wp.element.createElement(
-            //         'button',
-            //         { 
-            //             onClick: handlePreviousPage, 
-            //             disabled: currentPage === 1, 
-            //             style: { marginRight: '10px', padding: '5px 10px' }
-            //         }, 
-            //         __('Previous', 'fancy-post-grid')
-            //     ),
-            //     wp.element.createElement(
-            //         'button',
-            //         { 
-            //             onClick: handleNextPage, 
-            //             style: { padding: '5px 10px' }
-            //         }, 
-            //         __('Next', 'fancy-post-grid')
-            //     )
-            // );
+            // Update total pages when API response changes
+            useEffect(() => {
+                if (totalPagesFromAPI) {
+                    setTotalPages(totalPagesFromAPI);
+                }
+            }, [totalPagesFromAPI]);
 
+            // Function to handle page changes
+            const handlePageClick = (pageNumber) => {
+                if (pageNumber >= 1 && pageNumber <= totalPages) {
+                    setCurrentPage(pageNumber);
+                }
+            };
 
-            // console.log('Filtered Posts:', enablePagination); 
-            // console.log('Filtered Posts:', paginationControls); 
+            // Generate pagination numbers (1,2,3,...)
+            const paginationNumbers = [];
+            for (let i = 1; i <= totalPages; i++) {
+                paginationNumbers.push(
+                    wp.element.createElement(
+                        'button',
+                        {
+                            key: i,
+                            onClick: () => handlePageClick(i),
+                            style: {
+                                
+                                backgroundColor: currentPage === i ? attributes.paginationActiveBackgroundColor : '#007cba',
+                                color: currentPage === i ? attributes.paginationActiveTextColor : '#fff',
+                                borderStyle: attributes.paginationBorderStyle,
+                                borderWidth: `${attributes.paginationBorderWidth}px`,
+                                borderRadius: `${attributes.paginationBorderRadius}px`,
+                                borderColor: attributes.paginationActiveBorderColor,
+                                padding: getSpacingValue(attributes.paginationPaddingNew),
+                            },
+                            
+                        },
+                        i
+                    )
+                );
+            }
+            // Pagination controls
+            const paginationControls = wp.element.createElement(
+                'div',
+                { className: 'row' },
+                wp.element.createElement(
+                    'div',
+                    { className: 'col-12' },
+                    wp.element.createElement(
+                        'div',
+                        {
+                            className: 'fpg-pagination',
+                            style: {
+                                display: 'flex',
+                                justifyContent: attributes.paginationAlignment,
+                                margin: getSpacingValue(attributes.paginationMarginNew),
+                                gap: attributes.paginationGap,
+                            },
+                        },
+                        wp.element.createElement(
+                            'button',
+                            {
+                                onClick: () => handlePageClick(currentPage - 1),
+                                disabled: currentPage === 1,
+                                style: {
+                                    
+                                    padding: getSpacingValue(attributes.paginationPaddingNew),
+                                    backgroundColor: attributes.paginationBackgroundColor,
+                                    color: attributes.paginationTextColor,
+                                    borderStyle: attributes.paginationBorderStyle,
+                                    borderWidth: `${attributes.paginationBorderWidth}px`,
+                                    borderRadius: `${attributes.paginationBorderRadius}px`,
+                                    borderColor: attributes.paginationBorderColor,
+                                },
+                                onMouseEnter: (e) => {
+                                    e.currentTarget.style.backgroundColor = attributes.paginationHoverBackgroundColor;
+                                    e.currentTarget.style.borderColor = attributes.paginationHoverBorderColor;
+                                    e.currentTarget.style.color = attributes.paginationHoverTextColor;
+                                    
+                                },
+                                onMouseLeave: (e) => {
+                                    e.currentTarget.style.backgroundColor = attributes.paginationBackgroundColor;
+                                    e.currentTarget.style.borderColor = attributes.paginationBorderColor;
+                                    e.currentTarget.style.color = attributes.paginationTextColor;
+                                    
+                                },
+                            },
+                            __('Previous', 'fancy-post-grid')
+                        ),
+                        ...paginationNumbers, // Dynamically generated pagination buttons
+                        wp.element.createElement(
+                            'button',
+                            {
+                                onClick: () => handlePageClick(currentPage + 1),
+                                disabled: currentPage === totalPages,
+                                style: {
+                                    
+                                    padding: getSpacingValue(attributes.paginationPaddingNew),
+                                    backgroundColor: attributes.paginationBackgroundColor,
+                                    color: attributes.paginationTextColor,
+                                    borderStyle: attributes.paginationBorderStyle,
+                                    borderWidth: `${attributes.paginationBorderWidth}px`,
+                                    borderRadius: `${attributes.paginationBorderRadius}px`,
+                                    borderColor: attributes.paginationBorderColor,
+                                },
+                                onMouseEnter: (e) => {
+                                    e.currentTarget.style.backgroundColor = attributes.paginationHoverBackgroundColor;
+                                    e.currentTarget.style.borderColor = attributes.paginationHoverBorderColor;
+                                    e.currentTarget.style.color = attributes.paginationHoverTextColor;
+                                    
+                                },
+                                onMouseLeave: (e) => {
+                                    e.currentTarget.style.backgroundColor = attributes.paginationBackgroundColor;
+                                    e.currentTarget.style.borderColor = attributes.paginationBorderColor;
+                                    e.currentTarget.style.color = attributes.paginationTextColor;
+                                    
+                                },
+                            },
+                            __('Next', 'fancy-post-grid')
+                        )
+                    )
+                )
+            );
+            
             let content;
 
             if (gridLayoutStyle === 'style1' && posts && posts.length) {
@@ -355,7 +461,6 @@
                                 },
                             },
                         
-                            // Thumbnail Display
                             // Thumbnail Display with Link if enabled
                             showThumbnail && thumbnail &&
                                 wp.element.createElement(
@@ -365,8 +470,6 @@
                                         style: {
                                             margin: getSpacingValue(attributes.thumbnailMargin),
                                             padding: getSpacingValue(attributes.thumbnailPadding),
-                                            
-                                            
                                             overflow: 'hidden', // Prevent overflow on border-radius
                                         },
                                     },
@@ -547,8 +650,8 @@
                                 
                                 showReadMoreButton && wp.element.createElement('div', { className: 'btn-wrapper',style: { 
                                             order: buttonOrder,
-                                            margin: getSpacingValue(attributes.buttonMargin),
-                                            padding: getSpacingValue(attributes.buttonPadding)  }, 
+                                            margin: getSpacingValue(attributes.buttonMarginNew),
+                                            textAlign: buttonAlignment  }, 
                                         }, 
                                     wp.element.createElement('a', { 
                                         href: post.link, 
@@ -557,8 +660,9 @@
                                         style: { 
                                             backgroundColor: buttonStyle === 'filled' ? buttonBackgroundColor : 'transparent',
                                             color: buttonTextColor,
-                                            border: buttonStyle === 'border' ? `1px solid ${buttonBackgroundColor}` : 'none', // Border style
-                                            
+                                            border:  ` ${buttonBorderType} ${buttonBackgroundColor}`, // Border style
+                                            borderWidth: `${attributes.buttonBorderWidth}px`,
+                                            padding: getSpacingValue(attributes.buttonPaddingNew),
                                             borderRadius: getSpacingValue(attributes.buttonBorderRadius),
                                             textDecoration: buttonStyle === 'flat' ? 'none' : 'inherit'
                                         },
@@ -581,8 +685,18 @@
 
                         );
                     }),
-                    // paginationControls
+                    
                 );
+                
+                // Add pagination below the posts
+                if (enablePagination) {
+                    content = wp.element.createElement(
+                        wp.element.Fragment, 
+                        null,
+                        content, // The grid posts
+                        wp.element.createElement('div', { className: 'pagination-container' }, paginationControls) // Pagination below
+                    );
+                }
                 
             }
             else if (gridLayoutStyle === 'style2' && posts && posts.length) {
@@ -737,7 +851,6 @@
                                             onMouseLeave: (e) => {
                                                 e.target.style.color = excerptColor;
                                                 e.target.style.backgroundColor = excerptBgColor;
-                                                
                                             }, 
                                         }, 
                                         excerptType === 'full_content' 
@@ -760,8 +873,8 @@
                                             backgroundColor: buttonStyle === 'filled' ? buttonBackgroundColor : 'transparent',
                                             color: buttonTextColor,
                                             border: buttonStyle === 'border' ? `1px solid ${buttonBackgroundColor}` : 'none', // Border style
-                                            margin: getSpacingValue(attributes.buttonMargin),
-                                            padding: getSpacingValue(attributes.buttonPadding),
+                                            margin: getSpacingValue(attributes.buttonMarginNew),
+                                            padding: getSpacingValue(attributes.buttonPaddingNew),
                                             borderRadius: getSpacingValue(attributes.buttonBorderRadius),
                                             textDecoration: buttonStyle === 'flat' ? 'none' : 'inherit'
                                         },
@@ -1186,7 +1299,6 @@
                                         values: attributes.sectionMargin,
                                         onChange: (value) => setAttributes({ sectionMargin: value }),
                                     }),
-                                    
                                     
                                 ),
                                 //Item Box
@@ -1717,17 +1829,48 @@
                                     // Margin
                                     wp.element.createElement(__experimentalBoxControl, {
                                         label: __('Margin', 'fancy-post-grid'),
-                                        values: attributes.buttonMargin,
-                                        onChange: (value) => setAttributes({ buttonMargin: value }),
+                                        values: attributes.buttonMarginNew,
+                                        onChange: (value) => setAttributes({ buttonMarginNew: value }),
                                     }),
 
                                     // Padding
                                     wp.element.createElement(__experimentalBoxControl, {
                                         label: __('Padding', 'fancy-post-grid'),
-                                        values: attributes.buttonPadding,
-                                        onChange: (value) => setAttributes({ buttonPadding: value }),
+                                        values: attributes.buttonPaddingNew,
+                                        onChange: (value) => setAttributes({ buttonPaddingNew: value }),
+                                    }),
+                                    // Button Border Radius
+                                    wp.element.createElement(__experimentalBoxControl, {
+                                        label: __('Border Radius', 'fancy-post-grid'),
+                                        values: attributes.buttonBorderRadius,
+                                        onChange: (value) => setAttributes({ buttonBorderRadius: value }),
                                     }),
 
+                                    // Button Border Type
+                                    wp.element.createElement(SelectControl, {
+                                        label: __('Border Type', 'fancy-post-grid'),
+                                        value: attributes.buttonBorderType,
+                                        options: [
+                                            { label: __('None', 'fancy-post-grid'), value: 'none' },
+                                            { label: __('Solid', 'fancy-post-grid'), value: 'solid' },
+                                            { label: __('Dashed', 'fancy-post-grid'), value: 'dashed' },
+                                            { label: __('Double', 'fancy-post-grid'), value: 'double' },
+                                            { label: __('Dotted', 'fancy-post-grid'), value: 'dotted' },
+                                            { label: __('Groove', 'fancy-post-grid'), value: 'groove' },
+                                        ],
+                                        onChange: (value) => setAttributes({ buttonBorderType: value }),
+                                    }),
+
+                                    // Border Width
+                                    
+                                    wp.element.createElement(RangeControl, {
+                                        label: __('Border Width', 'fancy-post-grid'),
+                                        value: attributes.buttonBorderWidth,
+                                        onChange: (value) => setAttributes({ buttonBorderWidth: value }),
+                                        min: 0,
+                                        max: 100
+                                    }),
+                                    
                                     wp.element.createElement(
                                         TabPanel,
                                         {
@@ -1756,30 +1899,6 @@
                                                     onChange: (value) => setAttributes({ buttonBackgroundColor: value }),
                                                 }),
 
-                                                // Button Border Type
-                                                wp.element.createElement(SelectControl, {
-                                                    label: __('Border Type', 'fancy-post-grid'),
-                                                    value: attributes.buttonBorderType,
-                                                    options: [
-                                                        { label: __('None', 'fancy-post-grid'), value: 'none' },
-                                                        { label: __('Solid', 'fancy-post-grid'), value: 'solid' },
-                                                        { label: __('Dashed', 'fancy-post-grid'), value: 'dashed' },
-                                                        { label: __('Double', 'fancy-post-grid'), value: 'double' },
-                                                        { label: __('Dotted', 'fancy-post-grid'), value: 'dotted' },
-                                                        { label: __('Groove', 'fancy-post-grid'), value: 'groove' },
-                                                    ],
-                                                    onChange: (value) => setAttributes({ buttonBorderType: value }),
-                                                }),
-
-                                                // Button Border Radius
-                                                wp.element.createElement(RangeControl, {
-                                                    label: __('Border Radius', 'fancy-post-grid'),
-                                                    value: attributes.buttonBorderRadius,
-                                                    min: 0,
-                                                    max: 50,
-                                                    onChange: (value) => setAttributes({ buttonBorderRadius: value }),
-                                                }),
-
                                             ] : [
                                                 // Hover Button Text Color
                                                 wp.element.createElement('p', {}, __('Hover Text Color', 'fancy-post-grid')),
@@ -1797,29 +1916,6 @@
                                                     onChange: (value) => setAttributes({ buttonHoverBackgroundColor: value }),
                                                 }),
 
-                                                // Hover Button Border Type
-                                                wp.element.createElement(SelectControl, {
-                                                    label: __('Hover Border Type', 'fancy-post-grid'),
-                                                    value: attributes.buttonHoverBorderType,
-                                                    options: [
-                                                        { label: __('None', 'fancy-post-grid'), value: 'none' },
-                                                        { label: __('Solid', 'fancy-post-grid'), value: 'solid' },
-                                                        { label: __('Dashed', 'fancy-post-grid'), value: 'dashed' },
-                                                        { label: __('Double', 'fancy-post-grid'), value: 'double' },
-                                                        { label: __('Dotted', 'fancy-post-grid'), value: 'dotted' },
-                                                        { label: __('Groove', 'fancy-post-grid'), value: 'groove' },
-                                                    ],
-                                                    onChange: (value) => setAttributes({ buttonHoverBorderType: value }),
-                                                }),
-
-                                                // Hover Button Border Radius
-                                                wp.element.createElement(RangeControl, {
-                                                    label: __('Hover Border Radius', 'fancy-post-grid'),
-                                                    value: attributes.buttonHoverBorderRadius,
-                                                    min: 0,
-                                                    max: 50,
-                                                    onChange: (value) => setAttributes({ buttonHoverBorderRadius: value }),
-                                                }),
                                             ];
                                         }
                                     )
@@ -1827,16 +1923,19 @@
                                 ),
                                 // Pagination
                                 wp.element.createElement(PanelBody, { title: __('Pagination', 'fancy-post-grid'), initialOpen: false },
-                                    // Margin & Padding Controls
+                                    
+                                    // Margin
                                     wp.element.createElement(__experimentalBoxControl, {
                                         label: __('Margin', 'fancy-post-grid'),
-                                        values: attributes.paginationMargin,
-                                        onChange: (value) => setAttributes({ paginationMargin: value }),
+                                        values: attributes.paginationMarginNew,
+                                        onChange: (value) => setAttributes({ paginationMarginNew: value }),
                                     }),
+
+                                    // Padding
                                     wp.element.createElement(__experimentalBoxControl, {
                                         label: __('Padding', 'fancy-post-grid'),
-                                        values: attributes.paginationPadding,
-                                        onChange: (value) => setAttributes({ paginationPadding: value }),
+                                        values: attributes.paginationPaddingNew,
+                                        onChange: (value) => setAttributes({ paginationPaddingNew: value }),
                                     }),
 
                                     // Alignment
@@ -1859,7 +1958,9 @@
                                             { label: __('None', 'fancy-post-grid'), value: 'none' },
                                             { label: __('Solid', 'fancy-post-grid'), value: 'solid' },
                                             { label: __('Dashed', 'fancy-post-grid'), value: 'dashed' },
+                                            { label: __('Double', 'fancy-post-grid'), value: 'double' },
                                             { label: __('Dotted', 'fancy-post-grid'), value: 'dotted' },
+                                            { label: __('Groove', 'fancy-post-grid'), value: 'groove' },
                                         ],
                                         onChange: (value) => setAttributes({ paginationBorderStyle: value }),
                                     }),
@@ -1869,7 +1970,7 @@
                                         value: attributes.paginationBorderWidth,
                                         onChange: (value) => setAttributes({ paginationBorderWidth: value }),
                                         min: 0,
-                                        max: 10
+                                        max: 100
                                     }),
 
                                     wp.element.createElement(RangeControl, {
@@ -1885,7 +1986,7 @@
                                         value: attributes.paginationGap,
                                         onChange: (value) => setAttributes({ paginationGap: value }),
                                         min: 0,
-                                        max: 50
+                                        max: 100
                                     }),
 
                                     // Tabs for Normal, Hover, Active States
