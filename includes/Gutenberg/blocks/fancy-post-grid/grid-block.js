@@ -79,25 +79,21 @@
             sectionBgColor: { type: 'string', default: '#ffffff' },
             sectionMargin: { type: 'object', default: { top: '', right: '', bottom: '', left: '' }, },
             sectionPadding: { type: 'object', default: { top: '', right: '', bottom: '', left: '' }, },            
-            //ITEM Box
-            
+            //ITEM Box           
             itemMargin: { type: 'object', default: { top: '40px', right: '0', bottom: '40px', left: '0' }, },
             itemPadding: { type: 'object', default: { top: '', right: '', bottom: '', left: '' }, },
             itemBorderRadius: { type: 'object', default: { top: '', right: '', bottom: '', left: '' }, },
             itemGap: { type: 'number', default: 10 },
-
             itemBoxAlignment: { type: 'string', default: 'left' },
             itemBorderType: { type: 'string', default: 'solid' },
             itemBoxShadow: { type: 'object', default: { top: '', right: '', bottom: '', left: '' }, },
             itemBoxShadowColor: { type: 'string', default: '' },  
             itemBackgroundColor: { type: 'string', default: '' },
             itemBorderColor: { type: 'string', default: '' },
-            
-            itemHoverBackgroundColor: { type: 'string', default: '' },
             itemBorderWidth: { type: 'object', default: { top: '', right: '', bottom: '', left: '' }, },            
             //Content Box
             contentitemMarginNew: { type: 'object', default: { top: '', right: '', bottom: '', left: '' }, },
-            contentitemPadding: { type: 'object', default: { top: '', right: '', bottom: '', left: '' }, },
+            contentitemPaddingNew: { type: 'object', default: { top: '', right: '', bottom: '', left: '' }, },
             contentBorderWidth: { type: 'object', default: { top: '', right: '', bottom: '', left: '' }, },
             contentnormalBorderType: { type: 'string', default: 'none' },     
             contentBgColor: { type: 'string', default: '' },       
@@ -116,8 +112,7 @@
             postTitleMargin: { type: 'object', default: { top: '10px', right: '0', bottom: '10px', left: '0' }, },
             postTitlePadding: { type: 'object', default: { top: '', right: '', bottom: '', left: '' }, },
             postTitleColor: { type: 'string', default: '#161616' },
-            postTitleBgColor: { type: 'string', default: '' },
-            
+            postTitleBgColor: { type: 'string', default: '' },   
             postTitleHoverColor: { type: 'string', default: '#007aff' },
             postTitleHoverBgColor: { type: 'string', default: '' },
                     
@@ -131,7 +126,6 @@
             excerptPadding: { type: 'object', default: { top: '', right: '', bottom: '', left: '' }, },           
             excerptColor: { type: 'string', default: '' },
             excerptBgColor: { type: 'string', default: '' },
-            
             excerptHoverColor: { type: 'string', default: '' },
             excerptHoverBgColor: { type: 'string', default: '' },
             excerptHoverBorderColor: { type: 'string', default: '' },
@@ -142,9 +136,8 @@
             metaPadding: { type: 'object', default: { top: '', right: '', bottom: '', left: '' }, }, 
             metaTextColor: { type: 'string', default: '#333333' },
             separatorColor: { type: 'string', default: '#cccccc' },
-            
             metaIconColor: { type: 'string', default: '#555555' },
-            metaLinkHoverColor: { type: 'string', default: '#005177' },
+            
             //Button
             buttonAlignment: { type: 'string', default: 'left' },
             buttonMarginNew: { type: 'object', default: { top: '', right: '', bottom: '', left: '' }, },
@@ -162,8 +155,7 @@
            
             //Pagination
             paginationMarginNew: { type: 'object', default: { top: '', right: '', bottom: '', left: '' }, },
-            paginationPaddingNew: { type: 'object', default: { top: '', right: '', bottom: '', left: '' }, },  
-            
+            paginationPaddingNew: { type: 'object', default: { top: '', right: '', bottom: '', left: '' }, },             
             paginationAlignment: { type: 'string', default: 'left' },
             paginationBorderStyle: { type: 'string', default: 'solid' },
             paginationBorderWidth: { type: 'number', default: 1 },
@@ -201,11 +193,10 @@
                 showButtonIcon,iconPosition,buttonStyle,readMoreLabel,
                 sectionBgColor,sectionMargin,sectionPadding,
 
-                itemPadding,itemMargin,itemBorderRadius,itemHoverBackgroundColor,
-                itemBoxAlignment,itemBoxShadow,itemBoxShadowColor,itemBorderColor,itemBackgroundColor,itemBorderWidth,
-                itemBorderType, 
+                itemPadding,itemMargin,itemBorderRadius,itemBoxAlignment,itemBoxShadow,itemBoxShadowColor,
+                itemBorderColor,itemBackgroundColor,itemBorderWidth,itemBorderType,itemGap, 
 
-                contentitemMarginNew,contentitemPadding,contentnormalBorderType,contentBorderWidth,contentBgColor,contentBorderColor,
+                contentitemMarginNew,contentitemPaddingNew,contentnormalBorderType,contentBorderWidth,contentBgColor,contentBorderColor,
 
                 thumbnailMargin,thumbnailPadding,thumbnailBorderRadius,
 
@@ -217,7 +208,7 @@
                 excerptPadding,excerptColor,excerptBgColor,excerptHoverColor,excerptHoverBgColor,
                 excerptHoverBorderColor,
 
-                metaAlignment,metaFontSize,metaMarginNew,metaPadding,metaTextColor,separatorColor,metaIconColor,metaLinkHoverColor,
+                metaAlignment,metaFontSize,metaMarginNew,metaPadding,metaTextColor,separatorColor,metaIconColor,
 
                 buttonAlignment,buttonMarginNew,buttonPaddingNew,buttonTextColor,buttonBackgroundColor,buttonBorderType
                 ,buttonBorderWidth,
@@ -465,19 +456,11 @@
                                     padding: getSpacingValue(attributes.itemPadding),
                                     borderRadius: getSpacingValue(attributes.itemBorderRadius),
                                     borderWidth: getSpacingValue(attributes.itemBorderWidth),
-                                    textAlign: attributes.itemBoxAlignment,
-                                    
+                                    textAlign: attributes.itemBoxAlignment,   
                                     backgroundColor: attributes.itemBackgroundColor,
                                     borderStyle: attributes.itemBorderType,
                                     borderColor: attributes.itemBorderColor,
                                     boxShadow: `${getSpacingValue(attributes.itemBoxShadow) || '10px'} ${attributes.itemBoxShadowColor || 'rgba(0,0,0,0.1)'}`,
-
-                                },
-                                onMouseEnter: (e) => {
-                                    e.currentTarget.style.backgroundColor = attributes.itemHoverBackgroundColor;
-                                },
-                                onMouseLeave: (e) => {
-                                    e.currentTarget.style.backgroundColor = attributes.itemBackgroundColor;       
                                 },
                             },
                         
@@ -516,7 +499,7 @@
                             // Wrap the entire content in a new div (e.g., rs-content)
                             wp.element.createElement('div', { className: 'rs-content',style: {
                                     margin: getSpacingValue(attributes.contentitemMarginNew),
-                                    padding: getSpacingValue(attributes.contentitemPadding),
+                                    padding: getSpacingValue(attributes.contentitemPaddingNew),
                                     borderWidth: getSpacingValue(attributes.contentBorderWidth),
                                     borderStyle: attributes.contentnormalBorderType,
                                     backgroundColor: contentBgColor,
@@ -810,14 +793,7 @@
                                     borderStyle: attributes.itemBorderType,
                                     borderColor: attributes.itemBorderColor,
                                 },
-                                onMouseEnter: (e) => {
-                                    e.target.style.backgroundColor = attributes.itemHoverBackgroundColor;
-                                    
-                                },
-                                onMouseLeave: (e) => {
-                                    e.target.style.backgroundColor = attributes.itemBackgroundColor;
-                                    e.target.style.boxShadow = attributes.itemBoxShadow;                             
-                                },
+                                
                             },
                         
                             // Thumbnail Display
@@ -857,7 +833,7 @@
                             // Wrap the entire content in a new div (e.g., rs-content)
                             wp.element.createElement('div', { className: 'rs-content',style: {
                                     margin: getSpacingValue(attributes.contentitemMarginNew),
-                                    padding: getSpacingValue(attributes.contentitemPadding),
+                                    padding: getSpacingValue(attributes.contentitemPaddingNew),
                                     borderWidth: getSpacingValue(attributes.contentBorderWidth),
                                     borderStyle: attributes.contentnormalBorderType,},
                                 }, 
@@ -1423,87 +1399,55 @@
                                         ],
                                         onChange: (value) => setAttributes({ itemBoxAlignment: value }),
                                     }),
-                                    // Normal and Hover Tab
-                                    wp.element.createElement(TabPanel, {
-                                        tabs: [
-                                            {
-                                                name: 'normal',
-                                                title: __('Normal', 'fancy-post-grid'),
-                                                className: 'normal-tab',
-                                            },
-                                            {
-                                                name: 'hover',
-                                                title: __('Hover', 'fancy-post-grid'),
-                                                className: 'hover-tab',
-                                            },
+                                    // Background Type
+                                    wp.element.createElement('p', {}, __('Item Box Background Color', 'fancy-post-grid')),
+                                    
+                                    wp.element.createElement(wp.components.ColorPicker, {
+                                        color: attributes.itemBackgroundColor,
+                                        onChangeComplete: (value) => setAttributes({ itemBackgroundColor: value.hex }),
+                                    }),
+                                    // Border Type
+                                    wp.element.createElement(SelectControl, {
+                                        label: __('Border Type', 'fancy-post-grid'),
+                                        value: attributes.itemBorderType,
+                                        options: [
+                                              { label: __('None', 'fancy-post-grid'), value: 'none' },
+                                              { label: __('Solid', 'fancy-post-grid'), value: 'solid' },
+                                              { label: __('Dashed', 'fancy-post-grid'), value: 'dashed' },
+                                              { label: __('Double', 'fancy-post-grid'), value: 'double' },
+                                              { label: __('Dotted', 'fancy-post-grid'), value: 'dotted' },
+                                              { label: __('Groove', 'fancy-post-grid'), value: 'groove' },
                                         ],
-                                        children: (tab) =>
-                                            tab.name === 'normal'
-                                                ? wp.element.createElement(
-                                                    'div',
-                                                    {},
-                                                    // Background Type
-                                                    wp.element.createElement('p', {}, __('Item Box Background Color', 'fancy-post-grid')),
-                                                    
-                                                    wp.element.createElement(wp.components.ColorPicker, {
-                                                        color: attributes.itemBackgroundColor,
-                                                        onChangeComplete: (value) => setAttributes({ itemBackgroundColor: value.hex }),
-                                                    }),
-                                                    // Border Type
-                                                    wp.element.createElement(SelectControl, {
-                                                        label: __('Border Type', 'fancy-post-grid'),
-                                                        value: attributes.itemBorderType,
-                                                        options: [
-                                                              { label: __('None', 'fancy-post-grid'), value: 'none' },
-                                                              { label: __('Solid', 'fancy-post-grid'), value: 'solid' },
-                                                              { label: __('Dashed', 'fancy-post-grid'), value: 'dashed' },
-                                                              { label: __('Double', 'fancy-post-grid'), value: 'double' },
-                                                              { label: __('Dotted', 'fancy-post-grid'), value: 'dotted' },
-                                                              { label: __('Groove', 'fancy-post-grid'), value: 'groove' },
-                                                        ],
-                                                        onChange: (value) => setAttributes({ itemBorderType: value }),
-                                                    }),
-                                                      // Border Width
-                                                      wp.element.createElement(__experimentalBoxControl, {
-                                                        label: __('Border Width', 'fancy-post-grid'),
-                                                        values: attributes.itemBorderWidth,
-                                                        onChange: (value) => setAttributes({ itemBorderWidth: value }),
-                                                      }),
-                                                      // Border Color
-                                                      wp.element.createElement('p', {}, __('Item Border Color', 'fancy-post-grid')),                                                                                                          
-                                                      wp.element.createElement(wp.components.ColorPicker, {
-                                                            color: attributes.itemBorderColor,
-                                                            onChangeComplete: (value) => setAttributes({ itemBorderColor: value.hex }),
-                                                        }),
+                                        onChange: (value) => setAttributes({ itemBorderType: value }),
+                                    }),
+                                      // Border Width
+                                      wp.element.createElement(__experimentalBoxControl, {
+                                        label: __('Border Width', 'fancy-post-grid'),
+                                        values: attributes.itemBorderWidth,
+                                        onChange: (value) => setAttributes({ itemBorderWidth: value }),
+                                      }),
+                                      // Border Color
+                                      wp.element.createElement('p', {}, __('Item Border Color', 'fancy-post-grid')),                                                                                                          
+                                      wp.element.createElement(wp.components.ColorPicker, {
+                                            color: attributes.itemBorderColor,
+                                            onChangeComplete: (value) => setAttributes({ itemBorderColor: value.hex }),
+                                        }),
 
-                                                    // Box Shadow
-                                                    wp.element.createElement('p', {}, __('Box Shadow Color', 'fancy-post-grid')),
-                                                        
-                                                    wp.element.createElement(wp.components.ColorPicker, {
-                                                        color: attributes.itemBoxShadowColor,
-                                                        onChangeComplete: (value) => setAttributes({ itemBoxShadowColor: value.hex }),
-                                                    }),
+                                    // Box Shadow
+                                    wp.element.createElement('p', {}, __('Box Shadow Color', 'fancy-post-grid')),
+                                        
+                                    wp.element.createElement(wp.components.ColorPicker, {
+                                        color: attributes.itemBoxShadowColor,
+                                        onChangeComplete: (value) => setAttributes({ itemBoxShadowColor: value.hex }),
+                                    }),
 
-                                                    // Border Radius
-                                                    wp.element.createElement(__experimentalBoxControl, {
-                                                        label: __('Box Shadow (e.g., 5px)', 'fancy-post-grid'),
-                                                        values: attributes.itemBoxShadow,
-                                                        onChange: (value) => setAttributes({ itemBoxShadow: value }),
-                                                    }),
-                                                      
-                                                  )
-                                                : wp.element.createElement(
-                                                      'div',
-                                                      {},
-                                                      // Background Type
-                                                      wp.element.createElement('p', {}, __('Item Box Hover Background Color', 'fancy-post-grid')),
-                                                      
-                                                      wp.element.createElement(wp.components.ColorPicker, {
-                                                            color: attributes.itemHoverBackgroundColor,
-                                                            onChangeComplete: (value) => setAttributes({ itemHoverBackgroundColor: value.hex }),
-                                                        }),
-                                                  ),
-                                    })
+                                    // Border Radius
+                                    wp.element.createElement(__experimentalBoxControl, {
+                                        label: __('Box Shadow (e.g., 5px)', 'fancy-post-grid'),
+                                        values: attributes.itemBoxShadow,
+                                        onChange: (value) => setAttributes({ itemBoxShadow: value }),
+                                    }),
+                                    
                                 ),
                                     
                                 
@@ -1519,8 +1463,8 @@
                                     // Padding Control
                                     wp.element.createElement(__experimentalBoxControl, {
                                         label: __('Padding', 'fancy-post-grid'),
-                                        values: attributes.contentitemPadding,
-                                        onChange: (value) => setAttributes({ contentitemPadding: value }),
+                                        values: attributes.contentitemPaddingNew,
+                                        onChange: (value) => setAttributes({ contentitemPaddingNew: value }),
                                     }),
 
                                     // Border Style Control
