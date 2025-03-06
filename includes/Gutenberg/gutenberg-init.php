@@ -116,8 +116,7 @@ function fancy_post_grid_render_callback($attributes) {
     $selectedTag = isset($attributes['selectedTag']) ? sanitize_text_field($attributes['selectedTag']) : '';
     $orderBy = isset($attributes['orderBy']) ? sanitize_text_field($attributes['orderBy']) : 'title';
     $postLimit = isset($attributes['postLimit']) ? absint($attributes['postLimit']) : 3;
-    $includePosts = isset($attributes['includePosts']) ? array_map('absint', explode(',', $attributes['includePosts'])) : [];
-    $excludePosts = isset($attributes['excludePosts']) ? array_map('absint', explode(',', $attributes['excludePosts'])) : [];  
+      
     // Pagination settings
     $enablePagination = isset($attributes['enablePagination']) ? filter_var($attributes['enablePagination'], FILTER_VALIDATE_BOOLEAN) : true;
     // Links
@@ -156,17 +155,14 @@ function fancy_post_grid_render_callback($attributes) {
     $titleLength            = isset($attributes['titleLength']) ? absint($attributes['titleLength']) : 20;
     
     //THUMB sETTINGS
-    $thumbnailSize = isset($attributes['thumbnailSize']) ? sanitize_text_field($attributes['thumbnailSize']) : 'medium';
+    $thumbnailSize = isset($attributes['thumbnailSize']) ? sanitize_text_field($attributes['thumbnailSize']) : 'full';
     // Excerpt Settings
     $excerptType = isset($attributes['excerptType']) ? sanitize_text_field($attributes['excerptType']) : 'word';
-    
     $excerptIndicator = isset($attributes['excerptIndicator']) ? sanitize_text_field($attributes['excerptIndicator']) : '...';
     $excerptLimit = isset($attributes['excerptLimit']) ? absint($attributes['excerptLimit']) : 20;
     // Meta data Settings
     $metaAuthorPrefix = isset($attributes['metaAuthorPrefix']) ? sanitize_text_field($attributes['metaAuthorPrefix']) : __('By', 'fancy-post-grid');
     $metaSeperator = isset($attributes['metaSeperator']) ? sanitize_text_field($attributes['metaSeperator']) : '|';
-    
-
     //Button Settings   
     $showButtonIcon = isset($attributes['showButtonIcon']) ? filter_var($attributes['showPostCommentsCountIcon'], FILTER_VALIDATE_BOOLEAN) : true;
     $iconPosition = isset($attributes['iconPosition']) ? sanitize_text_field($attributes['iconPosition']) : 'right';
@@ -176,39 +172,30 @@ function fancy_post_grid_render_callback($attributes) {
     $sectionBgColor    = isset($attributes['sectionBgColor']) ? sanitize_hex_color($attributes['sectionBgColor']) : '';
     $sectionMargin = isset($attributes['sectionMargin']) ? $attributes['sectionMargin'] : ['top' => '', 'right' => '', 'bottom' => '10px', 'left' => ''];
     $sectionPadding = isset($attributes['sectionPadding']) ? $attributes['sectionPadding'] : ['top' => '', 'right' => '', 'bottom' => '', 'left' => ''];
-    // var_dump($sectionBgColor);
-    // var_dump($sectionPadding);
-    // var_dump($sectionMargin);
-
     // ITEM Box
     $itemPadding = isset($attributes['itemPadding']) ? $attributes['itemPadding'] : ['top' => '', 'right' => '', 'bottom' => '', 'left' => ''];
     $itemMargin = isset($attributes['itemMargin']) ? $attributes['itemMargin'] : ['top' => '', 'right' => '', 'bottom' => '', 'left' => ''];
     $itemBorderRadius = isset($attributes['itemBorderRadius']) ? $attributes['itemBorderRadius'] : ['top' => '', 'right' => '', 'bottom' => '', 'left' => ''];
     $itemBorderWidth = isset($attributes['itemBorderWidth']) ? $attributes['itemBorderWidth'] : ['top' => '', 'right' => '', 'bottom' => '', 'left' => ''];
-
-    
-
     $itemBoxAlignment   = isset($attributes['itemBoxAlignment']) ? sanitize_text_field($attributes['itemBoxAlignment']) : 'center';
     $itemBorderType     = isset($attributes['itemBorderType']) ? sanitize_text_field($attributes['itemBorderType']) : 'solid';
-    $itemBoxShadow      = isset($attributes['itemBoxShadow']) ? sanitize_text_field($attributes['itemBoxShadow']) : '';
+    $itemBoxShadow = isset($attributes['itemBoxShadow']) ? $attributes['itemBoxShadow'] : ['top' => '', 'right' => '', 'bottom' => '', 'left' => ''];
     $itemBackgroundColor = isset($attributes['itemBackgroundColor']) ? sanitize_hex_color($attributes['itemBackgroundColor']) : '';
-    $itemBorderColor    = isset($attributes['itemBorderColor']) ? sanitize_hex_color($attributes['itemBorderColor']) : '';
-    $itemHoverBoxShadow = isset($attributes['itemHoverBoxShadow']) ? sanitize_text_field($attributes['itemHoverBoxShadow']) : '';
-    $itemHoverBackgroundColor = isset($attributes['itemHoverBackgroundColor']) ? sanitize_hex_color($attributes['itemHoverBackgroundColor']) : '';
+    $itemBorderColor    = isset($attributes['itemBorderColor']) ? sanitize_hex_color($attributes['itemBorderColor']) : '';   
+    $itemBoxShadowColor = isset($attributes['itemBoxShadowColor']) ? sanitize_hex_color($attributes['itemBoxShadowColor']) : '';
+    $itemGap      = isset($attributes['itemGap']) ? absint($attributes['itemGap']) : 10;
+
     // Content Box
-    $contentItemPadding = isset($attributes['contentItemPadding']) ? $attributes['contentItemPadding'] : ['top' => '', 'right' => '', 'bottom' => '', 'left' => ''];
-    $contentItemMargin = isset($attributes['contentItemMargin']) ? $attributes['contentItemMargin'] : ['top' => '', 'right' => '', 'bottom' => '', 'left' => ''];
+    $contentitemPaddingNew = isset($attributes['contentitemPaddingNew']) ? $attributes['contentitemPaddingNew'] : ['top' => '', 'right' => '', 'bottom' => '', 'left' => ''];
+    $contentitemMarginNew = isset($attributes['contentitemMarginNew']) ? $attributes['contentitemMarginNew'] : ['top' => '', 'right' => '', 'bottom' => '', 'left' => ''];
     $contentBorderWidth = isset($attributes['contentBorderWidth']) ? $attributes['contentBorderWidth'] : ['top' => '', 'right' => '', 'bottom' => '', 'left' => ''];
     $contentNormalBorderType = isset($attributes['contentnormalBorderType']) ? sanitize_text_field($attributes['contentnormalBorderType']) : 'none';
+    $contentBgColor    = isset($attributes['contentBgColor']) ? sanitize_hex_color($attributes['contentBgColor']) : '';   
+    $contentBorderColor = isset($attributes['contentBorderColor']) ? sanitize_hex_color($attributes['contentBorderColor']) : '';
     // Thumbnail
-    
-
     $thumbnailMargin = isset($attributes['thumbnailMargin']) ? $attributes['thumbnailMargin'] : ['top' => '', 'right' => '', 'bottom' => '', 'left' => ''];
     $thumbnailPadding = isset($attributes['thumbnailPadding']) ? $attributes['thumbnailPadding'] : ['top' => '', 'right' => '', 'bottom' => '', 'left' => ''];
     $thumbnailBorderRadius = isset($attributes['thumbnailBorderRadius']) ? $attributes['thumbnailBorderRadius'] : ['top' => '', 'right' => '', 'bottom' => '', 'left' => ''];
-    // var_dump($thumbnailMargin);
-    // var_dump($thumbnailPadding);
-    // var_dump($thumbnailBorderRadius);
 
     // Post Title
     $postTitleFontSize      = isset($attributes['postTitleFontSize']) ? absint($attributes['postTitleFontSize']) : 16;
@@ -217,11 +204,9 @@ function fancy_post_grid_render_callback($attributes) {
     $postTitleFontWeight    = isset($attributes['postTitleFontWeight']) ? sanitize_text_field($attributes['postTitleFontWeight']) : '400';
     $postTitleAlignment     = isset($attributes['postTitleAlignment']) ? sanitize_text_field($attributes['postTitleAlignment']) : 'left';
     $postTitleColor         = isset($attributes['postTitleColor']) ? sanitize_hex_color($attributes['postTitleColor']) : '#000000';
-    $postTitleBgColor       = isset($attributes['postTitleBgColor']) ? sanitize_hex_color($attributes['postTitleBgColor']) : '';
-    
+    $postTitleBgColor       = isset($attributes['postTitleBgColor']) ? sanitize_hex_color($attributes['postTitleBgColor']) : ''; 
     $postTitleHoverColor    = isset($attributes['postTitleHoverColor']) ? sanitize_hex_color($attributes['postTitleHoverColor']) : '';
     $postTitleHoverBgColor  = isset($attributes['postTitleHoverBgColor']) ? sanitize_hex_color($attributes['postTitleHoverBgColor']) : '';
-    
     $postTitleMargin  = isset($attributes['postTitleMargin']) ? array_map('sanitize_text_field', $attributes['postTitleMargin']) : ['top' => '', 'right' => '', 'bottom' => '', 'left' => ''];
     $postTitlePadding = isset($attributes['postTitlePadding']) ? array_map('sanitize_text_field', $attributes['postTitlePadding']) : ['top' => '', 'right' => '', 'bottom' => '', 'left' => ''];
 
@@ -231,10 +216,8 @@ function fancy_post_grid_render_callback($attributes) {
     $excerptLetterSpacing = isset($attributes['excerptLetterSpacing']) ? floatval($attributes['excerptLetterSpacing']) : 1;
     $excerptFontWeight = isset($attributes['excerptFontWeight']) ? sanitize_text_field($attributes['excerptFontWeight']) : '400';
     $excerptAlignment = isset($attributes['excerptAlignment']) ? sanitize_text_field($attributes['excerptAlignment']) : 'left';
-
     $excerptMargin = isset($attributes['excerptMargin']) ? array_map('sanitize_text_field', $attributes['excerptMargin']) : ['top' => '', 'right' => '', 'bottom' => '', 'left' => ''];
     $excerptPadding = isset($attributes['excerptPadding']) ? array_map('sanitize_text_field', $attributes['excerptPadding']) : ['top' => '', 'right' => '', 'bottom' => '', 'left' => ''];
-
     $excerptColor = isset($attributes['excerptColor']) ? sanitize_hex_color($attributes['excerptColor']) : '#000000';
     $excerptBgColor = isset($attributes['excerptBgColor']) ? sanitize_hex_color($attributes['excerptBgColor']) : '';
     $excerptBorderType = isset($attributes['excerptBorderType']) ? sanitize_text_field($attributes['excerptBorderType']) : 'none';
@@ -244,12 +227,13 @@ function fancy_post_grid_render_callback($attributes) {
 
     // Meta Data Attributes
     $metaAlignment = isset($attributes['metaAlignment']) ? sanitize_text_field($attributes['metaAlignment']) : 'left';
-    $metaMargin = isset($attributes['metaMargin']) ? $attributes['metaMargin'] : ['top' => '', 'right' => '', 'bottom' => '', 'left' => ''];
+    $metaMarginNew = isset($attributes['metaMarginNew']) ? $attributes['metaMarginNew'] : ['top' => '', 'right' => '', 'bottom' => '', 'left' => ''];
+    $metaPadding = isset($attributes['metaPadding']) ? $attributes['metaPadding'] : ['top' => '', 'right' => '', 'bottom' => '', 'left' => ''];
     $metaTextColor = isset($attributes['metaTextColor']) ? sanitize_hex_color($attributes['metaTextColor']) : '#333333';
     $separatorColor = isset($attributes['separatorColor']) ? sanitize_hex_color($attributes['separatorColor']) : '#cccccc';
-    $metaLinkColor = isset($attributes['metaLinkColor']) ? sanitize_hex_color($attributes['metaLinkColor']) : '#0073aa';
+    $metaFontSize = isset($attributes['metaFontSize']) ? absint($attributes['metaFontSize']) : 16;
     $metaIconColor = isset($attributes['metaIconColor']) ? sanitize_hex_color($attributes['metaIconColor']) : '#555555';
-    $metaLinkHoverColor = isset($attributes['metaLinkHoverColor']) ? sanitize_hex_color($attributes['metaLinkHoverColor']) : '#005177';
+    
     // Button Alignment
     $buttonAlignment = isset($attributes['buttonAlignment']) ? sanitize_text_field($attributes['buttonAlignment']) : 'center';
     $buttonMargin = isset($attributes['buttonMargin']) ? $attributes['buttonMargin'] : ['top' => '0px', 'right' => '0px', 'bottom' => '0px', 'left' => '0px'];
@@ -262,6 +246,8 @@ function fancy_post_grid_render_callback($attributes) {
     $buttonHoverBackgroundColor = isset($attributes['buttonHoverBackgroundColor']) ? sanitize_hex_color($attributes['buttonHoverBackgroundColor']) : '#005177';
     $buttonHoverBorderType = isset($attributes['buttonHoverBorderType']) ? sanitize_text_field($attributes['buttonHoverBorderType']) : 'solid';
     $buttonHoverBorderRadius = isset($attributes['buttonHoverBorderRadius']) ? sanitize_text_field($attributes['buttonHoverBorderRadius']) : '5px';
+    $buttonBorderColor = isset($attributes['buttonBorderColor']) ? sanitize_hex_color($attributes['buttonBorderColor']) : '#ffffff';
+    $buttonHoverBorderColor = isset($attributes['buttonHoverBorderColor']) ? sanitize_hex_color($attributes['buttonHoverBorderColor']) : '#005177';
 
     // Button Style
     $buttonStyles = 'display: inline-flex; align-items: center; justify-content: center; text-decoration: none;';
@@ -279,17 +265,14 @@ function fancy_post_grid_render_callback($attributes) {
     $buttonHoverStyles .= ' this.style.border=\'' . esc_attr($buttonHoverBorderType) . ' ' . esc_attr($buttonHoverTextColor) . '\';';
     $buttonHoverStyles .= ' this.style.borderRadius=\'' . esc_attr($buttonHoverBorderRadius) . '\';';
 
-   
     // Pagination Attributes
     $paginationAlignment = isset($attributes['paginationAlignment']) ? sanitize_text_field($attributes['paginationAlignment']) : 'center';
     $paginationMargin = isset($attributes['paginationMargin']) ? $attributes['paginationMargin'] : ['top' => 0, 'right' => 0, 'bottom' => 0, 'left' => 0];
     $paginationPadding = isset($attributes['paginationPadding']) ? $attributes['paginationPadding'] : ['top' => 0, 'right' => 0, 'bottom' => 0, 'left' => 0];
-
     $paginationBorderStyle = isset($attributes['paginationBorderStyle']) ? sanitize_text_field($attributes['paginationBorderStyle']) : 'solid';
     $paginationBorderWidth = isset($attributes['paginationBorderWidth']) ? absint($attributes['paginationBorderWidth']) : 1;
     $paginationBorderRadius = isset($attributes['paginationBorderRadius']) ? absint($attributes['paginationBorderRadius']) : 4;
     $paginationGap = isset($attributes['paginationGap']) ? absint($attributes['paginationGap']) : 10;
-
     $paginationTextColor = isset($attributes['paginationTextColor']) ? sanitize_hex_color($attributes['paginationTextColor']) : '';
     $paginationBackgroundColor = isset($attributes['paginationBackgroundColor']) ? sanitize_hex_color($attributes['paginationBackgroundColor']) : '';
     $paginationBorderColor = isset($attributes['paginationBorderColor']) ? sanitize_hex_color($attributes['paginationBorderColor']) : '';
@@ -300,8 +283,8 @@ function fancy_post_grid_render_callback($attributes) {
     $paginationActiveBackgroundColor = isset($attributes['paginationActiveBackgroundColor']) ? sanitize_hex_color($attributes['paginationActiveBackgroundColor']) : '';
     $paginationActiveBorderColor = isset($attributes['paginationActiveBorderColor']) ? sanitize_hex_color($attributes['paginationActiveBorderColor']) : '';
 
+
     //END ATTRIBUTES
-    
     
     $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
 
@@ -316,13 +299,20 @@ function fancy_post_grid_render_callback($attributes) {
         return '<p>' . esc_html__('No posts found.', 'fancy-post-grid') . '</p>';
     }
 
-    
-    
     $output = '<div class="rs-blog-layout-5 fancy-post-grid ' . esc_attr($gridLayoutStyle) . '" 
                 style="grid-template-columns: repeat(' . esc_attr($gridColumns) . ', 1fr); 
                 background-color: ' . esc_attr($sectionBgColor) . '; 
-                margin: ' . esc_attr($sectionMargin['top']) . ' ' . esc_attr($sectionMargin['right']) . ' ' . esc_attr($sectionMargin['bottom']) . ' ' . esc_attr($sectionMargin['left']) . '; 
-                padding: ' . esc_attr($sectionPadding['top']) . ' ' . esc_attr($sectionPadding['right']) . ' ' . esc_attr($sectionPadding['bottom']) . ' ' . esc_attr($sectionPadding['left']) . ';">';
+                margin: ' . 
+                (is_numeric($sectionMargin['top']) ? $sectionMargin['top'] . 'px' : esc_attr($sectionMargin['top'])) . ' ' . 
+                (is_numeric($sectionMargin['right']) ? $sectionMargin['right'] . 'px' : esc_attr($sectionMargin['right'])) . ' ' . 
+                (is_numeric($sectionMargin['bottom']) ? $sectionMargin['bottom'] . 'px' : esc_attr($sectionMargin['bottom'])) . ' ' . 
+                (is_numeric($sectionMargin['left']) ? $sectionMargin['left'] . 'px' : esc_attr($sectionMargin['left'])) . '; 
+                padding: ' . 
+                (is_numeric($sectionPadding['top']) ? $sectionPadding['top'] . 'px' : esc_attr($sectionPadding['top'])) . ' ' . 
+                (is_numeric($sectionPadding['right']) ? $sectionPadding['right'] . 'px' : esc_attr($sectionPadding['right'])) . ' ' . 
+                (is_numeric($sectionPadding['bottom']) ? $sectionPadding['bottom'] . 'px' : esc_attr($sectionPadding['bottom'])) . ' ' . 
+                (is_numeric($sectionPadding['left']) ? $sectionPadding['left'] . 'px' : esc_attr($sectionPadding['left'])) . ';">';
+
 
         while ($query->have_posts()) {
             $query->the_post();
@@ -358,42 +348,64 @@ function fancy_post_grid_render_callback($attributes) {
             if ($gridLayoutStyle === 'style1') {
                 // Full post layout
                 $output .= '<div class="fancy-post-item rs-blog__single" 
-                            style="
-                                
-                                padding: ' . esc_attr($itemPadding['top']) . ' ' . esc_attr($itemPadding['right']) . ' ' . esc_attr($itemPadding['bottom']) . ' ' . esc_attr($itemPadding['left']) . '; 
-                                margin: ' . esc_attr($itemMargin['top']) . ' ' . esc_attr($itemMargin['right']) . ' ' . esc_attr($itemMargin['bottom']) . ' ' . esc_attr($itemMargin['left']) . '; 
-                                border-radius: ' . esc_attr($itemBorderRadius['top']) . ' ' . esc_attr($itemBorderRadius['right']) . ' ' . esc_attr($itemBorderRadius['bottom']) . ' ' . esc_attr($itemBorderRadius['left']) . '; 
-                                border-width: ' . esc_attr($itemBorderWidth['top']) . ' ' . esc_attr($itemBorderWidth['right']) . ' ' . esc_attr($itemBorderWidth['bottom']) . ' ' . esc_attr($itemBorderWidth['left']) . '; 
-                                border-style: ' . esc_attr($itemBorderType) . ';
-                                border-color: ' . esc_attr($itemBorderColor) . ';
-                                background-color: ' . esc_attr($itemBackgroundColor) . ';
-                                box-shadow: ' . esc_attr($itemBoxShadow) . ';
-                                text-align: ' . esc_attr($itemBoxAlignment) . ';">';
-
-                
+                            style=" margin: ' . 
+                                    (is_numeric($itemMargin['top']) ? $itemMargin['top'] . 'px' : esc_attr($itemMargin['top'])) . ' ' . 
+                                    (is_numeric($itemMargin['right']) ? $itemMargin['right'] . 'px' : esc_attr($itemMargin['right'])) . ' ' . 
+                                    (is_numeric($itemMargin['bottom']) ? $itemMargin['bottom'] . 'px' : esc_attr($itemMargin['bottom'])) . ' ' . 
+                                    (is_numeric($itemMargin['left']) ? $itemMargin['left'] . 'px' : esc_attr($itemMargin['left'])) . '; padding: ' . 
+                                    (is_numeric($itemPadding['top']) ? $itemPadding['top'] . 'px' : esc_attr($itemPadding['top'])) . ' ' . 
+                                    (is_numeric($itemPadding['right']) ? $itemPadding['right'] . 'px' : esc_attr($itemPadding['right'])) . ' ' . 
+                                    (is_numeric($itemPadding['bottom']) ? $itemPadding['bottom'] . 'px' : esc_attr($itemPadding['bottom'])) . ' ' . 
+                                    (is_numeric($itemPadding['left']) ? $itemPadding['left'] . 'px' : esc_attr($itemPadding['left'])) . '; border-radius: ' . 
+                                    (is_numeric($itemBorderRadius['top']) ? $itemBorderRadius['top'] . 'px' : esc_attr($itemBorderRadius['top'])) . ' ' . 
+                                    (is_numeric($itemBorderRadius['right']) ? $itemBorderRadius['right'] . 'px' : esc_attr($itemBorderRadius['right'])) . ' ' . 
+                                    (is_numeric($itemBorderRadius['bottom']) ? $itemBorderRadius['bottom'] . 'px' : esc_attr($itemBorderRadius['bottom'])) . ' ' . 
+                                    (is_numeric($itemBorderRadius['left']) ? $itemBorderRadius['left'] . 'px' : esc_attr($itemBorderRadius['left'])) . ';  border-width: ' . 
+                                    (is_numeric($itemBorderWidth['top']) ? $itemBorderWidth['top'] . 'px' : esc_attr($itemBorderWidth['top'])) . ' ' . 
+                                    (is_numeric($itemBorderWidth['right']) ? $itemBorderWidth['right'] . 'px' : esc_attr($itemBorderWidth['right'])) . ' ' . 
+                                    (is_numeric($itemBorderWidth['bottom']) ? $itemBorderWidth['bottom'] . 'px' : esc_attr($itemBorderWidth['bottom'])) . ' ' . 
+                                    (is_numeric($itemBorderWidth['left']) ? $itemBorderWidth['left'] . 'px' : esc_attr($itemBorderWidth['left'])) . '; border-style: ' . esc_attr($itemBorderType) . '; border-color: ' . esc_attr($itemBorderColor) . '; background-color: ' . esc_attr($itemBackgroundColor) . '; box-shadow: ' . 
+                                    (is_numeric($itemBoxShadow['top']) ? $itemBoxShadow['top'] . 'px' : esc_attr($itemBoxShadow['top'])) . ' ' . 
+                                    (is_numeric($itemBoxShadow['right']) ? $itemBoxShadow['right'] . 'px' : esc_attr($itemBoxShadow['right'])) . ' ' . 
+                                    (is_numeric($itemBoxShadow['bottom']) ? $itemBoxShadow['bottom'] . 'px' : esc_attr($itemBoxShadow['bottom'])) . ' ' . 
+                                    (is_numeric($itemBoxShadow['left']) ? $itemBoxShadow['left'] . 'px' : esc_attr($itemBoxShadow['left'])) . ' ' . 
+                                    esc_attr($itemBoxShadowColor) . ';    text-align: ' . esc_attr($itemBoxAlignment) . ';">';
                 // Thumbnail
                 if ($thumbnail && $showThumbnail) {
-                    
 
-                    $output .= '<div class="fancy-post-image rs-thumb" style="
-                                padding: ' . esc_attr($thumbnailPadding['top']) . ' ' . esc_attr($thumbnailPadding['right']) . ' ' . esc_attr($thumbnailPadding['bottom']) . ' ' . esc_attr($thumbnailPadding['left']) . '; 
-                                            
-                                margin: ' . esc_attr($thumbnailMargin['top']) . ' ' . esc_attr($thumbnailMargin['right']) . ' ' . esc_attr($thumbnailMargin['bottom']) . ' ' . esc_attr($thumbnailMargin['left']) . '; ">
-                                <a href="' . esc_url($permalink) . '" style="display: block; border-radius: ' . esc_attr($thumbnailBorderRadius['top']) . ' ' . esc_attr($thumbnailBorderRadius['right']) . ' ' . esc_attr($thumbnailBorderRadius['bottom']) . ' ' . esc_attr($thumbnailBorderRadius['left']) . '; overflow: hidden;">' . $thumbnail . '</a>
+                    $output .= '<div class="fancy-post-image rs-thumb" style=" margin: ' . 
+                                    (is_numeric($thumbnailMargin['top']) ? $thumbnailMargin['top'] . 'px' : esc_attr($thumbnailMargin['top'])) . ' ' . 
+                                    (is_numeric($thumbnailMargin['right']) ? $thumbnailMargin['right'] . 'px' : esc_attr($thumbnailMargin['right'])) . ' ' . 
+                                    (is_numeric($thumbnailMargin['bottom']) ? $thumbnailMargin['bottom'] . 'px' : esc_attr($thumbnailMargin['bottom'])) . ' ' . 
+                                    (is_numeric($thumbnailMargin['left']) ? $thumbnailMargin['left'] . 'px' : esc_attr($thumbnailMargin['left'])) . '; padding: ' . 
+                                    (is_numeric($thumbnailPadding['top']) ? $thumbnailPadding['top'] . 'px' : esc_attr($thumbnailPadding['top'])) . ' ' . 
+                                    (is_numeric($thumbnailPadding['right']) ? $thumbnailPadding['right'] . 'px' : esc_attr($thumbnailPadding['right'])) . ' ' . 
+                                    (is_numeric($thumbnailPadding['bottom']) ? $thumbnailPadding['bottom'] . 'px' : esc_attr($thumbnailPadding['bottom'])) . ' ' . 
+                                    (is_numeric($thumbnailPadding['left']) ? $thumbnailPadding['left'] . 'px' : esc_attr($thumbnailPadding['left'])) . '; ">
+                                <a href="' . esc_url($permalink) . '" style="display: block; border-radius: ' . 
+                                    (is_numeric($thumbnailBorderRadius['top']) ? $thumbnailBorderRadius['top'] . 'px' : esc_attr($thumbnailBorderRadius['top'])) . ' ' . 
+                                    (is_numeric($thumbnailBorderRadius['right']) ? $thumbnailBorderRadius['right'] . 'px' : esc_attr($thumbnailBorderRadius['right'])) . ' ' . 
+                                    (is_numeric($thumbnailBorderRadius['bottom']) ? $thumbnailBorderRadius['bottom'] . 'px' : esc_attr($thumbnailBorderRadius['bottom'])) . ' ' . 
+                                    (is_numeric($thumbnailBorderRadius['left']) ? $thumbnailBorderRadius['left'] . 'px' : esc_attr($thumbnailBorderRadius['left'])) . ';  overflow: hidden;">' . $thumbnail . '</a>
                         </div>';
                 }
                 // END Thumbnail
                 
 
                 // MAIN Content
-                
-                $output .= '<div class="rs-content" style="
-                    padding: ' . esc_attr($contentItemPadding['top']) . ' ' . esc_attr($contentItemPadding['right']) . ' ' . esc_attr($contentItemPadding['bottom']) . ' ' . esc_attr($contentItemPadding['left']) . '; 
-                    margin: ' . esc_attr($contentItemMargin['top']) . ' ' . esc_attr($contentItemMargin['right']) . ' ' . esc_attr($contentItemMargin['bottom']) . ' ' . esc_attr($contentItemMargin['left']) . '; 
-                    border-width: ' . esc_attr($contentBorderWidth['top']) . ' ' . esc_attr($contentBorderWidth['right']) . ' ' . esc_attr($contentBorderWidth['bottom']) . ' ' . esc_attr($contentBorderWidth['left']) . '; 
-
-                    border-style: ' . esc_attr($contentNormalBorderType) . ';
-                    
+                $output .= '<div class="rs-content" style=" margin: ' . 
+                            (is_numeric($contentitemMarginNew['top']) ? $contentitemMarginNew['top'] . 'px' : esc_attr($contentitemMarginNew['top'])) . ' ' . 
+                            (is_numeric($contentitemMarginNew['right']) ? $contentitemMarginNew['right'] . 'px' : esc_attr($contentitemMarginNew['right'])) . ' ' . 
+                            (is_numeric($contentitemMarginNew['bottom']) ? $contentitemMarginNew['bottom'] . 'px' : esc_attr($contentitemMarginNew['bottom'])) . ' ' . 
+                            (is_numeric($contentitemMarginNew['left']) ? $contentitemMarginNew['left'] . 'px' : esc_attr($contentitemMarginNew['left'])) . '; padding: ' . 
+                            (is_numeric($contentitemPaddingNew['top']) ? $contentitemPaddingNew['top'] . 'px' : esc_attr($contentitemPaddingNew['top'])) . ' ' . 
+                            (is_numeric($contentitemPaddingNew['right']) ? $contentitemPaddingNew['right'] . 'px' : esc_attr($contentitemPaddingNew['right'])) . ' ' . 
+                            (is_numeric($contentitemPaddingNew['bottom']) ? $contentitemPaddingNew['bottom'] . 'px' : esc_attr($contentitemPaddingNew['bottom'])) . ' ' . 
+                            (is_numeric($contentitemPaddingNew['left']) ? $contentitemPaddingNew['left'] . 'px' : esc_attr($contentitemPaddingNew['left'])) . '; border-width: ' . 
+                            (is_numeric($contentBorderWidth['top']) ? $contentBorderWidth['top'] . 'px' : esc_attr($contentBorderWidth['top'])) . ' ' . 
+                            (is_numeric($contentBorderWidth['right']) ? $contentBorderWidth['right'] . 'px' : esc_attr($contentBorderWidth['right'])) . ' ' . 
+                            (is_numeric($contentBorderWidth['bottom']) ? $contentBorderWidth['bottom'] . 'px' : esc_attr($contentBorderWidth['bottom'])) . ' ' . 
+                            (is_numeric($contentBorderWidth['left']) ? $contentBorderWidth['left'] . 'px' : esc_attr($contentBorderWidth['left'])) . ';  border-style: ' . esc_attr($contentNormalBorderType) . ';background-color: ' . esc_attr($contentBgColor) . ';border-color: ' . esc_attr($contentBorderColor) . ';
                 ">';
 
                 // Meta Data
@@ -401,7 +413,16 @@ function fancy_post_grid_render_callback($attributes) {
                     $output .= '<ul class="meta-data-list" style="
                         order: ' . esc_attr($metaOrder) . '; 
                         text-align: ' . esc_attr($metaAlignment) . ';
-                        margin: ' . esc_attr($metaMargin['top']) . ' ' . esc_attr($metaMargin['right']) . ' ' . esc_attr($metaMargin['bottom']) . ' ' . esc_attr($metaMargin['left']) . ';
+                        
+                        margin: ' . 
+                            (is_numeric($metaMarginNew['top']) ? $metaMarginNew['top'] . 'px' : esc_attr($metaMarginNew['top'])) . ' ' . 
+                            (is_numeric($metaMarginNew['right']) ? $metaMarginNew['right'] . 'px' : esc_attr($metaMarginNew['right'])) . ' ' . 
+                            (is_numeric($metaMarginNew['bottom']) ? $metaMarginNew['bottom'] . 'px' : esc_attr($metaMarginNew['bottom'])) . ' ' . 
+                            (is_numeric($metaMarginNew['left']) ? $metaMarginNew['left'] . 'px' : esc_attr($metaMarginNew['left'])) . ';padding: ' . 
+                            (is_numeric($metaPadding['top']) ? $metaPadding['top'] . 'px' : esc_attr($metaPadding['top'])) . ' ' . 
+                            (is_numeric($metaPadding['right']) ? $metaPadding['right'] . 'px' : esc_attr($metaPadding['right'])) . ' ' . 
+                            (is_numeric($metaPadding['bottom']) ? $metaPadding['bottom'] . 'px' : esc_attr($metaPadding['bottom'])) . ' ' . 
+                            (is_numeric($metaPadding['left']) ? $metaPadding['left'] . 'px' : esc_attr($metaPadding['left'])) . ';
                         color: ' . esc_attr($metaTextColor) . ';
                     ">';
 
@@ -409,7 +430,7 @@ function fancy_post_grid_render_callback($attributes) {
                     if ($showPostDate) {
                         $output .= '<li class="meta-date" style="color:' . esc_attr($metaTextColor) . ';">';
                         if ($showPostDateIcon && $showMetaIcon) {
-                            $output .= '<i class="ri-calendar-line" style="color:' . esc_attr($metaIconColor) . ';"></i> ';
+                            $output .= '<i class="ri-calendar-line" style="color:' . esc_attr($metaIconColor) . ';font-size:' . esc_attr($metaFontSize) . 'px;"></i> ';
                         }
                         $output .= esc_html($date) . '</li> ' . esc_html($metaSeperator) . ' ';
                     }
@@ -418,17 +439,16 @@ function fancy_post_grid_render_callback($attributes) {
                     if ($showPostAuthor) {
                         $output .= '<li class="meta-author" style="color:' . esc_attr($metaTextColor) . ';">';
                         if ($showPostAuthorIcon  && $showMetaIcon) {
-                            $output .= '<i class="ri-user-line" style="color:' . esc_attr($metaIconColor) . ';"></i> ';
+                            $output .= '<i class="ri-user-line" style="color:' . esc_attr($metaIconColor) . ';font-size:' . esc_attr($metaFontSize) . 'px;"></i> ';
                         }
                         $output .= esc_html($metaAuthorPrefix) . ' ' . esc_html($author) . '</li> ' . esc_html($metaSeperator) . ' ';
                     }
                     
-
                     // Categories
                     if ($showPostCategory) {
                         $output .= '<li class="meta-categories" style="color:' . esc_attr($metaTextColor) . ';">';
                         if ($showPostCategoryIcon && $showMetaIcon) {
-                            $output .= '<i class="ri-folder-line" style="color:' . esc_attr($metaIconColor) . ';"></i> ';
+                            $output .= '<i class="ri-folder-line" style="color:' . esc_attr($metaIconColor) . ';font-size:' . esc_attr($metaFontSize) . 'px;"></i> ';
                         }
                         $output .= $categories . '</li> ' . esc_html($metaSeperator) . ' ';
                     }
@@ -437,7 +457,7 @@ function fancy_post_grid_render_callback($attributes) {
                     if ($showPostTags && !empty($tags)) {
                         $output .= '<li class="meta-tags" style="color:' . esc_attr($metaTextColor) . ';">';
                         if ($showPostTagsIcon && $showMetaIcon) {
-                            $output .= '<i class="ri-price-tag-3-line" style="color:' . esc_attr($metaIconColor) . ';"></i> ';
+                            $output .= '<i class="ri-price-tag-3-line" style="color:' . esc_attr($metaIconColor) . ';font-size:' . esc_attr($metaFontSize) . 'px;"></i> ';
                         }
                         $output .= esc_html__('Tags:', 'fancy-post-grid') . ' ' . $tags . '</li> ' . esc_html($metaSeperator) . ' ';
                     }
@@ -446,7 +466,7 @@ function fancy_post_grid_render_callback($attributes) {
                     if ($showPostCommentsCount) {
                         $output .= '<li class="meta-comment-count" style="color:' . esc_attr($metaTextColor) . ';">';
                         if ($showPostCommentsCountIcon && $showMetaIcon) {
-                            $output .= '<i class="ri-chat-3-line" style="color:' . esc_attr($metaIconColor) . ';"></i> ';
+                            $output .= '<i class="ri-chat-3-line" style="color:' . esc_attr($metaIconColor) . ';font-size:' . esc_attr($metaFontSize) . 'px;"></i> ';
                         }
                         $output .= esc_html($comments_count) . ' ' . esc_html__('Comments', 'fancy-post-grid') . '</li>';
                     }
