@@ -236,7 +236,7 @@ function fancy_post_grid_render_callback($attributes) {
     $metaIconColor = isset($attributes['metaIconColor']) ? sanitize_hex_color($attributes['metaIconColor']) : '#555555';
     
     // Button Alignment
-    $buttonAlignment = isset($attributes['buttonAlignment']) ? sanitize_text_field($attributes['buttonAlignment']) : 'center';
+    $buttonAlignment = isset($attributes['buttonAlignment']) ? sanitize_text_field($attributes['buttonAlignment']) : 'left';
     $buttonMarginNew = isset($attributes['buttonMarginNew']) ? array_map('sanitize_text_field', $attributes['buttonMarginNew']) : ['top' => '', 'right' => '', 'bottom' => '', 'left' => ''];
     $buttonPaddingNew = isset($attributes['buttonPaddingNew']) ? array_map('sanitize_text_field', $attributes['buttonPaddingNew']) : ['top' => '', 'right' => '', 'bottom' => '', 'left' => ''];
     $buttonFontSize = isset($attributes['buttonFontSize']) ? absint($attributes['buttonFontSize']) : 16;
@@ -304,7 +304,7 @@ function fancy_post_grid_render_callback($attributes) {
         return '<p>' . esc_html__('No posts found.', 'fancy-post-grid') . '</p>';
     }
 
-    $output = '<div class="rs-blog-layout-5 fancy-post-grid ' . esc_attr($gridLayoutStyle) . '" 
+    $output = '<div class="rs-blog-layout-5 rs-blog-layout-6 rs-blog-layout-28 fancy-post-grid ' . esc_attr($gridLayoutStyle) . '" 
                 style="grid-template-columns: repeat(' . esc_attr($gridColumns) . ', 1fr); 
                 background-color: ' . esc_attr($sectionBgColor) . '; 
                 margin: ' . 
@@ -415,10 +415,10 @@ function fancy_post_grid_render_callback($attributes) {
 
                 // Meta Data
                 if ($showMetaData) {
+                            
                     $output .= '<ul class="meta-data-list" style="
                         order: ' . esc_attr($metaOrder) . '; 
                         text-align: ' . esc_attr($metaAlignment) . ';
-                        
                         margin: ' . 
                             (is_numeric($metaMarginNew['top']) ? $metaMarginNew['top'] . 'px' : esc_attr($metaMarginNew['top'])) . ' ' . 
                             (is_numeric($metaMarginNew['right']) ? $metaMarginNew['right'] . 'px' : esc_attr($metaMarginNew['right'])) . ' ' . 
@@ -431,64 +431,76 @@ function fancy_post_grid_render_callback($attributes) {
                         color: ' . esc_attr($metaTextColor) . ';
                     ">';
 
+                    $meta_items = [];
+
                     // Date
                     if ($showPostDate) {
-                        $output .= '<li class="meta-date" style="color:' . esc_attr($metaTextColor) . '; font-size:' . esc_attr($metaFontSize) . 'px;">';
-                        
+                        $meta = '<li class="meta-date" style="color:' . esc_attr($metaTextColor) . '; font-size:' . esc_attr($metaFontSize) . 'px;">';
                         if ($showPostDateIcon && $showMetaIcon) {
-                            $output .= '<i class="ri-calendar-line" style="color:' . esc_attr($metaIconColor) . '; font-size:' . esc_attr($metaFontSize) . 'px;"></i> ';
+                            $meta .= '<i class="ri-calendar-line" style="color:' . esc_attr($metaIconColor) . '; font-size:' . esc_attr($metaFontSize) . 'px;"></i> ';
                         }
-                        
-                        $output .= esc_html($date) . '</li>';
-
-                        // Add separator with font size and color
-                        $output .= '<span class="meta-separator" style="color:' . esc_attr($metaIconColor) . '; font-size:' . esc_attr($metaFontSize) . 'px;">' . esc_html($metaSeperator) . '</span> ';
+                        $meta .= esc_html($date) . '</li>';
+                        $meta_items[] = $meta;
                     }
-
 
                     // Author
                     if ($showPostAuthor) {
-                        $output .= '<li class="meta-author" style="color:' . esc_attr($metaTextColor) . ';">';
-                        if ($showPostAuthorIcon  && $showMetaIcon) {
-                            $output .= '<i class="ri-user-line" style="color:' . esc_attr($metaIconColor) . ';font-size:' . esc_attr($metaFontSize) . 'px;"></i> ';
+                        $meta = '<li class="meta-author" style="color:' . esc_attr($metaTextColor) . ';">';
+                        if ($showPostAuthorIcon && $showMetaIcon) {
+                            $meta .= '<i class="ri-user-line" style="color:' . esc_attr($metaIconColor) . ';font-size:' . esc_attr($metaFontSize) . 'px;"></i> ';
                         }
-                        $output .= esc_html($metaAuthorPrefix) . ' ' . esc_html($author) . '</li> ';
-                        // Add separator with font size and color
-                        $output .= '<span class="meta-separator" style="color:' . esc_attr($metaIconColor) . '; font-size:' . esc_attr($metaFontSize) . 'px;">' . esc_html($metaSeperator) . '</span> ';
+                        $meta .= esc_html($metaAuthorPrefix) . ' ' . esc_html($author) . '</li>';
+                        $meta_items[] = $meta;
                     }
-                    
+
                     // Categories
+
                     if ($showPostCategory) {
-                        $output .= '<li class="meta-categories" style="color:' . esc_attr($metaTextColor) . ';">';
+                        $meta = '<li class="meta-categories" style="color:' . esc_attr($metaTextColor) . ';">';
                         if ($showPostCategoryIcon && $showMetaIcon) {
-                            $output .= '<i class="ri-folder-line" style="color:' . esc_attr($metaIconColor) . ';font-size:' . esc_attr($metaFontSize) . 'px;"></i> ';
+                            $meta .= '<i class="ri-folder-line" style="color:' . esc_attr($metaIconColor) . ';font-size:' . esc_attr($metaFontSize) . 'px;"></i> ';
                         }
-                        $output .= $categories . '</li> '; 
-                        // Add separator with font size and color
-                        $output .= '<span class="meta-separator" style="color:' . esc_attr($metaIconColor) . '; font-size:' . esc_attr($metaFontSize) . 'px;">' . esc_html($metaSeperator) . '</span> ';
+
+                        // Get category names without links
+                        $categories_list = get_the_category($post_id);
+                        if (!empty($categories_list)) {
+                            $category_names = array();
+                            foreach ($categories_list as $category) {
+                                $category_names[] = esc_html($category->name);
+                            }
+                            $meta .= implode(', ', $category_names); // comma-separated plain text categories
+                        }
+
+                        $meta .= '</li>';
+                        $meta_items[] = $meta;
                     }
+
 
                     // Tags
                     if ($showPostTags && !empty($tags)) {
-                        $output .= '<li class="meta-tags" style="color:' . esc_attr($metaTextColor) . ';">';
+                        $meta = '<li class="meta-tags" style="color:' . esc_attr($metaTextColor) . ';">';
                         if ($showPostTagsIcon && $showMetaIcon) {
-                            $output .= '<i class="ri-price-tag-3-line" style="color:' . esc_attr($metaIconColor) . ';font-size:' . esc_attr($metaFontSize) . 'px;"></i> ';
+                            $meta .= '<i class="ri-price-tag-3-line" style="color:' . esc_attr($metaIconColor) . ';font-size:' . esc_attr($metaFontSize) . 'px;"></i> ';
                         }
-                        $output .= esc_html__('Tags:', 'fancy-post-grid') . ' ' . $tags . '</li> '; 
-                        // Add separator with font size and color
-                        $output .= '<span class="meta-separator" style="color:' . esc_attr($metaIconColor) . '; font-size:' . esc_attr($metaFontSize) . 'px;">' . esc_html($metaSeperator) . '</span> ';
+                        $meta .= esc_html__('Tags:', 'fancy-post-grid') . ' ' . $tags . '</li>';
+                        $meta_items[] = $meta;
                     }
 
                     // Comment Count
                     if ($showPostCommentsCount) {
-                        $output .= '<li class="meta-comment-count" style="color:' . esc_attr($metaTextColor) . ';">';
+                        $meta = '<li class="meta-comment-count" style="color:' . esc_attr($metaTextColor) . ';">';
                         if ($showPostCommentsCountIcon && $showMetaIcon) {
-                            $output .= '<i class="ri-chat-3-line" style="color:' . esc_attr($metaIconColor) . ';font-size:' . esc_attr($metaFontSize) . 'px;"></i> ';
+                            $meta .= '<i class="ri-chat-3-line" style="color:' . esc_attr($metaIconColor) . ';font-size:' . esc_attr($metaFontSize) . 'px;"></i> ';
                         }
-                        $output .= esc_html($comments_count) . ' ' . esc_html__('Comments', 'fancy-post-grid') . '</li>';
+                        $meta .= esc_html($comments_count) . ' ' . esc_html__('Comments', 'fancy-post-grid') . '</li>';
+                        $meta_items[] = $meta;
                     }
 
-                    $output .= '</ul>';
+                    // Now join meta items with the separator
+                    $output .= implode('<span class="meta-separator" style="color:' . esc_attr($metaIconColor) . '; font-size:' . esc_attr($metaFontSize) . 'px;">' . esc_html($metaSeperator) . '</span>', $meta_items);
+
+                    $output .= '</ul>'; // Close meta-data-list
+                    
                 }
                 // End Meta Data
 
@@ -628,102 +640,589 @@ function fancy_post_grid_render_callback($attributes) {
                 // End Full post layout
             }
             
-            
-             elseif ($gridLayoutStyle === 'style2') {
-                // Only Title, Image, and Excerpt
+            else if ($gridLayoutStyle === 'style2') {
                 // Full post layout
                 $output .= '<div class="fancy-post-item rs-blog__single" 
-                            style="
-                                
-                                padding: ' . esc_attr($itemPadding['top']) . 'px ' . esc_attr($itemPadding['right']) . 'px ' . esc_attr($itemPadding['bottom']) . 'px ' . esc_attr($itemPadding['left']) . 'px; 
-                                margin: ' . esc_attr($itemMargin['top']) . 'px ' . esc_attr($itemMargin['right']) . 'px ' . esc_attr($itemMargin['bottom']) . 'px ' . esc_attr($itemMargin['left']) . 'px; 
-                                border-radius: ' . esc_attr($itemBorderRadius['top']) . 'px ' . esc_attr($itemBorderRadius['right']) . 'px ' . esc_attr($itemBorderRadius['bottom']) . 'px ' . esc_attr($itemBorderRadius['left']) . 'px; 
-                                border-width: ' . esc_attr($itemBorderWidth['top']) . 'px ' . esc_attr($itemBorderWidth['right']) . 'px ' . esc_attr($itemBorderWidth['bottom']) . 'px ' . esc_attr($itemBorderWidth['left']) . 'px; 
-                                border-style: ' . esc_attr($itemBorderType) . ';
-                                border-color: ' . esc_attr($itemBorderColor) . ';
-                                background-color: ' . esc_attr($itemBackgroundColor) . ';
-                                box-shadow: ' . esc_attr($itemBoxShadow) . ';
-                                text-align: ' . esc_attr($itemBoxAlignment) . ';">';
+                            style=" margin: ' . 
+                                    (is_numeric($itemMargin['top']) ? $itemMargin['top'] . 'px' : esc_attr($itemMargin['top'])) . ' ' . 
+                                    (is_numeric($itemMargin['right']) ? $itemMargin['right'] . 'px' : esc_attr($itemMargin['right'])) . ' ' . 
+                                    (is_numeric($itemMargin['bottom']) ? $itemMargin['bottom'] . 'px' : esc_attr($itemMargin['bottom'])) . ' ' . 
+                                    (is_numeric($itemMargin['left']) ? $itemMargin['left'] . 'px' : esc_attr($itemMargin['left'])) . '; padding: ' . 
+                                    (is_numeric($itemPadding['top']) ? $itemPadding['top'] . 'px' : esc_attr($itemPadding['top'])) . ' ' . 
+                                    (is_numeric($itemPadding['right']) ? $itemPadding['right'] . 'px' : esc_attr($itemPadding['right'])) . ' ' . 
+                                    (is_numeric($itemPadding['bottom']) ? $itemPadding['bottom'] . 'px' : esc_attr($itemPadding['bottom'])) . ' ' . 
+                                    (is_numeric($itemPadding['left']) ? $itemPadding['left'] . 'px' : esc_attr($itemPadding['left'])) . '; border-radius: ' . 
+                                    (is_numeric($itemBorderRadius['top']) ? $itemBorderRadius['top'] . 'px' : esc_attr($itemBorderRadius['top'])) . ' ' . 
+                                    (is_numeric($itemBorderRadius['right']) ? $itemBorderRadius['right'] . 'px' : esc_attr($itemBorderRadius['right'])) . ' ' . 
+                                    (is_numeric($itemBorderRadius['bottom']) ? $itemBorderRadius['bottom'] . 'px' : esc_attr($itemBorderRadius['bottom'])) . ' ' . 
+                                    (is_numeric($itemBorderRadius['left']) ? $itemBorderRadius['left'] . 'px' : esc_attr($itemBorderRadius['left'])) . ';  border-width: ' . 
+                                    (is_numeric($itemBorderWidth['top']) ? $itemBorderWidth['top'] . 'px' : esc_attr($itemBorderWidth['top'])) . ' ' . 
+                                    (is_numeric($itemBorderWidth['right']) ? $itemBorderWidth['right'] . 'px' : esc_attr($itemBorderWidth['right'])) . ' ' . 
+                                    (is_numeric($itemBorderWidth['bottom']) ? $itemBorderWidth['bottom'] . 'px' : esc_attr($itemBorderWidth['bottom'])) . ' ' . 
+                                    (is_numeric($itemBorderWidth['left']) ? $itemBorderWidth['left'] . 'px' : esc_attr($itemBorderWidth['left'])) . '; border-style: ' . esc_attr($itemBorderType) . '; border-color: ' . esc_attr($itemBorderColor) . '; background-color: ' . esc_attr($itemBackgroundColor) . '; box-shadow: ' . 
+                                    (is_numeric($itemBoxShadow['top']) ? $itemBoxShadow['top'] . 'px' : esc_attr($itemBoxShadow['top'])) . ' ' . 
+                                    (is_numeric($itemBoxShadow['right']) ? $itemBoxShadow['right'] . 'px' : esc_attr($itemBoxShadow['right'])) . ' ' . 
+                                    (is_numeric($itemBoxShadow['bottom']) ? $itemBoxShadow['bottom'] . 'px' : esc_attr($itemBoxShadow['bottom'])) . ' ' . 
+                                    (is_numeric($itemBoxShadow['left']) ? $itemBoxShadow['left'] . 'px' : esc_attr($itemBoxShadow['left'])) . ' ' . 
+                                    esc_attr($itemBoxShadowColor) . ';    text-align: ' . esc_attr($itemBoxAlignment) . ';">';
+                
+                
+
+                // MAIN Content
+                $output .= '<div class="rs-content" style=" margin: ' . 
+                            (is_numeric($contentitemMarginNew['top']) ? $contentitemMarginNew['top'] . 'px' : esc_attr($contentitemMarginNew['top'])) . ' ' . 
+                            (is_numeric($contentitemMarginNew['right']) ? $contentitemMarginNew['right'] . 'px' : esc_attr($contentitemMarginNew['right'])) . ' ' . 
+                            (is_numeric($contentitemMarginNew['bottom']) ? $contentitemMarginNew['bottom'] . 'px' : esc_attr($contentitemMarginNew['bottom'])) . ' ' . 
+                            (is_numeric($contentitemMarginNew['left']) ? $contentitemMarginNew['left'] . 'px' : esc_attr($contentitemMarginNew['left'])) . '; padding: ' . 
+                            (is_numeric($contentitemPaddingNew['top']) ? $contentitemPaddingNew['top'] . 'px' : esc_attr($contentitemPaddingNew['top'])) . ' ' . 
+                            (is_numeric($contentitemPaddingNew['right']) ? $contentitemPaddingNew['right'] . 'px' : esc_attr($contentitemPaddingNew['right'])) . ' ' . 
+                            (is_numeric($contentitemPaddingNew['bottom']) ? $contentitemPaddingNew['bottom'] . 'px' : esc_attr($contentitemPaddingNew['bottom'])) . ' ' . 
+                            (is_numeric($contentitemPaddingNew['left']) ? $contentitemPaddingNew['left'] . 'px' : esc_attr($contentitemPaddingNew['left'])) . '; border-width: ' . 
+                            (is_numeric($contentBorderWidth['top']) ? $contentBorderWidth['top'] . 'px' : esc_attr($contentBorderWidth['top'])) . ' ' . 
+                            (is_numeric($contentBorderWidth['right']) ? $contentBorderWidth['right'] . 'px' : esc_attr($contentBorderWidth['right'])) . ' ' . 
+                            (is_numeric($contentBorderWidth['bottom']) ? $contentBorderWidth['bottom'] . 'px' : esc_attr($contentBorderWidth['bottom'])) . ' ' . 
+                            (is_numeric($contentBorderWidth['left']) ? $contentBorderWidth['left'] . 'px' : esc_attr($contentBorderWidth['left'])) . ';  border-style: ' . esc_attr($contentNormalBorderType) . ';background-color: ' . esc_attr($contentBgColor) . ';border-color: ' . esc_attr($contentBorderColor) . ';
+                ">';
+
+                // Meta Data
+                // Meta Data
+                if ($showMetaData) {
+                            
+                    $output .= '<ul class="meta-data-list" style="
+                        order: ' . esc_attr($metaOrder) . '; 
+                        text-align: ' . esc_attr($metaAlignment) . ';
+                        margin: ' . 
+                            (is_numeric($metaMarginNew['top']) ? $metaMarginNew['top'] . 'px' : esc_attr($metaMarginNew['top'])) . ' ' . 
+                            (is_numeric($metaMarginNew['right']) ? $metaMarginNew['right'] . 'px' : esc_attr($metaMarginNew['right'])) . ' ' . 
+                            (is_numeric($metaMarginNew['bottom']) ? $metaMarginNew['bottom'] . 'px' : esc_attr($metaMarginNew['bottom'])) . ' ' . 
+                            (is_numeric($metaMarginNew['left']) ? $metaMarginNew['left'] . 'px' : esc_attr($metaMarginNew['left'])) . ';padding: ' . 
+                            (is_numeric($metaPadding['top']) ? $metaPadding['top'] . 'px' : esc_attr($metaPadding['top'])) . ' ' . 
+                            (is_numeric($metaPadding['right']) ? $metaPadding['right'] . 'px' : esc_attr($metaPadding['right'])) . ' ' . 
+                            (is_numeric($metaPadding['bottom']) ? $metaPadding['bottom'] . 'px' : esc_attr($metaPadding['bottom'])) . ' ' . 
+                            (is_numeric($metaPadding['left']) ? $metaPadding['left'] . 'px' : esc_attr($metaPadding['left'])) . ';
+                        color: ' . esc_attr($metaTextColor) . ';
+                    ">';
+
+                    $meta_items = [];
+
+                    // Date
+                    if ($showPostDate) {
+                        $meta = '<li class="meta-date" style="color:' . esc_attr($metaTextColor) . '; font-size:' . esc_attr($metaFontSize) . 'px;">';
+                        if ($showPostDateIcon && $showMetaIcon) {
+                            $meta .= '<i class="ri-calendar-line" style="color:' . esc_attr($metaIconColor) . '; font-size:' . esc_attr($metaFontSize) . 'px;"></i> ';
+                        }
+                        $meta .= esc_html($date) . '</li>';
+                        $meta_items[] = $meta;
+                    }
+
+                    // Author
+                    if ($showPostAuthor) {
+                        $meta = '<li class="meta-author" style="color:' . esc_attr($metaTextColor) . ';">';
+                        if ($showPostAuthorIcon && $showMetaIcon) {
+                            $meta .= '<i class="ri-user-line" style="color:' . esc_attr($metaIconColor) . ';font-size:' . esc_attr($metaFontSize) . 'px;"></i> ';
+                        }
+                        $meta .= esc_html($metaAuthorPrefix) . ' ' . esc_html($author) . '</li>';
+                        $meta_items[] = $meta;
+                    }
+
+                    // Categories
+
+                    if ($showPostCategory) {
+                        $meta = '<li class="meta-categories" style="color:' . esc_attr($metaTextColor) . ';">';
+                        if ($showPostCategoryIcon && $showMetaIcon) {
+                            $meta .= '<i class="ri-folder-line" style="color:' . esc_attr($metaIconColor) . ';font-size:' . esc_attr($metaFontSize) . 'px;"></i> ';
+                        }
+
+                        // Get category names without links
+                        $categories_list = get_the_category($post_id);
+                        if (!empty($categories_list)) {
+                            $category_names = array();
+                            foreach ($categories_list as $category) {
+                                $category_names[] = esc_html($category->name);
+                            }
+                            $meta .= implode(', ', $category_names); // comma-separated plain text categories
+                        }
+
+                        $meta .= '</li>';
+                        $meta_items[] = $meta;
+                    }
+
+
+                    // Tags
+                    if ($showPostTags && !empty($tags)) {
+                        $meta = '<li class="meta-tags" style="color:' . esc_attr($metaTextColor) . ';">';
+                        if ($showPostTagsIcon && $showMetaIcon) {
+                            $meta .= '<i class="ri-price-tag-3-line" style="color:' . esc_attr($metaIconColor) . ';font-size:' . esc_attr($metaFontSize) . 'px;"></i> ';
+                        }
+                        $meta .= esc_html__('Tags:', 'fancy-post-grid') . ' ' . $tags . '</li>';
+                        $meta_items[] = $meta;
+                    }
+
+                    // Comment Count
+                    if ($showPostCommentsCount) {
+                        $meta = '<li class="meta-comment-count" style="color:' . esc_attr($metaTextColor) . ';">';
+                        if ($showPostCommentsCountIcon && $showMetaIcon) {
+                            $meta .= '<i class="ri-chat-3-line" style="color:' . esc_attr($metaIconColor) . ';font-size:' . esc_attr($metaFontSize) . 'px;"></i> ';
+                        }
+                        $meta .= esc_html($comments_count) . ' ' . esc_html__('Comments', 'fancy-post-grid') . '</li>';
+                        $meta_items[] = $meta;
+                    }
+
+                    // Now join meta items with the separator
+                    $output .= implode('<span class="meta-separator" style="color:' . esc_attr($metaIconColor) . '; font-size:' . esc_attr($metaFontSize) . 'px;">' . esc_html($metaSeperator) . '</span>', $meta_items);
+
+                    $output .= '</ul>'; // Close meta-data-list
+                    
+                }
+                // End Meta Data
+
+                // title
+                if ($showPostTitle) {
+                    $output .= '<' . esc_attr($titleTag) . ' class="title" 
+                                    style="
+                                    order: ' . esc_attr($titleOrder) . '; 
+                                    font-size: ' . esc_attr($postTitleFontSize) . 'px; 
+                                    line-height: ' . esc_attr($postTitleLineHeight) . '; 
+                                    letter-spacing: ' . esc_attr($postTitleLetterSpacing) . 'px; 
+                                    font-weight: ' . esc_attr($postTitleFontWeight) . '; 
+                                    text-align: ' . esc_attr($postTitleAlignment) . '; 
+                                    color: ' . esc_attr($postTitleColor) . '; 
+                                    background-color: ' . esc_attr($postTitleBgColor) . '; 
+                                    margin: ' . 
+                                    (is_numeric($postTitleMargin['top']) ? $postTitleMargin['top'] . 'px' : esc_attr($postTitleMargin['top'])) . ' ' . 
+                                    (is_numeric($postTitleMargin['right']) ? $postTitleMargin['right'] . 'px' : esc_attr($postTitleMargin['right'])) . ' ' . 
+                                    (is_numeric($postTitleMargin['bottom']) ? $postTitleMargin['bottom'] . 'px' : esc_attr($postTitleMargin['bottom'])) . ' ' . 
+                                    (is_numeric($postTitleMargin['left']) ? $postTitleMargin['left'] . 'px' : esc_attr($postTitleMargin['left'])) . ';padding: ' . 
+                                    (is_numeric($postTitlePadding['top']) ? $postTitlePadding['top'] . 'px' : esc_attr($postTitlePadding['top'])) . ' ' . 
+                                    (is_numeric($postTitlePadding['right']) ? $postTitlePadding['right'] . 'px' : esc_attr($postTitlePadding['right'])) . ' ' . 
+                                    (is_numeric($postTitlePadding['bottom']) ? $postTitlePadding['bottom'] . 'px' : esc_attr($postTitlePadding['bottom'])) . ' ' . 
+                                    (is_numeric($postTitlePadding['left']) ? $postTitlePadding['left'] . 'px' : esc_attr($postTitlePadding['left'])) . ';"
+                                    onmouseover="this.style.color=\'' . esc_attr($postTitleHoverColor) . '\';
+                                                 this.style.backgroundColor=\'' . esc_attr($postTitleHoverBgColor) . '\';" 
+                                    onmouseout="this.style.color=\'' . esc_attr($postTitleColor) . '\';
+                                                this.style.backgroundColor=\'' . esc_attr($postTitleBgColor) . '\';">';
+
+                    $output .= '<a href="' . esc_url($permalink) . '" 
+                                    style="display: inline-block; width: 100%; text-decoration: none;"
+                                    onmouseover="this.style.textDecoration=\'' . ($titleHoverUnderLine === 'enable' ? 'underline' : 'none') . '\';"
+                                    onmouseout="this.style.textDecoration=\'none\';">' . esc_html($croppedTitle) . '</a>';
+
+                    $output .= '</' . esc_attr($titleTag) . '>';
+                }
+
+                // Excerpt
+                if ($showPostExcerpt) {
+                    $output .= '<div class="fpg-excerpt" 
+                                    style="order: ' . esc_attr($excerptOrder) . '; 
+                                           font-size: ' . esc_attr($excerptFontSize) . 'px; 
+                                           line-height: ' . esc_attr($excerptLineHeight) . '; 
+                                           letter-spacing: ' . esc_attr($excerptLetterSpacing) . 'px; 
+                                           font-weight: ' . esc_attr($excerptFontWeight) . '; 
+                                           text-align: ' . esc_attr($excerptAlignment) . '; 
+                                           color: ' . esc_attr($excerptColor) . '; 
+                                           background-color: ' . esc_attr($excerptBgColor) . '; 
+                                           border-style: ' . esc_attr($excerptBorderType) . '; 
+                                           margin: ' . 
+                                            (is_numeric($excerptMargin['top']) ? $excerptMargin['top'] . 'px' : esc_attr($excerptMargin['top'])) . ' ' . 
+                                            (is_numeric($excerptMargin['right']) ? $excerptMargin['right'] . 'px' : esc_attr($excerptMargin['right'])) . ' ' . 
+                                            (is_numeric($excerptMargin['bottom']) ? $excerptMargin['bottom'] . 'px' : esc_attr($excerptMargin['bottom'])) . ' ' . 
+                                            (is_numeric($excerptMargin['left']) ? $excerptMargin['left'] . 'px' : esc_attr($excerptMargin['left'])) . ';padding: ' . 
+                                            (is_numeric($excerptPadding['top']) ? $excerptPadding['top'] . 'px' : esc_attr($excerptPadding['top'])) . ' ' . 
+                                            (is_numeric($excerptPadding['right']) ? $excerptPadding['right'] . 'px' : esc_attr($excerptPadding['right'])) . ' ' . 
+                                            (is_numeric($excerptPadding['bottom']) ? $excerptPadding['bottom'] . 'px' : esc_attr($excerptPadding['bottom'])) . ' ' . 
+                                            (is_numeric($excerptPadding['left']) ? $excerptPadding['left'] . 'px' : esc_attr($excerptPadding['left'])) . ';"
+                                    onmouseover="this.style.color=\'' . esc_attr($excerptHoverColor) . '\';
+                                                 this.style.backgroundColor=\'' . esc_attr($excerptHoverBgColor) . '\';
+                                                 this.style.borderColor=\'' . esc_attr($excerptHoverBorderColor) . '\';" 
+                                    onmouseout="this.style.color=\'' . esc_attr($excerptColor) . '\';
+                                                this.style.backgroundColor=\'' . esc_attr($excerptBgColor) . '\';
+                                                this.style.borderColor=\'inherit\';">';
+
+                    $output .= '<p>' . esc_html($excerpt) . '</p>';
+                    $output .= '</div>';
+                }
+                // End Excerpt
+
+                
+                // Button Output                
+                if ($showReadMoreButton) {
+                    $output .= '<div class="btn-wrapper" style="margin: ' . 
+                                            (is_numeric($buttonMarginNew['top']) ? $buttonMarginNew['top'] . 'px' : esc_attr($buttonMarginNew['top'])) . ' ' . 
+                                            (is_numeric($buttonMarginNew['right']) ? $buttonMarginNew['right'] . 'px' : esc_attr($buttonMarginNew['right'])) . ' ' . 
+                                            (is_numeric($buttonMarginNew['bottom']) ? $buttonMarginNew['bottom'] . 'px' : esc_attr($buttonMarginNew['bottom'])) . ' ' . 
+                                            (is_numeric($buttonMarginNew['left']) ? $buttonMarginNew['left'] . 'px' : esc_attr($buttonMarginNew['left'])) . '; text-align: ' . esc_attr($buttonAlignment) . '; order: ' . esc_attr($buttonOrder) . ';">';
+
+                    // Inline styles
+                    $buttonInlineStyles = 'color: ' . esc_attr($buttonTextColor) . ';
+                                            background-color: ' . esc_attr($buttonBackgroundColor) . ';
+                                            
+                                            font-size: ' . esc_attr($buttonFontSize) . 'px;
+                                            font-weight: ' . esc_attr($buttonFontWeight) . '; 
+                                            border: ' . esc_attr($buttonBorderWidth) . 'px ' . esc_attr($buttonBorderType) . ' ' . esc_attr($buttonBorderColor) . ';
+                                            border-radius: ' . 
+                                            (is_numeric($buttonBorderRadius['top']) ? $buttonBorderRadius['top'] . 'px' : esc_attr($buttonBorderRadius['top'])) . ' ' . 
+                                            (is_numeric($buttonBorderRadius['right']) ? $buttonBorderRadius['right'] . 'px' : esc_attr($buttonBorderRadius['right'])) . ' ' . 
+                                            (is_numeric($buttonBorderRadius['bottom']) ? $buttonBorderRadius['bottom'] . 'px' : esc_attr($buttonBorderRadius['bottom'])) . ' ' . 
+                                            (is_numeric($buttonBorderRadius['left']) ? $buttonBorderRadius['left'] . 'px' : esc_attr($buttonBorderRadius['left'])) . ';
+
+                                            padding: ' . 
+                                            (is_numeric($buttonPaddingNew['top']) ? $buttonPaddingNew['top'] . 'px' : esc_attr($buttonPaddingNew['top'])) . ' ' . 
+                                            (is_numeric($buttonPaddingNew['right']) ? $buttonPaddingNew['right'] . 'px' : esc_attr($buttonPaddingNew['right'])) . ' ' . 
+                                            (is_numeric($buttonPaddingNew['bottom']) ? $buttonPaddingNew['bottom'] . 'px' : esc_attr($buttonPaddingNew['bottom'])) . ' ' . 
+                                            (is_numeric($buttonPaddingNew['left']) ? $buttonPaddingNew['left'] . 'px' : esc_attr($buttonPaddingNew['left'])) . ';';
+
+                    // Hover styles using JS inline
+                    $buttonHoverInlineStyles = "this.style.color='" . esc_attr($buttonHoverTextColor) . "';this.style.borderColor='" . esc_attr($buttonHoverBorderColor) . "';
+                                                this.style.backgroundColor='" . esc_attr($buttonHoverBackgroundColor) . "';";
+
+                    $buttonResetStyles = "this.style.color='" . esc_attr($buttonTextColor) . "';
+                                          this.style.borderColor='" . esc_attr($buttonBorderColor) . "';
+
+                                          this.style.backgroundColor='" . esc_attr($buttonBackgroundColor) . "';";
+
+                    $output .= '<a class="rs-link read-more ' . esc_attr($buttonStyle) . '" 
+                                    href="' . esc_url(get_permalink()) . '" 
+                                    style="' . esc_attr($buttonInlineStyles) . '" 
+                                    onmouseover="' . esc_attr($buttonHoverInlineStyles) . '" 
+                                    onmouseout="' . esc_attr($buttonResetStyles) . '">';
+
+                    // Icon setup
+                    $leftIcon = '<i class="ri-arrow-right-line"></i>';  
+                    $rightIcon = '<i class="ri-arrow-right-line"></i>';
+
+                    // Icon Positioning
+                    if ($iconPosition === 'left' && $showButtonIcon) {
+                        $output .= $leftIcon . ' ';
+                    }
+                    
+                    $output .= esc_html($readMoreLabel);
+
+                    if ($iconPosition === 'right' && $showButtonIcon) {
+                        $output .= ' ' . $rightIcon;
+                    }
+
+                    $output .= '</a>';
+                    $output .= '</div>';
+                }
+                // End Button
+
+                $output .= '</div>';
 
                 // Thumbnail
-                if ($thumbnail) {
-                    $output .= '<div class="fancy-post-image rs-thumb"><a href="' . esc_url($permalink) . '">' . $thumbnail . '</a></div>';
+                if ($thumbnail && $showThumbnail) {
+
+                    $output .= '<div class="fancy-post-image rs-thumb" style=" margin: ' . 
+                                    (is_numeric($thumbnailMargin['top']) ? $thumbnailMargin['top'] . 'px' : esc_attr($thumbnailMargin['top'])) . ' ' . 
+                                    (is_numeric($thumbnailMargin['right']) ? $thumbnailMargin['right'] . 'px' : esc_attr($thumbnailMargin['right'])) . ' ' . 
+                                    (is_numeric($thumbnailMargin['bottom']) ? $thumbnailMargin['bottom'] . 'px' : esc_attr($thumbnailMargin['bottom'])) . ' ' . 
+                                    (is_numeric($thumbnailMargin['left']) ? $thumbnailMargin['left'] . 'px' : esc_attr($thumbnailMargin['left'])) . '; padding: ' . 
+                                    (is_numeric($thumbnailPadding['top']) ? $thumbnailPadding['top'] . 'px' : esc_attr($thumbnailPadding['top'])) . ' ' . 
+                                    (is_numeric($thumbnailPadding['right']) ? $thumbnailPadding['right'] . 'px' : esc_attr($thumbnailPadding['right'])) . ' ' . 
+                                    (is_numeric($thumbnailPadding['bottom']) ? $thumbnailPadding['bottom'] . 'px' : esc_attr($thumbnailPadding['bottom'])) . ' ' . 
+                                    (is_numeric($thumbnailPadding['left']) ? $thumbnailPadding['left'] . 'px' : esc_attr($thumbnailPadding['left'])) . '; ">
+                                <a href="' . esc_url($permalink) . '" style="display: block; border-radius: ' . 
+                                    (is_numeric($thumbnailBorderRadius['top']) ? $thumbnailBorderRadius['top'] . 'px' : esc_attr($thumbnailBorderRadius['top'])) . ' ' . 
+                                    (is_numeric($thumbnailBorderRadius['right']) ? $thumbnailBorderRadius['right'] . 'px' : esc_attr($thumbnailBorderRadius['right'])) . ' ' . 
+                                    (is_numeric($thumbnailBorderRadius['bottom']) ? $thumbnailBorderRadius['bottom'] . 'px' : esc_attr($thumbnailBorderRadius['bottom'])) . ' ' . 
+                                    (is_numeric($thumbnailBorderRadius['left']) ? $thumbnailBorderRadius['left'] . 'px' : esc_attr($thumbnailBorderRadius['left'])) . ';  overflow: hidden;">' . $thumbnail . '</a>
+                        </div>';
                 }
                 // END Thumbnail
 
+                // End MAIN Content
+                $output .= '</div>';
+                // End Full post layout
+            }
+            else if ($gridLayoutStyle === 'style3') {
+                // Full post layout
+                $output .= '<div class="fancy-post-item rs-blog-layout-28-item" 
+                            style=" margin: ' . 
+                            (is_numeric($itemMargin['top']) ? $itemMargin['top'] . 'px' : esc_attr($itemMargin['top'])) . ' ' . 
+                            (is_numeric($itemMargin['right']) ? $itemMargin['right'] . 'px' : esc_attr($itemMargin['right'])) . ' ' . 
+                            (is_numeric($itemMargin['bottom']) ? $itemMargin['bottom'] . 'px' : esc_attr($itemMargin['bottom'])) . ' ' . 
+                            (is_numeric($itemMargin['left']) ? $itemMargin['left'] . 'px' : esc_attr($itemMargin['left'])) . '; padding: ' . 
+                            (is_numeric($itemPadding['top']) ? $itemPadding['top'] . 'px' : esc_attr($itemPadding['top'])) . ' ' . 
+                            (is_numeric($itemPadding['right']) ? $itemPadding['right'] . 'px' : esc_attr($itemPadding['right'])) . ' ' . 
+                            (is_numeric($itemPadding['bottom']) ? $itemPadding['bottom'] . 'px' : esc_attr($itemPadding['bottom'])) . ' ' . 
+                            (is_numeric($itemPadding['left']) ? $itemPadding['left'] . 'px' : esc_attr($itemPadding['left'])) . '; border-radius: ' . 
+                            (is_numeric($itemBorderRadius['top']) ? $itemBorderRadius['top'] . 'px' : esc_attr($itemBorderRadius['top'])) . ' ' . 
+                            (is_numeric($itemBorderRadius['right']) ? $itemBorderRadius['right'] . 'px' : esc_attr($itemBorderRadius['right'])) . ' ' . 
+                            (is_numeric($itemBorderRadius['bottom']) ? $itemBorderRadius['bottom'] . 'px' : esc_attr($itemBorderRadius['bottom'])) . ' ' . 
+                            (is_numeric($itemBorderRadius['left']) ? $itemBorderRadius['left'] . 'px' : esc_attr($itemBorderRadius['left'])) . ';  border-width: ' . 
+                            (is_numeric($itemBorderWidth['top']) ? $itemBorderWidth['top'] . 'px' : esc_attr($itemBorderWidth['top'])) . ' ' . 
+                            (is_numeric($itemBorderWidth['right']) ? $itemBorderWidth['right'] . 'px' : esc_attr($itemBorderWidth['right'])) . ' ' . 
+                            (is_numeric($itemBorderWidth['bottom']) ? $itemBorderWidth['bottom'] . 'px' : esc_attr($itemBorderWidth['bottom'])) . ' ' . 
+                            (is_numeric($itemBorderWidth['left']) ? $itemBorderWidth['left'] . 'px' : esc_attr($itemBorderWidth['left'])) . '; border-style: ' . esc_attr($itemBorderType) . '; border-color: ' . esc_attr($itemBorderColor) . '; background-color: ' . esc_attr($itemBackgroundColor) . '; box-shadow: ' . 
+                            (is_numeric($itemBoxShadow['top']) ? $itemBoxShadow['top'] . 'px' : esc_attr($itemBoxShadow['top'])) . ' ' . 
+                            (is_numeric($itemBoxShadow['right']) ? $itemBoxShadow['right'] . 'px' : esc_attr($itemBoxShadow['right'])) . ' ' . 
+                            (is_numeric($itemBoxShadow['bottom']) ? $itemBoxShadow['bottom'] . 'px' : esc_attr($itemBoxShadow['bottom'])) . ' ' . 
+                            (is_numeric($itemBoxShadow['left']) ? $itemBoxShadow['left'] . 'px' : esc_attr($itemBoxShadow['left'])) . ' ' . 
+                            esc_attr($itemBoxShadowColor) . ';    text-align: ' . esc_attr($itemBoxAlignment) . ';">';
+
+                    // Thumbnail
+                    if ($thumbnail && $showThumbnail) {
+                        $output .= '<div class="fancy-post-image rs-thumb" style=" margin: ' . 
+                            (is_numeric($thumbnailMargin['top']) ? $thumbnailMargin['top'] . 'px' : esc_attr($thumbnailMargin['top'])) . ' ' . 
+                            (is_numeric($thumbnailMargin['right']) ? $thumbnailMargin['right'] . 'px' : esc_attr($thumbnailMargin['right'])) . ' ' . 
+                            (is_numeric($thumbnailMargin['bottom']) ? $thumbnailMargin['bottom'] . 'px' : esc_attr($thumbnailMargin['bottom'])) . ' ' . 
+                            (is_numeric($thumbnailMargin['left']) ? $thumbnailMargin['left'] . 'px' : esc_attr($thumbnailMargin['left'])) . '; padding: ' . 
+                            (is_numeric($thumbnailPadding['top']) ? $thumbnailPadding['top'] . 'px' : esc_attr($thumbnailPadding['top'])) . ' ' . 
+                            (is_numeric($thumbnailPadding['right']) ? $thumbnailPadding['right'] . 'px' : esc_attr($thumbnailPadding['right'])) . ' ' . 
+                            (is_numeric($thumbnailPadding['bottom']) ? $thumbnailPadding['bottom'] . 'px' : esc_attr($thumbnailPadding['bottom'])) . ' ' . 
+                            (is_numeric($thumbnailPadding['left']) ? $thumbnailPadding['left'] . 'px' : esc_attr($thumbnailPadding['left'])) . '; ">';
+
+                        $output .= '<a href="' . esc_url($permalink) . '" style="display: block; border-radius: ' . 
+                            (is_numeric($thumbnailBorderRadius['top']) ? $thumbnailBorderRadius['top'] . 'px' : esc_attr($thumbnailBorderRadius['top'])) . ' ' . 
+                            (is_numeric($thumbnailBorderRadius['right']) ? $thumbnailBorderRadius['right'] . 'px' : esc_attr($thumbnailBorderRadius['right'])) . ' ' . 
+                            (is_numeric($thumbnailBorderRadius['bottom']) ? $thumbnailBorderRadius['bottom'] . 'px' : esc_attr($thumbnailBorderRadius['bottom'])) . ' ' . 
+                            (is_numeric($thumbnailBorderRadius['left']) ? $thumbnailBorderRadius['left'] . 'px' : esc_attr($thumbnailBorderRadius['left'])) . '; overflow: hidden;">' . $thumbnail . '</a>';
+
+                        // Now Insert Meta Data inside the Thumbnail
+                        if ($showMetaData) {
+                            $output .= '<div class="rs-meta">';
+                            $output .= '<ul class="meta-data-list" style="
+                                order: ' . esc_attr($metaOrder) . '; 
+                                text-align: ' . esc_attr($metaAlignment) . ';
+                                margin: ' . 
+                                    (is_numeric($metaMarginNew['top']) ? $metaMarginNew['top'] . 'px' : esc_attr($metaMarginNew['top'])) . ' ' . 
+                                    (is_numeric($metaMarginNew['right']) ? $metaMarginNew['right'] . 'px' : esc_attr($metaMarginNew['right'])) . ' ' . 
+                                    (is_numeric($metaMarginNew['bottom']) ? $metaMarginNew['bottom'] . 'px' : esc_attr($metaMarginNew['bottom'])) . ' ' . 
+                                    (is_numeric($metaMarginNew['left']) ? $metaMarginNew['left'] . 'px' : esc_attr($metaMarginNew['left'])) . ';padding: ' . 
+                                    (is_numeric($metaPadding['top']) ? $metaPadding['top'] . 'px' : esc_attr($metaPadding['top'])) . ' ' . 
+                                    (is_numeric($metaPadding['right']) ? $metaPadding['right'] . 'px' : esc_attr($metaPadding['right'])) . ' ' . 
+                                    (is_numeric($metaPadding['bottom']) ? $metaPadding['bottom'] . 'px' : esc_attr($metaPadding['bottom'])) . ' ' . 
+                                    (is_numeric($metaPadding['left']) ? $metaPadding['left'] . 'px' : esc_attr($metaPadding['left'])) . ';
+                                color: ' . esc_attr($metaTextColor) . ';
+                            ">';
+
+                            $meta_items = [];
+
+                            // Date
+                            if ($showPostDate) {
+                                $meta = '<li class="meta-date" style="color:' . esc_attr($metaTextColor) . '; font-size:' . esc_attr($metaFontSize) . 'px;">';
+                                if ($showPostDateIcon && $showMetaIcon) {
+                                    $meta .= '<i class="ri-calendar-line" style="color:' . esc_attr($metaIconColor) . '; font-size:' . esc_attr($metaFontSize) . 'px;"></i> ';
+                                }
+                                $meta .= esc_html($date) . '</li>';
+                                $meta_items[] = $meta;
+                            }
+
+                            // Author
+                            if ($showPostAuthor) {
+                                $meta = '<li class="meta-author" style="color:' . esc_attr($metaTextColor) . ';">';
+                                if ($showPostAuthorIcon && $showMetaIcon) {
+                                    $meta .= '<i class="ri-user-line" style="color:' . esc_attr($metaIconColor) . ';font-size:' . esc_attr($metaFontSize) . 'px;"></i> ';
+                                }
+                                $meta .= esc_html($metaAuthorPrefix) . ' ' . esc_html($author) . '</li>';
+                                $meta_items[] = $meta;
+                            }
+
+                            // Categories
+
+                            if ($showPostCategory) {
+                                $meta = '<li class="meta-categories" style="color:' . esc_attr($metaTextColor) . ';">';
+                                if ($showPostCategoryIcon && $showMetaIcon) {
+                                    $meta .= '<i class="ri-folder-line" style="color:' . esc_attr($metaIconColor) . ';font-size:' . esc_attr($metaFontSize) . 'px;"></i> ';
+                                }
+
+                                // Get category names without links
+                                $categories_list = get_the_category($post_id);
+                                if (!empty($categories_list)) {
+                                    $category_names = array();
+                                    foreach ($categories_list as $category) {
+                                        $category_names[] = esc_html($category->name);
+                                    }
+                                    $meta .= implode(', ', $category_names); // comma-separated plain text categories
+                                }
+
+                                $meta .= '</li>';
+                                $meta_items[] = $meta;
+                            }
+
+
+                            // Tags
+                            if ($showPostTags && !empty($tags)) {
+                                $meta = '<li class="meta-tags" style="color:' . esc_attr($metaTextColor) . ';">';
+                                if ($showPostTagsIcon && $showMetaIcon) {
+                                    $meta .= '<i class="ri-price-tag-3-line" style="color:' . esc_attr($metaIconColor) . ';font-size:' . esc_attr($metaFontSize) . 'px;"></i> ';
+                                }
+                                $meta .= esc_html__('Tags:', 'fancy-post-grid') . ' ' . $tags . '</li>';
+                                $meta_items[] = $meta;
+                            }
+
+                            // Comment Count
+                            if ($showPostCommentsCount) {
+                                $meta = '<li class="meta-comment-count" style="color:' . esc_attr($metaTextColor) . ';">';
+                                if ($showPostCommentsCountIcon && $showMetaIcon) {
+                                    $meta .= '<i class="ri-chat-3-line" style="color:' . esc_attr($metaIconColor) . ';font-size:' . esc_attr($metaFontSize) . 'px;"></i> ';
+                                }
+                                $meta .= esc_html($comments_count) . ' ' . esc_html__('Comments', 'fancy-post-grid') . '</li>';
+                                $meta_items[] = $meta;
+                            }
+
+                            // Now join meta items with the separator
+                            $output .= implode('<span class="meta-separator" style="color:' . esc_attr($metaIconColor) . '; font-size:' . esc_attr($metaFontSize) . 'px;">' . esc_html($metaSeperator) . '</span>', $meta_items);
+
+                            $output .= '</ul>'; // Close meta-data-list
+                            $output .= '</div>'; // Close meta-data-list
+                        }
+
+                        $output .= '</div>'; // Close fancy-post-image rs-thumb
+                    }
+
+                
+
                 // MAIN Content
-                $output .= '<div class="rs-content" style="background-color:' . esc_attr($itemBackgroundColor) . ';">';
+                $output .= '<div class="rs-content" style=" margin: ' . 
+                            (is_numeric($contentitemMarginNew['top']) ? $contentitemMarginNew['top'] . 'px' : esc_attr($contentitemMarginNew['top'])) . ' ' . 
+                            (is_numeric($contentitemMarginNew['right']) ? $contentitemMarginNew['right'] . 'px' : esc_attr($contentitemMarginNew['right'])) . ' ' . 
+                            (is_numeric($contentitemMarginNew['bottom']) ? $contentitemMarginNew['bottom'] . 'px' : esc_attr($contentitemMarginNew['bottom'])) . ' ' . 
+                            (is_numeric($contentitemMarginNew['left']) ? $contentitemMarginNew['left'] . 'px' : esc_attr($contentitemMarginNew['left'])) . '; padding: ' . 
+                            (is_numeric($contentitemPaddingNew['top']) ? $contentitemPaddingNew['top'] . 'px' : esc_attr($contentitemPaddingNew['top'])) . ' ' . 
+                            (is_numeric($contentitemPaddingNew['right']) ? $contentitemPaddingNew['right'] . 'px' : esc_attr($contentitemPaddingNew['right'])) . ' ' . 
+                            (is_numeric($contentitemPaddingNew['bottom']) ? $contentitemPaddingNew['bottom'] . 'px' : esc_attr($contentitemPaddingNew['bottom'])) . ' ' . 
+                            (is_numeric($contentitemPaddingNew['left']) ? $contentitemPaddingNew['left'] . 'px' : esc_attr($contentitemPaddingNew['left'])) . '; border-width: ' . 
+                            (is_numeric($contentBorderWidth['top']) ? $contentBorderWidth['top'] . 'px' : esc_attr($contentBorderWidth['top'])) . ' ' . 
+                            (is_numeric($contentBorderWidth['right']) ? $contentBorderWidth['right'] . 'px' : esc_attr($contentBorderWidth['right'])) . ' ' . 
+                            (is_numeric($contentBorderWidth['bottom']) ? $contentBorderWidth['bottom'] . 'px' : esc_attr($contentBorderWidth['bottom'])) . ' ' . 
+                            (is_numeric($contentBorderWidth['left']) ? $contentBorderWidth['left'] . 'px' : esc_attr($contentBorderWidth['left'])) . ';  border-style: ' . esc_attr($contentNormalBorderType) . ';background-color: ' . esc_attr($contentBgColor) . ';border-color: ' . esc_attr($contentBorderColor) . '; ">';
 
-                // Meta Data
-                $output .= '<ul class="meta-data-list">';
-                $output .= '<li class="meta-date">' . esc_html($date) . '</li> | ';
-                $output .= '<li class="meta-author">' . esc_html__('By', 'fancy-post-grid') . ' ' . esc_html($author) . '</li> | ';
-                $output .= '<li class="meta-categories">' . $categories . '</li> | ';
-                if (!empty($tags)) {
-                    $output .= '<li class="meta-tags">' . esc_html__('Tags:', 'fancy-post-grid') . ' ' . $tags . '</li> | ';
+                // title
+                if ($showPostTitle) {
+                    $output .= '<' . esc_attr($titleTag) . ' class="title" 
+                                    style="
+                                    order: ' . esc_attr($titleOrder) . '; 
+                                    font-size: ' . esc_attr($postTitleFontSize) . 'px; 
+                                    line-height: ' . esc_attr($postTitleLineHeight) . '; 
+                                    letter-spacing: ' . esc_attr($postTitleLetterSpacing) . 'px; 
+                                    font-weight: ' . esc_attr($postTitleFontWeight) . '; 
+                                    text-align: ' . esc_attr($postTitleAlignment) . '; 
+                                    color: ' . esc_attr($postTitleColor) . '; 
+                                    background-color: ' . esc_attr($postTitleBgColor) . '; 
+                                    margin: ' . 
+                                    (is_numeric($postTitleMargin['top']) ? $postTitleMargin['top'] . 'px' : esc_attr($postTitleMargin['top'])) . ' ' . 
+                                    (is_numeric($postTitleMargin['right']) ? $postTitleMargin['right'] . 'px' : esc_attr($postTitleMargin['right'])) . ' ' . 
+                                    (is_numeric($postTitleMargin['bottom']) ? $postTitleMargin['bottom'] . 'px' : esc_attr($postTitleMargin['bottom'])) . ' ' . 
+                                    (is_numeric($postTitleMargin['left']) ? $postTitleMargin['left'] . 'px' : esc_attr($postTitleMargin['left'])) . ';padding: ' . 
+                                    (is_numeric($postTitlePadding['top']) ? $postTitlePadding['top'] . 'px' : esc_attr($postTitlePadding['top'])) . ' ' . 
+                                    (is_numeric($postTitlePadding['right']) ? $postTitlePadding['right'] . 'px' : esc_attr($postTitlePadding['right'])) . ' ' . 
+                                    (is_numeric($postTitlePadding['bottom']) ? $postTitlePadding['bottom'] . 'px' : esc_attr($postTitlePadding['bottom'])) . ' ' . 
+                                    (is_numeric($postTitlePadding['left']) ? $postTitlePadding['left'] . 'px' : esc_attr($postTitlePadding['left'])) . ';"
+                                    onmouseover="this.style.color=\'' . esc_attr($postTitleHoverColor) . '\';
+                                                 this.style.backgroundColor=\'' . esc_attr($postTitleHoverBgColor) . '\';" 
+                                    onmouseout="this.style.color=\'' . esc_attr($postTitleColor) . '\';
+                                                this.style.backgroundColor=\'' . esc_attr($postTitleBgColor) . '\';">';
+
+                    $output .= '<a href="' . esc_url($permalink) . '" 
+                                    style="display: inline-block; width: 100%; text-decoration: none;"
+                                    onmouseover="this.style.textDecoration=\'' . ($titleHoverUnderLine === 'enable' ? 'underline' : 'none') . '\';"
+                                    onmouseout="this.style.textDecoration=\'none\';">' . esc_html($croppedTitle) . '</a>';
+
+                    $output .= '</' . esc_attr($titleTag) . '>';
                 }
-                $output .= '<li class="meta-comment-count">' . esc_html($comments_count) . ' ' . esc_html__('Comments', 'fancy-post-grid') . '</li>';
-                $output .= '</ul>';
-                // End Meta Data
-
-                // Title
-                $output .= '<' . esc_attr($titleTag) . ' class="title" 
-                                style="font-size: ' . esc_attr($postTitleFontSize) . 'px; 
-                                line-height: ' . esc_attr($postTitleLineHeight) . '; 
-                                letter-spacing: ' . esc_attr($postTitleLetterSpacing) . 'px; 
-                                font-weight: ' . esc_attr($postTitleFontWeight) . '; 
-                                text-align: ' . esc_attr($postTitleAlignment) . '; 
-                                color: ' . esc_attr($postTitleColor) . '; 
-                                background-color: ' . esc_attr($postTitleBgColor) . '; 
-                                
-                                margin: ' . esc_attr($postTitleMargin['top']) . 'px ' . esc_attr($postTitleMargin['right']) . 'px ' . esc_attr($postTitleMargin['bottom']) . 'px ' . esc_attr($postTitleMargin['left']) . 'px; 
-                                padding: ' . esc_attr($postTitlePadding['top']) . 'px ' . esc_attr($postTitlePadding['right']) . 'px ' . esc_attr($postTitlePadding['bottom']) . 'px ' . esc_attr($postTitlePadding['left']) . 'px;"
-                                onmouseover="this.style.color=\'' . esc_attr($postTitleHoverColor) . '\';
-                                             this.style.backgroundColor=\'' . esc_attr($postTitleHoverBgColor) . '\';" 
-                                onmouseout="this.style.color=\'' . esc_attr($postTitleColor) . '\';
-                                            this.style.backgroundColor=\'' . esc_attr($postTitleBgColor) . '\';
-                                            this.style.borderColor=\'inherit\';">';
-
-                $output .= '<a href="' . esc_url($permalink) . '" 
-                                style="display: inline-block; width: 100%; text-decoration: none;"
-                                onmouseover="this.style.textDecoration=\'' . ($titleHoverUnderLine === 'enable' ? 'underline' : 'none') . '\';"
-                                onmouseout="this.style.textDecoration=\'none\';">' . esc_html($title) . '</a>';
-
-                $output .= '</' . esc_attr($titleTag) . '>';
-
 
                 // Excerpt
-                $output .= '<div class="fpg-excerpt" 
-                                style="font-size: ' . esc_attr($excerptFontSize) . 'px; 
-                                line-height: ' . esc_attr($excerptLineHeight) . '; 
-                                letter-spacing: ' . esc_attr($excerptLetterSpacing) . 'px; 
-                                font-weight: ' . esc_attr($excerptFontWeight) . '; 
-                                text-align: ' . esc_attr($excerptAlignment) . '; 
-                                color: ' . esc_attr($excerptColor) . '; 
-                                background-color: ' . esc_attr($excerptBgColor) . '; 
-                                border-style: ' . esc_attr($excerptBorderType) . '; 
-                                margin: ' . esc_attr($excerptMargin['top']) . 'px ' . esc_attr($excerptMargin['right']) . 'px ' . esc_attr($excerptMargin['bottom']) . 'px ' . esc_attr($excerptMargin['left']) . 'px; 
-                                padding: ' . esc_attr($excerptPadding['top']) . 'px ' . esc_attr($excerptPadding['right']) . 'px ' . esc_attr($excerptPadding['bottom']) . 'px ' . esc_attr($excerptPadding['left']) . 'px;' . '"
-                                onmouseover="this.style.color=\'' . esc_attr($excerptHoverColor) . '\';
-                                             this.style.backgroundColor=\'' . esc_attr($excerptHoverBgColor) . '\';
-                                             this.style.borderColor=\'' . esc_attr($excerptHoverBorderColor) . '\';" 
-                                onmouseout="this.style.color=\'' . esc_attr($excerptColor) . '\';
-                                            this.style.backgroundColor=\'' . esc_attr($excerptBgColor) . '\';
-                                            this.style.borderColor=\'inherit\';">';
+                if ($showPostExcerpt) {
+                    $output .= '<div class="fpg-excerpt" 
+                        style="order: ' . esc_attr($excerptOrder) . '; 
+                               font-size: ' . esc_attr($excerptFontSize) . 'px; 
+                               line-height: ' . esc_attr($excerptLineHeight) . '; 
+                               letter-spacing: ' . esc_attr($excerptLetterSpacing) . 'px; 
+                               font-weight: ' . esc_attr($excerptFontWeight) . '; 
+                               text-align: ' . esc_attr($excerptAlignment) . '; 
+                               color: ' . esc_attr($excerptColor) . '; 
+                               background-color: ' . esc_attr($excerptBgColor) . '; 
+                               border-style: ' . esc_attr($excerptBorderType) . '; 
+                               margin: ' . 
+                                (is_numeric($excerptMargin['top']) ? $excerptMargin['top'] . 'px' : esc_attr($excerptMargin['top'])) . ' ' . 
+                                (is_numeric($excerptMargin['right']) ? $excerptMargin['right'] . 'px' : esc_attr($excerptMargin['right'])) . ' ' . 
+                                (is_numeric($excerptMargin['bottom']) ? $excerptMargin['bottom'] . 'px' : esc_attr($excerptMargin['bottom'])) . ' ' . 
+                                (is_numeric($excerptMargin['left']) ? $excerptMargin['left'] . 'px' : esc_attr($excerptMargin['left'])) . ';padding: ' . 
+                                (is_numeric($excerptPadding['top']) ? $excerptPadding['top'] . 'px' : esc_attr($excerptPadding['top'])) . ' ' . 
+                                (is_numeric($excerptPadding['right']) ? $excerptPadding['right'] . 'px' : esc_attr($excerptPadding['right'])) . ' ' . 
+                                (is_numeric($excerptPadding['bottom']) ? $excerptPadding['bottom'] . 'px' : esc_attr($excerptPadding['bottom'])) . ' ' . 
+                                (is_numeric($excerptPadding['left']) ? $excerptPadding['left'] . 'px' : esc_attr($excerptPadding['left'])) . ';"
+                        onmouseover="this.style.color=\'' . esc_attr($excerptHoverColor) . '\';
+                                     this.style.backgroundColor=\'' . esc_attr($excerptHoverBgColor) . '\';
+                                     this.style.borderColor=\'' . esc_attr($excerptHoverBorderColor) . '\';" 
+                        onmouseout="this.style.color=\'' . esc_attr($excerptColor) . '\';
+                                    this.style.backgroundColor=\'' . esc_attr($excerptBgColor) . '\';
+                                    this.style.borderColor=\'inherit\';">';
 
-                $output .= '<p>' . esc_html($excerpt) . '</p>';
-                $output .= '</div>';
-
-
-
+                    $output .= '<p>' . esc_html($excerpt) . '</p>';
+                    $output .= '</div>';
+                }
                 // End Excerpt
 
+                
+                // Button Output                
+                if ($showReadMoreButton) {
+                    $output .= '<div class="btn-wrapper" style="margin: ' . 
+                            (is_numeric($buttonMarginNew['top']) ? $buttonMarginNew['top'] . 'px' : esc_attr($buttonMarginNew['top'])) . ' ' . 
+                            (is_numeric($buttonMarginNew['right']) ? $buttonMarginNew['right'] . 'px' : esc_attr($buttonMarginNew['right'])) . ' ' . 
+                            (is_numeric($buttonMarginNew['bottom']) ? $buttonMarginNew['bottom'] . 'px' : esc_attr($buttonMarginNew['bottom'])) . ' ' . 
+                            (is_numeric($buttonMarginNew['left']) ? $buttonMarginNew['left'] . 'px' : esc_attr($buttonMarginNew['left'])) . '; text-align: ' . esc_attr($buttonAlignment) . '; order: ' . esc_attr($buttonOrder) . ';">';
+
+                    // Inline styles
+                    $buttonInlineStyles = 'color: ' . esc_attr($buttonTextColor) . ';
+                        background-color: ' . esc_attr($buttonBackgroundColor) . ';
+                        
+                        font-size: ' . esc_attr($buttonFontSize) . 'px;
+                        font-weight: ' . esc_attr($buttonFontWeight) . '; 
+                        border: ' . esc_attr($buttonBorderWidth) . 'px ' . esc_attr($buttonBorderType) . ' ' . esc_attr($buttonBorderColor) . ';
+                        border-radius: ' . 
+                        (is_numeric($buttonBorderRadius['top']) ? $buttonBorderRadius['top'] . 'px' : esc_attr($buttonBorderRadius['top'])) . ' ' . 
+                        (is_numeric($buttonBorderRadius['right']) ? $buttonBorderRadius['right'] . 'px' : esc_attr($buttonBorderRadius['right'])) . ' ' . 
+                        (is_numeric($buttonBorderRadius['bottom']) ? $buttonBorderRadius['bottom'] . 'px' : esc_attr($buttonBorderRadius['bottom'])) . ' ' . 
+                        (is_numeric($buttonBorderRadius['left']) ? $buttonBorderRadius['left'] . 'px' : esc_attr($buttonBorderRadius['left'])) . ';
+
+                        padding: ' . 
+                        (is_numeric($buttonPaddingNew['top']) ? $buttonPaddingNew['top'] . 'px' : esc_attr($buttonPaddingNew['top'])) . ' ' . 
+                        (is_numeric($buttonPaddingNew['right']) ? $buttonPaddingNew['right'] . 'px' : esc_attr($buttonPaddingNew['right'])) . ' ' . 
+                        (is_numeric($buttonPaddingNew['bottom']) ? $buttonPaddingNew['bottom'] . 'px' : esc_attr($buttonPaddingNew['bottom'])) . ' ' . 
+                        (is_numeric($buttonPaddingNew['left']) ? $buttonPaddingNew['left'] . 'px' : esc_attr($buttonPaddingNew['left'])) . ';';
+
+                    // Hover styles using JS inline
+                    $buttonHoverInlineStyles = "this.style.color='" . esc_attr($buttonHoverTextColor) . "';this.style.borderColor='" . esc_attr($buttonHoverBorderColor) . "';
+                                                this.style.backgroundColor='" . esc_attr($buttonHoverBackgroundColor) . "';";
+
+                    $buttonResetStyles = "this.style.color='" . esc_attr($buttonTextColor) . "';
+                                          this.style.borderColor='" . esc_attr($buttonBorderColor) . "';
+
+                                          this.style.backgroundColor='" . esc_attr($buttonBackgroundColor) . "';";
+
+                    $output .= '<a class="rs-btn  read-more ' . esc_attr($buttonStyle) . '" 
+                                    href="' . esc_url(get_permalink()) . '" 
+                                    style="' . esc_attr($buttonInlineStyles) . '" 
+                                    onmouseover="' . esc_attr($buttonHoverInlineStyles) . '" 
+                                    onmouseout="' . esc_attr($buttonResetStyles) . '">';
+
+                    // Icon setup
+                    $leftIcon = '<i class="ri-arrow-right-line"></i>';  
+                    $rightIcon = '<i class="ri-arrow-right-line"></i>';
+
+                    // Icon Positioning
+                    if ($iconPosition === 'left' && $showButtonIcon) {
+                        $output .= $leftIcon . ' ';
+                    }
+                    
+                    $output .= esc_html($readMoreLabel);
+
+                    if ($iconPosition === 'right' && $showButtonIcon) {
+                        $output .= ' ' . $rightIcon;
+                    }
+
+                    $output .= '</a>';
+                    $output .= '</div>';
+                }
+                // End Button
 
                 $output .= '</div>';
                 // End MAIN Content
                 $output .= '</div>';
                 // End Full post layout
-            } elseif ($gridLayoutStyle === 'style3') {
+            }
+            elseif ($gridLayoutStyle === 'style6') {
                 // Only Title & Image
                 $output .= '<div class="fancy-post-image"><a href="' . esc_url($permalink) . '">' . $thumbnail . '</a></div>';
                 $output .= '<h3><a href="' . esc_url($permalink) . '">' . esc_html($title) . '</a></h3>';
