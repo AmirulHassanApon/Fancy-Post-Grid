@@ -440,9 +440,8 @@
                         } 
                     },
                     posts.map((post) => {
-                        // const thumbnail = post._embedded?.['wp:featuredmedia']?.[0]?.source_url || '';
-                        const thumbnail = post._embedded?.['wp:featuredmedia']?.[0]?.media_details?.sizes?.[attributes.thumbnailSize]?.source_url || 
-                  post._embedded?.['wp:featuredmedia']?.[0]?.source_url || '';
+                        
+                        const thumbnail = post._embedded?.['wp:featuredmedia']?.[0]?.media_details?.sizes?.[attributes.thumbnailSize]?.source_url ||  post._embedded?.['wp:featuredmedia']?.[0]?.source_url || '';
 
                         const excerpt = post.excerpt.rendered.replace(/(<([^>]+)>)/gi, '').split(' ').slice(0, excerptLimit).join(' ') + excerptIndicator;
                         
@@ -706,10 +705,10 @@
 
                                 
                                 showReadMoreButton && wp.element.createElement('div', { className: 'btn-wrapper',style: { 
-                                            order: buttonOrder,
-                                            margin: getSpacingValue(attributes.buttonMarginNew),
-                                            textAlign: buttonAlignment  }, 
-                                        }, 
+                                        order: buttonOrder,
+                                        margin: getSpacingValue(attributes.buttonMarginNew),
+                                        textAlign: buttonAlignment  }, 
+                                    }, 
                                     wp.element.createElement('a', { 
                                         href: post.link, 
                                         target: postLinkTarget === 'newWindow' ? '_blank' : '_self', 
@@ -779,8 +778,7 @@
                     },
                     posts.map((post) => {
                         // const thumbnail = post._embedded?.['wp:featuredmedia']?.[0]?.source_url || '';
-                        const thumbnail = post._embedded?.['wp:featuredmedia']?.[0]?.media_details?.sizes?.[attributes.thumbnailSize]?.source_url || 
-                  post._embedded?.['wp:featuredmedia']?.[0]?.source_url || '';
+                        const thumbnail = post._embedded?.['wp:featuredmedia']?.[0]?.media_details?.sizes?.[attributes.thumbnailSize]?.source_url || post._embedded?.['wp:featuredmedia']?.[0]?.source_url || '';
 
                         const excerpt = post.excerpt.rendered.replace(/(<([^>]+)>)/gi, '').split(' ').slice(0, excerptLimit).join(' ') + excerptIndicator;
                         
