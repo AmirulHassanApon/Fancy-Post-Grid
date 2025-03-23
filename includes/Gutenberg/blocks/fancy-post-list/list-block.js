@@ -514,7 +514,7 @@
                     wp.element.createElement(
                         'div',
                         { className: 'rs-blog__right-blog-wrapper', style: { display: 'flex', flexDirection: 'column', gap: attributes.itemGap } },
-                        posts.slice(1).map((post) => {
+                        posts.slice(1).map((post, index) => {
                             
                             const thumbnail = post._embedded?.['wp:featuredmedia']?.[0]?.media_details?.sizes?.[attributes.rightThumbnailSize]?.source_url ||  post._embedded?.['wp:featuredmedia']?.[0]?.source_url || '';
 
@@ -665,7 +665,8 @@
                                     // Add Show Post Title Check
                                     showPostTitle && wp.element.createElement(
                                         'div',
-                                        {
+                                        {   
+                                            key: index,
                                             className: 'title',
                                             style: {
                                                 margin: getSpacingValue(attributes.postTitleMargin),
@@ -689,7 +690,7 @@
                                                 ? wp.element.createElement(
                                                     'a',
                                                     { 
-                                                        href: posts[0].link, 
+                                                        href: post.link, // Use post.link instead of posts[0].link
                                                         target: postLinkTarget === 'newWindow' ? '_blank' : '_self',
                                                         style: {
                                                             color: postTitleColor,
@@ -707,12 +708,12 @@
                                                         },
                                                     },
                                                     titleCropBy === 'word'
-                                                        ? posts[0].title.rendered.split(' ').slice(0, titleLength).join(' ')
-                                                        : posts[0].title.rendered.substring(0, titleLength)
+                                                        ? post.title.rendered.split(' ').slice(0, titleLength).join(' ') // Adjust slicing to your needs
+                                                        : post.title.rendered.substring(0, titleLength)
                                                 )
                                                 : (titleCropBy === 'word'
-                                                    ? posts[0].title.rendered.split(' ').slice(0, titleLength).join(' ')
-                                                    : posts[0].title.rendered.substring(0, titleLength))
+                                                    ? post.title.rendered.split(' ').slice(0, titleLength).join(' ')
+                                                    : post.title.rendered.substring(0, titleLength))
                                         )
                                     ),
                                     showReadMoreButton && wp.element.createElement('div', { className: 'btn-wrapper',style: { 
@@ -759,8 +760,2083 @@
                     )
                 );
             }
+            else if (listLayoutStyle === 'style2' && posts && posts.length) {
+                const thumbnail = posts[0]._embedded?.['wp:featuredmedia']?.[0]?.media_details?.sizes?.[attributes.leftThumbnailSize]?.source_url ||  posts[0]._embedded?.['wp:featuredmedia']?.[0]?.source_url || '';
+
+                const excerpt = posts[0].excerpt.rendered.replace(/(<([^>]+)>)/gi, '').split(' ').slice(0, excerptLimit).join(' ') + excerptIndicator;
+
+                content = wp.element.createElement(
+                    'div',
+                    { 
+                        className: 'rs-blog-layout-1 rs-blog-layout-9 fancy-post-grid', 
+                        style: { 
+                            display: 'grid', 
+                            gridTemplateColumns: `50% 50%`, 
+                            gap: attributes.itemGap,
+                            backgroundColor: sectionBgColor,
+                            margin: getSpacingValue(attributes.sectionMargin),
+                            padding: getSpacingValue(attributes.sectionPadding),
+                        } 
+                    },
+
+                    // First Post 42%
+                    posts[0] && wp.element.createElement(
+                        'div',
+                        {
+                            key: posts[0].id,
+                            className: 'blog-item fancy-post-item',
+                            style: {
+                                margin: getSpacingValue(attributes.itemMargin),
+                                padding: getSpacingValue(attributes.itemPadding),
+                                borderRadius: getSpacingValue(attributes.itemBorderRadius),
+                                borderWidth: getSpacingValue(attributes.itemBorderWidth),
+                                textAlign: attributes.itemBoxAlignment,   
+                                backgroundColor: attributes.itemBackgroundColor,
+                                borderStyle: attributes.itemBorderType,
+                                borderColor: attributes.itemBorderColor,
+                                boxShadow: `${getSpacingValue(attributes.itemBoxShadow) || '10px'} ${attributes.itemBoxShadowColor || 'rgba(0,0,0,0.1)'}`,
+                            },
+                        },
+
+                        // Thumbnail (first post)
+                        showThumbnail && thumbnail &&
+                            wp.element.createElement(
+                                'div',
+                                {
+                                    className: 'image-wrap thumbnail-wrapper',
+                                    style: {
+                                        margin: getSpacingValue(attributes.thumbnailMargin),
+                                        padding: getSpacingValue(attributes.thumbnailPadding),
+                                        overflow: 'hidden', // Prevent overflow on border-radius
+                                    },
+                                },
+                                thumbnailLink
+                                    ? wp.element.createElement(
+                                        'a',
+                                        { href: posts[0].link, target: postLinkTarget === 'newWindow' ? '_blank' : '_self' },
+                                        wp.element.createElement('img', {
+                                            src: thumbnail,
+                                            alt: posts[0].title.rendered,
+                                            className: 'post-thumbnail',
+                                            style: { objectFit: 'cover', width: '100%' },
+                                        })
+                                    )
+                                    : wp.element.createElement('img', {
+                                        src: thumbnail,
+                                        alt: posts[0].title.rendered,
+                                        className: 'post-thumbnail',
+                                        style: { objectFit: 'cover', width: '100%' },
+                                    }),
+                                    
+                            ),
+                        // Content Wrapper
+                        wp.element.createElement(
+                            'div', 
+                            { className: 'blog-content' },
+                            showMetaData && 
+                                wp.element.createElement('ul', { 
+                                    className: 'blog-meta post-meta', 
+                                    style: { 
+                                        margin: getSpacingValue(attributes.metaMarginNew),
+                                        padding: getSpacingValue(attributes.metaPadding),
+                                        textAlign: metaAlignment, 
+                                        color: metaTextColor, 
+                                        order: metaOrder,
+                                        fontSize: `${metaFontSize}px`,
+                                    } 
+                                },
+                                [
+                                    // Post Date
+                                    showPostDate && wp.element.createElement('li', { className: 'meta-date', style: { color: metaTextColor, fontSize: `${metaFontSize}px` } },
+                                        showMetaIcon && showPostDateIcon &&
+                                        wp.element.createElement('i', { className: 'fas fa-calendar-alt', style: { color: metaIconColor, fontSize: `${metaFontSize}px` } }),
+                                        ` ${new Date(posts[0].date).toLocaleDateString()}`
+                                    ),
+
+                                    // Post Author
+                                    showPostAuthor && wp.element.createElement('li', { className: 'meta-author', style: { color: metaTextColor, fontSize: `${metaFontSize}px` } },
+                                        showMetaIcon && showPostAuthorIcon &&
+                                        wp.element.createElement('i', { className: 'fas fa-user', style: { color: metaIconColor, fontSize: `${metaFontSize}px` } }),
+                                        ` ${metaAuthorPrefix ? metaAuthorPrefix + ' ' : ''}${posts[0]._embedded?.author?.[0]?.name}`
+                                    ),
+                                    // Post Category
+                                    showPostCategory && wp.element.createElement('div', { className: 'rs-category', style: { color: metaTextColor, fontSize: `${metaFontSize}px` } },
+                                        showMetaIcon && showPostCategoryIcon &&
+                                        wp.element.createElement('i', { className: 'fas fa-folder', style: { color: metaIconColor, fontSize: `${metaFontSize}px` } }),
+                                        ` ${posts[0]._embedded?.['wp:term']?.[0]?.map(cat => cat.name).join(', ')}`
+                                    ),
+                                    
+                                    // Post Tags (Only show if tags exist)
+                                    showPostTags && posts[0]._embedded?.['wp:term']?.[1]?.length > 0 && wp.element.createElement('li', { className: 'meta-tags', style: { color: metaTextColor, fontSize: `${metaFontSize}px` } },
+                                        showMetaIcon && showPostTagsIcon &&
+                                        wp.element.createElement('i', { className: 'fas fa-tags', style: { color: metaIconColor, fontSize: `${metaFontSize}px` } }),
+                                        ` ${posts[0]._embedded?.['wp:term']?.[1]?.map(tag => tag.name).join(', ')}`
+                                    ),
+
+                                    // Comments Count (Only show if comments exist)
+                                    showPostCommentsCount && posts[0].comment_count > 0 && wp.element.createElement('li', { className: 'meta-comments', style: { color: metaTextColor, fontSize: `${metaFontSize}px` } },
+                                        showMetaIcon && showPostCommentsCountIcon &&
+                                        wp.element.createElement('i', { className: 'fas fa-comments', style: { color: metaIconColor, fontSize: `${metaFontSize}px` } }),
+                                        ` ${posts[0].comment_count} Comments`
+                                    )
+                                ]
+                                .filter(Boolean) // Remove any false values
+                                .reduce((acc, curr, index, arr) => 
+                                    acc.concat(
+                                        curr, 
+                                        index < arr.length - 1 && metaSeperator !== 'none' 
+                                            ? wp.element.createElement('span', { className: 'meta-separator', style: { color: separatorColor, fontSize: `${metaFontSize}px` } }, ` ${metaSeperator} `) 
+                                            : null
+                                    ), []
+                                )
+                                ),
+
+                            // Show Post Title (Conditional)
+                            showPostTitle && wp.element.createElement(
+                                'div',
+                                {
+                                    className: 'blog-title',
+                                    style: {
+                                        margin: getSpacingValue(attributes.postTitleMargin),
+                                        padding: getSpacingValue(attributes.postTitlePadding),
+                                        textAlign: postTitleAlignment,
+                                        transition: 'all 0.3s ease',
+                                        order: titleOrder,
+                                        backgroundColor: postTitleBgColor,
+                                    },
+                                    onMouseEnter: (e) => {
+                                        e.currentTarget.style.backgroundColor = postTitleHoverBgColor;
+                                    },
+                                    onMouseLeave: (e) => {
+                                        e.currentTarget.style.backgroundColor = postTitleBgColor;
+                                    },
+                                },
+                                wp.element.createElement(
+                                    titleTag,
+                                    {},
+                                    postLinkType === 'yeslink'
+                                        ? wp.element.createElement(
+                                            'a',
+                                            { 
+                                                href: posts[0].link, 
+                                                target: postLinkTarget === 'newWindow' ? '_blank' : '_self',
+                                                style: {
+                                                    color: postTitleColor,
+                                                    fontSize: `${postTitleFontSize}px`,
+                                                    fontWeight: postTitleFontWeight,
+                                                    lineHeight: postTitleLineHeight,
+                                                    letterSpacing: postTitleLetterSpacing,
+                                                    transition: 'all 0.3s ease',
+                                                },
+                                                onMouseEnter: (e) => {
+                                                    e.currentTarget.style.color = postTitleHoverColor;
+                                                },
+                                                onMouseLeave: (e) => {
+                                                    e.currentTarget.style.color = postTitleColor;
+                                                },
+                                            },
+                                            titleCropBy === 'word'
+                                                ? posts[0].title.rendered.split(' ').slice(0, titleLength).join(' ')
+                                                : posts[0].title.rendered.substring(0, titleLength)
+                                        )
+                                        : (titleCropBy === 'word'
+                                            ? posts[0].title.rendered.split(' ').slice(0, titleLength).join(' ')
+                                            : posts[0].title.rendered.substring(0, titleLength))
+                                )
+                            ),
+
+                            // Show Post Excerpt (Conditional)
+                            showPostExcerpt &&
+                            wp.element.createElement(
+                                'div',
+                                { 
+                                    className: 'desc', 
+                                    style: { 
+                                        order: excerptOrder,
+                                        textAlign: excerptAlignment,
+                                        margin: getSpacingValue(attributes.excerptMargin),
+                                        padding: getSpacingValue(attributes.excerptPadding),
+                                    }
+                                }, 
+                                wp.element.createElement(
+                                    'p', 
+                                    { 
+                                        style: { 
+                                            fontSize: `${excerptFontSize}px`,
+                                            fontWeight: excerptFontWeight,
+                                            lineHeight: excerptLineHeight,
+                                            letterSpacing: excerptLetterSpacing, 
+                                            color: excerptColor, 
+                                            backgroundColor: excerptBgColor,
+                                            transition: 'all 0.3s ease',
+                                        },
+                                        onMouseEnter: (e) => {
+                                            e.currentTarget.style.color = excerptHoverColor;
+                                            e.currentTarget.style.backgroundColor = excerptHoverBgColor;
+                                        },
+                                        onMouseLeave: (e) => {
+                                            e.currentTarget.style.color = excerptColor;
+                                            e.currentTarget.style.backgroundColor = excerptBgColor;
+                                        }, 
+                                    }, 
+                                    excerptType === 'full_content' 
+                                        ? excerpt 
+                                        : excerptType === 'word'
+                                            ? excerpt.split(' ').slice(0, excerptLimit).join(' ') + (excerpt.split(' ').length > excerptLimit ? excerptIndicator : '')
+                                            : excerpt.substring(0, excerptLimit) + (excerpt.length > excerptLimit ? excerptIndicator : '')
+                                )
+                            ),
+                            showReadMoreButton && wp.element.createElement('div', { className: 'btn-wrapper',style: { 
+                                order: buttonOrder,
+                                margin: getSpacingValue(attributes.buttonMarginNew),
+                                textAlign: buttonAlignment  }, 
+                                }, 
+                                wp.element.createElement('a', { 
+                                    href: posts[0].link, 
+                                    target: postLinkTarget === 'newWindow' ? '_blank' : '_self', 
+                                    className: `rs-link read-more-${buttonStyle}`,  // Dynamic class based on buttonStyle
+                                    style: { 
+                                        backgroundColor: buttonStyle === 'filled' ? buttonBackgroundColor : 'transparent',
+                                        color: buttonTextColor,
+                                        borderColor: buttonTextColor,
+                                        border:  ` ${buttonBorderType} ${buttonBackgroundColor}`, 
+                                        fontWeight: buttonFontWeight,
+                                        // Border style
+                                        borderWidth: `${attributes.buttonBorderWidth}px`,
+                                        padding: getSpacingValue(attributes.buttonPaddingNew),
+                                        borderRadius: getSpacingValue(attributes.buttonBorderRadius),
+                                        fontSize: `${buttonFontSize}px`,
+                                        textDecoration: buttonStyle === 'flat' ? 'none' : 'inherit'
+                                    },
+                                    onMouseEnter: (e) => {
+                                        e.currentTarget.style.color = buttonHoverTextColor;
+                                        e.currentTarget.style.backgroundColor = buttonHoverBackgroundColor;
+                                        e.currentTarget.style.borderColor = buttonHoverBorderColor;
+                                    },
+                                    onMouseLeave: (e) => {
+                                        e.currentTarget.style.color = buttonTextColor;
+                                        e.currentTarget.style.backgroundColor = buttonBackgroundColor;
+                                        e.currentTarget.style.borderColor = buttonBorderColor;
+                                    },
+                                }, 
+                                    iconPosition === 'left' && showButtonIcon && wp.element.createElement('i', { className: 'fas fa-arrow-right', style: { marginRight: '5px' } }), 
+                                    readMoreLabel, 
+                                    iconPosition === 'right' && showButtonIcon && wp.element.createElement('i', { className: 'fas fa-arrow-right', style: { marginLeft: '5px' } })
+                                )
+                            ),
+                        )
+
+                    ),
 
 
+                    // Remaining Posts Wrapper (takes full 58%)
+                    wp.element.createElement(
+                        'div',
+                        { className: 'blog-horizontal', style: { display: 'flex', flexDirection: 'column', gap: attributes.itemGap } },
+                        posts.slice(1).map((post, index) => {
+                            
+                            const thumbnail = post._embedded?.['wp:featuredmedia']?.[0]?.media_details?.sizes?.[attributes.rightThumbnailSize]?.source_url ||  post._embedded?.['wp:featuredmedia']?.[0]?.source_url || '';
+
+                            const excerpt = post.excerpt.rendered.replace(/(<([^>]+)>)/gi, '').split(' ').slice(0, excerptLimit).join(' ') + excerptIndicator;    
+                            return wp.element.createElement(
+                                'div',{ className: 'blog-meta'},
+                                    wp.element.createElement(
+                                    'div',
+                                    {
+                                        key: post.id,
+                                        className: 'blog-item-wrap fancy-post-item',
+                                        style: {
+                                            margin: getSpacingValue(attributes.itemMargin),
+                                            padding: getSpacingValue(attributes.itemPadding),
+                                            borderRadius: getSpacingValue(attributes.itemBorderRadius),
+                                            borderWidth: getSpacingValue(attributes.itemBorderWidth),
+                                            textAlign: attributes.itemBoxAlignment,   
+                                            backgroundColor: attributes.itemBackgroundColor,
+                                            borderStyle: attributes.itemBorderType,
+                                            borderColor: attributes.itemBorderColor,
+                                            boxShadow: `${getSpacingValue(attributes.itemBoxShadow) || '10px'} ${attributes.itemBoxShadowColor || 'rgba(0,0,0,0.1)'}`,
+                                        },
+                                    },
+                                    // Thumbnail Display with Link if enabled
+                                    showThumbnail && thumbnail &&
+                                        wp.element.createElement(
+                                            'div',
+                                            {
+                                                className: 'image-wrap thumbnail-wrapper',
+                                                style: {
+                                                    margin: getSpacingValue(attributes.thumbnailMargin),
+                                                    padding: getSpacingValue(attributes.thumbnailPadding),
+                                                    overflow: 'hidden', // Prevent overflow on border-radius
+                                                },
+                                            },
+                                            thumbnailLink
+                                                ? wp.element.createElement(
+                                                    'a',
+                                                    { href: post.link, target: postLinkTarget === 'newWindow' ? '_blank' : '_self' },
+                                                    wp.element.createElement('img', {
+                                                        src: thumbnail,
+                                                        alt: post.title.rendered,
+                                                        className: 'post-thumbnail',
+                                                        style: { objectFit: 'cover', width: '100%',borderRadius: getSpacingValue(attributes.thumbnailBorderRadius), },
+                                                    })
+                                                )
+                                                : wp.element.createElement('img', {
+                                                    src: thumbnail,
+                                                    alt: post.title.rendered,
+                                                    className: 'post-thumbnail',
+                                                    style: { objectFit: 'cover', width: '100%' },
+                                                }),
+                                        ),
+                                        
+                                    // Content Wrapper
+                                    wp.element.createElement(
+                                        'div', 
+                                        { className: 'blog-content' },
+                                        //Meta
+
+                                        showMetaData && 
+                                            wp.element.createElement('ul', { 
+                                                className: 'blog-meta post-meta', 
+                                                style: { 
+                                                    margin: getSpacingValue(attributes.metaMarginNew),
+                                                    padding: getSpacingValue(attributes.metaPadding),
+                                                    textAlign: metaAlignment, 
+                                                    color: metaTextColor, 
+                                                    order: metaOrder,
+                                                    fontSize: `${metaFontSize}px`,
+                                                } 
+                                            },
+                                                [
+                                                    // Post Date
+                                                    showPostDate && wp.element.createElement('li', { className: 'meta-date',style: { 
+                                                            color: metaTextColor, 
+                                                            fontSize: `${metaFontSize}px`,
+                                                        } },
+                                                        showMetaIcon && showPostDateIcon &&
+                                                        wp.element.createElement('i', { className: 'fas fa-calendar-alt',
+                                                            style:{ 
+                                                                color: metaIconColor, 
+                                                                fontSize: `${metaFontSize}px`,
+                                                            } }), // Font Awesome calendar icon
+                                                        ` ${new Date(post.date).toLocaleDateString()}`
+                                                    ),
+
+
+                                                    // Post Author
+                                                    showPostAuthor && wp.element.createElement(
+                                                        'li', 
+                                                        { className: 'meta-author',style: { 
+                                                            color: metaTextColor, 
+                                                            fontSize: `${metaFontSize}px`,
+                                                        } },
+                                                        showMetaIcon && showPostAuthorIcon && 
+                                                            wp.element.createElement('i', { className: 'fas fa-user',style:{ 
+                                                                color: metaIconColor, 
+                                                                fontSize: `${metaFontSize}px`,
+                                                            } }), // Font Awesome user icon
+                                                        ` ${metaAuthorPrefix ? metaAuthorPrefix + ' ' : ''}${post._embedded?.author?.[0]?.name}`
+                                                    ),
+                                         
+                                                    // Post Tags (Only show if tags exist)
+                                                    showPostTags && post._embedded?.['wp:term']?.[1]?.length > 0 && wp.element.createElement('li', { className: 'meta-tags',style: { 
+                                                            color: metaTextColor, 
+                                                            fontSize: `${metaFontSize}px`,
+                                                        } },
+                                                        showMetaIcon && showPostTagsIcon &&
+                                                        wp.element.createElement('i', { className: 'fas fa-tags',style:{ 
+                                                                color: metaIconColor, 
+                                                                fontSize: `${metaFontSize}px`,
+                                                            } }), // Font Awesome tags icon
+                                                        ` ${post._embedded?.['wp:term']?.[1]?.map(tag => tag.name).join(', ')}`
+                                                    ),
+
+                                                    // Comments Count (Only show if comments exist)
+                                                    showPostCommentsCount && post.comment_count > 0 && wp.element.createElement('li', { className: 'meta-comments',style: { 
+                                                            color: metaTextColor, 
+                                                            fontSize: `${metaFontSize}px`,
+                                                        } },
+                                                        showMetaIcon && showPostCommentsCountIcon &&
+                                                        wp.element.createElement('i', { className: 'fas fa-comments',style:{ 
+                                                                color: metaIconColor, 
+                                                                fontSize: `${metaFontSize}px`,
+                                                            } }), // Font Awesome comments icon
+                                                        ` ${post.comment_count} Comments`
+                                                    )
+                                                ].filter(Boolean).reduce((acc, curr, index, arr) => 
+                                                    acc.concat(curr, index < arr.length - 1 && metaSeperator !== 'none' 
+                                                        ? wp.element.createElement('span', { className: 'meta-separator',style: { 
+                                                                
+                                                                color: separatorColor, 
+                                                                fontSize: `${metaFontSize}px`,
+                                                                
+                                                            } }, ` ${metaSeperator} `) 
+                                                        : null
+                                                    ), []
+                                                )
+                                            ),
+
+
+                                        
+                                        // Add Show Post Title Check
+                                        showPostTitle && wp.element.createElement(
+                                            'div',
+                                            {   
+                                                key: index,
+                                                className: 'blog-title ',
+                                                style: {
+                                                    margin: getSpacingValue(attributes.postTitleMargin),
+                                                    padding: getSpacingValue(attributes.postTitlePadding),
+                                                    textAlign: postTitleAlignment,
+                                                    transition: 'all 0.3s ease',
+                                                    order: titleOrder,
+                                                    backgroundColor: postTitleBgColor,
+                                                },
+                                                onMouseEnter: (e) => {
+                                                    e.currentTarget.style.backgroundColor = postTitleHoverBgColor;
+                                                },
+                                                onMouseLeave: (e) => {
+                                                    e.currentTarget.style.backgroundColor = postTitleBgColor;
+                                                },
+                                            },
+                                            wp.element.createElement(
+                                                titleTag,
+                                                {},
+                                                postLinkType === 'yeslink'
+                                                    ? wp.element.createElement(
+                                                        'a',
+                                                        { 
+                                                            href: post.link, // Use post.link instead of posts[0].link
+                                                            target: postLinkTarget === 'newWindow' ? '_blank' : '_self',
+                                                            style: {
+                                                                color: postTitleColor,
+                                                                fontSize: `${postTitleFontSize}px`,
+                                                                fontWeight: postTitleFontWeight,
+                                                                lineHeight: postTitleLineHeight,
+                                                                letterSpacing: postTitleLetterSpacing,
+                                                                transition: 'all 0.3s ease',
+                                                            },
+                                                            onMouseEnter: (e) => {
+                                                                e.currentTarget.style.color = postTitleHoverColor;
+                                                            },
+                                                            onMouseLeave: (e) => {
+                                                                e.currentTarget.style.color = postTitleColor;
+                                                            },
+                                                        },
+                                                        titleCropBy === 'word'
+                                                            ? post.title.rendered.split(' ').slice(0, titleLength).join(' ') // Adjust slicing to your needs
+                                                            : post.title.rendered.substring(0, titleLength)
+                                                    )
+                                                    : (titleCropBy === 'word'
+                                                        ? post.title.rendered.split(' ').slice(0, titleLength).join(' ')
+                                                        : post.title.rendered.substring(0, titleLength))
+                                            )
+                                        ),
+                                        
+                                    )
+                                )
+                            );
+                        })
+                    )
+                );
+            }
+            else if (listLayoutStyle === 'style3' && posts && posts.length) {
+                const thumbnail = posts[0]._embedded?.['wp:featuredmedia']?.[0]?.media_details?.sizes?.[attributes.leftThumbnailSize]?.source_url ||  posts[0]._embedded?.['wp:featuredmedia']?.[0]?.source_url || '';
+
+                const excerpt = posts[0].excerpt.rendered.replace(/(<([^>]+)>)/gi, '').split(' ').slice(0, excerptLimit).join(' ') + excerptIndicator;
+
+                content = wp.element.createElement(
+                    'div',
+                    { 
+                        className: 'rs-blog-layout-17 fancy-post-grid', 
+                        style: { 
+                            display: 'grid', 
+                            gridTemplateColumns: `50% 50%`, 
+                            gap: attributes.itemGap,
+                            backgroundColor: sectionBgColor,
+                            margin: getSpacingValue(attributes.sectionMargin),
+                            padding: getSpacingValue(attributes.sectionPadding),
+                        } 
+                    },
+
+                    // First Post 50%
+                    posts[0] && wp.element.createElement(
+                        'div',
+                        {
+                            key: posts[0].id,
+                            className: 'rs-blog-layout-17-item fancy-post-item',
+                            style: {
+                                margin: getSpacingValue(attributes.itemMargin),
+                                padding: getSpacingValue(attributes.itemPadding),
+                                borderRadius: getSpacingValue(attributes.itemBorderRadius),
+                                borderWidth: getSpacingValue(attributes.itemBorderWidth),
+                                textAlign: attributes.itemBoxAlignment,   
+                                backgroundColor: attributes.itemBackgroundColor,
+                                borderStyle: attributes.itemBorderType,
+                                borderColor: attributes.itemBorderColor,
+                                boxShadow: `${getSpacingValue(attributes.itemBoxShadow) || '10px'} ${attributes.itemBoxShadowColor || 'rgba(0,0,0,0.1)'}`,
+                            },
+                        },
+
+                        // Thumbnail (first post)
+                        showThumbnail && thumbnail &&
+                            wp.element.createElement(
+                                'div',
+                                {
+                                    className: 'rs-thumb thumbnail-wrapper',
+                                    style: {
+                                        margin: getSpacingValue(attributes.thumbnailMargin),
+                                        padding: getSpacingValue(attributes.thumbnailPadding),
+                                        overflow: 'hidden', // Prevent overflow on border-radius
+                                    },
+                                },
+                                thumbnailLink
+                                    ? wp.element.createElement(
+                                        'a',
+                                        { href: posts[0].link, target: postLinkTarget === 'newWindow' ? '_blank' : '_self' },
+                                        wp.element.createElement('img', {
+                                            src: thumbnail,
+                                            alt: posts[0].title.rendered,
+                                            className: 'post-thumbnail',
+                                            style: { objectFit: 'cover', width: '100%' },
+                                        })
+                                    )
+                                    : wp.element.createElement('img', {
+                                        src: thumbnail,
+                                        alt: posts[0].title.rendered,
+                                        className: 'post-thumbnail',
+                                        style: { objectFit: 'cover', width: '100%' },
+                                    }),
+                                    
+                            ),
+                        // Content Wrapper
+                        wp.element.createElement(
+                            'div', 
+                            { className: 'rs-content' },
+                            showMetaData && 
+                                wp.element.createElement('div', { 
+                                    className: 'rs-meta', 
+                                     
+                                },wp.element.createElement('ul', { 
+                                    className: 'blog-meta post-meta', 
+                                    style: { 
+                                        margin: getSpacingValue(attributes.metaMarginNew),
+                                        padding: getSpacingValue(attributes.metaPadding),
+                                        textAlign: metaAlignment, 
+                                        color: metaTextColor, 
+                                        order: metaOrder,
+                                        fontSize: `${metaFontSize}px`,
+                                    } 
+                                },
+                                [
+                                    // Post Date
+                                    showPostDate && wp.element.createElement('li', { className: 'meta-date', style: { color: metaTextColor, fontSize: `${metaFontSize}px` } },
+                                        showMetaIcon && showPostDateIcon &&
+                                        wp.element.createElement('i', { className: 'fas fa-calendar-alt', style: { color: metaIconColor, fontSize: `${metaFontSize}px` } }),
+                                        ` ${new Date(posts[0].date).toLocaleDateString()}`
+                                    ),
+
+                                    // Post Author
+                                    showPostAuthor && wp.element.createElement('li', { className: 'meta-author', style: { color: metaTextColor, fontSize: `${metaFontSize}px` } },
+                                        showMetaIcon && showPostAuthorIcon &&
+                                        wp.element.createElement('i', { className: 'fas fa-user', style: { color: metaIconColor, fontSize: `${metaFontSize}px` } }),
+                                        ` ${metaAuthorPrefix ? metaAuthorPrefix + ' ' : ''}${posts[0]._embedded?.author?.[0]?.name}`
+                                    ),
+                                    // Post Category
+                                    showPostCategory && wp.element.createElement('div', { className: 'rs-category', style: { color: metaTextColor, fontSize: `${metaFontSize}px` } },
+                                        showMetaIcon && showPostCategoryIcon &&
+                                        wp.element.createElement('i', { className: 'fas fa-folder', style: { color: metaIconColor, fontSize: `${metaFontSize}px` } }),
+                                        ` ${posts[0]._embedded?.['wp:term']?.[0]?.map(cat => cat.name).join(', ')}`
+                                    ),
+                                    
+                                    // Post Tags (Only show if tags exist)
+                                    showPostTags && posts[0]._embedded?.['wp:term']?.[1]?.length > 0 && wp.element.createElement('li', { className: 'meta-tags', style: { color: metaTextColor, fontSize: `${metaFontSize}px` } },
+                                        showMetaIcon && showPostTagsIcon &&
+                                        wp.element.createElement('i', { className: 'fas fa-tags', style: { color: metaIconColor, fontSize: `${metaFontSize}px` } }),
+                                        ` ${posts[0]._embedded?.['wp:term']?.[1]?.map(tag => tag.name).join(', ')}`
+                                    ),
+
+                                    // Comments Count (Only show if comments exist)
+                                    showPostCommentsCount && posts[0].comment_count > 0 && wp.element.createElement('li', { className: 'meta-comments', style: { color: metaTextColor, fontSize: `${metaFontSize}px` } },
+                                        showMetaIcon && showPostCommentsCountIcon &&
+                                        wp.element.createElement('i', { className: 'fas fa-comments', style: { color: metaIconColor, fontSize: `${metaFontSize}px` } }),
+                                        ` ${posts[0].comment_count} Comments`
+                                    )
+                                ]
+                                .filter(Boolean) // Remove any false values
+                                .reduce((acc, curr, index, arr) => 
+                                    acc.concat(
+                                        curr, 
+                                        index < arr.length - 1 && metaSeperator !== 'none' 
+                                            ? wp.element.createElement('span', { className: 'meta-separator', style: { color: separatorColor, fontSize: `${metaFontSize}px` } }, ` ${metaSeperator} `) 
+                                            : null
+                                    ), []
+                                ))
+                                ),
+
+                            // Show Post Title (Conditional)
+                            showPostTitle && wp.element.createElement(
+                                'div',
+                                {
+                                    className: 'blog-title',
+                                    style: {
+                                        margin: getSpacingValue(attributes.postTitleMargin),
+                                        padding: getSpacingValue(attributes.postTitlePadding),
+                                        textAlign: postTitleAlignment,
+                                        transition: 'all 0.3s ease',
+                                        order: titleOrder,
+                                        backgroundColor: postTitleBgColor,
+                                    },
+                                    onMouseEnter: (e) => {
+                                        e.currentTarget.style.backgroundColor = postTitleHoverBgColor;
+                                    },
+                                    onMouseLeave: (e) => {
+                                        e.currentTarget.style.backgroundColor = postTitleBgColor;
+                                    },
+                                },
+                                wp.element.createElement(
+                                    titleTag,
+                                    {},
+                                    postLinkType === 'yeslink'
+                                        ? wp.element.createElement(
+                                            'a',
+                                            { 
+                                                href: posts[0].link, 
+                                                target: postLinkTarget === 'newWindow' ? '_blank' : '_self',
+                                                style: {
+                                                    color: postTitleColor,
+                                                    fontSize: `${postTitleFontSize}px`,
+                                                    fontWeight: postTitleFontWeight,
+                                                    lineHeight: postTitleLineHeight,
+                                                    letterSpacing: postTitleLetterSpacing,
+                                                    transition: 'all 0.3s ease',
+                                                },
+                                                onMouseEnter: (e) => {
+                                                    e.currentTarget.style.color = postTitleHoverColor;
+                                                },
+                                                onMouseLeave: (e) => {
+                                                    e.currentTarget.style.color = postTitleColor;
+                                                },
+                                            },
+                                            titleCropBy === 'word'
+                                                ? posts[0].title.rendered.split(' ').slice(0, titleLength).join(' ')
+                                                : posts[0].title.rendered.substring(0, titleLength)
+                                        )
+                                        : (titleCropBy === 'word'
+                                            ? posts[0].title.rendered.split(' ').slice(0, titleLength).join(' ')
+                                            : posts[0].title.rendered.substring(0, titleLength))
+                                )
+                            ),
+
+                            showReadMoreButton && wp.element.createElement('div', { className: 'blog-btn',style: { 
+                                order: buttonOrder,
+                                margin: getSpacingValue(attributes.buttonMarginNew),
+                                textAlign: buttonAlignment  }, 
+                                }, 
+                                wp.element.createElement('a', { 
+                                    href: posts[0].link, 
+                                    target: postLinkTarget === 'newWindow' ? '_blank' : '_self', 
+                                    className: `rs-btn read-more-${buttonStyle}`,  // Dynamic class based on buttonStyle
+                                    style: { 
+                                        backgroundColor: buttonStyle === 'filled' ? buttonBackgroundColor : 'transparent',
+                                        color: buttonTextColor,
+                                        borderColor: buttonTextColor,
+                                        border:  ` ${buttonBorderType} ${buttonBackgroundColor}`, 
+                                        fontWeight: buttonFontWeight,
+                                        // Border style
+                                        borderWidth: `${attributes.buttonBorderWidth}px`,
+                                        padding: getSpacingValue(attributes.buttonPaddingNew),
+                                        borderRadius: getSpacingValue(attributes.buttonBorderRadius),
+                                        fontSize: `${buttonFontSize}px`,
+                                        textDecoration: buttonStyle === 'flat' ? 'none' : 'inherit'
+                                    },
+                                    onMouseEnter: (e) => {
+                                        e.currentTarget.style.color = buttonHoverTextColor;
+                                        e.currentTarget.style.backgroundColor = buttonHoverBackgroundColor;
+                                        e.currentTarget.style.borderColor = buttonHoverBorderColor;
+                                    },
+                                    onMouseLeave: (e) => {
+                                        e.currentTarget.style.color = buttonTextColor;
+                                        e.currentTarget.style.backgroundColor = buttonBackgroundColor;
+                                        e.currentTarget.style.borderColor = buttonBorderColor;
+                                    },
+                                }, 
+                                    iconPosition === 'left' && showButtonIcon && wp.element.createElement('i', { className: 'fas fa-arrow-right', style: { marginRight: '5px' } }), 
+                                    readMoreLabel, 
+                                    iconPosition === 'right' && showButtonIcon && wp.element.createElement('i', { className: 'fas fa-arrow-right', style: { marginLeft: '5px' } })
+                                )
+                            ),
+                        )
+
+                    ),
+
+                    wp.element.createElement(
+                        'div',
+                        { style: { display: 'flex', flexDirection: 'column', gap: attributes.itemGap } },
+                    // Remaining Posts Wrapper (takes full 50%)
+                    posts.slice(1).map((post, index) => {
+                        
+                        const thumbnail = post._embedded?.['wp:featuredmedia']?.[0]?.media_details?.sizes?.[attributes.rightThumbnailSize]?.source_url ||  post._embedded?.['wp:featuredmedia']?.[0]?.source_url || '';
+
+                        const excerpt = post.excerpt.rendered.replace(/(<([^>]+)>)/gi, '').split(' ').slice(0, excerptLimit).join(' ') + excerptIndicator;    
+                        return wp.element.createElement(
+                                'div',
+                                {
+                                    key: post.id,
+                                    className: 'rs-blog-layout-17-item rs-blog-layout-17-item-list fancy-post-item',
+                                    style: {
+                                        margin: getSpacingValue(attributes.itemMargin),
+                                        padding: getSpacingValue(attributes.itemPadding),
+                                        borderRadius: getSpacingValue(attributes.itemBorderRadius),
+                                        borderWidth: getSpacingValue(attributes.itemBorderWidth),
+                                        textAlign: attributes.itemBoxAlignment,   
+                                        backgroundColor: attributes.itemBackgroundColor,
+                                        borderStyle: attributes.itemBorderType,
+                                        borderColor: attributes.itemBorderColor,
+                                        boxShadow: `${getSpacingValue(attributes.itemBoxShadow) || '10px'} ${attributes.itemBoxShadowColor || 'rgba(0,0,0,0.1)'}`,
+                                    },
+                                },
+                                // Thumbnail Display with Link if enabled
+                                showThumbnail && thumbnail &&
+                                    wp.element.createElement(
+                                        'div',
+                                        {
+                                            className: 'rs-thumb thumbnail-wrapper',
+                                            style: {
+                                                margin: getSpacingValue(attributes.thumbnailMargin),
+                                                padding: getSpacingValue(attributes.thumbnailPadding),
+                                                overflow: 'hidden', // Prevent overflow on border-radius
+                                            },
+                                        },
+                                        thumbnailLink
+                                            ? wp.element.createElement(
+                                                'a',
+                                                { href: post.link, target: postLinkTarget === 'newWindow' ? '_blank' : '_self' },
+                                                wp.element.createElement('img', {
+                                                    src: thumbnail,
+                                                    alt: post.title.rendered,
+                                                    className: 'post-thumbnail',
+                                                    style: { objectFit: 'cover', width: '100%',borderRadius: getSpacingValue(attributes.thumbnailBorderRadius), },
+                                                })
+                                            )
+                                            : wp.element.createElement('img', {
+                                                src: thumbnail,
+                                                alt: post.title.rendered,
+                                                className: 'post-thumbnail',
+                                                style: { objectFit: 'cover', width: '100%' },
+                                            }),
+                                    ),
+                                    
+                                // Content Wrapper
+                                wp.element.createElement(
+                                    'div', 
+                                    { className: 'rs-content' },
+                                    //Meta
+
+                                    showMetaData && 
+                                        wp.element.createElement('div', { 
+                                            className: 'rs-meta', },
+                                        wp.element.createElement('ul', { 
+                                            className: 'blog-meta post-meta', 
+                                            style: { 
+                                                margin: getSpacingValue(attributes.metaMarginNew),
+                                                padding: getSpacingValue(attributes.metaPadding),
+                                                textAlign: metaAlignment, 
+                                                color: metaTextColor, 
+                                                order: metaOrder,
+                                                fontSize: `${metaFontSize}px`,
+                                            } 
+                                        },
+                                            [
+                                                // Post Date
+                                                showPostDate && wp.element.createElement('li', { className: 'meta-date',style: { 
+                                                        color: metaTextColor, 
+                                                        fontSize: `${metaFontSize}px`,
+                                                    } },
+                                                    showMetaIcon && showPostDateIcon &&
+                                                    wp.element.createElement('i', { className: 'fas fa-calendar-alt',
+                                                        style:{ 
+                                                            color: metaIconColor, 
+                                                            fontSize: `${metaFontSize}px`,
+                                                        } }), // Font Awesome calendar icon
+                                                    ` ${new Date(post.date).toLocaleDateString()}`
+                                                ),
+
+
+                                                // Post Author
+                                                showPostAuthor && wp.element.createElement(
+                                                    'li', 
+                                                    { className: 'meta-author',style: { 
+                                                        color: metaTextColor, 
+                                                        fontSize: `${metaFontSize}px`,
+                                                    } },
+                                                    showMetaIcon && showPostAuthorIcon && 
+                                                        wp.element.createElement('i', { className: 'fas fa-user',style:{ 
+                                                            color: metaIconColor, 
+                                                            fontSize: `${metaFontSize}px`,
+                                                        } }), // Font Awesome user icon
+                                                    ` ${metaAuthorPrefix ? metaAuthorPrefix + ' ' : ''}${post._embedded?.author?.[0]?.name}`
+                                                ),
+                                     
+                                                // Post Tags (Only show if tags exist)
+                                                showPostTags && post._embedded?.['wp:term']?.[1]?.length > 0 && wp.element.createElement('li', { className: 'meta-tags',style: { 
+                                                        color: metaTextColor, 
+                                                        fontSize: `${metaFontSize}px`,
+                                                    } },
+                                                    showMetaIcon && showPostTagsIcon &&
+                                                    wp.element.createElement('i', { className: 'fas fa-tags',style:{ 
+                                                            color: metaIconColor, 
+                                                            fontSize: `${metaFontSize}px`,
+                                                        } }), // Font Awesome tags icon
+                                                    ` ${post._embedded?.['wp:term']?.[1]?.map(tag => tag.name).join(', ')}`
+                                                ),
+
+                                                // Comments Count (Only show if comments exist)
+                                                showPostCommentsCount && post.comment_count > 0 && wp.element.createElement('li', { className: 'meta-comments',style: { 
+                                                        color: metaTextColor, 
+                                                        fontSize: `${metaFontSize}px`,
+                                                    } },
+                                                    showMetaIcon && showPostCommentsCountIcon &&
+                                                    wp.element.createElement('i', { className: 'fas fa-comments',style:{ 
+                                                            color: metaIconColor, 
+                                                            fontSize: `${metaFontSize}px`,
+                                                        } }), // Font Awesome comments icon
+                                                    ` ${post.comment_count} Comments`
+                                                )
+                                            ].filter(Boolean).reduce((acc, curr, index, arr) => 
+                                                acc.concat(curr, index < arr.length - 1 && metaSeperator !== 'none' 
+                                                    ? wp.element.createElement('span', { className: 'meta-separator',style: { 
+                                                            
+                                                            color: separatorColor, 
+                                                            fontSize: `${metaFontSize}px`,
+                                                            
+                                                        } }, ` ${metaSeperator} `) 
+                                                    : null
+                                                ), []
+                                            ))
+                                        ),
+
+
+                                    
+                                    // Add Show Post Title Check
+                                    showPostTitle && wp.element.createElement(
+                                        titleTag, // Directly use titleTag (e.g., h1, h2, etc.)
+                                        {   
+                                            key: index,
+                                            className: 'blog-title', // Apply the blog-title class directly
+                                            style: {
+                                                margin: getSpacingValue(attributes.postTitleMargin),
+                                                padding: getSpacingValue(attributes.postTitlePadding),
+                                                textAlign: postTitleAlignment,
+                                                transition: 'all 0.3s ease',
+                                                order: titleOrder,
+                                                backgroundColor: postTitleBgColor,
+                                            },
+                                            onMouseEnter: (e) => {
+                                                e.currentTarget.style.backgroundColor = postTitleHoverBgColor;
+                                            },
+                                            onMouseLeave: (e) => {
+                                                e.currentTarget.style.backgroundColor = postTitleBgColor;
+                                            },
+                                        },
+                                        postLinkType === 'yeslink'
+                                            ? wp.element.createElement(
+                                                'a',
+                                                { 
+                                                    href: post.link, // Use post.link instead of posts[0].link
+                                                    target: postLinkTarget === 'newWindow' ? '_blank' : '_self',
+                                                    style: {
+                                                        color: postTitleColor,
+                                                        fontSize: `${postTitleFontSize}px`,
+                                                        fontWeight: postTitleFontWeight,
+                                                        lineHeight: postTitleLineHeight,
+                                                        letterSpacing: postTitleLetterSpacing,
+                                                        transition: 'all 0.3s ease',
+                                                    },
+                                                    onMouseEnter: (e) => {
+                                                        e.currentTarget.style.color = postTitleHoverColor;
+                                                    },
+                                                    onMouseLeave: (e) => {
+                                                        e.currentTarget.style.color = postTitleColor;
+                                                    },
+                                                },
+                                                titleCropBy === 'word'
+                                                    ? post.title.rendered.split(' ').slice(0, titleLength).join(' ') // Adjust slicing to your needs
+                                                    : post.title.rendered.substring(0, titleLength)
+                                            )
+                                            : (titleCropBy === 'word'
+                                                ? post.title.rendered.split(' ').slice(0, titleLength).join(' ')
+                                                : post.title.rendered.substring(0, titleLength))
+                                    ),
+                                    showPostExcerpt && wp.element.createElement(
+                                        'div',
+                                        { 
+                                            className: 'fpg-excerpt', 
+                                            style: { 
+                                                order: excerptOrder,
+                                                textAlign: excerptAlignment,
+                                                margin: getSpacingValue(attributes.excerptMargin),
+                                                padding: getSpacingValue(attributes.excerptPadding),
+                                            }
+                                        }, 
+                                        wp.element.createElement(
+                                            'p', 
+                                            { 
+                                                style: { 
+                                                    fontSize: `${excerptFontSize}px`,
+                                                    fontWeight: excerptFontWeight,
+                                                    lineHeight: excerptLineHeight,
+                                                    letterSpacing: excerptLetterSpacing, 
+                                                    color: excerptColor, 
+                                                    backgroundColor: excerptBgColor,
+                                                    transition: 'all 0.3s ease',
+                                                },
+                                                onMouseEnter: (e) => {
+                                                    e.currentTarget.style.color = excerptHoverColor;
+                                                    e.currentTarget.style.backgroundColor = excerptHoverBgColor;
+                                                },
+                                                onMouseLeave: (e) => {
+                                                    e.currentTarget.style.color = excerptColor;
+                                                    e.currentTarget.style.backgroundColor = excerptBgColor;
+                                                }, 
+                                            }, 
+                                            excerptType === 'full_content' 
+                                                ? excerpt 
+                                                : excerptType === 'word'
+                                                    ? excerpt.split(' ').slice(0, excerptLimit).join(' ') + (excerpt.split(' ').length > excerptLimit ? excerptIndicator : '')
+                                                    : excerpt.substring(0, excerptLimit) + (excerpt.length > excerptLimit ? excerptIndicator : '')
+                                        )
+                                    ),
+
+                                    showReadMoreButton && wp.element.createElement('div', { className: 'btn-wrapper',style: { 
+                                        order: buttonOrder,
+                                        margin: getSpacingValue(attributes.buttonMarginNew),
+                                        textAlign: buttonAlignment  }, 
+                                        }, 
+                                        wp.element.createElement('a', { 
+                                            href: post.link, 
+                                            target: postLinkTarget === 'newWindow' ? '_blank' : '_self', 
+                                            className: `rs-link read-more-${buttonStyle}`,  // Dynamic class based on buttonStyle
+                                            style: { 
+                                                backgroundColor: buttonStyle === 'filled' ? buttonBackgroundColor : 'transparent',
+                                                color: buttonTextColor,
+                                                borderColor: buttonTextColor,
+                                                border:  ` ${buttonBorderType} ${buttonBackgroundColor}`, 
+                                                fontWeight: buttonFontWeight,
+                                                // Border style
+                                                borderWidth: `${attributes.buttonBorderWidth}px`,
+                                                padding: getSpacingValue(attributes.buttonPaddingNew),
+                                                borderRadius: getSpacingValue(attributes.buttonBorderRadius),
+                                                fontSize: `${buttonFontSize}px`,
+                                                textDecoration: buttonStyle === 'flat' ? 'none' : 'inherit'
+                                            },
+                                            onMouseEnter: (e) => {
+                                                e.currentTarget.style.color = buttonHoverTextColor;
+                                                e.currentTarget.style.backgroundColor = buttonHoverBackgroundColor;
+                                                e.currentTarget.style.borderColor = buttonHoverBorderColor;
+                                            },
+                                            onMouseLeave: (e) => {
+                                                e.currentTarget.style.color = buttonTextColor;
+                                                e.currentTarget.style.backgroundColor = buttonBackgroundColor;
+                                                e.currentTarget.style.borderColor = buttonBorderColor;
+                                            },
+                                        }, 
+                                            iconPosition === 'left' && showButtonIcon && wp.element.createElement('i', { className: 'fas fa-arrow-right', style: { marginRight: '5px' } }), 
+                                            readMoreLabel, 
+                                            iconPosition === 'right' && showButtonIcon && wp.element.createElement('i', { className: 'fas fa-arrow-right', style: { marginLeft: '5px' } })
+                                        )
+                                    )
+
+                                    
+                                )
+                            
+                        );
+
+                    })
+                    )
+                );
+            }
+            else if (listLayoutStyle === 'style4' && posts && posts.length) {
+                content = wp.element.createElement(
+                    'div',
+                    { 
+                        className: 'rs-blog-layout-20 fancy-post-grid', 
+                        style: { 
+                            display: 'grid', 
+                            gridTemplateColumns: `50% 50%`, 
+                            gap: attributes.itemGap,
+                            backgroundColor: sectionBgColor,
+                            margin: getSpacingValue(attributes.sectionMargin),
+                            padding: getSpacingValue(attributes.sectionPadding),
+                            
+                        } 
+                    },
+                    posts.map((post) => {
+                        
+                        const thumbnail = post._embedded?.['wp:featuredmedia']?.[0]?.media_details?.sizes?.[attributes.thumbnailSize]?.source_url ||  post._embedded?.['wp:featuredmedia']?.[0]?.source_url || '';
+
+                        const excerpt = post.excerpt.rendered.replace(/(<([^>]+)>)/gi, '').split(' ').slice(0, excerptLimit).join(' ') + excerptIndicator;
+                        
+                        return wp.element.createElement('div', { 
+                            key: post.id, 
+                                className: 'fancy-post-item rs-blog-layout-20-item',
+                                style: {
+                                    
+                                    margin: getSpacingValue(attributes.itemMargin),
+                                    padding: getSpacingValue(attributes.itemPadding),
+                                    borderRadius: getSpacingValue(attributes.itemBorderRadius),
+                                    borderWidth: getSpacingValue(attributes.itemBorderWidth),
+                                    textAlign: attributes.itemBoxAlignment,   
+                                    backgroundColor: attributes.itemBackgroundColor,
+                                    borderStyle: attributes.itemBorderType,
+                                    borderColor: attributes.itemBorderColor,
+                                    boxShadow: `${getSpacingValue(attributes.itemBoxShadow) || '10px'} ${attributes.itemBoxShadowColor || 'rgba(0,0,0,0.1)'}`,
+                                },
+                            },
+                        
+                            // Thumbnail Display with Link if enabled
+                            showThumbnail && thumbnail &&
+                                wp.element.createElement(
+                                    'div',
+                                    {
+                                        className: 'rs-thumb thumbnail-wrapper',
+                                        style: {
+                                            margin: getSpacingValue(attributes.thumbnailMargin),
+                                            padding: getSpacingValue(attributes.thumbnailPadding),
+                                            overflow: 'hidden', // Prevent overflow on border-radius
+                                        },
+                                    },
+                                    thumbnailLink
+                                        ? wp.element.createElement(
+                                            'a',
+                                            { href: post.link, target: postLinkTarget === 'newWindow' ? '_blank' : '_self' },
+                                            wp.element.createElement('img', {
+                                                src: thumbnail,
+                                                alt: post.title.rendered,
+                                                className: 'post-thumbnail',
+                                                style: { objectFit: 'cover', width: '100%',borderRadius: getSpacingValue(attributes.thumbnailBorderRadius), },
+                                            })
+                                        )
+                                        : wp.element.createElement('img', {
+                                            src: thumbnail,
+                                            alt: post.title.rendered,
+                                            className: 'post-thumbnail',
+                                            style: { objectFit: 'cover', width: '100%' },
+                                        })
+                                ),
+
+                            
+                            // Wrap the entire content in a new div (e.g., rs-content)
+                            wp.element.createElement('div', { className: 'rs-content',style: {
+                                    margin: getSpacingValue(attributes.contentitemMarginNew),
+                                    padding: getSpacingValue(attributes.contentitemPaddingNew),
+                                    borderWidth: getSpacingValue(attributes.contentBorderWidth),
+                                    borderStyle: attributes.contentnormalBorderType,
+                                    backgroundColor: contentBgColor,
+                                    borderColor: contentBorderColor,
+                                    },
+                                }, 
+                                
+                                //Meta
+
+                                showMetaData && 
+                                    wp.element.createElement('div', { 
+                                        className: 'rs-meta', },
+                                        wp.element.createElement('ul', { 
+                                        className: ' post-meta', 
+                                        style: { 
+                                            margin: getSpacingValue(attributes.metaMarginNew),
+                                            padding: getSpacingValue(attributes.metaPadding),
+                                            textAlign: metaAlignment, 
+                                            color: metaTextColor, 
+                                            order: metaOrder,
+                                            fontSize: `${metaFontSize}px`,
+                                        } 
+                                    },
+                                        [
+                                            // Post Date
+                                            showPostDate && wp.element.createElement('li', { className: 'meta-date',style: { 
+                                                    color: metaTextColor, 
+                                                    fontSize: `${metaFontSize}px`,
+                                                } },
+                                                showMetaIcon && showPostDateIcon &&
+                                                wp.element.createElement('i', { className: 'fas fa-calendar-alt',
+                                                    style:{ 
+                                                        color: metaIconColor, 
+                                                        fontSize: `${metaFontSize}px`,
+                                                    } }), // Font Awesome calendar icon
+                                                ` ${new Date(post.date).toLocaleDateString()}`
+                                            ),
+
+
+                                            // Post Author
+                                            showPostAuthor && wp.element.createElement(
+                                                'li', 
+                                                { className: 'meta-author',style: { 
+                                                    color: metaTextColor, 
+                                                    fontSize: `${metaFontSize}px`,
+                                                } },
+                                                showMetaIcon && showPostAuthorIcon && 
+                                                    wp.element.createElement('i', { className: 'fas fa-user',style:{ 
+                                                        color: metaIconColor, 
+                                                        fontSize: `${metaFontSize}px`,
+                                                    } }), // Font Awesome user icon
+                                                ` ${metaAuthorPrefix ? metaAuthorPrefix + ' ' : ''}${post._embedded?.author?.[0]?.name}`
+                                            ),
+
+                                            // Post Category
+                                            showPostCategory && wp.element.createElement('li', { className: 'meta-category',style: { 
+                                                    color: metaTextColor, 
+                                                    fontSize: `${metaFontSize}px`,
+                                                } },
+                                                showMetaIcon && showPostCategoryIcon &&
+                                                wp.element.createElement('i', { className: 'fas fa-folder',style:{ 
+                                                        color: metaIconColor, 
+                                                        fontSize: `${metaFontSize}px`,
+                                                    } }), // Font Awesome folder icon
+                                                ` ${post._embedded?.['wp:term']?.[0]?.map(cat => cat.name).join(', ')}`
+                                            ),
+
+                                            // Post Tags (Only show if tags exist)
+                                            showPostTags && post._embedded?.['wp:term']?.[1]?.length > 0 && wp.element.createElement('li', { className: 'meta-tags',style: { 
+                                                    color: metaTextColor, 
+                                                    fontSize: `${metaFontSize}px`,
+                                                } },
+                                                showMetaIcon && showPostTagsIcon &&
+                                                wp.element.createElement('i', { className: 'fas fa-tags',style:{ 
+                                                        color: metaIconColor, 
+                                                        fontSize: `${metaFontSize}px`,
+                                                    } }), // Font Awesome tags icon
+                                                ` ${post._embedded?.['wp:term']?.[1]?.map(tag => tag.name).join(', ')}`
+                                            ),
+
+                                            // Comments Count (Only show if comments exist)
+                                            showPostCommentsCount && post.comment_count > 0 && wp.element.createElement('li', { className: 'meta-comments',style: { 
+                                                    color: metaTextColor, 
+                                                    fontSize: `${metaFontSize}px`,
+                                                } },
+                                                showMetaIcon && showPostCommentsCountIcon &&
+                                                wp.element.createElement('i', { className: 'fas fa-comments',style:{ 
+                                                        color: metaIconColor, 
+                                                        fontSize: `${metaFontSize}px`,
+                                                    } }), // Font Awesome comments icon
+                                                ` ${post.comment_count} Comments`
+                                            )
+                                        ].filter(Boolean).reduce((acc, curr, index, arr) => 
+                                            acc.concat(curr, index < arr.length - 1 && metaSeperator !== 'none' 
+                                                ? wp.element.createElement('span', { className: 'meta-separator',style: { 
+                                                        
+                                                        color: separatorColor, 
+                                                        fontSize: `${metaFontSize}px`,
+                                                        
+                                                    } }, ` ${metaSeperator} `) 
+                                                : null
+                                            ), []
+                                        )
+                                    )),
+
+
+                                //TITLE
+                                // Title with Link
+                                showPostTitle &&
+                                    wp.element.createElement(
+                                        'div',
+                                        {
+                                            className: 'title',
+                                            style: {
+                                                margin: getSpacingValue(attributes.postTitleMargin),
+                                                padding: getSpacingValue(attributes.postTitlePadding),
+                                                textAlign: postTitleAlignment,
+                                                transition: 'all 0.3s ease',
+                                                order: titleOrder,
+                                                backgroundColor: postTitleBgColor, // Background only for title div
+                                            },
+                                            onMouseEnter: (e) => {
+                                                e.currentTarget.style.backgroundColor = postTitleHoverBgColor;
+                                            },
+                                            onMouseLeave: (e) => {
+                                                e.currentTarget.style.backgroundColor = postTitleBgColor;
+                                            },
+                                        },
+                                        wp.element.createElement(
+                                            titleTag,
+                                            {
+                                                
+                                                
+                                            },
+                                            postLinkType === 'yeslink'
+                                                ? wp.element.createElement(
+                                                    'a',
+                                                    { 
+                                                        href: post.link, 
+                                                        target: postLinkTarget === 'newWindow' ? '_blank' : '_self',
+                                                        style: { // Ensure the styles apply to the <a> tag
+                                                            color: postTitleColor, // Inherit from parent to avoid default blue link color
+                                                            fontSize: `${postTitleFontSize}px`,
+                                                            fontWeight: postTitleFontWeight,
+                                                            lineHeight: postTitleLineHeight,
+                                                            letterSpacing: postTitleLetterSpacing,
+                                                            
+                                                            transition: 'all 0.3s ease',
+
+                                                        },
+                                                        onMouseEnter: (e) => {
+                                                            e.currentTarget.style.color = postTitleHoverColor;
+                                                        },
+                                                        onMouseLeave: (e) => {
+                                                            e.currentTarget.style.color = postTitleColor;
+                                                        },
+                                                    },
+                                                    titleCropBy === 'word'
+                                                        ? post.title.rendered.split(' ').slice(0, titleLength).join(' ') // Crop by word
+                                                        : post.title.rendered.substring(0, titleLength) // Crop by character
+                                                )
+                                                : (titleCropBy === 'word'
+                                                    ? post.title.rendered.split(' ').slice(0, titleLength).join(' ')
+                                                    : post.title.rendered.substring(0, titleLength))
+                                        )
+
+                                    ),
+                                                                
+                                showReadMoreButton && wp.element.createElement('div', { className: 'btn-wrapper',style: { 
+                                        order: buttonOrder,
+                                        margin: getSpacingValue(attributes.buttonMarginNew),
+                                        textAlign: buttonAlignment  }, 
+                                    }, 
+                                    wp.element.createElement('a', { 
+                                        href: post.link, 
+                                        target: postLinkTarget === 'newWindow' ? '_blank' : '_self', 
+                                        className: `rs-btn read-more-${buttonStyle}`,  // Dynamic class based on buttonStyle
+                                        style: { 
+                                            backgroundColor: buttonStyle === 'filled' ? buttonBackgroundColor : 'transparent',
+                                            color: buttonTextColor,
+                                            borderColor: buttonTextColor,
+                                            border:  ` ${buttonBorderType} ${buttonBackgroundColor}`, 
+                                            fontWeight: buttonFontWeight,
+                                            // Border style
+                                            borderWidth: `${attributes.buttonBorderWidth}px`,
+                                            padding: getSpacingValue(attributes.buttonPaddingNew),
+                                            borderRadius: getSpacingValue(attributes.buttonBorderRadius),
+                                            fontSize: `${buttonFontSize}px`,
+                                            textDecoration: buttonStyle === 'flat' ? 'none' : 'inherit'
+                                        },
+                                        onMouseEnter: (e) => {
+                                            e.currentTarget.style.color = buttonHoverTextColor;
+                                            e.currentTarget.style.backgroundColor = buttonHoverBackgroundColor;
+                                            e.currentTarget.style.borderColor = buttonHoverBorderColor;
+                                        },
+                                        onMouseLeave: (e) => {
+                                            e.currentTarget.style.color = buttonTextColor;
+                                            e.currentTarget.style.backgroundColor = buttonBackgroundColor;
+                                            e.currentTarget.style.borderColor = buttonBorderColor;
+                                        },
+                                    }, 
+                                        iconPosition === 'left' && showButtonIcon && wp.element.createElement('i', { className: 'fas fa-arrow-right', style: { marginRight: '5px' } }), 
+                                        readMoreLabel, 
+                                        iconPosition === 'right' && showButtonIcon && wp.element.createElement('i', { className: 'fas fa-arrow-right', style: { marginLeft: '5px' } })
+                                    )
+                                )
+
+                            )    
+
+                        );
+                    }),
+                    
+                );      
+            }
+            else if (listLayoutStyle === 'style5' && posts && posts.length) {
+                content = wp.element.createElement(
+                    'div',
+                    { 
+                        className: 'rs-blog-layout-22 fancy-post-grid', 
+                        style: { 
+                            display: 'grid', 
+                            gridTemplateColumns: `50% 50%`, 
+                            gap: attributes.itemGap,
+                            backgroundColor: sectionBgColor,
+                            margin: getSpacingValue(attributes.sectionMargin),
+                            padding: getSpacingValue(attributes.sectionPadding),
+                            
+                        } 
+                    },
+                    posts.map((post) => {
+                        
+                        const thumbnail = post._embedded?.['wp:featuredmedia']?.[0]?.media_details?.sizes?.[attributes.thumbnailSize]?.source_url ||  post._embedded?.['wp:featuredmedia']?.[0]?.source_url || '';
+
+                        const excerpt = post.excerpt.rendered.replace(/(<([^>]+)>)/gi, '').split(' ').slice(0, excerptLimit).join(' ') + excerptIndicator;
+                        
+                        return wp.element.createElement('div', { 
+                            key: post.id, 
+                                className: 'fancy-post-item rs-blog-layout-22-item',
+                                style: {
+                                    
+                                    margin: getSpacingValue(attributes.itemMargin),
+                                    padding: getSpacingValue(attributes.itemPadding),
+                                    borderRadius: getSpacingValue(attributes.itemBorderRadius),
+                                    borderWidth: getSpacingValue(attributes.itemBorderWidth),
+                                    textAlign: attributes.itemBoxAlignment,   
+                                    backgroundColor: attributes.itemBackgroundColor,
+                                    borderStyle: attributes.itemBorderType,
+                                    borderColor: attributes.itemBorderColor,
+                                    boxShadow: `${getSpacingValue(attributes.itemBoxShadow) || '10px'} ${attributes.itemBoxShadowColor || 'rgba(0,0,0,0.1)'}`,
+                                },
+                            },
+                        
+                            // Thumbnail Display with Link if enabled
+                            showThumbnail && thumbnail &&
+                                wp.element.createElement(
+                                    'div',
+                                    {
+                                        className: 'rs-thumb thumbnail-wrapper',
+                                        style: {
+                                            margin: getSpacingValue(attributes.thumbnailMargin),
+                                            padding: getSpacingValue(attributes.thumbnailPadding),
+                                            overflow: 'hidden', // Prevent overflow on border-radius
+                                        },
+                                    },
+                                    thumbnailLink
+                                        ? wp.element.createElement(
+                                            'a',
+                                            { href: post.link, target: postLinkTarget === 'newWindow' ? '_blank' : '_self' },
+                                            wp.element.createElement('img', {
+                                                src: thumbnail,
+                                                alt: post.title.rendered,
+                                                className: 'post-thumbnail',
+                                                style: { objectFit: 'cover', width: '100%',borderRadius: getSpacingValue(attributes.thumbnailBorderRadius), },
+                                            })
+                                        )
+                                        : wp.element.createElement('img', {
+                                            src: thumbnail,
+                                            alt: post.title.rendered,
+                                            className: 'post-thumbnail',
+                                            style: { objectFit: 'cover', width: '100%' },
+                                        })
+                                ),
+
+                            
+                            // Wrap the entire content in a new div (e.g., rs-content)
+                            wp.element.createElement('div', { className: 'rs-content',style: {
+                                    margin: getSpacingValue(attributes.contentitemMarginNew),
+                                    padding: getSpacingValue(attributes.contentitemPaddingNew),
+                                    borderWidth: getSpacingValue(attributes.contentBorderWidth),
+                                    borderStyle: attributes.contentnormalBorderType,
+                                    backgroundColor: contentBgColor,
+                                    borderColor: contentBorderColor,
+                                    },
+                                }, 
+                                
+                                //Meta
+
+                                showMetaData && 
+                                    wp.element.createElement('div', { 
+                                        className: 'rs-meta', },
+                                        wp.element.createElement('ul', { 
+                                        className: ' post-meta', 
+                                        style: { 
+                                            margin: getSpacingValue(attributes.metaMarginNew),
+                                            padding: getSpacingValue(attributes.metaPadding),
+                                            textAlign: metaAlignment, 
+                                            color: metaTextColor, 
+                                            order: metaOrder,
+                                            fontSize: `${metaFontSize}px`,
+                                        } 
+                                    },
+                                        [
+                                            // Post Date
+                                            showPostDate && wp.element.createElement('li', { className: 'meta-date',style: { 
+                                                    color: metaTextColor, 
+                                                    fontSize: `${metaFontSize}px`,
+                                                } },
+                                                showMetaIcon && showPostDateIcon &&
+                                                wp.element.createElement('i', { className: 'fas fa-calendar-alt',
+                                                    style:{ 
+                                                        color: metaIconColor, 
+                                                        fontSize: `${metaFontSize}px`,
+                                                    } }), // Font Awesome calendar icon
+                                                ` ${new Date(post.date).toLocaleDateString()}`
+                                            ),
+
+
+                                            // Post Author
+                                            showPostAuthor && wp.element.createElement(
+                                                'li', 
+                                                { className: 'meta-author',style: { 
+                                                    color: metaTextColor, 
+                                                    fontSize: `${metaFontSize}px`,
+                                                } },
+                                                showMetaIcon && showPostAuthorIcon && 
+                                                    wp.element.createElement('i', { className: 'fas fa-user',style:{ 
+                                                        color: metaIconColor, 
+                                                        fontSize: `${metaFontSize}px`,
+                                                    } }), // Font Awesome user icon
+                                                ` ${metaAuthorPrefix ? metaAuthorPrefix + ' ' : ''}${post._embedded?.author?.[0]?.name}`
+                                            ),
+
+                                            // Post Category
+                                            showPostCategory && wp.element.createElement('li', { className: 'meta-category',style: { 
+                                                    color: metaTextColor, 
+                                                    fontSize: `${metaFontSize}px`,
+                                                } },
+                                                showMetaIcon && showPostCategoryIcon &&
+                                                wp.element.createElement('i', { className: 'fas fa-folder',style:{ 
+                                                        color: metaIconColor, 
+                                                        fontSize: `${metaFontSize}px`,
+                                                    } }), // Font Awesome folder icon
+                                                ` ${post._embedded?.['wp:term']?.[0]?.map(cat => cat.name).join(', ')}`
+                                            ),
+
+                                            // Post Tags (Only show if tags exist)
+                                            showPostTags && post._embedded?.['wp:term']?.[1]?.length > 0 && wp.element.createElement('li', { className: 'meta-tags',style: { 
+                                                    color: metaTextColor, 
+                                                    fontSize: `${metaFontSize}px`,
+                                                } },
+                                                showMetaIcon && showPostTagsIcon &&
+                                                wp.element.createElement('i', { className: 'fas fa-tags',style:{ 
+                                                        color: metaIconColor, 
+                                                        fontSize: `${metaFontSize}px`,
+                                                    } }), // Font Awesome tags icon
+                                                ` ${post._embedded?.['wp:term']?.[1]?.map(tag => tag.name).join(', ')}`
+                                            ),
+
+                                            // Comments Count (Only show if comments exist)
+                                            showPostCommentsCount && post.comment_count > 0 && wp.element.createElement('li', { className: 'meta-comments',style: { 
+                                                    color: metaTextColor, 
+                                                    fontSize: `${metaFontSize}px`,
+                                                } },
+                                                showMetaIcon && showPostCommentsCountIcon &&
+                                                wp.element.createElement('i', { className: 'fas fa-comments',style:{ 
+                                                        color: metaIconColor, 
+                                                        fontSize: `${metaFontSize}px`,
+                                                    } }), // Font Awesome comments icon
+                                                ` ${post.comment_count} Comments`
+                                            )
+                                        ].filter(Boolean).reduce((acc, curr, index, arr) => 
+                                            acc.concat(curr, index < arr.length - 1 && metaSeperator !== 'none' 
+                                                ? wp.element.createElement('span', { className: 'meta-separator',style: { 
+                                                        
+                                                        color: separatorColor, 
+                                                        fontSize: `${metaFontSize}px`,
+                                                        
+                                                    } }, ` ${metaSeperator} `) 
+                                                : null
+                                            ), []
+                                        )
+                                    )),
+
+
+                                //TITLE
+                                // Title with Link
+                                showPostTitle &&
+                                    wp.element.createElement(
+                                        'div',
+                                        {
+                                            className: 'title',
+                                            style: {
+                                                margin: getSpacingValue(attributes.postTitleMargin),
+                                                padding: getSpacingValue(attributes.postTitlePadding),
+                                                textAlign: postTitleAlignment,
+                                                transition: 'all 0.3s ease',
+                                                order: titleOrder,
+                                                backgroundColor: postTitleBgColor, // Background only for title div
+                                            },
+                                            onMouseEnter: (e) => {
+                                                e.currentTarget.style.backgroundColor = postTitleHoverBgColor;
+                                            },
+                                            onMouseLeave: (e) => {
+                                                e.currentTarget.style.backgroundColor = postTitleBgColor;
+                                            },
+                                        },
+                                        wp.element.createElement(
+                                            titleTag,
+                                            {
+                                                
+                                                
+                                            },
+                                            postLinkType === 'yeslink'
+                                                ? wp.element.createElement(
+                                                    'a',
+                                                    { 
+                                                        href: post.link, 
+                                                        target: postLinkTarget === 'newWindow' ? '_blank' : '_self',
+                                                        style: { // Ensure the styles apply to the <a> tag
+                                                            color: postTitleColor, // Inherit from parent to avoid default blue link color
+                                                            fontSize: `${postTitleFontSize}px`,
+                                                            fontWeight: postTitleFontWeight,
+                                                            lineHeight: postTitleLineHeight,
+                                                            letterSpacing: postTitleLetterSpacing,
+                                                            
+                                                            transition: 'all 0.3s ease',
+
+                                                        },
+                                                        onMouseEnter: (e) => {
+                                                            e.currentTarget.style.color = postTitleHoverColor;
+                                                        },
+                                                        onMouseLeave: (e) => {
+                                                            e.currentTarget.style.color = postTitleColor;
+                                                        },
+                                                    },
+                                                    titleCropBy === 'word'
+                                                        ? post.title.rendered.split(' ').slice(0, titleLength).join(' ') // Crop by word
+                                                        : post.title.rendered.substring(0, titleLength) // Crop by character
+                                                )
+                                                : (titleCropBy === 'word'
+                                                    ? post.title.rendered.split(' ').slice(0, titleLength).join(' ')
+                                                    : post.title.rendered.substring(0, titleLength))
+                                        )
+
+                                    ),
+                                  
+                                showPostExcerpt &&
+                                    wp.element.createElement('div', { 
+                                        className: 'fpg-excerpt', 
+                                        style: { 
+                                                order: excerptOrder,
+                                                textAlign: excerptAlignment,
+                                                margin: getSpacingValue(attributes.excerptMargin), // Default margin
+                                                padding: getSpacingValue(attributes.excerptPadding) 
+                                            } // Apply order to the div container
+                                    }, 
+                                        wp.element.createElement('p', { 
+                                            style: { 
+                                                
+                                                fontSize: `${excerptFontSize}px`,
+                                                fontWeight: excerptFontWeight,
+                                                lineHeight: excerptLineHeight,
+                                                letterSpacing: excerptLetterSpacing, 
+                                                color: excerptColor, 
+                                                backgroundColor: excerptBgColor 
+                                            },
+                                            onMouseEnter: (e) => {
+                                                e.currentTarget.style.color = excerptHoverColor;
+                                                e.currentTarget.style.backgroundColor = excerptHoverBgColor;
+                                            },
+                                            onMouseLeave: (e) => {
+                                                e.currentTarget.style.color = excerptColor;
+                                                e.currentTarget.style.backgroundColor = excerptBgColor;
+                                                
+                                            }, 
+                                        }, 
+                                        excerptType === 'full_content' 
+                                            ? excerpt 
+                                            : excerptType === 'word'
+                                                ? excerpt.split(' ').slice(0, excerptLimit).join(' ') + (excerpt.split(' ').length > excerptLimit ? excerptIndicator : '')
+                                                : excerpt.substring(0, excerptLimit) + (excerpt.length > excerptLimit ? excerptIndicator : '')
+                                        )
+                                    ),
+
+                                                                
+                                showReadMoreButton && wp.element.createElement('div', { className: 'btn-wrapper',style: { 
+                                        order: buttonOrder,
+                                        margin: getSpacingValue(attributes.buttonMarginNew),
+                                        textAlign: buttonAlignment  }, 
+                                    }, 
+                                    wp.element.createElement('a', { 
+                                        href: post.link, 
+                                        target: postLinkTarget === 'newWindow' ? '_blank' : '_self', 
+                                        className: `rs-btn read-more-${buttonStyle}`,  // Dynamic class based on buttonStyle
+                                        style: { 
+                                            backgroundColor: buttonStyle === 'filled' ? buttonBackgroundColor : 'transparent',
+                                            color: buttonTextColor,
+                                            borderColor: buttonTextColor,
+                                            border:  ` ${buttonBorderType} ${buttonBackgroundColor}`, 
+                                            fontWeight: buttonFontWeight,
+                                            // Border style
+                                            borderWidth: `${attributes.buttonBorderWidth}px`,
+                                            padding: getSpacingValue(attributes.buttonPaddingNew),
+                                            borderRadius: getSpacingValue(attributes.buttonBorderRadius),
+                                            fontSize: `${buttonFontSize}px`,
+                                            textDecoration: buttonStyle === 'flat' ? 'none' : 'inherit'
+                                        },
+                                        onMouseEnter: (e) => {
+                                            e.currentTarget.style.color = buttonHoverTextColor;
+                                            e.currentTarget.style.backgroundColor = buttonHoverBackgroundColor;
+                                            e.currentTarget.style.borderColor = buttonHoverBorderColor;
+                                        },
+                                        onMouseLeave: (e) => {
+                                            e.currentTarget.style.color = buttonTextColor;
+                                            e.currentTarget.style.backgroundColor = buttonBackgroundColor;
+                                            e.currentTarget.style.borderColor = buttonBorderColor;
+                                        },
+                                    }, 
+                                        iconPosition === 'left' && showButtonIcon && wp.element.createElement('i', { className: 'fas fa-arrow-right', style: { marginRight: '5px' } }), 
+                                        readMoreLabel, 
+                                        iconPosition === 'right' && showButtonIcon && wp.element.createElement('i', { className: 'fas fa-arrow-right', style: { marginLeft: '5px' } })
+                                    )
+                                )
+
+                            )    
+
+                        );
+                    }),
+                    
+                );      
+            }
+            else if (listLayoutStyle === 'style6' && posts && posts.length) {
+                content = wp.element.createElement(
+                    'div',
+                    { 
+                        className: 'rs-blog-layout-24 fancy-post-grid', 
+                        style: { 
+                            display: 'grid', 
+                            gridTemplateColumns: `1fr 1fr 1fr`, 
+                            gap: attributes.itemGap,
+                            backgroundColor: sectionBgColor,
+                            margin: getSpacingValue(attributes.sectionMargin),
+                            padding: getSpacingValue(attributes.sectionPadding),
+                            
+                        } 
+                    },
+                    posts.map((post) => {
+                        
+                        const thumbnail = post._embedded?.['wp:featuredmedia']?.[0]?.media_details?.sizes?.[attributes.thumbnailSize]?.source_url ||  post._embedded?.['wp:featuredmedia']?.[0]?.source_url || '';
+
+                        const excerpt = post.excerpt.rendered.replace(/(<([^>]+)>)/gi, '').split(' ').slice(0, excerptLimit).join(' ') + excerptIndicator;
+                        
+                        return wp.element.createElement('div', { 
+                            key: post.id, 
+                                className: 'fancy-post-item rs-blog-layout-24-item',
+                                style: {
+                                    
+                                    margin: getSpacingValue(attributes.itemMargin),
+                                    padding: getSpacingValue(attributes.itemPadding),
+                                    borderRadius: getSpacingValue(attributes.itemBorderRadius),
+                                    borderWidth: getSpacingValue(attributes.itemBorderWidth),
+                                    textAlign: attributes.itemBoxAlignment,   
+                                    backgroundColor: attributes.itemBackgroundColor,
+                                    borderStyle: attributes.itemBorderType,
+                                    borderColor: attributes.itemBorderColor,
+                                    boxShadow: `${getSpacingValue(attributes.itemBoxShadow) || '10px'} ${attributes.itemBoxShadowColor || 'rgba(0,0,0,0.1)'}`,
+                                },
+                            },
+                        
+                            // Thumbnail Display with Link if enabled
+                            showThumbnail && thumbnail &&
+                                wp.element.createElement(
+                                    'div',
+                                    {
+                                        className: 'rs-thumb thumbnail-wrapper',
+                                        style: {
+                                            margin: getSpacingValue(attributes.thumbnailMargin),
+                                            padding: getSpacingValue(attributes.thumbnailPadding),
+                                            overflow: 'hidden', // Prevent overflow on border-radius
+                                        },
+                                    },
+                                    thumbnailLink
+                                        ? wp.element.createElement(
+                                            'a',
+                                            { href: post.link, target: postLinkTarget === 'newWindow' ? '_blank' : '_self' },
+                                            wp.element.createElement('img', {
+                                                src: thumbnail,
+                                                alt: post.title.rendered,
+                                                className: 'post-thumbnail',
+                                                style: { objectFit: 'cover', width: '100%',borderRadius: getSpacingValue(attributes.thumbnailBorderRadius), },
+                                            })
+                                        )
+                                        : wp.element.createElement('img', {
+                                            src: thumbnail,
+                                            alt: post.title.rendered,
+                                            className: 'post-thumbnail',
+                                            style: { objectFit: 'cover', width: '100%' },
+                                        })
+                                ),
+
+                            
+                            // Wrap the entire content in a new div (e.g., rs-content)
+                            wp.element.createElement('div', { className: 'rs-content',style: {
+                                    margin: getSpacingValue(attributes.contentitemMarginNew),
+                                    padding: getSpacingValue(attributes.contentitemPaddingNew),
+                                    borderWidth: getSpacingValue(attributes.contentBorderWidth),
+                                    borderStyle: attributes.contentnormalBorderType,
+                                    backgroundColor: contentBgColor,
+                                    borderColor: contentBorderColor,
+                                    },
+                                }, 
+                                
+                                //Meta
+
+                                showMetaData && 
+                                    wp.element.createElement('div', { 
+                                        className: 'rs-meta', },
+                                        wp.element.createElement('ul', { 
+                                        className: ' post-meta', 
+                                        style: { 
+                                            margin: getSpacingValue(attributes.metaMarginNew),
+                                            padding: getSpacingValue(attributes.metaPadding),
+                                            textAlign: metaAlignment, 
+                                            color: metaTextColor, 
+                                            order: metaOrder,
+                                            fontSize: `${metaFontSize}px`,
+                                        } 
+                                    },
+                                        [
+                                            // Post Date
+                                            showPostDate && wp.element.createElement('li', { className: 'meta-date',style: { 
+                                                    color: metaTextColor, 
+                                                    fontSize: `${metaFontSize}px`,
+                                                } },
+                                                showMetaIcon && showPostDateIcon &&
+                                                wp.element.createElement('i', { className: 'fas fa-calendar-alt',
+                                                    style:{ 
+                                                        color: metaIconColor, 
+                                                        fontSize: `${metaFontSize}px`,
+                                                    } }), // Font Awesome calendar icon
+                                                ` ${new Date(post.date).toLocaleDateString()}`
+                                            ),
+
+
+                                            // Post Author
+                                            showPostAuthor && wp.element.createElement(
+                                                'li', 
+                                                { className: 'meta-author',style: { 
+                                                    color: metaTextColor, 
+                                                    fontSize: `${metaFontSize}px`,
+                                                } },
+                                                showMetaIcon && showPostAuthorIcon && 
+                                                    wp.element.createElement('i', { className: 'fas fa-user',style:{ 
+                                                        color: metaIconColor, 
+                                                        fontSize: `${metaFontSize}px`,
+                                                    } }), // Font Awesome user icon
+                                                ` ${metaAuthorPrefix ? metaAuthorPrefix + ' ' : ''}${post._embedded?.author?.[0]?.name}`
+                                            ),
+
+                                            // Post Category
+                                            showPostCategory && wp.element.createElement('li', { className: 'meta-category',style: { 
+                                                    color: metaTextColor, 
+                                                    fontSize: `${metaFontSize}px`,
+                                                } },
+                                                showMetaIcon && showPostCategoryIcon &&
+                                                wp.element.createElement('i', { className: 'fas fa-folder',style:{ 
+                                                        color: metaIconColor, 
+                                                        fontSize: `${metaFontSize}px`,
+                                                    } }), // Font Awesome folder icon
+                                                ` ${post._embedded?.['wp:term']?.[0]?.map(cat => cat.name).join(', ')}`
+                                            ),
+
+                                            // Post Tags (Only show if tags exist)
+                                            showPostTags && post._embedded?.['wp:term']?.[1]?.length > 0 && wp.element.createElement('li', { className: 'meta-tags',style: { 
+                                                    color: metaTextColor, 
+                                                    fontSize: `${metaFontSize}px`,
+                                                } },
+                                                showMetaIcon && showPostTagsIcon &&
+                                                wp.element.createElement('i', { className: 'fas fa-tags',style:{ 
+                                                        color: metaIconColor, 
+                                                        fontSize: `${metaFontSize}px`,
+                                                    } }), // Font Awesome tags icon
+                                                ` ${post._embedded?.['wp:term']?.[1]?.map(tag => tag.name).join(', ')}`
+                                            ),
+
+                                            // Comments Count (Only show if comments exist)
+                                            showPostCommentsCount && post.comment_count > 0 && wp.element.createElement('li', { className: 'meta-comments',style: { 
+                                                    color: metaTextColor, 
+                                                    fontSize: `${metaFontSize}px`,
+                                                } },
+                                                showMetaIcon && showPostCommentsCountIcon &&
+                                                wp.element.createElement('i', { className: 'fas fa-comments',style:{ 
+                                                        color: metaIconColor, 
+                                                        fontSize: `${metaFontSize}px`,
+                                                    } }), // Font Awesome comments icon
+                                                ` ${post.comment_count} Comments`
+                                            )
+                                        ].filter(Boolean).reduce((acc, curr, index, arr) => 
+                                            acc.concat(curr, index < arr.length - 1 && metaSeperator !== 'none' 
+                                                ? wp.element.createElement('span', { className: 'meta-separator',style: { 
+                                                        
+                                                        color: separatorColor, 
+                                                        fontSize: `${metaFontSize}px`,
+                                                        
+                                                    } }, ` ${metaSeperator} `) 
+                                                : null
+                                            ), []
+                                        )
+                                    )),
+
+
+                                //TITLE
+                                // Title with Link
+                                showPostTitle &&
+                                    wp.element.createElement(
+                                        'div',
+                                        {
+                                            className: 'title',
+                                            style: {
+                                                margin: getSpacingValue(attributes.postTitleMargin),
+                                                padding: getSpacingValue(attributes.postTitlePadding),
+                                                textAlign: postTitleAlignment,
+                                                transition: 'all 0.3s ease',
+                                                order: titleOrder,
+                                                backgroundColor: postTitleBgColor, // Background only for title div
+                                            },
+                                            onMouseEnter: (e) => {
+                                                e.currentTarget.style.backgroundColor = postTitleHoverBgColor;
+                                            },
+                                            onMouseLeave: (e) => {
+                                                e.currentTarget.style.backgroundColor = postTitleBgColor;
+                                            },
+                                        },
+                                        wp.element.createElement(
+                                            titleTag,
+                                            {
+                                                
+                                                
+                                            },
+                                            postLinkType === 'yeslink'
+                                                ? wp.element.createElement(
+                                                    'a',
+                                                    { 
+                                                        href: post.link, 
+                                                        target: postLinkTarget === 'newWindow' ? '_blank' : '_self',
+                                                        style: { // Ensure the styles apply to the <a> tag
+                                                            color: postTitleColor, // Inherit from parent to avoid default blue link color
+                                                            fontSize: `${postTitleFontSize}px`,
+                                                            fontWeight: postTitleFontWeight,
+                                                            lineHeight: postTitleLineHeight,
+                                                            letterSpacing: postTitleLetterSpacing,
+                                                            
+                                                            transition: 'all 0.3s ease',
+
+                                                        },
+                                                        onMouseEnter: (e) => {
+                                                            e.currentTarget.style.color = postTitleHoverColor;
+                                                        },
+                                                        onMouseLeave: (e) => {
+                                                            e.currentTarget.style.color = postTitleColor;
+                                                        },
+                                                    },
+                                                    titleCropBy === 'word'
+                                                        ? post.title.rendered.split(' ').slice(0, titleLength).join(' ') // Crop by word
+                                                        : post.title.rendered.substring(0, titleLength) // Crop by character
+                                                )
+                                                : (titleCropBy === 'word'
+                                                    ? post.title.rendered.split(' ').slice(0, titleLength).join(' ')
+                                                    : post.title.rendered.substring(0, titleLength))
+                                        )
+
+                                    ),                            
+                            )    
+
+                        );
+                    }),
+                    
+                );      
+            }
+            else if (listLayoutStyle === 'style7' && posts && posts.length) {
+                content = wp.element.createElement(
+                    'div',
+                    { 
+                        className: 'rs-blog-layout-25 fancy-post-grid', 
+                        style: { 
+                            display: 'grid', 
+                            gridTemplateColumns: `1fr`, 
+                            gap: attributes.itemGap,
+                            backgroundColor: sectionBgColor,
+                            margin: getSpacingValue(attributes.sectionMargin),
+                            padding: getSpacingValue(attributes.sectionPadding),
+                            
+                        } 
+                    },
+                    
+                    posts.map((post) => {
+                        
+                        const thumbnail = post._embedded?.['wp:featuredmedia']?.[0]?.media_details?.sizes?.[attributes.thumbnailSize]?.source_url ||  post._embedded?.['wp:featuredmedia']?.[0]?.source_url || '';
+
+                        const excerpt = post.excerpt.rendered.replace(/(<([^>]+)>)/gi, '').split(' ').slice(0, excerptLimit).join(' ') + excerptIndicator;
+                        
+                        return wp.element.createElement('div', { 
+                                key: post.id, 
+                                    className: 'fancy-post-item rs-blog-layout-25-item',
+                                    style: {
+                                        
+                                        margin: getSpacingValue(attributes.itemMargin),
+                                        padding: getSpacingValue(attributes.itemPadding),
+                                        borderRadius: getSpacingValue(attributes.itemBorderRadius),
+                                        borderWidth: getSpacingValue(attributes.itemBorderWidth),
+                                        textAlign: attributes.itemBoxAlignment,   
+                                        backgroundColor: attributes.itemBackgroundColor,
+                                        borderStyle: attributes.itemBorderType,
+                                        borderColor: attributes.itemBorderColor,
+                                        boxShadow: `${getSpacingValue(attributes.itemBoxShadow) || '10px'} ${attributes.itemBoxShadowColor || 'rgba(0,0,0,0.1)'}`,
+                                    },
+                                },
+                            
+                                // Thumbnail Display with Link if enabled
+                                showThumbnail && thumbnail &&
+                                    wp.element.createElement(
+                                        'div',
+                                        {
+                                            className: 'rs-thumb thumbnail-wrapper',
+                                            style: {
+                                                margin: getSpacingValue(attributes.thumbnailMargin),
+                                                padding: getSpacingValue(attributes.thumbnailPadding),
+                                                overflow: 'hidden', // Prevent overflow on border-radius
+                                            },
+                                        },
+                                        thumbnailLink
+                                            ? wp.element.createElement(
+                                                'a',
+                                                { href: post.link, target: postLinkTarget === 'newWindow' ? '_blank' : '_self' },
+                                                wp.element.createElement('img', {
+                                                    src: thumbnail,
+                                                    alt: post.title.rendered,
+                                                    className: 'post-thumbnail',
+                                                    style: { objectFit: 'cover', width: '100%',borderRadius: getSpacingValue(attributes.thumbnailBorderRadius), },
+                                                })
+                                            )
+                                            : wp.element.createElement('img', {
+                                                src: thumbnail,
+                                                alt: post.title.rendered,
+                                                className: 'post-thumbnail',
+                                                style: { objectFit: 'cover', width: '100%' },
+                                            })
+                                    ),
+
+                                
+                                // Wrap the entire content in a new div (e.g., rs-content)
+                                wp.element.createElement('div', { className: 'rs-content',style: {
+                                        margin: getSpacingValue(attributes.contentitemMarginNew),
+                                        padding: getSpacingValue(attributes.contentitemPaddingNew),
+                                        borderWidth: getSpacingValue(attributes.contentBorderWidth),
+                                        borderStyle: attributes.contentnormalBorderType,
+                                        backgroundColor: contentBgColor,
+                                        borderColor: contentBorderColor,
+                                        },
+                                    }, 
+                                    
+                                    //Meta
+
+                                    showMetaData && 
+                                        wp.element.createElement('div', { 
+                                            className: 'rs-cat post-meta', 
+                                            style: { 
+                                                margin: getSpacingValue(attributes.metaMarginNew),
+                                                padding: getSpacingValue(attributes.metaPadding),
+                                                textAlign: metaAlignment, 
+                                                color: metaTextColor, 
+                                                order: metaOrder,
+                                                fontSize: `${metaFontSize}px`,
+                                            } 
+                                        },
+                                            // Render icon and category names only
+                                            showPostCategory && [
+                                                showMetaIcon && showPostCategoryIcon &&
+                                                wp.element.createElement('i', { 
+                                                    className: 'fas fa-folder', 
+                                                    style: { 
+                                                        color: metaIconColor, 
+                                                        fontSize: `${metaFontSize}px`,
+                                                        marginRight: '5px'
+                                                    } 
+                                                }),
+                                                ` ${post._embedded?.['wp:term']?.[0]?.map(cat => cat.name).join(', ')}`
+                                            ]
+                                        ),
+
+                                    //TITLE
+                                    // Title with Link
+                                    showPostTitle &&
+                                        wp.element.createElement(
+                                            'div',
+                                            {
+                                                className: 'title',
+                                                style: {
+                                                    margin: getSpacingValue(attributes.postTitleMargin),
+                                                    padding: getSpacingValue(attributes.postTitlePadding),
+                                                    textAlign: postTitleAlignment,
+                                                    transition: 'all 0.3s ease',
+                                                    order: titleOrder,
+                                                    backgroundColor: postTitleBgColor, // Background only for title div
+                                                },
+                                                onMouseEnter: (e) => {
+                                                    e.currentTarget.style.backgroundColor = postTitleHoverBgColor;
+                                                },
+                                                onMouseLeave: (e) => {
+                                                    e.currentTarget.style.backgroundColor = postTitleBgColor;
+                                                },
+                                            },
+                                            wp.element.createElement(
+                                                titleTag,
+                                                {
+                                                    
+                                                    
+                                                },
+                                                postLinkType === 'yeslink'
+                                                    ? wp.element.createElement(
+                                                        'a',
+                                                        { 
+                                                            href: post.link, 
+                                                            target: postLinkTarget === 'newWindow' ? '_blank' : '_self',
+                                                            style: { // Ensure the styles apply to the <a> tag
+                                                                color: postTitleColor, // Inherit from parent to avoid default blue link color
+                                                                fontSize: `${postTitleFontSize}px`,
+                                                                fontWeight: postTitleFontWeight,
+                                                                lineHeight: postTitleLineHeight,
+                                                                letterSpacing: postTitleLetterSpacing,
+                                                                
+                                                                transition: 'all 0.3s ease',
+
+                                                            },
+                                                            onMouseEnter: (e) => {
+                                                                e.currentTarget.style.color = postTitleHoverColor;
+                                                            },
+                                                            onMouseLeave: (e) => {
+                                                                e.currentTarget.style.color = postTitleColor;
+                                                            },
+                                                        },
+                                                        titleCropBy === 'word'
+                                                            ? post.title.rendered.split(' ').slice(0, titleLength).join(' ') // Crop by word
+                                                            : post.title.rendered.substring(0, titleLength) // Crop by character
+                                                    )
+                                                    : (titleCropBy === 'word'
+                                                        ? post.title.rendered.split(' ').slice(0, titleLength).join(' ')
+                                                        : post.title.rendered.substring(0, titleLength))
+                                            )
+
+                                        ),  
+                                    // BUTTON
+                                    showReadMoreButton && wp.element.createElement('div', { className: 'blog-btn ',style: { 
+                                            order: buttonOrder,
+                                            margin: getSpacingValue(attributes.buttonMarginNew),
+                                            textAlign: buttonAlignment  }, 
+                                        }, 
+                                        wp.element.createElement('a', { 
+                                                href: post.link, 
+                                                target: postLinkTarget === 'newWindow' ? '_blank' : '_self', 
+                                                className: `rs-btn read-more-${buttonStyle}`,  // Dynamic class based on buttonStyle
+                                                style: { 
+                                                    backgroundColor: buttonStyle === 'filled' ? buttonBackgroundColor : 'transparent',
+                                                    color: buttonTextColor,
+                                                    borderColor: buttonTextColor,
+                                                    border:  ` ${buttonBorderType} ${buttonBackgroundColor}`, 
+                                                    fontWeight: buttonFontWeight,
+                                                    // Border style
+                                                    borderWidth: `${attributes.buttonBorderWidth}px`,
+                                                    padding: getSpacingValue(attributes.buttonPaddingNew),
+                                                    borderRadius: getSpacingValue(attributes.buttonBorderRadius),
+                                                    fontSize: `${buttonFontSize}px`,
+                                                    textDecoration: buttonStyle === 'flat' ? 'none' : 'inherit'
+                                                },
+                                                onMouseEnter: (e) => {
+                                                    e.currentTarget.style.color = buttonHoverTextColor;
+                                                    e.currentTarget.style.backgroundColor = buttonHoverBackgroundColor;
+                                                    e.currentTarget.style.borderColor = buttonHoverBorderColor;
+                                                },
+                                                onMouseLeave: (e) => {
+                                                    e.currentTarget.style.color = buttonTextColor;
+                                                    e.currentTarget.style.backgroundColor = buttonBackgroundColor;
+                                                    e.currentTarget.style.borderColor = buttonBorderColor;
+                                                },
+                                            }, 
+                                                iconPosition === 'left' && showButtonIcon && wp.element.createElement('i', { className: 'fas fa-arrow-right', style: { marginRight: '5px' } }), 
+                                                readMoreLabel, 
+                                                iconPosition === 'right' && showButtonIcon && wp.element.createElement('i', { className: 'fas fa-arrow-right', style: { marginLeft: '5px' } })
+                                            )
+                                        )  
+                                    // End Button                            
+                                )
+                                // End main content    
+                        );
+                    }),
+                    
+                );      
+            }
             
             else {
                 content = wp.element.createElement('p', {}, __('Select a style to display posts.', 'fancy-post-grid'));
