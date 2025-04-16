@@ -3,7 +3,6 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 } // Exit if accessed directly
 
-
 add_action( 'add_meta_boxes', 'fancy_post_grid_custom_settings_shortcode_metabox_pro' );
 function fancy_post_grid_custom_settings_shortcode_metabox_pro() {
     add_meta_box(
@@ -2555,16 +2554,13 @@ function fancy_post_grid_save_metabox_data_pro( $post_id ) {
         return;
     }
 
-
     // Retrieve the nonce, unslash it, and then sanitize it.
     $fpg_metabox_nonce = isset( $_POST['fpg_metabox_nonce'] ) ? sanitize_text_field( wp_unslash( $_POST['fpg_metabox_nonce'] ) ) : '';
-
 
     // Verify that the nonce is valid.
     if ( ! wp_verify_nonce( sanitize_text_field( $fpg_metabox_nonce ), 'fpg_metabox_nonce' ) ) {
         return;
     }
-
 
     // If this is an autosave, our form has not been submitted, so we don't want to do anything.
     if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
@@ -2577,8 +2573,6 @@ function fancy_post_grid_save_metabox_data_pro( $post_id ) {
             return;
         }
     }
-
-    // Update or delete post meta data as necessary.
     
     // Check and update 'fancy_post_type' meta.
     if ( isset( $_POST['fancy_post_type'] ) ) {
@@ -2652,8 +2646,6 @@ function fancy_post_grid_save_metabox_data_pro( $post_id ) {
     if ( isset( $_POST['fpg_meta_order'] ) ) {
         update_post_meta( $post_id, 'fpg_meta_order', sanitize_text_field( wp_unslash( $_POST['fpg_meta_order'] ) ) );
     }
-
-    
 
     if ( isset( $_POST['fpg_title_order'] ) ) {
         update_post_meta( $post_id, 'fpg_title_order', sanitize_text_field( wp_unslash($_POST['fpg_title_order'] ) ));
