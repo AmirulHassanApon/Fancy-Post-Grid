@@ -222,70 +222,71 @@ ob_start();
                                             <?php endif; ?>
                                             
                                             <?php if ($fpg_field_group_title) : ?>
-                                            <<?php echo esc_attr($title_tag); ?> class="title <?php echo esc_attr($title_alignment_class); ?>">
-                                                <?php if ($fancy_link_details === 'on') : ?>
-                                                    <a href="<?php the_permalink(); ?>"
-                                                       <?php echo esc_attr($target_blank); ?>
-                                                       class="title-link">
+                                                <<?php echo esc_attr($title_tag); ?> class="title <?php echo esc_attr($title_alignment_class); ?>">
+                                                    <?php if ($fancy_link_details === 'on') : ?>
+                                                        <a href="<?php the_permalink(); ?>"
+                                                           <?php echo esc_attr($target_blank); ?>
+                                                           class="title-link">
+                                                            <?php echo esc_html(
+                                                                wp_trim_words(get_the_title(), $fancy_post_title_limit, esc_html($title_more_text))
+                                                            ); ?>
+                                                        </a>
+                                                    <?php else : ?>
                                                         <?php echo esc_html(
                                                             wp_trim_words(get_the_title(), $fancy_post_title_limit, esc_html($title_more_text))
                                                         ); ?>
-                                                    </a>
-                                                <?php else : ?>
-                                                    <?php echo esc_html(
-                                                        wp_trim_words(get_the_title(), $fancy_post_title_limit, esc_html($title_more_text))
-                                                    ); ?>
-                                                <?php endif; ?>
-                                            </<?php echo esc_attr($title_tag); ?>>
-                                        <?php endif; ?>
-                                        <?php if ($fpg_field_group_post_date) : ?>
-                                            <ul class="blog-meta <?php echo esc_attr($meta_alignment_class); ?>">
-                                                
-                                                <?php if ($fpg_field_group_post_date) : ?>
-                                                    <li class="date">
-                                                        <?php if (!empty($fpg_field_group_date_icon) && empty($disabled_meta_icons['date_icon'])) {?>
-                                                        <i class="ri-calendar-2-line"></i>
-                                                        <?php } ?>
-                                                        <?php echo get_the_date('M d, Y'); ?>
+                                                    <?php endif; ?>
+                                                </<?php echo esc_attr($title_tag); ?>>
+                                            <?php endif; ?>
+                                            <?php if ($fpg_field_group_post_date) : ?>
+                                                <ul class="blog-meta <?php echo esc_attr($meta_alignment_class); ?>">
+                                                    
+                                                    <?php if ($fpg_field_group_post_date) : ?>
+                                                        <li class="date">
+                                                            <?php if (!empty($fpg_field_group_date_icon) && empty($disabled_meta_icons['date_icon'])) {?>
+                                                            <i class="ri-calendar-2-line"></i>
+                                                            <?php } ?>
+                                                            <?php echo get_the_date('M d, Y'); ?>
+                                                        </li>
+                                                    <?php endif; ?>
+                                                    <?php if ($fpg_field_group_comment_count && get_comments_number() > 0) : ?>
+                                                        <li class="meta-comment-count">
+                                                            <?php if (!empty($fpg_field_group_comment_count_icon) && empty($disabled_meta_icons['comment_count_icon'])) {?>
+                                                            <i class="ri-chat-3-line"></i>
+                                                            <?php } ?>
+                                                            <?php comments_number('0 Comments', '1 Comment', '% Comments'); ?>
+                                                        </li>
+                                                    <?php endif; ?>
+                                                    <?php if ($fpg_field_group_tag && has_tag()) : ?>
+                                                        <li class="meta-tags">
+                                                            <?php if (!empty($fpg_field_group_tags_icon) && empty($disabled_meta_icons['tags_icon'])) {?>
+                                                            <i class="ri-price-tag-3-line"></i>
+                                                            <?php } ?>
+                                                            <?php the_tags('', ', ', ''); ?>
+                                                        </li>
+                                                    <?php endif; ?> 
+                                                    <li>
+                                                        <div class="rs-icon">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="4" height="4" viewBox="0 0 6 6" fill="none">
+                                                                <path d="M3 0L5.59808 1.5V4.5L3 6L0.401924 4.5V1.5L3 0Z" fill="#513DE8"></path>
+                                                                <defs>
+                                                                    <linearGradient x1="-3.93273e-08" y1="0.803572" x2="6.33755" y2="1.30989" gradientUnits="userSpaceOnUse">
+                                                                        <stop stop-color="#513DE8" offset="1"></stop>
+                                                                        <stop offset="1" stop-color="#8366E3"></stop>
+                                                                    </linearGradient>
+                                                                </defs>
+                                                            </svg>
+                                                        </div>    
+                                                        <?php esc_html_e('8 min read', 'fancy-post-grid'); ?>
                                                     </li>
-                                                <?php endif; ?>
-                                                <?php if ($fpg_field_group_comment_count && get_comments_number() > 0) : ?>
-                                                    <li class="meta-comment-count">
-                                                        <?php if (!empty($fpg_field_group_comment_count_icon) && empty($disabled_meta_icons['comment_count_icon'])) {?>
-                                                        <i class="ri-chat-3-line"></i>
-                                                        <?php } ?>
-                                                        <?php comments_number('0 Comments', '1 Comment', '% Comments'); ?>
-                                                    </li>
-                                                <?php endif; ?>
-                                                <?php if ($fpg_field_group_tag && has_tag()) : ?>
-                                                    <li class="meta-tags">
-                                                        <?php if (!empty($fpg_field_group_tags_icon) && empty($disabled_meta_icons['tags_icon'])) {?>
-                                                        <i class="ri-price-tag-3-line"></i>
-                                                        <?php } ?>
-                                                        <?php the_tags('', ', ', ''); ?>
-                                                    </li>
-                                                <?php endif; ?> 
-                                                <li>
-                                                    <div class="rs-icon">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="4" height="4" viewBox="0 0 6 6" fill="none">
-                                                            <path d="M3 0L5.59808 1.5V4.5L3 6L0.401924 4.5V1.5L3 0Z" fill="#513DE8"></path>
-                                                            <defs>
-                                                                <linearGradient x1="-3.93273e-08" y1="0.803572" x2="6.33755" y2="1.30989" gradientUnits="userSpaceOnUse">
-                                                                    <stop stop-color="#513DE8" offset="1"></stop>
-                                                                    <stop offset="1" stop-color="#8366E3"></stop>
-                                                                </linearGradient>
-                                                            </defs>
-                                                        </svg>
-                                                    </div>    
-                                                    <?php esc_html_e('8 min read', 'fancy-post-grid'); ?>
-                                                </li>
-                                            </ul>
+                                                </ul>
                                             <?php endif; ?>
                                             <?php if ($fpg_field_group_excerpt) : ?>
                                                 <p class="desc <?php echo esc_attr($excerpt_alignment_class); ?>">
                                                     <?php echo esc_html(wp_trim_words($excerpt, $fancy_post_excerpt_limit, $excerpt_more_text)); ?>
                                                 </p>
                                             <?php endif; ?>
+                                        
                                             <div class="rs-blog-author">
                                                 <?php if ($fpg_field_group_author) : ?>
                                                 <div class="user">                 
