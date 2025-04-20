@@ -180,80 +180,80 @@ ob_start();
                                     <div class="rs-blog-layout-28-item <?php echo esc_attr($main_alignment_class); ?> <?php echo esc_attr($hover_class); ?>">
                                         
                                         <?php if (!$hide_feature_image && $fpg_field_group_image) : ?>
-                                        <div class="rs-thumb">
+                                            <div class="rs-thumb">
 
-                                        <?php if ($feature_image_url) : ?>
+                                            <?php if ($feature_image_url) : ?>
 
-                                            <?php
+                                                <?php
 
-                                                $post_id = get_the_ID();
-                                                // Get the thumbnail ID
-                                                $thumbnail_id = get_post_thumbnail_id($post_id);
-                                                
-                                                // Get the image alt text and title text
-                                                $image_alt = get_post_meta($thumbnail_id, '_wp_attachment_image_alt', true);
-                                                $image_title = get_the_title($thumbnail_id);
-                                                // Use alt text if available; otherwise, use title text
-                                                $alt_text = !empty($image_alt) ? esc_attr($image_alt) : esc_attr($image_title);
-
-                                            ?>
-                                            <a href="<?php the_permalink(); ?>" <?php echo esc_attr($target_blank); ?>>
-                                                <img src="<?php echo esc_url($feature_image_url); ?>" alt="<?php echo esc_attr($alt_text); ?>">
-                                            </a>
-                                            <div class="rs-meta">
-                                                <ul class="blog-meta <?php echo esc_attr($meta_alignment_class); ?>">
-                                                    <?php if ($fpg_field_group_post_date) : ?>
-                                                        <li class="meta-date">
-                                                            <?php if (!empty($fpg_field_group_date_icon) && empty($disabled_meta_icons['date_icon'])) {?>
-                                                            <i class="ri-calendar-2-line"></i>
-                                                            <?php } ?>
-                                                            <?php echo get_the_date('M d, Y'); ?>
-                                                        </li>
-                                                    <?php endif; ?>
+                                                    $post_id = get_the_ID();
+                                                    // Get the thumbnail ID
+                                                    $thumbnail_id = get_post_thumbnail_id($post_id);
                                                     
-                                                    <?php if ($fpg_field_group_categories) : ?>
-                                                        <li class="meta-categories">
-                                                            <?php if (!empty($fpg_field_group_category_icon) && empty($disabled_meta_icons['category_icon'])) {?>
-                                                            <i class="ri-folder-line"></i>
-                                                            <?php } ?>
-                                                            <?php the_category(', '); ?>
-                                                        </li>
-                                                    <?php endif; ?>
+                                                    // Get the image alt text and title text
+                                                    $image_alt = get_post_meta($thumbnail_id, '_wp_attachment_image_alt', true);
+                                                    $image_title = get_the_title($thumbnail_id);
+                                                    // Use alt text if available; otherwise, use title text
+                                                    $alt_text = !empty($image_alt) ? esc_attr($image_alt) : esc_attr($image_title);
 
-                                                    <?php if ($fpg_field_group_author) : ?>
-                                                        <li class="meta-author">
-                                                            <?php if (!empty($fpg_field_group_author_icon) && empty($disabled_meta_icons['author_icon'])) { ?>
-                                                            <i class="ri-user-line"></i>
-                                                            <?php } ?>
-                                                            <a href="<?php echo esc_url(get_author_posts_url(get_the_author_meta('ID'))); ?>"
-                                                                <?php echo esc_attr($target_blank); ?>>
-                                                                <?php the_author(); ?>
-                                                            </a> 
-                                                        </li>
-                                                    <?php endif; ?>
-                                                    
-                                                    <?php if ($fpg_field_group_comment_count && get_comments_number() > 0) : ?>
-                                                        <li class="meta-comment-count">
-                                                            <?php if (!empty($fpg_field_group_comment_count_icon) && empty($disabled_meta_icons['comment_count_icon'])) {?>
-                                                            <i class="ri-chat-3-line"></i>
-                                                            <?php } ?>
-                                                            <?php comments_number('0 Comments', '1 Comment', '% Comments'); ?>
-                                                        </li>
-                                                    <?php endif; ?>
-                                                    <?php if ($fpg_field_group_tag && has_tag()) : ?>
-                                                        <li class="meta-tags">
-                                                            <?php if (!empty($fpg_field_group_tags_icon) && empty($disabled_meta_icons['tags_icon'])) {?>
-                                                            <i class="ri-price-tag-3-line"></i>
-                                                            <?php } ?>
-                                                            <?php the_tags('', ', ', ''); ?>
-                                                        </li>
-                                                    <?php endif; ?>
-                                                </ul>
+                                                ?>
+                                                <a href="<?php the_permalink(); ?>" <?php echo esc_attr($target_blank); ?>>
+                                                    <img src="<?php echo esc_url($feature_image_url); ?>" alt="<?php echo esc_attr($alt_text); ?>">
+                                                </a>
+                                                <div class="rs-meta">
+                                                    <ul class="blog-meta <?php echo esc_attr($meta_alignment_class); ?>">
+                                                        <?php if ($fpg_field_group_post_date) : ?>
+                                                            <li class="meta-date">
+                                                                <?php if (!empty($fpg_field_group_date_icon) && empty($disabled_meta_icons['date_icon'])) {?>
+                                                                <i class="ri-calendar-2-line"></i>
+                                                                <?php } ?>
+                                                                <?php echo get_the_date('M d, Y'); ?>
+                                                            </li>
+                                                        <?php endif; ?>
+                                                        
+                                                        <?php if ($fpg_field_group_categories) : ?>
+                                                            <li class="meta-categories">
+                                                                <?php if (!empty($fpg_field_group_category_icon) && empty($disabled_meta_icons['category_icon'])) {?>
+                                                                <i class="ri-folder-line"></i>
+                                                                <?php } ?>
+                                                                <?php the_category(', '); ?>
+                                                            </li>
+                                                        <?php endif; ?>
+
+                                                        <?php if ($fpg_field_group_author) : ?>
+                                                            <li class="meta-author">
+                                                                <?php if (!empty($fpg_field_group_author_icon) && empty($disabled_meta_icons['author_icon'])) { ?>
+                                                                <i class="ri-user-line"></i>
+                                                                <?php } ?>
+                                                                <a href="<?php echo esc_url(get_author_posts_url(get_the_author_meta('ID'))); ?>"
+                                                                    <?php echo esc_attr($target_blank); ?>>
+                                                                    <?php the_author(); ?>
+                                                                </a> 
+                                                            </li>
+                                                        <?php endif; ?>
+                                                        
+                                                        <?php if ($fpg_field_group_comment_count && get_comments_number() > 0) : ?>
+                                                            <li class="meta-comment-count">
+                                                                <?php if (!empty($fpg_field_group_comment_count_icon) && empty($disabled_meta_icons['comment_count_icon'])) {?>
+                                                                <i class="ri-chat-3-line"></i>
+                                                                <?php } ?>
+                                                                <?php comments_number('0 Comments', '1 Comment', '% Comments'); ?>
+                                                            </li>
+                                                        <?php endif; ?>
+                                                        <?php if ($fpg_field_group_tag && has_tag()) : ?>
+                                                            <li class="meta-tags">
+                                                                <?php if (!empty($fpg_field_group_tags_icon) && empty($disabled_meta_icons['tags_icon'])) {?>
+                                                                <i class="ri-price-tag-3-line"></i>
+                                                                <?php } ?>
+                                                                <?php the_tags('', ', ', ''); ?>
+                                                            </li>
+                                                        <?php endif; ?>
+                                                    </ul>
+                                                </div>
+                                            <?php endif; ?>
+                                            
                                             </div>
                                         <?php endif; ?>
-                                        
-                                        </div>
-                                    <?php endif; ?>
                                         <div class="rs-content">
                                             <?php if ($fpg_field_group_title) : ?>
                                             <<?php echo esc_attr($title_tag); ?> class="title  <?php echo esc_attr($title_alignment_class); ?>">
