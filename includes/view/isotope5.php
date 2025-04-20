@@ -196,7 +196,7 @@ ob_start();
                                 <span class="pre-month" > <?php echo get_the_date('F'); ?></span>                
                             </div>
                         </div>
-                    <?php endif; ?>
+                        <?php endif; ?>
                         
                         <div class="pre-blog-content <?php echo esc_attr($main_alignment_class); ?>">
                             

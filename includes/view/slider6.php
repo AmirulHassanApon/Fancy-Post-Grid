@@ -181,48 +181,48 @@ ob_start();
                                 <div class="swiper-slide">
                                     <div class="rs-blog-layout-23-item <?php echo esc_attr($main_alignment_class); ?> <?php echo esc_attr($hover_class); ?>">
                                         <?php if (!$hide_feature_image && $fpg_field_group_image) : ?>
-                                        <div class="rs-thumb">
+                                            <div class="rs-thumb">
 
-                                        <?php if ($feature_image_url) : ?>
+                                            <?php if ($feature_image_url) : ?>
 
-                                            <?php
+                                                <?php
 
-                                                $post_id = get_the_ID();
-                                                // Get the thumbnail ID
-                                                $thumbnail_id = get_post_thumbnail_id($post_id);
-                                                
-                                                // Get the image alt text and title text
-                                                $image_alt = get_post_meta($thumbnail_id, '_wp_attachment_image_alt', true);
-                                                $image_title = get_the_title($thumbnail_id);
-                                                // Use alt text if available; otherwise, use title text
-                                                $alt_text = !empty($image_alt) ? esc_attr($image_alt) : esc_attr($image_title);
+                                                    $post_id = get_the_ID();
+                                                    // Get the thumbnail ID
+                                                    $thumbnail_id = get_post_thumbnail_id($post_id);
+                                                    
+                                                    // Get the image alt text and title text
+                                                    $image_alt = get_post_meta($thumbnail_id, '_wp_attachment_image_alt', true);
+                                                    $image_title = get_the_title($thumbnail_id);
+                                                    // Use alt text if available; otherwise, use title text
+                                                    $alt_text = !empty($image_alt) ? esc_attr($image_alt) : esc_attr($image_title);
 
-                                            ?>
-                                            <a href="<?php the_permalink(); ?>" <?php echo esc_attr($target_blank); ?>>
-                                                <img src="<?php echo esc_url($feature_image_url); ?>" alt="<?php echo esc_attr($alt_text); ?>">
-                                            </a>
+                                                ?>
+                                                <a href="<?php the_permalink(); ?>" <?php echo esc_attr($target_blank); ?>>
+                                                    <img src="<?php echo esc_url($feature_image_url); ?>" alt="<?php echo esc_attr($alt_text); ?>">
+                                                </a>
+                                            <?php endif; ?>
+                                            
+                                            </div>
                                         <?php endif; ?>
-                                        
-                                        </div>
-                                    <?php endif; ?>
                                         <div class="rs-blog-layout-23-overlay">
                                             <?php if ($fpg_field_group_title) : ?>
-                                            <<?php echo esc_attr($title_tag); ?> class="title <?php echo esc_attr($title_alignment_class); ?>">
-                                                <?php if ($fancy_link_details === 'on') : ?>
-                                                    <a href="<?php the_permalink(); ?>"
-                                                       <?php echo esc_attr($target_blank); ?>
-                                                       class="title-link">
+                                                <<?php echo esc_attr($title_tag); ?> class="title <?php echo esc_attr($title_alignment_class); ?>">
+                                                    <?php if ($fancy_link_details === 'on') : ?>
+                                                        <a href="<?php the_permalink(); ?>"
+                                                           <?php echo esc_attr($target_blank); ?>
+                                                           class="title-link">
+                                                            <?php echo esc_html(
+                                                                wp_trim_words(get_the_title(), $fancy_post_title_limit, esc_html($title_more_text))
+                                                            ); ?>
+                                                        </a>
+                                                    <?php else : ?>
                                                         <?php echo esc_html(
                                                             wp_trim_words(get_the_title(), $fancy_post_title_limit, esc_html($title_more_text))
                                                         ); ?>
-                                                    </a>
-                                                <?php else : ?>
-                                                    <?php echo esc_html(
-                                                        wp_trim_words(get_the_title(), $fancy_post_title_limit, esc_html($title_more_text))
-                                                    ); ?>
-                                                <?php endif; ?>
-                                            </<?php echo esc_attr($title_tag); ?>>
-                                        <?php endif; ?>
+                                                    <?php endif; ?>
+                                                </<?php echo esc_attr($title_tag); ?>>
+                                            <?php endif; ?>
                                             <?php if ($fpg_field_group_read_more) : ?>
                                                 <div class="rs-btn-box <?php echo esc_attr($button_alignment_class); ?>">
                                                     <a class="rs-btn  <?php echo esc_attr($button_class); ?>" href="<?php the_permalink(); ?>" <?php echo esc_attr($target_blank); ?>>
