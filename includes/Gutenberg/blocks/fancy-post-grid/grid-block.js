@@ -1908,21 +1908,6 @@
                                                 ` ${metaAuthorPrefix ? metaAuthorPrefix + ' ' : ''}${post._embedded?.author?.[0]?.name}`
                                             ),
 
-                                            // Post Date
-                                            showPostDate && wp.element.createElement('li', { className: 'meta-date',style: { 
-                                                    color: metaTextColor, 
-                                                    fontSize: `${metaFontSize}px`,
-                                                } },
-                                                showMetaIcon && showPostDateIcon &&
-                                                wp.element.createElement('i', { className: 'fas fa-calendar-alt',
-                                                    style:{ 
-                                                        color: metaIconColor, 
-                                                        fontSize: `${metaFontSize}px`,
-                                                    } }), // Font Awesome calendar icon
-                                                ' News in ', // Add "News" text before the year
-                                                new Date(post.date).toLocaleDateString(undefined, { year: 'numeric' })
-                                            ),
-
                                             // Post Category
                                             showPostCategory && wp.element.createElement('li', { className: 'meta-category', style: { 
                                                     color: metaTextColor, 
