@@ -101,7 +101,7 @@ ob_start();
 
                                 // Add 'post__not_in' to the query if not empty
                                 if (!empty($selected_post_not_in)) {
-                                    $args['post__not_in'] = $selected_post_not_in;
+                                    $args['post__not_in'] = $selected_post_not_in;// phpcs:ignore WordPressVIPMinimum.Performance.WPQueryParams.PostNotIn_post__not_in
                                 }
 
                                 // Run a preliminary query to get all matching post IDs
