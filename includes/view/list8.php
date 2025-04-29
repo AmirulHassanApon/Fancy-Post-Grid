@@ -53,8 +53,6 @@ ob_start();
                 // Capture and sanitize tag terms if 'tags' taxonomy is selected
                 $tag_terms = array_map('intval', $fpg_filter_tags_terms);   
 
-
-
                 // Get values from the form inputs           
                 $args = array(
                     'post_type'      => $fancy_post_type,
@@ -72,7 +70,7 @@ ob_start();
 
                 // Add 'post__not_in' to the query if not empty
                 if (!empty($selected_post_not_in)) {
-                    $args['post__not_in'] = $selected_post_not_in;
+                    $args['post__not_in'] = $selected_post_not_in;// phpcs:ignore WordPressVIPMinimum.Performance.WPQueryParams.PostNotIn_post__not_in
                 }
 
                 // Run a preliminary query to get all matching post IDs

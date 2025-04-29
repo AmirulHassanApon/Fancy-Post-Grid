@@ -85,7 +85,7 @@ ob_start();
 
                 // Add 'post__not_in' to the query if not empty
                 if (!empty($selected_post_not_in)) {
-                    $args['post__not_in'] = $selected_post_not_in;
+                    $args['post__not_in'] = $selected_post_not_in;// phpcs:ignore WordPressVIPMinimum.Performance.WPQueryParams.PostNotIn_post__not_in
                 }
 
                 // Run a preliminary query to get all matching post IDs
@@ -139,11 +139,9 @@ ob_start();
                     // Determine if the feature image should be hidden
                     $hide_feature_image = isset($fancy_post_hide_feature_image) && $fancy_post_hide_feature_image === 'off';
                     
-
                     // Determine the feature image size
                     $feature_image_size = isset($fancy_post_feature_image_size) ? (string) $fancy_post_feature_image_size : '';  
-
-                               
+                              
                     // Determine the media source
                     $media_source = isset($fancy_post_media_source) ? $fancy_post_media_source : 'feature_image';
                     

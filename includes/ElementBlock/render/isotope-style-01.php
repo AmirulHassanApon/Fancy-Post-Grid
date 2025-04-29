@@ -12,7 +12,7 @@ $args = array(
     'tag__in'        => !empty($settings['tag_filter']) ? $settings['tag_filter'] : '',
     'author'         => !empty($settings['author_filter']) ? $settings['author_filter'] : '',
     'post__in'       => !empty($settings['include_posts']) ? explode(',', $settings['include_posts']) : '',
-    'post__not_in'   => !empty($settings['exclude_posts']) ? explode(',', $settings['exclude_posts']) : '',
+    'post__not_in'   => !empty($settings['exclude_posts']) ? explode(',', $settings['exclude_posts']) : '', // phpcs:ignore WordPressVIPMinimum.Performance.WPQueryParams.PostNotIn_post__not_in
     'paged'          => $paged,
 );
 $separator_map = [
@@ -103,7 +103,7 @@ if ($query->have_posts()) {
                         foreach ($meta_items as $meta) {
                             if ($meta['condition']) {
                                 echo '<div class="' . esc_attr($meta['class']) . '">';
-                                echo $meta['icon'] . ' ' . $meta['content'];
+                                echo wp_kses_post($meta['icon']) . ' ' . wp_kses_post($meta['content']);
                                 echo '</div>';
                             }
                         }
@@ -200,7 +200,7 @@ if ($query->have_posts()) {
                                     foreach ($meta_items as $meta) {
                                         if ($meta['condition']) {
                                             echo '<div class="' . esc_attr($meta['class']) . '">';
-                                            echo $meta['icon'] . ' ' . $meta['content'];
+                                            echo wp_kses_post($meta['icon']) . ' ' . wp_kses_post($meta['content']);
                                             echo '</div>';
                                         }
                                     }

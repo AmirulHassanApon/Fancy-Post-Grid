@@ -41,7 +41,6 @@ ob_start();
                         <div class="swiper-wrapper">
                             <?php
 
-                                //==============STATUS==============
                                 // Ensure it's an array
                                 if (!is_array($fpg_filter_statuses)) {
                                     // Convert string to array if necessary
@@ -100,7 +99,7 @@ ob_start();
 
                                 // Add 'post__not_in' to the query if not empty
                                 if (!empty($selected_post_not_in)) {
-                                    $args['post__not_in'] = $selected_post_not_in;
+                                    $args['post__not_in'] = $selected_post_not_in;// phpcs:ignore WordPressVIPMinimum.Performance.WPQueryParams.PostNotIn_post__not_in
                                 }
 
                                 // Run a preliminary query to get all matching post IDs
@@ -133,15 +132,12 @@ ob_start();
                                     );
                                 }
 
-
                                 if (!empty($tax_query)) {
                                     $args['tax_query'] = $tax_query;
                                 }
                                 
-
                                 $query = new WP_Query($args);
-                            
-                            
+                                                       
                                 while ($query->have_posts()) : $query->the_post();
                                     // Check if the link should open in a new tab
                                     $target_blank = ($fancy_link_target === 'new') ? 'target="_blank"' : '';

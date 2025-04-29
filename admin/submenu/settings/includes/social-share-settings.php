@@ -236,7 +236,7 @@ function fancy_post_grid_render_social_links_repeater() {
 function fancy_post_grid_render_social_link_row($index, $platform = '', $url = '') {
     ?>
     <div class="fancy-post-social-link-row">
-        <select name="fpg_social_media_links[<?php echo $index; ?>][platform]" class="fancy-post-social-platform">
+        <select name="fpg_social_media_links[<?php echo esc_attr($index); ?>][platform]" class="fancy-post-social-platform">
             <option value=""><?php esc_html_e('Select Platform', 'fancy-post-grid'); ?></option>
             <option value="facebook" <?php selected($platform, 'facebook'); ?> class="fab fa-facebook">Facebook</option>
             <option value="twitter" <?php selected($platform, 'twitter'); ?> class="fab fa-twitter">Twitter</option>
@@ -245,7 +245,7 @@ function fancy_post_grid_render_social_link_row($index, $platform = '', $url = '
             <option value="pinterest" <?php selected($platform, 'pinterest'); ?> class="fab fa-pinterest">Pinterest</option>
             <option value="youtube" <?php selected($platform, 'youtube'); ?> class="fab fa-youtube">YouTube</option>
         </select>
-        <input type="url" name="fpg_social_media_links[<?php echo $index; ?>][url]" class="fancy-post-social-url" placeholder="<?php esc_attr_e('Enter URL', 'fancy-post-grid'); ?>" value="<?php echo esc_attr($url); ?>" />
+        <input type="url" name="fpg_social_media_links[<?php echo esc_attr($index); ?>][url]" class="fancy-post-social-url" placeholder="<?php esc_attr_e('Enter URL', 'fancy-post-grid'); ?>" value="<?php echo esc_attr($url); ?>" />
         <button type="button" class="fancy-post-remove-social-link button"><?php esc_html_e('Remove', 'fancy-post-grid'); ?></button>
     </div>
     <?php
