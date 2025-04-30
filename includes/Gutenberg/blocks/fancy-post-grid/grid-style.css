@@ -1650,6 +1650,7 @@ img {
 }
 .rs-blog-layout-5 .rs-blog__single .rs-content ul {
     display: flex;
+    align-items: center;
     gap: 8px 20px;
     flex-wrap: wrap;
     padding: 0px;
@@ -1657,8 +1658,12 @@ img {
     order: 1;
 }
 
+.rs-blog-layout-5 .rs-blog__single .rs-content ul .meta-separator{
+    color: #454545;
+}
+
 .rs-blog-layout-5 .rs-blog__single .rs-content ul li a {
-    color: #05100B;
+    color: #454545;
 }
 
 .rs-blog-layout-5 .rs-blog__single .rs-content ul li a:hover {
@@ -1767,6 +1772,7 @@ img {
 }
 .rs-blog-layout-5 .rs-blog__single .rs-content .fpg-excerpt p{
     margin: 10px 0 10px 0;
+    color: #454545;
 }
 
 .rs-blog-layout-5 .rs-blog__single .rs-content a {
