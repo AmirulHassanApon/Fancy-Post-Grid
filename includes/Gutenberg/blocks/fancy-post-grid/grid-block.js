@@ -71,7 +71,7 @@
             
             //Button Settings
             readMoreLabel: { type: 'string', default: 'Read More' },
-            buttonStyle: { type: 'string', default: 'flat' },
+            buttonStyle: { type: 'string', default: '' },
             showButtonIcon: { type: 'boolean', default: true },
             iconPosition: { type: 'string', default: 'right' },
             //Style
@@ -628,16 +628,16 @@
                                 // Title with Link
                                 showPostTitle &&
                                     wp.element.createElement(
-                                        'div',
+                                        titleTag,
                                         {
                                             className: 'title',
                                             style: {
-                                                ...(attributes.postTitleMargin ? { margin: getSpacingValue(attributes.postTitleMargin) } : {}),
-                                                ...(attributes.postTitlePadding ? { padding: getSpacingValue(attributes.postTitlePadding) } : {}),
+                                                margin: getSpacingValue(attributes.postTitleMargin || '0px'),
+                                                padding: getSpacingValue(attributes.postTitlePadding || '0px'),
                                                 ...(postTitleAlignment ? { textAlign: postTitleAlignment } : {}),
+                                                ...(postTitleBgColor ? { backgroundColor: postTitleBgColor } : {}),
                                                 transition: 'all 0.3s ease',
                                                 ...(titleOrder !== undefined ? { order: titleOrder } : {}),
-                                                ...(postTitleBgColor ? { backgroundColor: postTitleBgColor } : {}) // Background only for title div
                                             },
                                             onMouseEnter: (e) => {
                                                 e.currentTarget.style.backgroundColor = postTitleHoverBgColor;
@@ -646,45 +646,36 @@
                                                 e.currentTarget.style.backgroundColor = postTitleBgColor;
                                             },
                                         },
-                                        wp.element.createElement(
-                                            titleTag,
-                                            {
-                                                
-                                                
-                                            },
-                                            postLinkType === 'yeslink'
-                                                ? wp.element.createElement(
-                                                    'a',
-                                                    { 
-                                                        href: post.link, 
-                                                        target: postLinkTarget === 'newWindow' ? '_blank' : '_self',
-                                                        style: { // Ensure the styles apply to the <a> tag
-                                                            ...(postTitleColor ? { color: postTitleColor } : {}),
-                                                            ...(postTitleFontSize ? { fontSize: `${postTitleFontSize}px` } : {}),
-                                                            ...(postTitleFontWeight ? { fontWeight: postTitleFontWeight } : {}),
-                                                            ...(postTitleLineHeight ? { lineHeight: postTitleLineHeight } : {}),
-                                                            ...(postTitleLetterSpacing ? { letterSpacing: postTitleLetterSpacing } : {}),
-                                                            transition: 'all 0.3s ease', // always applied
-
-                                                        },
-                                                        onMouseEnter: (e) => {
-                                                            e.currentTarget.style.color = postTitleHoverColor;
-                                                        },
-                                                        onMouseLeave: (e) => {
-                                                            e.currentTarget.style.color = postTitleColor;
-                                                        },
+                                        postLinkType === 'yeslink'
+                                            ? wp.element.createElement(
+                                                'a',
+                                                {
+                                                    href: post.link,
+                                                    target: postLinkTarget === 'newWindow' ? '_blank' : '_self',
+                                                    style: {
+                                                        ...(postTitleColor ? { color: postTitleColor } : {}),
+                                                        ...(postTitleFontSize ? { fontSize: `${postTitleFontSize}px` } : {}),
+                                                        ...(postTitleFontWeight ? { fontWeight: postTitleFontWeight } : {}),
+                                                        ...(postTitleLineHeight ? { lineHeight: postTitleLineHeight } : {}),
+                                                        ...(postTitleLetterSpacing ? { letterSpacing: postTitleLetterSpacing } : {}),
+                                                        transition: 'all 0.3s ease',
                                                     },
-                                                    titleCropBy === 'word'
-                                                        ? post.title.rendered.split(' ').slice(0, titleLength).join(' ') // Crop by word
-                                                        : post.title.rendered.substring(0, titleLength) // Crop by character
-                                                )
-                                                : (titleCropBy === 'word'
+                                                    onMouseEnter: (e) => {
+                                                        e.currentTarget.style.color = postTitleHoverColor;
+                                                    },
+                                                    onMouseLeave: (e) => {
+                                                        e.currentTarget.style.color = postTitleColor;
+                                                    },
+                                                },
+                                                titleCropBy === 'word'
                                                     ? post.title.rendered.split(' ').slice(0, titleLength).join(' ')
-                                                    : post.title.rendered.substring(0, titleLength))
-                                        )
-
+                                                    : post.title.rendered.substring(0, titleLength)
+                                            )
+                                            : (titleCropBy === 'word'
+                                                ? post.title.rendered.split(' ').slice(0, titleLength).join(' ')
+                                                : post.title.rendered.substring(0, titleLength))
                                     ),
-                                
+
                                 showPostExcerpt &&
                                     wp.element.createElement('div', { 
                                         className: 'fpg-excerpt', 
@@ -732,9 +723,9 @@
                                     wp.element.createElement('a', { 
                                         href: post.link, 
                                         target: postLinkTarget === 'newWindow' ? '_blank' : '_self', 
-                                        className: `rs-link read-more-${buttonStyle}`,  // Dynamic class based on buttonStyle
+                                        className: `rs-link read-more ${buttonStyle}`,  // Dynamic class based on buttonStyle
                                         style: { 
-                                            ...(buttonStyle === 'filled' ? { backgroundColor: buttonBackgroundColor } : { backgroundColor: 'transparent' }),
+                                            ...(buttonStyle === 'fpg-filled' ? { backgroundColor: buttonBackgroundColor } : { backgroundColor: 'transparent' }),
                                             ...(buttonTextColor ? { color: buttonTextColor, borderColor: buttonTextColor } : {}),
                                             ...(buttonBorderType && buttonBackgroundColor ? { border: `${buttonBorderType} ${buttonBackgroundColor}` } : {}),
                                             ...(buttonFontWeight ? { fontWeight: buttonFontWeight } : {}),
@@ -742,7 +733,7 @@
                                             ...(attributes.buttonPaddingNew ? { padding: getSpacingValue(attributes.buttonPaddingNew) } : {}),
                                             ...(attributes.buttonBorderRadius ? { borderRadius: getSpacingValue(attributes.buttonBorderRadius) } : {}),
                                             ...(buttonFontSize ? { fontSize: `${buttonFontSize}px` } : {}),
-                                            ...(buttonStyle === 'flat' ? { textDecoration: 'none' } : { textDecoration: 'inherit' }),
+                                            ...(buttonStyle === 'fpg-flat' ? { textDecoration: 'none' } : { textDecoration: 'inherit' }),
                                         },
                                         onMouseEnter: (e) => {
                                             e.currentTarget.style.color = buttonHoverTextColor;
@@ -1032,9 +1023,9 @@
                                     wp.element.createElement('a', { 
                                         href: post.link, 
                                         target: postLinkTarget === 'newWindow' ? '_blank' : '_self', 
-                                        className: `rs-link read-more-${buttonStyle}`,  // Dynamic class based on buttonStyle
+                                        className: `rs-link read-more ${buttonStyle}`,  // Dynamic class based on buttonStyle
                                         style: { 
-                                            backgroundColor: buttonStyle === 'filled' ? buttonBackgroundColor : 'transparent',
+                                            backgroundColor: buttonStyle === 'fpg-filled' ? buttonBackgroundColor : 'transparent',
                                             color: buttonTextColor,
                                             borderColor: buttonTextColor,
                                             border:  ` ${buttonBorderType} ${buttonBackgroundColor}`, 
@@ -1044,7 +1035,7 @@
                                             padding: getSpacingValue(attributes.buttonPaddingNew),
                                             borderRadius: getSpacingValue(attributes.buttonBorderRadius),
                                             fontSize: `${buttonFontSize}px`,
-                                            textDecoration: buttonStyle === 'flat' ? 'none' : 'inherit'
+                                            textDecoration: buttonStyle === 'fpg-flat' ? 'none' : 'inherit'
                                         },
                                         onMouseEnter: (e) => {
                                             e.currentTarget.style.color = buttonHoverTextColor;
@@ -1396,9 +1387,9 @@
                                     wp.element.createElement('a', { 
                                         href: post.link, 
                                         target: postLinkTarget === 'newWindow' ? '_blank' : '_self', 
-                                        className: `rs-link read-more-${buttonStyle}`,  // Dynamic class based on buttonStyle
+                                        className: `rs-link read-more ${buttonStyle}`,  // Dynamic class based on buttonStyle
                                         style: { 
-                                            backgroundColor: buttonStyle === 'filled' ? buttonBackgroundColor : 'transparent',
+                                            backgroundColor: buttonStyle === 'fpg-filled' ? buttonBackgroundColor : 'transparent',
                                             color: buttonTextColor,
                                             borderColor: buttonTextColor,
                                             border:  ` ${buttonBorderType} ${buttonBackgroundColor}`, 
@@ -1408,7 +1399,7 @@
                                             padding: getSpacingValue(attributes.buttonPaddingNew),
                                             borderRadius: getSpacingValue(attributes.buttonBorderRadius),
                                             fontSize: `${buttonFontSize}px`,
-                                            textDecoration: buttonStyle === 'flat' ? 'none' : 'inherit'
+                                            textDecoration: buttonStyle === 'fpg-flat' ? 'none' : 'inherit'
                                         },
                                         onMouseEnter: (e) => {
                                             e.currentTarget.style.color = buttonHoverTextColor;
@@ -2026,9 +2017,9 @@
                                     wp.element.createElement('a', { 
                                         href: post.link, 
                                         target: postLinkTarget === 'newWindow' ? '_blank' : '_self', 
-                                        className: `blog-btn icon-after-${buttonStyle}`,  // Dynamic class based on buttonStyle
+                                        className: `blog-btn icon-after ${buttonStyle}`,  // Dynamic class based on buttonStyle
                                         style: { 
-                                            backgroundColor: buttonStyle === 'filled' ? buttonBackgroundColor : 'transparent',
+                                            backgroundColor: buttonStyle === 'fpg-filled' ? buttonBackgroundColor : 'transparent',
                                             color: buttonTextColor,
                                             borderColor: buttonTextColor,
                                             border:  ` ${buttonBorderType} ${buttonBackgroundColor}`, 
@@ -2038,7 +2029,7 @@
                                             padding: getSpacingValue(attributes.buttonPaddingNew),
                                             borderRadius: getSpacingValue(attributes.buttonBorderRadius),
                                             fontSize: `${buttonFontSize}px`,
-                                            textDecoration: buttonStyle === 'flat' ? 'none' : 'inherit'
+                                            textDecoration: buttonStyle === 'fpg-flat' ? 'none' : 'inherit'
                                         },
                                         onMouseEnter: (e) => {
                                             e.currentTarget.style.color = buttonHoverTextColor;
@@ -2339,9 +2330,9 @@
                                     wp.element.createElement('a', { 
                                         href: post.link, 
                                         target: postLinkTarget === 'newWindow' ? '_blank' : '_self', 
-                                        className: `blog-btn read-more-${buttonStyle}`,  // Dynamic class based on buttonStyle
+                                        className: `blog-btn read-more ${buttonStyle}`,  // Dynamic class based on buttonStyle
                                         style: { 
-                                            backgroundColor: buttonStyle === 'filled' ? buttonBackgroundColor : 'transparent',
+                                            backgroundColor: buttonStyle === 'fpg-filled' ? buttonBackgroundColor : 'transparent',
                                             color: buttonTextColor,
                                             borderColor: buttonTextColor,
                                             border:  ` ${buttonBorderType} ${buttonBackgroundColor}`, 
@@ -2351,7 +2342,7 @@
                                             padding: getSpacingValue(attributes.buttonPaddingNew),
                                             borderRadius: getSpacingValue(attributes.buttonBorderRadius),
                                             fontSize: `${buttonFontSize}px`,
-                                            textDecoration: buttonStyle === 'flat' ? 'none' : 'inherit'
+                                            textDecoration: buttonStyle === 'fpg-flat' ? 'none' : 'inherit'
                                         },
                                         onMouseEnter: (e) => {
                                             e.currentTarget.style.color = buttonHoverTextColor;
@@ -3275,9 +3266,9 @@
                                     wp.element.createElement('a', { 
                                         href: post.link, 
                                         target: postLinkTarget === 'newWindow' ? '_blank' : '_self', 
-                                        className: `rs-btn read-more-${buttonStyle}`,  // Dynamic class based on buttonStyle
+                                        className: `rs-btn read-more ${buttonStyle}`,  // Dynamic class based on buttonStyle
                                         style: { 
-                                            backgroundColor: buttonStyle === 'filled' ? buttonBackgroundColor : 'transparent',
+                                            backgroundColor: buttonStyle === 'fpg-filled' ? buttonBackgroundColor : 'transparent',
                                             color: buttonTextColor,
                                             borderColor: buttonTextColor,
                                             border:  ` ${buttonBorderType} ${buttonBackgroundColor}`, 
@@ -3287,7 +3278,7 @@
                                             padding: getSpacingValue(attributes.buttonPaddingNew),
                                             borderRadius: getSpacingValue(attributes.buttonBorderRadius),
                                             fontSize: `${buttonFontSize}px`,
-                                            textDecoration: buttonStyle === 'flat' ? 'none' : 'inherit'
+                                            textDecoration: buttonStyle === 'fpg-flat' ? 'none' : 'inherit'
                                         },
                                         onMouseEnter: (e) => {
                                             e.currentTarget.style.color = buttonHoverTextColor;
@@ -3586,9 +3577,9 @@
                                     wp.element.createElement('a', { 
                                         href: post.link, 
                                         target: postLinkTarget === 'newWindow' ? '_blank' : '_self', 
-                                        className: `rs-btn read-more-${buttonStyle}`,  // Dynamic class based on buttonStyle
+                                        className: `rs-btn read-more ${buttonStyle}`,  // Dynamic class based on buttonStyle
                                         style: { 
-                                            backgroundColor: buttonStyle === 'filled' ? buttonBackgroundColor : 'transparent',
+                                            backgroundColor: buttonStyle === 'fpg-filled' ? buttonBackgroundColor : 'transparent',
                                             color: buttonTextColor,
                                             borderColor: buttonTextColor,
                                             border:  ` ${buttonBorderType} ${buttonBackgroundColor}`, 
@@ -3598,7 +3589,7 @@
                                             padding: getSpacingValue(attributes.buttonPaddingNew),
                                             borderRadius: getSpacingValue(attributes.buttonBorderRadius),
                                             fontSize: `${buttonFontSize}px`,
-                                            textDecoration: buttonStyle === 'flat' ? 'none' : 'inherit'
+                                            textDecoration: buttonStyle === 'fpg-flat' ? 'none' : 'inherit'
                                         },
                                         onMouseEnter: (e) => {
                                             e.currentTarget.style.color = buttonHoverTextColor;
@@ -3876,9 +3867,9 @@
                                     wp.element.createElement('a', { 
                                         href: post.link, 
                                         target: postLinkTarget === 'newWindow' ? '_blank' : '_self', 
-                                        className: `rs-btn read-more-${buttonStyle}`,  // Dynamic class based on buttonStyle
+                                        className: `rs-btn read-more ${buttonStyle}`,  // Dynamic class based on buttonStyle
                                         style: { 
-                                            backgroundColor: buttonStyle === 'filled' ? buttonBackgroundColor : 'transparent',
+                                            backgroundColor: buttonStyle === 'fpg-filled' ? buttonBackgroundColor : 'transparent',
                                             color: buttonTextColor,
                                             borderColor: buttonTextColor,
                                             border:  ` ${buttonBorderType} ${buttonBackgroundColor}`, 
@@ -3888,7 +3879,7 @@
                                             padding: getSpacingValue(attributes.buttonPaddingNew),
                                             borderRadius: getSpacingValue(attributes.buttonBorderRadius),
                                             fontSize: `${buttonFontSize}px`,
-                                            textDecoration: buttonStyle === 'flat' ? 'none' : 'inherit'
+                                            textDecoration: buttonStyle === 'fpg-flat' ? 'none' : 'inherit'
                                         },
                                         onMouseEnter: (e) => {
                                             e.currentTarget.style.color = buttonHoverTextColor;
@@ -4282,9 +4273,9 @@
                                         label: __('Button Style', 'fancy-post-grid'),
                                         value: buttonStyle,
                                         options: [
-                                            { label: 'Filled', value: 'filled' },
-                                            { label: 'Border', value: 'border' },
-                                            { label: 'Flat', value: 'flat' },
+                                            { label: 'Filled', value: 'fpg-filled' },
+                                            { label: 'Border', value: 'fpg-border' },
+                                            { label: 'Flat', value: 'fpg-flat' },
                                         ],
                                         onChange: (value) => setAttributes({ buttonStyle: value })
                                     }),
