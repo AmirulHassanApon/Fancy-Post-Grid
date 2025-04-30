@@ -61,6 +61,7 @@
             titleLength: { type: 'number', default: 12 },
             //Thumbnail Settings
             thumbnailSize: { type: 'string', default: 'fancy_post_custom_size' },
+            hoverAnimation: { type: 'string', default: 'hover-zoom_in' },
             //Excerpt Settings
             excerptType: { type: 'string', default: 'word' },
             excerptLimit: { type: 'number', default: 10 },
@@ -188,7 +189,7 @@
                 showPostCommentsCountIcon,
                 metaOrder, titleOrder, excerptOrder, buttonOrder,                
                 titleTag,titleHoverUnderLine,titleCropBy,titleLength,
-                thumbnailSize,
+                thumbnailSize,hoverAnimation,
                 excerptType,excerptIndicator,excerptLimit,
                 metaAuthorPrefix,metaSeperator,
                 showButtonIcon,iconPosition,buttonStyle,readMoreLabel,
@@ -464,7 +465,7 @@
                         
                         return wp.element.createElement('div', { 
                             key: post.id, 
-                                className: 'fancy-post-item rs-blog__single',
+                                className: `fancy-post-item rs-blog__single ${hoverAnimation}`,
                                 style: {
                                     
                                     ...(attributes.itemMargin ? { margin: getSpacingValue(attributes.itemMargin) } : {}),
@@ -611,28 +612,26 @@
                                                 ` ${post.comment_count} Comments`
                                             )
                                         ].filter(Boolean)
-.reduce((acc, curr, index, arr) => {
-    acc.push(curr);
+                                            .reduce((acc, curr, index, arr) => {
+                                                acc.push(curr);
 
-    const isNotLast = index < arr.length - 1;
-    const hasSeparator = metaSeperator && metaSeperator !== 'none';
+                                                const isNotLast = index < arr.length - 1;
+                                                const hasSeparator = metaSeperator && metaSeperator !== 'none';
 
-    if (isNotLast && hasSeparator) {
-        acc.push(
-            wp.element.createElement('span', {
-                className: 'meta-separator',
-                style: {
-                    ...(metaTextColor ? { color: metaTextColor } : {}),
-                    ...(metaFontSize ? { fontSize: `${metaFontSize}px` } : {})
-                }
-            }, ` ${metaSeperator} `)
-        );
-    }
+                                                if (isNotLast && hasSeparator) {
+                                                    acc.push(
+                                                        wp.element.createElement('span', {
+                                                            className: 'meta-separator',
+                                                            style: {
+                                                                ...(metaTextColor ? { color: metaTextColor } : {}),
+                                                                ...(metaFontSize ? { fontSize: `${metaFontSize}px` } : {})
+                                                            }
+                                                        }, ` ${metaSeperator} `)
+                                                    );
+                                                }
 
-    return acc;
-}, [])
-
-
+                                                return acc;
+                                            }, [])
                                     ),
 
 
@@ -4227,6 +4226,17 @@
                                         ],
                                         
                                         onChange: (value) => setAttributes({ thumbnailSize: value })
+                                    }),
+                                    wp.element.createElement(SelectControl, {
+                                        label: __('Hover Animation', 'fancy-post-grid'),
+                                        value: hoverAnimation,
+                                        options: [
+                                            { label: 'None', value: 'none' },
+                                            { label: 'Zoom In', value: 'hover-zoom_in' },
+                                            { label: 'Zoom Out', value: 'hover-zoom_out' },        
+                                        ],
+                                        
+                                        onChange: (value) => setAttributes({ hoverAnimation: value })
                                     }),
                                 ),
                                 // Excerpt / Content
