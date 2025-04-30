@@ -610,17 +610,29 @@
                                                     } }), // Font Awesome comments icon
                                                 ` ${post.comment_count} Comments`
                                             )
-                                        ].filter(Boolean).reduce((acc, curr, index, arr) => 
-                                            acc.concat(curr, index < arr.length - 1 && metaSeperator !== 'none' 
-                                                ? wp.element.createElement('span', { className: 'meta-separator',style: { 
-                                                        
-                                                        ...(metaTextColor ? { color: metaTextColor } : {}),
-                                                        ...(metaFontSize ? { fontSize: `${metaFontSize}px` } : {})
-                                                        
-                                                    } }, ` ${metaSeperator} `) 
-                                                : null
-                                            ), []
-                                        )
+                                        ].filter(Boolean)
+.reduce((acc, curr, index, arr) => {
+    acc.push(curr);
+
+    const isNotLast = index < arr.length - 1;
+    const hasSeparator = metaSeperator && metaSeperator !== 'none';
+
+    if (isNotLast && hasSeparator) {
+        acc.push(
+            wp.element.createElement('span', {
+                className: 'meta-separator',
+                style: {
+                    ...(metaTextColor ? { color: metaTextColor } : {}),
+                    ...(metaFontSize ? { fontSize: `${metaFontSize}px` } : {})
+                }
+            }, ` ${metaSeperator} `)
+        );
+    }
+
+    return acc;
+}, [])
+
+
                                     ),
 
 
