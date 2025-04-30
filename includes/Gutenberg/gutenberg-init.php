@@ -138,8 +138,7 @@ add_action('init', 'fancy_post_grid_register_gutenberg_block');
 
 function fancy_post_grid_render_callback($attributes) {
     // Content Layout
-    $post_count = 0;
-    $total_post_count = $query->post_count;
+    
     $gridLayoutStyle = isset($attributes['gridLayoutStyle']) ? $attributes['gridLayoutStyle'] : 'style1';
     $gridColumns = isset($attributes['gridColumns']) ? absint($attributes['gridColumns']) : 3;
     //Query Builder
@@ -325,6 +324,7 @@ function fancy_post_grid_render_callback($attributes) {
 
     // Run the query
     $query = new WP_Query($query_args);
+    
 
     if (!$query->have_posts()) {
         return '<p>' . esc_html__('No posts found.', 'fancy-post-grid') . '</p>';
@@ -7346,8 +7346,7 @@ function fancy_post_list_render_callback($attributes) {
 
 function fancy_post_isotope_render_callback($attributes) {
     // Content Layout
-    $post_count = 0;
-    $total_post_count = $query->post_count;
+    
     $isotopeLayoutStyle = isset($attributes['isotopeLayoutStyle']) ? $attributes['isotopeLayoutStyle'] : 'style1';
     $gridColumns = isset($attributes['gridColumns']) ? absint($attributes['gridColumns']) : 3;
     //Query Builder

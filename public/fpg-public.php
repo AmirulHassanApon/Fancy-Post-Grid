@@ -11,7 +11,6 @@ function fancy_post_grid_public_styles_pro() {
     wp_enqueue_style( 'fpg-bootstrap', plugins_url('/assets/css/fpg_bootstrap.css', __FILE__), array(), $ufpg_version, 'all' );
     wp_enqueue_style( 'font-awesome', plugins_url('/assets/css/all.min.css', __FILE__), array(), $ufpg_version, 'all' );
           
-    // wp_enqueue_style( 'fancy-post-grid-main', plugins_url('/assets/css/fancy-post-grid.css', __FILE__), array(), $ufpg_version, 'all' );
     wp_enqueue_style('remixicon', plugins_url('/assets/css/remixicon.css',__FILE__), array(), $ufpg_version, 'all');
     wp_enqueue_style('swiper', plugins_url('/assets/css/swiper-bundle.min.css',__FILE__), array(), $ufpg_version, 'all');
     wp_enqueue_style('rs-layout', plugins_url('/assets/css/rs-layout.css',__FILE__), array(), $ufpg_version, 'all');
