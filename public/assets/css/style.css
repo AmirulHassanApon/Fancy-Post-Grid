@@ -1641,7 +1641,7 @@ img {
 }
 
 .rs-blog-layout-5 .rs-blog__single .rs-content {
-    border: 1px solid #003A3714;
+    border: 0;
     border-top: 0;
     border-radius: 0 0 4px 4px;
     padding: 20px 0 0;
