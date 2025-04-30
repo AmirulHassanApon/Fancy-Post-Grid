@@ -58,7 +58,7 @@
             titleTag: { type: 'string', default: 'h3' }, // New: H1–H6 tag selection
             titleHoverUnderLine: { type: 'string', default: 'enable' },
             titleCropBy: { type: 'string', default: 'word' },
-            titleLength: { type: 'number', default: 26 },
+            titleLength: { type: 'number', default: 12 },
             //Thumbnail Settings
             thumbnailSize: { type: 'string', default: 'fancy_post_custom_size' },
             //Excerpt Settings

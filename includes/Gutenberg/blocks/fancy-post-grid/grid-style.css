@@ -1557,6 +1557,7 @@ img {
 .rs-blog-layout-5 {
     padding-top: 80px;
     padding-bottom: 120px;
+    gap: 30px;
 }
 
 .rs-blog-layout-5 .rs-blog__single {
@@ -7099,10 +7100,10 @@ img {
     align-items: center;
     justify-content: center;
     margin-top: 50px;
+    gap: 20px;
 }
 .fpg-pagination ul.fpg-pagination-elementor {
     display: flex;
-    gap: 20px;
     list-style-type: none;
     margin: 0;
     padding: 0;
@@ -7118,6 +7119,7 @@ img {
     align-items: center;
 }
 
+.fpg-pagination .page-numbers,
 .fpg-pagination ul.fpg-pagination-elementor li a,
 .fpg-pagination ul.page-numbers li .page-numbers{
     height: 50px;
@@ -7129,6 +7131,7 @@ img {
     color: #6A6D7A;
 }
 
+.fpg-pagination .page-numbers:hover,
 .fpg-pagination ul.fpg-pagination-elementor li .page-numbers:hover,
 .fpg-pagination ul.page-numbers li .page-numbers:hover{
     background: #634bf8;
@@ -7136,6 +7139,7 @@ img {
     color: #ffffff;
 }
 
+.fpg-pagination .page-numbers.current,
 .fpg-pagination ul.fpg-pagination-elementor li .current,
 .fpg-pagination ul.page-numbers li .page-numbers.current{
     background: #634bf8;
@@ -7144,6 +7148,8 @@ img {
     cursor: pointer;
 }
 
+.fpg-pagination .page-numbers.prev,
+.fpg-pagination .page-numbers.next,
 .fpg-pagination ul.fpg-pagination-elementor li .page-numbers.prev,
 .fpg-pagination ul.fpg-pagination-elementor li .page-numbers.next,
 .fpg-pagination ul.page-numbers li .page-numbers.prev,
