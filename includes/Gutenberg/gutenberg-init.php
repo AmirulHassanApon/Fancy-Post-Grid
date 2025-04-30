@@ -107,7 +107,7 @@ function fancy_post_grid_register_gutenberg_block() {
     register_block_type('fancy-post-grid/block', array(
         'editor_script' => 'fancy-post-grid-block',
         'editor_style'  => 'fancy-post-grid-style',
-        'style'         => 'fancy-post-grid-style',
+        'style'         => '',
         'render_callback' => 'fancy_post_grid_render_callback', // PHP function to render posts
     ));
 
@@ -3243,84 +3243,90 @@ function fancy_post_grid_render_callback($attributes) {
         $output .= '</div>'; // End .fancy-post-grid
 
         if ($enablePagination) {
-    $output .= '<div class="fpg-pagination" style="
-        justify-content: ' . esc_attr($paginationAlignment) . ';
-        margin: ' .
-            (is_numeric($paginationMarginNew['top']) ? $paginationMarginNew['top'] . 'px' : esc_attr($paginationMarginNew['top'])) . ' ' .
-            (is_numeric($paginationMarginNew['right']) ? $paginationMarginNew['right'] . 'px' : esc_attr($paginationMarginNew['right'])) . ' ' .
-            (is_numeric($paginationMarginNew['bottom']) ? $paginationMarginNew['bottom'] . 'px' : esc_attr($paginationMarginNew['bottom'])) . ' ' .
-            (is_numeric($paginationMarginNew['left']) ? $paginationMarginNew['left'] . 'px' : esc_attr($paginationMarginNew['left'])) . ';
-    ">';
+            $output .= '<div class="fpg-pagination" style="
+                justify-content: ' . esc_attr($paginationAlignment) . ';
+                margin: ' .
+                    (is_numeric($paginationMarginNew['top']) ? $paginationMarginNew['top'] . 'px' : esc_attr($paginationMarginNew['top'])) . ' ' .
+                    (is_numeric($paginationMarginNew['right']) ? $paginationMarginNew['right'] . 'px' : esc_attr($paginationMarginNew['right'])) . ' ' .
+                    (is_numeric($paginationMarginNew['bottom']) ? $paginationMarginNew['bottom'] . 'px' : esc_attr($paginationMarginNew['bottom'])) . ' ' .
+                    (is_numeric($paginationMarginNew['left']) ? $paginationMarginNew['left'] . 'px' : esc_attr($paginationMarginNew['left'])) . ';
+            ">';
 
-    // Start UL
-    $output .= '<ul class="page-numbers">';
+            // Start UL
+            $output .= '<ul class="page-numbers">';
 
-    $pagination_links = paginate_links(array(
-        'total'     => $query->max_num_pages,
-        'current'   => $paged,
-        'format'    => '?paged=%#%',
-        'prev_text' => esc_html__('« Prev', 'fancy-post-grid'),
-        'next_text' => esc_html__('Next »', 'fancy-post-grid'),
-        'type'      => 'array',
-    ));
+            $pagination_links = paginate_links(array(
+                'total'     => $query->max_num_pages,
+                'current'   => $paged,
+                'format'    => '?paged=%#%',
+                'prev_text' => esc_html__('« Prev', 'fancy-post-grid'),
+                'next_text' => esc_html__('Next »', 'fancy-post-grid'),
+                'type'      => 'array',
+            ));
 
-    if (!empty($pagination_links)) {
-        foreach ($pagination_links as $link) {
-            $output .= '<li class="">' . $link . '</li>';
+            if (!empty($pagination_links)) {
+                foreach ($pagination_links as $link) {
+                    $output .= '<li class="">' . $link . '</li>';
+                }
+            }
+
+            $output .= '</ul>';
+            $output .= '</div>';
         }
-    }
 
-    $output .= '</ul>';
-    $output .= '</div>';
-}
+        // Custom CSS for pagination styles
+        $output .= '<style>
+            .fpg-pagination {
+                display: flex;
+                justify-content: ' . esc_attr($paginationAlignment) . ';
+            }
 
-// Custom CSS for pagination styles
-$output .= '<style>
-    .fpg-pagination-list {
-        list-style: none;
-        display: flex;
-        flex-wrap: wrap;
-        padding: 0;
-        margin: 0;
-    }
+            .page-numbers {
+                list-style: none;
+                display: flex;
+                flex-wrap: wrap;
+                padding: 0;
+                margin: 0;
+            }
 
-    .fpg-pagination-item {
-        margin-right: ' . esc_attr($paginationGap) . 'px;
-    }
+            .fpg-pagination-item {
+                margin-right: ' . esc_attr($paginationGap) . 'px;
+            }
 
-    .fpg-pagination-item a,
-    .fpg-pagination-item span {
-        display: inline-block;
-        text-decoration: none;
-        text-align: ' . esc_attr($buttonAlignment) . ';
-        padding: ' .
-            (is_numeric($paginationPaddingNew['top']) ? $paginationPaddingNew['top'] . 'px' : esc_attr($paginationPaddingNew['top'])) . ' ' .
-            (is_numeric($paginationPaddingNew['right']) ? $paginationPaddingNew['right'] . 'px' : esc_attr($paginationPaddingNew['right'])) . ' ' .
-            (is_numeric($paginationPaddingNew['bottom']) ? $paginationPaddingNew['bottom'] . 'px' : esc_attr($paginationPaddingNew['bottom'])) . ' ' .
-            (is_numeric($paginationPaddingNew['left']) ? $paginationPaddingNew['left'] . 'px' : esc_attr($paginationPaddingNew['left'])) . ';
-        border: ' . esc_attr($paginationBorderWidth) . 'px ' . esc_attr($paginationBorderStyle) . ' ' . esc_attr($paginationBorderColor) . ';
-        border-radius: ' .
-            (is_numeric($paginationBorderRadius['top']) ? $paginationBorderRadius['top'] . 'px' : esc_attr($paginationBorderRadius['top'])) . ' ' .
-            (is_numeric($paginationBorderRadius['right']) ? $paginationBorderRadius['right'] . 'px' : esc_attr($paginationBorderRadius['right'])) . ' ' .
-            (is_numeric($paginationBorderRadius['bottom']) ? $paginationBorderRadius['bottom'] . 'px' : esc_attr($paginationBorderRadius['bottom'])) . ' ' .
-            (is_numeric($paginationBorderRadius['left']) ? $paginationBorderRadius['left'] . 'px' : esc_attr($paginationBorderRadius['left'])) . ';
-        color: ' . esc_attr($paginationTextColor) . ';
-        background-color: ' . esc_attr($paginationBackgroundColor) . ';
-    }
+            .page-numbers a,
+            .page-numbers span {
+                display: inline-block;
+                text-decoration: none;
+                text-align: ' . esc_attr($buttonAlignment) . ';
+                padding: ' .
+                    (is_numeric($paginationPaddingNew['top']) ? $paginationPaddingNew['top'] . 'px' : esc_attr($paginationPaddingNew['top'])) . ' ' .
+                    (is_numeric($paginationPaddingNew['right']) ? $paginationPaddingNew['right'] . 'px' : esc_attr($paginationPaddingNew['right'])) . ' ' .
+                    (is_numeric($paginationPaddingNew['bottom']) ? $paginationPaddingNew['bottom'] . 'px' : esc_attr($paginationPaddingNew['bottom'])) . ' ' .
+                    (is_numeric($paginationPaddingNew['left']) ? $paginationPaddingNew['left'] . 'px' : esc_attr($paginationPaddingNew['left'])) . ';
+                border: ' . esc_attr($paginationBorderWidth) . 'px ' . esc_attr($paginationBorderStyle) . ' ' . esc_attr($paginationBorderColor) . ';
+                border-radius: ' .
+                    (is_numeric($paginationBorderRadius['top']) ? $paginationBorderRadius['top'] . 'px' : esc_attr($paginationBorderRadius['top'])) . ' ' .
+                    (is_numeric($paginationBorderRadius['right']) ? $paginationBorderRadius['right'] . 'px' : esc_attr($paginationBorderRadius['right'])) . ' ' .
+                    (is_numeric($paginationBorderRadius['bottom']) ? $paginationBorderRadius['bottom'] . 'px' : esc_attr($paginationBorderRadius['bottom'])) . ' ' .
+                    (is_numeric($paginationBorderRadius['left']) ? $paginationBorderRadius['left'] . 'px' : esc_attr($paginationBorderRadius['left'])) . ';
+                color: ' . esc_attr($paginationTextColor) . ';
+                background-color: ' . esc_attr($paginationBackgroundColor) . ';
+                transition: all 0.3s ease;
+            }
 
-    .fpg-pagination-item a:hover {
-        color: ' . esc_attr($paginationHoverTextColor) . ';
-        background-color: ' . esc_attr($paginationHoverBackgroundColor) . ';
-        border-color: ' . esc_attr($paginationHoverBorderColor) . ';
-    }
+            .page-numbers a:hover {
+                color: ' . esc_attr($paginationHoverTextColor) . ';
+                background-color: ' . esc_attr($paginationHoverBackgroundColor) . ';
+                border-color: ' . esc_attr($paginationHoverBorderColor) . ';
+            }
 
-    .fpg-pagination-item .current {
-        color: ' . esc_attr($paginationActiveTextColor) . ';
-        background-color: ' . esc_attr($paginationActiveBackgroundColor) . ';
-        border-color: ' . esc_attr($paginationActiveBorderColor) . ';
-    }
-</style>';
-
+            .page-numbers .current {
+                color: ' . esc_attr($paginationActiveTextColor) . ';
+                background-color: ' . esc_attr($paginationActiveBackgroundColor) . ';
+                border-color: ' . esc_attr($paginationActiveBorderColor) . ';
+                font-weight: bold;
+            }
+        </style>';
 
     wp_reset_postdata();
 
