@@ -309,7 +309,6 @@
                             key: i,
                             onClick: () => handlePageClick(i),
                             style: {
-                                
                                 backgroundColor: currentPage === i ? attributes.paginationActiveBackgroundColor : '#007cba',
                                 color: currentPage === i ? attributes.paginationActiveTextColor : '#fff',
                                 borderStyle: attributes.paginationBorderStyle,
@@ -323,20 +322,24 @@
                                 e.currentTarget.style.backgroundColor = attributes.paginationHoverBackgroundColor;
                                 e.currentTarget.style.borderColor = attributes.paginationHoverBorderColor;
                                 e.currentTarget.style.color = attributes.paginationHoverTextColor;
-                                
                             },
                             onMouseLeave: (e) => {
-                                e.currentTarget.style.backgroundColor = attributes.paginationActiveBackgroundColor;
+                                e.currentTarget.style.backgroundColor = currentPage === i ? attributes.paginationActiveBackgroundColor : '#007cba';
                                 e.currentTarget.style.borderColor = attributes.paginationActiveBorderColor;
-                                e.currentTarget.style.color = attributes.paginationActiveTextColor;
-                                
+                                e.currentTarget.style.color = currentPage === i ? attributes.paginationActiveTextColor : '#fff';
                             },
-                            
                         },
-                        i
+                        wp.element.createElement(
+                            'span',
+                            {
+                                className: `page-numbers${currentPage === i ? ' current' : ''}`,
+                            },
+                            i
+                        )
                     )
                 );
             }
+
             // Pagination controls
             const paginationControls = wp.element.createElement(
                 'div',
@@ -358,9 +361,7 @@
                         'li',
                         {
                             onClick: () => handlePageClick(currentPage - 1),
-                            disabled: currentPage === 1,
                             style: {
-                                
                                 padding: getSpacingValue(attributes.paginationPaddingNew),
                                 backgroundColor: attributes.paginationBackgroundColor,
                                 color: attributes.paginationTextColor,
@@ -369,22 +370,32 @@
                                 borderRadius: getSpacingValue(attributes.paginationBorderRadius),
                                 borderColor: attributes.paginationBorderColor,
                                 fontSize: `${attributes.paginationFontSize}px`,
+                                
                             },
                             onMouseEnter: (e) => {
-                                e.currentTarget.style.backgroundColor = attributes.paginationHoverBackgroundColor;
-                                e.currentTarget.style.borderColor = attributes.paginationHoverBorderColor;
-                                e.currentTarget.style.color = attributes.paginationHoverTextColor;
-                                
+                                if (currentPage !== 1) {
+                                    e.currentTarget.style.backgroundColor = attributes.paginationHoverBackgroundColor;
+                                    e.currentTarget.style.borderColor = attributes.paginationHoverBorderColor;
+                                    e.currentTarget.style.color = attributes.paginationHoverTextColor;
+                                }
                             },
                             onMouseLeave: (e) => {
                                 e.currentTarget.style.backgroundColor = attributes.paginationBackgroundColor;
                                 e.currentTarget.style.borderColor = attributes.paginationBorderColor;
                                 e.currentTarget.style.color = attributes.paginationTextColor;
-                                
                             },
                         },
-                        __('Previous', 'fancy-post-grid')
+                        wp.element.createElement(
+                            'a',
+                            {
+                                
+                                className: 'prev page-numbers',
+                                onClick: (e) => e.preventDefault(), // prevent anchor default scroll behavior
+                            },
+                            __('Previous', 'fancy-post-grid')
+                        )
                     ),
+
                     ...paginationNumbers, // Dynamically generated pagination buttons
                     wp.element.createElement(
                         'li',
@@ -415,7 +426,15 @@
                                 
                             },
                         },
+                        wp.element.createElement(
+                            'a',
+                            {
+                                
+                                className: 'next page-numbers',
+                                onClick: (e) => e.preventDefault(), // prevent anchor default scroll behavior
+                            },
                         __('Next', 'fancy-post-grid')
+                        )
                     )
                 ),
 
