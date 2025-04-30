@@ -1557,6 +1557,7 @@ img {
 .rs-blog-layout-5 {
     padding-top: 80px;
     padding-bottom: 120px;
+    gap: 30px;
 }
 
 .rs-blog-layout-5 .rs-blog__single {
@@ -1564,6 +1565,7 @@ img {
     overflow: hidden;
     margin: 40px 0px 0;
     transition: all linear 0.3s;
+    border: 0;
 }
 
 .rs-blog-layout-5 .rs-blog-layout-2-filter {
@@ -1624,6 +1626,7 @@ img {
 
 .rs-blog-layout-5 .rs-blog__single .rs-thumb {
     overflow: hidden;
+    border-radius: 5px;
 }
 
 .rs-blog-layout-5 .rs-blog__single .rs-thumb a {
@@ -7130,7 +7133,7 @@ img {
 
 .fpg-pagination ul.fpg-pagination-elementor li .page-numbers:hover,
 .fpg-pagination ul.page-numbers li .page-numbers:hover{
-    background: #634bf8;
+    background: #634bf8 !important;
     border-color: #634bf8;
     color: #ffffff;
 }

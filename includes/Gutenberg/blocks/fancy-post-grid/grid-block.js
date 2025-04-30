@@ -63,7 +63,7 @@
             thumbnailSize: { type: 'string', default: 'fancy_post_custom_size' },
             //Excerpt Settings
             excerptType: { type: 'string', default: 'word' },
-            excerptLimit: { type: 'number', default: 16 },
+            excerptLimit: { type: 'number', default: 10 },
             excerptIndicator: { type: 'string', default: '...' },
             //Meta data Settings
             metaAuthorPrefix: { type: 'string', default: 'By' },
