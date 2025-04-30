@@ -472,7 +472,7 @@
                                     ...(attributes.itemPadding ? { padding: getSpacingValue(attributes.itemPadding) } : {}),
                                     ...(attributes.itemBorderRadius ? { borderRadius: getSpacingValue(attributes.itemBorderRadius) } : {}),
                                     ...(attributes.itemBorderWidth ? { borderWidth: getSpacingValue(attributes.itemBorderWidth) } : {}),
-                                    ...(attributes.itemBoxAlignment ? { textAlign: attributes.itemBoxAlignment } : {}),
+                                    ...(attributes.itemBoxAlignment ? { justifyContent: attributes.itemBoxAlignment } : {}),
                                     ...(attributes.itemBackgroundColor ? { backgroundColor: attributes.itemBackgroundColor } : {}),
                                     ...(attributes.itemBorderType ? { borderStyle: attributes.itemBorderType } : {}),
                                     ...(attributes.itemBorderColor ? { borderColor: attributes.itemBorderColor } : {}),
