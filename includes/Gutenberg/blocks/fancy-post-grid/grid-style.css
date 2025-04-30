@@ -1564,6 +1564,7 @@ img {
     overflow: hidden;
     margin: 40px 0px 0;
     transition: all linear 0.3s;
+    border: 0;
 }
 
 .rs-blog-layout-5 .rs-blog-layout-2-filter {
