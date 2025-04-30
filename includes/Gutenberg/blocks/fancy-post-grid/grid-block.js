@@ -251,9 +251,9 @@
             }, []);
 
             const getSpacingValue = (value) => {
-                if (!value) return '0px';
+                if (!value) return '';
                 
-                return `${value.top || 0}px ${value.right || 0}px ${value.bottom || 0}px ${value.left || 0}px`;
+                return `${value.top || ''}px ${value.right || ''}px ${value.bottom || ''}px ${value.left || ''}px`;
             };
             
 
@@ -309,14 +309,14 @@
                             key: i,
                             onClick: () => handlePageClick(i),
                             style: {
-                                backgroundColor: currentPage === i ? attributes.paginationActiveBackgroundColor : '#007cba',
-                                color: currentPage === i ? attributes.paginationActiveTextColor : '#fff',
-                                borderStyle: attributes.paginationBorderStyle,
-                                borderWidth: `${attributes.paginationBorderWidth}px`,
-                                borderRadius: getSpacingValue(attributes.paginationBorderRadius),
-                                fontSize: `${attributes.paginationFontSize}px`,
-                                borderColor: attributes.paginationActiveBorderColor,
-                                padding: getSpacingValue(attributes.paginationPaddingNew),
+                                ...(currentPage === i 
+                                    ? { backgroundColor: attributes.paginationActiveBackgroundColor, color: attributes.paginationActiveTextColor, borderColor: attributes.paginationActiveBorderColor }
+                                    : { backgroundColor: '#007cba', color: '#fff' }),
+                                ...(attributes.paginationBorderStyle ? { borderStyle: attributes.paginationBorderStyle } : {}),
+                                ...(attributes.paginationBorderWidth ? { borderWidth: `${attributes.paginationBorderWidth}px` } : {}),
+                                ...(attributes.paginationBorderRadius ? { borderRadius: getSpacingValue(attributes.paginationBorderRadius) } : {}),
+                                ...(attributes.paginationFontSize ? { fontSize: `${attributes.paginationFontSize}px` } : {}),
+                                ...(attributes.paginationPaddingNew ? { padding: getSpacingValue(attributes.paginationPaddingNew) } : {}),
                             },
                             onMouseEnter: (e) => {
                                 e.currentTarget.style.backgroundColor = attributes.paginationHoverBackgroundColor;
@@ -362,14 +362,14 @@
                         {
                             onClick: () => handlePageClick(currentPage - 1),
                             style: {
-                                padding: getSpacingValue(attributes.paginationPaddingNew),
-                                backgroundColor: attributes.paginationBackgroundColor,
-                                color: attributes.paginationTextColor,
-                                borderStyle: attributes.paginationBorderStyle,
-                                borderWidth: `${attributes.paginationBorderWidth}px`,
-                                borderRadius: getSpacingValue(attributes.paginationBorderRadius),
-                                borderColor: attributes.paginationBorderColor,
-                                fontSize: `${attributes.paginationFontSize}px`,
+                                ...(attributes.paginationPaddingNew ? { padding: getSpacingValue(attributes.paginationPaddingNew) } : {}),
+                                ...(attributes.paginationBackgroundColor ? { backgroundColor: attributes.paginationBackgroundColor } : {}),
+                                ...(attributes.paginationTextColor ? { color: attributes.paginationTextColor } : {}),
+                                ...(attributes.paginationBorderStyle ? { borderStyle: attributes.paginationBorderStyle } : {}),
+                                ...(attributes.paginationBorderWidth ? { borderWidth: `${attributes.paginationBorderWidth}px` } : {}),
+                                ...(attributes.paginationBorderRadius ? { borderRadius: getSpacingValue(attributes.paginationBorderRadius) } : {}),
+                                ...(attributes.paginationBorderColor ? { borderColor: attributes.paginationBorderColor } : {}),
+                                ...(attributes.paginationFontSize ? { fontSize: `${attributes.paginationFontSize}px` } : {}),
                                 
                             },
                             onMouseEnter: (e) => {
@@ -404,14 +404,14 @@
                             disabled: currentPage === totalPages,
                             style: {
                                 
-                                padding: getSpacingValue(attributes.paginationPaddingNew),
-                                backgroundColor: attributes.paginationBackgroundColor,
-                                color: attributes.paginationTextColor,
-                                borderStyle: attributes.paginationBorderStyle,
-                                borderWidth: `${attributes.paginationBorderWidth}px`,
-                                borderRadius: getSpacingValue(attributes.paginationBorderRadius),
-                                borderColor: attributes.paginationBorderColor,
-                                fontSize: `${attributes.paginationFontSize}px`,
+                                ...(attributes.paginationPaddingNew ? { padding: getSpacingValue(attributes.paginationPaddingNew) } : {}),
+                                ...(attributes.paginationBackgroundColor ? { backgroundColor: attributes.paginationBackgroundColor } : {}),
+                                ...(attributes.paginationTextColor ? { color: attributes.paginationTextColor } : {}),
+                                ...(attributes.paginationBorderStyle ? { borderStyle: attributes.paginationBorderStyle } : {}),
+                                ...(attributes.paginationBorderWidth ? { borderWidth: `${attributes.paginationBorderWidth}px` } : {}),
+                                ...(attributes.paginationBorderRadius ? { borderRadius: getSpacingValue(attributes.paginationBorderRadius) } : {}),
+                                ...(attributes.paginationBorderColor ? { borderColor: attributes.paginationBorderColor } : {}),
+                                ...(attributes.paginationFontSize ? { fontSize: `${attributes.paginationFontSize}px` } : {}),
                             },
                             onMouseEnter: (e) => {
                                 e.currentTarget.style.backgroundColor = attributes.paginationHoverBackgroundColor;
@@ -450,10 +450,10 @@
                         style: { 
                             display: 'grid', 
                             gridTemplateColumns: `repeat(${gridColumns}, 1fr)`, 
-                            gap: attributes.itemGap,
-                            backgroundColor: sectionBgColor,
-                            margin: getSpacingValue(attributes.sectionMargin),
-                            padding: getSpacingValue(attributes.sectionPadding),
+                            ...(attributes.itemGap ? { gap: attributes.itemGap } : {}),
+                            ...(sectionBgColor ? { backgroundColor: sectionBgColor } : {}),
+                            ...(attributes.sectionMargin ? { margin: getSpacingValue(attributes.sectionMargin) } : {}),
+                            ...(attributes.sectionPadding ? { padding: getSpacingValue(attributes.sectionPadding) } : {})
                         } 
                     },
                     posts.map((post) => {
@@ -467,15 +467,17 @@
                                 className: 'fancy-post-item rs-blog__single',
                                 style: {
                                     
-                                    margin: getSpacingValue(attributes.itemMargin),
-                                    padding: getSpacingValue(attributes.itemPadding),
-                                    borderRadius: getSpacingValue(attributes.itemBorderRadius),
-                                    borderWidth: getSpacingValue(attributes.itemBorderWidth),
-                                    textAlign: attributes.itemBoxAlignment,   
-                                    backgroundColor: attributes.itemBackgroundColor,
-                                    borderStyle: attributes.itemBorderType,
-                                    borderColor: attributes.itemBorderColor,
-                                    boxShadow: `${getSpacingValue(attributes.itemBoxShadow) || '10px'} ${attributes.itemBoxShadowColor || 'rgba(0,0,0,0.1)'}`,
+                                    ...(attributes.itemMargin ? { margin: getSpacingValue(attributes.itemMargin) } : {}),
+                                    ...(attributes.itemPadding ? { padding: getSpacingValue(attributes.itemPadding) } : {}),
+                                    ...(attributes.itemBorderRadius ? { borderRadius: getSpacingValue(attributes.itemBorderRadius) } : {}),
+                                    ...(attributes.itemBorderWidth ? { borderWidth: getSpacingValue(attributes.itemBorderWidth) } : {}),
+                                    ...(attributes.itemBoxAlignment ? { textAlign: attributes.itemBoxAlignment } : {}),
+                                    ...(attributes.itemBackgroundColor ? { backgroundColor: attributes.itemBackgroundColor } : {}),
+                                    ...(attributes.itemBorderType ? { borderStyle: attributes.itemBorderType } : {}),
+                                    ...(attributes.itemBorderColor ? { borderColor: attributes.itemBorderColor } : {}),
+                                    ...((getSpacingValue(attributes.itemBoxShadow) || attributes.itemBoxShadowColor) ? {
+                                        boxShadow: `${getSpacingValue(attributes.itemBoxShadow) || '10px'} ${attributes.itemBoxShadowColor || 'rgba(0,0,0,0.1)'}`
+                                    } : {})
                                 },
                             },
                         
@@ -486,8 +488,8 @@
                                     {
                                         className: 'rs-thumb thumbnail-wrapper',
                                         style: {
-                                            margin: getSpacingValue(attributes.thumbnailMargin),
-                                            padding: getSpacingValue(attributes.thumbnailPadding),
+                                            ...(attributes.thumbnailMargin ? { margin: getSpacingValue(attributes.thumbnailMargin) } : {}),
+                                            ...(attributes.thumbnailPadding ? { padding: getSpacingValue(attributes.thumbnailPadding) } : {}),
                                             overflow: 'hidden', // Prevent overflow on border-radius
                                         },
                                     },
@@ -499,7 +501,9 @@
                                                 src: thumbnail,
                                                 alt: post.title.rendered,
                                                 className: 'post-thumbnail',
-                                                style: { objectFit: 'cover', width: '100%',borderRadius: getSpacingValue(attributes.thumbnailBorderRadius), },
+                                                style: { objectFit: 'cover', width: '100%',
+                                                ...(attributes.thumbnailBorderRadius ? { borderRadius: getSpacingValue(attributes.thumbnailBorderRadius) } : {}),
+                                                },
                                             })
                                         )
                                         : wp.element.createElement('img', {
@@ -512,13 +516,14 @@
 
                             
                             // Wrap the entire content in a new div (e.g., rs-content)
-                            wp.element.createElement('div', { className: 'rs-content',style: {
-                                    margin: getSpacingValue(attributes.contentitemMarginNew),
-                                    padding: getSpacingValue(attributes.contentitemPaddingNew),
-                                    borderWidth: getSpacingValue(attributes.contentBorderWidth),
-                                    borderStyle: attributes.contentnormalBorderType,
-                                    backgroundColor: contentBgColor,
-                                    borderColor: contentBorderColor,
+                            wp.element.createElement('div', { className: 'rs-content',
+                                style: {
+                                    ...(attributes.contentitemMarginNew ? { margin: getSpacingValue(attributes.contentitemMarginNew) } : {}),
+                                    ...(attributes.contentitemPaddingNew ? { padding: getSpacingValue(attributes.contentitemPaddingNew) } : {}),
+                                    ...(attributes.contentBorderWidth ? { borderWidth: getSpacingValue(attributes.contentBorderWidth) } : {}),
+                                    ...(attributes.contentnormalBorderType ? { borderStyle: attributes.contentnormalBorderType } : {}),
+                                    ...(contentBgColor ? { backgroundColor: contentBgColor } : {}),
+                                    ...(contentBorderColor ? { borderColor: contentBorderColor } : {})
                                     },
                                 }, 
                                 
@@ -528,25 +533,25 @@
                                     wp.element.createElement('ul', { 
                                         className: 'meta-data-list post-meta', 
                                         style: { 
-                                            margin: getSpacingValue(attributes.metaMarginNew),
-                                            padding: getSpacingValue(attributes.metaPadding),
-                                            textAlign: metaAlignment, 
-                                            color: metaTextColor, 
-                                            order: metaOrder,
-                                            fontSize: `${metaFontSize}px`,
+                                            ...(attributes.metaMarginNew ? { margin: getSpacingValue(attributes.metaMarginNew) } : {}),
+                                            ...(attributes.metaPadding ? { padding: getSpacingValue(attributes.metaPadding) } : {}),
+                                            ...(metaAlignment ? { textAlign: metaAlignment } : {}),
+                                            ...(metaTextColor ? { color: metaTextColor } : {}),
+                                            ...(typeof metaOrder !== 'undefined' ? { order: metaOrder } : {}),
+                                            ...(metaFontSize ? { fontSize: `${metaFontSize}px` } : {})
                                         } 
                                     },
                                         [
                                             // Post Date
                                             showPostDate && wp.element.createElement('li', { className: 'meta-date',style: { 
-                                                    color: metaTextColor, 
-                                                    fontSize: `${metaFontSize}px`,
+                                                    ...(metaTextColor ? { color: metaTextColor } : {}),
+                                                    ...(metaFontSize ? { fontSize: `${metaFontSize}px` } : {})
                                                 } },
                                                 showMetaIcon && showPostDateIcon &&
                                                 wp.element.createElement('i', { className: 'fas fa-calendar-alt',
                                                     style:{ 
-                                                        color: metaIconColor, 
-                                                        fontSize: `${metaFontSize}px`,
+                                                        ...(metaTextColor ? { color: metaTextColor } : {}),
+                                                        ...(metaFontSize ? { fontSize: `${metaFontSize}px` } : {})
                                                     } }), // Font Awesome calendar icon
                                                 ` ${new Date(post.date).toLocaleDateString()}`
                                             ),
@@ -556,52 +561,52 @@
                                             showPostAuthor && wp.element.createElement(
                                                 'li', 
                                                 { className: 'meta-author',style: { 
-                                                    color: metaTextColor, 
-                                                    fontSize: `${metaFontSize}px`,
+                                                    ...(metaTextColor ? { color: metaTextColor } : {}),
+                                                    ...(metaFontSize ? { fontSize: `${metaFontSize}px` } : {})
                                                 } },
                                                 showMetaIcon && showPostAuthorIcon && 
                                                     wp.element.createElement('i', { className: 'fas fa-user',style:{ 
-                                                        color: metaIconColor, 
-                                                        fontSize: `${metaFontSize}px`,
+                                                        ...(metaTextColor ? { color: metaTextColor } : {}),
+                                                        ...(metaFontSize ? { fontSize: `${metaFontSize}px` } : {})
                                                     } }), // Font Awesome user icon
                                                 ` ${metaAuthorPrefix ? metaAuthorPrefix + ' ' : ''}${post._embedded?.author?.[0]?.name}`
                                             ),
 
                                             // Post Category
                                             showPostCategory && wp.element.createElement('li', { className: 'meta-category',style: { 
-                                                    color: metaTextColor, 
-                                                    fontSize: `${metaFontSize}px`,
+                                                    ...(metaTextColor ? { color: metaTextColor } : {}),
+                                                    ...(metaFontSize ? { fontSize: `${metaFontSize}px` } : {})
                                                 } },
                                                 showMetaIcon && showPostCategoryIcon &&
                                                 wp.element.createElement('i', { className: 'fas fa-folder',style:{ 
-                                                        color: metaIconColor, 
-                                                        fontSize: `${metaFontSize}px`,
+                                                        ...(metaTextColor ? { color: metaTextColor } : {}),
+                                                        ...(metaFontSize ? { fontSize: `${metaFontSize}px` } : {})
                                                     } }), // Font Awesome folder icon
                                                 ` ${post._embedded?.['wp:term']?.[0]?.map(cat => cat.name).join(', ')}`
                                             ),
 
                                             // Post Tags (Only show if tags exist)
                                             showPostTags && post._embedded?.['wp:term']?.[1]?.length > 0 && wp.element.createElement('li', { className: 'meta-tags',style: { 
-                                                    color: metaTextColor, 
-                                                    fontSize: `${metaFontSize}px`,
+                                                    ...(metaTextColor ? { color: metaTextColor } : {}),
+                                                    ...(metaFontSize ? { fontSize: `${metaFontSize}px` } : {})
                                                 } },
                                                 showMetaIcon && showPostTagsIcon &&
                                                 wp.element.createElement('i', { className: 'fas fa-tags',style:{ 
-                                                        color: metaIconColor, 
-                                                        fontSize: `${metaFontSize}px`,
+                                                    ...(metaTextColor ? { color: metaTextColor } : {}),
+                                                    ...(metaFontSize ? { fontSize: `${metaFontSize}px` } : {})
                                                     } }), // Font Awesome tags icon
                                                 ` ${post._embedded?.['wp:term']?.[1]?.map(tag => tag.name).join(', ')}`
                                             ),
 
                                             // Comments Count (Only show if comments exist)
                                             showPostCommentsCount && post.comment_count > 0 && wp.element.createElement('li', { className: 'meta-comments',style: { 
-                                                    color: metaTextColor, 
-                                                    fontSize: `${metaFontSize}px`,
+                                                    ...(metaTextColor ? { color: metaTextColor } : {}),
+                                                    ...(metaFontSize ? { fontSize: `${metaFontSize}px` } : {})
                                                 } },
                                                 showMetaIcon && showPostCommentsCountIcon &&
                                                 wp.element.createElement('i', { className: 'fas fa-comments',style:{ 
-                                                        color: metaIconColor, 
-                                                        fontSize: `${metaFontSize}px`,
+                                                    ...(metaTextColor ? { color: metaTextColor } : {}),
+                                                    ...(metaFontSize ? { fontSize: `${metaFontSize}px` } : {})
                                                     } }), // Font Awesome comments icon
                                                 ` ${post.comment_count} Comments`
                                             )
@@ -609,8 +614,8 @@
                                             acc.concat(curr, index < arr.length - 1 && metaSeperator !== 'none' 
                                                 ? wp.element.createElement('span', { className: 'meta-separator',style: { 
                                                         
-                                                        color: separatorColor, 
-                                                        fontSize: `${metaFontSize}px`,
+                                                        ...(metaTextColor ? { color: metaTextColor } : {}),
+                                                        ...(metaFontSize ? { fontSize: `${metaFontSize}px` } : {})
                                                         
                                                     } }, ` ${metaSeperator} `) 
                                                 : null
@@ -627,12 +632,12 @@
                                         {
                                             className: 'title',
                                             style: {
-                                                margin: getSpacingValue(attributes.postTitleMargin),
-                                                padding: getSpacingValue(attributes.postTitlePadding),
-                                                textAlign: postTitleAlignment,
+                                                ...(attributes.postTitleMargin ? { margin: getSpacingValue(attributes.postTitleMargin) } : {}),
+                                                ...(attributes.postTitlePadding ? { padding: getSpacingValue(attributes.postTitlePadding) } : {}),
+                                                ...(postTitleAlignment ? { textAlign: postTitleAlignment } : {}),
                                                 transition: 'all 0.3s ease',
-                                                order: titleOrder,
-                                                backgroundColor: postTitleBgColor, // Background only for title div
+                                                ...(titleOrder !== undefined ? { order: titleOrder } : {}),
+                                                ...(postTitleBgColor ? { backgroundColor: postTitleBgColor } : {}) // Background only for title div
                                             },
                                             onMouseEnter: (e) => {
                                                 e.currentTarget.style.backgroundColor = postTitleHoverBgColor;
@@ -654,13 +659,12 @@
                                                         href: post.link, 
                                                         target: postLinkTarget === 'newWindow' ? '_blank' : '_self',
                                                         style: { // Ensure the styles apply to the <a> tag
-                                                            color: postTitleColor, // Inherit from parent to avoid default blue link color
-                                                            fontSize: `${postTitleFontSize}px`,
-                                                            fontWeight: postTitleFontWeight,
-                                                            lineHeight: postTitleLineHeight,
-                                                            letterSpacing: postTitleLetterSpacing,
-                                                            
-                                                            transition: 'all 0.3s ease',
+                                                            ...(postTitleColor ? { color: postTitleColor } : {}),
+                                                            ...(postTitleFontSize ? { fontSize: `${postTitleFontSize}px` } : {}),
+                                                            ...(postTitleFontWeight ? { fontWeight: postTitleFontWeight } : {}),
+                                                            ...(postTitleLineHeight ? { lineHeight: postTitleLineHeight } : {}),
+                                                            ...(postTitleLetterSpacing ? { letterSpacing: postTitleLetterSpacing } : {}),
+                                                            transition: 'all 0.3s ease', // always applied
 
                                                         },
                                                         onMouseEnter: (e) => {
@@ -685,22 +689,21 @@
                                     wp.element.createElement('div', { 
                                         className: 'fpg-excerpt', 
                                         style: { 
-                                                order: excerptOrder,
-                                                textAlign: excerptAlignment,
-                                                // margin: getSpacingValue(attributes.excerptMargin),
-                                                margin: getSpacingValue(attributes.excerptMargin), // Default margin
-                                                padding: getSpacingValue(attributes.excerptPadding) 
+                                                ...(excerptOrder ? { order: excerptOrder } : {}),
+                                                ...(excerptAlignment ? { textAlign: excerptAlignment } : {}),
+                                                ...(attributes.excerptMargin ? { margin: getSpacingValue(attributes.excerptMargin) } : {}),
+                                                ...(attributes.excerptPadding ? { padding: getSpacingValue(attributes.excerptPadding) } : {}), 
                                             } // Apply order to the div container
                                     }, 
                                         wp.element.createElement('p', { 
                                             style: { 
                                                 
-                                                fontSize: `${excerptFontSize}px`,
-                                                fontWeight: excerptFontWeight,
-                                                lineHeight: excerptLineHeight,
-                                                letterSpacing: excerptLetterSpacing, 
-                                                color: excerptColor, 
-                                                backgroundColor: excerptBgColor                                                
+                                                ...(excerptFontSize ? { fontSize: `${excerptFontSize}px` } : {}),
+                                                ...(excerptFontWeight ? { fontWeight: excerptFontWeight } : {}),
+                                                ...(excerptLineHeight ? { lineHeight: excerptLineHeight } : {}),
+                                                ...(excerptLetterSpacing ? { letterSpacing: excerptLetterSpacing } : {}),
+                                                ...(excerptColor ? { color: excerptColor } : {}),
+                                                ...(excerptBgColor ? { backgroundColor: excerptBgColor } : {}),                                               
                                             },
                                             onMouseEnter: (e) => {
                                                 e.currentTarget.style.color = excerptHoverColor;
@@ -731,17 +734,15 @@
                                         target: postLinkTarget === 'newWindow' ? '_blank' : '_self', 
                                         className: `rs-link read-more-${buttonStyle}`,  // Dynamic class based on buttonStyle
                                         style: { 
-                                            backgroundColor: buttonStyle === 'filled' ? buttonBackgroundColor : 'transparent',
-                                            color: buttonTextColor,
-                                            borderColor: buttonTextColor,
-                                            border:  ` ${buttonBorderType} ${buttonBackgroundColor}`, 
-                                            fontWeight: buttonFontWeight,
-                                            // Border style
-                                            borderWidth: `${attributes.buttonBorderWidth}px`,
-                                            padding: getSpacingValue(attributes.buttonPaddingNew),
-                                            borderRadius: getSpacingValue(attributes.buttonBorderRadius),
-                                            fontSize: `${buttonFontSize}px`,
-                                            textDecoration: buttonStyle === 'flat' ? 'none' : 'inherit'
+                                            ...(buttonStyle === 'filled' ? { backgroundColor: buttonBackgroundColor } : { backgroundColor: 'transparent' }),
+                                            ...(buttonTextColor ? { color: buttonTextColor, borderColor: buttonTextColor } : {}),
+                                            ...(buttonBorderType && buttonBackgroundColor ? { border: `${buttonBorderType} ${buttonBackgroundColor}` } : {}),
+                                            ...(buttonFontWeight ? { fontWeight: buttonFontWeight } : {}),
+                                            ...(attributes.buttonBorderWidth ? { borderWidth: `${attributes.buttonBorderWidth}px` } : {}),
+                                            ...(attributes.buttonPaddingNew ? { padding: getSpacingValue(attributes.buttonPaddingNew) } : {}),
+                                            ...(attributes.buttonBorderRadius ? { borderRadius: getSpacingValue(attributes.buttonBorderRadius) } : {}),
+                                            ...(buttonFontSize ? { fontSize: `${buttonFontSize}px` } : {}),
+                                            ...(buttonStyle === 'flat' ? { textDecoration: 'none' } : { textDecoration: 'inherit' }),
                                         },
                                         onMouseEnter: (e) => {
                                             e.currentTarget.style.color = buttonHoverTextColor;
