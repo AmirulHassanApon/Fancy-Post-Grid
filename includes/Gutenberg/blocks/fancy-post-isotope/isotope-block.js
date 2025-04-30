@@ -162,7 +162,7 @@
             paginationAlignment: { type: 'string', default: 'center' },
             paginationBorderStyle: { type: 'string', default: 'solid' },
             paginationBorderWidth: { type: 'number', default: 1 },
-            paginationBorderRadius: { type: 'number', default: 5 },
+            paginationBorderRadius: { type: 'object', default: { top: '5px', right: '5px', bottom: '5px', left: '5px' }, },
             paginationGap: { type: 'number', default: 20 },
             paginationFontSize: { type: 'number', default: 16 },
             paginationTextColor: { type: 'string', default: '#6a6d7a' },
@@ -336,7 +336,7 @@
                                 color: currentPage === i ? attributes.paginationActiveTextColor : '#fff',
                                 borderStyle: attributes.paginationBorderStyle,
                                 borderWidth: `${attributes.paginationBorderWidth}px`,
-                                borderRadius: `${attributes.paginationBorderRadius}px`,
+                                borderRadius: getSpacingValue(attributes.paginationBorderRadius),
                                 fontSize: `${attributes.paginationFontSize}px`,
                                 borderColor: attributes.paginationActiveBorderColor,
                                 padding: getSpacingValue(attributes.paginationPaddingNew),
@@ -389,7 +389,7 @@
                                     color: attributes.paginationTextColor,
                                     borderStyle: attributes.paginationBorderStyle,
                                     borderWidth: `${attributes.paginationBorderWidth}px`,
-                                    borderRadius: `${attributes.paginationBorderRadius}px`,
+                                    borderRadius: getSpacingValue(attributes.paginationBorderRadius),
                                     borderColor: attributes.paginationBorderColor,
                                     fontSize: `${attributes.paginationFontSize}px`,
                                 },
@@ -421,7 +421,7 @@
                                     color: attributes.paginationTextColor,
                                     borderStyle: attributes.paginationBorderStyle,
                                     borderWidth: `${attributes.paginationBorderWidth}px`,
-                                    borderRadius: `${attributes.paginationBorderRadius}px`,
+                                    borderRadius: getSpacingValue(attributes.paginationBorderRadius),
                                     borderColor: attributes.paginationBorderColor,
                                     fontSize: `${attributes.paginationFontSize}px`,
                                 },
@@ -3915,12 +3915,10 @@
                                         max: 100
                                     }),
 
-                                    wp.element.createElement(RangeControl, {
+                                    wp.element.createElement(__experimentalBoxControl, {
                                         label: __('Border Radius', 'fancy-post-grid'),
-                                        value: attributes.paginationBorderRadius,
+                                        values: attributes.paginationBorderRadius,
                                         onChange: (value) => setAttributes({ paginationBorderRadius: value }),
-                                        min: 0,
-                                        max: 50
                                     }),
 
                                     wp.element.createElement(RangeControl, {

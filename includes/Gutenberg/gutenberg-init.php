@@ -23,28 +23,28 @@ function fancy_post_grid_register_gutenberg_block() {
         'fpg-swiper-css',
         plugins_url('blocks/fancy-post-slider/swiper-bundle.min.css', __FILE__),
         array(),
-        null
+        filemtime(plugin_dir_path(__FILE__) . 'blocks/fancy-post-slider/swiper-bundle.min.css')
     );
 
     wp_register_script(
         'fpg-swiper',
         plugins_url('blocks/fancy-post-slider/swiper-bundle.min.js', __FILE__),
         array(),
-        null,
+        filemtime(plugin_dir_path(__FILE__) . 'blocks/fancy-post-slider/swiper-bundle.min.js'),
         true
     );
     wp_register_script(
         'fpg-isotope-pkgd',
         plugins_url('blocks/fancy-post-slider/isotope.pkgd.min.js', __FILE__),
         array(),
-        null,
+        filemtime(plugin_dir_path(__FILE__) . 'blocks/fancy-post-slider/isotope.pkgd.min.js'),
         true
     );
     wp_register_script(
         'fpg-main-js',
         plugins_url('blocks/fancy-post-slider/main.js', __FILE__),
         array('fpg-swiper', 'fpg-isotope-pkgd'),
-        null,
+        filemtime(plugin_dir_path(__FILE__) . 'blocks/fancy-post-slider/main.js'),
         true
     );
 
@@ -288,7 +288,8 @@ function fancy_post_grid_render_callback($attributes) {
     $paginationPaddingNew = isset($attributes['paginationPaddingNew']) ? array_map('sanitize_text_field', $attributes['paginationPaddingNew']) : ['top' => '', 'right' => '', 'bottom' => '', 'left' => ''];
     $paginationBorderStyle = isset($attributes['paginationBorderStyle']) ? sanitize_text_field($attributes['paginationBorderStyle']) : 'solid';
     $paginationBorderWidth = isset($attributes['paginationBorderWidth']) ? absint($attributes['paginationBorderWidth']) : 1;
-    $paginationBorderRadius = isset($attributes['paginationBorderRadius']) ? absint($attributes['paginationBorderRadius']) : 4;
+    
+    $paginationBorderRadius = isset($attributes['paginationBorderRadius']) ? array_map('sanitize_text_field', $attributes['paginationBorderRadius']) : ['top' => '', 'right' => '', 'bottom' => '', 'left' => ''];
     $paginationGap = isset($attributes['paginationGap']) ? absint($attributes['paginationGap']) : 20;
     $paginationTextColor = isset($attributes['paginationTextColor']) ? sanitize_hex_color($attributes['paginationTextColor']) : '';
     $paginationBackgroundColor = isset($attributes['paginationBackgroundColor']) ? sanitize_hex_color($attributes['paginationBackgroundColor']) : '';
@@ -7500,7 +7501,8 @@ function fancy_post_isotope_render_callback($attributes) {
     $paginationPaddingNew = isset($attributes['paginationPaddingNew']) ? array_map('sanitize_text_field', $attributes['paginationPaddingNew']) : ['top' => '', 'right' => '', 'bottom' => '', 'left' => ''];
     $paginationBorderStyle = isset($attributes['paginationBorderStyle']) ? sanitize_text_field($attributes['paginationBorderStyle']) : 'solid';
     $paginationBorderWidth = isset($attributes['paginationBorderWidth']) ? absint($attributes['paginationBorderWidth']) : 1;
-    $paginationBorderRadius = isset($attributes['paginationBorderRadius']) ? absint($attributes['paginationBorderRadius']) : 4;
+    
+    $paginationBorderRadius = isset($attributes['paginationBorderRadius']) ? array_map('sanitize_text_field', $attributes['paginationBorderRadius']) : ['top' => '', 'right' => '', 'bottom' => '', 'left' => ''];
     $paginationGap = isset($attributes['paginationGap']) ? absint($attributes['paginationGap']) : 20;
     $paginationTextColor = isset($attributes['paginationTextColor']) ? sanitize_hex_color($attributes['paginationTextColor']) : '';
     $paginationBackgroundColor = isset($attributes['paginationBackgroundColor']) ? sanitize_hex_color($attributes['paginationBackgroundColor']) : '';
