@@ -304,7 +304,7 @@
             for (let i = 1; i <= totalPages; i++) {
                 paginationNumbers.push(
                     wp.element.createElement(
-                        'button',
+                        'li',
                         {
                             key: i,
                             onClick: () => handlePageClick(i),
@@ -340,86 +340,85 @@
             // Pagination controls
             const paginationControls = wp.element.createElement(
                 'div',
-                { className: 'row' },
+                {
+                    className: 'fpg-pagination',
+                    style: {
+                        display: 'flex',
+                        justifyContent: attributes.paginationAlignment,
+                        margin: getSpacingValue(attributes.paginationMarginNew),
+                        gap: attributes.paginationGap,
+                    },
+                },
                 wp.element.createElement(
-                    'div',
-                    { className: 'col-12' },
+                'ul',
+                {
+                    className: 'page-numbers',
+                },
                     wp.element.createElement(
-                        'div',
+                        'li',
                         {
-                            className: 'fpg-pagination',
+                            onClick: () => handlePageClick(currentPage - 1),
+                            disabled: currentPage === 1,
                             style: {
-                                display: 'flex',
-                                justifyContent: attributes.paginationAlignment,
-                                margin: getSpacingValue(attributes.paginationMarginNew),
-                                gap: attributes.paginationGap,
+                                
+                                padding: getSpacingValue(attributes.paginationPaddingNew),
+                                backgroundColor: attributes.paginationBackgroundColor,
+                                color: attributes.paginationTextColor,
+                                borderStyle: attributes.paginationBorderStyle,
+                                borderWidth: `${attributes.paginationBorderWidth}px`,
+                                borderRadius: getSpacingValue(attributes.paginationBorderRadius),
+                                borderColor: attributes.paginationBorderColor,
+                                fontSize: `${attributes.paginationFontSize}px`,
+                            },
+                            onMouseEnter: (e) => {
+                                e.currentTarget.style.backgroundColor = attributes.paginationHoverBackgroundColor;
+                                e.currentTarget.style.borderColor = attributes.paginationHoverBorderColor;
+                                e.currentTarget.style.color = attributes.paginationHoverTextColor;
+                                
+                            },
+                            onMouseLeave: (e) => {
+                                e.currentTarget.style.backgroundColor = attributes.paginationBackgroundColor;
+                                e.currentTarget.style.borderColor = attributes.paginationBorderColor;
+                                e.currentTarget.style.color = attributes.paginationTextColor;
+                                
                             },
                         },
-                        wp.element.createElement(
-                            'button',
-                            {
-                                onClick: () => handlePageClick(currentPage - 1),
-                                disabled: currentPage === 1,
-                                style: {
-                                    
-                                    padding: getSpacingValue(attributes.paginationPaddingNew),
-                                    backgroundColor: attributes.paginationBackgroundColor,
-                                    color: attributes.paginationTextColor,
-                                    borderStyle: attributes.paginationBorderStyle,
-                                    borderWidth: `${attributes.paginationBorderWidth}px`,
-                                    borderRadius: getSpacingValue(attributes.paginationBorderRadius),
-                                    borderColor: attributes.paginationBorderColor,
-                                    fontSize: `${attributes.paginationFontSize}px`,
-                                },
-                                onMouseEnter: (e) => {
-                                    e.currentTarget.style.backgroundColor = attributes.paginationHoverBackgroundColor;
-                                    e.currentTarget.style.borderColor = attributes.paginationHoverBorderColor;
-                                    e.currentTarget.style.color = attributes.paginationHoverTextColor;
-                                    
-                                },
-                                onMouseLeave: (e) => {
-                                    e.currentTarget.style.backgroundColor = attributes.paginationBackgroundColor;
-                                    e.currentTarget.style.borderColor = attributes.paginationBorderColor;
-                                    e.currentTarget.style.color = attributes.paginationTextColor;
-                                    
-                                },
+                        __('Previous', 'fancy-post-grid')
+                    ),
+                    ...paginationNumbers, // Dynamically generated pagination buttons
+                    wp.element.createElement(
+                        'li',
+                        {
+                            onClick: () => handlePageClick(currentPage + 1),
+                            disabled: currentPage === totalPages,
+                            style: {
+                                
+                                padding: getSpacingValue(attributes.paginationPaddingNew),
+                                backgroundColor: attributes.paginationBackgroundColor,
+                                color: attributes.paginationTextColor,
+                                borderStyle: attributes.paginationBorderStyle,
+                                borderWidth: `${attributes.paginationBorderWidth}px`,
+                                borderRadius: getSpacingValue(attributes.paginationBorderRadius),
+                                borderColor: attributes.paginationBorderColor,
+                                fontSize: `${attributes.paginationFontSize}px`,
                             },
-                            __('Previous', 'fancy-post-grid')
-                        ),
-                        ...paginationNumbers, // Dynamically generated pagination buttons
-                        wp.element.createElement(
-                            'button',
-                            {
-                                onClick: () => handlePageClick(currentPage + 1),
-                                disabled: currentPage === totalPages,
-                                style: {
-                                    
-                                    padding: getSpacingValue(attributes.paginationPaddingNew),
-                                    backgroundColor: attributes.paginationBackgroundColor,
-                                    color: attributes.paginationTextColor,
-                                    borderStyle: attributes.paginationBorderStyle,
-                                    borderWidth: `${attributes.paginationBorderWidth}px`,
-                                    borderRadius: getSpacingValue(attributes.paginationBorderRadius),
-                                    borderColor: attributes.paginationBorderColor,
-                                    fontSize: `${attributes.paginationFontSize}px`,
-                                },
-                                onMouseEnter: (e) => {
-                                    e.currentTarget.style.backgroundColor = attributes.paginationHoverBackgroundColor;
-                                    e.currentTarget.style.borderColor = attributes.paginationHoverBorderColor;
-                                    e.currentTarget.style.color = attributes.paginationHoverTextColor;
-                                    
-                                },
-                                onMouseLeave: (e) => {
-                                    e.currentTarget.style.backgroundColor = attributes.paginationBackgroundColor;
-                                    e.currentTarget.style.borderColor = attributes.paginationBorderColor;
-                                    e.currentTarget.style.color = attributes.paginationTextColor;
-                                    
-                                },
+                            onMouseEnter: (e) => {
+                                e.currentTarget.style.backgroundColor = attributes.paginationHoverBackgroundColor;
+                                e.currentTarget.style.borderColor = attributes.paginationHoverBorderColor;
+                                e.currentTarget.style.color = attributes.paginationHoverTextColor;
+                                
                             },
-                            __('Next', 'fancy-post-grid')
-                        )
+                            onMouseLeave: (e) => {
+                                e.currentTarget.style.backgroundColor = attributes.paginationBackgroundColor;
+                                e.currentTarget.style.borderColor = attributes.paginationBorderColor;
+                                e.currentTarget.style.color = attributes.paginationTextColor;
+                                
+                            },
+                        },
+                        __('Next', 'fancy-post-grid')
                     )
-                )
+                ),
+
             );
             
             let content;
@@ -436,7 +435,6 @@
                             backgroundColor: sectionBgColor,
                             margin: getSpacingValue(attributes.sectionMargin),
                             padding: getSpacingValue(attributes.sectionPadding),
-                            
                         } 
                     },
                     posts.map((post) => {
@@ -756,7 +754,7 @@
                         wp.element.Fragment, 
                         null,
                         content, // The grid posts
-                        wp.element.createElement('div', { className: 'pagination-container' }, paginationControls) // Pagination below
+                        paginationControls, // Pagination below
                     );
                 }
                 
@@ -1087,7 +1085,7 @@
                         wp.element.Fragment, 
                         null,
                         content, // The grid posts
-                        wp.element.createElement('div', { className: 'pagination-container' }, paginationControls) // Pagination below
+                        paginationControls, // Pagination below
                     );
                 }
                 
@@ -1421,7 +1419,7 @@
                         wp.element.Fragment, 
                         null,
                         content, // The grid posts
-                        wp.element.createElement('div', { className: 'pagination-container' }, paginationControls) // Pagination below
+                        paginationControls, // Pagination below
                     );
                 }
                 
@@ -1724,7 +1722,7 @@
                         wp.element.Fragment, 
                         null,
                         content, // The grid posts
-                        wp.element.createElement('div', { className: 'pagination-container' }, paginationControls) // Pagination below
+                        paginationControls, // Pagination below
                     );
                 }
                 
@@ -2052,7 +2050,7 @@
                         wp.element.Fragment, 
                         null,
                         content, // The grid posts
-                        wp.element.createElement('div', { className: 'pagination-container' }, paginationControls) // Pagination below
+                        paginationControls, // Pagination below
                     );
                 }
                 
@@ -2366,7 +2364,7 @@
                         wp.element.Fragment, 
                         null,
                         content, // The grid posts
-                        wp.element.createElement('div', { className: 'pagination-container' }, paginationControls) // Pagination below
+                        paginationControls, // Pagination below
                     );
                 }
                 
@@ -2560,7 +2558,7 @@
                         wp.element.Fragment, 
                         null,
                         content, // The grid posts
-                        wp.element.createElement('div', { className: 'pagination-container' }, paginationControls) // Pagination below
+                        paginationControls, // Pagination below
                     );
                 }
                 
@@ -2815,7 +2813,7 @@
                         wp.element.Fragment, 
                         null,
                         content, // The grid posts
-                        wp.element.createElement('div', { className: 'pagination-container' }, paginationControls) // Pagination below
+                        paginationControls, // Pagination below
                     );
                 }
                 
@@ -3013,7 +3011,7 @@
                         wp.element.Fragment, 
                         null,
                         content, // The grid posts
-                        wp.element.createElement('div', { className: 'pagination-container' }, paginationControls) // Pagination below
+                        paginationControls, // Pagination below
                     );
                 }
                 
@@ -3301,7 +3299,7 @@
                         wp.element.Fragment, 
                         null,
                         content, // The grid posts
-                        wp.element.createElement('div', { className: 'pagination-container' }, paginationControls) // Pagination below
+                        paginationControls, // Pagination below
                     );
                 }
                 
@@ -3612,7 +3610,7 @@
                         wp.element.Fragment, 
                         null,
                         content, // The grid posts
-                        wp.element.createElement('div', { className: 'pagination-container' }, paginationControls) // Pagination below
+                        paginationControls, // Pagination below
                     );
                 }
                 
@@ -3902,7 +3900,7 @@
                         wp.element.Fragment, 
                         null,
                         content, // The grid posts
-                        wp.element.createElement('div', { className: 'pagination-container' }, paginationControls) // Pagination below
+                        paginationControls, // Pagination below
                     );
                 }
                 
