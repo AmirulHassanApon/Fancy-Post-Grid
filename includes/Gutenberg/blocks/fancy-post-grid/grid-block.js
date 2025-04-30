@@ -536,7 +536,7 @@
                                         style: { 
                                             ...(attributes.metaMarginNew ? { margin: getSpacingValue(attributes.metaMarginNew) } : {}),
                                             ...(attributes.metaPadding ? { padding: getSpacingValue(attributes.metaPadding) } : {}),
-                                            ...(metaAlignment ? { textAlign: metaAlignment } : {}),
+                                            ...(metaAlignment ? { justifyContent: metaAlignment } : {}),
                                             ...(metaTextColor ? { color: metaTextColor } : {}),
                                             ...(typeof metaOrder !== 'undefined' ? { order: metaOrder } : {}),
                                             ...(metaFontSize ? { fontSize: `${metaFontSize}px` } : {})
