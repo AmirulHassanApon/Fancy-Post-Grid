@@ -1626,6 +1626,7 @@ img {
 
 .rs-blog-layout-5 .rs-blog__single .rs-thumb {
     overflow: hidden;
+    border-radius: 5px;
 }
 
 .rs-blog-layout-5 .rs-blog__single .rs-thumb a {
@@ -7119,7 +7120,7 @@ img {
     align-items: center;
 }
 
-.fpg-pagination .page-numbers,
+
 .fpg-pagination ul.fpg-pagination-elementor li a,
 .fpg-pagination ul.page-numbers li .page-numbers{
     height: 50px;
@@ -7131,7 +7132,7 @@ img {
     color: #6A6D7A;
 }
 
-.fpg-pagination .page-numbers:hover,
+
 .fpg-pagination ul.fpg-pagination-elementor li .page-numbers:hover,
 .fpg-pagination ul.page-numbers li .page-numbers:hover{
     background: #634bf8;
@@ -7139,7 +7140,7 @@ img {
     color: #ffffff;
 }
 
-.fpg-pagination .page-numbers.current,
+
 .fpg-pagination ul.fpg-pagination-elementor li .current,
 .fpg-pagination ul.page-numbers li .page-numbers.current{
     background: #634bf8;
@@ -7148,8 +7149,7 @@ img {
     cursor: pointer;
 }
 
-.fpg-pagination .page-numbers.prev,
-.fpg-pagination .page-numbers.next,
+
 .fpg-pagination ul.fpg-pagination-elementor li .page-numbers.prev,
 .fpg-pagination ul.fpg-pagination-elementor li .page-numbers.next,
 .fpg-pagination ul.page-numbers li .page-numbers.prev,
