@@ -487,6 +487,7 @@
                                         style: {
                                             ...(attributes.thumbnailMargin ? { margin: getSpacingValue(attributes.thumbnailMargin) } : {}),
                                             ...(attributes.thumbnailPadding ? { padding: getSpacingValue(attributes.thumbnailPadding) } : {}),
+                                            ...(attributes.thumbnailBorderRadius ? { borderRadius: getSpacingValue(attributes.thumbnailBorderRadius) } : {}),
                                             overflow: 'hidden', // Prevent overflow on border-radius
                                         },
                                     },
@@ -499,7 +500,7 @@
                                                 alt: post.title.rendered,
                                                 className: 'post-thumbnail',
                                                 style: { objectFit: 'cover', width: '100%',
-                                                ...(attributes.thumbnailBorderRadius ? { borderRadius: getSpacingValue(attributes.thumbnailBorderRadius) } : {}),
+                                                
                                                 },
                                             })
                                         )
@@ -673,7 +674,6 @@
                                                     },
                                                     onMouseLeave: (e) => {
                                                         e.currentTarget.style.color = postTitleColor;
-                                                        e.currentTarget.style.backgroundImage = 'none';
                                                     },
                                                 },
                                                 titleCropBy === 'word'
