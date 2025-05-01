@@ -146,7 +146,7 @@
             buttonBorderType: { type: 'string', default: '' },
             buttonBorderRadius: { type: 'string', default: '' },
             buttonFontWeight: { type: 'string', default: '' },          
-            buttonBorderWidth: { type: 'string', default: '' },
+            buttonBorderWidth: { type: 'object', default: { top: '', right: '', bottom: '', left: '' }, },
             buttonHoverTextColor: { type: 'string', default: '' },
             buttonHoverBackgroundColor: { type: 'string', default: '' },
             buttonBorderColor: { type: 'string', default: '' },
@@ -740,7 +740,8 @@
                                             ...(buttonBorderColor ? { borderColor: buttonBorderColor } : {}),
                                             ...(buttonBorderType ? { border: buttonBorderType } : {}),
                                             ...(buttonFontWeight ? { fontWeight: buttonFontWeight } : {}),
-                                            ...(attributes.buttonBorderWidth ? { borderWidth: `${attributes.buttonBorderWidth}px` } : {}),
+                                            
+                                            ...(attributes.buttonBorderWidth ? { borderWidth: getSpacingValue(attributes.buttonBorderWidth) } : {}),
                                             ...(attributes.buttonPaddingNew ? { padding: getSpacingValue(attributes.buttonPaddingNew) } : {}),
                                             ...(attributes.buttonBorderRadius ? { borderRadius: getSpacingValue(attributes.buttonBorderRadius) } : {}),
                                             ...(buttonFontSize ? { fontSize: `${buttonFontSize}px` } : {}),
@@ -748,12 +749,12 @@
                                         },
                                         onMouseEnter: (e) => {
                                             e.currentTarget.style.color = buttonHoverTextColor;
-                                            e.currentTarget.style.backgroundColor = buttonHoverBackgroundColor;
+                                            e.currentTarget.style.background = buttonHoverBackgroundColor;
                                             e.currentTarget.style.borderColor = buttonHoverBorderColor;
                                         },
                                         onMouseLeave: (e) => {
                                             e.currentTarget.style.color = buttonTextColor;
-                                            e.currentTarget.style.backgroundColor = buttonBackgroundColor;
+                                            e.currentTarget.style.background = buttonBackgroundColor;
                                             e.currentTarget.style.borderColor = buttonBorderColor;
                                         },
                                     }, 
@@ -4899,17 +4900,13 @@
                                         ],
                                         onChange: (value) => setAttributes({ buttonBorderType: value }),
                                     }),
-
+                       
                                     // Border Width
-                                    
-                                    wp.element.createElement(RangeControl, {
+                                    wp.element.createElement(__experimentalBoxControl, {
                                         label: __('Border Width', 'fancy-post-grid'),
-                                        value: attributes.buttonBorderWidth,
+                                        values: attributes.buttonBorderWidth,
                                         onChange: (value) => setAttributes({ buttonBorderWidth: value }),
-                                        min: 0,
-                                        max: 100
-                                    }),
-                                    
+                                    }),    
                                     wp.element.createElement(
                                         TabPanel,
                                         {
