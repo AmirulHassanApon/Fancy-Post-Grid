@@ -850,21 +850,39 @@ function fancy_post_grid_render_callback($attributes) {
 
                 // Meta Data
                 if ($showMetaData) {
-                            
-                    $output .= '<ul class="meta-data-list" style="
-                        order: ' . esc_attr($metaOrder) . '; 
-                        justify-content: ' . esc_attr($metaAlignment) . ';
-                        margin: ' . 
-                            (is_numeric($metaMarginNew['top']) ? $metaMarginNew['top'] . 'px' : esc_attr($metaMarginNew['top'])) . ' ' . 
-                            (is_numeric($metaMarginNew['right']) ? $metaMarginNew['right'] . 'px' : esc_attr($metaMarginNew['right'])) . ' ' . 
-                            (is_numeric($metaMarginNew['bottom']) ? $metaMarginNew['bottom'] . 'px' : esc_attr($metaMarginNew['bottom'])) . ' ' . 
-                            (is_numeric($metaMarginNew['left']) ? $metaMarginNew['left'] . 'px' : esc_attr($metaMarginNew['left'])) . ';padding: ' . 
-                            (is_numeric($metaPadding['top']) ? $metaPadding['top'] . 'px' : esc_attr($metaPadding['top'])) . ' ' . 
-                            (is_numeric($metaPadding['right']) ? $metaPadding['right'] . 'px' : esc_attr($metaPadding['right'])) . ' ' . 
-                            (is_numeric($metaPadding['bottom']) ? $metaPadding['bottom'] . 'px' : esc_attr($metaPadding['bottom'])) . ' ' . 
-                            (is_numeric($metaPadding['left']) ? $metaPadding['left'] . 'px' : esc_attr($metaPadding['left'])) . ';
-                        color: ' . esc_attr($metaTextColor) . ';
-                    ">';
+                    $output .= '<ul class="meta-data-list" style="';   
+                        // Margin
+                        if (!empty($metaMarginNew['top']) || !empty($metaMarginNew['right']) || !empty($metaMarginNew['bottom']) || !empty($metaMarginNew['left'])) {
+                            $output .= 'margin: ' .
+                                (is_numeric($metaMarginNew['top']) ? $metaMarginNew['top'] . 'px' : esc_attr($metaMarginNew['top'])) . ' ' .
+                                (is_numeric($metaMarginNew['right']) ? $metaMarginNew['right'] . 'px' : esc_attr($metaMarginNew['right'])) . ' ' .
+                                (is_numeric($metaMarginNew['bottom']) ? $metaMarginNew['bottom'] . 'px' : esc_attr($metaMarginNew['bottom'])) . ' ' .
+                                (is_numeric($metaMarginNew['left']) ? $metaMarginNew['left'] . 'px' : esc_attr($metaMarginNew['left'])) . '; ';
+                        }
+                        // Padding
+                        if (!empty($metaPadding['top']) || !empty($metaPadding['right']) || !empty($metaPadding['bottom']) || !empty($metaPadding['left'])) {
+                            $output .= 'padding: ' .
+                                (is_numeric($metaPadding['top']) ? $metaPadding['top'] . 'px' : esc_attr($metaPadding['top'])) . ' ' .
+                                (is_numeric($metaPadding['right']) ? $metaPadding['right'] . 'px' : esc_attr($metaPadding['right'])) . ' ' .
+                                (is_numeric($metaPadding['bottom']) ? $metaPadding['bottom'] . 'px' : esc_attr($metaPadding['bottom'])) . ' ' .
+                                (is_numeric($metaPadding['left']) ? $metaPadding['left'] . 'px' : esc_attr($metaPadding['left'])) . '; ';
+                        }
+                        
+                        // Border Style
+                        if (!empty($metaAlignment)) {
+                            $output .= 'justify-content: ' . esc_attr($metaAlignment) . '; ';
+                        }
+                        // Color
+                        if (!empty($metaTextColor)) {
+                            $output .= 'color: ' . esc_attr($metaTextColor) . '; ';
+                        }
+                        // Order
+                        if (!empty($metaOrder)) {
+                            $output .= 'order: ' . esc_attr($metaOrder) . '; ';
+                        }
+                    $output .= '">';
+
+                    
 
                     $meta_items = [];
 
