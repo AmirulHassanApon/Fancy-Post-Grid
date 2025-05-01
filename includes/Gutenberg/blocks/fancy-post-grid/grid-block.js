@@ -670,7 +670,7 @@
                                                         ...(postTitleLineHeight ? { lineHeight: postTitleLineHeight } : {}),
                                                         ...(postTitleLetterSpacing ? { letterSpacing: postTitleLetterSpacing } : {}),
                                                         transition: 'all 0.3s ease',
-                                                    },
+                                                    }, 
                                                     onMouseEnter: (e) => {
                                                         e.currentTarget.style.color = postTitleHoverColor;
                                                     },
