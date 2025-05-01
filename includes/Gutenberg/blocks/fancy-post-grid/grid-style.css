@@ -1711,13 +1711,14 @@ img {
     color: #1F1F1F;
     text-decoration: none;
     padding-bottom: 0px;
-    margin-bottom: 12px;
-    margin-top: 10px;
     display: block;
     font-size: 20px;
     line-height: 30px;
     font-weight: 700;
+    margin: 0;
+}
 
+.rs-blog-layout-5 .rs-blog__single .rs-content .title.underline a{
     display: inline;
     transition: all 0.5s ease;
     text-decoration: none;
@@ -1731,6 +1732,8 @@ img {
 
 .rs-blog-layout-5 .rs-blog__single .rs-content .title a:hover {
     color: #007aff;
+}
+.rs-blog-layout-5 .rs-blog__single .rs-content .title.underline a:hover {
     background-size: 100% 2px;
 }
 
