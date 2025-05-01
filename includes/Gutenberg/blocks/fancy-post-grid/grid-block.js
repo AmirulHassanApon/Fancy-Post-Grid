@@ -1043,7 +1043,7 @@
                                             border:  ` ${buttonBorderType} ${buttonBackgroundColor}`, 
                                             fontWeight: buttonFontWeight,
                                             // Border style
-                                            borderWidth: `${attributes.buttonBorderWidth}px`,
+                                            // borderWidth: `${attributes.buttonBorderWidth}px`,
                                             padding: getSpacingValue(attributes.buttonPaddingNew),
                                             borderRadius: getSpacingValue(attributes.buttonBorderRadius),
                                             fontSize: `${buttonFontSize}px`,
@@ -1407,7 +1407,7 @@
                                             border:  ` ${buttonBorderType} ${buttonBackgroundColor}`, 
                                             fontWeight: buttonFontWeight,
                                             // Border style
-                                            borderWidth: `${attributes.buttonBorderWidth}px`,
+                                            // borderWidth: `${attributes.buttonBorderWidth}px`,
                                             padding: getSpacingValue(attributes.buttonPaddingNew),
                                             borderRadius: getSpacingValue(attributes.buttonBorderRadius),
                                             fontSize: `${buttonFontSize}px`,
@@ -2037,7 +2037,7 @@
                                             border:  ` ${buttonBorderType} ${buttonBackgroundColor}`, 
                                             fontWeight: buttonFontWeight,
                                             // Border style
-                                            borderWidth: `${attributes.buttonBorderWidth}px`,
+                                            // borderWidth: `${attributes.buttonBorderWidth}px`,
                                             padding: getSpacingValue(attributes.buttonPaddingNew),
                                             borderRadius: getSpacingValue(attributes.buttonBorderRadius),
                                             fontSize: `${buttonFontSize}px`,
@@ -2350,7 +2350,7 @@
                                             border:  ` ${buttonBorderType} ${buttonBackgroundColor}`, 
                                             fontWeight: buttonFontWeight,
                                             // Border style
-                                            borderWidth: `${attributes.buttonBorderWidth}px`,
+                                            // borderWidth: `${attributes.buttonBorderWidth}px`,
                                             padding: getSpacingValue(attributes.buttonPaddingNew),
                                             borderRadius: getSpacingValue(attributes.buttonBorderRadius),
                                             fontSize: `${buttonFontSize}px`,
@@ -3286,7 +3286,7 @@
                                             border:  ` ${buttonBorderType} ${buttonBackgroundColor}`, 
                                             fontWeight: buttonFontWeight,
                                             // Border style
-                                            borderWidth: `${attributes.buttonBorderWidth}px`,
+                                            // borderWidth: `${attributes.buttonBorderWidth}px`,
                                             padding: getSpacingValue(attributes.buttonPaddingNew),
                                             borderRadius: getSpacingValue(attributes.buttonBorderRadius),
                                             fontSize: `${buttonFontSize}px`,
@@ -3597,7 +3597,7 @@
                                             border:  ` ${buttonBorderType} ${buttonBackgroundColor}`, 
                                             fontWeight: buttonFontWeight,
                                             // Border style
-                                            borderWidth: `${attributes.buttonBorderWidth}px`,
+                                            // borderWidth: `${attributes.buttonBorderWidth}px`,
                                             padding: getSpacingValue(attributes.buttonPaddingNew),
                                             borderRadius: getSpacingValue(attributes.buttonBorderRadius),
                                             fontSize: `${buttonFontSize}px`,
@@ -3887,7 +3887,7 @@
                                             border:  ` ${buttonBorderType} ${buttonBackgroundColor}`, 
                                             fontWeight: buttonFontWeight,
                                             // Border style
-                                            borderWidth: `${attributes.buttonBorderWidth}px`,
+                                            // borderWidth: `${attributes.buttonBorderWidth}px`,
                                             padding: getSpacingValue(attributes.buttonPaddingNew),
                                             borderRadius: getSpacingValue(attributes.buttonBorderRadius),
                                             fontSize: `${buttonFontSize}px`,

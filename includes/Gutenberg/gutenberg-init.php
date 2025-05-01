@@ -243,14 +243,14 @@ function fancy_post_grid_render_callback($attributes) {
     $postTitlePadding = isset($attributes['postTitlePadding']) ? array_map('sanitize_text_field', $attributes['postTitlePadding']) : ['top' => '', 'right' => '', 'bottom' => '', 'left' => ''];
 
     // Excerpt
-    $excerptFontSize = isset($attributes['excerptFontSize']) ? absint($attributes['excerptFontSize']) : 16;
-    $excerptLineHeight = isset($attributes['excerptLineHeight']) ? floatval($attributes['excerptLineHeight']) : 1.5;
-    $excerptLetterSpacing = isset($attributes['excerptLetterSpacing']) ? floatval($attributes['excerptLetterSpacing']) : 1;
-    $excerptFontWeight = isset($attributes['excerptFontWeight']) ? sanitize_text_field($attributes['excerptFontWeight']) : '400';
-    $excerptAlignment = isset($attributes['excerptAlignment']) ? sanitize_text_field($attributes['excerptAlignment']) : 'left';
+    $excerptFontSize = isset($attributes['excerptFontSize']) ? absint($attributes['excerptFontSize']) : '';
+    $excerptLineHeight = isset($attributes['excerptLineHeight']) ? floatval($attributes['excerptLineHeight']) : '';
+    $excerptLetterSpacing = isset($attributes['excerptLetterSpacing']) ? floatval($attributes['excerptLetterSpacing']) : '';
+    $excerptFontWeight = isset($attributes['excerptFontWeight']) ? sanitize_text_field($attributes['excerptFontWeight']) : '';
+    $excerptAlignment = isset($attributes['excerptAlignment']) ? sanitize_text_field($attributes['excerptAlignment']) : '';
     $excerptMargin = isset($attributes['excerptMargin']) ? array_map('sanitize_text_field', $attributes['excerptMargin']) : ['top' => '', 'right' => '', 'bottom' => '', 'left' => ''];
     $excerptPadding = isset($attributes['excerptPadding']) ? array_map('sanitize_text_field', $attributes['excerptPadding']) : ['top' => '', 'right' => '', 'bottom' => '', 'left' => ''];
-    $excerptColor = isset($attributes['excerptColor']) ? sanitize_hex_color($attributes['excerptColor']) : '#000000';
+    $excerptColor = isset($attributes['excerptColor']) ? sanitize_hex_color($attributes['excerptColor']) : '';
     $excerptBgColor = isset($attributes['excerptBgColor']) ? sanitize_hex_color($attributes['excerptBgColor']) : '';
     $excerptBorderType = isset($attributes['excerptBorderType']) ? sanitize_text_field($attributes['excerptBorderType']) : 'none';
     $excerptHoverColor = isset($attributes['excerptHoverColor']) ? sanitize_hex_color($attributes['excerptHoverColor']) : '';
@@ -1019,7 +1019,6 @@ function fancy_post_grid_render_callback($attributes) {
                         $meta .= esc_html__('Tags:', 'fancy-post-grid') . ' ' . $tags . '</li>';
                         $meta_items[] = $meta;
                     }
-
                     // Comment Count
                     if ($showPostCommentsCount) {
                         $meta = '<li class="meta-comment-count" style="';
@@ -1051,80 +1050,191 @@ function fancy_post_grid_render_callback($attributes) {
                         $meta .= esc_html($comments_count) . ' ' . esc_html__('Comments', 'fancy-post-grid') . '</li>';
                         $meta_items[] = $meta;
                     }
-
-
                     // Now join meta items with the separator
-                    $output .= implode('<span class="meta-separator" style="color:' . esc_attr($metaIconColor) . '; font-size:' . esc_attr($metaFontSize) . 'px;">' . esc_html($metaSeperator) . '</span>', $meta_items);
+                    if (!empty($meta_items)) {
+                        $separator = '';
 
-                    $output .= '</ul>'; // Close meta-data-list
-                    
+                        if ($metaSeperator !== '') {
+                            $separator = '';
+                            if (!empty($metaSeperator) && strtolower($metaSeperator) !== 'none') {
+                                $separatorStyle = '';
+                                if (!empty($separatorColor)) {
+                                    $separatorStyle .= 'color:' . esc_attr($separatorColor) . '; ';
+                                }
+                                if (!empty($metaFontSize)) {
+                                    $separatorStyle .= 'font-size:' . esc_attr($metaFontSize) . 'px; ';
+                                }
+
+                                $separator = '<span class="meta-separator" style="' . esc_attr(trim($separatorStyle)) . '">' . esc_html($metaSeperator) . '</span>';
+                            }
+                        }
+
+                        $output .= implode($separator, $meta_items);
+                    }
+                    $output .= '</ul>'; // Close meta-data-list               
                 }
                 // End Meta Data
 
                 // title
                 if ($showPostTitle) {
-                    $output .= '<' . esc_attr($titleTag) . ' class="title" 
-                        style="
-                        order: ' . esc_attr($titleOrder) . '; 
-                        font-size: ' . esc_attr($postTitleFontSize) . 'px; 
-                        line-height: ' . esc_attr($postTitleLineHeight) . '; 
-                        letter-spacing: ' . esc_attr($postTitleLetterSpacing) . 'px; 
-                        font-weight: ' . esc_attr($postTitleFontWeight) . '; 
-                        text-align: ' . esc_attr($postTitleAlignment) . '; 
-                        color: ' . esc_attr($postTitleColor) . '; 
-                        background-color: ' . esc_attr($postTitleBgColor) . '; 
-                        margin: ' . 
-                        (is_numeric($postTitleMargin['top']) ? $postTitleMargin['top'] . 'px' : esc_attr($postTitleMargin['top'])) . ' ' . 
-                        (is_numeric($postTitleMargin['right']) ? $postTitleMargin['right'] . 'px' : esc_attr($postTitleMargin['right'])) . ' ' . 
-                        (is_numeric($postTitleMargin['bottom']) ? $postTitleMargin['bottom'] . 'px' : esc_attr($postTitleMargin['bottom'])) . ' ' . 
-                        (is_numeric($postTitleMargin['left']) ? $postTitleMargin['left'] . 'px' : esc_attr($postTitleMargin['left'])) . ';padding: ' . 
-                        (is_numeric($postTitlePadding['top']) ? $postTitlePadding['top'] . 'px' : esc_attr($postTitlePadding['top'])) . ' ' . 
-                        (is_numeric($postTitlePadding['right']) ? $postTitlePadding['right'] . 'px' : esc_attr($postTitlePadding['right'])) . ' ' . 
-                        (is_numeric($postTitlePadding['bottom']) ? $postTitlePadding['bottom'] . 'px' : esc_attr($postTitlePadding['bottom'])) . ' ' . 
-                        (is_numeric($postTitlePadding['left']) ? $postTitlePadding['left'] . 'px' : esc_attr($postTitlePadding['left'])) . ';"
-                        onmouseover="this.style.color=\'' . esc_attr($postTitleHoverColor) . '\';
-                                     this.style.backgroundColor=\'' . esc_attr($postTitleHoverBgColor) . '\';" 
-                        onmouseout="this.style.color=\'' . esc_attr($postTitleColor) . '\';
-                                    this.style.backgroundColor=\'' . esc_attr($postTitleBgColor) . '\';">';
+                    $titleStyles = '';
+
+                    // Order
+                    if (!empty($titleOrder)) {
+                        $titleStyles .= 'order: ' . esc_attr($titleOrder) . '; ';
+                    }
+
+                    // Font settings
+                    if (!empty($postTitleFontSize)) {
+                        $titleStyles .= 'font-size: ' . esc_attr($postTitleFontSize) . 'px; ';
+                    }
+
+                    if (!empty($postTitleLineHeight)) {
+                        $titleStyles .= 'line-height: ' . esc_attr($postTitleLineHeight) . '; ';
+                    }
+
+                    if (!empty($postTitleLetterSpacing)) {
+                        $titleStyles .= 'letter-spacing: ' . esc_attr($postTitleLetterSpacing) . 'px; ';
+                    }
+
+                    if (!empty($postTitleFontWeight)) {
+                        $titleStyles .= 'font-weight: ' . esc_attr($postTitleFontWeight) . '; ';
+                    }
+
+                    if (!empty($postTitleAlignment)) {
+                        $titleStyles .= 'text-align: ' . esc_attr($postTitleAlignment) . '; ';
+                    }
+
+                    if (!empty($postTitleColor)) {
+                        $titleStyles .= 'color: ' . esc_attr($postTitleColor) . '; ';
+                    }
+
+                    if (!empty($postTitleBgColor)) {
+                        $titleStyles .= 'background-color: ' . esc_attr($postTitleBgColor) . '; ';
+                    }
+
+                    // Margin
+                    if (!empty($postTitleMargin['top']) || !empty($postTitleMargin['right']) || !empty($postTitleMargin['bottom']) || !empty($postTitleMargin['left'])) {
+                        $titleStyles .= 'margin: ' .
+                            (is_numeric($postTitleMargin['top']) ? $postTitleMargin['top'] . 'px' : esc_attr($postTitleMargin['top'])) . ' ' .
+                            (is_numeric($postTitleMargin['right']) ? $postTitleMargin['right'] . 'px' : esc_attr($postTitleMargin['right'])) . ' ' .
+                            (is_numeric($postTitleMargin['bottom']) ? $postTitleMargin['bottom'] . 'px' : esc_attr($postTitleMargin['bottom'])) . ' ' .
+                            (is_numeric($postTitleMargin['left']) ? $postTitleMargin['left'] . 'px' : esc_attr($postTitleMargin['left'])) . '; ';
+                    }
+
+                    // Padding
+                    if (!empty($postTitlePadding['top']) || !empty($postTitlePadding['right']) || !empty($postTitlePadding['bottom']) || !empty($postTitlePadding['left'])) {
+                        $titleStyles .= 'padding: ' .
+                            (is_numeric($postTitlePadding['top']) ? $postTitlePadding['top'] . 'px' : esc_attr($postTitlePadding['top'])) . ' ' .
+                            (is_numeric($postTitlePadding['right']) ? $postTitlePadding['right'] . 'px' : esc_attr($postTitlePadding['right'])) . ' ' .
+                            (is_numeric($postTitlePadding['bottom']) ? $postTitlePadding['bottom'] . 'px' : esc_attr($postTitlePadding['bottom'])) . ' ' .
+                            (is_numeric($postTitlePadding['left']) ? $postTitlePadding['left'] . 'px' : esc_attr($postTitlePadding['left'])) . '; ';
+                    }
+
+                    $output .= '<' . esc_attr($titleTag) . ' class="title" style="' . esc_attr(trim($titleStyles)) . '" 
+                        onmouseover="this.style.color=\'' . esc_attr($postTitleHoverColor) . '\'; this.style.backgroundColor=\'' . esc_attr($postTitleHoverBgColor) . '\';"
+                        onmouseout="this.style.color=\'' . esc_attr($postTitleColor) . '\'; this.style.backgroundColor=\'' . esc_attr($postTitleBgColor) . '\';">';
 
                     $output .= '<a href="' . esc_url($permalink) . '" 
-                        style="display: inline-block; width: 100%; text-decoration: none;"
+                        style= 
                         onmouseover="this.style.textDecoration=\'' . ($titleHoverUnderLine === 'enable' ? 'underline' : 'none') . '\';"
                         onmouseout="this.style.textDecoration=\'none\';">' . esc_html($croppedTitle) . '</a>';
 
                     $output .= '</' . esc_attr($titleTag) . '>';
                 }
 
+
                 // Excerpt
                 if ($showPostExcerpt) {
-                    $output .= '<div class="fpg-excerpt" style="order: ' . esc_attr($excerptOrder) . '; 
-                       font-size: ' . esc_attr($excerptFontSize) . 'px; 
-                       line-height: ' . esc_attr($excerptLineHeight) . '; 
-                       letter-spacing: ' . esc_attr($excerptLetterSpacing) . 'px; 
-                       font-weight: ' . esc_attr($excerptFontWeight) . '; 
-                       text-align: ' . esc_attr($excerptAlignment) . '; 
-                       color: ' . esc_attr($excerptColor) . '; 
-                       background-color: ' . esc_attr($excerptBgColor) . '; 
-                       border-style: ' . esc_attr($excerptBorderType) . '; 
-                       margin: ' . 
-                        (is_numeric($excerptMargin['top']) ? $excerptMargin['top'] . 'px' : esc_attr($excerptMargin['top'])) . ' ' . 
-                        (is_numeric($excerptMargin['right']) ? $excerptMargin['right'] . 'px' : esc_attr($excerptMargin['right'])) . ' ' . 
-                        (is_numeric($excerptMargin['bottom']) ? $excerptMargin['bottom'] . 'px' : esc_attr($excerptMargin['bottom'])) . ' ' . 
-                        (is_numeric($excerptMargin['left']) ? $excerptMargin['left'] . 'px' : esc_attr($excerptMargin['left'])) . ';padding: ' . 
-                        (is_numeric($excerptPadding['top']) ? $excerptPadding['top'] . 'px' : esc_attr($excerptPadding['top'])) . ' ' . 
-                        (is_numeric($excerptPadding['right']) ? $excerptPadding['right'] . 'px' : esc_attr($excerptPadding['right'])) . ' ' . 
-                        (is_numeric($excerptPadding['bottom']) ? $excerptPadding['bottom'] . 'px' : esc_attr($excerptPadding['bottom'])) . ' ' . 
-                        (is_numeric($excerptPadding['left']) ? $excerptPadding['left'] . 'px' : esc_attr($excerptPadding['left'])) . ';"
-                        onmouseover="this.style.color=\'' . esc_attr($excerptHoverColor) . '\';
-                                     this.style.backgroundColor=\'' . esc_attr($excerptHoverBgColor) . '\';
-                                     this.style.borderColor=\'' . esc_attr($excerptHoverBorderColor) . '\';" 
-                        onmouseout="this.style.color=\'' . esc_attr($excerptColor) . '\';
-                                    this.style.backgroundColor=\'' . esc_attr($excerptBgColor) . '\';
-                                    this.style.borderColor=\'inherit\';">';
+                    $excerptStyles = '';
 
+                    // Order
+                    if (!empty($excerptOrder)) {
+                        $excerptStyles .= 'order: ' . esc_attr($excerptOrder) . '; ';
+                    }
+
+                    // Typography
+                    if (!empty($excerptFontSize)) {
+                        $excerptStyles .= 'font-size: ' . esc_attr($excerptFontSize) . 'px; ';
+                    }
+
+                    if (!empty($excerptLineHeight)) {
+                        $excerptStyles .= 'line-height: ' . esc_attr($excerptLineHeight) . '; ';
+                    }
+
+                    if (!empty($excerptLetterSpacing)) {
+                        $excerptStyles .= 'letter-spacing: ' . esc_attr($excerptLetterSpacing) . 'px; ';
+                    }
+
+                    if (!empty($excerptFontWeight)) {
+                        $excerptStyles .= 'font-weight: ' . esc_attr($excerptFontWeight) . '; ';
+                    }
+
+                    if (!empty($excerptAlignment)) {
+                        $excerptStyles .= 'text-align: ' . esc_attr($excerptAlignment) . '; ';
+                    }
+
+                    if (!empty($excerptColor)) {
+                        $excerptStyles .= 'color: ' . esc_attr($excerptColor) . '; ';
+                    }
+
+                    if (!empty($excerptBgColor)) {
+                        $excerptStyles .= 'background-color: ' . esc_attr($excerptBgColor) . '; ';
+                    }
+
+                    if (!empty($excerptBorderType)) {
+                        $excerptStyles .= 'border-style: ' . esc_attr($excerptBorderType) . '; ';
+                    }
+
+                    // Margin
+                    if (!empty($excerptMargin['top']) || !empty($excerptMargin['right']) || !empty($excerptMargin['bottom']) || !empty($excerptMargin['left'])) {
+                        $excerptStyles .= 'margin: ' .
+                            (is_numeric($excerptMargin['top']) ? $excerptMargin['top'] . 'px' : esc_attr($excerptMargin['top'])) . ' ' .
+                            (is_numeric($excerptMargin['right']) ? $excerptMargin['right'] . 'px' : esc_attr($excerptMargin['right'])) . ' ' .
+                            (is_numeric($excerptMargin['bottom']) ? $excerptMargin['bottom'] . 'px' : esc_attr($excerptMargin['bottom'])) . ' ' .
+                            (is_numeric($excerptMargin['left']) ? $excerptMargin['left'] . 'px' : esc_attr($excerptMargin['left'])) . '; ';
+                    }
+
+                    // Padding
+                    if (!empty($excerptPadding['top']) || !empty($excerptPadding['right']) || !empty($excerptPadding['bottom']) || !empty($excerptPadding['left'])) {
+                        $excerptStyles .= 'padding: ' .
+                            (is_numeric($excerptPadding['top']) ? $excerptPadding['top'] . 'px' : esc_attr($excerptPadding['top'])) . ' ' .
+                            (is_numeric($excerptPadding['right']) ? $excerptPadding['right'] . 'px' : esc_attr($excerptPadding['right'])) . ' ' .
+                            (is_numeric($excerptPadding['bottom']) ? $excerptPadding['bottom'] . 'px' : esc_attr($excerptPadding['bottom'])) . ' ' .
+                            (is_numeric($excerptPadding['left']) ? $excerptPadding['left'] . 'px' : esc_attr($excerptPadding['left'])) . '; ';
+                    }
+
+                    // Handle hover logic conditionally
+                    $hoverIn = '';
+                    $hoverOut = '';
+
+                    if (!empty($excerptHoverColor)) {
+                        $hoverIn .= 'this.style.color=\'' . esc_attr($excerptHoverColor) . '\';';
+                        $hoverOut .= 'this.style.color=\'' . esc_attr($excerptColor) . '\';';
+                    }
+
+                    if (!empty($excerptHoverBgColor)) {
+                        $hoverIn .= 'this.style.backgroundColor=\'' . esc_attr($excerptHoverBgColor) . '\';';
+                        $hoverOut .= 'this.style.backgroundColor=\'' . esc_attr($excerptBgColor) . '\';';
+                    }
+
+                    if (!empty($excerptHoverBorderColor)) {
+                        $hoverIn .= 'this.style.borderColor=\'' . esc_attr($excerptHoverBorderColor) . '\';';
+                        $hoverOut .= 'this.style.borderColor=\'inherit\';';
+                    }
+
+                    $output .= '<div class="fpg-excerpt" style="' . esc_attr(trim($excerptStyles)) . '"';
+
+                    if (!empty($hoverIn) || !empty($hoverOut)) {
+                        $output .= ' onmouseover="' . esc_attr($hoverIn) . '"';
+                        $output .= ' onmouseout="' . esc_attr($hoverOut) . '"';
+                    }
+
+                    $output .= '>';
                     $output .= '<p>' . esc_html($excerpt) . '</p>';
                     $output .= '</div>';
                 }
+
                 // End Excerpt
 
                 
@@ -5833,14 +5943,14 @@ function fancy_post_slider_render_callback($attributes) {
     $output .= '<div class="swiper-button-prev"></div>';
     $output .= '<style>
         .swiper-pagination-1 .swiper-pagination-bullet {
-            background-color: ' . esc_attr($dotColor) . ';
+            background-color: ' . esc_attr($sliderDots) . ';
             opacity: 1;
         }
         .swiper-pagination-1 .swiper-pagination-bullet-active {
-            background-color: ' . esc_attr($dotActiveColor) . ';
+            background-color: ' . esc_attr($sliderDotsActive) . ';
         }
         .swiper-pagination-1 .swiper-pagination-fraction .swiper-pagination-current {
-            background-color: ' . esc_attr($dotColor) . ';
+            background-color: ' . esc_attr($sliderDots) . ';
             opacity: 1;
         }
         
