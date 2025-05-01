@@ -201,8 +201,10 @@ function fancy_post_grid_render_callback($attributes) {
     $readMoreLabel = isset($attributes['readMoreLabel']) ? sanitize_text_field($attributes['readMoreLabel']) : __('Read More', 'fancy-post-grid');
     // SECTION Area
     $sectionBgColor    = isset($attributes['sectionBgColor']) ? sanitize_hex_color($attributes['sectionBgColor']) : '';
-    $sectionMargin = isset($attributes['sectionMargin']) ? $attributes['sectionMargin'] : ['top' => '', 'right' => '', 'bottom' => '', 'left' => ''];
-    $sectionPadding = isset($attributes['sectionPadding']) ? $attributes['sectionPadding'] : ['top' => '', 'right' => '', 'bottom' => '', 'left' => ''];
+    
+    $sectionMargin     = isset($attributes['sectionMargin']) ? (array) $attributes['sectionMargin'] : ['top' => '', 'right' => '', 'bottom' => '', 'left' => ''];
+    $sectionPadding    = isset($attributes['sectionPadding']) ? (array) $attributes['sectionPadding'] : ['top' => '', 'right' => '', 'bottom' => '', 'left' => ''];
+    var_dump($sectionPadding);
     // ITEM Box
     $itemPadding = isset($attributes['itemPadding']) ? $attributes['itemPadding'] : ['top' => '', 'right' => '', 'bottom' => '', 'left' => ''];
     $itemMargin = isset($attributes['itemMargin']) ? $attributes['itemMargin'] : ['top' => '', 'right' => '', 'bottom' => '', 'left' => ''];
@@ -3875,8 +3877,8 @@ function fancy_post_grid_render_callback($attributes) {
 
 function fancy_post_slider_render_callback($attributes) {
     // Content Layout
-    $post_count = 0;
-    $total_post_count = $query->post_count;
+    // $post_count = 0;
+    // $total_post_count = $query->post_count;
     $sliderLayoutStyle = isset($attributes['sliderLayoutStyle']) ? $attributes['sliderLayoutStyle'] : 'style1';
     $gridColumns = isset($attributes['gridColumns']) ? absint($attributes['gridColumns']) : 3;
     //Query Builder
@@ -7897,10 +7899,10 @@ function fancy_post_list_render_callback($attributes) {
                 }
 
                 // Close wrappers at the end
-                if ($post_count === $total_post_count) {
+                // if ($post_count === $total_post_count) {
                     $output .= '</div>'; // Close last column (right)
                     $output .= '</div>'; // Close row
-                }
+                // }
             }
             
         }
