@@ -1814,11 +1814,11 @@ img {
     margin-top: 10px;
     display: inline-block;
     position: relative;
-    background: transparent !important;
+    background: transparent;
 }
 .rs-blog-layout-5 .rs-blog__single .rs-content .rs-link.fpg-border:hover{
     color: #007aff;
-    background: transparent !important;
+    background: transparent;
 }
 
 .rs-blog-layout-5 .rs-blog__single .rs-content .rs-link.fpg-border::before{
@@ -1843,12 +1843,12 @@ img {
     margin-top: 0px;
     display: inline-block;
     position: relative;
-    background: transparent !important;
+    background: transparent;
 }
 
 .rs-blog-layout-5 .rs-blog__single .rs-content .rs-link.fpg-flat:hover{
     color: #007aff;
-    background: transparent !important;
+    background: transparent;
 }
 
 .rs-blog-layout-5 .rs-blog__single.hover-zoom_in .rs-thumb img{
