@@ -548,7 +548,7 @@
                                                 showMetaIcon && showPostDateIcon &&
                                                 wp.element.createElement('i', { className: 'fas fa-calendar-alt',
                                                     style:{ 
-                                                        ...(metaTextColor ? { color: metaTextColor } : {}),
+                                                        ...(metaIconColor ? { color: metaIconColor } : {}),
                                                         ...(metaFontSize ? { fontSize: `${metaFontSize}px` } : {})
                                                     } }), // Font Awesome calendar icon
                                                 ` ${new Date(post.date).toLocaleDateString()}`
@@ -564,7 +564,7 @@
                                                 } },
                                                 showMetaIcon && showPostAuthorIcon && 
                                                     wp.element.createElement('i', { className: 'fas fa-user',style:{ 
-                                                        ...(metaTextColor ? { color: metaTextColor } : {}),
+                                                        ...(metaIconColor ? { color: metaIconColor } : {}),
                                                         ...(metaFontSize ? { fontSize: `${metaFontSize}px` } : {})
                                                     } }), // Font Awesome user icon
                                                 ` ${metaAuthorPrefix ? metaAuthorPrefix + ' ' : ''}${post._embedded?.author?.[0]?.name}`
@@ -577,7 +577,7 @@
                                                 } },
                                                 showMetaIcon && showPostCategoryIcon &&
                                                 wp.element.createElement('i', { className: 'fas fa-folder',style:{ 
-                                                        ...(metaTextColor ? { color: metaTextColor } : {}),
+                                                        ...(metaIconColor ? { color: metaIconColor } : {}),
                                                         ...(metaFontSize ? { fontSize: `${metaFontSize}px` } : {})
                                                     } }), // Font Awesome folder icon
                                                 ` ${post._embedded?.['wp:term']?.[0]?.map(cat => cat.name).join(', ')}`
@@ -590,7 +590,7 @@
                                                 } },
                                                 showMetaIcon && showPostTagsIcon &&
                                                 wp.element.createElement('i', { className: 'fas fa-tags',style:{ 
-                                                    ...(metaTextColor ? { color: metaTextColor } : {}),
+                                                    ...(metaIconColor ? { color: metaIconColor } : {}),
                                                     ...(metaFontSize ? { fontSize: `${metaFontSize}px` } : {})
                                                     } }), // Font Awesome tags icon
                                                 ` ${post._embedded?.['wp:term']?.[1]?.map(tag => tag.name).join(', ')}`
@@ -603,7 +603,7 @@
                                                 } },
                                                 showMetaIcon && showPostCommentsCountIcon &&
                                                 wp.element.createElement('i', { className: 'fas fa-comments',style:{ 
-                                                    ...(metaTextColor ? { color: metaTextColor } : {}),
+                                                    ...(metaIconColor ? { color: metaIconColor } : {}),
                                                     ...(metaFontSize ? { fontSize: `${metaFontSize}px` } : {})
                                                     } }), // Font Awesome comments icon
                                                 ` ${post.comment_count} Comments`
@@ -620,7 +620,7 @@
                                                         wp.element.createElement('span', {
                                                             className: 'meta-separator',
                                                             style: {
-                                                                ...(metaTextColor ? { color: metaTextColor } : {}),
+                                                                ...(separatorColor ? { color: separatorColor } : {}),
                                                                 ...(metaFontSize ? { fontSize: `${metaFontSize}px` } : {})
                                                             }
                                                         }, ` ${metaSeperator} `)
