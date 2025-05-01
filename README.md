@@ -5,13 +5,13 @@
 **Author URI:** http://rstheme.com 
 **Contributors:** rstheme2017, rubrash
 **Tags:** maintenance mode, coming soon, landing page, under construction, countdown   
-**Version:** 1.0.1
+**Version:** 1.0.2
 **License:** GPLv2 or later
 **License URI:** http://www.gnu.org/licenses/gpl-2.0.html 
-**Stable tag:** 1.0.1
-**Tested up to:** 6.7.1
-**Requires PHP:** 7.0.0
-**Requires at least:** 5.5
+**Stable tag:** 1.0.2
+**Tested up to:** 6.8
+**Requires PHP:** 7.4
+**Requires at least:** 6.3
 
 Elegant, responsive WordPress plugin for stylish post grids, sliders, lists, and isotope layouts.
 
