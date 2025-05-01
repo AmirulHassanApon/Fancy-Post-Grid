@@ -641,7 +641,7 @@
                                     wp.element.createElement(
                                         titleTag,
                                         {
-                                            className: 'title',
+                                            className: `title${titleHoverUnderLine === 'enable' ? ' underline' : ''}`,
                                             style: {
                                                 margin: getSpacingValue(attributes.postTitleMargin || '0px'),
                                                 padding: getSpacingValue(attributes.postTitlePadding || '0px'),
