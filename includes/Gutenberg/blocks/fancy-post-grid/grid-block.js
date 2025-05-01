@@ -647,7 +647,6 @@
                                                 padding: getSpacingValue(attributes.postTitlePadding || '0px'),
                                                 ...(postTitleAlignment ? { textAlign: postTitleAlignment } : {}),
                                                 ...(postTitleBgColor ? { backgroundColor: postTitleBgColor } : {}),
-                                                transition: 'all 0.3s ease',
                                                 ...(titleOrder !== undefined ? { order: titleOrder } : {}),
                                             },
                                             onMouseEnter: (e) => {
@@ -669,7 +668,7 @@
                                                         ...(postTitleFontWeight ? { fontWeight: postTitleFontWeight } : {}),
                                                         ...(postTitleLineHeight ? { lineHeight: postTitleLineHeight } : {}),
                                                         ...(postTitleLetterSpacing ? { letterSpacing: postTitleLetterSpacing } : {}),
-                                                        transition: 'all 0.3s ease',
+                                                        
                                                     },
                                                     onMouseEnter: (e) => {
                                                         e.currentTarget.style.color = postTitleHoverColor;
