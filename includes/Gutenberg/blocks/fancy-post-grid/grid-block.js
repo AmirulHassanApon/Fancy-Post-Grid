@@ -735,8 +735,10 @@
                                         className: `rs-link read-more ${buttonStyle}`,  // Dynamic class based on buttonStyle
                                         style: { 
                                             ...(buttonStyle === 'fpg-filled' ? { backgroundColor: buttonBackgroundColor } : { backgroundColor: 'transparent' }),
-                                            ...(buttonTextColor ? { color: buttonTextColor, borderColor: buttonTextColor } : {}),
-                                            ...(buttonBorderType && buttonBackgroundColor ? { border: `${buttonBorderType} ${buttonBackgroundColor}` } : {}),
+                                            ...(buttonTextColor ? { color: buttonTextColor } : {}),
+                                            ...(buttonBorderColor ? { borderColor: buttonBorderColor } : {}),
+                                            ...(buttonBorderType ? { border: buttonBorderType } : {}),
+                                            // ...(buttonBorderType && buttonBackgroundColor ? { border: `${buttonBorderType} ${buttonBackgroundColor}` } : {}),
                                             ...(buttonFontWeight ? { fontWeight: buttonFontWeight } : {}),
                                             ...(attributes.buttonBorderWidth ? { borderWidth: `${attributes.buttonBorderWidth}px` } : {}),
                                             ...(attributes.buttonPaddingNew ? { padding: getSpacingValue(attributes.buttonPaddingNew) } : {}),
