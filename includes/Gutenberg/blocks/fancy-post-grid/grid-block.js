@@ -14,16 +14,13 @@
 
         attributes: {
 
-            // CONTENT
             // Layout
             gridColumns: { type: 'number', default: 3 },
             gridLayoutStyle: { type: 'string', default: 'style1' },
             // Query Builder
             selectedCategory: { type: 'string', default: '' },
             selectedTag: { type: 'string', default: '' },
-            
             orderBy: { type: 'string', default: 'title' },
-            
             postLimit: { type: 'number', default: 3 },           
             // Pagination settings
             enablePagination: { type: 'boolean', default: true },
@@ -465,14 +462,13 @@
                         
                         return wp.element.createElement('div', { 
                             key: post.id, 
-                                className: `fancy-post-item rs-blog__single ${hoverAnimation}`,
+                                className: `fancy-post-item rs-blog__single align-${itemBoxAlignment} ${hoverAnimation}`,
                                 style: {
                                     
                                     ...(attributes.itemMargin ? { margin: getSpacingValue(attributes.itemMargin) } : {}),
                                     ...(attributes.itemPadding ? { padding: getSpacingValue(attributes.itemPadding) } : {}),
                                     ...(attributes.itemBorderRadius ? { borderRadius: getSpacingValue(attributes.itemBorderRadius) } : {}),
                                     ...(attributes.itemBorderWidth ? { borderWidth: getSpacingValue(attributes.itemBorderWidth) } : {}),
-                                    ...(attributes.itemBoxAlignment ? { justifyContent: attributes.itemBoxAlignment } : {}),
                                     ...(attributes.itemBackgroundColor ? { backgroundColor: attributes.itemBackgroundColor } : {}),
                                     ...(attributes.itemBorderType ? { borderStyle: attributes.itemBorderType } : {}),
                                     ...(attributes.itemBorderColor ? { borderColor: attributes.itemBorderColor } : {}),
@@ -651,6 +647,7 @@
                                             },
                                             onMouseEnter: (e) => {
                                                 e.currentTarget.style.backgroundColor = postTitleHoverBgColor;
+                                                e.currentTarget.style.backgroundImage = `linear-gradient(to bottom, ${postTitleHoverColor} 0%, ${postTitleHoverColor} 100%)`;
                                             },
                                             onMouseLeave: (e) => {
                                                 e.currentTarget.style.backgroundColor = postTitleBgColor;
@@ -668,10 +665,10 @@
                                                         ...(postTitleFontWeight ? { fontWeight: postTitleFontWeight } : {}),
                                                         ...(postTitleLineHeight ? { lineHeight: postTitleLineHeight } : {}),
                                                         ...(postTitleLetterSpacing ? { letterSpacing: postTitleLetterSpacing } : {}),
-                                                        
                                                     },
                                                     onMouseEnter: (e) => {
                                                         e.currentTarget.style.color = postTitleHoverColor;
+                                                        e.currentTarget.style.backgroundImage = `linear-gradient(to bottom, ${postTitleHoverColor} 0%, ${postTitleHoverColor} 100%)`;
                                                     },
                                                     onMouseLeave: (e) => {
                                                         e.currentTarget.style.color = postTitleColor;
@@ -4382,9 +4379,9 @@
                                         label: __('Box Alignment', 'fancy-post-grid'),
                                         value: attributes.itemBoxAlignment,
                                         options: [
-                                            { label: __('Left', 'fancy-post-grid'), value: 'left' },
+                                            { label: __('Left', 'fancy-post-grid'), value: 'start' },
                                             { label: __('Center', 'fancy-post-grid'), value: 'center' },
-                                            { label: __('Right', 'fancy-post-grid'), value: 'right' },
+                                            { label: __('Right', 'fancy-post-grid'), value: 'end' },
                                         ],
                                         onChange: (value) => setAttributes({ itemBoxAlignment: value }),
                                     }),
