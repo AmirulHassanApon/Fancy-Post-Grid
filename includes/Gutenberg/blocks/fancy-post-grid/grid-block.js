@@ -738,7 +738,6 @@
                                             ...(buttonTextColor ? { color: buttonTextColor } : {}),
                                             ...(buttonBorderColor ? { borderColor: buttonBorderColor } : {}),
                                             ...(buttonBorderType ? { border: buttonBorderType } : {}),
-                                            // ...(buttonBorderType && buttonBackgroundColor ? { border: `${buttonBorderType} ${buttonBackgroundColor}` } : {}),
                                             ...(buttonFontWeight ? { fontWeight: buttonFontWeight } : {}),
                                             ...(attributes.buttonBorderWidth ? { borderWidth: `${attributes.buttonBorderWidth}px` } : {}),
                                             ...(attributes.buttonPaddingNew ? { padding: getSpacingValue(attributes.buttonPaddingNew) } : {}),
