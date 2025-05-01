@@ -734,7 +734,8 @@
                                         target: postLinkTarget === 'newWindow' ? '_blank' : '_self', 
                                         className: `rs-link read-more ${buttonStyle}`,  // Dynamic class based on buttonStyle
                                         style: { 
-                                            ...(buttonStyle === 'fpg-filled' ? { backgroundColor: buttonBackgroundColor } : { backgroundColor: 'transparent' }),
+                                            
+                                            ...(buttonBackgroundColor ? { background: buttonBackgroundColor } : {}),
                                             ...(buttonTextColor ? { color: buttonTextColor } : {}),
                                             ...(buttonBorderColor ? { borderColor: buttonBorderColor } : {}),
                                             ...(buttonBorderType ? { border: buttonBorderType } : {}),

@@ -916,8 +916,6 @@ function fancy_post_grid_render_callback($attributes) {
                         $meta .= esc_html($date) . '</li>';
                         $meta_items[] = $meta;
                     }
-
-
                     // Author
                     if ($showPostAuthor) {
                         $meta = '<li class="meta-author" style="';
@@ -949,7 +947,47 @@ function fancy_post_grid_render_callback($attributes) {
                         $meta .= esc_html($metaAuthorPrefix) . ' ' . esc_html($author) . '</li>';
                         $meta_items[] = $meta;
                     }
+                    // Category
+                    if ($showPostCategory) {
+                        $meta = '<li class="meta-categories" style="';
 
+                        if (!empty($metaTextColor)) {
+                            $meta .= 'color:' . esc_attr($metaTextColor) . '; ';
+                        }
+
+                        if (!empty($metaFontSize)) {
+                            $meta .= 'font-size:' . esc_attr($metaFontSize) . 'px; ';
+                        }
+
+                        $meta .= '">';
+
+                        if ($showPostCategoryIcon && $showMetaIcon) {
+                            $meta .= '<i class="ri-folder-line" style="';
+
+                            if (!empty($metaIconColor)) {
+                                $meta .= 'color:' . esc_attr($metaIconColor) . '; ';
+                            }
+
+                            if (!empty($metaFontSize)) {
+                                $meta .= 'font-size:' . esc_attr($metaFontSize) . 'px; ';
+                            }
+
+                            $meta .= '"></i> ';
+                        }
+
+                        // Get category names without links
+                        $categories_list = get_the_category($post_id);
+                        if (!empty($categories_list)) {
+                            $category_names = array();
+                            foreach ($categories_list as $category) {
+                                $category_names[] = esc_html($category->name);
+                            }
+                            $meta .= implode(', ', $category_names); // comma-separated plain text categories
+                        }
+
+                        $meta .= '</li>';
+                        $meta_items[] = $meta;
+                    }
                     // Tags
                     if ($showPostTags && !empty($tags)) {
                         $meta = '<li class="meta-tags" style="';
