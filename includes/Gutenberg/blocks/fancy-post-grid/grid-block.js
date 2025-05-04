@@ -145,8 +145,8 @@
             buttonBackgroundColor: { type: 'string', default: '' },
             buttonBorderType: { type: 'string', default: '' },
             buttonBorderRadius: { type: 'string', default: '' },
-            buttonFontWeight: { type: 'string', default: '' },          
-            buttonBorderWidth: { type: 'object', default: { top: '', right: '', bottom: '', left: '' }, },
+            buttonFontWeight: { type: 'string', default: '' },
+            buttonBorderWidth: { type: 'string', default: '' },
             buttonHoverTextColor: { type: 'string', default: '' },
             buttonHoverBackgroundColor: { type: 'string', default: '' },
             buttonBorderColor: { type: 'string', default: '' },
@@ -157,7 +157,7 @@
             paginationPaddingNew: { type: 'object', default: { top: '', right: '', bottom: '', left: '' }, },             
             paginationAlignment: { type: 'string', default: '' },
             paginationBorderStyle: { type: 'string', default: '' },
-            paginationBorderWidth: { type: 'object', default: { top: '', right: '', bottom: '', left: '' }, },
+            paginationBorderWidth: { type: 'number', default: '' },
             paginationBorderRadius: { type: 'object', default: { top: '', right: '', bottom: '', left: '' }, },
             paginationGap: { type: 'number', default: '' },
             paginationFontSize: { type: 'number', default: '' },
@@ -311,7 +311,7 @@
                                     ? { backgroundColor: attributes.paginationActiveBackgroundColor, color: attributes.paginationActiveTextColor, borderColor: attributes.paginationActiveBorderColor }
                                     : { backgroundColor: '#007cba', color: '#fff' }),
                                 ...(attributes.paginationBorderStyle ? { borderStyle: attributes.paginationBorderStyle } : {}),
-                                ...(attributes.paginationBorderWidth ? { borderWidth: getSpacingValue(attributes.paginationBorderWidth) } : {}),
+                                ...(attributes.paginationBorderWidth ? { borderWidth: `${attributes.paginationBorderWidth}px` } : {}),
                                 ...(attributes.paginationBorderRadius ? { borderRadius: getSpacingValue(attributes.paginationBorderRadius) } : {}),
                                 ...(attributes.paginationFontSize ? { fontSize: `${attributes.paginationFontSize}px` } : {}),
                                 ...(attributes.paginationPaddingNew ? { padding: getSpacingValue(attributes.paginationPaddingNew) } : {}),
@@ -364,7 +364,7 @@
                                 ...(attributes.paginationBackgroundColor ? { backgroundColor: attributes.paginationBackgroundColor } : {}),
                                 ...(attributes.paginationTextColor ? { color: attributes.paginationTextColor } : {}),
                                 ...(attributes.paginationBorderStyle ? { borderStyle: attributes.paginationBorderStyle } : {}),
-                                ...(attributes.paginationBorderWidth ? { borderWidth: getSpacingValue(attributes.paginationBorderWidth) } : {}),
+                                ...(attributes.paginationBorderWidth ? { borderWidth: `${attributes.paginationBorderWidth}px` } : {}),
                                 ...(attributes.paginationBorderRadius ? { borderRadius: getSpacingValue(attributes.paginationBorderRadius) } : {}),
                                 ...(attributes.paginationBorderColor ? { borderColor: attributes.paginationBorderColor } : {}),
                                 ...(attributes.paginationFontSize ? { fontSize: `${attributes.paginationFontSize}px` } : {}),
@@ -406,7 +406,7 @@
                                 ...(attributes.paginationBackgroundColor ? { backgroundColor: attributes.paginationBackgroundColor } : {}),
                                 ...(attributes.paginationTextColor ? { color: attributes.paginationTextColor } : {}),
                                 ...(attributes.paginationBorderStyle ? { borderStyle: attributes.paginationBorderStyle } : {}),
-                                ...(attributes.paginationBorderWidth ? { borderWidth: getSpacingValue(attributes.paginationBorderWidth) } : {}),
+                                ...(attributes.paginationBorderWidth ? { borderWidth: `${attributes.paginationBorderWidth}px` } : {}),
                                 ...(attributes.paginationBorderRadius ? { borderRadius: getSpacingValue(attributes.paginationBorderRadius) } : {}),
                                 ...(attributes.paginationBorderColor ? { borderColor: attributes.paginationBorderColor } : {}),
                                 ...(attributes.paginationFontSize ? { fontSize: `${attributes.paginationFontSize}px` } : {}),
@@ -741,7 +741,7 @@
                                             ...(buttonBorderType ? { border: buttonBorderType } : {}),
                                             ...(buttonFontWeight ? { fontWeight: buttonFontWeight } : {}),
                                             
-                                            ...(attributes.buttonBorderWidth ? { borderWidth: getSpacingValue(attributes.buttonBorderWidth) } : {}),
+                                            ...(attributes.buttonBorderWidth ? { borderWidth: `${attributes.buttonBorderWidth}px` } : {}),
                                             ...(attributes.buttonPaddingNew ? { padding: getSpacingValue(attributes.buttonPaddingNew) } : {}),
                                             ...(attributes.buttonBorderRadius ? { borderRadius: getSpacingValue(attributes.buttonBorderRadius) } : {}),
                                             ...(buttonFontSize ? { fontSize: `${buttonFontSize}px` } : {}),
@@ -4902,11 +4902,13 @@
                                     }),
                        
                                     // Border Width
-                                    wp.element.createElement(__experimentalBoxControl, {
+                                    wp.element.createElement(RangeControl, {
                                         label: __('Border Width', 'fancy-post-grid'),
-                                        values: attributes.buttonBorderWidth,
+                                        value: attributes.buttonBorderWidth,
                                         onChange: (value) => setAttributes({ buttonBorderWidth: value }),
-                                    }),    
+                                        min: 0,
+                                        max: 100
+                                    }),   
                                     wp.element.createElement(
                                         TabPanel,
                                         {
@@ -5016,10 +5018,12 @@
                                     }),
 
                                     // Border Width
-                                    wp.element.createElement(__experimentalBoxControl, {
+                                    wp.element.createElement(RangeControl, {
                                         label: __('Border Width', 'fancy-post-grid'),
-                                        values: attributes.paginationBorderWidth,
+                                        value: attributes.paginationBorderWidth,
                                         onChange: (value) => setAttributes({ paginationBorderWidth: value }),
+                                        min: 0,
+                                        max: 100
                                     }),
                                     wp.element.createElement(__experimentalBoxControl, {
                                         label: __('Border Radius', 'fancy-post-grid'),
