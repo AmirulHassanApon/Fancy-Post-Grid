@@ -5,7 +5,7 @@
     const { useSelect } = wp.data;
     
     const { Fragment,useState, useEffect  } = wp.element;
-    const { PanelBody, TabPanel,__experimentalBoxControl  , RangeControl,ColorPicker, ColorPalette, ToggleControl, TextControl, SelectControl  } = wp.components;
+    const { PanelBody, TabPanel,__experimentalBoxControl  , RangeControl,ColorPicker,Button , ToggleControl, TextControl, SelectControl  } = wp.components;
 
     registerBlockType('fancy-post-grid/block', {
         title: __('Grid Layout', 'fancy-post-grid'),
@@ -72,7 +72,6 @@
             buttonStyle: { type: 'string', default: 'fpg-flat' },
             showButtonIcon: { type: 'boolean', default: true },
             iconPosition: { type: 'string', default: 'right' },
-            //Style
             //SECTION Area
             sectionBgColor: { type: 'string', default: '' },
             sectionMargin: { type: 'object', default: { top: '', right: '', bottom: '', left: '' }, },
@@ -121,7 +120,7 @@
             excerptFontWeight: { type: 'string', default: '' },
             excerptAlignment: { type: 'string', default: '' },
             excerptMargin: { type: 'object', default: { top: '', right: '', bottom: '', left: '' }, },
-            excerptPadding: { type: 'object', default: { top: '', right: '', bottom: '', left: '' }, },           
+            excerptPadding: { type: 'object', default: { top: '', right: '', bottom: '', left: '' }, },
             excerptColor: { type: 'string', default: '' },
             excerptBgColor: { type: 'string', default: '' },
             excerptHoverColor: { type: 'string', default: '' },
@@ -139,7 +138,7 @@
             //Button
             buttonAlignment: { type: 'string', default: '' },
             buttonMarginNew: { type: 'object', default: { top: '', right: '', bottom: '', left: '' }, },
-            buttonPaddingNew: { type: 'object', default: { top: '', right: '', bottom: '', left: '' }, },  
+            buttonPaddingNew: { type: 'object', default: { top: '', right: '', bottom: '', left: '' }, },
             buttonFontSize: { type: 'string', default: '' },
             buttonTextColor: { type: 'string', default: '' },
             buttonBackgroundColor: { type: 'string', default: '' },
@@ -4326,12 +4325,17 @@
                                 // Section Area
                                 wp.element.createElement(PanelBody, { title: __('Section Area', 'fancy-post-grid'), initialOpen: true },
                                     
-                                    wp.element.createElement('p', {}, __('Background Color', 'fancy-post-grid')),
+                                    wp.element.createElement('h4', {}, __('Background Color', 'fancy-post-grid')),
                                     
                                     wp.element.createElement(wp.components.ColorPicker, {
                                         color: attributes.sectionBgColor,
                                         onChangeComplete: (value) => setAttributes({ sectionBgColor: value.hex }),
                                     }),
+                                    wp.element.createElement(Button, {
+                                        isSecondary: true,
+                                        onClick: () => setAttributes({ sectionBgColor: '' }),
+                                        style: { marginTop: '10px' },
+                                    }, __('Clear Color', 'fancy-post-grid')),
                                     wp.element.createElement(__experimentalBoxControl, {
                                         label: __('Padding', 'fancy-post-grid'),
                                         values: attributes.sectionPadding,
