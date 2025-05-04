@@ -25,9 +25,9 @@
             // Pagination settings
             enablePagination: { type: 'boolean', default: true },
             // links
-            postLinkTarget: { type: 'string', default: '' },
+            postLinkTarget: { type: 'string', default: 'newWindow' },
             thumbnailLink: { type: 'string', default: true },
-            postLinkType: { type: 'string', default: '' },
+            postLinkType: { type: 'string', default: 'yeslink' },
             //SETTINGS
             //Field Selector
             showPostTitle: { type: 'boolean', default: true },
@@ -74,7 +74,7 @@
             iconPosition: { type: 'string', default: 'right' },
             //SECTION Area
             sectionBgColor: { type: 'string', default: '' },
-            sectionMargin: { type: 'object', default: { top: '', right: '', bottom: '', left: '' }, },
+            sectionMargin: { type: 'object', default: { top: '0', right: '0', bottom: '0', left: '0' }, },
             sectionPadding: { type: 'object', default: { top: '', right: '', bottom: '', left: '' }, },            
             //ITEM Box           
             itemMargin: { type: 'object', default: { top: '', right: '', bottom: '', left: '' }, },
@@ -250,10 +250,9 @@
             const getSpacingValue = (value) => {
                 if (!value) return '';
                 
-                return `${value.top || ''}px ${value.right || ''}px ${value.bottom || ''}px ${value.left || ''}px`;
+                return `${value.top || '0'}px ${value.right || '0'}px ${value.bottom || '0'}px ${value.left || '0'}px`;
             };
             
-
             const [currentPage, setCurrentPage] = useState(1);
             const [totalPages, setTotalPages] = useState(1);
 
@@ -294,6 +293,25 @@
                 if (pageNumber >= 1 && pageNumber <= totalPages) {
                     setCurrentPage(pageNumber);
                 }
+            };
+
+            const titleTextStyle = {
+                ...(postTitleColor ? { color: postTitleColor } : {}),
+                ...(postTitleFontSize ? { fontSize: `${postTitleFontSize}px` } : {}),
+                ...(postTitleFontWeight ? { fontWeight: postTitleFontWeight } : {}),
+                ...(postTitleLineHeight ? { lineHeight: postTitleLineHeight } : {}),
+                ...(postTitleLetterSpacing ? { letterSpacing: postTitleLetterSpacing } : {}),
+            };
+
+            const titleTextHoverHandlers = {
+                onMouseEnter: (e) => {
+                    e.currentTarget.style.color = postTitleHoverColor;
+                    e.currentTarget.style.backgroundImage = `linear-gradient(to bottom, ${postTitleHoverColor} 0%, ${postTitleHoverColor} 100%)`;
+                    e.currentTarget.style.backgroundPosition = '0 100%';
+                },
+                onMouseLeave: (e) => {
+                    e.currentTarget.style.color = postTitleColor;
+                },
             };
 
             // Generate pagination numbers (1,2,3,...)
@@ -359,35 +377,41 @@
                         {
                             onClick: () => handlePageClick(currentPage - 1),
                             style: {
-                                ...(attributes.paginationPaddingNew ? { padding: getSpacingValue(attributes.paginationPaddingNew) } : {}),
+                                
                                 ...(attributes.paginationBackgroundColor ? { backgroundColor: attributes.paginationBackgroundColor } : {}),
-                                ...(attributes.paginationTextColor ? { color: attributes.paginationTextColor } : {}),
                                 ...(attributes.paginationBorderStyle ? { borderStyle: attributes.paginationBorderStyle } : {}),
                                 ...(attributes.paginationBorderWidth ? { borderWidth: `${attributes.paginationBorderWidth}px` } : {}),
                                 ...(attributes.paginationBorderRadius ? { borderRadius: getSpacingValue(attributes.paginationBorderRadius) } : {}),
                                 ...(attributes.paginationBorderColor ? { borderColor: attributes.paginationBorderColor } : {}),
-                                ...(attributes.paginationFontSize ? { fontSize: `${attributes.paginationFontSize}px` } : {}),
-                                
                             },
                             onMouseEnter: (e) => {
                                 if (currentPage !== 1) {
                                     e.currentTarget.style.backgroundColor = attributes.paginationHoverBackgroundColor;
                                     e.currentTarget.style.borderColor = attributes.paginationHoverBorderColor;
-                                    e.currentTarget.style.color = attributes.paginationHoverTextColor;
                                 }
                             },
                             onMouseLeave: (e) => {
                                 e.currentTarget.style.backgroundColor = attributes.paginationBackgroundColor;
                                 e.currentTarget.style.borderColor = attributes.paginationBorderColor;
-                                e.currentTarget.style.color = attributes.paginationTextColor;
                             },
                         },
                         wp.element.createElement(
                             'a',
                             {
-                                
                                 className: 'prev page-numbers',
-                                onClick: (e) => e.preventDefault(), // prevent anchor default scroll behavior
+                                style: {
+                                    ...(attributes.paginationPaddingNew ? { padding: getSpacingValue(attributes.paginationPaddingNew) } : {}),
+                                    ...(attributes.paginationTextColor ? { color: attributes.paginationTextColor } : {}),
+                                    ...(attributes.paginationFontSize ? { fontSize: `${attributes.paginationFontSize}px` } : {}),
+                                },
+                                onMouseEnter: (e) => {
+                                    if (currentPage !== 1) {
+                                        e.currentTarget.style.color = attributes.paginationHoverTextColor;
+                                    }
+                                },
+                                onMouseLeave: (e) => {
+                                    e.currentTarget.style.color = attributes.paginationTextColor;
+                                },
                             },
                             __('Previous', 'fancy-post-grid')
                         )
@@ -401,26 +425,19 @@
                             disabled: currentPage === totalPages,
                             style: {
                                 
-                                ...(attributes.paginationPaddingNew ? { padding: getSpacingValue(attributes.paginationPaddingNew) } : {}),
                                 ...(attributes.paginationBackgroundColor ? { backgroundColor: attributes.paginationBackgroundColor } : {}),
-                                ...(attributes.paginationTextColor ? { color: attributes.paginationTextColor } : {}),
                                 ...(attributes.paginationBorderStyle ? { borderStyle: attributes.paginationBorderStyle } : {}),
                                 ...(attributes.paginationBorderWidth ? { borderWidth: `${attributes.paginationBorderWidth}px` } : {}),
                                 ...(attributes.paginationBorderRadius ? { borderRadius: getSpacingValue(attributes.paginationBorderRadius) } : {}),
                                 ...(attributes.paginationBorderColor ? { borderColor: attributes.paginationBorderColor } : {}),
-                                ...(attributes.paginationFontSize ? { fontSize: `${attributes.paginationFontSize}px` } : {}),
                             },
                             onMouseEnter: (e) => {
                                 e.currentTarget.style.backgroundColor = attributes.paginationHoverBackgroundColor;
                                 e.currentTarget.style.borderColor = attributes.paginationHoverBorderColor;
-                                e.currentTarget.style.color = attributes.paginationHoverTextColor;
-                                
                             },
                             onMouseLeave: (e) => {
                                 e.currentTarget.style.backgroundColor = attributes.paginationBackgroundColor;
                                 e.currentTarget.style.borderColor = attributes.paginationBorderColor;
-                                e.currentTarget.style.color = attributes.paginationTextColor;
-                                
                             },
                         },
                         wp.element.createElement(
@@ -428,7 +445,19 @@
                             {
                                 
                                 className: 'next page-numbers',
-                                onClick: (e) => e.preventDefault(), // prevent anchor default scroll behavior
+                                style: {
+                                    ...(attributes.paginationPaddingNew ? { padding: getSpacingValue(attributes.paginationPaddingNew) } : {}),
+                                    ...(attributes.paginationTextColor ? { color: attributes.paginationTextColor } : {}),
+                                    ...(attributes.paginationFontSize ? { fontSize: `${attributes.paginationFontSize}px` } : {}),
+                                },
+                                onMouseEnter: (e) => {
+                                    if (currentPage !== 1) {
+                                        e.currentTarget.style.color = attributes.paginationHoverTextColor;
+                                    }
+                                },
+                                onMouseLeave: (e) => {
+                                    e.currentTarget.style.color = attributes.paginationTextColor;
+                                },
                             },
                         __('Next', 'fancy-post-grid')
                         )
@@ -449,8 +478,9 @@
                             gridTemplateColumns: `repeat(${gridColumns}, 1fr)`, 
                             ...(attributes.itemGap ? { gap: attributes.itemGap } : {}),
                             ...(sectionBgColor ? { backgroundColor: sectionBgColor } : {}),
+                            
+                            ...(attributes.sectionPadding ? { padding: getSpacingValue(attributes.sectionPadding) } : {}),
                             ...(attributes.sectionMargin ? { margin: getSpacingValue(attributes.sectionMargin) } : {}),
-                            ...(attributes.sectionPadding ? { padding: getSpacingValue(attributes.sectionPadding) } : {})
                         } 
                     },
                     posts.map((post) => {
@@ -632,7 +662,6 @@
 
 
                                 //TITLE
-                                // Title with Link
                                 showPostTitle &&
                                     wp.element.createElement(
                                         titleTag,
@@ -644,14 +673,9 @@
                                                 ...(postTitleAlignment ? { textAlign: postTitleAlignment } : {}),
                                                 ...(postTitleBgColor ? { backgroundColor: postTitleBgColor } : {}),
                                                 ...(titleOrder !== undefined ? { order: titleOrder } : {}),
+                                                ...(postLinkType === 'nolink' ? titleTextStyle : {}), // apply if nolink
                                             },
-                                            onMouseEnter: (e) => {
-                                                e.currentTarget.style.backgroundColor = postTitleHoverBgColor;
-                                                
-                                            },
-                                            onMouseLeave: (e) => {
-                                                e.currentTarget.style.backgroundColor = postTitleBgColor;
-                                            },
+                                            ...(postLinkType === 'nolink' ? titleTextHoverHandlers : {}), // attach hover if nolink
                                         },
                                         postLinkType === 'yeslink'
                                             ? wp.element.createElement(
@@ -659,21 +683,8 @@
                                                 {
                                                     href: post.link,
                                                     target: postLinkTarget === 'newWindow' ? '_blank' : '_self',
-                                                    style: {
-                                                        ...(postTitleColor ? { color: postTitleColor } : {}),
-                                                        ...(postTitleFontSize ? { fontSize: `${postTitleFontSize}px` } : {}),
-                                                        ...(postTitleFontWeight ? { fontWeight: postTitleFontWeight } : {}),
-                                                        ...(postTitleLineHeight ? { lineHeight: postTitleLineHeight } : {}),
-                                                        ...(postTitleLetterSpacing ? { letterSpacing: postTitleLetterSpacing } : {}),
-                                                    },
-                                                    onMouseEnter: (e) => {
-                                                        e.currentTarget.style.color = postTitleHoverColor;
-                                                        e.currentTarget.style.backgroundImage = `linear-gradient(to bottom, ${postTitleHoverColor} 0%, ${postTitleHoverColor} 100%)`;
-                                                        e.currentTarget.style.backgroundPosition = '0 100%'; // Position at bottom
-                                                    },
-                                                    onMouseLeave: (e) => {
-                                                        e.currentTarget.style.color = postTitleColor;
-                                                    },
+                                                    style: titleTextStyle,
+                                                    ...titleTextHoverHandlers,
                                                 },
                                                 titleCropBy === 'word'
                                                     ? post.title.rendered.split(' ').slice(0, titleLength).join(' ')
@@ -683,7 +694,6 @@
                                                 ? post.title.rendered.split(' ').slice(0, titleLength).join(' ')
                                                 : post.title.rendered.substring(0, titleLength))
                                     ),
-
                                 showPostExcerpt &&
                                     wp.element.createElement('div', { 
                                         className: 'fpg-excerpt', 
@@ -4336,21 +4346,20 @@
                                         onClick: () => setAttributes({ sectionBgColor: '' }),
                                         style: { marginTop: '10px' },
                                     }, __('Clear Color', 'fancy-post-grid')),
+                                    //Padding
                                     wp.element.createElement(__experimentalBoxControl, {
                                         label: __('Padding', 'fancy-post-grid'),
                                         values: attributes.sectionPadding,
                                         onChange: (value) => setAttributes({ sectionPadding: value }),
                                     }),
                                     // Margin
-                                    wp.element.createElement(__experimentalBoxControl, {
+                                    wp.element.createElement(wp.components.__experimentalBoxControl, {
                                         label: __('Margin', 'fancy-post-grid'),
                                         values: attributes.sectionMargin,
                                         onChange: (value) => setAttributes({ sectionMargin: value }),
-                                    }),
-                                    
+                                    })
                                 ),
-                                //Item Box
-                                
+
                                 // Panel for "Item Box"
                                 wp.element.createElement(
                                     PanelBody,
@@ -4401,6 +4410,11 @@
                                         color: attributes.itemBackgroundColor,
                                         onChangeComplete: (value) => setAttributes({ itemBackgroundColor: value.hex }),
                                     }),
+                                    wp.element.createElement(Button, {
+                                        isSecondary: true,
+                                        onClick: () => setAttributes({ itemBackgroundColor: '' }),
+                                        style: { marginTop: '10px' },
+                                    }, __('Clear Color', 'fancy-post-grid')),
                                     // Border Type
                                     wp.element.createElement(SelectControl, {
                                         label: __('Border Type', 'fancy-post-grid'),
@@ -4415,18 +4429,23 @@
                                         ],
                                         onChange: (value) => setAttributes({ itemBorderType: value }),
                                     }),
-                                      // Border Width
-                                      wp.element.createElement(__experimentalBoxControl, {
+                                    // Border Width
+                                    wp.element.createElement(__experimentalBoxControl, {
                                         label: __('Border Width', 'fancy-post-grid'),
                                         values: attributes.itemBorderWidth,
                                         onChange: (value) => setAttributes({ itemBorderWidth: value }),
-                                      }),
-                                      // Border Color
-                                      wp.element.createElement('p', {}, __('Item Border Color', 'fancy-post-grid')),                                                                                                          
-                                      wp.element.createElement(wp.components.ColorPicker, {
-                                            color: attributes.itemBorderColor,
-                                            onChangeComplete: (value) => setAttributes({ itemBorderColor: value.hex }),
-                                        }),
+                                    }),
+                                    // Border Color
+                                    wp.element.createElement('p', {}, __('Item Border Color', 'fancy-post-grid')),                                                                                                          
+                                    wp.element.createElement(wp.components.ColorPicker, {
+                                        color: attributes.itemBorderColor,
+                                        onChangeComplete: (value) => setAttributes({ itemBorderColor: value.hex }),
+                                    }),
+                                    wp.element.createElement(Button, {
+                                        isSecondary: true,
+                                        onClick: () => setAttributes({ itemBorderColor: '' }),
+                                        style: { marginTop: '10px' },
+                                    }, __('Clear Color', 'fancy-post-grid')),
 
                                     // Box Shadow
                                     wp.element.createElement('p', {}, __('Box Shadow Color', 'fancy-post-grid')),
@@ -4435,6 +4454,11 @@
                                         color: attributes.itemBoxShadowColor,
                                         onChangeComplete: (value) => setAttributes({ itemBoxShadowColor: value.hex }),
                                     }),
+                                    wp.element.createElement(Button, {
+                                        isSecondary: true,
+                                        onClick: () => setAttributes({ itemBoxShadowColor: '' }),
+                                        style: { marginTop: '10px' },
+                                    }, __('Clear Color', 'fancy-post-grid')),
 
                                     // Border Radius
                                     wp.element.createElement(__experimentalBoxControl, {
@@ -4488,12 +4512,23 @@
                                         color: attributes.contentBgColor,
                                         onChangeComplete: (value) => setAttributes({ contentBgColor: value.hex }),
                                     }),
+                                    wp.element.createElement(Button, {
+                                        isSecondary: true,
+                                        onClick: () => setAttributes({ contentBgColor: '' }),
+                                        style: { marginTop: '10px' },
+                                    }, __('Clear Color', 'fancy-post-grid')),
+
                                     wp.element.createElement('p', {}, __('Box Border Color', 'fancy-post-grid')),
                                                         
                                     wp.element.createElement(wp.components.ColorPicker, {
                                         color: attributes.contentBorderColor,
                                         onChangeComplete: (value) => setAttributes({ contentBorderColor: value.hex }),
                                     }),
+                                    wp.element.createElement(Button, {
+                                        isSecondary: true,
+                                        onClick: () => setAttributes({ contentBorderColor: '' }),
+                                        style: { marginTop: '10px' },
+                                    }, __('Clear Color', 'fancy-post-grid')),
                                 ),
                                 // Thumbnail
                                 wp.element.createElement(PanelBody, { title: __(' Thumbnail', 'fancy-post-grid'), initialOpen: false },
@@ -4613,12 +4648,23 @@
                                                             color: attributes.postTitleColor,
                                                             onChangeComplete: (value) => setAttributes({ postTitleColor: value.hex }),
                                                         }),
+                                                        wp.element.createElement(Button, {
+                                                            isSecondary: true,
+                                                            onClick: () => setAttributes({ postTitleColor: '' }),
+                                                            style: { marginTop: '10px' },
+                                                        }, __('Clear Color', 'fancy-post-grid')),
+
                                                         wp.element.createElement('p', {}, __('Background Color', 'fancy-post-grid')),
                                                         
                                                         wp.element.createElement(wp.components.ColorPicker, {
                                                             color: attributes.postTitleBgColor,
                                                             onChangeComplete: (value) => setAttributes({ postTitleBgColor: value.hex }),
                                                         }),
+                                                        wp.element.createElement(Button, {
+                                                            isSecondary: true,
+                                                            onClick: () => setAttributes({ postTitleBgColor: '' }),
+                                                            style: { marginTop: '10px' },
+                                                        }, __('Clear Color', 'fancy-post-grid')),
                                                         
                                                     );
                                                 
@@ -4632,6 +4678,11 @@
                                                             color: attributes.postTitleHoverColor,
                                                             onChangeComplete: (value) => setAttributes({ postTitleHoverColor: value.hex }),
                                                         }),
+                                                        wp.element.createElement(Button, {
+                                                            isSecondary: true,
+                                                            onClick: () => setAttributes({ postTitleHoverColor: '' }),
+                                                            style: { marginTop: '10px' },
+                                                        }, __('Clear Color', 'fancy-post-grid')),
 
                                                         wp.element.createElement('p', {}, __('Hover Background Color', 'fancy-post-grid')),
                                                         
@@ -4639,7 +4690,11 @@
                                                             color: attributes.postTitleHoverBgColor,
                                                             onChangeComplete: (value) => setAttributes({ postTitleHoverBgColor: value.hex }),
                                                         }),
-                                                        
+                                                        wp.element.createElement(Button, {
+                                                            isSecondary: true,
+                                                            onClick: () => setAttributes({ postTitleHoverBgColor: '' }),
+                                                            style: { marginTop: '10px' },
+                                                        }, __('Clear Color', 'fancy-post-grid')),
                                                     );
                                             }
                                         }
@@ -4737,12 +4792,23 @@
                                                             color: attributes.excerptColor,
                                                             onChangeComplete: (value) => setAttributes({ excerptColor: value.hex }),
                                                         }),
+                                                        wp.element.createElement(Button, {
+                                                            isSecondary: true,
+                                                            onClick: () => setAttributes({ excerptColor: '' }),
+                                                            style: { marginTop: '10px' },
+                                                        }, __('Clear Color', 'fancy-post-grid')),
+
                                                         wp.element.createElement('p', {}, __('Background Color', 'fancy-post-grid')),
                                                         
                                                         wp.element.createElement(wp.components.ColorPicker, {
                                                             color: attributes.excerptBgColor,
                                                             onChangeComplete: (value) => setAttributes({ excerptBgColor: value.hex }),
                                                         }),
+                                                        wp.element.createElement(Button, {
+                                                            isSecondary: true,
+                                                            onClick: () => setAttributes({ excerptBgColor: '' }),
+                                                            style: { marginTop: '10px' },
+                                                        }, __('Clear Color', 'fancy-post-grid')),
                                                         
                                                     );
                                                 
@@ -4756,17 +4822,34 @@
                                                             color: attributes.excerptHoverColor,
                                                             onChangeComplete: (value) => setAttributes({ excerptHoverColor: value.hex }),
                                                         }),
+                                                        wp.element.createElement(Button, {
+                                                            isSecondary: true,
+                                                            onClick: () => setAttributes({ excerptHoverColor: '' }),
+                                                            style: { marginTop: '10px' },
+                                                        }, __('Clear Color', 'fancy-post-grid')),
+
                                                         wp.element.createElement('p', {}, __('Hover Background Color', 'fancy-post-grid')),
                                                         
                                                         wp.element.createElement(wp.components.ColorPicker, {
                                                             color: attributes.excerptHoverBgColor,
                                                             onChangeComplete: (value) => setAttributes({ excerptHoverBgColor: value.hex }),
                                                         }),
+                                                        wp.element.createElement(Button, {
+                                                            isSecondary: true,
+                                                            onClick: () => setAttributes({ excerptHoverBgColor: '' }),
+                                                            style: { marginTop: '10px' },
+                                                        }, __('Clear Color', 'fancy-post-grid')),
+
                                                         wp.element.createElement('p', {}, __('Hover Border Color', 'fancy-post-grid')),
                                                         wp.element.createElement(wp.components.ColorPicker, {
                                                             color: attributes.excerptHoverBorderColor,
                                                             onChangeComplete: (value) => setAttributes({ excerptHoverBorderColor: value.hex }),
                                                         }),
+                                                        wp.element.createElement(Button, {
+                                                            isSecondary: true,
+                                                            onClick: () => setAttributes({ sectionBgColor: '' }),
+                                                            style: { marginTop: '10px' },
+                                                        }, __('Clear Color', 'fancy-post-grid')),
                                                     );
                                             }
                                         }
@@ -4813,6 +4896,11 @@
                                         color: attributes.metaTextColor,
                                         onChangeComplete: (value) => setAttributes({ metaTextColor: value.hex }),
                                     }),
+                                    wp.element.createElement(Button, {
+                                        isSecondary: true,
+                                        onClick: () => setAttributes({ metaTextColor: '' }),
+                                        style: { marginTop: '10px' },
+                                    }, __('Clear Color', 'fancy-post-grid')),
 
                                     // Separator Color
                                     wp.element.createElement('p', {}, __('Separator Color', 'fancy-post-grid')),
@@ -4820,7 +4908,11 @@
                                         color: attributes.separatorColor,
                                         onChangeComplete: (value) => setAttributes({ separatorColor: value.hex }),
                                     }),               
-
+                                    wp.element.createElement(Button, {
+                                        isSecondary: true,
+                                        onClick: () => setAttributes({ separatorColor: '' }),
+                                        style: { marginTop: '10px' },
+                                    }, __('Clear Color', 'fancy-post-grid')),
                                     // Icon Color
                                     wp.element.createElement('p', {}, __('Icon Color', 'fancy-post-grid')),
 
@@ -4828,6 +4920,11 @@
                                         color: attributes.metaIconColor,
                                         onChangeComplete: (value) => setAttributes({ metaIconColor: value.hex }),
                                     }),
+                                    wp.element.createElement(Button, {
+                                        isSecondary: true,
+                                        onClick: () => setAttributes({ metaIconColor: '' }),
+                                        style: { marginTop: '10px' },
+                                    }, __('Clear Color', 'fancy-post-grid')),
                                     
                                 ),
                                 // Button
@@ -4932,6 +5029,11 @@
                                                     color: attributes.buttonTextColor,
                                                     onChangeComplete: (value) => setAttributes({ buttonTextColor: value.hex }),
                                                 }),
+                                                wp.element.createElement(Button, {
+                                                    isSecondary: true,
+                                                    onClick: () => setAttributes({ buttonTextColor: '' }),
+                                                    style: { marginTop: '10px' },
+                                                }, __('Clear Color', 'fancy-post-grid')),
 
                                                 // Button Background Color
                                                 wp.element.createElement('p', {}, __('Background Color', 'fancy-post-grid')),
@@ -4940,6 +5042,11 @@
                                                     color: attributes.buttonBackgroundColor,
                                                     onChangeComplete: (value) => setAttributes({ buttonBackgroundColor: value.hex }),
                                                 }),
+                                                wp.element.createElement(Button, {
+                                                    isSecondary: true,
+                                                    onClick: () => setAttributes({ buttonBackgroundColor: '' }),
+                                                    style: { marginTop: '10px' },
+                                                }, __('Clear Color', 'fancy-post-grid')),
                                                 // Button Background Color
                                                 wp.element.createElement('p', {}, __('Border Color', 'fancy-post-grid')),
                                                 
@@ -4947,6 +5054,11 @@
                                                     color: attributes.buttonBorderColor,
                                                     onChangeComplete: (value) => setAttributes({ buttonBorderColor: value.hex }),
                                                 }),
+                                                wp.element.createElement(Button, {
+                                                    isSecondary: true,
+                                                    onClick: () => setAttributes({ buttonBorderColor: '' }),
+                                                    style: { marginTop: '10px' },
+                                                }, __('Clear Color', 'fancy-post-grid')),
 
                                             ] : [
                                                 // Hover Button Text Color
@@ -4956,6 +5068,11 @@
                                                     color: attributes.buttonHoverTextColor,
                                                     onChangeComplete: (value) => setAttributes({ buttonHoverTextColor: value.hex }),
                                                 }),
+                                                wp.element.createElement(Button, {
+                                                    isSecondary: true,
+                                                    onClick: () => setAttributes({ buttonHoverTextColor: '' }),
+                                                    style: { marginTop: '10px' },
+                                                }, __('Clear Color', 'fancy-post-grid')),
 
                                                 // Hover Button Background Color
                                                 wp.element.createElement('p', {}, __('Hover Background Color', 'fancy-post-grid')),
@@ -4964,6 +5081,12 @@
                                                     color: attributes.buttonHoverBackgroundColor,
                                                     onChangeComplete: (value) => setAttributes({ buttonHoverBackgroundColor: value.hex }),
                                                 }),
+                                                wp.element.createElement(Button, {
+                                                    isSecondary: true,
+                                                    onClick: () => setAttributes({ buttonHoverBackgroundColor: '' }),
+                                                    style: { marginTop: '10px' },
+                                                }, __('Clear Color', 'fancy-post-grid')),
+
                                                 // Button Background Color
                                                 wp.element.createElement('p', {}, __('Hover Border Color', 'fancy-post-grid')),
                                                 
@@ -4971,6 +5094,11 @@
                                                     color: attributes.buttonHoverBorderColor,
                                                     onChangeComplete: (value) => setAttributes({ buttonHoverBorderColor: value.hex }),
                                                 }),
+                                                wp.element.createElement(Button, {
+                                                    isSecondary: true,
+                                                    onClick: () => setAttributes({ buttonHoverBorderColor: '' }),
+                                                    style: { marginTop: '10px' },
+                                                }, __('Clear Color', 'fancy-post-grid')),
 
                                             ];
                                         }
@@ -5069,6 +5197,12 @@
                                                 onChangeComplete: (value) => setAttributes({ paginationTextColor: value.hex }),
                                             }),
 
+                                            wp.element.createElement(Button, {
+                                                isSecondary: true,
+                                                onClick: () => setAttributes({ paginationTextColor: '' }),
+                                                style: { marginTop: '10px' },
+                                            }, __('Clear Color', 'fancy-post-grid')),
+
                                             // Normal Background Color
                                             wp.element.createElement('p', {}, __('Background Color', 'fancy-post-grid')),
                                             
@@ -5077,6 +5211,12 @@
                                                 onChangeComplete: (value) => setAttributes({ paginationBackgroundColor: value.hex }),
                                             }),
 
+                                            wp.element.createElement(Button, {
+                                                isSecondary: true,
+                                                onClick: () => setAttributes({ paginationBackgroundColor: '' }),
+                                                style: { marginTop: '10px' },
+                                            }, __('Clear Color', 'fancy-post-grid')),
+
                                             // Normal Border Color
                                             wp.element.createElement('p', {}, __('Border Color', 'fancy-post-grid')),
                                             
@@ -5084,6 +5224,11 @@
                                                 color: attributes.paginationBorderColor,
                                                 onChangeComplete: (value) => setAttributes({ paginationBorderColor: value.hex }),
                                             }),
+                                            wp.element.createElement(Button, {
+                                                isSecondary: true,
+                                                onClick: () => setAttributes({ paginationBorderColor: '' }),
+                                                style: { marginTop: '10px' },
+                                            }, __('Clear Color', 'fancy-post-grid')),
 
                                         ] : tab.name === 'hover' ? [
                                             // Hover Text Color
@@ -5093,6 +5238,11 @@
                                                 color: attributes.paginationHoverTextColor,
                                                 onChangeComplete: (value) => setAttributes({ paginationHoverTextColor: value.hex }),
                                             }),
+                                            wp.element.createElement(Button, {
+                                                isSecondary: true,
+                                                onClick: () => setAttributes({ paginationHoverTextColor: '' }),
+                                                style: { marginTop: '10px' },
+                                            }, __('Clear Color', 'fancy-post-grid')),
 
                                             // Hover Background Color
                                             wp.element.createElement('p', {}, __('Hover Background Color', 'fancy-post-grid')),
@@ -5102,6 +5252,12 @@
                                                 onChangeComplete: (value) => setAttributes({ paginationHoverBackgroundColor: value.hex }),
                                             }),
 
+                                            wp.element.createElement(Button, {
+                                                isSecondary: true,
+                                                onClick: () => setAttributes({ paginationHoverBackgroundColor: '' }),
+                                                style: { marginTop: '10px' },
+                                            }, __('Clear Color', 'fancy-post-grid')),
+
                                             // Hover Border Color
                                             wp.element.createElement('p', {}, __('Hover Border Color', 'fancy-post-grid')),
                                             
@@ -5109,6 +5265,12 @@
                                                 color: attributes.paginationHoverBorderColor,
                                                 onChangeComplete: (value) => setAttributes({ paginationHoverBorderColor: value.hex }),
                                             }),
+
+                                            wp.element.createElement(Button, {
+                                                isSecondary: true,
+                                                onClick: () => setAttributes({ paginationHoverBorderColor: '' }),
+                                                style: { marginTop: '10px' },
+                                            }, __('Clear Color', 'fancy-post-grid')),
 
                                         ] : [
                                             // Active Text Color
@@ -5118,6 +5280,11 @@
                                                 color: attributes.paginationActiveTextColor,
                                                 onChangeComplete: (value) => setAttributes({ paginationActiveTextColor: value.hex }),
                                             }),
+                                            wp.element.createElement(Button, {
+                                                isSecondary: true,
+                                                onClick: () => setAttributes({ paginationActiveTextColor: '' }),
+                                                style: { marginTop: '10px' },
+                                            }, __('Clear Color', 'fancy-post-grid')),
 
                                             // Active Background Color
                                             wp.element.createElement('p', {}, __('Active Background Color', 'fancy-post-grid')),
@@ -5126,6 +5293,11 @@
                                                 color: attributes.paginationActiveBackgroundColor,
                                                 onChangeComplete: (value) => setAttributes({ paginationActiveBackgroundColor: value.hex }),
                                             }),
+                                            wp.element.createElement(Button, {
+                                                isSecondary: true,
+                                                onClick: () => setAttributes({ paginationActiveBackgroundColor: '' }),
+                                                style: { marginTop: '10px' },
+                                            }, __('Clear Color', 'fancy-post-grid')),
 
                                             // Active Border Color
                                             wp.element.createElement('p', {}, __('Active Border Color', 'fancy-post-grid')),
@@ -5134,6 +5306,11 @@
                                                 color: attributes.paginationActiveBorderColor,
                                                 onChangeComplete: (value) => setAttributes({ paginationActiveBorderColor: value.hex }),
                                             }),
+                                            wp.element.createElement(Button, {
+                                                isSecondary: true,
+                                                onClick: () => setAttributes({ paginationActiveBorderColor: '' }),
+                                                style: { marginTop: '10px' },
+                                            }, __('Clear Color', 'fancy-post-grid')),
                                         ];
                                     })
                                     
