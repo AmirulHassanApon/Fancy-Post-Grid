@@ -201,10 +201,8 @@ function fancy_post_grid_render_callback($attributes) {
     $readMoreLabel = isset($attributes['readMoreLabel']) ? sanitize_text_field($attributes['readMoreLabel']) : __('Read More', 'fancy-post-grid');
     // SECTION Area
     $sectionBgColor    = isset($attributes['sectionBgColor']) ? sanitize_hex_color($attributes['sectionBgColor']) : '';
-    
     $sectionMargin     = isset($attributes['sectionMargin']) ? (array) $attributes['sectionMargin'] : ['top' => '', 'right' => '', 'bottom' => '', 'left' => ''];
     $sectionPadding    = isset($attributes['sectionPadding']) ? (array) $attributes['sectionPadding'] : ['top' => '', 'right' => '', 'bottom' => '', 'left' => ''];
-    var_dump($sectionPadding);
     // ITEM Box
     $itemPadding = isset($attributes['itemPadding']) ? $attributes['itemPadding'] : ['top' => '', 'right' => '', 'bottom' => '', 'left' => ''];
     $itemMargin = isset($attributes['itemMargin']) ? $attributes['itemMargin'] : ['top' => '', 'right' => '', 'bottom' => '', 'left' => ''];
@@ -273,7 +271,7 @@ function fancy_post_grid_render_callback($attributes) {
     $buttonMarginNew = isset($attributes['buttonMarginNew']) ? array_map('sanitize_text_field', $attributes['buttonMarginNew']) : ['top' => '', 'right' => '', 'bottom' => '', 'left' => ''];
     $buttonPaddingNew = isset($attributes['buttonPaddingNew']) ? array_map('sanitize_text_field', $attributes['buttonPaddingNew']) : ['top' => '', 'right' => '', 'bottom' => '', 'left' => ''];
     $buttonFontSize = isset($attributes['buttonFontSize']) ? absint($attributes['buttonFontSize']) : '';
-    $buttonBorderWidth = isset($attributes['buttonBorderWidth']) ? array_map('sanitize_text_field', $attributes['buttonBorderWidth']) : ['top' => '', 'right' => '', 'bottom' => '', 'left' => ''];
+    $buttonBorderWidth = isset($attributes['buttonBorderWidth']) ? absint($attributes['buttonBorderWidth']) : 2;
     $buttonFontWeight = isset($attributes['buttonFontWeight']) ? sanitize_text_field($attributes['buttonFontWeight']) : '';
     $buttonTextColor = isset($attributes['buttonTextColor']) ? sanitize_hex_color($attributes['buttonTextColor']) : '';
     $buttonBackgroundColor = isset($attributes['buttonBackgroundColor']) ? sanitize_hex_color($attributes['buttonBackgroundColor']) : '';
@@ -288,7 +286,7 @@ function fancy_post_grid_render_callback($attributes) {
     $paginationMarginNew = isset($attributes['paginationMarginNew']) ? array_map('sanitize_text_field', $attributes['paginationMarginNew']) : ['top' => '', 'right' => '', 'bottom' => '', 'left' => ''];
     $paginationPaddingNew = isset($attributes['paginationPaddingNew']) ? array_map('sanitize_text_field', $attributes['paginationPaddingNew']) : ['top' => '', 'right' => '', 'bottom' => '', 'left' => ''];
     $paginationBorderStyle = isset($attributes['paginationBorderStyle']) ? sanitize_text_field($attributes['paginationBorderStyle']) : '';
-    $paginationBorderWidth = isset($attributes['paginationBorderWidth']) ? array_map('sanitize_text_field', $attributes['paginationBorderWidth']) : ['top' => '', 'right' => '', 'bottom' => '', 'left' => ''];
+    $paginationBorderWidth = isset($attributes['paginationBorderWidth']) ? absint($attributes['paginationBorderWidth']) : 1;
     
     $paginationBorderRadius = isset($attributes['paginationBorderRadius']) ? array_map('sanitize_text_field', $attributes['paginationBorderRadius']) : ['top' => '', 'right' => '', 'bottom' => '', 'left' => ''];
     $paginationGap = isset($attributes['paginationGap']) ? absint($attributes['paginationGap']) : 20;
