@@ -323,22 +323,7 @@
                         {
                             key: i,
                             onClick: () => handlePageClick(i),
-                            style: {
-                                ...(currentPage === i 
-                                    ? { backgroundColor: attributes.paginationActiveBackgroundColor, color: attributes.paginationActiveTextColor, borderColor: attributes.paginationActiveBorderColor }
-                                    : { }),
-                                
-                                
-                            },
-                            onMouseEnter: (e) => {
-                                e.currentTarget.style.backgroundColor = attributes.paginationHoverBackgroundColor;
-                                
-                            },
-                            onMouseLeave: (e) => {
-                                e.currentTarget.style.backgroundColor = currentPage === i ? attributes.paginationActiveBackgroundColor : '';
-                                e.currentTarget.style.borderColor = attributes.paginationActiveBorderColor;
-                                e.currentTarget.style.color = currentPage === i ? attributes.paginationActiveTextColor : '';
-                            },
+                            
                         },
                         wp.element.createElement(
                             'span',
@@ -348,21 +333,25 @@
                                     ...(attributes.paginationBorderRadius ? { borderRadius: getSpacingValue(attributes.paginationBorderRadius) } : {}),
                                     ...(attributes.paginationPaddingNew ? { padding: getSpacingValue(attributes.paginationPaddingNew) } : {}),
                                     ...(attributes.paginationActiveTextColor ? { color: attributes.paginationActiveTextColor } : {}),
+                                    ...(attributes.paginationActiveBorderColor ? { borderColor: attributes.paginationActiveBorderColor } : {}),
+                                    ...(attributes.paginationActiveBackgroundColor ? { backgroundColor: attributes.paginationActiveBackgroundColor } : {}),
                                     ...(attributes.paginationFontSize ? { fontSize: `${attributes.paginationFontSize}px` } : {}),
                                     ...(attributes.paginationBorderStyle ? { borderStyle: attributes.paginationBorderStyle } : {}),
                                     ...(attributes.paginationBorderRadius ? { borderRadius: getSpacingValue(attributes.paginationBorderRadius) } : {}),
                                     ...(attributes.paginationBorderWidthNew ? { borderWidth: getSpacingValue(attributes.paginationBorderWidthNew) } : {}),
                                 },
-                                onMouseEnter: (e) => {  
-                                    e.currentTarget.style.color = attributes.paginationHoverTextColor;
-                                    e.currentTarget.style.borderColor = attributes.paginationHoverBorderColor;
+                                // onMouseEnter: (e) => {  
+                                //     e.currentTarget.style.color = attributes.paginationHoverTextColor;
+                                //     e.currentTarget.style.borderColor = attributes.paginationHoverBorderColor;
+                                //     e.currentTarget.style.backgroundColor = attributes.paginationHoverBackgroundColor;
 
-                                },
-                                onMouseLeave: (e) => {
+                                // },
+                                // onMouseLeave: (e) => {
                                     
-                                    e.currentTarget.style.borderColor = attributes.paginationActiveBorderColor;
-                                    e.currentTarget.style.color = currentPage === i ? attributes.paginationActiveTextColor : '';
-                                },
+                                //     e.currentTarget.style.backgroundColor = attributes.paginationActiveBackgroundColor;
+                                //     e.currentTarget.style.borderColor = attributes.paginationActiveBorderColor;
+                                //     e.currentTarget.style.color = currentPage === i ? attributes.paginationActiveTextColor : '';
+                                // },
                             },
                             i
                         )
@@ -394,21 +383,7 @@
                         'li',
                         {
                             onClick: () => handlePageClick(currentPage - 1),
-                            style: {
-                                
-                                ...(attributes.paginationBackgroundColor ? { backgroundColor: attributes.paginationBackgroundColor } : {}),
-                                
-                            },
-                            onMouseEnter: (e) => {
-                                if (currentPage !== 1) {
-                                    e.currentTarget.style.backgroundColor = attributes.paginationHoverBackgroundColor;
-                                    
-                                }
-                            },
-                            onMouseLeave: (e) => {
-                                e.currentTarget.style.backgroundColor = attributes.paginationBackgroundColor;
-                                
-                            },
+                            
                         },
                         wp.element.createElement(
                             'a',
@@ -417,7 +392,7 @@
                                 style: {
                                     ...(attributes.paginationPaddingNew ? { padding: getSpacingValue(attributes.paginationPaddingNew) } : {}),
                                     ...(attributes.paginationTextColor ? { color: attributes.paginationTextColor } : {}),
-                                    
+                                    ...(attributes.paginationBackgroundColor ? { backgroundColor: attributes.paginationBackgroundColor } : {}),
                                     ...(attributes.paginationFontSize ? { fontSize: `${attributes.paginationFontSize}px` } : {}),
                                     ...(attributes.paginationBorderStyle ? { borderStyle: attributes.paginationBorderStyle } : {}),
                                     ...(attributes.paginationBorderWidthNew ? { borderWidth: getSpacingValue(attributes.paginationBorderWidthNew) } : {}),
@@ -425,14 +400,16 @@
                                     ...(attributes.paginationBorderColor ? { borderColor: attributes.paginationBorderColor } : {}),
                                 },
                                 onMouseEnter: (e) => {
-                                    if (currentPage !== 1) {
+                                    
                                         e.currentTarget.style.color = attributes.paginationHoverTextColor;
-                                        e.currentTarget.style.borderColor = attributes.paginationHoverBorderColor;
-                                    }
+                                    e.currentTarget.style.borderColor = attributes.paginationHoverBorderColor;
+                                    e.currentTarget.style.backgroundColor = attributes.paginationHoverBackgroundColor;
+                                    
                                 },
                                 onMouseLeave: (e) => {
                                     e.currentTarget.style.color = attributes.paginationTextColor;
                                     e.currentTarget.style.borderColor = attributes.paginationBorderColor;
+                                    e.currentTarget.style.backgroundColor = attributes.paginationBackgroundColor;
                                 },
                             },
                             __('<< Prev', 'fancy-post-grid')
@@ -445,19 +422,7 @@
                         {
                             onClick: () => handlePageClick(currentPage + 1),
                             disabled: currentPage === totalPages,
-                            style: {
-                                
-                                ...(attributes.paginationBackgroundColor ? { backgroundColor: attributes.paginationBackgroundColor } : {}),
-                                
-                            },
-                            onMouseEnter: (e) => {
-                                e.currentTarget.style.backgroundColor = attributes.paginationHoverBackgroundColor;
-                                
-                            },
-                            onMouseLeave: (e) => {
-                                e.currentTarget.style.backgroundColor = attributes.paginationBackgroundColor;
-                                
-                            },
+                            
                         },
                         wp.element.createElement(
                             'a',
@@ -465,7 +430,7 @@
                                 
                                 className: 'next page-numbers',
                                 style: {
-                                    
+                                    ...(attributes.paginationBackgroundColor ? { backgroundColor: attributes.paginationBackgroundColor } : {}),
                                     ...(attributes.paginationPaddingNew ? { padding: getSpacingValue(attributes.paginationPaddingNew) } : {}),
                                     ...(attributes.paginationTextColor ? { color: attributes.paginationTextColor } : {}),
                                     ...(attributes.paginationFontSize ? { fontSize: `${attributes.paginationFontSize}px` } : {}),
@@ -475,14 +440,16 @@
                                 ...(attributes.paginationBorderColor ? { borderColor: attributes.paginationBorderColor } : {}),
                                 },
                                 onMouseEnter: (e) => {
-                                    if (currentPage !== 1) {
+                                    
                                         e.currentTarget.style.color = attributes.paginationHoverTextColor;
-                                        e.currentTarget.style.borderColor = attributes.paginationHoverBorderColor;
-                                    }
+                                    e.currentTarget.style.borderColor = attributes.paginationHoverBorderColor;
+                                    e.currentTarget.style.backgroundColor = attributes.paginationHoverBackgroundColor;
+                                    
                                 },
                                 onMouseLeave: (e) => {
                                     e.currentTarget.style.color = attributes.paginationTextColor;
                                     e.currentTarget.style.borderColor = attributes.paginationBorderColor;
+                                    e.currentTarget.style.backgroundColor = attributes.paginationBackgroundColor;
                                 },
                             },
                         __('Next >>', 'fancy-post-grid')
