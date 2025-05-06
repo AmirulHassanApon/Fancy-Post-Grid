@@ -340,18 +340,7 @@
                                     ...(attributes.paginationBorderRadius ? { borderRadius: getSpacingValue(attributes.paginationBorderRadius) } : {}),
                                     ...(attributes.paginationBorderWidthNew ? { borderWidth: getSpacingValue(attributes.paginationBorderWidthNew) } : {}),
                                 },
-                                // onMouseEnter: (e) => {  
-                                //     e.currentTarget.style.color = attributes.paginationHoverTextColor;
-                                //     e.currentTarget.style.borderColor = attributes.paginationHoverBorderColor;
-                                //     e.currentTarget.style.backgroundColor = attributes.paginationHoverBackgroundColor;
-
-                                // },
-                                // onMouseLeave: (e) => {
-                                    
-                                //     e.currentTarget.style.backgroundColor = attributes.paginationActiveBackgroundColor;
-                                //     e.currentTarget.style.borderColor = attributes.paginationActiveBorderColor;
-                                //     e.currentTarget.style.color = currentPage === i ? attributes.paginationActiveTextColor : '';
-                                // },
+                                
                             },
                             i
                         )

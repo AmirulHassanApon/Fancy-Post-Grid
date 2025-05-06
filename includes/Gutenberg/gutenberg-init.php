@@ -4081,21 +4081,66 @@ function fancy_post_grid_render_callback($attributes) {
         
         $output .= '</div>'; // End .fancy-post-grid
 
+        // if ($enablePagination) {
+        //     $output .= '<div class="fpg-pagination" style="
+        //         justify-content: ' . esc_attr($paginationAlignment) . ';
+        //         margin: ' .
+        //             (is_numeric($paginationMarginNew['top']) ? $paginationMarginNew['top'] . 'px' : esc_attr($paginationMarginNew['top'])) . ' ' .
+        //             (is_numeric($paginationMarginNew['right']) ? $paginationMarginNew['right'] . 'px' : esc_attr($paginationMarginNew['right'])) . ' ' .
+        //             (is_numeric($paginationMarginNew['bottom']) ? $paginationMarginNew['bottom'] . 'px' : esc_attr($paginationMarginNew['bottom'])) . ' ' .
+        //             (is_numeric($paginationMarginNew['left']) ? $paginationMarginNew['left'] . 'px' : esc_attr($paginationMarginNew['left'])) . ';
+        //     ">';
+
+        //     // Start UL
+        //     $output .= '<ul class="page-numbers" style="
+        //         gap: ' . (is_numeric($paginationGap) ? $paginationGap . 'px' : esc_attr($paginationGap)) . ';
+        //     ">';
+
+        //     $pagination_links = paginate_links(array(
+        //         'total'     => $query->max_num_pages,
+        //         'current'   => $paged,
+        //         'format'    => '?paged=%#%',
+        //         'prev_text' => esc_html__('« Prev', 'fancy-post-grid'),
+        //         'next_text' => esc_html__('Next »', 'fancy-post-grid'),
+        //         'type'      => 'array',
+        //     ));
+
+        //     if (!empty($pagination_links)) {
+        //         foreach ($pagination_links as $link) {
+        //             $output .= '<li class="">' . $link . '</li>';
+        //         }
+        //     }
+
+        //     $output .= '</ul>';
+        //     $output .= '</div>';
+        // }
+
         if ($enablePagination) {
-            $output .= '<div class="fpg-pagination" style="
-                justify-content: ' . esc_attr($paginationAlignment) . ';
-                margin: ' .
-                    (is_numeric($paginationMarginNew['top']) ? $paginationMarginNew['top'] . 'px' : esc_attr($paginationMarginNew['top'])) . ' ' .
-                    (is_numeric($paginationMarginNew['right']) ? $paginationMarginNew['right'] . 'px' : esc_attr($paginationMarginNew['right'])) . ' ' .
-                    (is_numeric($paginationMarginNew['bottom']) ? $paginationMarginNew['bottom'] . 'px' : esc_attr($paginationMarginNew['bottom'])) . ' ' .
-                    (is_numeric($paginationMarginNew['left']) ? $paginationMarginNew['left'] . 'px' : esc_attr($paginationMarginNew['left'])) . ';
-            ">';
+            // Generate individual style strings
+            $margin = (is_numeric($paginationMarginNew['top']) ? $paginationMarginNew['top'] . 'px' : esc_attr($paginationMarginNew['top'])) . ' ' .
+                      (is_numeric($paginationMarginNew['right']) ? $paginationMarginNew['right'] . 'px' : esc_attr($paginationMarginNew['right'])) . ' ' .
+                      (is_numeric($paginationMarginNew['bottom']) ? $paginationMarginNew['bottom'] . 'px' : esc_attr($paginationMarginNew['bottom'])) . ' ' .
+                      (is_numeric($paginationMarginNew['left']) ? $paginationMarginNew['left'] . 'px' : esc_attr($paginationMarginNew['left']));
 
-            // Start UL
-            $output .= '<ul class="page-numbers" style="
-                gap: ' . (is_numeric($paginationGap) ? $paginationGap . 'px' : esc_attr($paginationGap)) . ';
-            ">';
+            $borderWidth = (is_numeric($paginationBorderWidthNew['top']) ? $paginationBorderWidthNew['top'] . 'px' : esc_attr($paginationBorderWidthNew['top'])) . ' ' .
+                           (is_numeric($paginationBorderWidthNew['right']) ? $paginationBorderWidthNew['right'] . 'px' : esc_attr($paginationBorderWidthNew['right'])) . ' ' .
+                           (is_numeric($paginationBorderWidthNew['bottom']) ? $paginationBorderWidthNew['bottom'] . 'px' : esc_attr($paginationBorderWidthNew['bottom'])) . ' ' .
+                           (is_numeric($paginationBorderWidthNew['left']) ? $paginationBorderWidthNew['left'] . 'px' : esc_attr($paginationBorderWidthNew['left']));
 
+            $borderRadius = (is_numeric($paginationBorderRadius['top']) ? $paginationBorderRadius['top'] . 'px' : esc_attr($paginationBorderRadius['top'])) . ' ' .
+                            (is_numeric($paginationBorderRadius['right']) ? $paginationBorderRadius['right'] . 'px' : esc_attr($paginationBorderRadius['right'])) . ' ' .
+                            (is_numeric($paginationBorderRadius['bottom']) ? $paginationBorderRadius['bottom'] . 'px' : esc_attr($paginationBorderRadius['bottom'])) . ' ' .
+                            (is_numeric($paginationBorderRadius['left']) ? $paginationBorderRadius['left'] . 'px' : esc_attr($paginationBorderRadius['left']));
+
+            $gap = is_numeric($paginationGap) ? $paginationGap . 'px' : esc_attr($paginationGap);
+
+            // Pagination wrapper
+            $output .= '<div class="fpg-pagination" style="display: flex; justify-content: ' . esc_attr($paginationAlignment) . '; margin: ' . $margin . ';">';
+
+            // UL
+            $output .= '<ul class="page-numbers" style=" gap: ' . $gap . ';">';
+
+            // Generate links
             $pagination_links = paginate_links(array(
                 'total'     => $query->max_num_pages,
                 'current'   => $paged,
@@ -4107,7 +4152,49 @@ function fancy_post_grid_render_callback($attributes) {
 
             if (!empty($pagination_links)) {
                 foreach ($pagination_links as $link) {
-                    $output .= '<li class="">' . $link . '</li>';
+                    $styled_link = preg_replace_callback(
+                        '/<(a|span)([^>]*)>/',
+                        function ($matches) use (
+                            $borderWidth, $paginationBorderStyle, $paginationBorderColor, $borderRadius,
+                            $paginationTextColor, $paginationBackgroundColor,
+                            $paginationHoverTextColor, $paginationHoverBackgroundColor, $paginationHoverBorderColor,
+                            $paginationActiveTextColor, $paginationActiveBackgroundColor, $paginationActiveBorderColor
+                        ) {
+                            $tag = $matches[1];
+                            $attrs = $matches[2];
+
+                            $is_current = strpos($attrs, 'current') !== false;
+
+                            // Base style
+                            $style = '';
+                            $style .= 'border-width:' . esc_attr($borderWidth) . '; ';
+                            $style .= 'border-style:' . esc_attr($paginationBorderStyle) . '; ';
+                            $style .= 'border-color:' . esc_attr($is_current ? $paginationActiveBorderColor : $paginationBorderColor) . '; ';
+                            $style .= 'border-radius:' . esc_attr($borderRadius) . '; ';
+                            $style .= 'color:' . esc_attr($is_current ? $paginationActiveTextColor : $paginationTextColor) . '; ';
+                            $style .= 'background-color:' . esc_attr($is_current ? $paginationActiveBackgroundColor : $paginationBackgroundColor) . '; ';
+                            
+
+                            // Hover style via JS
+                            $hover = 'this.style.color=\'' . esc_attr($paginationHoverTextColor) . '\';' .
+                                     'this.style.backgroundColor=\'' . esc_attr($paginationHoverBackgroundColor) . '\';' .
+                                     'this.style.borderColor=\'' . esc_attr($paginationHoverBorderColor) . '\';';
+
+                            $out = '<' . $tag . $attrs . ' style="' . $style . '"';
+                            if (!$is_current) {
+                                $out .= ' onmouseover="' . $hover . '"';
+                                // Reset on mouseout
+                                $out .= ' onmouseout="this.style.color=\'' . esc_attr($paginationTextColor) . '\';' .
+                                        'this.style.backgroundColor=\'' . esc_attr($paginationBackgroundColor) . '\';' .
+                                        'this.style.borderColor=\'' . esc_attr($paginationBorderColor) . '\';"';
+                            }
+                            $out .= '>';
+                            return $out;
+                        },
+                        $link
+                    );
+
+                    $output .= '<li>' . $styled_link . '</li>';
                 }
             }
 
@@ -4115,59 +4202,7 @@ function fancy_post_grid_render_callback($attributes) {
             $output .= '</div>';
         }
 
-        // Custom CSS for pagination styles
-        $output .= '<style>
-            .fpg-pagination {
-                display: flex;
-                justify-content: ' . esc_attr($paginationAlignment) . ';
-            }
-
-            .page-numbers {
-                list-style: none;
-                display: flex;
-                flex-wrap: wrap;
-                margin: ' .
-                    (is_numeric($paginationMarginNew['top']) ? $paginationMarginNew['top'] . 'px' : esc_attr($paginationMarginNew['top'])) . ' ' .
-                    (is_numeric($paginationMarginNew['right']) ? $paginationMarginNew['right'] . 'px' : esc_attr($paginationMarginNew['right'])) . ' ' .
-                    (is_numeric($paginationMarginNew['bottom']) ? $paginationMarginNew['bottom'] . 'px' : esc_attr($paginationMarginNew['bottom'])) . ' ' .
-                    (is_numeric($paginationMarginNew['left']) ? $paginationMarginNew['left'] . 'px' : esc_attr($paginationMarginNew['left'])) . ';
-            }
-
-            .page-numbers a,
-            .page-numbers span {
-                display: inline-block;
-                text-decoration: none;
-                text-align: ' . esc_attr($buttonAlignment) . ';
-                border-width: ' .
-                    (is_numeric($paginationBorderWidthNew['top']) ? $paginationBorderWidthNew['top'] . 'px' : esc_attr($paginationBorderWidthNew['top'])) . ' ' .
-                    (is_numeric($paginationBorderWidthNew['right']) ? $paginationBorderWidthNew['right'] . 'px' : esc_attr($paginationBorderWidthNew['right'])) . ' ' .
-                    (is_numeric($paginationBorderWidthNew['bottom']) ? $paginationBorderWidthNew['bottom'] . 'px' : esc_attr($paginationBorderWidthNew['bottom'])) . ' ' .
-                    (is_numeric($paginationBorderWidthNew['left']) ? $paginationBorderWidthNew['left'] . 'px' : esc_attr($paginationBorderWidthNew['left'])) . ';
-                border-style: ' . esc_attr($paginationBorderStyle) . ';
-                border-color: ' . esc_attr($paginationBorderColor) . ';
-                border-radius: ' .
-                    (is_numeric($paginationBorderRadius['top']) ? $paginationBorderRadius['top'] . 'px' : esc_attr($paginationBorderRadius['top'])) . ' ' .
-                    (is_numeric($paginationBorderRadius['right']) ? $paginationBorderRadius['right'] . 'px' : esc_attr($paginationBorderRadius['right'])) . ' ' .
-                    (is_numeric($paginationBorderRadius['bottom']) ? $paginationBorderRadius['bottom'] . 'px' : esc_attr($paginationBorderRadius['bottom'])) . ' ' .
-                    (is_numeric($paginationBorderRadius['left']) ? $paginationBorderRadius['left'] . 'px' : esc_attr($paginationBorderRadius['left'])) . ';
-                color: ' . esc_attr($paginationTextColor) . ';
-                background-color: ' . esc_attr($paginationBackgroundColor) . ';
-                transition: all 0.3s ease;
-            }
-
-            .page-numbers a:hover {
-                color: ' . esc_attr($paginationHoverTextColor) . ';
-                background-color: ' . esc_attr($paginationHoverBackgroundColor) . ';
-                border-color: ' . esc_attr($paginationHoverBorderColor) . ';
-            }
-
-            .page-numbers .current {
-                color: ' . esc_attr($paginationActiveTextColor) . ';
-                background-color: ' . esc_attr($paginationActiveBackgroundColor) . ';
-                border-color: ' . esc_attr($paginationActiveBorderColor) . ';
-                font-weight: bold;
-            }
-        </style>';
+        
 
     wp_reset_postdata();
 
