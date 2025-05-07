@@ -140,7 +140,7 @@ function fancy_post_grid_render_callback($attributes) {
     // Content Layout
     
     $gridLayoutStyle = isset($attributes['gridLayoutStyle']) ? $attributes['gridLayoutStyle'] : 'style1';
-    $gridColumns = isset($attributes['gridColumns']) ? absint($attributes['gridColumns']) : 3;
+    $gridColumns = isset($attributes['gridColumns']) ? absint($attributes['gridColumns']) : '';
     //Query Builder
     $selectedCategory = isset($attributes['selectedCategory']) ? sanitize_text_field($attributes['selectedCategory']) : '';
     $selectedTag = isset($attributes['selectedTag']) ? sanitize_text_field($attributes['selectedTag']) : '';
@@ -151,9 +151,9 @@ function fancy_post_grid_render_callback($attributes) {
     // Pagination settings
     $enablePagination = isset($attributes['enablePagination']) ? filter_var($attributes['enablePagination'], FILTER_VALIDATE_BOOLEAN) : true;
     // Links
-    $postLinkTarget = isset($attributes['postLinkTarget']) ? sanitize_text_field($attributes['postLinkTarget']) : '_self';
-    $thumbnailLink = isset($attributes['thumbnailLink']) ? sanitize_text_field($attributes['thumbnailLink']) : 'post';
-    $postLinkType = isset($attributes['postLinkType']) ? sanitize_text_field($attributes['postLinkType']) : 'default';
+    $postLinkTarget = isset($attributes['postLinkTarget']) ? sanitize_text_field($attributes['postLinkTarget']) : 'newWindow';
+    $thumbnailLink = isset($attributes['thumbnailLink']) ? filter_var($attributes['thumbnailLink'], FILTER_VALIDATE_BOOLEAN) : true;
+    $postLinkType = isset($attributes['postLinkType']) ? sanitize_text_field($attributes['postLinkType']) : 'yeslink';
 
     // Field Selector
     $showPostTitle = isset($attributes['showPostTitle']) ? filter_var($attributes['showPostTitle'], FILTER_VALIDATE_BOOLEAN) : true;
@@ -183,7 +183,7 @@ function fancy_post_grid_render_callback($attributes) {
     $titleTag               = isset($attributes['titleTag']) ? sanitize_text_field($attributes['titleTag']) : 'h3';
     $titleHoverUnderLine    = isset($attributes['titleHoverUnderLine']) ? sanitize_text_field($attributes['titleHoverUnderLine']) : 'enable';
     $titleCropBy            = isset($attributes['titleCropBy']) ? sanitize_text_field($attributes['titleCropBy']) : 'word';
-    $titleLength            = isset($attributes['titleLength']) ? absint($attributes['titleLength']) : 20;
+    $titleLength            = isset($attributes['titleLength']) ? absint($attributes['titleLength']) : 12;
     
     //THUMB sETTINGS
     $thumbnailSize = isset($attributes['thumbnailSize']) ? sanitize_text_field($attributes['thumbnailSize']) : 'fancy_post_custom_size';
@@ -192,7 +192,7 @@ function fancy_post_grid_render_callback($attributes) {
     // Excerpt Settings
     $excerptType = isset($attributes['excerptType']) ? sanitize_text_field($attributes['excerptType']) : 'word';
     $excerptIndicator = isset($attributes['excerptIndicator']) ? sanitize_text_field($attributes['excerptIndicator']) : '...';
-    $excerptLimit = isset($attributes['excerptLimit']) ? absint($attributes['excerptLimit']) : 20;
+    $excerptLimit = isset($attributes['excerptLimit']) ? absint($attributes['excerptLimit']) : 10;
     // Meta data Settings
     $metaAuthorPrefix = isset($attributes['metaAuthorPrefix']) ? sanitize_text_field($attributes['metaAuthorPrefix']) : __('By', 'fancy-post-grid');
     $metaSeperator = isset($attributes['metaSeperator']) ? sanitize_text_field($attributes['metaSeperator']) : '';
@@ -203,11 +203,11 @@ function fancy_post_grid_render_callback($attributes) {
     $readMoreLabel = isset($attributes['readMoreLabel']) ? sanitize_text_field($attributes['readMoreLabel']) : __('Read More', 'fancy-post-grid');
     // SECTION Area
     $sectionBgColor    = isset($attributes['sectionBgColor']) ? sanitize_hex_color($attributes['sectionBgColor']) : '';
-    $sectionMargin = isset($attributes['sectionMargin']) ? $attributes['sectionMargin'] : ['top' => '', 'right' => '', 'bottom' => '', 'left' => ''];
-    $sectionPadding = isset($attributes['sectionPadding']) ? $attributes['sectionPadding'] : ['top' => '', 'right' => '', 'bottom' => '', 'left' => ''];
+    $sectionMargin = isset($attributes['sectionMargin']) ? $attributes['sectionMargin'] : ['top' => '0', 'right' => '0', 'bottom' => '0', 'left' => '0'];
+    $sectionPadding = isset($attributes['sectionPadding']) ? $attributes['sectionPadding'] : ['top' => '0', 'right' => '0', 'bottom' => '0', 'left' => '0'];
     // ITEM Box
     $itemPadding = isset($attributes['itemPadding']) ? $attributes['itemPadding'] : ['top' => '0', 'right' => '0', 'bottom' => '0', 'left' => '0'];
-    $itemMargin = isset($attributes['itemMargin']) ? $attributes['itemMargin'] : ['top' => '40', 'right' => '0', 'bottom' => '0', 'left' => '0'];
+    $itemMargin = isset($attributes['itemMargin']) ? $attributes['itemMargin'] : ['top' => '40', 'right' => '40', 'bottom' => '0', 'left' => '0'];
     $itemBorderRadius = isset($attributes['itemBorderRadius']) ? $attributes['itemBorderRadius'] : ['top' => '5', 'right' => '5', 'bottom' => '5', 'left' => '5'];
     $itemBorderWidth = isset($attributes['itemBorderWidth']) ? $attributes['itemBorderWidth'] : ['top' => '0', 'right' => '0', 'bottom' => '0', 'left' => '0'];
     $itemBoxAlignment   = isset($attributes['itemBoxAlignment']) ? sanitize_text_field($attributes['itemBoxAlignment']) : '';
@@ -288,21 +288,21 @@ function fancy_post_grid_render_callback($attributes) {
     $paginationAlignment = isset($attributes['paginationAlignment']) ? sanitize_text_field($attributes['paginationAlignment']) : 'center';
     $paginationMarginNew = isset($attributes['paginationMarginNew']) ? array_map('sanitize_text_field', $attributes['paginationMarginNew']) : ['top' => '40', 'right' => '0', 'bottom' => '0', 'left' => '0'];
     $paginationPaddingNew = isset($attributes['paginationPaddingNew']) ? array_map('sanitize_text_field', $attributes['paginationPaddingNew']) : ['top' => '0', 'right' => '20', 'bottom' => '0', 'left' => '20'];
-    $paginationBorderStyle = isset($attributes['paginationBorderStyle']) ? sanitize_text_field($attributes['paginationBorderStyle']) : '';
-    
-    $paginationBorderWidthNew = isset($attributes['paginationBorderWidthNew']) ? array_map('sanitize_text_field', $attributes['paginationBorderWidthNew']) : ['top' => '0', 'right' => '0', 'bottom' => '0', 'left' => '0'];
+    $paginationBorderStyle = isset($attributes['paginationBorderStyle']) ? sanitize_text_field($attributes['paginationBorderStyle']) : 'solid';
+    $paginationFontSize = isset($attributes['paginationFontSize']) ? absint($attributes['paginationFontSize']) : '16';
+    $paginationBorderWidthNew = isset($attributes['paginationBorderWidthNew']) ? array_map('sanitize_text_field', $attributes['paginationBorderWidthNew']) : ['top' => '1', 'right' => '1', 'bottom' => '1', 'left' => '1'];
     
     $paginationBorderRadius = isset($attributes['paginationBorderRadius']) ? array_map('sanitize_text_field', $attributes['paginationBorderRadius']) : ['top' => '0', 'right' => '0', 'bottom' => '0', 'left' => '0'];
     $paginationGap = isset($attributes['paginationGap']) ? absint($attributes['paginationGap']) : 20;
-    $paginationTextColor = isset($attributes['paginationTextColor']) ? sanitize_hex_color($attributes['paginationTextColor']) : '';
+    $paginationTextColor = isset($attributes['paginationTextColor']) ? sanitize_hex_color($attributes['paginationTextColor']) : '#6a6d7a';
     $paginationBackgroundColor = isset($attributes['paginationBackgroundColor']) ? sanitize_hex_color($attributes['paginationBackgroundColor']) : '';
-    $paginationBorderColor = isset($attributes['paginationBorderColor']) ? sanitize_hex_color($attributes['paginationBorderColor']) : '';
-    $paginationHoverTextColor = isset($attributes['paginationHoverTextColor']) ? sanitize_hex_color($attributes['paginationHoverTextColor']) : '';
-    $paginationHoverBackgroundColor = isset($attributes['paginationHoverBackgroundColor']) ? sanitize_hex_color($attributes['paginationHoverBackgroundColor']) : '';
-    $paginationHoverBorderColor = isset($attributes['paginationHoverBorderColor']) ? sanitize_hex_color($attributes['paginationHoverBorderColor']) : '';
-    $paginationActiveTextColor = isset($attributes['paginationActiveTextColor']) ? sanitize_hex_color($attributes['paginationActiveTextColor']) : '';
-    $paginationActiveBackgroundColor = isset($attributes['paginationActiveBackgroundColor']) ? sanitize_hex_color($attributes['paginationActiveBackgroundColor']) : '';
-    $paginationActiveBorderColor = isset($attributes['paginationActiveBorderColor']) ? sanitize_hex_color($attributes['paginationActiveBorderColor']) : '';
+    $paginationBorderColor = isset($attributes['paginationBorderColor']) ? sanitize_hex_color($attributes['paginationBorderColor']) : '#eaeaea';
+    $paginationHoverTextColor = isset($attributes['paginationHoverTextColor']) ? sanitize_hex_color($attributes['paginationHoverTextColor']) : '#ffffff';
+    $paginationHoverBackgroundColor = isset($attributes['paginationHoverBackgroundColor']) ? sanitize_hex_color($attributes['paginationHoverBackgroundColor']) : '#007aff';
+    $paginationHoverBorderColor = isset($attributes['paginationHoverBorderColor']) ? sanitize_hex_color($attributes['paginationHoverBorderColor']) : '#007aff';
+    $paginationActiveTextColor = isset($attributes['paginationActiveTextColor']) ? sanitize_hex_color($attributes['paginationActiveTextColor']) : '#ffffff';
+    $paginationActiveBackgroundColor = isset($attributes['paginationActiveBackgroundColor']) ? sanitize_hex_color($attributes['paginationActiveBackgroundColor']) : '#007aff';
+    $paginationActiveBorderColor = isset($attributes['paginationActiveBorderColor']) ? sanitize_hex_color($attributes['paginationActiveBorderColor']) : '#007aff';
 
     //END ATTRIBUTES
     
@@ -325,7 +325,10 @@ function fancy_post_grid_render_callback($attributes) {
     if (!empty($selectedTag) && is_numeric($selectedTag)) {
         $query_args['tag__in'] = array(intval($selectedTag)); 
     }
-
+    $nEWgridColumns = ($gridLayoutStyle === 'style1' && $gridColumns == null)
+              ? 3 : $gridColumns; 
+    $nEWgridColumns2 = ($gridLayoutStyle === 'style2' && $gridColumns == null)
+              ? 3 : $gridColumns; 
     // Run the query
     $query = new WP_Query($query_args);
     
@@ -333,7 +336,7 @@ function fancy_post_grid_render_callback($attributes) {
         return '<p>' . esc_html__('No posts found.', 'fancy-post-grid') . '</p>';
     }
     if ($gridLayoutStyle === 'style1') {
-        $output = '<div class="rs-blog-layout-5 ' . esc_attr($gridLayoutStyle) . '" style="display: grid; grid-template-columns: repeat(' . esc_attr($gridColumns) . ', 1fr); ';
+        $output = '<div class="rs-blog-layout-5 ' . esc_attr($gridLayoutStyle) . '" style="display: grid; grid-template-columns: repeat(' . esc_attr($nEWgridColumns) . ', 1fr); ';
         
         // Background Color
         if (!empty($sectionBgColor)) {
@@ -361,7 +364,7 @@ function fancy_post_grid_render_callback($attributes) {
         $output .= '">';
     }else if ($gridLayoutStyle === 'style2') {
         $output = '<div class="rs-blog-layout-6 grey ' . esc_attr($gridLayoutStyle) . '" style="display: grid; 
-                    grid-template-columns: repeat(' . esc_attr($gridColumns) . ', 1fr); ';
+                    grid-template-columns: repeat(' . esc_attr($nEWgridColumns2) . ', 1fr); ';
         
         // Background Color
         if (!empty($sectionBgColor)) {
@@ -4133,6 +4136,7 @@ function fancy_post_grid_render_callback($attributes) {
                             (is_numeric($paginationBorderRadius['left']) ? $paginationBorderRadius['left'] . 'px' : esc_attr($paginationBorderRadius['left']));
 
             $gap = is_numeric($paginationGap) ? $paginationGap . 'px' : esc_attr($paginationGap);
+            $fontSize = is_numeric($paginationFontSize) ? $paginationFontSize . 'px' : esc_attr($paginationFontSize);
 
             // Pagination wrapper
             $output .= '<div class="fpg-pagination" style="display: flex; justify-content: ' . esc_attr($paginationAlignment) . '; margin: ' . $margin . ';">';
@@ -4158,7 +4162,7 @@ function fancy_post_grid_render_callback($attributes) {
                             $borderWidth, $paginationBorderStyle, $paginationBorderColor, $borderRadius,
                             $paginationTextColor, $paginationBackgroundColor,
                             $paginationHoverTextColor, $paginationHoverBackgroundColor, $paginationHoverBorderColor,
-                            $paginationActiveTextColor, $paginationActiveBackgroundColor, $paginationActiveBorderColor
+                            $paginationActiveTextColor, $paginationActiveBackgroundColor, $paginationActiveBorderColor,$fontSize
                         ) {
                             $tag = $matches[1];
                             $attrs = $matches[2];
@@ -4167,6 +4171,7 @@ function fancy_post_grid_render_callback($attributes) {
 
                             // Base style
                             $style = '';
+                            $style .= 'font-size:' . esc_attr($fontSize) . '; ';
                             $style .= 'border-width:' . esc_attr($borderWidth) . '; ';
                             $style .= 'border-style:' . esc_attr($paginationBorderStyle) . '; ';
                             $style .= 'border-color:' . esc_attr($is_current ? $paginationActiveBorderColor : $paginationBorderColor) . '; ';
