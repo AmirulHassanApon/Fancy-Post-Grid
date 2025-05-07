@@ -1257,7 +1257,7 @@
                                                     style: { 
                                                     
                                                     ...(attributes.metaMarginNew ? { margin: getSpacingValue(attributes.metaMarginNew) }: { margin: '0px 0px 0px 0px' }), 
-                                                    ...(attributes.metaPadding ? { padding: getSpacingValue(attributes.metaPadding) }: { padding: '9px 30px 9px 0px' }),
+                                                    ...(attributes.metaPadding ? { padding: getSpacingValue(attributes.metaPadding) }: { padding: '9px 30px 9px 30px' }),
                                                     ...(metaAlignment ? { justifyContent: metaAlignment } : {}),
                                                     ...(metaTextColor ? { color: metaTextColor } : {}),
                                                     ...(typeof metaOrder !== 'undefined' ? { order: metaOrder } : {}),

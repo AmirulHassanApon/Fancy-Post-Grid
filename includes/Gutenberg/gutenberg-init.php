@@ -325,9 +325,13 @@ function fancy_post_grid_render_callback($attributes) {
     if (!empty($selectedTag) && is_numeric($selectedTag)) {
         $query_args['tag__in'] = array(intval($selectedTag)); 
     }
-    $nEWgridColumns = ($gridLayoutStyle === 'style1' && $gridColumns == null)
+    $gridColumns1 = ($gridLayoutStyle === 'style1' && $gridColumns == null)
               ? 3 : $gridColumns; 
-    $nEWgridColumns2 = ($gridLayoutStyle === 'style2' && $gridColumns == null)
+    $gridColumns2 = ($gridLayoutStyle === 'style2' && $gridColumns == null)
+              ? 3 : $gridColumns; 
+    $gridColumns3 = ($gridLayoutStyle === 'style3' && $gridColumns == null)
+              ? 3 : $gridColumns; 
+    $gridColumns4 = ($gridLayoutStyle === 'style4' && $gridColumns == null)
               ? 3 : $gridColumns; 
     // Run the query
     $query = new WP_Query($query_args);
@@ -336,7 +340,7 @@ function fancy_post_grid_render_callback($attributes) {
         return '<p>' . esc_html__('No posts found.', 'fancy-post-grid') . '</p>';
     }
     if ($gridLayoutStyle === 'style1') {
-        $output = '<div class="rs-blog-layout-5 ' . esc_attr($gridLayoutStyle) . '" style="display: grid; grid-template-columns: repeat(' . esc_attr($nEWgridColumns) . ', 1fr); ';
+        $output = '<div class="rs-blog-layout-5 ' . esc_attr($gridLayoutStyle) . '" style="display: grid; grid-template-columns: repeat(' . esc_attr($gridColumns1) . ', 1fr); ';
         
         // Background Color
         if (!empty($sectionBgColor)) {
@@ -364,7 +368,7 @@ function fancy_post_grid_render_callback($attributes) {
         $output .= '">';
     }else if ($gridLayoutStyle === 'style2') {
         $output = '<div class="rs-blog-layout-6 grey ' . esc_attr($gridLayoutStyle) . '" style="display: grid; 
-                    grid-template-columns: repeat(' . esc_attr($nEWgridColumns2) . ', 1fr); ';
+                    grid-template-columns: repeat(' . esc_attr($gridColumns2) . ', 1fr); ';
         
         // Background Color
         if (!empty($sectionBgColor)) {
@@ -392,7 +396,7 @@ function fancy_post_grid_render_callback($attributes) {
         $output .= '">';
     }else if ($gridLayoutStyle === 'style3') {
         $output = '<div class="rs-blog-layout-28  ' . esc_attr($gridLayoutStyle) . '" style="display: grid; 
-                    grid-template-columns: repeat(' . esc_attr($gridColumns) . ', 1fr); ';
+                    grid-template-columns: repeat(' . esc_attr($gridColumns3) . ', 1fr); ';
         
         // Background Color
         if (!empty($sectionBgColor)) {
