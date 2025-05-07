@@ -1951,6 +1951,7 @@ img {
 .rs-blog-layout-6 {
     padding-top: 80px;
     padding-bottom: 120px;
+    gap: 30px;
 }
 
 .rs-blog-layout-6 .rs-blog__single {
@@ -6101,7 +6102,7 @@ img {
         text-transform: capitalize;
         font-weight: 500;
         color: #fff;
-        background: #BB0B0B;
+        background: #634bf8;
         padding: 5px 20px;
         position: relative;
         overflow: hidden;
@@ -6183,9 +6184,9 @@ img {
         position: absolute;
         right: 0;
         bottom: 0;
-        background: #BB0B0B;
+        background: #634bf8;
         width: 100%;
-        padding: 10px 60px 10px 45px;
+        padding: 9px 30px 9px 0px;
         clip-path: polygon(11% 0, 100% 1%, 100% 100%, 0% 100%);
     }
 
@@ -6917,6 +6918,19 @@ img {
         width: 100%;
         margin-left: 0;
         padding: 10px 0px 10px 30px;
+    }
+    .rs-blog-layout-28-item .rs-thumb .rs-meta::before {
+        position: absolute;
+        content: '';
+        left: -45px;
+        bottom: 0;
+        width: 0;
+        height: 0;
+        border-bottom: 45px solid #bb0b0b;
+        border-left: 45px solid transparent
+    }
+    .rs-blog-layout-28-item .rs-thumb .rs-meta::before {
+        border-bottom-color: #634bf8;
     }
     .rs-blog-layout-28-item .rs-thumb .rs-meta ul{
         text-align: left;
