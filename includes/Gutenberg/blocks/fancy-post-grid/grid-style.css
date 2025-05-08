@@ -2034,7 +2034,7 @@ img {
 }
 
 .rs-blog-layout-6 .rs-blog__single .rs-content ul li i {
-    color: #25826A;
+    color: #007aff;
     margin-right: 5px;
 }
 
@@ -2095,7 +2095,7 @@ img {
 
 
 .rs-blog-layout-6 .rs-blog__single .rs-content .title a:hover {
-    color: #25826A;
+    color: #007aff;
 }
 
 .rs-blog-layout-6 .rs-blog__single .rs-content .rs-link:focus{
@@ -2145,7 +2145,7 @@ img {
     background: transparent !important;
 }
 .rs-blog-layout-6 .rs-blog__single .rs-content .rs-link.fpg-border:hover{
-    color: #25826A;
+    color: #007aff;
     background: transparent !important;
 }
 
@@ -2156,7 +2156,7 @@ img {
     bottom: 0;
     height: 2px;
     width: 0%;
-    background: #25826A;
+    background: #007aff;
     transition: all ease 0.3s;
 }
 
@@ -6475,7 +6475,7 @@ img {
     }
     .rs-blog-layout-30-item{
         margin-top: 30px;
-        background: #263043;
+        background: #f2f2f2;
         border-radius: 5px;
         overflow: hidden;
     }
@@ -6522,7 +6522,7 @@ img {
         padding: 8px 25px;
         border-radius: 5px 5px 0 0;
         opacity: 1;
-        background: #b69d74;
+        background: #007aff;
         color: #ffffff;
     }
     .rs-blog-layout-30-item .rs-content{
@@ -6545,12 +6545,12 @@ img {
         text-align: right;
     }
     .rs-blog-layout-30-item .rs-content .title a{
-        color: #fff;
+        color: #000000;
         text-decoration: none;
         margin-bottom: 5px;
     }
     .rs-blog-layout-30-item .rs-content .title a:hover{
-        color: #b69d74;
+        color: #007aff;
     }
     .rs-blog-layout-30-item .rs-content .rs-meta.align-start{
         text-align: left;
@@ -6563,7 +6563,7 @@ img {
     }
     .rs-blog-layout-30-item .rs-content .rs-meta ul li{
         display: inline-block;
-        color: #d1d1d1;
+        color: #331838;
         text-transform: capitalize;
     }
     .rs-blog-layout-30-item .rs-content .rs-meta ul li.meta-author img{
@@ -6590,7 +6590,7 @@ img {
     }
     .rs-blog-layout-30-item .rs-content .rs-meta ul li a{
         text-decoration: none;
-        color: #d1d1d1;
+        color: #331838;
     }
 
     .rs-blog-layout-30-item .rs-content .fpg-excerpt{
@@ -6608,7 +6608,7 @@ img {
     }
 
     .rs-blog-layout-30-item .rs-content p{
-        color: #d1d1d1;
+        color: #666666;
         margin-top: 20px;
         margin-bottom: 0;
     }
