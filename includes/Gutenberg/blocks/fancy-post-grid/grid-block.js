@@ -1879,7 +1879,7 @@
                         } 
                     },
                     posts.map((post) => {
-                        // const thumbnail = post._embedded?.['wp:featuredmedia']?.[0]?.source_url || '';
+                        
                         const thumbnail = post._embedded?.['wp:featuredmedia']?.[0]?.media_details?.sizes?.[thumbnailSize5]?.source_url || post._embedded?.['wp:featuredmedia']?.[0]?.source_url || '';
 
                         const excerpt = post.excerpt.rendered.replace(/(<([^>]+)>)/gi, '').split(' ').slice(0, excerptLimit).join(' ') + excerptIndicator;
@@ -1960,7 +1960,7 @@
                                     ...(attributes.contentitemMarginNew ? { margin: getSpacingValue(attributes.contentitemMarginNew) } : {}),
                                     ...(attributes.contentitemPaddingNew
                                       ? { padding: getSpacingValue(attributes.contentitemPaddingNew) }
-                                      : { padding: '0px 0px 0px 0px' }), // your default fallback
+                                      : { padding: '75px 20px 25px 20px' }), // your default fallback
                                     ...(attributes.contentBorderWidth ? { borderWidth: getSpacingValue(attributes.contentBorderWidth) } : {}),
                                     ...(attributes.contentnormalBorderType ? { borderStyle: attributes.contentnormalBorderType } : {}),
                                     ...(contentBgColor ? { backgroundColor: contentBgColor } : {}),
@@ -1980,31 +1980,7 @@
                                         } 
                                     },
                                         [
-                                            // Post Date
-                                            showPostDate && wp.element.createElement(
-                                                'li',
-                                                {
-                                                    className: 'meta-date',
-                                                    style: { 
-                                                    ...(metaTextColor ? { color: metaTextColor } : {}),
-                                                    ...(metaFontSize ? { fontSize: `${metaFontSize}px` } : {})
-                                                    },
-                                                },
-                                                showMetaIcon && showPostDateIcon &&
-                                                    wp.element.createElement('i', {
-                                                        className: 'fas fa-calendar-alt',
-                                                        style:{ 
-                                                        ...(metaIconColor ? { color: metaIconColor } : {}),
-                                                        ...(metaFontSize ? { fontSize: `${metaFontSize}px` } : {})
-                                                        },
-                                                    }),
-                                                ` ${new Date(post.date).toLocaleDateString('en-US', {
-                                                    year: 'numeric',
-                                                    month: 'short',
-                                                    day: 'numeric',
-                                                })}`
-                                            ),
-
+                                            
                                             // Post Author
                                             showPostAuthor && wp.element.createElement(
                                                 'li', 
@@ -2089,7 +2065,7 @@
                                             className: `pre-post-title align-${postTitleAlignment} ${titleHoverUnderLine === 'enable' ? ' underline' : ''}`,
                                             style: {
                                                 
-                                                ...(attributes.postTitleMargin ? { margin: getSpacingValue(attributes.postTitleMargin) }: { margin: '10px 0px 0px 0px' }), 
+                                                ...(attributes.postTitleMargin ? { margin: getSpacingValue(attributes.postTitleMargin) }: { margin: '0px 0px 28px 0px' }), 
                                                 ...(attributes.postTitlePadding ? { padding: getSpacingValue(attributes.postTitlePadding) }: { padding: '0px 0px 0px 0px' }), 
                                                 
                                                 ...(postTitleBgColor ? { backgroundColor: postTitleBgColor } : {}),
@@ -2156,7 +2132,7 @@
                                     wp.element.createElement('a', { 
                                         href: post.link, 
                                         target: postLinkTarget === 'newWindow' ? '_blank' : '_self', 
-                                        className: `rs-link read-more ${buttonStyle5}`,  // Dynamic class based on buttonStyle
+                                        className: `blog-btn read-more ${buttonStyle5}`,  // Dynamic class based on buttonStyle
                                         style: { 
                                             
                                             ...(buttonBackgroundColor ? { background: buttonBackgroundColor } : {}),
@@ -2308,7 +2284,7 @@
                                 }, 
                                 
                                 //TITLE
-                               showPostTitle &&
+                                showPostTitle &&
                                     wp.element.createElement(
                                         titleTag,
                                         {
@@ -2357,85 +2333,57 @@
                                         wp.element.createElement('ul', { 
                                             className: 'meta-data-list post-meta', 
                                         },
-                                          [
-                                            // Post Date
-                                            showPostDate && wp.element.createElement(
-                                                'li',
-                                                {
-                                                    className: 'meta-date',
-                                                    style: { 
-                                                    ...(metaTextColor ? { color: metaTextColor } : {}),
-                                                    ...(metaFontSize ? { fontSize: `${metaFontSize}px` } : {})
-                                                    },
-                                                },
-                                                showMetaIcon && showPostDateIcon &&
-                                                    wp.element.createElement('i', {
-                                                        className: 'fas fa-calendar-alt',
-                                                        style:{ 
-                                                        ...(metaIconColor ? { color: metaIconColor } : {}),
-                                                        ...(metaFontSize ? { fontSize: `${metaFontSize}px` } : {})
-                                                        },
-                                                    }),
-                                                ` ${new Date(post.date).toLocaleDateString('en-US', {
-                                                    year: 'numeric',
-                                                    month: 'short',
-                                                    day: 'numeric',
-                                                })}`
-                                            ),
-
+                                          [                                            
                                             // Post Author
                                             showPostAuthor && wp.element.createElement(
-                                                'li', 
-                                                { className: 'meta-author',style: { 
-                                                    ...(metaTextColor ? { color: metaTextColor } : {}),
-                                                    ...(metaFontSize ? { fontSize: `${metaFontSize}px` } : {})
-                                                } },
-                                                showMetaIcon && showPostAuthorIcon && 
-                                                    wp.element.createElement('i', { className: 'fas fa-user',style:{ 
-                                                        ...(metaIconColor ? { color: metaIconColor } : {}),
+                                              'div',
+                                                {
+                                                    className: 'meta-author',
+                                                    style: {
+                                                        ...(metaTextColor ? { color: metaTextColor } : {}),
                                                         ...(metaFontSize ? { fontSize: `${metaFontSize}px` } : {})
-                                                    } }), // Font Awesome user icon
-                                                ` ${metaAuthorPrefix ? metaAuthorPrefix + ' ' : ''}${post._embedded?.author?.[0]?.name}`
-                                            ),
+                                                    },
+                                                },
+                                                
+                                                // Author Avatar (Image)
+                                                showMetaIcon && showPostAuthorIcon && post._embedded?.author?.[0]?.avatar_urls?.['48'] &&
+                                                    wp.element.createElement('img', {
+                                                        src: post._embedded.author[0].avatar_urls['48'],
+                                                        alt: post._embedded.author[0].name,
+                                                    }),
 
-                                            // Post Category
-                                            showPostCategory && wp.element.createElement('li', { className: 'meta-category',style: { 
-                                                    ...(metaTextColor ? { color: metaTextColor } : {}),
-                                                    ...(metaFontSize ? { fontSize: `${metaFontSize}px` } : {})
-                                                } },
-                                                showMetaIcon && showPostCategoryIcon &&
-                                                wp.element.createElement('i', { className: 'fas fa-folder',style:{ 
-                                                        ...(metaIconColor ? { color: metaIconColor } : {}),
-                                                        ...(metaFontSize ? { fontSize: `${metaFontSize}px` } : {})
-                                                    } }), // Font Awesome folder icon
-                                                ` ${post._embedded?.['wp:term']?.[0]?.map(cat => cat.name).join(', ')}`
+                                                // Author Name and Prefix inside <span>
+                                                wp.element.createElement(
+                                                    'span',
+                                                    null,
+                                                    wp.element.createElement(
+                                                        'a',
+                                                        {
+                                                            href: post._embedded?.author?.[0]?.link || '#',
+                                                            style: {
+                                                                textDecoration: 'none',
+                                                                color: metaTextColor || 'inherit'
+                                                            },
+                                                        },
+                                                        `${metaAuthorPrefix ? metaAuthorPrefix + ' ' : ''}${post._embedded?.author?.[0]?.name || ''}`
+                                                    )
+                                                )
                                             ),
+                                            // Post Date
+                                            showPostDate && wp.element.createElement(
+                                              'li',
+                                              {
+                                                  className: 'meta-date',
+                                                  style: { 
+                                                      ...(metaTextColor ? { color: metaTextColor } : {}),
+                                                      ...(metaFontSize ? { fontSize: `${metaFontSize}px` } : {})
+                                                  },
+                                              },
+                                              
+                                              ` News in ${new Date(post.date).toLocaleDateString('en-US', { year: 'numeric' })}`
+                                          ),
 
-                                            // Post Tags (Only show if tags exist)
-                                            showPostTags && post._embedded?.['wp:term']?.[1]?.length > 0 && wp.element.createElement('li', { className: 'meta-tags',style: { 
-                                                    ...(metaTextColor ? { color: metaTextColor } : {}),
-                                                    ...(metaFontSize ? { fontSize: `${metaFontSize}px` } : {})
-                                                } },
-                                                showMetaIcon && showPostTagsIcon &&
-                                                wp.element.createElement('i', { className: 'fas fa-tags',style:{ 
-                                                    ...(metaIconColor ? { color: metaIconColor } : {}),
-                                                    ...(metaFontSize ? { fontSize: `${metaFontSize}px` } : {})
-                                                    } }), // Font Awesome tags icon
-                                                ` ${post._embedded?.['wp:term']?.[1]?.map(tag => tag.name).join(', ')}`
-                                            ),
-
-                                            // Comments Count (Only show if comments exist)
-                                            showPostCommentsCount && post.comment_count > 0 && wp.element.createElement('li', { className: 'meta-comments',style: { 
-                                                    ...(metaTextColor ? { color: metaTextColor } : {}),
-                                                    ...(metaFontSize ? { fontSize: `${metaFontSize}px` } : {})
-                                                } },
-                                                showMetaIcon && showPostCommentsCountIcon &&
-                                                wp.element.createElement('i', { className: 'fas fa-comments',style:{ 
-                                                    ...(metaIconColor ? { color: metaIconColor } : {}),
-                                                    ...(metaFontSize ? { fontSize: `${metaFontSize}px` } : {})
-                                                    } }), // Font Awesome comments icon
-                                                ` ${post.comment_count} Comments`
-                                            )
+                                            
                                         ].filter(Boolean)
                                             .reduce((acc, curr, index, arr) => {
                                                 acc.push(curr);
@@ -3103,40 +3051,62 @@
                                             ...(metaFontSize ? { fontSize: `${metaFontSize}px` } : {})
                                         } },
                                         showPostAuthor && wp.element.createElement(
-                                            'div', // Changed from 'a' to 'div'
-                                            {  className: 'rs-author',
-                                                style: { 
-                                                    ...(metaTextColor ? { color: metaTextColor } : {}),
-                                                    ...(metaFontSize ? { fontSize: `${metaFontSize}px` } : {})
-                                                },
-                                            },
-                                            showMetaIcon && showPostAuthorIcon && 
-                                                wp.element.createElement('i', { className: 'fas fa-user', 
-                                                  style:{ 
-                                                    ...(metaIconColor ? { color: metaIconColor } : {}),
-                                                    ...(metaFontSize ? { fontSize: `${metaFontSize}px` } : {})
-                                                    }, }), // Font Awesome user icon
-                                            ` ${metaAuthorPrefix ? metaAuthorPrefix + ' ' : ''}${post._embedded?.author?.[0]?.name}`
-                                        ),
-
-                                        wp.element.createElement(
-                                            'div', 
-                                            { className: 'rs-date',style: { display: 'flex', alignItems: 'center', gap: '5px' } }, 
-                                            showMetaIcon && showPostDateIcon &&
-                                            wp.element.createElement('i', { 
-                                                className: 'fas fa-calendar-alt',
-                                                style:{ 
-                                                  ...(metaIconColor ? { color: metaIconColor } : {}),
+                                          'div',
+                                          {
+                                              className: 'meta-author',
+                                              style: {
+                                                  ...(metaTextColor ? { color: metaTextColor } : {}),
                                                   ...(metaFontSize ? { fontSize: `${metaFontSize}px` } : {})
-                                                  }, 
-                                            }), // Font Awesome calendar icon
-                                            
-                                            ` ${new Date(post.date).toLocaleDateString('en-US', {
-                                                  year: 'numeric',
-                                                  month: 'short',
-                                                  day: 'numeric',
-                                              })}`
-                                        ),
+                                              },
+                                          },
+                                          
+                                          // Author Avatar (Image)
+                                          showMetaIcon && showPostAuthorIcon && post._embedded?.author?.[0]?.avatar_urls?.['48'] &&
+                                              wp.element.createElement('img', {
+                                                  src: post._embedded.author[0].avatar_urls['48'],
+                                                  alt: post._embedded.author[0].name,
+                                              }),
+
+                                          // Author Name and Prefix inside <span>
+                                          wp.element.createElement(
+                                              'span',
+                                              null,
+                                              wp.element.createElement(
+                                                  'a',
+                                                  {
+                                                      href: post._embedded?.author?.[0]?.link || '#',
+                                                      style: {
+                                                          textDecoration: 'none',
+                                                          color: metaTextColor || 'inherit'
+                                                      },
+                                                  },
+                                                  `${metaAuthorPrefix ? metaAuthorPrefix + ' ' : ''}${post._embedded?.author?.[0]?.name || ''}`
+                                              )
+                                          )
+                                      ),
+
+
+                                      wp.element.createElement(
+                                        'div', 
+                                        { 
+                                            className: 'meta-date',
+                                            style: { display: 'flex', alignItems: 'center', gap: '5px' } 
+                                        }, 
+                                        showMetaIcon && showPostDateIcon &&
+                                        wp.element.createElement('i', { 
+                                            className: 'fa-regular fa-clock',
+                                            style: { 
+                                                ...(metaIconColor ? { color: metaIconColor } : {}),
+                                                ...(metaFontSize ? { fontSize: `${metaFontSize}px` } : {})
+                                            }
+                                        }),
+                                        ` ${new Date(post.date).toLocaleDateString('en-GB', {
+                                            day: '2-digit',
+                                            month: 'short',
+                                            year: 'numeric'
+                                        })}`
+                                      ),
+
                                     ),
                             ),
                         );

@@ -3474,7 +3474,7 @@ img {
 .pre-blog-item.style_12 .blog-inner-wrap .pre-blog-content .blog-btn-part .blog-btn.fpg-flat{
     font-size: 16px;
     font-weight: 600;
-    color: #454545;
+    color: #fff;
     margin-top: 0px;
     display: inline-block;
     position: relative;
@@ -3482,7 +3482,7 @@ img {
 }
 
 .pre-blog-item.style_12 .blog-inner-wrap .pre-blog-content .blog-btn-part .blog-btn.fpg-flat:hover{
-    color: #25826A;
+    color: #fff;
     background: transparent !important;
 }
 
@@ -3521,13 +3521,13 @@ img {
 .pre-blog-item.style_12 .blog-inner-wrap .pre-image-wrap .pre-blog-meta .pre-date {
     font-size: 20px;
     font-weight: 600;
-    color: #D52925;
+    color: #007aff;
 }
 .pre-blog-item.style_12 .blog-inner-wrap .pre-image-wrap .pre-blog-meta .pre-month {
     margin-top: -4px;
     font-size: 14px;
     font-weight: 400;
-    color: #D52925;
+    color: #007aff;
   }
 .pre-blog-item.style_12 .blog-inner-wrap .pre-image-wrap .pre-blog-meta::after {
     position: absolute;
@@ -3555,7 +3555,7 @@ img {
     top: 0;
     bottom: 0;
     overflow: hidden;
-    border: 1.5px solid #E69223;
+    border: 1.5px solid #007aff;
     transition: 0.5s;
     z-index: 0;
     border-radius: 5px;
@@ -3589,7 +3589,7 @@ img {
   .pre-blog-item.style_12:hover .blog-inner-wrap .pre-blog-content {
     transform: translateY(0);
     bottom: 0;
-    background: #d52925;
+    background: #007aff;
   }
 
   .pre-blog-item.style_12:hover .blog-inner-wrap .pre-blog-content .pre-post-title {
@@ -3661,7 +3661,7 @@ img {
         margin-right: 5px;
     }
     .rs-blog-layout-13-item .rs-content .rs-meta ul li img{
-        width: 20px;
+        width: 40px;
         margin-right: 5px;
         border-radius: 50%;
     }
@@ -4224,8 +4224,8 @@ img {
         color: #7A7A7A;
     }
     .rs-blog-layout-16-item .rs-content .rs-meta .meta-author img{
-        height: 20px;
-        width: 20px;
+        height: 40px;
+        width: 40px;
         object-fit: contain;
         border-radius: 50%;
         margin-right: 10px;
@@ -4683,7 +4683,7 @@ img {
         margin-right: 0px;
     }
     .rs-blog-layout-19-item .rs-content .rs-meta ul li i{
-        color: #634bf8;
+        color: #9b9b9b;
         display: inline-block;
         margin-right: 2px;
     }
@@ -4718,7 +4718,7 @@ img {
         display: block;
     }
     .rs-blog-layout-19-item .rs-content .title a:hover{
-        color: #634bf8;
+        color: #007aff;
     }
     .rs-blog-layout-19-item .rs-content .title.align-start{
         text-align: left;
@@ -4750,11 +4750,11 @@ img {
         display: inline-block;
         padding: 16px 40px;
         border-radius: 5px;
-        background: #634bf8;
+        background: #007aff;
     }
     .rs-blog-layout-19-item .rs-content a.rs-btn.fpg-filled:hover {
         color: #ffffff;
-        background: #634bf8da;
+        background: #007affda;
     }
     
     .rs-blog-layout-19-item .rs-content a.rs-btn.fpg-filled i {
@@ -5035,7 +5035,7 @@ img {
         background: transparent !important;
     }
     .rs-blog-layout-21-item .rs-content .rs-btn.fpg-border:hover{
-        color: #E35E47;
+        color: #e35e47;
         background: transparent !important;
     }
     
@@ -5584,6 +5584,12 @@ img {
         display: flex;
         flex-direction: column;
     }
+    .rs-blog-layout-26 .rs-blog-layout-26-item:hover .rs-content{
+        background-color: #007affDE;
+    }
+    .rs-blog-layout-26 .rs-blog-layout-26-item .rs-content{
+        background-color: #efefef;
+    }
     .rs-blog-layout-26-item.align-start .rs-content{
         text-align: left;
     }
@@ -5636,7 +5642,7 @@ img {
         color: #fff;
     }
 
-    .rs-blog-layout-26-item .rs-content .rs-meta .rs-meta-all .meta-categories a{
+    .rs-blog-layout-26-item .rs-content .rs-meta .rs-meta-all .meta-categories a,.rs-blog-layout-26-item .rs-content .rs-meta .meta-category a{
         font-size: 14px;
         font-weight: 500;
         color: #003B40;
@@ -5747,10 +5753,10 @@ img {
         display: inline-block;
         padding: 16px 40px;
         border-radius: 5px;
-        background: #25826A;
+        background: #007aff;
     }
     .rs-blog-layout-26-item:hover .rs-content .rs-btn.fpg-filled {
-        color: #25826A;
+        color: #007aff;
         background: #ffffff;
     }
     .rs-blog-layout-26-item .rs-content .rs-btn.fpg-border{
