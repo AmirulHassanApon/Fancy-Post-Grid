@@ -11469,9 +11469,11 @@ function fancy_post_isotope_render_callback($attributes) {
     $paginationActiveTextColor = isset($attributes['paginationActiveTextColor']) ? sanitize_hex_color($attributes['paginationActiveTextColor']) : '';
     $paginationActiveBackgroundColor = isset($attributes['paginationActiveBackgroundColor']) ? sanitize_hex_color($attributes['paginationActiveBackgroundColor']) : '';
     $paginationActiveBorderColor = isset($attributes['paginationActiveBorderColor']) ? sanitize_hex_color($attributes['paginationActiveBorderColor']) : '';
+    $paginationFontSize = isset($attributes['paginationFontSize']) ? absint($attributes['paginationFontSize']) : '16';
     //filter
     $fancyPostFilterAlignment = isset($attributes['fancyPostFilterAlignment']) ? sanitize_text_field($attributes['fancyPostFilterAlignment']) : 'center';
     $fancyPostFilterText = isset($attributes['fancyPostFilterText']) ? sanitize_text_field($attributes['fancyPostFilterText']) : 'ALL';
+
 
     $filterMargin = isset($attributes['filterMargin']) ? array_map('sanitize_text_field', $attributes['filterMargin']) : ['top' => '', 'right' => '', 'bottom' => '', 'left' => ''];
     $filterPadding = isset($attributes['filterPadding']) ? array_map('sanitize_text_field', $attributes['filterPadding']) : ['top' => '', 'right' => '', 'bottom' => '', 'left' => ''];
@@ -11524,7 +11526,7 @@ function fancy_post_isotope_render_callback($attributes) {
         return '<p>' . esc_html__('No posts found.', 'fancy-post-grid') . '</p>';
     }
     if ($isotopeLayoutStyle === 'style1') {
-        $output = '<div class="rs-blog-layout-4 rs-blog-layout-10' . esc_attr($gridLayoutStyle) . '" style=" background-color: ' . esc_attr($sectionBgColor) . '; 
+        $output = '<div class="rs-blog-layout-4 rs-blog-layout-10' . esc_attr($isotopeLayoutStyle) . '" style=" background-color: ' . esc_attr($sectionBgColor) . '; 
         margin: ' . 
         (is_numeric($sectionMargin['top']) ? $sectionMargin['top'] . 'px' : esc_attr($sectionMargin['top'])) . ' ' . 
         (is_numeric($sectionMargin['right']) ? $sectionMargin['right'] . 'px' : esc_attr($sectionMargin['right'])) . ' ' . 
@@ -11537,7 +11539,7 @@ function fancy_post_isotope_render_callback($attributes) {
         (is_numeric($sectionPadding['left']) ? $sectionPadding['left'] . 'px' : esc_attr($sectionPadding['left'])) . ';">';
     }
     else if ($isotopeLayoutStyle === 'style2') {
-        $output = '<div class="rs-blog-layout-5 rs-blog-layout-10' . esc_attr($gridLayoutStyle) . '" style=" background-color: ' . esc_attr($sectionBgColor) . '; 
+        $output = '<div class="rs-blog-layout-5 rs-blog-layout-10' . esc_attr($isotopeLayoutStyle) . '" style=" background-color: ' . esc_attr($sectionBgColor) . '; 
         margin: ' . 
         (is_numeric($sectionMargin['top']) ? $sectionMargin['top'] . 'px' : esc_attr($sectionMargin['top'])) . ' ' . 
         (is_numeric($sectionMargin['right']) ? $sectionMargin['right'] . 'px' : esc_attr($sectionMargin['right'])) . ' ' . 
@@ -11550,7 +11552,7 @@ function fancy_post_isotope_render_callback($attributes) {
         (is_numeric($sectionPadding['left']) ? $sectionPadding['left'] . 'px' : esc_attr($sectionPadding['left'])) . ';">';
     }
     else if ($isotopeLayoutStyle === 'style3') {
-        $output = '<div class="rs-blog-layout-28 rs-blog-layout-10' . esc_attr($gridLayoutStyle) . '" style=" background-color: ' . esc_attr($sectionBgColor) . '; 
+        $output = '<div class="rs-blog-layout-28 rs-blog-layout-10' . esc_attr($isotopeLayoutStyle) . '" style=" background-color: ' . esc_attr($sectionBgColor) . '; 
         margin: ' . 
         (is_numeric($sectionMargin['top']) ? $sectionMargin['top'] . 'px' : esc_attr($sectionMargin['top'])) . ' ' . 
         (is_numeric($sectionMargin['right']) ? $sectionMargin['right'] . 'px' : esc_attr($sectionMargin['right'])) . ' ' . 
@@ -11563,7 +11565,7 @@ function fancy_post_isotope_render_callback($attributes) {
         (is_numeric($sectionPadding['left']) ? $sectionPadding['left'] . 'px' : esc_attr($sectionPadding['left'])) . ';">';
     }
     else if ($isotopeLayoutStyle === 'style4') {
-        $output = '<div class="rs-blog-layout-30 rs-blog-layout-10' . esc_attr($gridLayoutStyle) . '" style=" background-color: ' . esc_attr($sectionBgColor) . '; 
+        $output = '<div class="rs-blog-layout-30 rs-blog-layout-10' . esc_attr($isotopeLayoutStyle) . '" style=" background-color: ' . esc_attr($sectionBgColor) . '; 
         margin: ' . 
         (is_numeric($sectionMargin['top']) ? $sectionMargin['top'] . 'px' : esc_attr($sectionMargin['top'])) . ' ' . 
         (is_numeric($sectionMargin['right']) ? $sectionMargin['right'] . 'px' : esc_attr($sectionMargin['right'])) . ' ' . 
@@ -11576,7 +11578,7 @@ function fancy_post_isotope_render_callback($attributes) {
         (is_numeric($sectionPadding['left']) ? $sectionPadding['left'] . 'px' : esc_attr($sectionPadding['left'])) . ';">';
     }
     else if ($isotopeLayoutStyle === 'style5') {
-        $output = '<div class="rs-blog-layout-12' . esc_attr($gridLayoutStyle) . '" style=" background-color: ' . esc_attr($sectionBgColor) . '; 
+        $output = '<div class="rs-blog-layout-12' . esc_attr($isotopeLayoutStyle) . '" style=" background-color: ' . esc_attr($sectionBgColor) . '; 
         margin: ' . 
         (is_numeric($sectionMargin['top']) ? $sectionMargin['top'] . 'px' : esc_attr($sectionMargin['top'])) . ' ' . 
         (is_numeric($sectionMargin['right']) ? $sectionMargin['right'] . 'px' : esc_attr($sectionMargin['right'])) . ' ' . 
@@ -11589,7 +11591,7 @@ function fancy_post_isotope_render_callback($attributes) {
         (is_numeric($sectionPadding['left']) ? $sectionPadding['left'] . 'px' : esc_attr($sectionPadding['left'])) . ';">';
     }
     else if ($isotopeLayoutStyle === 'style6') {
-        $output = '<div class="rs-blog-layout-15' . esc_attr($gridLayoutStyle) . '" style=" background-color: ' . esc_attr($sectionBgColor) . '; 
+        $output = '<div class="rs-blog-layout-15' . esc_attr($isotopeLayoutStyle) . '" style=" background-color: ' . esc_attr($sectionBgColor) . '; 
         margin: ' . 
         (is_numeric($sectionMargin['top']) ? $sectionMargin['top'] . 'px' : esc_attr($sectionMargin['top'])) . ' ' . 
         (is_numeric($sectionMargin['right']) ? $sectionMargin['right'] . 'px' : esc_attr($sectionMargin['right'])) . ' ' . 
@@ -11602,7 +11604,7 @@ function fancy_post_isotope_render_callback($attributes) {
         (is_numeric($sectionPadding['left']) ? $sectionPadding['left'] . 'px' : esc_attr($sectionPadding['left'])) . ';">';
     } 
     else if ($isotopeLayoutStyle === 'style7') {
-        $output = '<div class="rs-blog-layout-26' . esc_attr($gridLayoutStyle) . '" style=" background-color: ' . esc_attr($sectionBgColor) . '; 
+        $output = '<div class="rs-blog-layout-26' . esc_attr($isotopeLayoutStyle) . '" style=" background-color: ' . esc_attr($sectionBgColor) . '; 
         margin: ' . 
         (is_numeric($sectionMargin['top']) ? $sectionMargin['top'] . 'px' : esc_attr($sectionMargin['top'])) . ' ' . 
         (is_numeric($sectionMargin['right']) ? $sectionMargin['right'] . 'px' : esc_attr($sectionMargin['right'])) . ' ' . 
@@ -12127,7 +12129,7 @@ function fancy_post_isotope_render_callback($attributes) {
             }
                  
             // Style-based output
-            if ($isotopeLayoutStyle === 'style1') {
+            if ($isotopeLayoutStyle === 'style11') {
                 // Full post layout
                 $output .= '<div class="col-lg-4 rs-grid-item' . esc_attr($category_classes) . '">'; 
                 $output .= '<div class="fancy-post-item rs-blog__single" style=" margin: ' . 
@@ -12347,7 +12349,7 @@ function fancy_post_isotope_render_callback($attributes) {
                 // End Full post layout
             }
             
-            else if ($isotopeLayoutStyle === 'style2') {
+            else if ($isotopeLayoutStyle === 'style22') {
                 // Full post layout
                 $output .= '<div class="col-lg-4 rs-grid-item' . esc_attr($category_classes) . '">'; 
                 $output .= '<div class="rs-blog__single" style=" margin: ' . 
@@ -12604,7 +12606,7 @@ function fancy_post_isotope_render_callback($attributes) {
                 $output .= '</div>';
                 // End Full post layout
             }
-            else if ($isotopeLayoutStyle === 'style3') {
+            else if ($isotopeLayoutStyle === 'style31') {
                 
                 $output .= '<div class="col-lg-4 rs-grid-item' . esc_attr($category_classes) . '">';  
                 // Full post layout
@@ -12896,7 +12898,7 @@ function fancy_post_isotope_render_callback($attributes) {
                 // End Full post layout
                 
             }
-            else if ($isotopeLayoutStyle === 'style4') {
+            else if ($isotopeLayoutStyle === 'style41') {
                 // Full post layout
                 $output .= '<div class="col-lg-4 rs-grid-item' . esc_attr($category_classes) . '">';  
                 $output .= '<div class="fancy-post-item rs-blog-layout-30-item" 
@@ -13124,7 +13126,7 @@ function fancy_post_isotope_render_callback($attributes) {
                 $output .= '</div>';
                 // End Full post layout
             }
-            elseif ($isotopeLayoutStyle === 'style5') {
+            elseif ($isotopeLayoutStyle === 'style51') {
                 // Full post layout
                 $output .= '<div class="col-lg-4 rs-grid-item' . esc_attr($category_classes) . '">';  
                 $output .= '<div class="pre-blog-item style_12 pre-blog-meta-style2 default">';
@@ -13384,7 +13386,7 @@ function fancy_post_isotope_render_callback($attributes) {
                 $output .= '</div>';
                 // End Full post layout
             } 
-            else if ($isotopeLayoutStyle === 'style6') {
+            else if ($isotopeLayoutStyle === 'style61') {
                 // Full post layout
                 $output .= '<div class="col-lg-4 rs-grid-item' . esc_attr($category_classes) . '">'; 
                 $output .= '<div class="fancy-post-item rs-blog-layout-15-item" style=" margin: ' . 
@@ -13550,7 +13552,7 @@ function fancy_post_isotope_render_callback($attributes) {
                 $output .= '</div>';
                 // End Full post layout
             }
-            else if ($isotopeLayoutStyle === 'style7') {
+            else if ($isotopeLayoutStyle === 'style71') {
                 // Full post layout
                 $output .= '<div class="col-lg-4 rs-grid-item' . esc_attr($category_classes) . '">'; 
                 $output .= '<div class="fancy-post-item rs-blog-layout-26-item" style=" margin: ' . 
@@ -13789,59 +13791,93 @@ function fancy_post_isotope_render_callback($attributes) {
         $output .= '</div>'; // End .fancy-post-grid
         // Check if pagination is enabled
         if ($enablePagination) {
+            // Generate individual style strings
+            $margin = (is_numeric($paginationMarginNew['top']) ? $paginationMarginNew['top'] . 'px' : esc_attr($paginationMarginNew['top'])) . ' ' .
+                      (is_numeric($paginationMarginNew['right']) ? $paginationMarginNew['right'] . 'px' : esc_attr($paginationMarginNew['right'])) . ' ' .
+                      (is_numeric($paginationMarginNew['bottom']) ? $paginationMarginNew['bottom'] . 'px' : esc_attr($paginationMarginNew['bottom'])) . ' ' .
+                      (is_numeric($paginationMarginNew['left']) ? $paginationMarginNew['left'] . 'px' : esc_attr($paginationMarginNew['left']));
 
-            $output .= '<div class="fancy-pagination fpg-pagination" style="
-                justify-content: ' . esc_attr($paginationAlignment) . ';
-                margin: ' . 
-                        (is_numeric($paginationMarginNew['top']) ? $paginationMarginNew['top'] . 'px' : esc_attr($paginationMarginNew['top'])) . ' ' . 
-                        (is_numeric($paginationMarginNew['right']) ? $paginationMarginNew['right'] . 'px' : esc_attr($paginationMarginNew['right'])) . ' ' . 
-                        (is_numeric($paginationMarginNew['bottom']) ? $paginationMarginNew['bottom'] . 'px' : esc_attr($paginationMarginNew['bottom'])) . ' ' . 
-                        (is_numeric($paginationMarginNew['left']) ? $paginationMarginNew['left'] . 'px' : esc_attr($paginationMarginNew['left'])) . ';
-            ">';
-            $output .= paginate_links(array(
-                'total'   => $query->max_num_pages,
-                'current' => $paged,
-                'format'  => '?paged=%#%',
+            $borderWidth = (is_numeric($paginationBorderWidthNew['top']) ? $paginationBorderWidthNew['top'] . 'px' : esc_attr($paginationBorderWidthNew['top'])) . ' ' .
+                           (is_numeric($paginationBorderWidthNew['right']) ? $paginationBorderWidthNew['right'] . 'px' : esc_attr($paginationBorderWidthNew['right'])) . ' ' .
+                           (is_numeric($paginationBorderWidthNew['bottom']) ? $paginationBorderWidthNew['bottom'] . 'px' : esc_attr($paginationBorderWidthNew['bottom'])) . ' ' .
+                           (is_numeric($paginationBorderWidthNew['left']) ? $paginationBorderWidthNew['left'] . 'px' : esc_attr($paginationBorderWidthNew['left']));
+
+            $borderRadius = (is_numeric($paginationBorderRadius['top']) ? $paginationBorderRadius['top'] . 'px' : esc_attr($paginationBorderRadius['top'])) . ' ' .
+                            (is_numeric($paginationBorderRadius['right']) ? $paginationBorderRadius['right'] . 'px' : esc_attr($paginationBorderRadius['right'])) . ' ' .
+                            (is_numeric($paginationBorderRadius['bottom']) ? $paginationBorderRadius['bottom'] . 'px' : esc_attr($paginationBorderRadius['bottom'])) . ' ' .
+                            (is_numeric($paginationBorderRadius['left']) ? $paginationBorderRadius['left'] . 'px' : esc_attr($paginationBorderRadius['left']));
+
+            $gap = is_numeric($paginationGap) ? $paginationGap . 'px' : esc_attr($paginationGap);
+            $fontSize = is_numeric($paginationFontSize) ? $paginationFontSize . 'px' : esc_attr($paginationFontSize);
+
+            // Pagination wrapper
+            $output .= '<div class="fpg-pagination" style="display: flex; justify-content: ' . esc_attr($paginationAlignment) . '; margin: ' . $margin . ';">';
+
+            // UL
+            $output .= '<ul class="page-numbers" style=" gap: ' . $gap . ';">';
+
+            // Generate links
+            $pagination_links = paginate_links(array(
+                'total'     => $query->max_num_pages,
+                'current'   => $paged,
+                'format'    => '?paged=%#%',
                 'prev_text' => esc_html__('« Prev', 'fancy-post-grid'),
                 'next_text' => esc_html__('Next »', 'fancy-post-grid'),
+                'type'      => 'array',
             ));
+
+            if (!empty($pagination_links)) {
+                foreach ($pagination_links as $link) {
+                    $styled_link = preg_replace_callback(
+                        '/<(a|span)([^>]*)>/',
+                        function ($matches) use (
+                            $borderWidth, $paginationBorderStyle, $paginationBorderColor, $borderRadius,
+                            $paginationTextColor, $paginationBackgroundColor,
+                            $paginationHoverTextColor, $paginationHoverBackgroundColor, $paginationHoverBorderColor,
+                            $paginationActiveTextColor, $paginationActiveBackgroundColor, $paginationActiveBorderColor,$fontSize
+                        ) {
+                            $tag = $matches[1];
+                            $attrs = $matches[2];
+
+                            $is_current = strpos($attrs, 'current') !== false;
+
+                            // Base style
+                            $style = '';
+                            $style .= 'font-size:' . esc_attr($fontSize) . '; ';
+                            $style .= 'border-width:' . esc_attr($borderWidth) . '; ';
+                            $style .= 'border-style:' . esc_attr($paginationBorderStyle) . '; ';
+                            $style .= 'border-color:' . esc_attr($is_current ? $paginationActiveBorderColor : $paginationBorderColor) . '; ';
+                            $style .= 'border-radius:' . esc_attr($borderRadius) . '; ';
+                            $style .= 'color:' . esc_attr($is_current ? $paginationActiveTextColor : $paginationTextColor) . '; ';
+                            $style .= 'background-color:' . esc_attr($is_current ? $paginationActiveBackgroundColor : $paginationBackgroundColor) . '; ';
+                            
+
+                            // Hover style via JS
+                            $hover = 'this.style.color=\'' . esc_attr($paginationHoverTextColor) . '\';' .
+                                     'this.style.backgroundColor=\'' . esc_attr($paginationHoverBackgroundColor) . '\';' .
+                                     'this.style.borderColor=\'' . esc_attr($paginationHoverBorderColor) . '\';';
+
+                            $out = '<' . $tag . $attrs . ' style="' . $style . '"';
+                            if (!$is_current) {
+                                $out .= ' onmouseover="' . $hover . '"';
+                                // Reset on mouseout
+                                $out .= ' onmouseout="this.style.color=\'' . esc_attr($paginationTextColor) . '\';' .
+                                        'this.style.backgroundColor=\'' . esc_attr($paginationBackgroundColor) . '\';' .
+                                        'this.style.borderColor=\'' . esc_attr($paginationBorderColor) . '\';"';
+                            }
+                            $out .= '>';
+                            return $out;
+                        },
+                        $link
+                    );
+
+                    $output .= '<li>' . $styled_link . '</li>';
+                }
+            }
+
+            $output .= '</ul>';
             $output .= '</div>';
         }
-        // Custom CSS for pagination styles
-        $output .= '<style>
-            .fpg-pagination a, .fpg-pagination span {
-                display: inline-block;
-                text-decoration: none;
-                padding: ' . 
-                (is_numeric($paginationPaddingNew['top']) ? $paginationPaddingNew['top'] . 'px' : esc_attr($paginationPaddingNew['top'])) . ' ' . 
-                (is_numeric($paginationPaddingNew['right']) ? $paginationPaddingNew['right'] . 'px' : esc_attr($paginationPaddingNew['right'])) . ' ' . 
-                (is_numeric($paginationPaddingNew['bottom']) ? $paginationPaddingNew['bottom'] . 'px' : esc_attr($paginationPaddingNew['bottom'])) . ' ' . 
-                (is_numeric($paginationPaddingNew['left']) ? $paginationPaddingNew['left'] . 'px' : esc_attr($paginationPaddingNew['left'])) . '; text-align: ' . esc_attr($buttonAlignment) . '; 
-                margin-right: ' . esc_attr($paginationGap) . 'px;
-                border: ' . esc_attr($paginationBorderWidth) . 'px ' . esc_attr($paginationBorderStyle) . ' ' . esc_attr($paginationBorderColor) . ';
-                
-                border-radius: ' . 
-                    (is_numeric($paginationBorderRadius['top']) ? $paginationBorderRadius['top'] . 'px' : esc_attr($paginationBorderRadius['top'])) . ' ' . 
-                    (is_numeric($paginationBorderRadius['right']) ? $paginationBorderRadius['right'] . 'px' : esc_attr($paginationBorderRadius['right'])) . ' ' . 
-                    (is_numeric($paginationBorderRadius['bottom']) ? $paginationBorderRadius['bottom'] . 'px' : esc_attr($paginationBorderRadius['bottom'])) . ' ' . 
-                    (is_numeric($paginationBorderRadius['left']) ? $paginationBorderRadius['left'] . 'px' : esc_attr($paginationBorderRadius['left'])) . ';
-                                
-                color: ' . esc_attr($paginationTextColor) . ';
-                background-color: ' . esc_attr($paginationBackgroundColor) . ';
-            }
-
-            .fpg-pagination a:hover {
-                color: ' . esc_attr($paginationHoverTextColor) . ';
-                background-color: ' . esc_attr($paginationHoverBackgroundColor) . ';
-                border-color: ' . esc_attr($paginationHoverBorderColor) . ';
-            }
-
-            .fpg-pagination .current {
-                color: ' . esc_attr($paginationActiveTextColor) . ';
-                background-color: ' . esc_attr($paginationActiveBackgroundColor) . ';
-                border-color: ' . esc_attr($paginationActiveBorderColor) . ';
-            }
-        </style>';
         
 
     wp_reset_postdata();
