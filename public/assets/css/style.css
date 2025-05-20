@@ -1477,7 +1477,7 @@ img {
 .rs-blog-layout-4 .rs-blog__item .rs-content .rs-blog-footer .btn-link.fpg-flat {
     font-size: 16px;
     font-weight: 600;
-    color: #454545;
+    color: #f79c53;
     margin-top: 0px;
     display: inline-block;
     position: relative;
@@ -3275,15 +3275,15 @@ img {
     border: 0;
     text-transform: capitalize;
     cursor: pointer;
-    border: 1px solid #e9e9e9;
+    border: 1px solid #007aff;
     border-radius: 0px;
 }
 
 .rs-blog-layout-12 .rs-blog-layout-5-filter .filter-button-group button:hover,
 .rs-blog-layout-12 .rs-blog-layout-5-filter .filter-button-group button.active {
-    background: #D52925;
+    background: #007aff;
     color: #ffffff;
-    border-color: #D52925;
+    border-color: #007aff;
 }
 
 .pre-blog-item.style_12 {
@@ -4550,6 +4550,7 @@ img {
         font-weight: 600;
         margin-top: 15px;
         display: block;
+        text-decoration: none;
     }
     .rs-blog-layout-18-item .rs-content a.rs-btn.fpg-flat:hover{
         color: #3a15fb;
@@ -5978,7 +5979,7 @@ img {
         flex-wrap: wrap;
         gap: 10px;
         margin-bottom: 20px;
-        background: #BB0B0B;
+        background: #007aff;
         border-radius: 10px;
         padding: 5px;
     }
@@ -5992,15 +5993,15 @@ img {
         border: 0;
         text-transform: capitalize;
         cursor: pointer;
-        border: 1px solid #e9e9e900;
+        border: 1px solid #007aff00;
         border-radius: 10px;
     }
     
     .rs-blog-layout-28 .rs-blog-layout-3-filter .filter-button-group button:hover,
     .rs-blog-layout-28 .rs-blog-layout-3-filter .filter-button-group button.active {
         background: #ffffff;
-        color: #BB0B0B;
-        border-color: #BB0B0B;
+        color: #007aff;
+        border-color: #007aff;
     }
 
     .rs-blog-layout-28-item{
@@ -7175,4 +7176,9 @@ img {
 .fpg-pagination ul.page-numbers li .page-numbers.next{
     width: auto;
     padding: 0 20px;
+}
+
+.rs-blog-layout-4.rs-blog-layout-10 .rs-grid .rs-grid-item .rs-blog__item .rs-content .rs-blog-footer .blog-btn .rs-btn{
+    color: #424040;
+    text-decoration: none;
 }
