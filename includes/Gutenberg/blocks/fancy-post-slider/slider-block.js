@@ -164,6 +164,8 @@
             arrowBgColorr: { type: 'string', default: '' },
             arrowBgHoverColor: { type: 'string', default: '' },
             arrowFontSize: { type: 'number', default: '' },
+            fractionCurrentColor: { type: 'string', default: '' },
+            fractionFontSize: { type: 'number', default: '' },
             
             postType: { type: 'string', default: 'post' },
             
@@ -207,7 +209,7 @@
                 buttonAlignment,buttonMarginNew,buttonPaddingNew,buttonTextColor,buttonBackgroundColor,buttonBorderType,buttonFontWeight,
                 buttonBorderWidth,buttonBorderRadius,buttonFontSize,buttonHoverTextColor,buttonHoverBackgroundColor,
                 buttonBorderColor,buttonHoverBorderColor,
-                sliderDots,sliderDotsActive,arrowColor,arrowHoverColor,arrowBgColorr,arrowBgHoverColor,arrowFontSize,
+                sliderDots,sliderDotsActive,arrowColor,arrowHoverColor,arrowBgColorr,arrowBgHoverColor,arrowFontSize,fractionCurrentColor,fractionFontSize,
                  
                 postType  } = attributes;
 
@@ -3703,9 +3705,9 @@
                                         label: __('Alignment', 'fancy-post-grid'),
                                         value: attributes.buttonAlignment,
                                         options: [
-                                            { label: __('Left', 'fancy-post-grid'), value: 'left' },
+                                            { label: __('Left', 'fancy-post-grid'), value: 'start' },
                                             { label: __('Center', 'fancy-post-grid'), value: 'center' },
-                                            { label: __('Right', 'fancy-post-grid'), value: 'right' },
+                                            { label: __('Right', 'fancy-post-grid'), value: 'end' },
                                         ],
                                         onChange: (value) => setAttributes({ buttonAlignment: value }),
                                     }),
@@ -3895,7 +3897,24 @@
                                         onChange: (value) => setAttributes({ arrowFontSize: value }),
                                         min: 8,
                                         max: 48,
-                                    })
+                                    }),
+                                    // Arrow Background Color
+                                    wp.element.createElement('p', {}, __('Fraction Current Color', 'fancy-post-grid')),
+                                    wp.element.createElement(wp.components.ColorPicker, {
+                                        color: attributes.fractionCurrentColor,
+                                        onChangeComplete: (value) => setAttributes({ fractionCurrentColor: value.hex }),
+                                    }),
+
+                                    
+
+                                    // Arrow Icon Font Size
+                                    wp.element.createElement('p', {}, __('Fraction Font Size (px)', 'fancy-post-grid')),
+                                    wp.element.createElement(wp.components.RangeControl, {
+                                        value: attributes.fractionFontSize,
+                                        onChange: (value) => setAttributes({ fractionFontSize: value }),
+                                        min: 8,
+                                        max: 48,
+                                    }),
                                 ),    
                             ) : wp.element.createElement(PanelBody, { title: __('Settings Style', 'fancy-post-grid'), initialOpen: false },
                                 

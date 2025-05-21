@@ -7266,8 +7266,7 @@ function fancy_post_grid_render_callback($attributes) {
 
 function fancy_post_slider_render_callback($attributes) {
     // Content Layout
-    // $post_count = 0;
-    // $total_post_count = $query->post_count;
+    
 
     $sliderLayoutStyle = isset($attributes['sliderLayoutStyle']) ? $attributes['sliderLayoutStyle'] : 'style1';
     $gridColumns = isset($attributes['gridColumns']) ? absint($attributes['gridColumns']) : 3;
@@ -7426,6 +7425,10 @@ function fancy_post_slider_render_callback($attributes) {
     $arrowBgColorr = isset($attributes['arrowBgColorr']) ? sanitize_hex_color($attributes['arrowBgColorr']) : '';
     $arrowBgHoverColor = isset($attributes['arrowBgHoverColor']) ? sanitize_hex_color($attributes['arrowBgHoverColor']) : '';
     $arrowFontSize = isset($attributes['arrowFontSize']) ? absint($attributes['arrowFontSize']) : '';
+    $fractionCurrentColor = isset($attributes['fractionCurrentColor']) ? sanitize_hex_color($attributes['fractionCurrentColor']) : '';
+    
+    $fractionFontSize = isset($attributes['fractionFontSize']) ? absint($attributes['fractionFontSize']) : '';
+    
     
     //END ATTRIBUTES
     
@@ -7478,7 +7481,7 @@ function fancy_post_slider_render_callback($attributes) {
     $metaAlignment6 = ($sliderLayoutStyle === 'style6' && $metaAlignment == null)
               ? 'start' : $metaAlignment; 
     $metaAlignment7 = ($sliderLayoutStyle === 'style7' && $metaAlignment == null)
-              ? 'start' : $metaAlignment; 
+              ? 'end' : $metaAlignment; 
     // ExcerptAlignment
     $excerptAlignment1 = ($sliderLayoutStyle === 'style1' && $excerptAlignment == null)
               ? 'start' : $excerptAlignment; 
@@ -11518,8 +11521,8 @@ function fancy_post_slider_render_callback($attributes) {
     return $output;
 }
 
-
 function fancy_post_list_render_callback($attributes) {
+    
     // Content Layout
     $listLayoutStyle = isset($attributes['listLayoutStyle']) ? $attributes['listLayoutStyle'] : 'style1';
     
@@ -11729,8 +11732,11 @@ function fancy_post_list_render_callback($attributes) {
                 $output .= '</div>';
                 $output .= '</div>'; 
         }  
-        $output .= '<div class="row">';  
+        $output .= '<div class="row">'; 
+        $post_count = 0;
+     
         while ($query->have_posts()) {
+            
             $query->the_post();
             $post_id = get_the_ID();
             $post_count++;

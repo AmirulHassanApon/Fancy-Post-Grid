@@ -339,7 +339,8 @@ function fancy_post_grid_render_callback($attributes) {
 
         $output .= '">';
     }else if ($gridLayoutStyle === 'style2') {
-        $output = '<div class="rs-blog-layout-6 grey ' . esc_attr($gridLayoutStyle) . '" style="display: grid; grid-template-columns: repeat(' . esc_attr($gridColumns2) . ', 1fr); ';
+        $output = '<div class="rs-blog-layout-6 grey ' . esc_attr($gridLayoutStyle) . '" style="display: grid; 
+                    grid-template-columns: repeat(' . esc_attr($gridColumns2) . ', 1fr); ';
         
         // Background Color
         if (!empty($sectionBgColor)) {
@@ -369,7 +370,8 @@ function fancy_post_grid_render_callback($attributes) {
 
         $output .= '">';
     }else if ($gridLayoutStyle === 'style3') {
-        $output = '<div class="rs-blog-layout-28  ' . esc_attr($gridLayoutStyle) . '" style="display: grid; grid-template-columns: repeat(' . esc_attr($gridColumns3) . ', 1fr); ';
+        $output = '<div class="rs-blog-layout-28  ' . esc_attr($gridLayoutStyle) . '" style="display: grid; 
+                    grid-template-columns: repeat(' . esc_attr($gridColumns3) . ', 1fr); ';
         
         // Background Color
         if (!empty($sectionBgColor)) {

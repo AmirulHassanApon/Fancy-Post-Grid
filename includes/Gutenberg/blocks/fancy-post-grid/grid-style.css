@@ -4304,20 +4304,10 @@ img {
     .rs-blog-layout-17-item .rs-content .rs-meta ul li:first-child{
         position: relative;
     }
-    .rs-blog-layout-17-item .rs-content .rs-meta ul li:first-child::before{
-        position: absolute;
-        content: '';
-        right: 0;
-        top: 50%;
-        transform: translateY(-50%);
-        width: 1px;
-        height: 10px;
-        background: rgba(62, 62, 62, 0.3);
-    }
+
     .rs-blog-layout-17-item .rs-content .title{
         font-size: 30px;
         line-height: 40px;
-        
     }
     
     .rs-blog-layout-17-item .rs-content .title a{
@@ -4363,8 +4353,13 @@ img {
         text-decoration: none;
     }
     .rs-blog-layout-17 .rs-blog-layout-17-item .rs-content .blog-title a{
-        
+        color: #080d41;
+        font-size: 30px;
+        font-weight: 600;
         text-decoration: none;
+    }
+    .rs-blog-layout-17 .rs-blog-layout-17-item .rs-content .blog-title a:hover{
+        color: #1a5eff;
     }
     .rs-blog-layout-17-item.rs-blog-layout-17-item-list .rs-content p{
         margin-top: 10px;
@@ -5143,6 +5138,13 @@ img {
         text-decoration: none;
         margin: 15px 0 15px;
     }
+    .rs-blog-layout-22 .rs-blog-layout-22-item .rs-content .title a{
+
+        color: #080d41;
+        font-size: 24px;
+        font-weight: 600;
+
+    }
     .rs-blog-layout-22-item .rs-content .title a:hover{
         color: #CB003B;
     }
@@ -5451,7 +5453,9 @@ img {
     .rs-blog-layout-25{
         padding-top: 120px;
         padding-bottom: 120px;
+        background-color: #f7f7f7;
     }
+    
     .rs-blog-25-topbar{
         display: flex;
         align-items: center;
@@ -5465,14 +5469,15 @@ img {
         color: #19082d;
     }
     .rs-blog-25-topbar > a:hover{
-        background: #8873ef;
-        border-color: #8873ef;
-        color: #fff;
+        background: #8873ef !important;
+        border-color: #8873ef !important;
+        color: #fff !important;
     }
-    .rs-blog-25-topbar > a{
-        border: 2px solid #3E3E3E;
-        padding: 16px 30px;
-        color: #3E3E3E;
+    
+    .rs-blog-25-topbar > a {
+        border: 2px solid #3E3E3E !important;
+        padding: 16px 30px !important;
+        color: #3E3E3E !important;
         text-decoration: none;
     }
     .rs-blog-layout-25-item{
@@ -5532,6 +5537,8 @@ img {
         display: inline-block;
         margin-left: 7px;
     }
+
+
     /* blog layout 25 css */
 
     /* blog layout 26 css */
