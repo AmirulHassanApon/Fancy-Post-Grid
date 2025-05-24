@@ -1655,7 +1655,7 @@ add_action('elementor/widgets/widgets_registered', function () {
             $this->add_group_control(
                 \Elementor\Group_Control_Background::get_type(),
                 [
-                    'name' => 'card_background',
+                    'name' => 'card_background_content',
                     'types' => [ 'classic', 'gradient' ],
                     'selector' => '{{WRAPPER}} .fancy-post-item',
                 ]
