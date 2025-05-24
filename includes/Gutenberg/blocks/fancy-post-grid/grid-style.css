@@ -5478,7 +5478,7 @@ img {
         border: 2px solid #3E3E3E !important;
         padding: 16px 30px !important;
         color: #3E3E3E !important;
-        text-decoration: none;
+        text-decoration: none !important;
     }
     .rs-blog-layout-25-item{
         display: flex;
