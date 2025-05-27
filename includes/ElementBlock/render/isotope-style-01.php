@@ -24,6 +24,8 @@ $separator_map = [
     'pipe'        => ' | ',
 ];
 $separator_value = isset($separator_map[$settings['meta_separator']]) ? $separator_map[$settings['meta_separator']] : '';
+$hover_animation = $settings['hover_animation'];
+
 $query = new \WP_Query($args);
 
 $fancy_post_filter_text = $settings['filter_all_text'] ?? 'All';
@@ -59,28 +61,33 @@ if ($query->have_posts()) {
         }
 
     ?>
-        <div class="col-xl-<?php echo esc_attr($settings['col_desktop']); ?> 
-            col-lg-<?php echo esc_attr($settings['col_lg']); ?> 
-            col-md-<?php echo esc_attr($settings['col_md']); ?> 
-            col-sm-<?php echo esc_attr($settings['col_sm']); ?> 
-            col-xs-<?php echo esc_attr($settings['col_xs']); ?>  rs-grid-item <?php echo esc_attr($category_classes); ?>" >
-            <div class="rs-blog__item">
+        <div class="col-xl-<?php echo esc_attr($settings['col_desktop']); ?> col-lg-<?php echo esc_attr($settings['col_lg']); ?> col-md-<?php echo esc_attr($settings['col_md']); ?> col-sm-<?php echo esc_attr($settings['col_sm']); ?> col-xs-<?php echo esc_attr($settings['col_xs']); ?>  rs-grid-item <?php echo esc_attr($category_classes); ?>" >
+            <div class="rs-blog__item <?php echo esc_attr($hover_animation); ?>">
                 <!-- Featured Image -->
                 <?php if ('yes' === $settings['show_post_thumbnail'] && has_post_thumbnail()) { ?>
-                    <div class="rs-thumb">
-                        
-                        <?php 
-                        // Map the custom sizes to their actual dimensions
-                        $thumbnail_size = $settings['thumbnail_size'];
+                <div class="rs-thumb">
 
-                        if ('yes' === $settings['thumbnail_link']) { ?>
-                            <a href="<?php the_permalink(); ?>" target="<?php echo ('new_window' === $settings['link_target']) ? '_blank' : '_self'; ?>">
-                                <?php the_post_thumbnail($thumbnail_size); ?>
-                            </a>
-                        <?php } else { ?>
+                <?php 
+                    $layout = $settings['fancy_post_isotope_layout'] ?? 'isotopestyle01';
+                        $thumbnail_size = $settings['thumbnail_size'] ?? '';
+
+                        if (empty($thumbnail_size)) {
+                            switch ($layout) {
+                                
+                                case 'isotopestyle01':
+                                    $thumbnail_size = 'fancy_post_custom_size';
+                                    break;
+                            }
+                        }
+                    if ('yes' === $settings['thumbnail_link']) { ?>
+                        <a href="<?php the_permalink(); ?>" target="<?php echo ('new_window' === $settings['link_target']) ? '_blank' : '_self'; ?>">
                             <?php the_post_thumbnail($thumbnail_size); ?>
-                        <?php } ?>
-                    </div>
+                        </a>
+                    <?php } else { ?>
+                        <?php the_post_thumbnail($thumbnail_size); ?>
+                    <?php } ?>
+
+                </div>
                 <?php } ?>
 
                 <div class="rs-content">
@@ -93,23 +100,20 @@ if ($query->have_posts()) {
                             'post_categories' => array(
                                 'condition' => 'yes' === $settings['show_post_categories'],
                                 'class'     => 'rs-category',
-                                'icon'      => ('yes' === $settings['show_meta_data_icon'] && 'yes' === $settings['show_post_categories_icon']) ? '<i class="fa fa-folder"></i>' : '',
                                 'content'   => get_the_category_list(', '),
                             ),
-                            
                         );
 
                         // Output each meta item as a list item with the respective class.
                         foreach ($meta_items as $meta) {
                             if ($meta['condition']) {
                                 echo '<div class="' . esc_attr($meta['class']) . '">';
-                                echo wp_kses_post($meta['icon']) . ' ' . wp_kses_post($meta['content']);
+                                echo wp_kses_post($meta['content']);
                                 echo '</div>';
                             }
                         }
                         ?>
                         
-
                     <?php } ?>
 
                     <!-- Post Title -->
@@ -127,7 +131,7 @@ if ($query->have_posts()) {
                             // Title Classes
                             $title_classes = ['fancy-post-title'];
                             if ('enable' === $settings['title_hover_underline']) {
-                                $title_classes[] = 'hover-underline';
+                                $title_classes[] = 'underline';
                             }                            
 
                             // Rendering the Title
@@ -178,65 +182,70 @@ if ($query->have_posts()) {
                         <span>
                             <!-- Post Meta: Date, Author, Category, Tags, Comments -->
                             <?php if ('yes' === $settings['show_meta_data']) { ?>
-                                
                                 <?php
-                                    // Array of meta items with their respective conditions, content, and class names.
-                                    $meta_items = array(
-                                        
-                                        
-                                        'comments_count' => array(
-                                            'condition' => 'yes' === $settings['show_comments_count'],
-                                            'class'     => 'meta-comment-count',
-                                            'icon'      => ('yes' === $settings['show_meta_data_icon'] && 'yes' === $settings['show_comments_count_icon']) ? '<i class="fa fa-comments"></i>' : '',
-                                            'content'   => sprintf(
-                                                '<a href="%s">%s</a>',
-                                                esc_url(get_comments_link()),
-                                                esc_html(get_comments_number_text(__('0 Comments', 'fancy-post-grid'), __('1 Comment', 'fancy-post-grid'), __('% Comments', 'fancy-post-grid')))
-                                            ),
+                                $meta_items = array(
+                                    'comments_count' => array(
+                                        // 'condition' => 'yes' === $settings['show_comments_count'],
+                                        'class'     => 'meta-comment-count',
+                                        'icon'      => '<i class="fa fa-comments"></i>',
+                                        'content'   => esc_html(
+                                            get_comments_number_text(
+                                                __('0 Comments', 'fancy-post-grid'),
+                                                __('1 Comment', 'fancy-post-grid'),
+                                                __('% Comments', 'fancy-post-grid')
+                                            )
                                         ),
-                                    );
+                                    ),
+                                );
 
-                                    // Output each meta item as a list item with the respective class.
-                                    foreach ($meta_items as $meta) {
-                                        if ($meta['condition']) {
-                                            echo '<div class="' . esc_attr($meta['class']) . '">';
-                                            echo wp_kses_post($meta['icon']) . ' ' . wp_kses_post($meta['content']);
-                                            echo '</div>';
-                                        }
-                                    }
+                                foreach ($meta_items as $meta) {
+                                    echo '<div class="' . esc_attr($meta['class']) . '">';
+                                    echo wp_kses_post($meta['icon']) . ' ' . wp_kses_post($meta['content']);
+                                    echo '</div>';
+                                }
                                 ?>
-                                
-
                             <?php } ?>
+
                         </span>
                         <!-- Read More Button -->
-                        <?php if (!empty($settings['show_post_readmore']) && 'yes' === $settings['show_post_readmore']) { ?>
-                            <div class="blog-btn btn-wrapper">
-                                <a href="<?php echo esc_url(get_permalink()); ?>" 
-                                   class="rs-btn rs-link read-more <?php echo esc_attr($settings['button_type']); ?>"
-                                   target="<?php echo 'new_window' === $settings['link_target'] ? '_blank' : '_self'; ?>">
-                                    <?php
-                                    if (!empty($settings['button_icon']) && 'yes' === $settings['button_icon']) {
-                                        if ('button_position_left' === $settings['button_position']) {
-                                            ?>
-                                            <i class="ri-arrow-right-line"></i>
-                                            <?php
-                                        }
+                        <?php if (!empty($settings['show_post_readmore']) && 'yes' === $settings['show_post_readmore']) { 
+                            $layout = $settings['fancy_post_isotope_layout'] ?? 'isotopestyle01';
+                            $button_type = $settings['button_type'] ?? '';
+                            
+                            if (empty($button_type)) {
+                                switch ($layout) {
+                                    case 'isotopestyle01':
+                                        $button_type = 'fpg-filled';
+                                        break;
+                                }
+                            }
+                        ?>
+                        <div class="blog-btn">
+                            <a href="<?php echo esc_url(get_permalink()); ?>" 
+                               class="rs-btn read-more <?php echo esc_attr($button_type); ?>"
+                               target="<?php echo 'new_window' === $settings['link_target'] ? '_blank' : '_self'; ?>">
+                                <?php
+                                if (!empty($settings['button_icon']) && 'yes' === $settings['button_icon']) {
+                                    if ('button_position_left' === $settings['button_position']) {
+                                        ?>
+                                        <i class="ri-arrow-right-line"></i>
+                                        <?php
                                     }
-                                    ?>
-                                    <?php echo esc_html($settings['read_more_label'] ?? 'Read More'); ?>
-                                    <?php
-                                    if (!empty($settings['button_icon']) && 'yes' === $settings['button_icon']) {
-                                        if ('button_position_right' === $settings['button_position']) {
-                                            ?>
-                                            <i class="ri-arrow-right-line"></i>
-                                            <?php
-                                        }
+                                }
+                                ?>
+                                <?php echo esc_html($settings['read_more_label'] ?? 'Read More'); ?>
+                                <?php
+                                if (!empty($settings['button_icon']) && 'yes' === $settings['button_icon']) {
+                                    if ('button_position_right' === $settings['button_position']) {
+                                        ?>
+                                        <i class="ri-arrow-right-line"></i>
+                                        <?php
                                     }
-                                    ?>
-                                </a>
-                            </div>
-                        <?php } ?> 
+                                }
+                                ?>
+                            </a>
+                        </div>
+                    <?php } ?> 
                     </div>
                 </div> 
             </div> 

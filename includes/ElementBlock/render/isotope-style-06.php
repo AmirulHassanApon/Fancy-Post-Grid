@@ -24,6 +24,7 @@ $separator_map = [
     'pipe'        => ' | ',
 ];
 $separator_value = isset($separator_map[$settings['meta_separator']]) ? $separator_map[$settings['meta_separator']] : '';
+$hover_animation = $settings['hover_animation'];
 $query = new \WP_Query($args);
 
 $fancy_post_filter_text = $settings['filter_all_text'] ?? 'All';
@@ -60,12 +61,8 @@ if ($query->have_posts()) {
                 }
 
             ?>
-            <div class="col-xl-<?php echo esc_attr($settings['col_desktop']); ?> 
-                col-lg-<?php echo esc_attr($settings['col_lg']); ?> 
-                col-md-<?php echo esc_attr($settings['col_md']); ?> 
-                col-sm-<?php echo esc_attr($settings['col_sm']); ?> 
-                col-xs-<?php echo esc_attr($settings['col_xs']); ?>  rs-grid-item <?php echo esc_attr($category_classes); ?>" >
-                <div class="rs-blog-layout-15-item rs-blog__single fancy-post-item mt-30">
+            <div class="col-xl-<?php echo esc_attr($settings['col_desktop']); ?> col-lg-<?php echo esc_attr($settings['col_lg']); ?> col-md-<?php echo esc_attr($settings['col_md']); ?> col-sm-<?php echo esc_attr($settings['col_sm']); ?> col-xs-<?php echo esc_attr($settings['col_xs']); ?>  rs-grid-item <?php echo esc_attr($category_classes); ?>" >
+                <div class="rs-blog-layout-15-item rs-blog__single fancy-post-item mt-30 <?php echo esc_attr($hover_animation); ?>">
                     <div class="rs-content">
                         <!-- Post Meta: Date, Author, Category, Tags, Comments -->
                         <?php if ('yes' === $settings['show_meta_data']) { ?>
@@ -78,7 +75,7 @@ if ($query->have_posts()) {
                                             'condition' => 'yes' === $settings['show_post_date'],
                                             'class'     => 'meta-date',
                                             'icon'      => ('yes' === $settings['show_meta_data_icon'] && 'yes' === $settings['show_post_date_icon']) ? '<i class="fa fa-calendar"></i>' : '',
-                                            'content'   => esc_html(get_the_date()),
+                                            'content'   => esc_html(get_the_date('M j, Y')),
                                         ),
                                         'post_author' => array(
                                             'condition' => 'yes' === $settings['show_post_author'],
@@ -147,7 +144,7 @@ if ($query->have_posts()) {
                                 // Title Classes
                                 $title_classes = ['fancy-post-title'];
                                 if ('enable' === $settings['title_hover_underline']) {
-                                    $title_classes[] = 'hover-underline';
+                                    $title_classes[] = 'underline';
                                 }                            
 
                                 // Rendering the Title
@@ -175,7 +172,17 @@ if ($query->have_posts()) {
                             
                             <?php 
                             // Map the custom sizes to their actual dimensions
-                            $thumbnail_size = $settings['thumbnail_size'];
+                            $layout = $settings['fancy_post_isotope_layout'] ?? 'isotopestyle06';
+                                $thumbnail_size = $settings['thumbnail_size'] ?? '';
+
+                                if (empty($thumbnail_size)) {
+                                    switch ($layout) {
+                                        
+                                        case 'isotopestyle06':
+                                            $thumbnail_size = 'fancy_post_custom_size';
+                                            break;
+                                    }
+                                }
 
                             if ('yes' === $settings['thumbnail_link']) { ?>
                                 <a href="<?php the_permalink(); ?>" target="<?php echo ('new_window' === $settings['link_target']) ? '_blank' : '_self'; ?>">

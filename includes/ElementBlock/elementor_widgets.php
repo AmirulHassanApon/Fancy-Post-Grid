@@ -937,7 +937,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                     'label_on' => esc_html__( 'Show', 'fancy-post-grid' ),
                     'label_off' => esc_html__( 'Hide', 'fancy-post-grid' ),
                     'return_value' => 'yes',
-                    'default' => 'no',
+                    'default' => 'yes',
                     'render_type' => 'template'
                 ]
             );
@@ -1014,7 +1014,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                     'label_on' => esc_html__( 'Show', 'fancy-post-grid' ),
                     'label_off' => esc_html__( 'Hide', 'fancy-post-grid' ),
                     'return_value' => 'yes',
-                    'default' => 'no',
+                    'default' => 'yes',
                     'render_type' => 'template'
                 ]
             );
@@ -1166,7 +1166,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                 [
                     'label'   => esc_html__( 'Title Length', 'fancy-post-grid' ),
                     'type'    => \Elementor\Controls_Manager::NUMBER,
-                    'default' => 50,
+                    'default' => 30,
                     'min'     => 1,
                 ]
             );
@@ -1180,6 +1180,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                     'tab'   => \Elementor\Controls_Manager::TAB_SETTINGS,
                 ]
             );
+            
             // Thumbnail Main Styling
             if (!in_array('thumbnail_size', $this->exclude_controls)) {
                 $this->add_control(
@@ -1198,7 +1199,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                             'fancy_post_portrait'   => esc_html__( 'Portrait(421x550)', 'fancy-post-grid' ),
                             'fancy_post_list'       => esc_html__( 'List Size(1200 x 650)', 'fancy-post-grid' ),
                         ),
-                        'default' => 'full',
+                        // 'default' => 'full',
                         'render_type' => 'template'
                     ]
                 );
@@ -1221,7 +1222,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                             'fancy_post_portrait'   => esc_html__( 'Portrait(421x550)', 'fancy-post-grid' ),
                             'fancy_post_list'       => esc_html__( 'List Size(1200 x 650)', 'fancy-post-grid' ),
                         ),
-                        'default' => 'full',
+                        // 'default' => 'full',
                         'render_type' => 'template'
                     ]
                 );
@@ -1243,11 +1244,25 @@ add_action('elementor/widgets/widgets_registered', function () {
                             'fancy_post_portrait'   => esc_html__( 'Portrait(421x550)', 'fancy-post-grid' ),
                             'fancy_post_list'       => esc_html__( 'List Size(1200 x 650)', 'fancy-post-grid' ),
                         ),
-                        'default' => 'full',
+                        // 'default' => 'full',
                         'render_type' => 'template'
                     ]
                 );
             }
+            $this->add_control(
+                'hover_animation',
+                [
+                    'label'   => esc_html__( 'Hover Animation', 'fancy-post-grid' ),
+                    'type'    => \Elementor\Controls_Manager::SELECT,
+                    'options' => array(
+                        '' => esc_html__( 'None', 'fancy-post-grid' ),
+                        'hover-zoom_in' => esc_html__( 'Zoom In', 'fancy-post-grid' ),
+                        'hover-zoom_out' => esc_html__( 'Zoom Out', 'fancy-post-grid' ),
+                    ),
+                    'default' => 'hover-zoom_in',
+                    'render_type' => 'template'
+                ]
+            );
 
             $this->end_controls_section();
 
@@ -1270,7 +1285,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                         'word' => esc_html__( 'Word', 'fancy-post-grid' ),
                         'full_content' => esc_html__( 'Full Content', 'fancy-post-grid' ),
                     ),
-                    'default' => 'character',
+                    'default' => 'word',
                     'render_type' => 'template'
                 ]
             );
@@ -1280,7 +1295,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                 [
                     'label'   => esc_html__( 'Excerpt Limit', 'fancy-post-grid' ),
                     'type'    => \Elementor\Controls_Manager::NUMBER,
-                    'default' => 20,
+                    'default' => 10,
                     'min'     => 1,
                 ]
             );
@@ -1387,7 +1402,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                         'fpg-border' => esc_html__( 'Border', 'fancy-post-grid' ),
                         'fpg-flat' => esc_html__( 'Flat', 'fancy-post-grid' ),
                     ),
-                    'default' => 'fpg-filled',
+                    
                 ]
             );
             // Read More Label
@@ -3140,7 +3155,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                     'selectors' => [
                         '{{WRAPPER}} .fpg-pagination a' => 'border-style: {{VALUE}};',
                     ],
-                    'default'      => 'default',
+                    
                 ]
             );
             // Add Border Width

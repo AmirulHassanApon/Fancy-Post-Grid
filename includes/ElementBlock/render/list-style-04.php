@@ -25,25 +25,38 @@ $separator_map = [
     'pipe'        => ' | ',
 ];
 $separator_value = isset($separator_map[$settings['meta_separator']]) ? $separator_map[$settings['meta_separator']] : '';
+$hover_animation = $settings['hover_animation'];
 // Query the posts
 $query = new \WP_Query($args);
 
 // Check if there are posts
 if ($query->have_posts()) {
     echo '<div class="fpg-section-area rs-blog-layout-20">';
+    echo '<div class="container">';
     echo '<div class="row">';
     while ($query->have_posts()) {
         $query->the_post(); 
     ?>
         <div class="col-md-6">
-            <div class="rs-blog-layout-20-item">
+            <div class="rs-blog-layout-20-item <?php echo esc_attr($hover_animation); ?>">
                 <!-- Featured Image -->
                 <?php if ('yes' === $settings['show_post_thumbnail'] && has_post_thumbnail()) { ?>
                     <div class="rs-thumb">
                         
                         <?php 
                         // Map the custom sizes to their actual dimensions
-                        $thumbnail_size = $settings['thumbnail_size'];
+                        
+                        $layout = $settings['fancy_post_list_layout'] ?? 'liststyle04';
+                        $thumbnail_size = $settings['thumbnail_size'] ?? '';
+
+                        if (empty($thumbnail_size)) {
+                            switch ($layout) {
+                                
+                                case 'liststyle04':
+                                    $thumbnail_size = 'fancy_post_square';
+                                    break;
+                            }
+                        }
 
                         if ('yes' === $settings['thumbnail_link']) { ?>
                             <a href="<?php the_permalink(); ?>" target="<?php echo ('new_window' === $settings['link_target']) ? '_blank' : '_self'; ?>">
@@ -77,30 +90,9 @@ if ($query->have_posts()) {
                                         'condition' => 'yes' === $settings['show_post_date'],
                                         'class'     => 'meta-date',
                                         'icon'      => ('yes' === $settings['show_meta_data_icon'] && 'yes' === $settings['show_post_date_icon']) ? '<i class="fa fa-calendar"></i>' : '',
-                                        'content'   => esc_html(get_the_date()),
+                                        'content'   => esc_html(get_the_date('M j, Y')),
                                     ),
-                                    'post_categories' => array(
-                                        'condition' => 'yes' === $settings['show_post_categories'],
-                                        'class'     => 'meta-categories',
-                                        'icon'      => ('yes' === $settings['show_meta_data_icon'] && 'yes' === $settings['show_post_categories_icon']) ? '<i class="fa fa-folder"></i>' : '',
-                                        'content'   => get_the_category_list(', '),
-                                    ),
-                                    'post_tags' => array(
-                                        'condition' => 'yes' === $settings['show_post_tags'] && !empty(get_the_tag_list('', ', ')),
-                                        'class'     => 'meta-tags',
-                                        'icon'      => ('yes' === $settings['show_meta_data_icon'] && 'yes' === $settings['show_post_tags_icon']) ? '<i class="fa fa-tags"></i>' : '',
-                                        'content'   => get_the_tag_list('', ', '),
-                                    ),
-                                    'comments_count' => array(
-                                        'condition' => 'yes' === $settings['show_comments_count'],
-                                        'class'     => 'meta-comments',
-                                        'icon'      => ('yes' === $settings['show_meta_data_icon'] && 'yes' === $settings['show_comments_count_icon']) ? '<i class="fa fa-comments"></i>' : '',
-                                        'content'   => sprintf(
-                                            '<a href="%s">%s</a>',
-                                            esc_url(get_comments_link()),
-                                            esc_html(get_comments_number_text(__('0 Comments', 'fancy-post-grid'), __('1 Comment', 'fancy-post-grid'), __('% Comments', 'fancy-post-grid')))
-                                        ),
-                                    ),
+                                    
                                 );
 
                                 $meta_items_output = []; // Array to store individual meta item outputs.
@@ -138,7 +130,7 @@ if ($query->have_posts()) {
                             // Title Classes
                             $title_classes = ['fancy-post-title'];
                             if ('enable' === $settings['title_hover_underline']) {
-                                $title_classes[] = 'hover-underline';
+                                $title_classes[] = 'underline';
                             }                            
 
                             // Rendering the Title
@@ -161,10 +153,21 @@ if ($query->have_posts()) {
                     ?>
 
                     <!-- Read More Button -->
-                    <?php if (!empty($settings['show_post_readmore']) && 'yes' === $settings['show_post_readmore']) { ?>
+                    <?php if (!empty($settings['show_post_readmore']) && 'yes' === $settings['show_post_readmore']) { 
+                        $layout = $settings['fancy_post_list_layout'] ?? 'liststyle04';
+                        $button_type = $settings['button_type'] ?? '';
+
+                        if (empty($button_type)) {
+                            switch ($layout) {
+                                
+                                case 'liststyle04':
+                                    $button_type = 'fpg-filled';
+                                    break;
+                            }
+                        }?>
                         <div class="btn-wrapper">
                             <a href="<?php echo esc_url(get_permalink()); ?>" 
-                               class="rs-btn rs-link read-more <?php echo esc_attr($settings['button_type']); ?>"
+                               class="rs-btn rs-link read-more <?php echo esc_attr($button_type); ?>"
                                target="<?php echo 'new_window' === $settings['link_target'] ? '_blank' : '_self'; ?>">
                                 <?php
                                 if (!empty($settings['button_icon']) && 'yes' === $settings['button_icon']) {
@@ -192,8 +195,8 @@ if ($query->have_posts()) {
             </div>                    
         </div>
         <?php
-
     }
+    echo '</div>';
     echo '</div>';
     echo '</div>';
     echo '</div>';
