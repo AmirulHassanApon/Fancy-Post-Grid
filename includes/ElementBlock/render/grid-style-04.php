@@ -25,33 +25,40 @@ $separator_map = [
     'pipe'        => ' | ',
 ];
 $separator_value = isset($separator_map[$settings['meta_separator']]) ? $separator_map[$settings['meta_separator']] : '';
-
+$hover_animation = $settings['hover_animation'];
 // Query the posts
 $query = new \WP_Query($args);
 
 // Check if there are posts
 if ($query->have_posts()) {
     echo '<div class="fpg-section-area rs-blog-layout-30">';
+    echo '<div class="container">';
     echo '<div class="row">';
     while ($query->have_posts()) {
         $query->the_post();
         
     ?>
-        <div class="col-xl-<?php echo esc_attr($settings['col_desktop']); ?> 
-            col-lg-<?php echo esc_attr($settings['col_lg']); ?> 
-            col-md-<?php echo esc_attr($settings['col_md']); ?> 
-            col-sm-<?php echo esc_attr($settings['col_sm']); ?> 
-            col-xs-<?php echo esc_attr($settings['col_xs']); ?> 
-            " >
+        <div class="col-xl-<?php echo esc_attr($settings['col_desktop']); ?> col-lg-<?php echo esc_attr($settings['col_lg']); ?> col-md-<?php echo esc_attr($settings['col_md']); ?> col-sm-<?php echo esc_attr($settings['col_sm']); ?> col-xs-<?php echo esc_attr($settings['col_xs']); ?> " >
             
-            <div class="rs-blog-layout-30-item rs-blog__single fancy-post-item mt-30">
+            <div class="rs-blog-layout-30-item fancy-post-item mt-30 <?php echo esc_attr($hover_animation); ?>">
                 <!-- Featured Image -->
                 <?php if ('yes' === $settings['show_post_thumbnail'] && has_post_thumbnail()) { ?>
                     <div class="rs-thumb">
                         
                         <?php 
                         // Map the custom sizes to their actual dimensions
-                        $thumbnail_size = $settings['thumbnail_size'];
+                        
+                        $layout = $settings['fancy_post_grid_layout'] ?? 'gridstyle04';
+                        $thumbnail_size = $settings['thumbnail_size'] ?? '';
+
+                        if (empty($thumbnail_size)) {
+                            switch ($layout) {
+                                
+                                case 'gridstyle04':
+                                    $thumbnail_size = 'fancy_post_landscape';
+                                    break;
+                            }
+                        }
 
                         if ('yes' === $settings['thumbnail_link']) { ?>
                             <a href="<?php the_permalink(); ?>" target="<?php echo ('new_window' === $settings['link_target']) ? '_blank' : '_self'; ?>">
@@ -68,7 +75,7 @@ if ($query->have_posts()) {
                                         'condition' => 'yes' === $settings['show_post_date'],
                                         
                                         'icon'      => ('yes' === $settings['show_meta_data_icon'] && 'yes' === $settings['show_post_date_icon']) ? '<i class="fa fa-calendar"></i>' : '',
-                                        'content'   => esc_html(get_the_date()),
+                                        'content'   => esc_html(get_the_date('M j, Y')),
                                     ),
                                 );
 
@@ -102,7 +109,7 @@ if ($query->have_posts()) {
                             // Title Classes
                             $title_classes = ['fancy-post-title'];
                             if ('enable' === $settings['title_hover_underline']) {
-                                $title_classes[] = 'hover-underline';
+                                $title_classes[] = 'underline';
                             }                            
 
                             // Rendering the Title
@@ -221,39 +228,41 @@ if ($query->have_posts()) {
     echo '</div>';
     // Pagination
     if ('yes' === $settings['show_pagination']) {
-    echo '<div class="fpg-pagination">';
+        echo '<div class="fpg-pagination">';
 
-    $big = 999999999; // Large number unlikely to be in a URL
-    $pagination_links = paginate_links(array(
-        'base'      => str_replace($big, '%#%', esc_url(get_pagenum_link($big))),
-        'format'    => '?paged=%#%',
-        'current'   => max(1, get_query_var('paged')),
-        'total'     => $query->max_num_pages,
-        'type'      => 'array', // Get an array of pagination links
-        'prev_text' => esc_html__('« Prev', 'fancy-post-grid'),
-        'next_text' => esc_html__('Next »', 'fancy-post-grid'),
-        'show_all'  => false,
-    ));
+        $big = 999999999; // Large number unlikely to be in a URL
+        $pagination_links = paginate_links(array(
+            'base'      => str_replace($big, '%#%', esc_url(get_pagenum_link($big))),
+            'format'    => '?paged=%#%',
+            'current'   => max(1, get_query_var('paged')),
+            'total'     => $query->max_num_pages,
+            'type'      => 'array',
+            'prev_text' => esc_html__('« Prev', 'fancy-post-grid'),
+            'next_text' => esc_html__('Next »', 'fancy-post-grid'),
+            'show_all'  => false,
+        ));
 
-    if (!empty($pagination_links)) {
-        echo '<ul class="fpg-pagination-elementor">';
-        foreach ($pagination_links as $link) {
-            // Replace <span> tags with <a> tags for the current page
-            if (strpos($link, 'span') !== false) {
-                $link = preg_replace(
-                    '/<span.*?>(.*?)<\/span>/i',
-                    '<a href="#" class="current">$1</a>',
-                    $link
-                );
+        if (!empty($pagination_links)) {
+            echo '<ul class="page-numbers">';
+            foreach ($pagination_links as $link) {
+                // Replace only the current page <span> with an <a> tag
+                if (strpos($link, '<span class="page-numbers current">') !== false) {
+                    $link = preg_replace(
+                        '/<span class="page-numbers current">(.*?)<\/span>/i',
+                        '<a href="#" class="page-numbers current">$1</a>',
+                        $link
+                    );
+                }
+
+                echo '<li>' . wp_kses_post($link) . '</li>';
             }
-            echo '<li>' . wp_kses_post($link) . '</li>';
+            echo '</ul>';
         }
-        echo '</ul>';
+
+        echo '</div>';
     }
 
     echo '</div>';
-}
-
     echo '</div>';
     echo '</div>';
 } else {

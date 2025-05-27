@@ -26,12 +26,14 @@ $separator_map = [
     'pipe'        => ' | ',
 ];
 $separator_value = isset($separator_map[$settings['meta_separator']]) ? $separator_map[$settings['meta_separator']] : '';
+$hover_animation = $settings['hover_animation'];
 // Query the posts
 $query = new \WP_Query($args);
 ?>
 
 <?php if ($query->have_posts()) : ?>
-    <section class="rs-blog-layout-25 grey fpg-section-area">
+    <section class="rs-blog-layout-25 fpg-section-area">
+    <div class="container">
         <div class="row">
             <div class="col-lg-12">
                 <div class="rs-blog-25-topbar">
@@ -47,14 +49,23 @@ $query = new \WP_Query($args);
             <div class="col-lg-12">
                 <?php while ($query->have_posts()) : $query->the_post(); ?> 
                 
-                <div class="rs-blog-layout-25-item">
+                <div class="rs-blog-layout-25-item <?php echo esc_attr($hover_animation); ?>">
                     <!-- Featured Image -->
                     <?php if ('yes' === $settings['show_post_thumbnail'] && has_post_thumbnail()) { ?>
                         <div class="rs-thumb">
-                            
                             <?php 
                             // Map the custom sizes to their actual dimensions
-                            $thumbnail_size = $settings['thumbnail_right_size'];
+                            $layout = $settings['fancy_post_list_layout'] ?? 'liststyle07';
+                            $thumbnail_size = $settings['thumbnail_size'] ?? '';
+
+                            if (empty($thumbnail_size)) {
+                                switch ($layout) {
+                                    
+                                    case 'liststyle07':
+                                        $thumbnail_size = 'fancy_post_square';
+                                        break;
+                                }
+                            }
 
                             if ('yes' === $settings['thumbnail_link']) { ?>
                                 <a href="<?php the_permalink(); ?>" target="<?php echo ('new_window' === $settings['link_target']) ? '_blank' : '_self'; ?>">
@@ -77,7 +88,6 @@ $query = new \WP_Query($args);
                                         'post_categories' => array(
                                             'condition' => 'yes' === $settings['show_post_categories'],
                                             'class'     => 'meta-categories',
-                                            'icon'      => ('yes' === $settings['show_meta_data_icon'] && 'yes' === $settings['show_post_categories_icon']) ? '<i class="fa fa-folder"></i>' : '',
                                             'content'   => get_the_category_list(', '),
                                         ), 
                                     );
@@ -86,7 +96,7 @@ $query = new \WP_Query($args);
                                     foreach ($meta_items as $meta) {
                                         if ($meta['condition']) {
                                             echo '<div class="' . esc_attr($meta['class']) . '">';
-                                            echo wp_kses_post($meta['icon']) . ' ' . wp_kses_post($meta['content']);
+                                            echo  wp_kses_post($meta['content']);
                                             echo '</div>';
                                         }
                                     }
@@ -110,13 +120,13 @@ $query = new \WP_Query($args);
                                 // Title Classes
                                 $title_classes = ['fancy-post-title'];
                                 if ('enable' === $settings['title_hover_underline']) {
-                                    $title_classes[] = 'hover-underline';
+                                    $title_classes[] = 'underline';
                                 }                            
 
                                 // Rendering the Title
                                 ?>
                                 <<?php echo esc_attr($title_tag); ?>
-                                    class="title blog-title <?php echo esc_attr(implode(' ', $title_classes)); ?>"
+                                    class="blog-title <?php echo esc_attr(implode(' ', $title_classes)); ?>"
                                     >
                                     <?php if ('link_details' === $settings['link_type']) { ?>
                                         <a href="<?php the_permalink(); ?>"
@@ -133,10 +143,22 @@ $query = new \WP_Query($args);
                         ?>
                         
                         <!-- Read More Button -->
-                        <?php if (!empty($settings['show_post_readmore']) && 'yes' === $settings['show_post_readmore']) { ?>
+                        <?php if (!empty($settings['show_post_readmore']) && 'yes' === $settings['show_post_readmore']) { 
+                                $layout = $settings['fancy_post_list_layout'] ?? 'liststyle07';
+                                $button_type = $settings['button_type'] ?? '';
+
+                                if (empty($button_type)) {
+                                    switch ($layout) {
+                                        
+                                        case 'liststyle07':
+                                            $button_type = 'fpg-flat';
+                                            break;
+                                    }
+                                }
+                            ?>
                             <div class="btn-wrapper blog-btn">
                                 <a href="<?php echo esc_url(get_permalink()); ?>" 
-                                   class="rs-btn rs-link read-more <?php echo esc_attr($settings['button_type']); ?>"
+                                   class="rs-btn rs-link read-more <?php echo esc_attr($button_type); ?>"
                                    target="<?php echo 'new_window' === $settings['link_target'] ? '_blank' : '_self'; ?>">
                                     <?php
                                     if (!empty($settings['button_icon']) && 'yes' === $settings['button_icon']) {
@@ -165,6 +187,7 @@ $query = new \WP_Query($args);
                 <?php endwhile; ?>
             </div> 
         </div> 
+    </div> 
     </section>
 <?php else : ?>
     

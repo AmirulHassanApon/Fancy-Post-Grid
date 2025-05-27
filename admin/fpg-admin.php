@@ -56,3 +56,13 @@ function rs_elementor_editor_css() {
     $dir = plugin_dir_url( __FILE__ );
     wp_enqueue_style( 'rs-elementor-editor-css', $dir . 'assets/css/rs-elementor-editor.css', array(), '1.0.0', 'all' );
 }
+
+// add_action('elementor/editor/after_enqueue_scripts', function () {
+//     wp_enqueue_script(
+//         'fpg-editor-js',
+//         plugin_dir_url(__FILE__) . 'assets/js/fpg-editor.js',
+//         ['jquery'],
+//         '1.0',
+//         true
+//     );
+// });

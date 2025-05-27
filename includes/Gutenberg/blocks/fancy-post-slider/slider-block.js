@@ -3204,6 +3204,11 @@
                                         color: attributes.sectionBgColor,
                                         onChangeComplete: (value) => setAttributes({ sectionBgColor: value.hex }),
                                     }),
+                                    wp.element.createElement(Button, {
+                                        isSecondary: true,
+                                        onClick: () => setAttributes({ sectionBgColor: '' }),
+                                        style: { marginTop: '10px' },
+                                    }, __('Clear Color', 'fancy-post-grid')),
                                     wp.element.createElement(__experimentalBoxControl, {
                                         label: __('Padding', 'fancy-post-grid'),
                                         values: attributes.sectionPadding,
@@ -3269,6 +3274,11 @@
                                         color: attributes.itemBackgroundColor,
                                         onChangeComplete: (value) => setAttributes({ itemBackgroundColor: value.hex }),
                                     }),
+                                    wp.element.createElement(Button, {
+                                        isSecondary: true,
+                                        onClick: () => setAttributes({ itemBackgroundColor: '' }),
+                                        style: { marginTop: '10px' },
+                                    }, __('Clear Color', 'fancy-post-grid')),
                                     // Border Type
                                     wp.element.createElement(SelectControl, {
                                         label: __('Border Type', 'fancy-post-grid'),
@@ -3295,6 +3305,11 @@
                                             color: attributes.itemBorderColor,
                                             onChangeComplete: (value) => setAttributes({ itemBorderColor: value.hex }),
                                         }),
+                                      wp.element.createElement(Button, {
+                                        isSecondary: true,
+                                        onClick: () => setAttributes({ itemBorderColor: '' }),
+                                        style: { marginTop: '10px' },
+                                    }, __('Clear Color', 'fancy-post-grid')),
 
                                     // Box Shadow
                                     wp.element.createElement('p', {}, __('Box Shadow Color', 'fancy-post-grid')),
@@ -3303,6 +3318,11 @@
                                         color: attributes.itemBoxShadowColor,
                                         onChangeComplete: (value) => setAttributes({ itemBoxShadowColor: value.hex }),
                                     }),
+                                    wp.element.createElement(Button, {
+                                        isSecondary: true,
+                                        onClick: () => setAttributes({ itemBoxShadowColor: '' }),
+                                        style: { marginTop: '10px' },
+                                    }, __('Clear Color', 'fancy-post-grid')),
 
                                     // Border Radius
                                     wp.element.createElement(__experimentalBoxControl, {
@@ -3356,12 +3376,22 @@
                                         color: attributes.contentBgColor,
                                         onChangeComplete: (value) => setAttributes({ contentBgColor: value.hex }),
                                     }),
+                                    wp.element.createElement(Button, {
+                                        isSecondary: true,
+                                        onClick: () => setAttributes({ contentBgColor: '' }),
+                                        style: { marginTop: '10px' },
+                                    }, __('Clear Color', 'fancy-post-grid')),
                                     wp.element.createElement('p', {}, __('Box Border Color', 'fancy-post-grid')),
                                                         
                                     wp.element.createElement(wp.components.ColorPicker, {
                                         color: attributes.contentBorderColor,
                                         onChangeComplete: (value) => setAttributes({ contentBorderColor: value.hex }),
                                     }),
+                                    wp.element.createElement(Button, {
+                                        isSecondary: true,
+                                        onClick: () => setAttributes({ contentBorderColor: '' }),
+                                        style: { marginTop: '10px' },
+                                    }, __('Clear Color', 'fancy-post-grid')),
                                 ),
                                 // Thumbnail
                                 wp.element.createElement(PanelBody, { title: __(' Thumbnail', 'fancy-post-grid'), initialOpen: false },
@@ -3481,12 +3511,22 @@
                                                             color: attributes.postTitleColor,
                                                             onChangeComplete: (value) => setAttributes({ postTitleColor: value.hex }),
                                                         }),
+                                                        wp.element.createElement(Button, {
+                                                            isSecondary: true,
+                                                            onClick: () => setAttributes({ postTitleColor: '' }),
+                                                            style: { marginTop: '10px' },
+                                                        }, __('Clear Color', 'fancy-post-grid')),
                                                         wp.element.createElement('p', {}, __('Background Color', 'fancy-post-grid')),
                                                         
                                                         wp.element.createElement(wp.components.ColorPicker, {
                                                             color: attributes.postTitleBgColor,
                                                             onChangeComplete: (value) => setAttributes({ postTitleBgColor: value.hex }),
                                                         }),
+                                                        wp.element.createElement(Button, {
+                                                            isSecondary: true,
+                                                            onClick: () => setAttributes({ postTitleBgColor: '' }),
+                                                            style: { marginTop: '10px' },
+                                                        }, __('Clear Color', 'fancy-post-grid')),
                                                         
                                                     );
                                                 
@@ -3500,6 +3540,11 @@
                                                             color: attributes.postTitleHoverColor,
                                                             onChangeComplete: (value) => setAttributes({ postTitleHoverColor: value.hex }),
                                                         }),
+                                                        wp.element.createElement(Button, {
+                                                            isSecondary: true,
+                                                            onClick: () => setAttributes({ postTitleHoverColor: '' }),
+                                                            style: { marginTop: '10px' },
+                                                        }, __('Clear Color', 'fancy-post-grid')),
 
                                                         wp.element.createElement('p', {}, __('Hover Background Color', 'fancy-post-grid')),
                                                         
@@ -3507,6 +3552,11 @@
                                                             color: attributes.postTitleHoverBgColor,
                                                             onChangeComplete: (value) => setAttributes({ postTitleHoverBgColor: value.hex }),
                                                         }),
+                                                        wp.element.createElement(Button, {
+                                                            isSecondary: true,
+                                                            onClick: () => setAttributes({ postTitleHoverBgColor: '' }),
+                                                            style: { marginTop: '10px' },
+                                                        }, __('Clear Color', 'fancy-post-grid')),
                                                         
                                                     );
                                             }
@@ -3605,12 +3655,23 @@
                                                             color: attributes.excerptColor,
                                                             onChangeComplete: (value) => setAttributes({ excerptColor: value.hex }),
                                                         }),
+                                                        wp.element.createElement(Button, {
+                                                            isSecondary: true,
+                                                            onClick: () => setAttributes({ excerptColor: '' }),
+                                                            style: { marginTop: '10px' },
+                                                        }, __('Clear Color', 'fancy-post-grid')),
+
                                                         wp.element.createElement('p', {}, __('Background Color', 'fancy-post-grid')),
                                                         
                                                         wp.element.createElement(wp.components.ColorPicker, {
                                                             color: attributes.excerptBgColor,
                                                             onChangeComplete: (value) => setAttributes({ excerptBgColor: value.hex }),
                                                         }),
+                                                        wp.element.createElement(Button, {
+                                                            isSecondary: true,
+                                                            onClick: () => setAttributes({ excerptBgColor: '' }),
+                                                            style: { marginTop: '10px' },
+                                                        }, __('Clear Color', 'fancy-post-grid')),
                                                         
                                                     );
                                                 
@@ -3624,17 +3685,32 @@
                                                             color: attributes.excerptHoverColor,
                                                             onChangeComplete: (value) => setAttributes({ excerptHoverColor: value.hex }),
                                                         }),
+                                                        wp.element.createElement(Button, {
+                                                            isSecondary: true,
+                                                            onClick: () => setAttributes({ excerptHoverColor: '' }),
+                                                            style: { marginTop: '10px' },
+                                                        }, __('Clear Color', 'fancy-post-grid')),
                                                         wp.element.createElement('p', {}, __('Hover Background Color', 'fancy-post-grid')),
                                                         
                                                         wp.element.createElement(wp.components.ColorPicker, {
                                                             color: attributes.excerptHoverBgColor,
                                                             onChangeComplete: (value) => setAttributes({ excerptHoverBgColor: value.hex }),
                                                         }),
+                                                        wp.element.createElement(Button, {
+                                                            isSecondary: true,
+                                                            onClick: () => setAttributes({ excerptHoverBgColor: '' }),
+                                                            style: { marginTop: '10px' },
+                                                        }, __('Clear Color', 'fancy-post-grid')),
                                                         wp.element.createElement('p', {}, __('Hover Border Color', 'fancy-post-grid')),
                                                         wp.element.createElement(wp.components.ColorPicker, {
                                                             color: attributes.excerptHoverBorderColor,
                                                             onChangeComplete: (value) => setAttributes({ excerptHoverBorderColor: value.hex }),
                                                         }),
+                                                        wp.element.createElement(Button, {
+                                                            isSecondary: true,
+                                                            onClick: () => setAttributes({ excerptHoverBorderColor: '' }),
+                                                            style: { marginTop: '10px' },
+                                                        }, __('Clear Color', 'fancy-post-grid')),
                                                     );
                                             }
                                         }
@@ -3681,13 +3757,23 @@
                                         color: attributes.metaTextColor,
                                         onChangeComplete: (value) => setAttributes({ metaTextColor: value.hex }),
                                     }),
+                                    wp.element.createElement(Button, {
+                                        isSecondary: true,
+                                        onClick: () => setAttributes({ metaTextColor: '' }),
+                                        style: { marginTop: '10px' },
+                                    }, __('Clear Color', 'fancy-post-grid')),
 
                                     // Separator Color
                                     wp.element.createElement('p', {}, __('Separator Color', 'fancy-post-grid')),
                                     wp.element.createElement(wp.components.ColorPicker, {
                                         color: attributes.separatorColor,
                                         onChangeComplete: (value) => setAttributes({ separatorColor: value.hex }),
-                                    }),               
+                                    }),
+                                    wp.element.createElement(Button, {
+                                        isSecondary: true,
+                                        onClick: () => setAttributes({ separatorColor: '' }),
+                                        style: { marginTop: '10px' },
+                                    }, __('Clear Color', 'fancy-post-grid')),               
 
                                     // Icon Color
                                     wp.element.createElement('p', {}, __('Icon Color', 'fancy-post-grid')),
@@ -3696,6 +3782,11 @@
                                         color: attributes.metaIconColor,
                                         onChangeComplete: (value) => setAttributes({ metaIconColor: value.hex }),
                                     }),
+                                    wp.element.createElement(Button, {
+                                        isSecondary: true,
+                                        onClick: () => setAttributes({ metaIconColor: '' }),
+                                        style: { marginTop: '10px' },
+                                    }, __('Clear Color', 'fancy-post-grid')),
                                     
                                 ),
                                 // Button
@@ -3800,6 +3891,11 @@
                                                     color: attributes.buttonTextColor,
                                                     onChangeComplete: (value) => setAttributes({ buttonTextColor: value.hex }),
                                                 }),
+                                                wp.element.createElement(Button, {
+                                                    isSecondary: true,
+                                                    onClick: () => setAttributes({ buttonTextColor: '' }),
+                                                    style: { marginTop: '10px' },
+                                                }, __('Clear Color', 'fancy-post-grid')),
 
                                                 // Button Background Color
                                                 wp.element.createElement('p', {}, __('Background Color', 'fancy-post-grid')),
@@ -3808,6 +3904,11 @@
                                                     color: attributes.buttonBackgroundColor,
                                                     onChangeComplete: (value) => setAttributes({ buttonBackgroundColor: value.hex }),
                                                 }),
+                                                wp.element.createElement(Button, {
+                                                    isSecondary: true,
+                                                    onClick: () => setAttributes({ buttonBackgroundColor: '' }),
+                                                    style: { marginTop: '10px' },
+                                                }, __('Clear Color', 'fancy-post-grid')),
                                                 // Button Background Color
                                                 wp.element.createElement('p', {}, __('Border Color', 'fancy-post-grid')),
                                                 
@@ -3815,6 +3916,11 @@
                                                     color: attributes.buttonBorderColor,
                                                     onChangeComplete: (value) => setAttributes({ buttonBorderColor: value.hex }),
                                                 }),
+                                                wp.element.createElement(Button, {
+                                                    isSecondary: true,
+                                                    onClick: () => setAttributes({ buttonBorderColor: '' }),
+                                                    style: { marginTop: '10px' },
+                                                }, __('Clear Color', 'fancy-post-grid')),
 
                                             ] : [
                                                 // Hover Button Text Color
@@ -3824,6 +3930,11 @@
                                                     color: attributes.buttonHoverTextColor,
                                                     onChangeComplete: (value) => setAttributes({ buttonHoverTextColor: value.hex }),
                                                 }),
+                                                wp.element.createElement(Button, {
+                                                    isSecondary: true,
+                                                    onClick: () => setAttributes({ buttonHoverTextColor: '' }),
+                                                    style: { marginTop: '10px' },
+                                                }, __('Clear Color', 'fancy-post-grid')),
 
                                                 // Hover Button Background Color
                                                 wp.element.createElement('p', {}, __('Hover Background Color', 'fancy-post-grid')),
@@ -3832,6 +3943,11 @@
                                                     color: attributes.buttonHoverBackgroundColor,
                                                     onChangeComplete: (value) => setAttributes({ buttonHoverBackgroundColor: value.hex }),
                                                 }),
+                                                wp.element.createElement(Button, {
+                                                    isSecondary: true,
+                                                    onClick: () => setAttributes({ buttonHoverBackgroundColor: '' }),
+                                                    style: { marginTop: '10px' },
+                                                }, __('Clear Color', 'fancy-post-grid')),
                                                 // Button Background Color
                                                 wp.element.createElement('p', {}, __('Hover Border Color', 'fancy-post-grid')),
                                                 
@@ -3839,6 +3955,11 @@
                                                     color: attributes.buttonHoverBorderColor,
                                                     onChangeComplete: (value) => setAttributes({ buttonHoverBorderColor: value.hex }),
                                                 }),
+                                                wp.element.createElement(Button, {
+                                                    isSecondary: true,
+                                                    onClick: () => setAttributes({ buttonHoverBorderColor: '' }),
+                                                    style: { marginTop: '10px' },
+                                                }, __('Clear Color', 'fancy-post-grid')),
 
                                             ];
                                         }
@@ -3854,6 +3975,11 @@
                                         color: attributes.sliderDots,
                                         onChangeComplete: (value) => setAttributes({ sliderDots: value.hex }),
                                     }),
+                                    wp.element.createElement(Button, {
+                                        isSecondary: true,
+                                        onClick: () => setAttributes({ sliderDots: '' }),
+                                        style: { marginTop: '10px' },
+                                    }, __('Clear Color', 'fancy-post-grid')),
 
                                     // Slider Dots Active Color
                                     wp.element.createElement('p', {}, __('Slider Dots Active Color', 'fancy-post-grid')),
@@ -3861,6 +3987,11 @@
                                         color: attributes.sliderDotsActive,
                                         onChangeComplete: (value) => setAttributes({ sliderDotsActive: value.hex }),
                                     }),
+                                    wp.element.createElement(Button, {
+                                        isSecondary: true,
+                                        onClick: () => setAttributes({ sliderDotsActive: '' }),
+                                        style: { marginTop: '10px' },
+                                    }, __('Clear Color', 'fancy-post-grid')),
 
                                     // Arrow Color
                                     wp.element.createElement('p', {}, __('Arrow Color', 'fancy-post-grid')),
@@ -3868,6 +3999,11 @@
                                         color: attributes.arrowColor,
                                         onChangeComplete: (value) => setAttributes({ arrowColor: value.hex }),
                                     }),
+                                    wp.element.createElement(Button, {
+                                        isSecondary: true,
+                                        onClick: () => setAttributes({ arrowColor: '' }),
+                                        style: { marginTop: '10px' },
+                                    }, __('Clear Color', 'fancy-post-grid')),
 
                                     // Arrow Hover Color
                                     wp.element.createElement('p', {}, __('Arrow Hover Color', 'fancy-post-grid')),
@@ -3875,6 +4011,11 @@
                                         color: attributes.arrowHoverColor,
                                         onChangeComplete: (value) => setAttributes({ arrowHoverColor: value.hex }),
                                     }),
+                                    wp.element.createElement(Button, {
+                                        isSecondary: true,
+                                        onClick: () => setAttributes({ arrowHoverColor: '' }),
+                                        style: { marginTop: '10px' },
+                                    }, __('Clear Color', 'fancy-post-grid')),
 
                                     // Arrow Background Color
                                     wp.element.createElement('p', {}, __('Arrow Background Color', 'fancy-post-grid')),
@@ -3882,6 +4023,11 @@
                                         color: attributes.arrowBgColorr,
                                         onChangeComplete: (value) => setAttributes({ arrowBgColorr: value.hex }),
                                     }),
+                                    wp.element.createElement(Button, {
+                                        isSecondary: true,
+                                        onClick: () => setAttributes({ arrowBgColorr: '' }),
+                                        style: { marginTop: '10px' },
+                                    }, __('Clear Color', 'fancy-post-grid')),
 
                                     // Arrow Background Hover Color
                                     wp.element.createElement('p', {}, __('Arrow Background Hover Color', 'fancy-post-grid')),
@@ -3889,6 +4035,11 @@
                                         color: attributes.arrowBgHoverColor,
                                         onChangeComplete: (value) => setAttributes({ arrowBgHoverColor: value.hex }),
                                     }),
+                                    wp.element.createElement(Button, {
+                                        isSecondary: true,
+                                        onClick: () => setAttributes({ arrowBgHoverColor: '' }),
+                                        style: { marginTop: '10px' },
+                                    }, __('Clear Color', 'fancy-post-grid')),
 
                                     // Arrow Icon Font Size
                                     wp.element.createElement('p', {}, __('Arrow Icon Font Size (px)', 'fancy-post-grid')),
@@ -3904,6 +4055,11 @@
                                         color: attributes.fractionCurrentColor,
                                         onChangeComplete: (value) => setAttributes({ fractionCurrentColor: value.hex }),
                                     }),
+                                    wp.element.createElement(Button, {
+                                        isSecondary: true,
+                                        onClick: () => setAttributes({ fractionCurrentColor: '' }),
+                                        style: { marginTop: '10px' },
+                                    }, __('Clear Color', 'fancy-post-grid')),
 
                                     
 

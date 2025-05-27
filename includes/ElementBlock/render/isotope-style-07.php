@@ -24,12 +24,22 @@ $separator_map = [
     'pipe'        => ' | ',
 ];
 $separator_value = isset($separator_map[$settings['meta_separator']]) ? $separator_map[$settings['meta_separator']] : '';
-
+$hover_animation = $settings['hover_animation'];
 $query = new \WP_Query($args);
 
 $fancy_post_filter_text = $settings['filter_all_text'] ?? 'All';
 
-if ($query->have_posts()) { 
+if ($query->have_posts()) {
+    $layout = $settings['fancy_post_isotope_layout'] ?? 'isotopestyle07';
+    $button_type = $settings['button_type'] ?? '';
+
+    if (empty($button_type)) {
+        switch ($layout) {
+            case 'isotopestyle07':
+                $button_type = 'fpg-filled';
+                break;
+        }
+    } 
     ?>
     <section class="rs-blog-layout-26 fpg-section-area">
         
@@ -61,120 +71,85 @@ if ($query->have_posts()) {
                 }
 
             ?>
-            <div class="col-xl-<?php echo esc_attr($settings['col_desktop']); ?> 
-                col-lg-<?php echo esc_attr($settings['col_lg']); ?> 
-                col-md-<?php echo esc_attr($settings['col_md']); ?> 
-                col-sm-<?php echo esc_attr($settings['col_sm']); ?> 
-                col-xs-<?php echo esc_attr($settings['col_xs']); ?>  rs-grid-item <?php echo esc_attr($category_classes); ?>" >
-                <div class="rs-blog__single rs-blog-layout-26-item fancy-post-item mt-30">
+            <div class="col-xl-<?php echo esc_attr($settings['col_desktop']); ?> col-lg-<?php echo esc_attr($settings['col_lg']); ?> col-md-<?php echo esc_attr($settings['col_md']); ?> col-sm-<?php echo esc_attr($settings['col_sm']); ?> col-xs-<?php echo esc_attr($settings['col_xs']); ?>  rs-grid-item <?php echo esc_attr($category_classes); ?>" >
+                <div class="rs-blog__single rs-blog-layout-26-item fancy-post-item mt-30 <?php echo esc_attr($hover_animation); ?>">
                     <!-- Featured Image -->
                     <?php if ('yes' === $settings['show_post_thumbnail'] && has_post_thumbnail()) { ?>
-                        <div class="rs-thumb">
-                            
-                            <?php 
-                            // Map the custom sizes to their actual dimensions
-                            $thumbnail_size = $settings['thumbnail_size'];
+                    <div class="rs-thumb">
 
-                            if ('yes' === $settings['thumbnail_link']) { ?>
-                                <a href="<?php the_permalink(); ?>" target="<?php echo ('new_window' === $settings['link_target']) ? '_blank' : '_self'; ?>">
-                                    <?php the_post_thumbnail($thumbnail_size); ?>
-                                </a>
-                            <?php } else { ?>
+                    <?php 
+                        $layout = $settings['fancy_post_isotope_layout'] ?? 'isotopestyle07';
+                            $thumbnail_size = $settings['thumbnail_size'] ?? '';
+
+                            if (empty($thumbnail_size)) {
+                                switch ($layout) {
+                                    
+                                    case 'isotopestyle07':
+                                        $thumbnail_size = 'fancy_post_square';
+                                        break;
+                                }
+                            }
+                        if ('yes' === $settings['thumbnail_link']) { ?>
+                            <a href="<?php the_permalink(); ?>" target="<?php echo ('new_window' === $settings['link_target']) ? '_blank' : '_self'; ?>">
                                 <?php the_post_thumbnail($thumbnail_size); ?>
-                            <?php } ?>
-                        </div>
+                            </a>
+                        <?php } else { ?>
+                            <?php the_post_thumbnail($thumbnail_size); ?>
+                        <?php } ?>
+
+                    </div>
                     <?php } ?>
 
                     <div class="rs-content">
                     <!-- Post Meta: Date, Author, Category, Tags, Comments -->
                     
                     <?php if ('yes' === $settings['show_meta_data']) { ?>
-                        <div class="rs-meta meta-data-list">
+                        <div class="rs-meta ">
                             <?php
-                            // Array of meta items with their respective conditions, content, and class names.
-                            $meta_items = array(
-                                'post_date' => array(
-                                    'condition' => 'yes' === $settings['show_post_date'],
-                                    'class'     => 'meta-date',
-                                    'icon'      => ('yes' === $settings['show_meta_data_icon'] && 'yes' === $settings['show_post_date_icon']) ? '<i class="fa fa-calendar"></i>' : '',
-                                    'content'   => esc_html(get_the_date()),
-                                ),
-                            );
-
-                            $meta_items_output = []; // Array to store individual meta item outputs.
-                            foreach ($meta_items as $meta) {
-                                if ($meta['condition']) {
-                                    // Build the meta item output with its icon and content.
-                                    $meta_items_output[] = '<div class="' . esc_attr($meta['class']) . '">'
-                                        . '<span class="meta-icon">' . $meta['icon'] . '</span> ' 
-                                        . '<span class="meta-content">' . $meta['content'] . '</span>'
-                                        . '</div>';
-
-                                }
-                            }
-                            // Only wrap the separator in a <span> if it's not empty.
-                            $separator = $separator_value !== '' ? '' : '';
-
-                            // Join the meta items with the selected separator.
-                            echo wp_kses_post(implode(wp_kses_post($separator), $meta_items_output));
-                            ?>
-                            
-                            <div class="rs-meta-all">
-                                <?php
-                            // Array of meta items with their respective conditions, content, and class names.
-                            $meta_items = array(
-                                
-                                'post_author' => array(
-                                    'condition' => 'yes' === $settings['show_post_author'],
-                                    'class'     => 'meta-author',
-                                    'icon'      => ('yes' === $settings['show_meta_data_icon'] && 'yes' === $settings['author_icon_visibility']) 
-                                                    ? ('icon' === $settings['author_image_icon'] 
-                                                        ? '<i class="fa fa-user"></i>' 
-                                                        : '<img src="' . esc_url(get_avatar_url(get_the_author_meta('ID'))) . '" alt="' . esc_attr__('Author', 'fancy-post-grid') . '" class="author-avatar" />')
-                                                    : '',
-                                    'content'   => esc_html($settings['author_prefix']) . ' ' . esc_html(get_the_author()),
-                                ),
-                                
-                                'post_categories' => array(
-                                    'condition' => 'yes' === $settings['show_post_categories'],
-                                    'class'     => 'meta-categories',
-                                    'icon'      => ('yes' === $settings['show_meta_data_icon'] && 'yes' === $settings['show_post_categories_icon']) ? '<i class="fa fa-folder"></i>' : '',
-                                    'content'   => get_the_category_list(', '),
-                                ),
-                                'post_tags' => array(
-                                    'condition' => 'yes' === $settings['show_post_tags'] && !empty(get_the_tag_list('', ', ')),
-                                    'class'     => 'meta-tags',
-                                    'icon'      => ('yes' === $settings['show_meta_data_icon'] && 'yes' === $settings['show_post_tags_icon']) ? '<i class="fa fa-tags"></i>' : '',
-                                    'content'   => get_the_tag_list('', ', '),
-                                ),
-                                'comments_count' => array(
-                                    'condition' => 'yes' === $settings['show_comments_count'],
-                                    'class'     => 'meta-comments',
-                                    'icon'      => ('yes' === $settings['show_meta_data_icon'] && 'yes' === $settings['show_comments_count_icon']) ? '<i class="fa fa-comments"></i>' : '',
-                                    'content'   => sprintf(
-                                        '<a href="%s">%s</a>',
-                                        esc_url(get_comments_link()),
-                                        esc_html(get_comments_number_text(__('0 Comments', 'fancy-post-grid'), __('1 Comment', 'fancy-post-grid'), __('% Comments', 'fancy-post-grid')))
+                                $meta_items = array(
+                                    'post_date' => array(
+                                        'condition' => 'yes' === $settings['show_post_date'],
+                                        'class'     => 'meta-date',
+                                        'content'   => get_the_date('M j, Y'), // Example: Oct 14, 2024
                                     ),
-                                ),
-                            );
+                                );
 
-                            $meta_items_output = []; // Array to store individual meta item outputs.
-                            foreach ($meta_items as $meta) {
-                                if ($meta['condition']) {
-                                    // Build the meta item output with its icon and content.
-                                    $meta_items_output[] = '<div class="' . esc_attr($meta['class']) . '">' 
-                                        . $meta['icon'] . ' ' . $meta['content'] 
-                                        . '</div>';
+                                $meta_items_output = [];
+
+                                foreach ($meta_items as $meta) {
+                                    if ($meta['condition']) {
+                                        $meta_items_output[] = sprintf(
+                                            '<div class="%s"><span class="meta-content">%s</span></div>',
+                                            esc_attr($meta['class']),
+                                            esc_html($meta['content'])
+                                        );
+                                    }
                                 }
-                            }
-                            // Only wrap the separator in a <span> if it's not empty.
-                            $separator = $separator_value !== '' ? '<span>' . esc_html($separator_value) . '</span>' : '';
 
-                            // Join the meta items with the selected separator.
-                            echo wp_kses_post(implode(wp_kses_post($separator), $meta_items_output));
+                                echo implode('', $meta_items_output);
                             ?>
-                            </div>   
+
+                            <?php
+                                if ( 'yes' === $settings['show_post_categories'] ) {
+                                    $raw_category_links = get_the_category_list('');
+
+                                    // Sanitize the output to allow only <a> tags with safe attributes
+                                    $allowed_tags = array(
+                                        'a' => array(
+                                            'href'  => array(),
+                                            'title' => array(),
+                                            'rel'   => array(),
+                                            'class' => array(),
+                                        ),
+                                    );
+
+                                    echo '<div class="meta-category">';
+                                    echo wp_kses($raw_category_links, $allowed_tags);
+                                    echo '</div>';
+                                }
+                            ?>
+
+  
                         </div>
                     <?php } ?>
 
@@ -193,7 +168,7 @@ if ($query->have_posts()) {
                             // Title Classes
                             $title_classes = ['fancy-post-title'];
                             if ('enable' === $settings['title_hover_underline']) {
-                                $title_classes[] = 'hover-underline';
+                                $title_classes[] = 'underline';
                             }                            
 
                             // Rendering the Title
@@ -242,7 +217,7 @@ if ($query->have_posts()) {
                     <?php if (!empty($settings['show_post_readmore']) && 'yes' === $settings['show_post_readmore']) { ?>
                         <div class="btn-wrapper">
                             <a href="<?php echo esc_url(get_permalink()); ?>" 
-                               class="rs-btn rs-link read-more <?php echo esc_attr($settings['button_type']); ?>"
+                               class="rs-btn read-more <?php echo esc_attr($button_type); ?>"
                                target="<?php echo 'new_window' === $settings['link_target'] ? '_blank' : '_self'; ?>">
                                 <?php
                                 if (!empty($settings['button_icon']) && 'yes' === $settings['button_icon']) {
