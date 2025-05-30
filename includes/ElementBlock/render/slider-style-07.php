@@ -28,6 +28,7 @@ $separator_map = [
     'pipe'        => ' | ',
 ];
 $separator_value = isset($separator_map[$settings['meta_separator']]) ? $separator_map[$settings['meta_separator']] : '';
+$hover_animation = $settings['hover_animation'];
 // Query the posts
 $query = new \WP_Query($args);
 
@@ -36,8 +37,11 @@ if ($query->have_posts()) {
     ?>
     <div class="rs-blog-layout-28 fpg-section-area">
         
+        <div class="container">
         <div class="row fancy-post-grid">
+
             <div class="col-lg-12">
+                <div class="swiper_wrap">
                 <div class="swiper mySwiper" data-swiper='<?php echo wp_json_encode([
                         'loop' => $settings['enable_looping'] === 'yes',
                         'autoplay' => $settings['auto_play_speed'] > 0 ? ['delay' => intval($settings['auto_play_speed']), 'disableOnInteraction' => false] : false,
@@ -60,14 +64,23 @@ if ($query->have_posts()) {
                         ?>
 
                         <div class="swiper-slide fancy-post-item col-xl-<?php echo esc_attr($settings['col_desktop_slider']); ?> col-lg-<?php echo esc_attr($settings['col_lg_slider']); ?> col-md-<?php echo esc_attr($settings['col_md_slider']); ?> col-sm-<?php echo esc_attr($settings['col_sm_slider']); ?> col-xs-<?php echo esc_attr($settings['col_xs_slider']); ?>">
-                            <div class="blog__single rs-blog-layout-28-item fancy-post-item mt-30">
+                            <div class="blog__single rs-blog-layout-28-item fancy-post-item mt-30 <?php echo esc_attr($hover_animation); ?>">
                                 <!-- Featured Image -->
                                 <?php if ('yes' === $settings['show_post_thumbnail'] && has_post_thumbnail()) { ?>
                                     <div class="rs-thumb">
                                         
                                         <?php 
                                         // Map the custom sizes to their actual dimensions
-                                        $thumbnail_size = $settings['thumbnail_size'];
+                                        $layout = $settings['fancy_post_slider_layout'] ?? 'sliderstyle07';
+                                        $thumbnail_size = $settings['thumbnail_size'] ?? '';
+
+                                        if (empty($thumbnail_size)) {
+                                            switch ($layout) {
+                                                case 'sliderstyle07':
+                                                    $thumbnail_size = 'fancy_post_custom_size';
+                                                    break;
+                                            }
+                                        }
 
                                         if ('yes' === $settings['thumbnail_link']) { ?>
                                             <a href="<?php the_permalink(); ?>" target="<?php echo ('new_window' === $settings['link_target']) ? '_blank' : '_self'; ?>">
@@ -84,6 +97,12 @@ if ($query->have_posts()) {
                                                     <?php
                                                     // Array of meta items with their respective conditions, content, and class names.
                                                     $meta_items = array(
+                                                        'post_date' => array(
+                                                            'condition' => 'yes' === $settings['show_post_date'],
+                                                            'class'     => 'meta-date',
+                                                            'icon'      => ('yes' === $settings['show_meta_data_icon'] && 'yes' === $settings['show_post_date_icon']) ? '<i class="fa fa-calendar"></i>' : '',
+                                                            'content'   => esc_html(get_the_date('M j, Y')),
+                                                        ),
                                                         'post_author' => array(
                                                             'condition' => 'yes' === $settings['show_post_author'],
                                                             'class'     => 'meta-author',
@@ -91,34 +110,8 @@ if ($query->have_posts()) {
                                                                             : '',
                                                             'content'   => esc_html($settings['author_prefix']) . ' ' . esc_html(get_the_author()),
                                                         ),
-                                                        'post_date' => array(
-                                                            'condition' => 'yes' === $settings['show_post_date'],
-                                                            'class'     => 'meta-date',
-                                                            'icon'      => ('yes' === $settings['show_meta_data_icon'] && 'yes' === $settings['show_post_date_icon']) ? '<i class="fa fa-calendar"></i>' : '',
-                                                            'content'   => esc_html(get_the_date()),
-                                                        ),
-                                                        'post_categories' => array(
-                                                            'condition' => 'yes' === $settings['show_post_categories'],
-                                                            'class'     => 'meta-categories',
-                                                            'icon'      => ('yes' === $settings['show_meta_data_icon'] && 'yes' === $settings['show_post_categories_icon']) ? '<i class="fa fa-folder"></i>' : '',
-                                                            'content'   => get_the_category_list(', '),
-                                                        ),
-                                                        'post_tags' => array(
-                                                            'condition' => 'yes' === $settings['show_post_tags'] && !empty(get_the_tag_list('', ', ')),
-                                                            'class'     => 'meta-tags',
-                                                            'icon'      => ('yes' === $settings['show_meta_data_icon'] && 'yes' === $settings['show_post_tags_icon']) ? '<i class="fa fa-tags"></i>' : '',
-                                                            'content'   => get_the_tag_list('', ', '),
-                                                        ),
-                                                        'comments_count' => array(
-                                                            'condition' => 'yes' === $settings['show_comments_count'],
-                                                            'class'     => 'meta-comments',
-                                                            'icon'      => ('yes' === $settings['show_meta_data_icon'] && 'yes' === $settings['show_comments_count_icon']) ? '<i class="fa fa-comments"></i>' : '',
-                                                            'content'   => sprintf(
-                                                                '<a href="%s">%s</a>',
-                                                                esc_url(get_comments_link()),
-                                                                esc_html(get_comments_number_text(__('0 Comments', 'fancy-post-grid'), __('1 Comment', 'fancy-post-grid'), __('% Comments', 'fancy-post-grid')))
-                                                            ),
-                                                        ),
+                                                        
+                                                        
                                                     );
 
                                                     $meta_items_output = []; // Array to store individual meta item outputs.
@@ -159,7 +152,7 @@ if ($query->have_posts()) {
                                             // Title Classes
                                             $title_classes = ['fancy-post-title'];
                                             if ('enable' === $settings['title_hover_underline']) {
-                                                $title_classes[] = 'hover-underline';
+                                                $title_classes[] = 'underline';
                                             }                            
 
                                             // Rendering the Title
@@ -208,10 +201,21 @@ if ($query->have_posts()) {
                                     <?php } ?>
 
                                     <!-- Read More Button -->
-                                    <?php if (!empty($settings['show_post_readmore']) && 'yes' === $settings['show_post_readmore']) { ?>
+                                    <?php if (!empty($settings['show_post_readmore']) && 'yes' === $settings['show_post_readmore']) { 
+                                        $layout = $settings['fancy_post_slider_layout'] ?? 'sliderstyle07';
+                                            $button_type = $settings['button_type'] ?? '';
+
+                                            if (empty($button_type)) {
+                                                switch ($layout) {
+                                                    
+                                                    case 'sliderstyle07':
+                                                        $button_type = 'fpg-filled';
+                                                        break;
+                                                }
+                                            }?>
                                         <div class="btn-wrapper">
                                             <a href="<?php echo esc_url(get_permalink()); ?>" 
-                                               class="rs-btn read-more <?php echo esc_attr($settings['button_type']); ?>"
+                                               class="rs-btn read-more <?php echo esc_attr($button_type); ?>"
                                                target="<?php echo 'new_window' === $settings['link_target'] ? '_blank' : '_self'; ?>">
                                                 <?php
                                                 if (!empty($settings['button_icon']) && 'yes' === $settings['button_icon']) {
@@ -241,6 +245,7 @@ if ($query->have_posts()) {
                         </div>
                         <?php } ?>
                     </div>
+                    </div>
 
                     <!-- Add Swiper Navigation -->
                     <?php if ('yes' === $settings['show_arrow_control']) { ?>
@@ -251,8 +256,10 @@ if ($query->have_posts()) {
                     <?php if ('yes' === $settings['show_pagination_control']) { ?>
                     <div class="swiper-pagination swiper-pagination-1"></div>
                     <?php } ?>
+                
                 </div>
             </div>
+        </div>
         </div>
         
     </div>

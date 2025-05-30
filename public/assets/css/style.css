@@ -385,7 +385,7 @@ img {
     text-align: right;
 }
 
-.rs-blog-layout-1 .swiper_wrap {
+.rs-blog-layout-1 .swiper_wrap,.rs-blog-layout-1{
     height: 100%;
     width: 100%;
     position: relative;
