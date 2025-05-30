@@ -29,6 +29,7 @@ $separator_map = [
     'pipe'        => ' | ',
 ];
 $separator_value = isset($separator_map[$settings['meta_separator']]) ? $separator_map[$settings['meta_separator']] : '';
+$hover_animation = $settings['hover_animation'];
 // Query the posts
 $query = new \WP_Query($args);
 
@@ -36,8 +37,10 @@ $query = new \WP_Query($args);
 if ($query->have_posts()) {
     ?>
     <div class="rs-blog-layout-18 fpg-section-area">
+        <div class="container">
         <div class="row fancy-post-grid">
             <div class="col-lg-12">
+                <div class="swiper_wrap">
                 <div class="swiper mySwiper" data-swiper='<?php echo wp_json_encode([
                         'loop' => $settings['enable_looping'] === 'yes',
                         'autoplay' => $settings['auto_play_speed'] > 0 ? ['delay' => intval($settings['auto_play_speed']), 'disableOnInteraction' => false] : false,
@@ -60,9 +63,18 @@ if ($query->have_posts()) {
                         ?>
 
                         <div class="swiper-slide fancy-post-item col-xl-<?php echo esc_attr($settings['col_desktop_slider']); ?> col-lg-<?php echo esc_attr($settings['col_lg_slider']); ?> col-md-<?php echo esc_attr($settings['col_md_slider']); ?> col-sm-<?php echo esc_attr($settings['col_sm_slider']); ?> col-xs-<?php echo esc_attr($settings['col_xs_slider']); ?>">
-                            <div class="rs-blog-layout-18-item">
+                            <div class="rs-blog-layout-18-item <?php echo esc_attr($hover_animation); ?>">
                                <?php if ('yes' === $settings['show_post_thumbnail'] && has_post_thumbnail()) { 
-                                    $thumbnail_size = $settings['thumbnail_size'];
+                                    $layout = $settings['fancy_post_slider_layout'] ?? 'sliderstyle05';
+                                        $thumbnail_size = $settings['thumbnail_size'] ?? '';
+
+                                        if (empty($thumbnail_size)) {
+                                            switch ($layout) {
+                                                case 'sliderstyle05':
+                                                    $thumbnail_size = 'fancy_post_square';
+                                                    break;
+                                            }
+                                        }
                                     ?>
                                     <div class="rs-thumb shape-show">
                                         <?php if ('thumbnail_on' === $settings['thumbnail_link']) { ?>
@@ -93,13 +105,13 @@ if ($query->have_posts()) {
                                                                         : '',
                                                         'content'   => esc_html($settings['author_prefix']) . ' ' . esc_html(get_the_author()),
                                                     ),
-                                                    
                                                     'post_categories' => array(
                                                         'condition' => 'yes' === $settings['show_post_categories'],
                                                         'class'     => 'meta-categories',
                                                         'icon'      => ('yes' === $settings['show_meta_data_icon'] && 'yes' === $settings['show_post_categories_icon']) ? '<i class="fa fa-folder"></i>' : '',
                                                         'content'   => get_the_category_list(', '),
                                                     ),
+                                                    
                                                     
                                                 );
 
@@ -137,7 +149,7 @@ if ($query->have_posts()) {
                                             // Title Classes
                                             $title_classes = ['fancy-post-title'];
                                             if ('enable' === $settings['title_hover_underline']) {
-                                                $title_classes[] = 'hover-underline';
+                                                $title_classes[] = 'underline';
                                             }                            
 
                                             // Rendering the Title
@@ -160,10 +172,22 @@ if ($query->have_posts()) {
                                     ?>
 
                                     <!-- Read More Button -->
-                                    <?php if (!empty($settings['show_post_readmore']) && 'yes' === $settings['show_post_readmore']) { ?>
+                                    <?php if (!empty($settings['show_post_readmore']) && 'yes' === $settings['show_post_readmore']) { 
+                                        $layout = $settings['fancy_post_slider_layout'] ?? 'sliderstyle05';
+                                            $button_type = $settings['button_type'] ?? '';
+
+                                            if (empty($button_type)) {
+                                                switch ($layout) {
+                                                    
+                                                    case 'sliderstyle05':
+                                                        $button_type = 'fpg-flat';
+                                                        break;
+                                                }
+                                            }
+                                        ?>
                                         <div class="blgo-btn-box blog-btn">
                                             <a href="<?php echo esc_url(get_permalink()); ?>" 
-                                               class="rs-btn read-more <?php echo esc_attr($settings['button_type']); ?>"
+                                               class="rs-btn read-more <?php echo esc_attr($button_type); ?>"
                                                target="<?php echo 'new_window' === $settings['link_target'] ? '_blank' : '_self'; ?>">
                                                 <?php
                                                 if (!empty($settings['button_icon']) && 'yes' === $settings['button_icon']) {
@@ -192,7 +216,7 @@ if ($query->have_posts()) {
                         </div>
                         <?php } ?>
                     </div>
-
+                </div>
                     <!-- Add Swiper Navigation -->
                     <?php if ('yes' === $settings['show_arrow_control']) { ?>
                     <div class="swiper-button-next"></div>
@@ -200,10 +224,12 @@ if ($query->have_posts()) {
                     <?php } ?>
                     <!-- Add Swiper Pagination -->
                     <?php if ('yes' === $settings['show_pagination_control']) { ?>
-                    <div class="swiper-pagination swiper-pagination-1"></div>
+                    <div class="swiper-pagination swiper-pagination-18"></div>
                     <?php } ?>
+                
                 </div>
             </div>
+        </div>
         </div>
     </div>
     
