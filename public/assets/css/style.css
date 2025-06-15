@@ -2025,6 +2025,7 @@ img {
     display: inline-block;
     font-size: 15px;
     margin-right: 0px;
+    color: #000;
 }
 
 .rs-blog-layout-6 .rs-blog__single .rs-content ul li i {
@@ -2043,15 +2044,16 @@ img {
 }
 
 .rs-blog-layout-6 .rs-blog__single .rs-content .title {
-    border-bottom: 1px solid #F3F3F3;
+    border-bottom: 0;
     font-size: 24px;
     font-weight: 600;
     order: 1;
+    margin-bottom: 10px;
 }
 
 .rs-blog-layout-6 .rs-blog__single .rs-content .title a {
     transition: all linear 0.3s;
-    color: #003A37;
+    color: #000000;
     text-decoration: none;
     display: block;
 }
@@ -2102,6 +2104,9 @@ img {
     padding: 16px 40px;
     border-radius: 5px;
     background: #25826A;
+}
+.rs-blog-layout-6 .rs-blog__single .rs-content .fpg-excerpt p{
+    margin-bottom: 0;
 }
 .rs-blog-layout-6 .rs-blog__single .rs-content .fpg-excerpt  {
     order: 3;
