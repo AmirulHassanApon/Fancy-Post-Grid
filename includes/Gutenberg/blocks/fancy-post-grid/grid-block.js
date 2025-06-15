@@ -104,7 +104,7 @@
             postTitleLineHeight: { type: 'number', default: '' },
             postTitleLetterSpacing: { type: 'number', default: '' },
             postTitleFontWeight: { type: 'string', default: '600' },
-            postTitleAlignment: { type: 'string', default: 'start' },
+            postTitleAlignment: { type: 'string'},
             postTitleMargin: { type: 'object' },
             postTitlePadding: { type: 'object' },
             postTitleColor: { type: 'string', default: '' },
@@ -126,7 +126,7 @@
             excerptHoverBgColor: { type: 'string', default: '' },
             excerptHoverBorderColor: { type: 'string', default: '' },
             //meta 
-            metaFontSize: { type: 'number', default: '15' },
+            metaFontSize: { type: 'number' },
             metaAlignment: { type: 'string' },
             metaMarginNew: { type: 'object' }, 
             metaPadding: { type: 'object' }, 
@@ -135,8 +135,8 @@
             metaIconColor: { type: 'string', default: '' },
             
             //Button
-            buttonAlignment: { type: 'string', default: 'start' },
-            buttonMarginNew: { type: 'object', default: { top: '0', right: '0', bottom: '0', left: '0' }, },
+            buttonAlignment: { type: 'string'},
+            buttonMarginNew: { type: 'object' },
             buttonPaddingNew: { type: 'object'},
             buttonFontSize: { type: 'string'},
             buttonTextColor: { type: 'string', default: '' },
@@ -270,56 +270,56 @@
             const thumbnailSize12 = (gridLayoutStyle === 'style12' && attributes.thumbnailSize == null)
               ? 'fancy_post_square' : attributes.thumbnailSize;
             //metaAlignment  
-            const metaAlignment1 = (gridLayoutStyle === 'style1' && attributes.metaAlignment == null)
-              ? 'start' : attributes.metaAlignment; 
-            const metaAlignment2 = (gridLayoutStyle === 'style2' && attributes.metaAlignment == null)
-              ? 'start' : attributes.metaAlignment;  
-            const metaAlignment3 = (gridLayoutStyle === 'style3' && attributes.metaAlignment == null)
-              ? 'start' : attributes.metaAlignment;
-            const metaAlignment4 = (gridLayoutStyle === 'style4' && attributes.metaAlignment == null)
-              ? 'center' : attributes.metaAlignment; 
-            const metaAlignment5 = (gridLayoutStyle === 'style5' && attributes.metaAlignment == null)
-              ? 'start' : attributes.metaAlignment;  
-            const metaAlignment6 = (gridLayoutStyle === 'style6' && attributes.metaAlignment == null)
-              ? 'start' : attributes.metaAlignment; 
-            const metaAlignment7 = (gridLayoutStyle === 'style7' && attributes.metaAlignment == null)
-              ? 'start' : attributes.metaAlignment;  
-            const metaAlignment8 = (gridLayoutStyle === 'style8' && attributes.metaAlignment == null)
-              ? 'start' : attributes.metaAlignment;
-            const metaAlignment9 = (gridLayoutStyle === 'style9' && attributes.metaAlignment == null)
-              ? 'start' : attributes.metaAlignment;  
-            const metaAlignment10 = (gridLayoutStyle === 'style10' && attributes.metaAlignment == null)
-              ? 'start' : attributes.metaAlignment; 
-            const metaAlignment11 = (gridLayoutStyle === 'style11' && attributes.metaAlignment == null)
-              ? 'start' : attributes.metaAlignment;  
-            const metaAlignment12 = (gridLayoutStyle === 'style12' && attributes.metaAlignment == null)
-              ? 'start' : attributes.metaAlignment;
+            // const metaAlignment1 = (gridLayoutStyle === 'style1' && attributes.metaAlignment == null)
+            //   ? 'start' : attributes.metaAlignment; 
+            // const metaAlignment2 = (gridLayoutStyle === 'style2' && attributes.metaAlignment == null)
+            //   ? 'start' : attributes.metaAlignment;  
+            // const metaAlignment3 = (gridLayoutStyle === 'style3' && attributes.metaAlignment == null)
+            //   ? 'end' : attributes.metaAlignment;
+            // const metaAlignment4 = (gridLayoutStyle === 'style4' && attributes.metaAlignment == null)
+            //   ? 'center' : attributes.metaAlignment; 
+            // const metaAlignment5 = (gridLayoutStyle === 'style5' && attributes.metaAlignment == null)
+            //   ? 'start' : attributes.metaAlignment;  
+            // const metaAlignment6 = (gridLayoutStyle === 'style6' && attributes.metaAlignment == null)
+            //   ? 'start' : attributes.metaAlignment; 
+            // const metaAlignment7 = (gridLayoutStyle === 'style7' && attributes.metaAlignment == null)
+            //   ? 'start' : attributes.metaAlignment;  
+            // const metaAlignment8 = (gridLayoutStyle === 'style8' && attributes.metaAlignment == null)
+            //   ? 'start' : attributes.metaAlignment;
+            // const metaAlignment9 = (gridLayoutStyle === 'style9' && attributes.metaAlignment == null)
+            //   ? 'start' : attributes.metaAlignment;  
+            // const metaAlignment10 = (gridLayoutStyle === 'style10' && attributes.metaAlignment == null)
+            //   ? 'start' : attributes.metaAlignment; 
+            // const metaAlignment11 = (gridLayoutStyle === 'style11' && attributes.metaAlignment == null)
+            //   ? 'start' : attributes.metaAlignment;  
+            // const metaAlignment12 = (gridLayoutStyle === 'style12' && attributes.metaAlignment == null)
+            //   ? 'start' : attributes.metaAlignment;
 
-            //excerptAlignment  
-            const excerptAlignment1 = (gridLayoutStyle === 'style1' && attributes.excerptAlignment == null)
-              ? 'start' : attributes.excerptAlignment; 
-            const excerptAlignment2 = (gridLayoutStyle === 'style2' && attributes.excerptAlignment == null)
-              ? 'start' : attributes.excerptAlignment;  
-            const excerptAlignment3 = (gridLayoutStyle === 'style3' && attributes.excerptAlignment == null)
-              ? 'start' : attributes.excerptAlignment;
-            const excerptAlignment4 = (gridLayoutStyle === 'style4' && attributes.excerptAlignment == null)
-              ? 'center' : attributes.excerptAlignment; 
-            const excerptAlignment5 = (gridLayoutStyle === 'style5' && attributes.excerptAlignment == null)
-              ? 'start' : attributes.excerptAlignment;  
-            const excerptAlignment6 = (gridLayoutStyle === 'style6' && attributes.excerptAlignment == null)
-              ? 'start' : attributes.excerptAlignment; 
-            const excerptAlignment7 = (gridLayoutStyle === 'style7' && attributes.excerptAlignment == null)
-              ? 'start' : attributes.excerptAlignment;  
-            const excerptAlignment8 = (gridLayoutStyle === 'style8' && attributes.excerptAlignment == null)
-              ? 'start' : attributes.excerptAlignment;
-            const excerptAlignment9 = (gridLayoutStyle === 'style9' && attributes.excerptAlignment == null)
-              ? 'start' : attributes.excerptAlignment;  
-            const excerptAlignment10 = (gridLayoutStyle === 'style10' && attributes.excerptAlignment == null)
-              ? 'start' : attributes.excerptAlignment; 
-            const excerptAlignment11 = (gridLayoutStyle === 'style11' && attributes.excerptAlignment == null)
-              ? 'start' : attributes.excerptAlignment;  
-            const excerptAlignment12 = (gridLayoutStyle === 'style12' && attributes.excerptAlignment == null)
-              ? 'start' : attributes.excerptAlignment;
+            // //excerptAlignment  
+            // const excerptAlignment1 = (gridLayoutStyle === 'style1' && attributes.excerptAlignment == null)
+            //   ? 'start' : attributes.excerptAlignment; 
+            // const excerptAlignment2 = (gridLayoutStyle === 'style2' && attributes.excerptAlignment == null)
+            //   ? 'start' : attributes.excerptAlignment;  
+            // const excerptAlignment3 = (gridLayoutStyle === 'style3' && attributes.excerptAlignment == null)
+            //   ? 'start' : attributes.excerptAlignment;
+            // const excerptAlignment4 = (gridLayoutStyle === 'style4' && attributes.excerptAlignment == null)
+            //   ? 'center' : attributes.excerptAlignment; 
+            // const excerptAlignment5 = (gridLayoutStyle === 'style5' && attributes.excerptAlignment == null)
+            //   ? 'start' : attributes.excerptAlignment;  
+            // const excerptAlignment6 = (gridLayoutStyle === 'style6' && attributes.excerptAlignment == null)
+            //   ? 'start' : attributes.excerptAlignment; 
+            // const excerptAlignment7 = (gridLayoutStyle === 'style7' && attributes.excerptAlignment == null)
+            //   ? 'start' : attributes.excerptAlignment;  
+            // const excerptAlignment8 = (gridLayoutStyle === 'style8' && attributes.excerptAlignment == null)
+            //   ? 'start' : attributes.excerptAlignment;
+            // const excerptAlignment9 = (gridLayoutStyle === 'style9' && attributes.excerptAlignment == null)
+            //   ? 'start' : attributes.excerptAlignment;  
+            // const excerptAlignment10 = (gridLayoutStyle === 'style10' && attributes.excerptAlignment == null)
+            //   ? 'start' : attributes.excerptAlignment; 
+            // const excerptAlignment11 = (gridLayoutStyle === 'style11' && attributes.excerptAlignment == null)
+            //   ? 'start' : attributes.excerptAlignment;  
+            // const excerptAlignment12 = (gridLayoutStyle === 'style12' && attributes.excerptAlignment == null)
+            //   ? 'start' : attributes.excerptAlignment;
   
 
             // Button Style
@@ -667,7 +667,7 @@
 
                                 showMetaData && 
                                     wp.element.createElement('ul', { 
-                                        className: `meta-data-list post-meta align-${metaAlignment1} `, 
+                                        className: `meta-data-list post-meta align-${metaAlignment} `, 
                                         style: { 
                                             ...(attributes.metaMarginNew ? { margin: getSpacingValue(attributes.metaMarginNew) }: { margin: '0px 0px 0px 0px' }), 
                                             ...(attributes.metaPadding ? { padding: getSpacingValue(attributes.metaPadding) }: { padding: '0px 0px 0px 0px' }),
@@ -815,7 +815,7 @@
                                 
                                 showPostExcerpt &&
                                     wp.element.createElement('div', { 
-                                        className: `fpg-excerpt align-${excerptAlignment1}`, 
+                                        className: `fpg-excerpt align-${excerptAlignment}`, 
                                         style: { 
                                               ...(excerptOrder ? { order: excerptOrder } : {}),
                                               ...(attributes.excerptMargin ? { margin: getSpacingValue(attributes.excerptMargin) } : {}),
@@ -968,7 +968,7 @@
                                 //Meta
                                 showMetaData && 
                                     wp.element.createElement('ul', { 
-                                        className: `meta-data-list post-meta align-${metaAlignment2} `, 
+                                        className: `meta-data-list post-meta align-${metaAlignment} `, 
                                         style: { 
                                             ...(attributes.metaMarginNew ? { margin: getSpacingValue(attributes.metaMarginNew) }: { margin: '0px 0px 0px 0px' }), 
                                             ...(attributes.metaPadding ? { padding: getSpacingValue(attributes.metaPadding) }: { padding: '0px 0px 0px 0px' }),
@@ -1115,7 +1115,7 @@
                                 
                                 showPostExcerpt &&
                                     wp.element.createElement('div', { 
-                                        className: `fpg-excerpt align-${excerptAlignment2}`,
+                                        className: `fpg-excerpt align-${excerptAlignment}`,
                                         style: { 
                                                 ...(excerptOrder ? { order: excerptOrder } : {}),
                                                 ...(attributes.excerptMargin ? { margin: getSpacingValue(attributes.excerptMargin) } : {}),
@@ -1314,12 +1314,12 @@
 
                                             showMetaData && 
                                                 wp.element.createElement('div', { 
-                                                    className: 'rs-meta post-meta',
+                                                    className: `rs-meta post-meta align-${metaAlignment}`,
                                                     style: { 
                                                     
                                                     ...(attributes.metaMarginNew ? { margin: getSpacingValue(attributes.metaMarginNew) }: { margin: '0px 0px 0px 0px' }), 
                                                     ...(attributes.metaPadding ? { padding: getSpacingValue(attributes.metaPadding) }: { padding: '9px 30px 9px 30px' }),
-                                                    ...(metaAlignment ? { justifyContent: metaAlignment } : {}),
+                                                    
                                                     ...(metaTextColor ? { color: metaTextColor } : {}),
                                                     ...(typeof metaOrder !== 'undefined' ? { order: metaOrder } : {}),
                                                     ...(metaFontSize ? { fontSize: `${metaFontSize}px` } : {})
@@ -1480,7 +1480,7 @@
                                     //Meta
                                     showPostExcerpt &&
                                         wp.element.createElement('div', { 
-                                            className: `fpg-excerpt align-${excerptAlignment3}`,
+                                            className: `fpg-excerpt align-${excerptAlignment}`,
                                             style: { 
                                                     ...(excerptOrder ? { order: excerptOrder } : {}),
                                                     ...(attributes.excerptMargin ? { margin: getSpacingValue(attributes.excerptMargin) } : {}),
@@ -1728,7 +1728,7 @@
                                 showMetaData && 
                                     wp.element.createElement('div', { 
                                         
-                                        className: `rs-meta post-meta align-${metaAlignment4} `,
+                                        className: `rs-meta post-meta align-${metaAlignment} `,
                                         style: { 
                                             ...(attributes.metaMarginNew ? { margin: getSpacingValue(attributes.metaMarginNew) }: { margin: '0px 0px 0px 0px' }), 
                                             ...(attributes.metaPadding ? { padding: getSpacingValue(attributes.metaPadding) }: { padding: '0px 0px 0px 0px' }),
@@ -1810,7 +1810,7 @@
 
                                 showPostExcerpt &&
                                     wp.element.createElement('div', { 
-                                        className: `fpg-excerpt align-${excerptAlignment4}`, 
+                                        className: `fpg-excerpt align-${excerptAlignment}`, 
                                         style: { 
                                                 ...(excerptOrder ? { order: excerptOrder } : {}),
                                                 ...(attributes.excerptMargin ? { margin: getSpacingValue(attributes.excerptMargin) } : {}),
@@ -1967,7 +1967,7 @@
                                 //Meta
                                 showMetaData && 
                                     wp.element.createElement('ul', { 
-                                        className: `meta-data-list post-meta align-${metaAlignment1} `, 
+                                        className: `meta-data-list post-meta align-${metaAlignment} `, 
                                         style: { 
                                             ...(attributes.metaMarginNew ? { margin: getSpacingValue(attributes.metaMarginNew) }: { margin: '0px 0px 0px 0px' }), 
                                             ...(attributes.metaPadding ? { padding: getSpacingValue(attributes.metaPadding) }: { padding: '0px 0px 0px 0px' }),
@@ -2092,7 +2092,7 @@
                                 showPostExcerpt &&
                                     wp.element.createElement('p', { 
                                         
-                                        className: `pre-content align-${excerptAlignment5}`, 
+                                        className: `pre-content align-${excerptAlignment}`, 
                                         style: { 
                                             ...(excerptOrder ? { order: excerptOrder } : {}),
                                             ...(attributes.excerptMargin ? { margin: getSpacingValue(attributes.excerptMargin) } : {}),
@@ -2318,7 +2318,7 @@
                                 //Meta
                                 showMetaData && 
                                     wp.element.createElement('div', {  
-                                        className: `rs-meta post-meta align-${metaAlignment6} `,
+                                        className: `rs-meta post-meta align-${metaAlignment} `,
                                         style: { 
                                             ...(attributes.metaMarginNew ? { margin: getSpacingValue(attributes.metaMarginNew) }: { margin: '0px 0px 0px 0px' }), 
                                             ...(attributes.metaPadding ? { padding: getSpacingValue(attributes.metaPadding) }: { padding: '0px 0px 0px 0px' }),
@@ -2587,7 +2587,7 @@
                                 //Meta
                                 showPostDate && wp.element.createElement(
                                     'div', 
-                                        { className: `rs-meta post-meta align-${metaAlignment7}`, style: { 
+                                        { className: `rs-meta post-meta align-${metaAlignment}`, style: { 
                                             color: metaTextColor, 
                                             fontSize: `${metaFontSize}px`,
                                         } },
@@ -2733,7 +2733,7 @@
                                 // Meta
                                 showMetaData && 
                                     wp.element.createElement('div', { 
-                                        className: `rs-meta post-meta align-${metaAlignment8} `, 
+                                        className: `rs-meta post-meta align-${metaAlignment} `, 
                                         style: { 
                                             ...(attributes.metaMarginNew ? { margin: getSpacingValue(attributes.metaMarginNew) }: { margin: '0px 0px 0px 0px' }), 
                                             ...(attributes.metaPadding ? { padding: getSpacingValue(attributes.metaPadding) }: { padding: '0px 0px 0px 0px' }),
@@ -3015,7 +3015,7 @@
                                 //Meta
                                 showPostDate && wp.element.createElement(
                                     'div', 
-                                        { className: `rs-meta post-meta align-${metaAlignment9} `, style: { 
+                                        { className: `rs-meta post-meta align-${metaAlignment} `, style: { 
                                             ...(attributes.metaMarginNew ? { margin: getSpacingValue(attributes.metaMarginNew) }: { margin: '20px 0px 20px 0px' }), 
                                             ...(attributes.metaPadding ? { padding: getSpacingValue(attributes.metaPadding) }: { padding: '0px 0px 0px 0px' }),
                                             ...(metaTextColor ? { color: metaTextColor } : {}),
@@ -3190,7 +3190,7 @@
                                 showMetaData && 
                                     wp.element.createElement('div', { 
                                         
-                                        className: `rs-meta post-meta align-${metaAlignment10} `, 
+                                        className: `rs-meta post-meta align-${metaAlignment} `, 
                                         style: { 
                                             ...(attributes.metaMarginNew ? { margin: getSpacingValue(attributes.metaMarginNew) }: { margin: '0px 0px 0px 0px' }), 
                                             ...(attributes.metaPadding ? { padding: getSpacingValue(attributes.metaPadding) }: { padding: '0px 0px 0px 0px' }),
@@ -3512,7 +3512,7 @@
                                 showMetaData && 
                                     wp.element.createElement('div', { 
                                          
-                                        className: `rs-meta post-meta align-${metaAlignment11} `, 
+                                        className: `rs-meta post-meta align-${metaAlignment} `, 
                                         style: { 
                                             ...(attributes.metaMarginNew ? { margin: getSpacingValue(attributes.metaMarginNew) }: { margin: '0px 0px 0px 0px' }), 
                                             ...(attributes.metaPadding ? { padding: getSpacingValue(attributes.metaPadding) }: { padding: '0px 0px 0px 0px' }),
@@ -3812,7 +3812,7 @@
                                 // Meta
                                 showMetaData && 
                                     wp.element.createElement('div', {  
-                                        className: `rs-meta post-meta align-${metaAlignment12} `, 
+                                        className: `rs-meta post-meta align-${metaAlignment} `, 
                                         style: { 
                                             ...(attributes.metaMarginNew ? { margin: getSpacingValue(attributes.metaMarginNew) }: { margin: '0px 0px 0px 0px' }), 
                                             ...(attributes.metaPadding ? { padding: getSpacingValue(attributes.metaPadding) }: { padding: '0px 0px 0px 0px' }),
@@ -3911,7 +3911,7 @@
                                    
                                 showPostExcerpt &&
                                       wp.element.createElement('p', { 
-                                          className: `fpg-excerpt align-${excerptAlignment12}`,
+                                          className: `fpg-excerpt align-${excerptAlignment}`,
                                           style: { 
                                               
                                               ...(excerptFontSize ? { fontSize: `${excerptFontSize}px` } : {}),
