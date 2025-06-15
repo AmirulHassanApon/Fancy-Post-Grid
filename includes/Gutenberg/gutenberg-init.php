@@ -1388,6 +1388,7 @@ function fancy_post_grid_render_callback($attributes) {
                     if (!empty($buttonBackgroundColor)) {
                         $buttonInlineStyles .= 'background-color: ' . esc_attr($buttonBackgroundColor) . '; ';
                     }
+                    
                     if (!empty($buttonFontSize)) {
                         $buttonInlineStyles .= 'font-size: ' . esc_attr($buttonFontSize) . 'px; ';
                     }
