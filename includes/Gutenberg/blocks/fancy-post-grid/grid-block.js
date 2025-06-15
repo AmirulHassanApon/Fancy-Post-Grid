@@ -82,7 +82,7 @@
             itemGap: { type: 'number', default: '30' },
             itemBoxAlignment: { type: 'string', default: 'start' },
             itemBorderType: { type: 'string', default: '' },
-            itemBoxShadow: { type: 'object', default: { top: '0', right: '0', bottom: '0', left: '0' }, },
+            itemBoxShadow: { type: 'object' },
             itemBoxShadowColor: { type: 'string', default: '' },  
             itemBackgroundColor: { type: 'string', default: '' },
             itemBorderColor: { type: 'string', default: '' },
@@ -1493,48 +1493,47 @@
                                             )
                                         ),
 
-                                    
                                     showReadMoreButton && wp.element.createElement('div', { 
-                                        className: `btn-wrapper align-${buttonAlignment} `,
-                                        style: { 
-                                            order: buttonOrder,
-                                            margin: getSpacingValue(attributes.buttonMarginNew),
-                                            textAlign: buttonAlignment  }, 
-
-                                        }, 
-                                        wp.element.createElement('a', { 
-                                            href: post.link, 
-                                            target: postLinkTarget === 'newWindow' ? '_blank' : '_self', 
-                                            className: `rs-btn read-more ${buttonStyle3}`,  // Dynamic class based on buttonStyle
-                                            style: { 
-                                                
-                                                ...(buttonBackgroundColor ? { background: buttonBackgroundColor } : {}),
-                                                ...(buttonTextColor ? { color: buttonTextColor } : {}),
-                                                ...(buttonBorderColor ? { borderColor: buttonBorderColor } : {}),
-                                                ...(buttonBorderType ? { borderStyle: buttonBorderType } : {}),
-                                                ...(buttonFontWeight ? { fontWeight: buttonFontWeight } : {}),
-                                                ...(attributes.buttonBorderWidth ? { borderWidth: getSpacingValue(attributes.buttonBorderWidth) } : {}),
-                                                ...(attributes.buttonPaddingNew ? { padding: getSpacingValue(attributes.buttonPaddingNew) }: { padding: '10px 30px 10px 30px' }),
-                                                ...(attributes.buttonBorderRadius ? { borderRadius: getSpacingValue(attributes.buttonBorderRadius) } : {}),
-                                                ...(buttonFontSize ? { fontSize: `${buttonFontSize}px` } : {}),
-                                                ...(buttonStyle === 'fpg-flat' ? { textDecoration: 'none' } : { textDecoration: 'inherit' }),
-                                            },
-                                            onMouseEnter: (e) => {
-                                                e.currentTarget.style.color = buttonHoverTextColor;
-                                                e.currentTarget.style.background = buttonHoverBackgroundColor;
-                                                e.currentTarget.style.borderColor = buttonHoverBorderColor;
-                                            },
-                                            onMouseLeave: (e) => {
-                                                e.currentTarget.style.color = buttonTextColor;
-                                                e.currentTarget.style.background = buttonBackgroundColor;
-                                                e.currentTarget.style.borderColor = buttonBorderColor;
-                                            },
-                                        }, 
-                                            iconPosition === 'left' && showButtonIcon && wp.element.createElement('i', { className: 'fas fa-arrow-right', style: { marginRight: '5px' } }), 
-                                            readMoreLabel, 
-                                            iconPosition === 'right' && showButtonIcon && wp.element.createElement('i', { className: 'fas fa-arrow-right', style: { marginLeft: '5px' } })
-                                        )
-                                    )
+                                      className: `btn-wrapper align-${buttonAlignment} `,
+                                      style: { 
+                                          order: buttonOrder,
+                                          margin: getSpacingValue(attributes.buttonMarginNew) }, 
+                                      }, 
+                                      wp.element.createElement('a', { 
+                                          href: post.link, 
+                                          target: postLinkTarget === 'newWindow' ? '_blank' : '_self', 
+                                          className: `rs-btn read-more ${buttonStyle3}`,  // Dynamic class based on buttonStyle
+                                          style: { 
+                                              
+                                              ...(buttonBackgroundColor ? { background: buttonBackgroundColor } : {}),
+                                              ...(buttonTextColor ? { color: buttonTextColor } : {}),
+                                              ...(buttonBorderColor ? { borderColor: buttonBorderColor } : {}),
+                                              ...(buttonBorderType ? { borderStyle: buttonBorderType } : {}),
+                                              ...(buttonFontWeight ? { fontWeight: buttonFontWeight } : {}),
+                                              ...(attributes.buttonBorderWidth ? { borderWidth: getSpacingValue(attributes.buttonBorderWidth) } : {}),
+                                              ...(attributes.buttonPaddingNew ? { padding: getSpacingValue(attributes.buttonPaddingNew) }: { padding: '10px 15px 10px 15px' }),
+                                              ...(attributes.buttonBorderRadius ? { borderRadius: getSpacingValue(attributes.buttonBorderRadius) } : {}),
+                                              ...(buttonFontSize ? { fontSize: `${buttonFontSize}px` } : {}),
+                                              ...(buttonStyle === 'fpg-flat' ? { textDecoration: 'none' } : { textDecoration: 'inherit' }),
+                                          },
+                                          onMouseEnter: (e) => {
+                                              e.currentTarget.style.color = buttonHoverTextColor;
+                                              e.currentTarget.style.background = buttonHoverBackgroundColor;
+                                              e.currentTarget.style.borderColor = buttonHoverBorderColor;
+                                          },
+                                          onMouseLeave: (e) => {
+                                              e.currentTarget.style.color = buttonTextColor;
+                                              e.currentTarget.style.background = buttonBackgroundColor;
+                                              e.currentTarget.style.borderColor = buttonBorderColor;
+                                          },
+                                      }, 
+                                          iconPosition === 'left' && showButtonIcon && wp.element.createElement('i', { className: 'fas fa-arrow-right', style: { marginRight: '5px', ...(buttonFontSize ? { fontSize: `${buttonFontSize}px` } : {}), } }), 
+                                          readMoreLabel, 
+                                          iconPosition === 'right' && showButtonIcon && wp.element.createElement('i', { className: 'fas fa-arrow-right', style: { marginLeft: '5px',...(buttonFontSize ? { fontSize: `${buttonFontSize}px` } : {}), } })
+                                      )
+                                  ),
+                                    
+                                    
                                 ) ,
                                 
                             );
