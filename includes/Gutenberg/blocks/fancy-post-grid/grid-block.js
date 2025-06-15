@@ -95,9 +95,9 @@
             contentBgColor: { type: 'string', default: '' },       
             contentBorderColor: { type: 'string', default: '' },       
             //ThumbNail            
-            thumbnailMargin: { type: 'object', default: { top: '0', right: '0', bottom: '0', left: '0' }, },
-            thumbnailPadding: { type: 'object', default: { top: '0', right: '0', bottom: '0', left: '0' }, },
-            thumbnailBorderRadius: { type: 'object', default: { top: '5', right: '5', bottom: '5', left: '5' }, },
+            thumbnailMargin: { type: 'object' },
+            thumbnailPadding: { type: 'object' },
+            thumbnailBorderRadius: { type: 'object' },
             
             //Post Title
             postTitleFontSize: { type: 'number', default: '24' },
@@ -269,58 +269,6 @@
               ? 'fancy_post_landscape' : attributes.thumbnailSize;  
             const thumbnailSize12 = (gridLayoutStyle === 'style12' && attributes.thumbnailSize == null)
               ? 'fancy_post_square' : attributes.thumbnailSize;
-            //metaAlignment  
-            // const metaAlignment1 = (gridLayoutStyle === 'style1' && attributes.metaAlignment == null)
-            //   ? 'start' : attributes.metaAlignment; 
-            // const metaAlignment2 = (gridLayoutStyle === 'style2' && attributes.metaAlignment == null)
-            //   ? 'start' : attributes.metaAlignment;  
-            // const metaAlignment3 = (gridLayoutStyle === 'style3' && attributes.metaAlignment == null)
-            //   ? 'end' : attributes.metaAlignment;
-            // const metaAlignment4 = (gridLayoutStyle === 'style4' && attributes.metaAlignment == null)
-            //   ? 'center' : attributes.metaAlignment; 
-            // const metaAlignment5 = (gridLayoutStyle === 'style5' && attributes.metaAlignment == null)
-            //   ? 'start' : attributes.metaAlignment;  
-            // const metaAlignment6 = (gridLayoutStyle === 'style6' && attributes.metaAlignment == null)
-            //   ? 'start' : attributes.metaAlignment; 
-            // const metaAlignment7 = (gridLayoutStyle === 'style7' && attributes.metaAlignment == null)
-            //   ? 'start' : attributes.metaAlignment;  
-            // const metaAlignment8 = (gridLayoutStyle === 'style8' && attributes.metaAlignment == null)
-            //   ? 'start' : attributes.metaAlignment;
-            // const metaAlignment9 = (gridLayoutStyle === 'style9' && attributes.metaAlignment == null)
-            //   ? 'start' : attributes.metaAlignment;  
-            // const metaAlignment10 = (gridLayoutStyle === 'style10' && attributes.metaAlignment == null)
-            //   ? 'start' : attributes.metaAlignment; 
-            // const metaAlignment11 = (gridLayoutStyle === 'style11' && attributes.metaAlignment == null)
-            //   ? 'start' : attributes.metaAlignment;  
-            // const metaAlignment12 = (gridLayoutStyle === 'style12' && attributes.metaAlignment == null)
-            //   ? 'start' : attributes.metaAlignment;
-
-            // //excerptAlignment  
-            // const excerptAlignment1 = (gridLayoutStyle === 'style1' && attributes.excerptAlignment == null)
-            //   ? 'start' : attributes.excerptAlignment; 
-            // const excerptAlignment2 = (gridLayoutStyle === 'style2' && attributes.excerptAlignment == null)
-            //   ? 'start' : attributes.excerptAlignment;  
-            // const excerptAlignment3 = (gridLayoutStyle === 'style3' && attributes.excerptAlignment == null)
-            //   ? 'start' : attributes.excerptAlignment;
-            // const excerptAlignment4 = (gridLayoutStyle === 'style4' && attributes.excerptAlignment == null)
-            //   ? 'center' : attributes.excerptAlignment; 
-            // const excerptAlignment5 = (gridLayoutStyle === 'style5' && attributes.excerptAlignment == null)
-            //   ? 'start' : attributes.excerptAlignment;  
-            // const excerptAlignment6 = (gridLayoutStyle === 'style6' && attributes.excerptAlignment == null)
-            //   ? 'start' : attributes.excerptAlignment; 
-            // const excerptAlignment7 = (gridLayoutStyle === 'style7' && attributes.excerptAlignment == null)
-            //   ? 'start' : attributes.excerptAlignment;  
-            // const excerptAlignment8 = (gridLayoutStyle === 'style8' && attributes.excerptAlignment == null)
-            //   ? 'start' : attributes.excerptAlignment;
-            // const excerptAlignment9 = (gridLayoutStyle === 'style9' && attributes.excerptAlignment == null)
-            //   ? 'start' : attributes.excerptAlignment;  
-            // const excerptAlignment10 = (gridLayoutStyle === 'style10' && attributes.excerptAlignment == null)
-            //   ? 'start' : attributes.excerptAlignment; 
-            // const excerptAlignment11 = (gridLayoutStyle === 'style11' && attributes.excerptAlignment == null)
-            //   ? 'start' : attributes.excerptAlignment;  
-            // const excerptAlignment12 = (gridLayoutStyle === 'style12' && attributes.excerptAlignment == null)
-            //   ? 'start' : attributes.excerptAlignment;
-  
 
             // Button Style
             const buttonStyle1 = (gridLayoutStyle === 'style1' && attributes.buttonStyle == null)
