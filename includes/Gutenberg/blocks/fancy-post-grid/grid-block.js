@@ -1054,8 +1054,7 @@
                                                 e.currentTarget.style.backgroundColor = postTitleHoverBgColor;
                                             },
                                             onMouseLeave: (e) => {
-                                                e.currentTarget.style.backgroundColor = postTitleBgColor;
-                                                
+                                                e.currentTarget.style.backgroundColor = postTitleBgColor; 
                                             }, 
                                             ...(postLinkType === 'nolink' ? titleTextHoverHandlers : {}), // attach hover if nolink
                                         },
