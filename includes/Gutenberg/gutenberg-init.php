@@ -3217,6 +3217,7 @@ function fancy_post_grid_render_callback($attributes) {
                 // Excerpt
                 if ($showPostExcerpt) {
                     $excerptStyles = '';
+                    $excerptColorStyles = '';
 
                     // Order
                     if (!empty($excerptOrder)) {
@@ -3241,11 +3242,11 @@ function fancy_post_grid_render_callback($attributes) {
                     }
 
                     if (!empty($excerptColor)) {
-                        $excerptStyles .= 'color: ' . esc_attr($excerptColor) . '; ';
+                        $excerptColorStyles .= 'color: ' . esc_attr($excerptColor) . '; ';
                     }
 
                     if (!empty($excerptBgColor)) {
-                        $excerptStyles .= 'background-color: ' . esc_attr($excerptBgColor) . '; ';
+                        $excerptColorStyles .= 'background-color: ' . esc_attr($excerptBgColor) . '; ';
                     }
 
                     if (!empty($excerptBorderType)) {
@@ -3291,13 +3292,19 @@ function fancy_post_grid_render_callback($attributes) {
 
                     $output .= '<div class="fpg-excerpt' . ' align-' . esc_attr($excerptAlignment) . '" style="' . esc_attr(trim($excerptStyles)) . '"';
 
-                    if (!empty($hoverIn) || !empty($hoverOut)) {
-                        $output .= ' onmouseover="' . esc_attr($hoverIn) . '"';
-                        $output .= ' onmouseout="' . esc_attr($hoverOut) . '"';
-                    }
-
                     $output .= '>';
-                    $output .= '<p>' . esc_html($excerpt) . '</p>';
+                    $output .= '<p style="' . esc_attr(trim($excerptColorStyles)) . '"';
+
+                        if (!empty($hoverIn) || !empty($hoverOut)) {
+                            if (!empty($hoverIn)) {
+                                $output .= ' onmouseover="' . esc_attr($hoverIn) . '"';
+                            }
+                            if (!empty($hoverOut)) {
+                                $output .= ' onmouseout="' . esc_attr($hoverOut) . '"';
+                            }
+                        }
+
+                        $output .= '>' . esc_html($excerpt) . '</p>';
                     $output .= '</div>';
                 }
                 // End Excerpt
