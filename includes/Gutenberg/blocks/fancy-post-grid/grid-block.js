@@ -375,8 +375,8 @@
             const titleTextHoverHandlers = {
                 onMouseEnter: (e) => {
                     e.currentTarget.style.color = postTitleHoverColor;
-                    // e.currentTarget.style.backgroundImage = `linear-gradient(to bottom, ${postTitleHoverColor} 0%, ${postTitleHoverColor} 100%)`;
-                    // e.currentTarget.style.backgroundPosition = '0 100%';
+                    e.currentTarget.style.backgroundImage = `linear-gradient(to bottom, ${postTitleHoverColor} 0%, ${postTitleHoverColor} 100%)`;
+                    e.currentTarget.style.backgroundPosition = '0 100%';
                 },
                 onMouseLeave: (e) => {
                     e.currentTarget.style.color = postTitleColor;
