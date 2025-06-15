@@ -2056,6 +2056,7 @@ img {
     font-size: 24px;
     font-weight: 600;
     order: 1;
+    margin-top: 0;
 }
 
 .rs-blog-layout-6 .rs-blog__single .rs-content .title a {
@@ -2063,7 +2064,7 @@ img {
     color: #000000;
     text-decoration: none;
     margin-bottom: 0px;
-    margin-top: 9px;
+    margin-top: 0px;
     padding-bottom: 0px;
     display: block;
 }
