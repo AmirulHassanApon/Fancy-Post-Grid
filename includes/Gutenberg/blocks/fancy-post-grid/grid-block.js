@@ -366,7 +366,6 @@
 
             const titleTextStyle = {
                 ...(postTitleColor ? { color: postTitleColor } : {}),
-                // ...(postTitleBgColor ? { backgroundColor: postTitleBgColor } : {}),
                 ...(postTitleFontSize ? { fontSize: `${postTitleFontSize}px` } : {}),
                 ...(postTitleFontWeight ? { fontWeight: postTitleFontWeight } : {}),
                 ...(postTitleLineHeight ? { lineHeight: postTitleLineHeight } : {}),
@@ -376,13 +375,11 @@
             const titleTextHoverHandlers = {
                 onMouseEnter: (e) => {
                     e.currentTarget.style.color = postTitleHoverColor;
-                    // e.currentTarget.style.backgroundColor = postTitleHoverBgColor;
                     e.currentTarget.style.backgroundImage = `linear-gradient(to bottom, ${postTitleHoverColor} 0%, ${postTitleHoverColor} 100%)`;
                     e.currentTarget.style.backgroundPosition = '0 100%';
                 },
                 onMouseLeave: (e) => {
                     e.currentTarget.style.color = postTitleColor;
-                    // e.currentTarget.style.backgroundColor = postTitleBgColor;
                 },
             };
 
