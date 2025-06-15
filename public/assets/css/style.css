@@ -2013,7 +2013,7 @@ img {
 }
 
 .rs-blog-layout-6 .rs-blog__single .rs-content ul li a:hover {
-    color: #25826A;
+    color: #007aff;
 }
 
 .rs-blog-layout-6 .rs-blog__single .rs-content ul li.meta-author img{
@@ -2122,7 +2122,7 @@ img {
     display: inline-block;
     padding: 16px 40px;
     border-radius: 5px;
-    background: #25826A;
+    background: #007aff;
 }
 .rs-blog-layout-6 .rs-blog__single .rs-content .fpg-excerpt p{
     margin-bottom: 0;
@@ -2186,7 +2186,7 @@ img {
 }
 
 .rs-blog-layout-6 .rs-blog__single .rs-content .rs-link.fpg-flat:hover{
-    color: #25826A;
+    color: #007aff;
     background: transparent !important;
 }
 

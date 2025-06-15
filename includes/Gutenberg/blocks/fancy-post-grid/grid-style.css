@@ -1995,6 +1995,7 @@ img {
     display: block;
 }
 
+.rs-blog-layout-6 .rs-blog__single .rs-thumb img,
 .rs-blog-layout-6 .rs-blog__single .rs-thumb a img {
     transition: all linear 0.3s;
     width: 100%;
@@ -2133,7 +2134,7 @@ img {
     display: inline-block;
     padding: 16px 40px;
     border-radius: 5px;
-    background: #25826A;
+    background: #007aff;
 }
 .rs-blog-layout-6 .rs-blog__single .rs-content .fpg-excerpt  {
     order: 3;
@@ -2151,7 +2152,7 @@ img {
 }
 .rs-blog-layout-6 .rs-blog__single .rs-content .rs-link.fpg-filled:hover {
     color: #ffffff;
-    background: #25826bda;
+    background: #007affda;
 }
 
 .rs-blog-layout-6 .rs-blog__single .rs-content .rs-link.fpg-filled i {
@@ -2198,7 +2199,7 @@ img {
 }
 
 .rs-blog-layout-6 .rs-blog__single .rs-content .rs-link.fpg-flat:hover{
-    color: #25826A;
+    color: #007aff;
     background: transparent !important;
 }
 
