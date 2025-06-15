@@ -2255,8 +2255,14 @@ function fancy_post_grid_render_callback($attributes) {
                         
 
                         // Anchor with optional border-radius and overflow
-                    $output .= '<a href="' . esc_url($permalink) . '">';
-                    $output .= $thumbnail . '</a>';
+                        if ($thumbnailLink) {
+                            $output .= '<a href="' . esc_url($permalink) . '">';
+                            $output .= $thumbnail;
+                            $output .= '</a>';
+                        } else {
+                            $output .= $thumbnail;
+                        }
+                    
 
                         // Now Insert Meta Data inside the Thumbnail
                         if ($showMetaData) {
