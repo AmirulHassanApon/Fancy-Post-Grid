@@ -969,32 +969,21 @@ function fancy_post_grid_render_callback($attributes) {
                             (is_numeric($thumbnailPadding['bottom']) ? $thumbnailPadding['bottom'] . 'px' : esc_attr($thumbnailPadding['bottom'])) . ' ' . 
                             (is_numeric($thumbnailPadding['left']) ? $thumbnailPadding['left'] . 'px' : esc_attr($thumbnailPadding['left'])) . '; ';
                     }
+                    if ( !empty($thumbnailBorderRadius['top']) || !empty($thumbnailBorderRadius['right']) || !empty($thumbnailBorderRadius['bottom']) || !empty($thumbnailBorderRadius['left'])) {
+                        $output .= ' border-radius: ' .
+                            (is_numeric($thumbnailBorderRadius['top']) ? $thumbnailBorderRadius['top'] . 'px' : esc_attr($thumbnailBorderRadius['top'])) . ' ' .
+                            (is_numeric($thumbnailBorderRadius['right']) ? $thumbnailBorderRadius['right'] . 'px' : esc_attr($thumbnailBorderRadius['right'])) . ' ' .
+                            (is_numeric($thumbnailBorderRadius['bottom']) ? $thumbnailBorderRadius['bottom'] . 'px' : esc_attr($thumbnailBorderRadius['bottom'])) . ' ' .
+                            (is_numeric($thumbnailBorderRadius['left']) ? $thumbnailBorderRadius['left'] . 'px' : esc_attr($thumbnailBorderRadius['left'])) . ';';
+                    }
 
                     $output .= '">';
 
                     // Anchor with optional border-radius and overflow
-                    // $output .= '<a href="' . esc_url($permalink) . '" style="';
-
-                    //     if ( !empty($thumbnailBorderRadius['top']) || !empty($thumbnailBorderRadius['right']) || !empty($thumbnailBorderRadius['bottom']) || !empty($thumbnailBorderRadius['left'])) {
-                    //         $output .= ' border-radius: ' .
-                    //             (is_numeric($thumbnailBorderRadius['top']) ? $thumbnailBorderRadius['top'] . 'px' : esc_attr($thumbnailBorderRadius['top'])) . ' ' .
-                    //             (is_numeric($thumbnailBorderRadius['right']) ? $thumbnailBorderRadius['right'] . 'px' : esc_attr($thumbnailBorderRadius['right'])) . ' ' .
-                    //             (is_numeric($thumbnailBorderRadius['bottom']) ? $thumbnailBorderRadius['bottom'] . 'px' : esc_attr($thumbnailBorderRadius['bottom'])) . ' ' .
-                    //             (is_numeric($thumbnailBorderRadius['left']) ? $thumbnailBorderRadius['left'] . 'px' : esc_attr($thumbnailBorderRadius['left'])) . ';';
-                    //     }
-
-                    // $output .= '">';
-                    // $output .= $thumbnail . '</a></div>';
-                    // Add border-radius directly to <img>
-                    $thumbnail = preg_replace('/<img(.*?)style="(.*?)"/', '<img$1style="$2 ' . esc_attr($thumbnail_style) . '"', $thumbnail);
-                    $thumbnail = preg_replace('/<img(?![^>]*?style=)([^>]*)>/', '<img$1 style="' . esc_attr($thumbnail_style) . '">', $thumbnail);
-
-                    // Output thumbnail
-                    $output .= '<a href="' . esc_url($permalink) . '">' . $thumbnail . '</a>';
-                    $output .= '</div>';
+                    $output .= '<a href="' . esc_url($permalink) . '">';
+                    $output .= $thumbnail . '</a></div>';
                 }
                 // END Thumbnail
-                
 
                 // MAIN Content
                 $output .= '<div class="rs-content" style="';
