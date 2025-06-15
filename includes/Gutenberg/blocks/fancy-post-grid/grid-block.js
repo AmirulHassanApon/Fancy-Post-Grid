@@ -100,10 +100,10 @@
             thumbnailBorderRadius: { type: 'object' },
             
             //Post Title
-            postTitleFontSize: { type: 'number', default: '24' },
+            postTitleFontSize: { type: 'number' },
             postTitleLineHeight: { type: 'number', default: '' },
             postTitleLetterSpacing: { type: 'number', default: '' },
-            postTitleFontWeight: { type: 'string', default: '600' },
+            postTitleFontWeight: { type: 'string'},
             postTitleAlignment: { type: 'string'},
             postTitleMargin: { type: 'object' },
             postTitlePadding: { type: 'object' },
@@ -118,8 +118,8 @@
             excerptLetterSpacing: { type: 'number', default: '' },
             excerptFontWeight: { type: 'string', default: '' },
             excerptAlignment: { type: 'string' },
-            excerptMargin: { type: 'object', default: { top: '10', right: '0', bottom: '10', left: '0' }, },
-            excerptPadding: { type: 'object', default: { top: '0', right: '0', bottom: '0', left: '0' }, },
+            excerptMargin: { type: 'object' },
+            excerptPadding: { type: 'object' },
             excerptColor: { type: 'string', default: '' },
             excerptBgColor: { type: 'string', default: '' },
             excerptHoverColor: { type: 'string', default: '' },
