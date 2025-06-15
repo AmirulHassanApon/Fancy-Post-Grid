@@ -372,56 +372,7 @@ function fancy_post_grid_render_callback($attributes) {
               ? 'fancy_post_landscape' : $thumbnailSize; 
     $thumbnailSize12 = ($gridLayoutStyle === 'style12' && $thumbnailSize == null)
               ? 'fancy_post_square' : $thumbnailSize;
-    // MetaAlignment
-    $metaAlignment1 = ($gridLayoutStyle === 'style1' && $metaAlignment == null)
-              ? 'start' : $metaAlignment; 
-    $metaAlignment2 = ($gridLayoutStyle === 'style2' && $metaAlignment == null)
-              ? 'start' : $metaAlignment; 
-    $metaAlignment3 = ($gridLayoutStyle === 'style3' && $metaAlignment == null)
-              ? 'start' : $metaAlignment; 
-    $metaAlignment4 = ($gridLayoutStyle === 'style4' && $metaAlignment == null)
-              ? 'center' : $metaAlignment; 
-    $metaAlignment5 = ($gridLayoutStyle === 'style5' && $metaAlignment == null)
-              ? 'start' : $metaAlignment; 
-    $metaAlignment6 = ($gridLayoutStyle === 'style6' && $metaAlignment == null)
-              ? 'start' : $metaAlignment; 
-    $metaAlignment7 = ($gridLayoutStyle === 'style7' && $metaAlignment == null)
-              ? 'start' : $metaAlignment; 
-    $metaAlignment8 = ($gridLayoutStyle === 'style8' && $metaAlignment == null)
-              ? 'start' : $metaAlignment; 
-    $metaAlignment9 = ($gridLayoutStyle === 'style9' && $metaAlignment == null)
-              ? 'start' : $metaAlignment; 
-    $metaAlignment10 = ($gridLayoutStyle === 'style10' && $metaAlignment == null)
-              ? 'start' : $metaAlignment; 
-    $metaAlignment11 = ($gridLayoutStyle === 'style11' && $metaAlignment == null)
-              ? 'start' : $metaAlignment; 
-    $metaAlignment12 = ($gridLayoutStyle === 'style12' && $metaAlignment == null)
-              ? 'start' : $metaAlignment; 
-    // ExcerptAlignment
-    $excerptAlignment1 = ($gridLayoutStyle === 'style1' && $excerptAlignment == null)
-              ? 'start' : $excerptAlignment; 
-    $excerptAlignment2 = ($gridLayoutStyle === 'style2' && $excerptAlignment == null)
-              ? 'start' : $excerptAlignment; 
-    $excerptAlignment3 = ($gridLayoutStyle === 'style3' && $excerptAlignment == null)
-              ? 'start' : $excerptAlignment; 
-    $excerptAlignment4 = ($gridLayoutStyle === 'style4' && $excerptAlignment == null)
-              ? 'center' : $excerptAlignment; 
-    $excerptAlignment5 = ($gridLayoutStyle === 'style5' && $excerptAlignment == null)
-              ? 'start' : $excerptAlignment; 
-    $excerptAlignment6 = ($gridLayoutStyle === 'style6' && $excerptAlignment == null)
-              ? 'start' : $excerptAlignment; 
-    $excerptAlignment7 = ($gridLayoutStyle === 'style7' && $excerptAlignment == null)
-              ? 'start' : $excerptAlignment; 
-    $excerptAlignment8 = ($gridLayoutStyle === 'style8' && $excerptAlignment == null)
-              ? 'start' : $excerptAlignment; 
-    $excerptAlignment9 = ($gridLayoutStyle === 'style9' && $excerptAlignment == null)
-              ? 'start' : $excerptAlignment; 
-    $excerptAlignment10 = ($gridLayoutStyle === 'style10' && $excerptAlignment == null)
-              ? 'start' : $excerptAlignment; 
-    $excerptAlignment11 = ($gridLayoutStyle === 'style11' && $excerptAlignment == null)
-              ? 'start' : $excerptAlignment; 
-    $excerptAlignment12 = ($gridLayoutStyle === 'style12' && $excerptAlignment == null)
-              ? 'start' : $excerptAlignment; 
+    
     // buttonStyle
     $buttonStyle1 = ($gridLayoutStyle === 'style1' && $buttonStyle == null)
               ? 'fpg-flat' : $buttonStyle; 
@@ -1013,7 +964,7 @@ function fancy_post_grid_render_callback($attributes) {
 
                 // Meta Data
                 if ($showMetaData) {
-                    $output .= '<ul class="meta-data-list align-' . $metaAlignment1 . ' " style="';  
+                    $output .= '<ul class="meta-data-list align-' . $metaAlignment . ' " style="';  
                         // Margin
                         if (!empty($metaMarginNew['top']) || !empty($metaMarginNew['right']) || !empty($metaMarginNew['bottom']) || !empty($metaMarginNew['left'])) {
                             $output .= 'margin: ' .
@@ -1385,7 +1336,7 @@ function fancy_post_grid_render_callback($attributes) {
                         $hoverOut .= 'this.style.borderColor=\'inherit\';';
                     }
 
-                    $output .= '<div class="fpg-excerpt' . ' align-' . esc_attr($excerptAlignment1) . '" style="' . esc_attr(trim($excerptStyles)) . '"';
+                    $output .= '<div class="fpg-excerpt' . ' align-' . esc_attr($excerptAlignment) . '" style="' . esc_attr(trim($excerptStyles)) . '"';
 
                     if (!empty($hoverIn) || !empty($hoverOut)) {
                         $output .= ' onmouseover="' . esc_attr($hoverIn) . '"';
@@ -1623,7 +1574,7 @@ function fancy_post_grid_render_callback($attributes) {
 
                 // Meta Data
                 if ($showMetaData) {
-                    $output .= '<ul class="meta-data-list align-' . $metaAlignment2 . ' " style="';  
+                    $output .= '<ul class="meta-data-list align-' . $metaAlignment . ' " style="';  
                         // Margin
                         if (!empty($metaMarginNew['top']) || !empty($metaMarginNew['right']) || !empty($metaMarginNew['bottom']) || !empty($metaMarginNew['left'])) {
                             $output .= 'margin: ' .
@@ -1995,7 +1946,7 @@ function fancy_post_grid_render_callback($attributes) {
                         $hoverOut .= 'this.style.borderColor=\'inherit\';';
                     }
 
-                    $output .= '<div class="fpg-excerpt' . ' align-' . esc_attr($excerptAlignment1) . '" style="' . esc_attr(trim($excerptStyles)) . '"';
+                    $output .= '<div class="fpg-excerpt' . ' align-' . esc_attr($excerptAlignment) . '" style="' . esc_attr(trim($excerptStyles)) . '"';
 
                     if (!empty($hoverIn) || !empty($hoverOut)) {
                         $output .= ' onmouseover="' . esc_attr($hoverIn) . '"';
@@ -2268,8 +2219,8 @@ function fancy_post_grid_render_callback($attributes) {
 
                         // Now Insert Meta Data inside the Thumbnail
                         if ($showMetaData) {
-                            $output .= '<div class="rs-meta align-' . $metaAlignment3 . '">';
-                                $output .= '<ul class="meta-data-list align-' . $metaAlignment3 . ' " style="';  
+                            $output .= '<div class="rs-meta align-' . $metaAlignment . '">';
+                                $output .= '<ul class="meta-data-list " style="';  
                                     // Margin
                                     if (!empty($metaMarginNew['top']) || !empty($metaMarginNew['right']) || !empty($metaMarginNew['bottom']) || !empty($metaMarginNew['left'])) {
                                         $output .= 'margin: ' .
@@ -2681,7 +2632,7 @@ function fancy_post_grid_render_callback($attributes) {
                         $hoverOut .= 'this.style.borderColor=\'inherit\';';
                     }
 
-                    $output .= '<div class="fpg-excerpt' . ' align-' . esc_attr($excerptAlignment3) . '" style="' . esc_attr(trim($excerptStyles)) . '"';
+                    $output .= '<div class="fpg-excerpt' . ' align-' . esc_attr($excerptAlignment) . '" style="' . esc_attr(trim($excerptStyles)) . '"';
 
                     if (!empty($hoverIn) || !empty($hoverOut)) {
                         $output .= ' onmouseover="' . esc_attr($hoverIn) . '"';
@@ -3071,7 +3022,7 @@ function fancy_post_grid_render_callback($attributes) {
                 }
                 // Now Insert Meta Data inside the Thumbnail
                 if ($showMetaData) {
-                    $output .= '<div class="rs-meta align-' . $metaAlignment4 . '">';
+                    $output .= '<div class="rs-meta align-' . $metaAlignment . '">';
                     $output .= '<ul class="meta-data-list" style="';  
                         // Margin
                         if (!empty($metaMarginNew['top']) || !empty($metaMarginNew['right']) || !empty($metaMarginNew['bottom']) || !empty($metaMarginNew['left'])) {
@@ -3330,7 +3281,7 @@ function fancy_post_grid_render_callback($attributes) {
                         $hoverOut .= 'this.style.borderColor=\'inherit\';';
                     }
 
-                    $output .= '<div class="fpg-excerpt' . ' align-' . esc_attr($excerptAlignment4) . '" style="' . esc_attr(trim($excerptStyles)) . '"';
+                    $output .= '<div class="fpg-excerpt' . ' align-' . esc_attr($excerptAlignment) . '" style="' . esc_attr(trim($excerptStyles)) . '"';
 
                     if (!empty($hoverIn) || !empty($hoverOut)) {
                         $output .= ' onmouseover="' . esc_attr($hoverIn) . '"';
@@ -3494,7 +3445,7 @@ function fancy_post_grid_render_callback($attributes) {
 
                 // Meta Data
                 if ($showMetaData) {
-                    $output .= '<ul class="meta-data-list align-' . $metaAlignment5 . ' " style="';  
+                    $output .= '<ul class="meta-data-list align-' . $metaAlignment . ' " style="';  
                         // Margin
                         if (!empty($metaMarginNew['top']) || !empty($metaMarginNew['right']) || !empty($metaMarginNew['bottom']) || !empty($metaMarginNew['left'])) {
                             $output .= 'margin: ' .
@@ -3831,7 +3782,7 @@ function fancy_post_grid_render_callback($attributes) {
                         $hoverOut .= 'this.style.borderColor=\'inherit\';';
                     }
 
-                    $output .= '<div class="pre-content' . ' align-' . esc_attr($excerptAlignment5) . '" style="' . esc_attr(trim($excerptStyles)) . '"';
+                    $output .= '<div class="pre-content' . ' align-' . esc_attr($excerptAlignment) . '" style="' . esc_attr(trim($excerptStyles)) . '"';
 
                     if (!empty($hoverIn) || !empty($hoverOut)) {
                         $output .= ' onmouseover="' . esc_attr($hoverIn) . '"';
@@ -4114,7 +4065,7 @@ function fancy_post_grid_render_callback($attributes) {
                 // Meta Data
                 if ($showMetaData) {
                     $output .= '<div class="rs-meta">'; 
-                    $output .= '<ul class="meta-data-list align-' . $metaAlignment6 . ' " style="';  
+                    $output .= '<ul class="meta-data-list align-' . $metaAlignment . ' " style="';  
                         // Margin
                         if (!empty($metaMarginNew['top']) || !empty($metaMarginNew['right']) || !empty($metaMarginNew['bottom']) || !empty($metaMarginNew['left'])) {
                             $output .= 'margin: ' .
@@ -4652,7 +4603,7 @@ function fancy_post_grid_render_callback($attributes) {
                 // Meta Data
                 if ($showMetaData) {
                             
-                    $output .= '<div class="rs-meta align-' . $metaAlignment7 . ' " style="';  
+                    $output .= '<div class="rs-meta align-' . $metaAlignment . ' " style="';  
                         // Margin
                         if (!empty($metaMarginNew['top']) || !empty($metaMarginNew['right']) || !empty($metaMarginNew['bottom']) || !empty($metaMarginNew['left'])) {
                             $output .= 'margin: ' .
@@ -4962,7 +4913,7 @@ function fancy_post_grid_render_callback($attributes) {
                 // Meta Data
                 if ($showMetaData) {
                             
-                    $output .= '<div class="rs-meta align-' . $metaAlignment8 . ' " style="';  
+                    $output .= '<div class="rs-meta align-' . $metaAlignment . ' " style="';  
                         // Margin
                         if (!empty($metaMarginNew['top']) || !empty($metaMarginNew['right']) || !empty($metaMarginNew['bottom']) || !empty($metaMarginNew['left'])) {
                             $output .= 'margin: ' .
@@ -5398,7 +5349,7 @@ function fancy_post_grid_render_callback($attributes) {
 
                 // Meta Data
                 if ($showMetaData) {
-                    $output .= '<div class="rs-meta align-' . esc_attr($metaAlignment9) . '" style="';
+                    $output .= '<div class="rs-meta align-' . esc_attr($metaAlignment) . '" style="';
 
                     // Margin
                     if (!empty($metaMarginNew['top']) || !empty($metaMarginNew['right']) || !empty($metaMarginNew['bottom']) || !empty($metaMarginNew['left'])) {
@@ -5658,7 +5609,7 @@ function fancy_post_grid_render_callback($attributes) {
                 // Meta Data
                 if ($showMetaData) {
                     $output .= '<div class="rs-meta">'; 
-                    $output .= '<ul class="meta-data-list align-' . $metaAlignment10 . ' " style="';  
+                    $output .= '<ul class="meta-data-list align-' . $metaAlignment . ' " style="';  
                         // Margin
                         if (!empty($metaMarginNew['top']) || !empty($metaMarginNew['right']) || !empty($metaMarginNew['bottom']) || !empty($metaMarginNew['left'])) {
                             $output .= 'margin: ' .
@@ -6221,7 +6172,7 @@ function fancy_post_grid_render_callback($attributes) {
                 // Meta Data
                 if ($showMetaData) {
                     $output .= '<div class="rs-meta">'; 
-                    $output .= '<ul class="meta-data-list align-' . $metaAlignment11 . ' " style="';  
+                    $output .= '<ul class="meta-data-list align-' . $metaAlignment . ' " style="';  
                         // Margin
                         if (!empty($metaMarginNew['top']) || !empty($metaMarginNew['right']) || !empty($metaMarginNew['bottom']) || !empty($metaMarginNew['left'])) {
                             $output .= 'margin: ' .
@@ -6778,7 +6729,7 @@ function fancy_post_grid_render_callback($attributes) {
                 // Meta Data
                 if ($showMetaData) {
                             
-                    $output .= '<div class="rs-meta align-' . $metaAlignment12 . ' " style="';  
+                    $output .= '<div class="rs-meta align-' . $metaAlignment . ' " style="';  
                         // Margin
                         if (!empty($metaMarginNew['top']) || !empty($metaMarginNew['right']) || !empty($metaMarginNew['bottom']) || !empty($metaMarginNew['left'])) {
                             $output .= 'margin: ' .
@@ -6996,7 +6947,7 @@ function fancy_post_grid_render_callback($attributes) {
                         $hoverOut .= 'this.style.borderColor=\'inherit\';';
                     }
 
-                    $output .= '<p class="fpg-excerpt' . ' align-' . esc_attr($excerptAlignment12) . '" style="' . esc_attr(trim($excerptStyles)) . '"';
+                    $output .= '<p class="fpg-excerpt' . ' align-' . esc_attr($excerptAlignment) . '" style="' . esc_attr(trim($excerptStyles)) . '"';
 
                     if (!empty($hoverIn) || !empty($hoverOut)) {
                         $output .= ' onmouseover="' . esc_attr($hoverIn) . '"';
@@ -7230,7 +7181,6 @@ function fancy_post_grid_render_callback($attributes) {
 
 function fancy_post_slider_render_callback($attributes) {
     // Content Layout
-    
 
     $sliderLayoutStyle = isset($attributes['sliderLayoutStyle']) ? $attributes['sliderLayoutStyle'] : 'style1';
     $gridColumns = isset($attributes['gridColumns']) ? absint($attributes['gridColumns']) : 3;
