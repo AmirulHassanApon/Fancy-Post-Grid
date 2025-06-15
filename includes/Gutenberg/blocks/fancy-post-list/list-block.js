@@ -95,7 +95,7 @@
             contentitemMarginNew: { type: 'object' },
             contentitemPaddingNew: { type: 'object' },
             contentBorderWidth: { type: 'object' },
-            contentnormalBorderType: { type: 'string', default: '' },     
+            contentnormalBorderType: { type: 'string'},     
             contentBgColor: { type: 'string', default: '' },       
             contentBorderColor: { type: 'string', default: '' },       
             //ThumbNail            
@@ -108,7 +108,7 @@
             postTitleLineHeight: { type: 'number', default: '' },
             postTitleLetterSpacing: { type: 'number', default: '' },
             postTitleFontWeight: { type: 'string', default: '' },
-            postTitleAlignment: { type: 'string', default: 'start' },
+            postTitleAlignment: { type: 'string' },
             postTitleMargin: { type: 'object' },
             postTitlePadding: { type: 'object' },
             postTitleColor: { type: 'string', default: '' },
@@ -139,7 +139,7 @@
             metaIconColor: { type: 'string', default: '' },
             
             //Button
-            buttonAlignment: { type: 'string', default: 'start' },
+            buttonAlignment: { type: 'string'},
             buttonMarginNew: { type: 'object' },
             buttonPaddingNew: { type: 'object' },  
             buttonFontSize: { type: 'string', default: '' },
@@ -225,41 +225,6 @@
               ? 'fancy_post_custom_size' : attributes.leftThumbnailSize;
             const thumbnailSize8R = (listLayoutStyle === 'style8' && attributes.rightThumbnailSize == null)
               ? 'fancy_post_square' : attributes.rightThumbnailSize;
-
-            const metaAlignment1 = (listLayoutStyle === 'style1' && attributes.metaAlignment == null)
-              ? 'start' : attributes.metaAlignment; 
-            const metaAlignment2 = (listLayoutStyle === 'style2' && attributes.metaAlignment == null)
-              ? 'start' : attributes.metaAlignment;  
-            const metaAlignment3 = (listLayoutStyle === 'style3' && attributes.metaAlignment == null)
-              ? 'start' : attributes.metaAlignment;
-            const metaAlignment4 = (listLayoutStyle === 'style4' && attributes.metaAlignment == null)
-              ? 'center' : attributes.metaAlignment; 
-            const metaAlignment5 = (listLayoutStyle === 'style5' && attributes.metaAlignment == null)
-              ? 'start' : attributes.metaAlignment;  
-            const metaAlignment6 = (listLayoutStyle === 'style6' && attributes.metaAlignment == null)
-              ? 'start' : attributes.metaAlignment; 
-            const metaAlignment7 = (listLayoutStyle === 'style7' && attributes.metaAlignment == null)
-              ? 'start' : attributes.metaAlignment;
-            const metaAlignment8 = (listLayoutStyle === 'style8' && attributes.metaAlignment == null)
-              ? 'start' : attributes.metaAlignment;
-              
-            //excerptAlignment  
-            const excerptAlignment1 = (listLayoutStyle === 'style1' && attributes.excerptAlignment == null)
-              ? 'start' : attributes.excerptAlignment; 
-            const excerptAlignment2 = (listLayoutStyle === 'style2' && attributes.excerptAlignment == null)
-              ? 'start' : attributes.excerptAlignment;  
-            const excerptAlignment3 = (listLayoutStyle === 'style3' && attributes.excerptAlignment == null)
-              ? 'start' : attributes.excerptAlignment;
-            const excerptAlignment4 = (listLayoutStyle === 'style4' && attributes.excerptAlignment == null)
-              ? 'center' : attributes.excerptAlignment; 
-            const excerptAlignment5 = (listLayoutStyle === 'style5' && attributes.excerptAlignment == null)
-              ? 'start' : attributes.excerptAlignment;  
-            const excerptAlignment6 = (listLayoutStyle === 'style6' && attributes.excerptAlignment == null)
-              ? 'start' : attributes.excerptAlignment; 
-            const excerptAlignment7 = (listLayoutStyle === 'style7' && attributes.excerptAlignment == null)
-              ? 'start' : attributes.excerptAlignment;
-            const excerptAlignment8 = (listLayoutStyle === 'style8' && attributes.excerptAlignment == null)
-              ? 'start' : attributes.excerptAlignment;
 
             // Button Style
             const buttonStyle1 = (listLayoutStyle === 'style1' && attributes.buttonStyle == null)
@@ -477,7 +442,7 @@
                             // Meta
                             showMetaData && 
                                 wp.element.createElement('ul', { 
-                                    className: `meta-data-list post-meta align-${metaAlignment1} `, 
+                                    className: `meta-data-list post-meta align-${metaAlignment} `, 
                                     style: { 
                                         ...(attributes.metaMarginNew ? { margin: getSpacingValue(attributes.metaMarginNew) }: { }), 
                                         ...(attributes.metaPadding ? { padding: getSpacingValue(attributes.metaPadding) }: {  }),
@@ -594,7 +559,7 @@
                             // Show Post Excerpt (Conditional)
                             showPostExcerpt &&
                                 wp.element.createElement('div', { 
-                                    className: `fpg-excerpt align-${excerptAlignment1}`, 
+                                    className: `fpg-excerpt align-${excerptAlignment}`, 
                                     style: { 
                                           ...(excerptOrder ? { order: excerptOrder } : {}),
                                           ...(attributes.excerptMargin ? { margin: getSpacingValue(attributes.excerptMargin) } : {}),
@@ -754,7 +719,7 @@
 
                                     showMetaData && 
                                         wp.element.createElement('ul', { 
-                                            className: `meta-data-list post-meta align-${metaAlignment1} `, 
+                                            className: `meta-data-list post-meta align-${metaAlignment} `, 
                                             style: { 
                                                 ...(attributes.metaMarginNew ? { margin: getSpacingValue(attributes.metaMarginNew) }: {}), 
                                                 ...(attributes.metaPadding ? { padding: getSpacingValue(attributes.metaPadding) }: { }),
@@ -1027,7 +992,7 @@
                             // Meta
                             showMetaData && 
                                 wp.element.createElement('ul', { 
-                                    className: `blog-meta post-meta align-${metaAlignment2} `, 
+                                    className: `blog-meta post-meta align-${metaAlignment} `, 
                                     style: { 
                                         ...(attributes.metaMarginNew ? { margin: getSpacingValue(attributes.metaMarginNew) }: { }), 
                                         ...(attributes.metaPadding ? { padding: getSpacingValue(attributes.metaPadding) }: {  }),
@@ -1156,7 +1121,7 @@
                             // Show Post Excerpt (Conditional)
                             showPostExcerpt &&
                                 wp.element.createElement('div', { 
-                                    className: `desc align-${excerptAlignment2}`, 
+                                    className: `desc align-${excerptAlignment}`, 
                                     style: { 
                                           ...(excerptOrder ? { order: excerptOrder } : {}),
                                           ...(attributes.excerptMargin ? { margin: getSpacingValue(attributes.excerptMargin) } : {}),
@@ -1312,7 +1277,7 @@
 
                                         showMetaData && 
                                             wp.element.createElement('ul', { 
-                                                className: `blog-meta post-meta align-${metaAlignment2} `, 
+                                                className: `blog-meta post-meta align-${metaAlignment} `, 
                                                 style: { 
                                                     ...(attributes.metaMarginNew ? { margin: getSpacingValue(attributes.metaMarginNew) }: {}), 
                                                     ...(attributes.metaPadding ? { padding: getSpacingValue(attributes.metaPadding) }: { }),
@@ -1518,7 +1483,7 @@
                                 wp.element.createElement('div', { 
                                     className: 'rs-meta', },
                                 wp.element.createElement('ul', { 
-                                    className: `blog-meta post-meta align-${metaAlignment3} `, 
+                                    className: `blog-meta post-meta align-${metaAlignment} `, 
                                     style: { 
                                         ...(attributes.metaMarginNew ? { margin: getSpacingValue(attributes.metaMarginNew) }: { }), 
                                         ...(attributes.metaPadding ? { padding: getSpacingValue(attributes.metaPadding) }: {  }),
@@ -1759,7 +1724,7 @@
                                                 className: 'rs-meta', },
                                             wp.element.createElement('ul', { 
                                                 
-                                                className: `blog-meta post-meta align-${metaAlignment3} `, 
+                                                className: `blog-meta post-meta align-${metaAlignment} `, 
                                                 style: { 
                                                     ...(attributes.metaMarginNew ? { margin: getSpacingValue(attributes.metaMarginNew) }: {}), 
                                                     ...(attributes.metaPadding ? { padding: getSpacingValue(attributes.metaPadding) }: { }),
@@ -1872,7 +1837,7 @@
                                         //Excerpt
                                         showPostExcerpt &&
                                             wp.element.createElement('div', { 
-                                                className: `fpg-excerpt align-${excerptAlignment3}`, 
+                                                className: `fpg-excerpt align-${excerptAlignment}`, 
                                                 style: { 
                                                       ...(excerptOrder ? { order: excerptOrder } : {}),
                                                       ...(attributes.excerptMargin ? { margin: getSpacingValue(attributes.excerptMargin) } : {}),
@@ -2050,7 +2015,7 @@
                                     wp.element.createElement('div', { 
                                         className: 'rs-meta', },
                                         wp.element.createElement('ul', { 
-                                            className: `meta-data-list post-meta align-${metaAlignment4} `, 
+                                            className: `meta-data-list post-meta align-${metaAlignment} `, 
                                             style: { 
                                                 ...(attributes.metaMarginNew ? { margin: getSpacingValue(attributes.metaMarginNew) }: { }), 
                                                 ...(attributes.metaPadding ? { padding: getSpacingValue(attributes.metaPadding) }: {  }),
@@ -2288,7 +2253,7 @@
                                     wp.element.createElement('div', { 
                                         className: 'rs-meta', },
                                         wp.element.createElement('ul', { 
-                                            className: `meta-data-list post-meta align-${metaAlignment5} `, 
+                                            className: `meta-data-list post-meta align-${metaAlignment} `, 
                                             style: { 
                                                 ...(attributes.metaMarginNew ? { margin: getSpacingValue(attributes.metaMarginNew) }: { }), 
                                                 ...(attributes.metaPadding ? { padding: getSpacingValue(attributes.metaPadding) }: {  }),
@@ -2386,7 +2351,7 @@
                                  
                                 showPostExcerpt &&
                                     wp.element.createElement('div', { 
-                                        className: `fpg-excerpt align-${excerptAlignment5}`, 
+                                        className: `fpg-excerpt align-${excerptAlignment}`, 
                                         style: { 
                                               ...(excerptOrder ? { order: excerptOrder } : {}),
                                               ...(attributes.excerptMargin ? { margin: getSpacingValue(attributes.excerptMargin) } : {}),
@@ -2561,7 +2526,7 @@
                                   wp.element.createElement('div', { 
                                       className: 'rs-meta', },
                                       wp.element.createElement('ul', { 
-                                          className: `meta-data-list post-meta align-${metaAlignment6} `, 
+                                          className: `meta-data-list post-meta align-${metaAlignment} `, 
                                           style: { 
                                               ...(attributes.metaMarginNew ? { margin: getSpacingValue(attributes.metaMarginNew) }: { }), 
                                               ...(attributes.metaPadding ? { padding: getSpacingValue(attributes.metaPadding) }: {  }),
@@ -2768,7 +2733,7 @@
 
                                     showMetaData && 
                                         wp.element.createElement('div', { 
-                                            className: `rs-cat post-meta align-${metaAlignment7}`, 
+                                            className: `rs-cat post-meta align-${metaAlignment}`, 
                                             style: { 
                                                 ...(attributes.metaMarginNew ? { margin: getSpacingValue(attributes.metaMarginNew) } : {}), 
                                                 ...(attributes.metaPadding ? { padding: getSpacingValue(attributes.metaPadding) } : {}),
@@ -2965,7 +2930,7 @@
                                 showMetaData && wp.element.createElement('div', { 
                                         className: 'rs-meta post-meta', },
                                     wp.element.createElement('ul', { 
-                                        className: `meta-data-list post-meta align-${metaAlignment8} `, 
+                                        className: `meta-data-list post-meta align-${metaAlignment} `, 
                                         style: { 
                                             ...(attributes.metaMarginNew ? { margin: getSpacingValue(attributes.metaMarginNew) }: { }), 
                                             ...(attributes.metaPadding ? { padding: getSpacingValue(attributes.metaPadding) }: {  }),
@@ -3135,7 +3100,7 @@
                                 showMetaData && wp.element.createElement('div', { 
                                         className: 'rs-meta post-meta', },
                                     wp.element.createElement('ul', { 
-                                        className: `meta-data-list post-meta align-${metaAlignment8} `, 
+                                        className: `meta-data-list post-meta align-${metaAlignment} `, 
                                             style: { 
                                                 ...(attributes.metaMarginNew ? { margin: getSpacingValue(attributes.metaMarginNew) }: { }), 
                                                 ...(attributes.metaPadding ? { padding: getSpacingValue(attributes.metaPadding) }: {  }),
@@ -3307,7 +3272,7 @@
                                 'div',
                                 {
                                     
-                                    className: `rs-meta-category post-meta align-${metaAlignment8} `,
+                                    className: `rs-meta-category post-meta align-${metaAlignment} `,
                                     style: {
                                         ...(attributes.metaMarginNew ? { margin: getSpacingValue(attributes.metaMarginNew) }: { }), 
                                         ...(attributes.metaPadding ? { padding: getSpacingValue(attributes.metaPadding) }: {  }),

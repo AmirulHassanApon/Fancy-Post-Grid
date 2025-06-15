@@ -81,37 +81,37 @@
             //SECTION Area
             sectionBgColor: { type: 'string', default: '' },
             sectionMargin: { type: 'object' },
-            sectionPadding: { type: 'object', default: { top: '0', right: '0', bottom: '0', left: '0' }, },            
+            sectionPadding: { type: 'object' },            
             //ITEM Box           
             itemMargin: { type: 'object' },
             itemPadding: { type: 'object' },
-            itemBorderRadius: { type: 'object', default: { top: '5', right: '5', bottom: '5', left: '5' }, },
+            itemBorderRadius: { type: 'object' },
             itemGap: { type: 'number', default: '30' },
             itemBoxAlignment: { type: 'string', default: 'start' },
             itemBorderType: { type: 'string', default: '' },
-            itemBoxShadow: { type: 'object', default: { top: '0', right: '0', bottom: '0', left: '0' }, },
+            itemBoxShadow: { type: 'object' },
             itemBoxShadowColor: { type: 'string', default: '' },  
             itemBackgroundColor: { type: 'string', default: '' },
             itemBorderColor: { type: 'string', default: '' },
-            itemBorderWidth: { type: 'object', default: { top: '0', right: '0', bottom: '0', left: '0' }, },            
+            itemBorderWidth: { type: 'object' },            
             //Content Box
             contentitemMarginNew: { type: 'object' },
             contentitemPaddingNew: { type: 'object' },
-            contentBorderWidth: { type: 'object', default: { top: '0', right: '0', bottom: '0', left: '0' }, },
+            contentBorderWidth: { type: 'object' },
             contentnormalBorderType: { type: 'string', default: '' },     
             contentBgColor: { type: 'string', default: '' },       
             contentBorderColor: { type: 'string', default: '' },       
             //ThumbNail            
-            thumbnailMargin: { type: 'object', default: { top: '0', right: '0', bottom: '0', left: '0' }, },
-            thumbnailPadding: { type: 'object', default: { top: '0', right: '0', bottom: '0', left: '0' }, },
+            thumbnailMargin: { type: 'object' },
+            thumbnailPadding: { type: 'object' },
             thumbnailBorderRadius: { type: 'object' },
             
             //Post Title
-            postTitleFontSize: { type: 'number', default: '24' },
+            postTitleFontSize: { type: 'number'},
             postTitleLineHeight: { type: 'number', default: '' },
             postTitleLetterSpacing: { type: 'number', default: '' },
-            postTitleFontWeight: { type: 'string', default: '600' },
-            postTitleAlignment: { type: 'string', default: 'start' },
+            postTitleFontWeight: { type: 'string'},
+            postTitleAlignment: { type: 'string' },
             postTitleMargin: { type: 'object' },
             postTitlePadding: { type: 'object' },
             postTitleColor: { type: 'string', default: '' },
@@ -142,16 +142,16 @@
             metaIconColor: { type: 'string', default: '' },
             
             //Button
-            buttonAlignment: { type: 'string', default: 'start' },
-            buttonMarginNew: { type: 'object', default: { top: '0', right: '0', bottom: '0', left: '0' }, },
+            buttonAlignment: { type: 'string' },
+            buttonMarginNew: { type: 'object' },
             buttonPaddingNew: { type: 'object'},
-            buttonFontSize: { type: 'string', default: '16' },
+            buttonFontSize: { type: 'string' },
             buttonTextColor: { type: 'string', default: '' },
             buttonBackgroundColor: { type: 'string', default: '' },
             buttonBorderType: { type: 'string', default: '' },
             buttonBorderRadius: { type: 'object' },
-            buttonFontWeight: { type: 'string', default: '700' },
-            buttonBorderWidth: { type: 'object', default: { top: '0', right: '0', bottom: '0', left: '0' }, },
+            buttonFontWeight: { type: 'string' },
+            buttonBorderWidth: { type: 'object' },
             buttonHoverTextColor: { type: 'string', default: '' },
             buttonHoverBackgroundColor: { type: 'string', default: '' },
             buttonBorderColor: { type: 'string', default: '' },
@@ -227,39 +227,7 @@
             const thumbnailSize6 = (sliderLayoutStyle === 'style6' && attributes.thumbnailSize == null)
               ? 'fancy_post_square' : attributes.thumbnailSize; 
             const thumbnailSize7 = (sliderLayoutStyle === 'style7' && attributes.thumbnailSize == null)
-              ? 'fancy_post_landscape' : attributes.thumbnailSize;   
-
-            //metaAlignment  
-            const metaAlignment1 = (sliderLayoutStyle === 'style1' && attributes.metaAlignment == null)
-              ? 'start' : attributes.metaAlignment; 
-            const metaAlignment2 = (sliderLayoutStyle === 'style2' && attributes.metaAlignment == null)
-              ? 'start' : attributes.metaAlignment;  
-            const metaAlignment3 = (sliderLayoutStyle === 'style3' && attributes.metaAlignment == null)
-              ? 'center' : attributes.metaAlignment;
-            const metaAlignment4 = (sliderLayoutStyle === 'style4' && attributes.metaAlignment == null)
-              ? 'center' : attributes.metaAlignment; 
-            const metaAlignment5 = (sliderLayoutStyle === 'style5' && attributes.metaAlignment == null)
-              ? 'start' : attributes.metaAlignment;  
-            const metaAlignment6 = (sliderLayoutStyle === 'style6' && attributes.metaAlignment == null)
-              ? 'start' : attributes.metaAlignment; 
-            const metaAlignment7 = (sliderLayoutStyle === 'style7' && attributes.metaAlignment == null)
-              ? 'start' : attributes.metaAlignment; 
-
-            //excerptAlignment  
-            const excerptAlignment1 = (sliderLayoutStyle === 'style1' && attributes.excerptAlignment == null)
-              ? 'start' : attributes.excerptAlignment; 
-            const excerptAlignment2 = (sliderLayoutStyle === 'style2' && attributes.excerptAlignment == null)
-              ? 'start' : attributes.excerptAlignment;  
-            const excerptAlignment3 = (sliderLayoutStyle === 'style3' && attributes.excerptAlignment == null)
-              ? 'center' : attributes.excerptAlignment;
-            const excerptAlignment4 = (sliderLayoutStyle === 'style4' && attributes.excerptAlignment == null)
-              ? 'center' : attributes.excerptAlignment; 
-            const excerptAlignment5 = (sliderLayoutStyle === 'style5' && attributes.excerptAlignment == null)
-              ? 'start' : attributes.excerptAlignment;  
-            const excerptAlignment6 = (sliderLayoutStyle === 'style6' && attributes.excerptAlignment == null)
-              ? 'start' : attributes.excerptAlignment; 
-            const excerptAlignment7 = (sliderLayoutStyle === 'style7' && attributes.excerptAlignment == null)
-              ? 'start' : attributes.excerptAlignment;
+              ? 'fancy_post_landscape' : attributes.thumbnailSize;
 
             const buttonStyle1 = (sliderLayoutStyle === 'style1' && attributes.buttonStyle == null)
               ? 'fpg-border' : attributes.buttonStyle; 
@@ -618,7 +586,7 @@
 
                                                             showMetaData && 
                                                                 wp.element.createElement('ul', { 
-                                                                    className: `blog-meta post-meta align-${metaAlignment1} `, 
+                                                                    className: `blog-meta post-meta align-${metaAlignment} `, 
                                                                     style: { 
                                                                         ...(attributes.metaMarginNew ? { margin: getSpacingValue(attributes.metaMarginNew) }: { margin: '0px 0px 0px 0px' }), 
                                                                         ...(attributes.metaPadding ? { padding: getSpacingValue(attributes.metaPadding) }: { padding: '0px 0px 0px 0px' }),
@@ -767,7 +735,7 @@
                                 
                                                             showPostExcerpt &&
                                                                 wp.element.createElement('div', { 
-                                                                    className: `desc align-${excerptAlignment1}`, 
+                                                                    className: `desc align-${excerptAlignment}`, 
                                                                     style: { 
                                                                           ...(excerptOrder ? { order: excerptOrder } : {}),
                                                                           ...(attributes.excerptMargin ? { margin: getSpacingValue(attributes.excerptMargin) } : {}),
@@ -978,7 +946,7 @@
                                                             //Meta
                                                             showMetaData && 
                                                                 wp.element.createElement('ul', { 
-                                                                    className: `blog-meta post-meta align-${metaAlignment2} `, 
+                                                                    className: `blog-meta post-meta align-${metaAlignment} `, 
                                                                     style: { 
                                                                         ...(attributes.metaMarginNew ? { margin: getSpacingValue(attributes.metaMarginNew) }: { margin: '0px 0px 0px 0px' }), 
                                                                         ...(attributes.metaPadding ? { padding: getSpacingValue(attributes.metaPadding) }: { padding: '0px 0px 0px 0px' }),
@@ -1128,7 +1096,7 @@
                                                             //eXCERPT
                                                             showPostExcerpt &&
                                                                 wp.element.createElement('div', { 
-                                                                    className: `desc align-${excerptAlignment2}`, 
+                                                                    className: `desc align-${excerptAlignment}`, 
                                                                     style: { 
                                                                           ...(excerptOrder ? { order: excerptOrder } : {}),
                                                                           ...(attributes.excerptMargin ? { margin: getSpacingValue(attributes.excerptMargin) } : {}),
@@ -1414,7 +1382,7 @@
                                                             //Meta
                                                             showMetaData && 
                                                               wp.element.createElement('ul', { 
-                                                                  className: `blog-meta post-meta align-${metaAlignment3} `, 
+                                                                  className: `blog-meta post-meta align-${metaAlignment} `, 
                                                                   style: { 
                                                                       ...(attributes.metaMarginNew ? { margin: getSpacingValue(attributes.metaMarginNew) }: { margin: '29px 0px 0px 0px' }), 
                                                                       ...(attributes.metaPadding ? { padding: getSpacingValue(attributes.metaPadding) }: { padding: '0px 0px 0px 0px' }),
@@ -1475,7 +1443,7 @@
 
                                                             showPostExcerpt &&
                                                                 wp.element.createElement('p', { 
-                                                                    className: `desc align-${excerptAlignment3}`,
+                                                                    className: `desc align-${excerptAlignment}`,
                                                                     style: { 
                                                                         ...(excerptOrder ? { order: excerptOrder } : {}),
                                                                         ...(attributes.excerptMargin ? { margin: getSpacingValue(attributes.excerptMargin) } : {}),
@@ -1781,7 +1749,7 @@
                                                                                                     
                                                             showPostExcerpt &&
                                                                 wp.element.createElement('div', { 
-                                                                    className: `fpg-excerpt align-${excerptAlignment4}`, 
+                                                                    className: `fpg-excerpt align-${excerptAlignment}`, 
                                                                     style: { 
                                                                           ...(excerptOrder ? { order: excerptOrder } : {}),
                                                                           ...(attributes.excerptMargin ? { margin: getSpacingValue(attributes.excerptMargin) } : {}),
@@ -2013,7 +1981,7 @@
                                                             }, 
                                                                                                                                                                                    
                                                             showMetaData && wp.element.createElement('div', { 
-                                                                    className: `rs-meta post-meta align-${metaAlignment5} `},
+                                                                    className: `rs-meta post-meta align-${metaAlignment} `},
                                                                 wp.element.createElement('ul', { 
                                                                     className: 'blog-meta post-meta', 
                                                                     style: { 
@@ -2484,12 +2452,12 @@
 
                                                                     showMetaData && 
                                                                         wp.element.createElement('div', { 
-                                                                            className: 'rs-meta post-meta',
+                                                                            className: `rs-meta post-meta align-${metaAlignment}`,
                                                                             style: { 
                                                                             
                                                                             ...(attributes.metaMarginNew ? { margin: getSpacingValue(attributes.metaMarginNew) }: { margin: '0px 0px 0px 0px' }), 
                                                                             ...(attributes.metaPadding ? { padding: getSpacingValue(attributes.metaPadding) }: { padding: '9px 30px 9px 30px' }),
-                                                                            ...(metaAlignment ? { justifyContent: metaAlignment } : {}),
+                                                                            
                                                                             ...(metaTextColor ? { color: metaTextColor } : {}),
                                                                             ...(typeof metaOrder !== 'undefined' ? { order: metaOrder } : {}),
                                                                             ...(metaFontSize ? { fontSize: `${metaFontSize}px` } : {})
@@ -2650,7 +2618,7 @@
                                                             //Meta
                                                             showPostExcerpt &&
                                                                 wp.element.createElement('div', { 
-                                                                    className: `fpg-excerpt align-${excerptAlignment7}`,
+                                                                    className: `fpg-excerpt align-${excerptAlignment}`,
                                                                     style: { 
                                                                             ...(excerptOrder ? { order: excerptOrder } : {}),
                                                                             ...(attributes.excerptMargin ? { margin: getSpacingValue(attributes.excerptMargin) } : {}),
@@ -3611,9 +3579,9 @@
                                         label: __('Text Alignment', 'fancy-post-grid'),
                                         value: attributes.excerptAlignment,
                                         options: [
-                                            { label: __('Left', 'fancy-post-grid'), value: 'left' },
+                                            { label: __('Left', 'fancy-post-grid'), value: 'start' },
                                             { label: __('Center', 'fancy-post-grid'), value: 'center' },
-                                            { label: __('Right', 'fancy-post-grid'), value: 'right' }
+                                            { label: __('Right', 'fancy-post-grid'), value: 'end' }
                                         ],
                                         onChange: (value) => setAttributes({ excerptAlignment: value }),
                                     }),
@@ -3724,9 +3692,9 @@
                                         label: __('Alignment', 'fancy-post-grid'),
                                         value: attributes.metaAlignment,
                                         options: [
-                                            { label: __('Left', 'fancy-post-grid'), value: 'left' },
+                                            { label: __('Left', 'fancy-post-grid'), value: 'start' },
                                             { label: __('Center', 'fancy-post-grid'), value: 'center' },
-                                            { label: __('Right', 'fancy-post-grid'), value: 'right' },
+                                            { label: __('Right', 'fancy-post-grid'), value: 'end' },
                                         ],
                                         onChange: (value) => setAttributes({ metaAlignment: value }),
                                     }),
