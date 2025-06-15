@@ -375,8 +375,8 @@
             const titleTextHoverHandlers = {
                 onMouseEnter: (e) => {
                     e.currentTarget.style.color = postTitleHoverColor;
-                    e.currentTarget.style.backgroundImage = `linear-gradient(to bottom, ${postTitleHoverColor} 0%, ${postTitleHoverColor} 100%)`;
-                    e.currentTarget.style.backgroundPosition = '0 100%';
+                    // e.currentTarget.style.backgroundImage = `linear-gradient(to bottom, ${postTitleHoverColor} 0%, ${postTitleHoverColor} 100%)`;
+                    // e.currentTarget.style.backgroundPosition = '0 100%';
                 },
                 onMouseLeave: (e) => {
                     e.currentTarget.style.color = postTitleColor;
@@ -1043,7 +1043,7 @@
                                             className: `title align-${postTitleAlignment} ${titleHoverUnderLine === 'enable' ? ' underline' : ''}`,
                                             style: {
                                                 
-                                                ...(attributes.postTitleMargin ? { margin: getSpacingValue(attributes.postTitleMargin) }: { margin: '10px 0px 0px 0px' }), 
+                                                ...(attributes.postTitleMargin ? { margin: getSpacingValue(attributes.postTitleMargin) }: { margin: '0px 0px 10px 0px' }), 
                                                 ...(attributes.postTitlePadding ? { padding: getSpacingValue(attributes.postTitlePadding) }: { padding: '0px 0px 0px 0px' }), 
                                                 
                                                 ...(postTitleBgColor ? { backgroundColor: postTitleBgColor } : {}),
@@ -1076,7 +1076,7 @@
                                                 ? post.title.rendered.split(' ').slice(0, titleLength).join(' ')
                                                 : post.title.rendered.substring(0, titleLength))
                                     ),
-                                
+
                                 showPostExcerpt &&
                                     wp.element.createElement('div', { 
                                         className: `fpg-excerpt align-${excerptAlignment}`,
@@ -1410,37 +1410,46 @@
                                     
                                     //TITLE
                                     showPostTitle &&
-                                        wp.element.createElement(
-                                            titleTag,
-                                            {
-                                                className: `title align-${postTitleAlignment} ${titleHoverUnderLine === 'enable' ? ' underline' : ''}`,
-                                                style: {
-                                                    ...(attributes.postTitleMargin ? { margin: getSpacingValue(attributes.postTitleMargin) }: { margin: '0px 0px 0px 0px' }), 
-                                                    ...(attributes.postTitlePadding ? { padding: getSpacingValue(attributes.postTitlePadding) }: { padding: '5px 0px 10px 0px' }),
-                                                    ...(postTitleBgColor ? { backgroundColor: postTitleBgColor } : {}),
-                                                    ...(titleOrder !== undefined ? { order: titleOrder } : {}),
-                                                    ...(postLinkType === 'nolink' ? titleTextStyle : {}), // apply if nolink
-                                                },
-                                                ...(postLinkType === 'nolink' ? titleTextHoverHandlers : {}), // attach hover if nolink
+                                    wp.element.createElement(
+                                        titleTag,
+                                        {
+                                            className: `title align-${postTitleAlignment} ${titleHoverUnderLine === 'enable' ? ' underline' : ''}`,
+                                            style: {
+                                                
+                                                ...(attributes.postTitleMargin ? { margin: getSpacingValue(attributes.postTitleMargin) }: { margin: '10px 0px 0px 0px' }), 
+                                                ...(attributes.postTitlePadding ? { padding: getSpacingValue(attributes.postTitlePadding) }: { padding: '0px 0px 0px 0px' }), 
+                                                
+                                                ...(postTitleBgColor ? { backgroundColor: postTitleBgColor } : {}),
+                                                ...(titleOrder !== undefined ? { order: titleOrder } : {}),
+                                                ...(postLinkType === 'nolink' ? titleTextStyle : {}), // apply if nolink
                                             },
-                                            postLinkType === 'yeslink'
-                                                ? wp.element.createElement(
-                                                    'a',
-                                                    {
-                                                        href: post.link,
-                                                        target: postLinkTarget === 'newWindow' ? '_blank' : '_self',
-                                                        style: titleTextStyle,
-                                                        ...titleTextHoverHandlers,
-                                                    },
-                                                    titleCropBy === 'word'
-                                                        ? post.title.rendered.split(' ').slice(0, titleLength).join(' ')
-                                                        : post.title.rendered.substring(0, titleLength)
-                                                )
-                                                : (titleCropBy === 'word'
+                                            onMouseEnter: (e) => {
+                                                e.currentTarget.style.backgroundColor = postTitleHoverBgColor;
+                                            },
+                                            onMouseLeave: (e) => {
+                                                e.currentTarget.style.backgroundColor = postTitleBgColor;
+                                                
+                                            }, 
+                                            ...(postLinkType === 'nolink' ? titleTextHoverHandlers : {}), // attach hover if nolink
+                                        },
+                                        postLinkType === 'yeslink'
+                                            ? wp.element.createElement(
+                                                'a',
+                                                {
+                                                    href: post.link,
+                                                    target: postLinkTarget === 'newWindow' ? '_blank' : '_self',
+                                                    style: titleTextStyle,
+                                                    ...titleTextHoverHandlers,
+                                                },
+                                                titleCropBy === 'word'
                                                     ? post.title.rendered.split(' ').slice(0, titleLength).join(' ')
-                                                    : post.title.rendered.substring(0, titleLength))
-                                        ),
-                                    
+                                                    : post.title.rendered.substring(0, titleLength)
+                                            )
+                                            : (titleCropBy === 'word'
+                                                ? post.title.rendered.split(' ').slice(0, titleLength).join(' ')
+                                                : post.title.rendered.substring(0, titleLength))
+                                    ),
+                                
                                     //Meta
                                     showPostExcerpt &&
                                         wp.element.createElement('div', { 
@@ -1662,12 +1671,20 @@
                                             className: `title align-${postTitleAlignment} ${titleHoverUnderLine === 'enable' ? ' underline' : ''}`,
                                             style: {
                                                 
-                                                ...(attributes.postTitleMargin ? { margin: getSpacingValue(attributes.postTitleMargin) }: { margin: '10px 0px 0px 0px' }),
+                                                ...(attributes.postTitleMargin ? { margin: getSpacingValue(attributes.postTitleMargin) }: { margin: '10px 0px 0px 0px' }), 
                                                 ...(attributes.postTitlePadding ? { padding: getSpacingValue(attributes.postTitlePadding) }: { padding: '0px 0px 0px 0px' }), 
+                                                
                                                 ...(postTitleBgColor ? { backgroundColor: postTitleBgColor } : {}),
                                                 ...(titleOrder !== undefined ? { order: titleOrder } : {}),
                                                 ...(postLinkType === 'nolink' ? titleTextStyle : {}), // apply if nolink
                                             },
+                                            onMouseEnter: (e) => {
+                                                e.currentTarget.style.backgroundColor = postTitleHoverBgColor;
+                                            },
+                                            onMouseLeave: (e) => {
+                                                e.currentTarget.style.backgroundColor = postTitleBgColor;
+                                                
+                                            }, 
                                             ...(postLinkType === 'nolink' ? titleTextHoverHandlers : {}), // attach hover if nolink
                                         },
                                         postLinkType === 'yeslink'
@@ -2026,13 +2043,20 @@
                                             className: `pre-post-title align-${postTitleAlignment} ${titleHoverUnderLine === 'enable' ? ' underline' : ''}`,
                                             style: {
                                                 
-                                                ...(attributes.postTitleMargin ? { margin: getSpacingValue(attributes.postTitleMargin) }: { margin: '0px 0px 28px 0px' }), 
+                                                ...(attributes.postTitleMargin ? { margin: getSpacingValue(attributes.postTitleMargin) }: { margin: '10px 0px 0px 0px' }), 
                                                 ...(attributes.postTitlePadding ? { padding: getSpacingValue(attributes.postTitlePadding) }: { padding: '0px 0px 0px 0px' }), 
                                                 
                                                 ...(postTitleBgColor ? { backgroundColor: postTitleBgColor } : {}),
                                                 ...(titleOrder !== undefined ? { order: titleOrder } : {}),
                                                 ...(postLinkType === 'nolink' ? titleTextStyle : {}), // apply if nolink
                                             },
+                                            onMouseEnter: (e) => {
+                                                e.currentTarget.style.backgroundColor = postTitleHoverBgColor;
+                                            },
+                                            onMouseLeave: (e) => {
+                                                e.currentTarget.style.backgroundColor = postTitleBgColor;
+                                                
+                                            }, 
                                             ...(postLinkType === 'nolink' ? titleTextHoverHandlers : {}), // attach hover if nolink
                                         },
                                         postLinkType === 'yeslink'
@@ -2052,7 +2076,7 @@
                                                 ? post.title.rendered.split(' ').slice(0, titleLength).join(' ')
                                                 : post.title.rendered.substring(0, titleLength))
                                     ),
-                                 
+                                
                                 showPostExcerpt &&
                                     wp.element.createElement('p', { 
                                         
@@ -2259,6 +2283,13 @@
                                                 ...(titleOrder !== undefined ? { order: titleOrder } : {}),
                                                 ...(postLinkType === 'nolink' ? titleTextStyle : {}), // apply if nolink
                                             },
+                                            onMouseEnter: (e) => {
+                                                e.currentTarget.style.backgroundColor = postTitleHoverBgColor;
+                                            },
+                                            onMouseLeave: (e) => {
+                                                e.currentTarget.style.backgroundColor = postTitleBgColor;
+                                                
+                                            }, 
                                             ...(postLinkType === 'nolink' ? titleTextHoverHandlers : {}), // attach hover if nolink
                                         },
                                         postLinkType === 'yeslink'
@@ -2528,6 +2559,13 @@
                                                 ...(titleOrder !== undefined ? { order: titleOrder } : {}),
                                                 ...(postLinkType === 'nolink' ? titleTextStyle : {}), // apply if nolink
                                             },
+                                            onMouseEnter: (e) => {
+                                                e.currentTarget.style.backgroundColor = postTitleHoverBgColor;
+                                            },
+                                            onMouseLeave: (e) => {
+                                                e.currentTarget.style.backgroundColor = postTitleBgColor;
+                                                
+                                            }, 
                                             ...(postLinkType === 'nolink' ? titleTextHoverHandlers : {}), // attach hover if nolink
                                         },
                                         postLinkType === 'yeslink'
@@ -2659,7 +2697,6 @@
                                 }, 
                                 
                                 //TITLE
-                                //TITLE
                                 showPostTitle &&
                                     wp.element.createElement(
                                         titleTag,
@@ -2674,6 +2711,13 @@
                                                 ...(titleOrder !== undefined ? { order: titleOrder } : {}),
                                                 ...(postLinkType === 'nolink' ? titleTextStyle : {}), // apply if nolink
                                             },
+                                            onMouseEnter: (e) => {
+                                                e.currentTarget.style.backgroundColor = postTitleHoverBgColor;
+                                            },
+                                            onMouseLeave: (e) => {
+                                                e.currentTarget.style.backgroundColor = postTitleBgColor;
+                                                
+                                            }, 
                                             ...(postLinkType === 'nolink' ? titleTextHoverHandlers : {}), // attach hover if nolink
                                         },
                                         postLinkType === 'yeslink'
@@ -2952,10 +2996,18 @@
                                                 
                                                 ...(attributes.postTitleMargin ? { margin: getSpacingValue(attributes.postTitleMargin) }: { margin: '10px 0px 0px 0px' }), 
                                                 ...(attributes.postTitlePadding ? { padding: getSpacingValue(attributes.postTitlePadding) }: { padding: '0px 0px 0px 0px' }), 
+                                                
                                                 ...(postTitleBgColor ? { backgroundColor: postTitleBgColor } : {}),
                                                 ...(titleOrder !== undefined ? { order: titleOrder } : {}),
                                                 ...(postLinkType === 'nolink' ? titleTextStyle : {}), // apply if nolink
                                             },
+                                            onMouseEnter: (e) => {
+                                                e.currentTarget.style.backgroundColor = postTitleHoverBgColor;
+                                            },
+                                            onMouseLeave: (e) => {
+                                                e.currentTarget.style.backgroundColor = postTitleBgColor;
+                                                
+                                            }, 
                                             ...(postLinkType === 'nolink' ? titleTextHoverHandlers : {}), // attach hover if nolink
                                         },
                                         postLinkType === 'yeslink'
@@ -3269,7 +3321,6 @@
                                     ),
 
                                 //TITLE
-                                // Title with Link
                                 showPostTitle &&
                                     wp.element.createElement(
                                         titleTag,
@@ -3284,6 +3335,13 @@
                                                 ...(titleOrder !== undefined ? { order: titleOrder } : {}),
                                                 ...(postLinkType === 'nolink' ? titleTextStyle : {}), // apply if nolink
                                             },
+                                            onMouseEnter: (e) => {
+                                                e.currentTarget.style.backgroundColor = postTitleHoverBgColor;
+                                            },
+                                            onMouseLeave: (e) => {
+                                                e.currentTarget.style.backgroundColor = postTitleBgColor;
+                                                
+                                            }, 
                                             ...(postLinkType === 'nolink' ? titleTextHoverHandlers : {}), // attach hover if nolink
                                         },
                                         postLinkType === 'yeslink'
@@ -3303,7 +3361,7 @@
                                                 ? post.title.rendered.split(' ').slice(0, titleLength).join(' ')
                                                 : post.title.rendered.substring(0, titleLength))
                                     ),
-                                                             
+                                                           
                                 showReadMoreButton && wp.element.createElement('div', { 
                                     className: `btn-wrapper align-${buttonAlignment} `,
                                     style: { 
@@ -3403,7 +3461,6 @@
                                 },
                             },
                         
-                            // Thumbnail Display with Link if enabled
                             // Thumbnail Display with Link if enabled
                             showThumbnail && thumbnail &&
                             wp.element.createElement(
@@ -3605,6 +3662,13 @@
                                                 ...(titleOrder !== undefined ? { order: titleOrder } : {}),
                                                 ...(postLinkType === 'nolink' ? titleTextStyle : {}), // apply if nolink
                                             },
+                                            onMouseEnter: (e) => {
+                                                e.currentTarget.style.backgroundColor = postTitleHoverBgColor;
+                                            },
+                                            onMouseLeave: (e) => {
+                                                e.currentTarget.style.backgroundColor = postTitleBgColor;
+                                                
+                                            }, 
                                             ...(postLinkType === 'nolink' ? titleTextHoverHandlers : {}), // attach hover if nolink
                                         },
                                         postLinkType === 'yeslink'
@@ -3624,7 +3688,7 @@
                                                 ? post.title.rendered.split(' ').slice(0, titleLength).join(' ')
                                                 : post.title.rendered.substring(0, titleLength))
                                     ),
-                                                         
+                                                       
                                 showReadMoreButton && wp.element.createElement('div', { 
                                     className: `btn-wrapper align-${buttonAlignment} `,
                                     style: { 
@@ -3838,7 +3902,6 @@
                                     ),
 
                                 //TITLE
-                                // Title with Link
                                 showPostTitle &&
                                     wp.element.createElement(
                                         titleTag,
@@ -3853,6 +3916,13 @@
                                                 ...(titleOrder !== undefined ? { order: titleOrder } : {}),
                                                 ...(postLinkType === 'nolink' ? titleTextStyle : {}), // apply if nolink
                                             },
+                                            onMouseEnter: (e) => {
+                                                e.currentTarget.style.backgroundColor = postTitleHoverBgColor;
+                                            },
+                                            onMouseLeave: (e) => {
+                                                e.currentTarget.style.backgroundColor = postTitleBgColor;
+                                                
+                                            }, 
                                             ...(postLinkType === 'nolink' ? titleTextHoverHandlers : {}), // attach hover if nolink
                                         },
                                         postLinkType === 'yeslink'
@@ -3872,7 +3942,7 @@
                                                 ? post.title.rendered.split(' ').slice(0, titleLength).join(' ')
                                                 : post.title.rendered.substring(0, titleLength))
                                     ),
-                                   
+                                
                                 showPostExcerpt &&
                                       wp.element.createElement('p', { 
                                           className: `fpg-excerpt align-${excerptAlignment}`,
