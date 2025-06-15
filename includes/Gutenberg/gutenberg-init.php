@@ -870,19 +870,7 @@ function fancy_post_grid_render_callback($attributes) {
             } else { // 'character'
                 $excerpt = mb_substr(get_the_excerpt(), 0, $excerptLimit) . $excerptIndicator;
             }
-            $thumbnail_style = '';
-            if (
-                !empty($thumbnailBorderRadius['top']) ||
-                !empty($thumbnailBorderRadius['right']) ||
-                !empty($thumbnailBorderRadius['bottom']) ||
-                !empty($thumbnailBorderRadius['left'])
-            ) {
-                $thumbnail_style .= 'border-radius:' .
-                    (is_numeric($thumbnailBorderRadius['top']) ? $thumbnailBorderRadius['top'] . 'px' : esc_attr($thumbnailBorderRadius['top'])) . ' ' .
-                    (is_numeric($thumbnailBorderRadius['right']) ? $thumbnailBorderRadius['right'] . 'px' : esc_attr($thumbnailBorderRadius['right'])) . ' ' .
-                    (is_numeric($thumbnailBorderRadius['bottom']) ? $thumbnailBorderRadius['bottom'] . 'px' : esc_attr($thumbnailBorderRadius['bottom'])) . ' ' .
-                    (is_numeric($thumbnailBorderRadius['left']) ? $thumbnailBorderRadius['left'] . 'px' : esc_attr($thumbnailBorderRadius['left'])) . ';';
-            }
+            
 
             // Style-based output
             if ($gridLayoutStyle === 'style1') {
