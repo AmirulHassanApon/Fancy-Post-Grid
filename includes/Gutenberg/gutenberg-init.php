@@ -919,8 +919,14 @@ function fancy_post_grid_render_callback($attributes) {
                     $output .= '">';
 
                     // Anchor with optional border-radius and overflow
-                    $output .= '<a href="' . esc_url($permalink) . '">';
-                    $output .= $thumbnail . '</a></div>';
+                    if ($thumbnailLink) {
+                        $output .= '<a href="' . esc_url($permalink) . '">';
+                        $output .= $thumbnail;
+                        $output .= '</a>';
+                    } else {
+                        $output .= $thumbnail;
+                    }
+                    $output .= '</div>';
                 }
                 // END Thumbnail
 
@@ -1247,10 +1253,20 @@ function fancy_post_grid_render_callback($attributes) {
                     if (!empty($postTitleColor)) {
                         $style .= 'color: ' . esc_attr($postTitleColor) . '; ';
                         $mouseoutStyle = 'this.style.color=\'' . esc_attr($postTitleColor) . '\';';
+                        if ($titleHoverUnderLine === 'enable') {
+                            $style .= 'background-image: linear-gradient(to bottom, ' . esc_attr($postTitleColor) . ' 0%, ' . esc_attr($postTitleColor) . ' 100%); ';
+                            $style .= 'background-position: 0 100%; ';
+                            $mouseoutStyle .= ' this.style.backgroundImage=\'linear-gradient(to bottom, ' . esc_attr($postTitleColor) . ' 0%, ' . esc_attr($postTitleColor) . ' 100%)\';';
+                            $mouseoutStyle .= ' this.style.backgroundPosition=\'0 100%\';';
+                        }
                     }
                     // Build hover color style if set
                     if (!empty($postTitleHoverColor)) {
                         $hoverStyle = 'this.style.color=\'' . esc_attr($postTitleHoverColor) . '\';';
+                        if ($titleHoverUnderLine === 'enable') {
+                            $hoverStyle .= ' this.style.backgroundImage=\'linear-gradient(to bottom, ' . esc_attr($postTitleHoverColor) . ' 0%, ' . esc_attr($postTitleHoverColor) . ' 100%)\';';
+                            $hoverStyle .= ' this.style.backgroundPosition=\'0 100%\';';
+                        }
                     }
                     // Final output
                     $output .= '<a href="' . esc_url($permalink) . '" 
@@ -1865,10 +1881,21 @@ function fancy_post_grid_render_callback($attributes) {
                     if (!empty($postTitleColor)) {
                         $style .= 'color: ' . esc_attr($postTitleColor) . '; ';
                         $mouseoutStyle = 'this.style.color=\'' . esc_attr($postTitleColor) . '\';';
+                        if ($titleHoverUnderLine === 'enable') {
+                            $style .= 'background-image: linear-gradient(to bottom, ' . esc_attr($postTitleColor) . ' 0%, ' . esc_attr($postTitleColor) . ' 100%); ';
+                            $style .= 'background-position: 0 100%; ';
+                            $mouseoutStyle .= ' this.style.backgroundImage=\'linear-gradient(to bottom, ' . esc_attr($postTitleColor) . ' 0%, ' . esc_attr($postTitleColor) . ' 100%)\';';
+                            $mouseoutStyle .= ' this.style.backgroundPosition=\'0 100%\';';
+                        }
                     }
                     // Build hover color style if set
                     if (!empty($postTitleHoverColor)) {
                         $hoverStyle = 'this.style.color=\'' . esc_attr($postTitleHoverColor) . '\';';
+                        if ($titleHoverUnderLine === 'enable') {
+                            $hoverStyle .= ' this.style.backgroundImage=\'linear-gradient(to bottom, ' . esc_attr($postTitleHoverColor) . ' 0%, ' . esc_attr($postTitleHoverColor) . ' 100%)\';';
+                            $hoverStyle .= ' this.style.backgroundPosition=\'0 100%\';';
+                        }
+
                     }
                     // Final output
                     $output .= '<a href="' . esc_url($permalink) . '" 
@@ -2117,8 +2144,14 @@ function fancy_post_grid_render_callback($attributes) {
                     $output .= '">';
 
                     // Anchor with optional border-radius and overflow
-                    $output .= '<a href="' . esc_url($permalink) . '">';
-                    $output .= $thumbnail . '</a></div>';
+                    if ($thumbnailLink) {
+                        $output .= '<a href="' . esc_url($permalink) . '">';
+                        $output .= $thumbnail;
+                        $output .= '</a>';
+                    } else {
+                        $output .= $thumbnail;
+                    }
+                    $output .= '</div>';
                 }
                 // END Thumbnail
                 // End MAIN Content
