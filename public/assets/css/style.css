@@ -6007,8 +6007,7 @@ img {
 
     /* blog layout 28 css */
     .rs-blog-layout-28{
-        padding-top: 90px;
-        padding-bottom: 120px;
+        
     }
 
     .rs-blog-layout-28 .rs-blog-layout-3-filter {
@@ -6073,12 +6072,27 @@ img {
     .rs-blog-layout-28-item .rs-content .title{
         font-size: 24px;
         line-height: 1.4;
-        margin-bottom: 0;
+        margin-bottom: 10px;
     }
     .rs-blog-layout-28-item .rs-content .title a{
         color: #0a0a0a;
         text-decoration: none;
         margin-bottom: 20px;
+    }
+    .rs-blog-layout-28 .rs-content .title.underline a{
+        display: inline;
+        transition: all 0.5s ease;
+        text-decoration: none;
+        background-image: linear-gradient(to bottom, #007aff 0%, #007aff 100%);
+        background-size: 0 2px;
+        background-repeat: no-repeat;
+        background-position: left 100%;
+        transition: all 0.7s !important;
+    }
+
+
+    .rs-blog-layout-28 .rs-content .title.underline a:hover {
+        background-size: 100% 2px;
     }
     .rs-blog-layout-28-item .rs-content .title a:hover{
         color: #007aff;
@@ -6223,6 +6237,9 @@ img {
         position: relative;
         overflow: hidden;
     }
+    .rs-blog-layout-28-item .rs-thumb a{
+        display: block;
+    }
     .rs-blog-layout-28-item .rs-thumb .rs-meta{
         position: absolute;
         right: 0;
@@ -6254,6 +6271,9 @@ img {
         justify-content: flex-end;
         flex-wrap: wrap;
         gap: 8px 15px;
+    }
+    .rs-blog-layout-28-item .rs-thumb .rs-meta ul .meta-separator{
+        color: #fff;
     }
     .rs-blog-layout-28-item .rs-thumb .rs-meta .blog-meta.align-start{
         justify-content: flex-start;
