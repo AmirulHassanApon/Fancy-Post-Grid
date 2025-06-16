@@ -1633,6 +1633,7 @@ img {
     display: block;
 }
 
+.rs-blog-layout-5 .rs-blog__single .rs-thumb img,
 .rs-blog-layout-5 .rs-blog__single .rs-thumb a img {
     transition: all linear 0.3s;
     width: 100%;
@@ -1986,6 +1987,7 @@ img {
     display: block;
 }
 
+.rs-blog-layout-6 .rs-blog__single .rs-thumb img,
 .rs-blog-layout-6 .rs-blog__single .rs-thumb a img {
     transition: all linear 0.3s;
     width: 100%;
