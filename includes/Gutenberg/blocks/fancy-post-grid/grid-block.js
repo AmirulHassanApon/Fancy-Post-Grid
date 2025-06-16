@@ -1951,15 +1951,18 @@
                                     showPostDate && wp.element.createElement(
                                         'div', 
                                         { className: 'pre-blog-meta', style: { 
-                                            color: metaTextColor, 
-                                            fontSize: `${metaFontSize}px`,
+                                            backgroundColor: metaBgColor, 
                                         } },
                                         
-                                        wp.element.createElement('span', { className: 'pre-date' }, 
+                                        wp.element.createElement('span', { className: 'pre-date', style: { 
+                                            color: metaTextColor, 
+                                        } }, 
                                             new Date(post.date).toLocaleDateString(undefined, { day: 'numeric' })
                                         ),
                                         '',
-                                        wp.element.createElement('span', { className: 'pre-month' }, 
+                                        wp.element.createElement('span', { className: 'pre-month', style: { 
+                                            color: metaTextColor, 
+                                        } }, 
                                             new Date(post.date).toLocaleDateString(undefined, { month: 'short' })
                                         ),
                                         ' ',
