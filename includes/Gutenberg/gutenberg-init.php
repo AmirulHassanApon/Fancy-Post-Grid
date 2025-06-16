@@ -262,8 +262,9 @@ function fancy_post_grid_render_callback($attributes) {
     $metaPadding = isset($attributes['metaPadding']) ? $attributes['metaPadding'] : ['top' => '0', 'right' => '0', 'bottom' => '0', 'left' => '0'];
     $metaTextColor = isset($attributes['metaTextColor']) ? sanitize_hex_color($attributes['metaTextColor']) : '';
     $separatorColor = isset($attributes['separatorColor']) ? sanitize_hex_color($attributes['separatorColor']) : '';
-    $metaFontSize = isset($attributes['metaFontSize']) ? absint($attributes['metaFontSize']) : '15';
+    $metaFontSize = isset($attributes['metaFontSize']) ? absint($attributes['metaFontSize']) : '';
     $metaIconColor = isset($attributes['metaIconColor']) ? sanitize_hex_color($attributes['metaIconColor']) : '';
+    $metaBgColor = isset($attributes['metaBgColor']) ? sanitize_hex_color($attributes['metaBgColor']) : '';
     
     // Button Alignment
     $buttonAlignment = isset($attributes['buttonAlignment']) ? sanitize_text_field($attributes['buttonAlignment']) : '';
@@ -2270,7 +2271,19 @@ function fancy_post_grid_render_callback($attributes) {
 
                         // Now Insert Meta Data inside the Thumbnail
                         if ($showMetaData) {
-                            $output .= '<div class="rs-meta align-' . $metaAlignment . '">';
+                            // $output .= '<div class="rs-meta align-' . $metaAlignment . '">';
+                            $output .= '<div class="rs-meta align-' . esc_attr($metaAlignment) . '"';
+
+                            $metaStyle = '';
+                            if (!empty($metaBgColor)) {
+                                $metaStyle .= 'background-color: ' . esc_attr($metaBgColor) . '; ';
+                            }
+
+                            if (!empty($metaStyle)) {
+                                $output .= ' style="' . trim($metaStyle) . '"';
+                            }
+
+                            $output .= '>';
                                 $output .= '<ul class="meta-data-list " style="';  
                                     // Margin
                                     if (!empty($metaMarginNew['top']) || !empty($metaMarginNew['right']) || !empty($metaMarginNew['bottom']) || !empty($metaMarginNew['left'])) {
@@ -3995,9 +4008,10 @@ function fancy_post_grid_render_callback($attributes) {
 
                     $output .= '>';
 
-                    // Icon handling
-                    $leftIcon = '<i class="ri-arrow-right-line"></i>';
-                    $rightIcon = '<i class="ri-arrow-right-line"></i>';
+                    $fontSizeStyle = !empty($buttonFontSize) ? ' style="font-size: ' . esc_attr($buttonFontSize) . 'px;"' : '';
+
+                    $leftIcon  = '<i class="ri-arrow-right-line"' . $fontSizeStyle . '></i>';
+                    $rightIcon = '<i class="ri-arrow-right-line"' . $fontSizeStyle . '></i>';
 
                     if ($iconPosition === 'left' && $showButtonIcon) {
                         $output .= $leftIcon . ' ';
@@ -4477,8 +4491,10 @@ function fancy_post_grid_render_callback($attributes) {
                     $output .= '>';
 
                     // Icon handling
-                    $leftIcon = '<i class="ri-arrow-right-line"></i>';
-                    $rightIcon = '<i class="ri-arrow-right-line"></i>';
+                    $fontSizeStyle = !empty($buttonFontSize) ? ' style="font-size: ' . esc_attr($buttonFontSize) . 'px;"' : '';
+
+                    $leftIcon  = '<i class="ri-arrow-right-line"' . $fontSizeStyle . '></i>';
+                    $rightIcon = '<i class="ri-arrow-right-line"' . $fontSizeStyle . '></i>';
 
                     if ($iconPosition === 'left' && $showButtonIcon) {
                         $output .= $leftIcon . ' ';
@@ -6195,8 +6211,10 @@ function fancy_post_grid_render_callback($attributes) {
                     $output .= '>';
 
                     // Icon handling
-                    $leftIcon = '<i class="ri-arrow-right-line"></i>';
-                    $rightIcon = '<i class="ri-arrow-right-line"></i>';
+                    $fontSizeStyle = !empty($buttonFontSize) ? ' style="font-size: ' . esc_attr($buttonFontSize) . 'px;"' : '';
+
+                    $leftIcon  = '<i class="ri-arrow-right-line"' . $fontSizeStyle . '></i>';
+                    $rightIcon = '<i class="ri-arrow-right-line"' . $fontSizeStyle . '></i>';
 
                     if ($iconPosition === 'left' && $showButtonIcon) {
                         $output .= $leftIcon . ' ';
@@ -6774,8 +6792,10 @@ function fancy_post_grid_render_callback($attributes) {
                     $output .= '>';
 
                     // Icon handling
-                    $leftIcon = '<i class="ri-arrow-right-line"></i>';
-                    $rightIcon = '<i class="ri-arrow-right-line"></i>';
+                    $fontSizeStyle = !empty($buttonFontSize) ? ' style="font-size: ' . esc_attr($buttonFontSize) . 'px;"' : '';
+
+                    $leftIcon  = '<i class="ri-arrow-right-line"' . $fontSizeStyle . '></i>';
+                    $rightIcon = '<i class="ri-arrow-right-line"' . $fontSizeStyle . '></i>';
 
                     if ($iconPosition === 'left' && $showButtonIcon) {
                         $output .= $leftIcon . ' ';
@@ -7300,8 +7320,10 @@ function fancy_post_grid_render_callback($attributes) {
                     $output .= '>';
 
                     // Icon handling
-                    $leftIcon = '<i class="ri-arrow-right-line"></i>';
-                    $rightIcon = '<i class="ri-arrow-right-line"></i>';
+                    $fontSizeStyle = !empty($buttonFontSize) ? ' style="font-size: ' . esc_attr($buttonFontSize) . 'px;"' : '';
+
+                    $leftIcon  = '<i class="ri-arrow-right-line"' . $fontSizeStyle . '></i>';
+                    $rightIcon = '<i class="ri-arrow-right-line"' . $fontSizeStyle . '></i>';
 
                     if ($iconPosition === 'left' && $showButtonIcon) {
                         $output .= $leftIcon . ' ';
@@ -7891,7 +7913,14 @@ function fancy_post_slider_render_callback($attributes) {
                     }
 
                 $output .= '">';
-                $output .= $thumbnail . '</a></div>';
+                if ($thumbnailLink) {
+                    $output .= '<a href="' . esc_url($permalink) . '">';
+                    $output .= $thumbnail;
+                    $output .= '</a>';
+                } else {
+                    $output .= $thumbnail;
+                }
+                $output .= '</div>';
             }
             // END Thumbnail
             
@@ -8420,8 +8449,10 @@ function fancy_post_slider_render_callback($attributes) {
                 $output .= '>';
 
                 // Icon handling
-                $leftIcon = '<i class="ri-arrow-right-line"></i>';
-                $rightIcon = '<i class="ri-arrow-right-line"></i>';
+                $fontSizeStyle = !empty($buttonFontSize) ? ' style="font-size: ' . esc_attr($buttonFontSize) . 'px;"' : '';
+
+                    $leftIcon  = '<i class="ri-arrow-right-line"' . $fontSizeStyle . '></i>';
+                    $rightIcon = '<i class="ri-arrow-right-line"' . $fontSizeStyle . '></i>';
 
                 if ($iconPosition === 'left' && $showButtonIcon) {
                     $output .= $leftIcon . ' ';
@@ -9066,8 +9097,10 @@ function fancy_post_slider_render_callback($attributes) {
                 $output .= '>';
 
                 // Icon handling
-                $leftIcon = '<i class="ri-arrow-right-line"></i>';
-                $rightIcon = '<i class="ri-arrow-right-line"></i>';
+                $fontSizeStyle = !empty($buttonFontSize) ? ' style="font-size: ' . esc_attr($buttonFontSize) . 'px;"' : '';
+
+                    $leftIcon  = '<i class="ri-arrow-right-line"' . $fontSizeStyle . '></i>';
+                    $rightIcon = '<i class="ri-arrow-right-line"' . $fontSizeStyle . '></i>';
 
                 if ($iconPosition === 'left' && $showButtonIcon) {
                     $output .= $leftIcon . ' ';
@@ -9623,8 +9656,10 @@ function fancy_post_slider_render_callback($attributes) {
                     $output .= '>';
 
                     // Icon handling
-                    $leftIcon = '<i class="ri-arrow-right-line"></i>';
-                    $rightIcon = '<i class="ri-arrow-right-line"></i>';
+                    $fontSizeStyle = !empty($buttonFontSize) ? ' style="font-size: ' . esc_attr($buttonFontSize) . 'px;"' : '';
+
+                    $leftIcon  = '<i class="ri-arrow-right-line"' . $fontSizeStyle . '></i>';
+                    $rightIcon = '<i class="ri-arrow-right-line"' . $fontSizeStyle . '></i>';
 
                     if ($iconPosition === 'left' && $showButtonIcon) {
                         $output .= $leftIcon . ' ';
@@ -10097,8 +10132,10 @@ function fancy_post_slider_render_callback($attributes) {
                     $output .= '>';
 
                     // Icon handling
-                    $leftIcon = '<i class="ri-arrow-right-line"></i>';
-                    $rightIcon = '<i class="ri-arrow-right-line"></i>';
+                    $fontSizeStyle = !empty($buttonFontSize) ? ' style="font-size: ' . esc_attr($buttonFontSize) . 'px;"' : '';
+
+                    $leftIcon  = '<i class="ri-arrow-right-line"' . $fontSizeStyle . '></i>';
+                    $rightIcon = '<i class="ri-arrow-right-line"' . $fontSizeStyle . '></i>';
 
                     if ($iconPosition === 'left' && $showButtonIcon) {
                         $output .= $leftIcon . ' ';
@@ -10573,8 +10610,10 @@ function fancy_post_slider_render_callback($attributes) {
                 $output .= '>';
 
                 // Icon handling
-                $leftIcon = '<i class="ri-arrow-right-line"></i>';
-                $rightIcon = '<i class="ri-arrow-right-line"></i>';
+                $fontSizeStyle = !empty($buttonFontSize) ? ' style="font-size: ' . esc_attr($buttonFontSize) . 'px;"' : '';
+
+                $leftIcon  = '<i class="ri-arrow-right-line"' . $fontSizeStyle . '></i>';
+                $rightIcon = '<i class="ri-arrow-right-line"' . $fontSizeStyle . '></i>';
 
                 if ($iconPosition === 'left' && $showButtonIcon) {
                     $output .= $leftIcon . ' ';
@@ -10913,8 +10952,10 @@ function fancy_post_slider_render_callback($attributes) {
                 $output .= '>';
 
                 // Icon handling
-                $leftIcon = '<i class="ri-arrow-right-line"></i>';
-                $rightIcon = '<i class="ri-arrow-right-line"></i>';
+                $fontSizeStyle = !empty($buttonFontSize) ? ' style="font-size: ' . esc_attr($buttonFontSize) . 'px;"' : '';
+
+                $leftIcon  = '<i class="ri-arrow-right-line"' . $fontSizeStyle . '></i>';
+                $rightIcon = '<i class="ri-arrow-right-line"' . $fontSizeStyle . '></i>';
 
                 if ($iconPosition === 'left' && $showButtonIcon) {
                     $output .= $leftIcon . ' ';
@@ -11566,8 +11607,10 @@ function fancy_post_slider_render_callback($attributes) {
                     $output .= '>';
 
                     // Icon handling
-                    $leftIcon = '<i class="ri-arrow-right-line"></i>';
-                    $rightIcon = '<i class="ri-arrow-right-line"></i>';
+                    $fontSizeStyle = !empty($buttonFontSize) ? ' style="font-size: ' . esc_attr($buttonFontSize) . 'px;"' : '';
+
+                    $leftIcon  = '<i class="ri-arrow-right-line"' . $fontSizeStyle . '></i>';
+                    $rightIcon = '<i class="ri-arrow-right-line"' . $fontSizeStyle . '></i>';
 
                     if ($iconPosition === 'left' && $showButtonIcon) {
                         $output .= $leftIcon . ' ';
@@ -12861,8 +12904,10 @@ function fancy_post_list_render_callback($attributes) {
                                 $output .= '>';
 
                                 // Icon handling
-                                $leftIcon = '<i class="ri-arrow-right-line"></i>';
-                                $rightIcon = '<i class="ri-arrow-right-line"></i>';
+                                $fontSizeStyle = !empty($buttonFontSize) ? ' style="font-size: ' . esc_attr($buttonFontSize) . 'px;"' : '';
+
+                                $leftIcon  = '<i class="ri-arrow-right-line"' . $fontSizeStyle . '></i>';
+                                $rightIcon = '<i class="ri-arrow-right-line"' . $fontSizeStyle . '></i>';
 
                                 if ($iconPosition === 'left' && $showButtonIcon) {
                                     $output .= $leftIcon . ' ';
@@ -13401,8 +13446,10 @@ function fancy_post_list_render_callback($attributes) {
                                 $output .= '>';
 
                                 // Icon handling
-                                $leftIcon = '<i class="ri-arrow-right-line"></i>';
-                                $rightIcon = '<i class="ri-arrow-right-line"></i>';
+                                $fontSizeStyle = !empty($buttonFontSize) ? ' style="font-size: ' . esc_attr($buttonFontSize) . 'px;"' : '';
+
+                                $leftIcon  = '<i class="ri-arrow-right-line"' . $fontSizeStyle . '></i>';
+                                $rightIcon = '<i class="ri-arrow-right-line"' . $fontSizeStyle . '></i>';
 
                                 if ($iconPosition === 'left' && $showButtonIcon) {
                                     $output .= $leftIcon . ' ';
@@ -14053,8 +14100,10 @@ function fancy_post_list_render_callback($attributes) {
                                 $output .= '>';
 
                                 // Icon handling
-                                $leftIcon = '<i class="ri-arrow-right-line"></i>';
-                                $rightIcon = '<i class="ri-arrow-right-line"></i>';
+                                $fontSizeStyle = !empty($buttonFontSize) ? ' style="font-size: ' . esc_attr($buttonFontSize) . 'px;"' : '';
+
+                                $leftIcon  = '<i class="ri-arrow-right-line"' . $fontSizeStyle . '></i>';
+                                $rightIcon = '<i class="ri-arrow-right-line"' . $fontSizeStyle . '></i>';
 
                                 if ($iconPosition === 'left' && $showButtonIcon) {
                                     $output .= $leftIcon . ' ';
@@ -14958,8 +15007,10 @@ function fancy_post_list_render_callback($attributes) {
                                 $output .= '>';
 
                                 // Icon handling
-                                $leftIcon = '<i class="ri-arrow-right-line"></i>';
-                                $rightIcon = '<i class="ri-arrow-right-line"></i>';
+                                $fontSizeStyle = !empty($buttonFontSize) ? ' style="font-size: ' . esc_attr($buttonFontSize) . 'px;"' : '';
+
+                                $leftIcon  = '<i class="ri-arrow-right-line"' . $fontSizeStyle . '></i>';
+                                $rightIcon = '<i class="ri-arrow-right-line"' . $fontSizeStyle . '></i>';
 
                                 if ($iconPosition === 'left' && $showButtonIcon) {
                                     $output .= $leftIcon . ' ';
@@ -15499,8 +15550,10 @@ function fancy_post_list_render_callback($attributes) {
                                 $output .= '>';
 
                                 // Icon handling
-                                $leftIcon = '<i class="ri-arrow-right-line"></i>';
-                                $rightIcon = '<i class="ri-arrow-right-line"></i>';
+                                $fontSizeStyle = !empty($buttonFontSize) ? ' style="font-size: ' . esc_attr($buttonFontSize) . 'px;"' : '';
+
+                                $leftIcon  = '<i class="ri-arrow-right-line"' . $fontSizeStyle . '></i>';
+                                $rightIcon = '<i class="ri-arrow-right-line"' . $fontSizeStyle . '></i>';
 
                                 if ($iconPosition === 'left' && $showButtonIcon) {
                                     $output .= $leftIcon . ' ';
@@ -15949,8 +16002,10 @@ function fancy_post_list_render_callback($attributes) {
                             $output .= '>';
 
                             // Icon handling
-                            $leftIcon = '<i class="ri-arrow-right-line"></i>';
-                            $rightIcon = '<i class="ri-arrow-right-line"></i>';
+                            $fontSizeStyle = !empty($buttonFontSize) ? ' style="font-size: ' . esc_attr($buttonFontSize) . 'px;"' : '';
+
+                            $leftIcon  = '<i class="ri-arrow-right-line"' . $fontSizeStyle . '></i>';
+                            $rightIcon = '<i class="ri-arrow-right-line"' . $fontSizeStyle . '></i>';
 
                             if ($iconPosition === 'left' && $showButtonIcon) {
                                 $output .= $leftIcon . ' ';
@@ -16499,8 +16554,10 @@ function fancy_post_list_render_callback($attributes) {
                             $output .= '>';
 
                             // Icon handling
-                            $leftIcon = '<i class="ri-arrow-right-line"></i>';
-                            $rightIcon = '<i class="ri-arrow-right-line"></i>';
+                            $fontSizeStyle = !empty($buttonFontSize) ? ' style="font-size: ' . esc_attr($buttonFontSize) . 'px;"' : '';
+
+                            $leftIcon  = '<i class="ri-arrow-right-line"' . $fontSizeStyle . '></i>';
+                            $rightIcon = '<i class="ri-arrow-right-line"' . $fontSizeStyle . '></i>';
 
                             if ($iconPosition === 'left' && $showButtonIcon) {
                                 $output .= $leftIcon . ' ';
@@ -17220,8 +17277,10 @@ function fancy_post_list_render_callback($attributes) {
                             $output .= '>';
 
                             // Icon handling
-                            $leftIcon = '<i class="ri-arrow-right-line"></i>';
-                            $rightIcon = '<i class="ri-arrow-right-line"></i>';
+                            $fontSizeStyle = !empty($buttonFontSize) ? ' style="font-size: ' . esc_attr($buttonFontSize) . 'px;"' : '';
+
+                            $leftIcon  = '<i class="ri-arrow-right-line"' . $fontSizeStyle . '></i>';
+                            $rightIcon = '<i class="ri-arrow-right-line"' . $fontSizeStyle . '></i>';
 
                             if ($iconPosition === 'left' && $showButtonIcon) {
                                 $output .= $leftIcon . ' ';
@@ -17672,8 +17731,10 @@ function fancy_post_list_render_callback($attributes) {
                                 $output .= '>';
 
                                 // Icon handling
-                                $leftIcon = '<i class="ri-arrow-right-line"></i>';
-                                $rightIcon = '<i class="ri-arrow-right-line"></i>';
+                                $fontSizeStyle = !empty($buttonFontSize) ? ' style="font-size: ' . esc_attr($buttonFontSize) . 'px;"' : '';
+
+                                $leftIcon  = '<i class="ri-arrow-right-line"' . $fontSizeStyle . '></i>';
+                                $rightIcon = '<i class="ri-arrow-right-line"' . $fontSizeStyle . '></i>';
 
                                 if ($iconPosition === 'left' && $showButtonIcon) {
                                     $output .= $leftIcon . ' ';
@@ -18078,8 +18139,10 @@ function fancy_post_list_render_callback($attributes) {
                                 $output .= '>';
 
                                 // Icon handling
-                                $leftIcon = '<i class="ri-arrow-right-line"></i>';
-                                $rightIcon = '<i class="ri-arrow-right-line"></i>';
+                                $fontSizeStyle = !empty($buttonFontSize) ? ' style="font-size: ' . esc_attr($buttonFontSize) . 'px;"' : '';
+
+                                $leftIcon  = '<i class="ri-arrow-right-line"' . $fontSizeStyle . '></i>';
+                                $rightIcon = '<i class="ri-arrow-right-line"' . $fontSizeStyle . '></i>';
 
                                 if ($iconPosition === 'left' && $showButtonIcon) {
                                     $output .= $leftIcon . ' ';
@@ -20145,8 +20208,10 @@ function fancy_post_isotope_render_callback($attributes) {
                         $output .= '>';
 
                         // Icon handling
-                        $leftIcon = '<i class="ri-arrow-right-line"></i>';
-                        $rightIcon = '<i class="ri-arrow-right-line"></i>';
+                        $fontSizeStyle = !empty($buttonFontSize) ? ' style="font-size: ' . esc_attr($buttonFontSize) . 'px;"' : '';
+
+                        $leftIcon  = '<i class="ri-arrow-right-line"' . $fontSizeStyle . '></i>';
+                        $rightIcon = '<i class="ri-arrow-right-line"' . $fontSizeStyle . '></i>';
 
                         if ($iconPosition === 'left' && $showButtonIcon) {
                             $output .= $leftIcon . ' ';
@@ -20800,8 +20865,10 @@ function fancy_post_isotope_render_callback($attributes) {
                     $output .= '>';
 
                     // Icon handling
-                    $leftIcon = '<i class="ri-arrow-right-line"></i>';
-                    $rightIcon = '<i class="ri-arrow-right-line"></i>';
+                    $fontSizeStyle = !empty($buttonFontSize) ? ' style="font-size: ' . esc_attr($buttonFontSize) . 'px;"' : '';
+
+                    $leftIcon  = '<i class="ri-arrow-right-line"' . $fontSizeStyle . '></i>';
+                    $rightIcon = '<i class="ri-arrow-right-line"' . $fontSizeStyle . '></i>';
 
                     if ($iconPosition === 'left' && $showButtonIcon) {
                         $output .= $leftIcon . ' ';
@@ -21457,8 +21524,10 @@ function fancy_post_isotope_render_callback($attributes) {
                     $output .= '>';
 
                     // Icon handling
-                    $leftIcon = '<i class="ri-arrow-right-line"></i>';
-                    $rightIcon = '<i class="ri-arrow-right-line"></i>';
+                    $fontSizeStyle = !empty($buttonFontSize) ? ' style="font-size: ' . esc_attr($buttonFontSize) . 'px;"' : '';
+
+                    $leftIcon  = '<i class="ri-arrow-right-line"' . $fontSizeStyle . '></i>';
+                    $rightIcon = '<i class="ri-arrow-right-line"' . $fontSizeStyle . '></i>';
 
                     if ($iconPosition === 'left' && $showButtonIcon) {
                         $output .= $leftIcon . ' ';
@@ -22619,8 +22688,10 @@ function fancy_post_isotope_render_callback($attributes) {
                     $output .= '>';
 
                     // Icon handling
-                    $leftIcon = '<i class="ri-arrow-right-line"></i>';
-                    $rightIcon = '<i class="ri-arrow-right-line"></i>';
+                    $fontSizeStyle = !empty($buttonFontSize) ? ' style="font-size: ' . esc_attr($buttonFontSize) . 'px;"' : '';
+
+                    $leftIcon  = '<i class="ri-arrow-right-line"' . $fontSizeStyle . '></i>';
+                    $rightIcon = '<i class="ri-arrow-right-line"' . $fontSizeStyle . '></i>';
 
                     if ($iconPosition === 'left' && $showButtonIcon) {
                         $output .= $leftIcon . ' ';
@@ -23539,8 +23610,10 @@ function fancy_post_isotope_render_callback($attributes) {
                     $output .= '>';
 
                     // Icon handling
-                    $leftIcon = '<i class="ri-arrow-right-line"></i>';
-                    $rightIcon = '<i class="ri-arrow-right-line"></i>';
+                    $fontSizeStyle = !empty($buttonFontSize) ? ' style="font-size: ' . esc_attr($buttonFontSize) . 'px;"' : '';
+
+                    $leftIcon  = '<i class="ri-arrow-right-line"' . $fontSizeStyle . '></i>';
+                    $rightIcon = '<i class="ri-arrow-right-line"' . $fontSizeStyle . '></i>';
 
                     if ($iconPosition === 'left' && $showButtonIcon) {
                         $output .= $leftIcon . ' ';

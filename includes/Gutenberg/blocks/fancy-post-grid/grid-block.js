@@ -131,6 +131,7 @@
             metaMarginNew: { type: 'object' }, 
             metaPadding: { type: 'object' }, 
             metaTextColor: { type: 'string', default: '' },
+            metaBgColor: { type: 'string', default: '' },
             separatorColor: { type: 'string', default: '' },
             metaIconColor: { type: 'string', default: '' },
             
@@ -205,7 +206,7 @@
                 excerptPadding,excerptColor,excerptBgColor,excerptHoverColor,excerptHoverBgColor,
                 excerptHoverBorderColor,
 
-                metaAlignment,metaFontSize,metaMarginNew,metaPadding,metaTextColor,separatorColor,metaIconColor,
+                metaAlignment,metaFontSize,metaMarginNew,metaPadding,metaTextColor,separatorColor,metaIconColor,metaBgColor,
 
                 buttonAlignment,buttonMarginNew,buttonPaddingNew,buttonTextColor,buttonBackgroundColor,buttonBorderType,buttonFontWeight,
                 buttonBorderWidth,buttonBorderRadius,buttonFontSize,buttonHoverTextColor,buttonHoverBackgroundColor,
@@ -1290,6 +1291,7 @@
                                                     ...(attributes.metaPadding ? { padding: getSpacingValue(attributes.metaPadding) }: { padding: '9px 30px 9px 30px' }),
                                                     
                                                     ...(metaTextColor ? { color: metaTextColor } : {}),
+                                                    ...(metaBgColor ? { backgroundColor: metaBgColor } : {}),
                                                     ...(typeof metaOrder !== 'undefined' ? { order: metaOrder } : {}),
                                                     ...(metaFontSize ? { fontSize: `${metaFontSize}px` } : {})
                                                     } 
@@ -1455,7 +1457,7 @@
                                                 : post.title.rendered.substring(0, titleLength))
                                     ),
                                 
-                                    //Meta
+                                    //Excerpt
                                     showPostExcerpt &&
                                         wp.element.createElement('div', { 
                                             className: `fpg-excerpt align-${excerptAlignment}`,
@@ -4999,6 +5001,18 @@
                                     wp.element.createElement(Button, {
                                         isSecondary: true,
                                         onClick: () => setAttributes({ metaTextColor: '' }),
+                                        style: { marginTop: '10px' },
+                                    }, __('Clear Color', 'fancy-post-grid')),
+
+                                    // Meta Text Color
+                                    wp.element.createElement('p', {}, __('Meta Background Color', 'fancy-post-grid')),
+                                    wp.element.createElement(wp.components.ColorPicker, {
+                                        color: attributes.metaBgColor,
+                                        onChangeComplete: (value) => setAttributes({ metaBgColor: value.hex }),
+                                    }),
+                                    wp.element.createElement(Button, {
+                                        isSecondary: true,
+                                        onClick: () => setAttributes({ metaBgColor: '' }),
                                         style: { marginTop: '10px' },
                                     }, __('Clear Color', 'fancy-post-grid')),
 
