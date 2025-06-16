@@ -1885,14 +1885,15 @@
                                   border-color: ${attributes.itemBorderColor || '#007aff'};
                                   border-style: ${attributes.itemBorderType || 'solid'} ;
                                   border-width: ${getSpacingValue(attributes.itemBorderWidth) || '1px 1px 1px 1px'} ;
-                                  border-radius: ${getSpacingValue(attributes.itemBorderRadius) || '5px 5px 5px 5px'} ;
-                                  
+                                  border-radius: ${getSpacingValue(attributes.itemBorderRadius) || '5px 5px 5px 5px'} ; 
                               }
                               .pre-blog-item.style_12 .blog-inner-wrap .pre-image-wrap .pre-blog-meta::after {
                                   border-style:  solid ;
                                   border-width:  1px 1px 1px 1px ;
                                   border-color: ${attributes.metaBgColor || '#fff'};
-
+                              }
+                              .pre-blog-item.style_12:hover .blog-inner-wrap .pre-blog-content {
+                                  background: ${attributes.contentBgColor || '#007aff'};
                               },
                           `),
                 wp.element.createElement(
@@ -1994,7 +1995,7 @@
                                       : { padding: '75px 20px 25px 20px' }), // your default fallback
                                     ...(attributes.contentBorderWidth ? { borderWidth: getSpacingValue(attributes.contentBorderWidth) } : {}),
                                     ...(attributes.contentnormalBorderType ? { borderStyle: attributes.contentnormalBorderType } : {}),
-                                    ...(contentBgColor ? { backgroundColor: contentBgColor } : {}),
+                                    // ...(contentBgColor ? { backgroundColor: contentBgColor } : {}),
                                     ...(contentBorderColor ? { borderColor: contentBorderColor } : {})
                                     },
                                 }, 
