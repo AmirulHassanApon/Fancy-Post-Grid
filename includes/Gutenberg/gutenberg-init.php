@@ -3546,6 +3546,20 @@ function fancy_post_grid_render_callback($attributes) {
                 $afterStyles .= '}';
                 $output .= '<style>' . $afterStyles . '</style>';
 
+                $afterMetaStyles = '.pre-blog-item.style_12 .blog-inner-wrap .pre-image-wrap .pre-blog-meta::after {';
+                
+                $afterMetaStyles .= 'border-color: ' . (!empty($metaBgColor) ? esc_attr($metaBgColor) : '#fff') . ';';
+                $afterMetaStyles .= 'border-style: solid ;';
+                $afterMetaStyles .= 'border-width: 1px; ';
+                
+                $afterMetaStyles .= '}';
+                $output .= '<style>' . $afterMetaStyles . '</style>';
+
+                $afterContentStyles = '.pre-blog-item.style_12:hover .blog-inner-wrap .pre-blog-content {';
+                $afterContentStyles .= 'background: ' . (!empty($contentBgColor) ? esc_attr($contentBgColor) : '#fff') . ';';
+                $afterContentStyles .= '}';
+                $output .= '<style>' . $afterContentStyles . '</style>';
+
                 // Full post layout
                 $output .= '<div class="pre-blog-item style_12 pre-blog-meta-style2 default">';
                 
@@ -3677,10 +3691,7 @@ function fancy_post_grid_render_callback($attributes) {
                     if (!empty($contentNormalBorderType)) {
                         $output .= 'border-style: ' . esc_attr($contentNormalBorderType) . '; ';
                     }
-                    // Background Color
-                    if (!empty($contentBgColor)) {
-                        $output .= 'background-color: ' . esc_attr($contentBgColor) . '; ';
-                    }
+                    
                     // Border Color
                     if (!empty($contentBorderColor)) {
                         $output .= 'border-color: ' . esc_attr($contentBorderColor) . '; ';
