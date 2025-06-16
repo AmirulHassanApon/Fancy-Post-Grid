@@ -7392,6 +7392,7 @@ function fancy_post_grid_render_callback($attributes) {
                 (isset($paginationPaddingNew['left']) && $paginationPaddingNew['left'] !== '' ? (is_numeric($paginationPaddingNew['left']) ? $paginationPaddingNew['left'] . 'px' : esc_attr($paginationPaddingNew['left'])) : '0px');
 
 
+
             $gap = is_numeric($paginationGap) ? $paginationGap . 'px' : esc_attr($paginationGap);
             $fontSize = is_numeric($paginationFontSize) ? $paginationFontSize . 'px' : esc_attr($paginationFontSize);
 
