@@ -80,7 +80,7 @@
             itemPadding: { type: 'object' },
             itemBorderRadius: { type: 'object', default: { top: '5', right: '5', bottom: '5', left: '5' }, },
             itemGap: { type: 'number', default: '30' },
-            itemBoxAlignment: { type: 'string', default: 'start' },
+            itemBoxAlignment: { type: 'string'},
             itemBorderType: { type: 'string', default: '' },
             itemBoxShadow: { type: 'object' },
             itemBoxShadowColor: { type: 'string', default: '' },  
@@ -270,6 +270,32 @@
               ? 'fancy_post_landscape' : attributes.thumbnailSize;  
             const thumbnailSize12 = (gridLayoutStyle === 'style12' && attributes.thumbnailSize == null)
               ? 'fancy_post_square' : attributes.thumbnailSize;
+
+            // itemBoxAlignment
+            const itemBoxAlignment1 = (gridLayoutStyle === 'style1' && attributes.itemBoxAlignment == null)
+              ? 'start' : attributes.itemBoxAlignment; 
+            const itemBoxAlignment2 = (gridLayoutStyle === 'style2' && attributes.itemBoxAlignment == null)
+              ? 'start' : attributes.itemBoxAlignment;  
+            const itemBoxAlignment3 = (gridLayoutStyle === 'style3' && attributes.itemBoxAlignment == null)
+              ? 'start' : attributes.itemBoxAlignment;
+            const itemBoxAlignment4 = (gridLayoutStyle === 'style4' && attributes.itemBoxAlignment == null)
+              ? 'center' : attributes.itemBoxAlignment; 
+            const itemBoxAlignment5 = (gridLayoutStyle === 'style5' && attributes.itemBoxAlignment == null)
+              ? 'start' : attributes.itemBoxAlignment;  
+            const itemBoxAlignment6 = (gridLayoutStyle === 'style6' && attributes.itemBoxAlignment == null)
+              ? 'start' : attributes.itemBoxAlignment; 
+            const itemBoxAlignment7 = (gridLayoutStyle === 'style7' && attributes.itemBoxAlignment == null)
+              ? 'start' : attributes.itemBoxAlignment;  
+            const itemBoxAlignment8 = (gridLayoutStyle === 'style8' && attributes.itemBoxAlignment == null)
+              ? 'start' : attributes.itemBoxAlignment;
+            const itemBoxAlignment9 = (gridLayoutStyle === 'style9' && attributes.itemBoxAlignment == null)
+              ? 'start' : attributes.itemBoxAlignment;  
+            const itemBoxAlignment10 = (gridLayoutStyle === 'style10' && attributes.itemBoxAlignment == null)
+              ? 'start' : attributes.itemBoxAlignment; 
+            const itemBoxAlignment11 = (gridLayoutStyle === 'style11' && attributes.itemBoxAlignment == null)
+              ? 'start' : attributes.itemBoxAlignment;  
+            const itemBoxAlignment12 = (gridLayoutStyle === 'style12' && attributes.itemBoxAlignment == null)
+              ? 'start' : attributes.itemBoxAlignment;
 
             // Button Style
             const buttonStyle1 = (gridLayoutStyle === 'style1' && attributes.buttonStyle == null)
@@ -548,7 +574,7 @@
                         
                         return wp.element.createElement('div', { 
                             key: post.id, 
-                                className: `fancy-post-item rs-blog__single align-${itemBoxAlignment} ${hoverAnimation}`,
+                                className: `fancy-post-item rs-blog__single align-${itemBoxAlignment1} ${hoverAnimation}`,
                                 style: {
                                     
                                     ...(attributes.itemMargin
@@ -892,7 +918,7 @@
                         
                         return wp.element.createElement('div', { 
                             key: post.id, 
-                                className: `fancy-post-item rs-blog__single mt-30 align-${itemBoxAlignment} ${hoverAnimation}`,
+                                className: `fancy-post-item rs-blog__single mt-30 align-${itemBoxAlignment2} ${hoverAnimation}`,
                                 style: {
                                     
                                     ...(attributes.itemMargin
@@ -1232,7 +1258,7 @@
                             
                             return wp.element.createElement('div', { 
                                 key: post.id, 
-                                    className: `fancy-post-item rs-blog-layout-28-item align-${itemBoxAlignment} ${hoverAnimation}`,
+                                    className: `fancy-post-item rs-blog-layout-28-item align-${itemBoxAlignment3} ${hoverAnimation}`,
                                     style: {
                                         ...(attributes.itemMargin
                                           ? { margin: getSpacingValue(attributes.itemMargin) }
@@ -1577,7 +1603,7 @@
                         
                         return wp.element.createElement('div', { 
                             key: post.id, 
-                                className: `fancy-post-item rs-blog-layout-30-item align-${itemBoxAlignment} ${hoverAnimation}`,
+                                className: `fancy-post-item rs-blog-layout-30-item align-${itemBoxAlignment4} ${hoverAnimation}`,
                                 style: {
                                     
                                     ...(attributes.itemMargin
@@ -1870,7 +1896,7 @@
                         
                         return wp.element.createElement('div', { 
                             key: post.id, 
-                                className: `fancy-post-item pre-blog-item style_12 pre-blog-meta-style2 default align-${itemBoxAlignment}`,
+                                className: `fancy-post-item pre-blog-item style_12 pre-blog-meta-style2 default align-${itemBoxAlignment5}`,
                                 style: { 
                                     ...(attributes.itemMargin
                                       ? { margin: getSpacingValue(attributes.itemMargin) }
@@ -2193,7 +2219,7 @@
                         
                         return wp.element.createElement('div', { 
                             key: post.id, 
-                                className: `fancy-post-item rs-blog-layout-13-item align-${itemBoxAlignment} ${hoverAnimation}`,
+                                className: `fancy-post-item rs-blog-layout-13-item align-${itemBoxAlignment6} ${hoverAnimation}`,
                                 style: {
                                     ...(attributes.itemMargin
                                       ? { margin: getSpacingValue(attributes.itemMargin) }
@@ -2484,7 +2510,7 @@
                         
                         return wp.element.createElement('div', { 
                             key: post.id, 
-                                className: `fancy-post-item rs-blog-layout-14-item align-${itemBoxAlignment} ${hoverAnimation}`,
+                                className: `fancy-post-item rs-blog-layout-14-item align-${itemBoxAlignment7} ${hoverAnimation}`,
                                 style: {
                                     ...(attributes.itemMargin
                                       ? { margin: getSpacingValue(attributes.itemMargin) }
@@ -2670,7 +2696,7 @@
                         
                         return wp.element.createElement('div', { 
                             key: post.id, 
-                                className: `fancy-post-item rs-blog-layout-15-item align-${itemBoxAlignment} ${hoverAnimation}`,
+                                className: `fancy-post-item rs-blog-layout-15-item align-${itemBoxAlignment8} ${hoverAnimation}`,
                                 style: {
                                     ...(attributes.itemMargin
                                       ? { margin: getSpacingValue(attributes.itemMargin) }
@@ -2928,7 +2954,7 @@
                         
                         return wp.element.createElement('div', { 
                             key: post.id, 
-                                className: `fancy-post-item rs-blog-layout-16-item align-${itemBoxAlignment} ${hoverAnimation}`,
+                                className: `fancy-post-item rs-blog-layout-16-item align-${itemBoxAlignment9} ${hoverAnimation}`,
                                 style: {
                                     ...(attributes.itemMargin
                                       ? { margin: getSpacingValue(attributes.itemMargin) }
@@ -3141,7 +3167,7 @@
                         
                         return wp.element.createElement('div', { 
                             key: post.id, 
-                                className: `fancy-post-item rs-blog-layout-19-item align-${itemBoxAlignment} ${hoverAnimation}`,
+                                className: `fancy-post-item rs-blog-layout-19-item align-${itemBoxAlignment10} ${hoverAnimation}`,
                                 style: {
                                     
                                     ...(attributes.itemMargin
@@ -3447,7 +3473,7 @@
                         
                         return wp.element.createElement('div', { 
                             key: post.id, 
-                                className: `fancy-post-item rs-blog-layout-21-item align-${itemBoxAlignment} ${hoverAnimation}`,
+                                className: `fancy-post-item rs-blog-layout-21-item align-${itemBoxAlignment11} ${hoverAnimation}`,
                                 style: {
                                     ...(attributes.itemMargin
                                       ? { margin: getSpacingValue(attributes.itemMargin) }
@@ -3775,7 +3801,7 @@
                         
                         return wp.element.createElement('div', { 
                             key: post.id, 
-                                className: `fancy-post-item rs-blog-layout-26-item align-${itemBoxAlignment} ${hoverAnimation}`,
+                                className: `fancy-post-item rs-blog-layout-26-item align-${itemBoxAlignment12} ${hoverAnimation}`,
                                 style: {
                                     ...(attributes.itemMargin
                                       ? { margin: getSpacingValue(attributes.itemMargin) }
