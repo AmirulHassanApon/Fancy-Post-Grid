@@ -3644,10 +3644,10 @@ function fancy_post_grid_render_callback($attributes) {
                     }
                     
                     if ($showPostDate) {
-                        $output .= '<div class="pre-blog-meta" style="color:' . esc_attr($metaTextColor) . '; ">';
+                        $output .= '<div class="pre-blog-meta" style="background:' . esc_attr($metaBgColor) . '; ">';
                         
-                        $output .= '<span class="pre-date">' . esc_html(get_the_date('d')) . '</span>';
-                        $output .= '<span class="pre-month"> ' . esc_html(get_the_date('F')) . '</span>'; 
+                        $output .= '<span class="pre-date" style="color:' . esc_attr($metaTextColor) . '; " >' . esc_html(get_the_date('d')) . '</span>';
+                        $output .= '<span class="pre-month" style="color:' . esc_attr($metaTextColor) . '; " > ' . esc_html(get_the_date('F')) . '</span>'; 
                         $output .= '</div>';
                     }
                     $output .= '</div>';
