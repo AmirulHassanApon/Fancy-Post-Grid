@@ -6262,6 +6262,10 @@ img {
         flex-wrap: wrap;
         gap: 8px 15px;
     }
+    .rs-blog-layout-28-item .rs-thumb .rs-meta ul .meta-separator{
+        color: #fff;
+        line-height: 1;
+    }
     .rs-blog-layout-28-item .rs-thumb .rs-meta .blog-meta.align-start{
         justify-content: flex-start;
     }
