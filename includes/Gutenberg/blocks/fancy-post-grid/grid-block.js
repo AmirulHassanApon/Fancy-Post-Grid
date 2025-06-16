@@ -1877,6 +1877,18 @@
             }
             else if (gridLayoutStyle === 'style5' && posts && posts.length) {
                 content = wp.element.createElement(
+                          wp.element.Fragment,
+                          null,
+                          wp.element.createElement('style', null, `
+                              .pre-blog-item.style_12:after {
+                                  content: '';
+                                  border-color: ${attributes.itemBorderColor || '#000'};
+                                  border-type: ${attributes.itemBorderType || 'solid'} ;
+                                  border-width: ${getSpacingValue(attributes.itemBorderWidth) || '2px'} ;
+                                  
+                              }
+                          `),
+                wp.element.createElement(
                     'div',
                     { 
                         className: 'rs-blog-layout-12 fancy-post-grid', 
@@ -1906,10 +1918,9 @@
                                       ? { padding: getSpacingValue(attributes.itemPadding) }
                                       : { padding: '0px 0px 0px 0px' }), // your default fallback                                   
                                     ...(attributes.itemBorderRadius ? { borderRadius: getSpacingValue(attributes.itemBorderRadius) } : {}),
-                                    ...(attributes.itemBorderWidth ? { borderWidth: getSpacingValue(attributes.itemBorderWidth) } : {}),
+                                    
                                     ...(attributes.itemBackgroundColor ? { backgroundColor: attributes.itemBackgroundColor } : {}),
-                                    ...(attributes.itemBorderType ? { borderStyle: attributes.itemBorderType } : {}),
-                                    ...(attributes.itemBorderColor ? { borderColor: attributes.itemBorderColor } : {}),
+                                    
                                     ...((getSpacingValue(attributes.itemBoxShadow) || attributes.itemBoxShadowColor) ? {
                                         boxShadow: `${getSpacingValue(attributes.itemBoxShadow) || '10px'} ${attributes.itemBoxShadowColor || 'rgba(0,0,0,0.1)'}`
                                     } : {})
@@ -2079,7 +2090,7 @@
                                             className: `pre-post-title align-${postTitleAlignment} ${titleHoverUnderLine === 'enable' ? ' underline' : ''}`,
                                             style: {
                                                 
-                                                ...(attributes.postTitleMargin ? { margin: getSpacingValue(attributes.postTitleMargin) }: { margin: '0px 0px 28px 0px' }), 
+                                                ...(attributes.postTitleMargin ? { margin: getSpacingValue(attributes.postTitleMargin) }: { margin: '0px 0px 42px 0px' }), 
                                                 ...(attributes.postTitlePadding ? { padding: getSpacingValue(attributes.postTitlePadding) }: { padding: '0px 0px 0px 0px' }), 
                                                 
                                                 ...(postTitleBgColor ? { backgroundColor: postTitleBgColor } : {}),
@@ -2188,7 +2199,7 @@
                             
                         );
                     }),
-                    
+                  ),  
                 );
                 
                 // Add pagination below the posts
