@@ -1473,8 +1473,10 @@ function fancy_post_grid_render_callback($attributes) {
                     $output .= '>';
 
                     // Icon handling
-                    $leftIcon = '<i class="ri-arrow-right-line"></i>';
-                    $rightIcon = '<i class="ri-arrow-right-line"></i>';
+                    $fontSizeStyle = !empty($buttonFontSize) ? ' style="font-size: ' . esc_attr($buttonFontSize) . 'px;"' : '';
+
+                    $leftIcon  = '<i class="ri-arrow-right-line"' . $fontSizeStyle . '></i>';
+                    $rightIcon = '<i class="ri-arrow-right-line"' . $fontSizeStyle . '></i>';
 
                     if ($iconPosition === 'left' && $showButtonIcon) {
                         $output .= $leftIcon . ' ';
@@ -2094,8 +2096,10 @@ function fancy_post_grid_render_callback($attributes) {
                     $output .= '>';
 
                     // Icon handling
-                    $leftIcon = '<i class="ri-arrow-right-line"></i>';
-                    $rightIcon = '<i class="ri-arrow-right-line"></i>';
+                    $fontSizeStyle = !empty($buttonFontSize) ? ' style="font-size: ' . esc_attr($buttonFontSize) . 'px;"' : '';
+
+                    $leftIcon  = '<i class="ri-arrow-right-line"' . $fontSizeStyle . '></i>';
+                    $rightIcon = '<i class="ri-arrow-right-line"' . $fontSizeStyle . '></i>';
 
                     if ($iconPosition === 'left' && $showButtonIcon) {
                         $output .= $leftIcon . ' ';
@@ -2802,9 +2806,10 @@ function fancy_post_grid_render_callback($attributes) {
                     $output .= '>';
 
                     // Icon handling
-                    $leftIcon = '<i class="ri-arrow-right-line"></i>';
-                    $rightIcon = '<i class="ri-arrow-right-line"></i>';
+                    $fontSizeStyle = !empty($buttonFontSize) ? ' style="font-size: ' . esc_attr($buttonFontSize) . 'px;"' : '';
 
+                    $leftIcon  = '<i class="ri-arrow-right-line"' . $fontSizeStyle . '></i>';
+                    $rightIcon = '<i class="ri-arrow-right-line"' . $fontSizeStyle . '></i>';
                     if ($iconPosition === 'left' && $showButtonIcon) {
                         $output .= $leftIcon . ' ';
                     }
