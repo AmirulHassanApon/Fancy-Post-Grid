@@ -7365,6 +7365,10 @@ function fancy_post_grid_render_callback($attributes) {
                             (is_numeric($paginationBorderRadius['right']) ? $paginationBorderRadius['right'] . 'px' : esc_attr($paginationBorderRadius['right'])) . ' ' .
                             (is_numeric($paginationBorderRadius['bottom']) ? $paginationBorderRadius['bottom'] . 'px' : esc_attr($paginationBorderRadius['bottom'])) . ' ' .
                             (is_numeric($paginationBorderRadius['left']) ? $paginationBorderRadius['left'] . 'px' : esc_attr($paginationBorderRadius['left']));
+            $padding = (is_numeric($paginationPaddingNew['top']) ? $paginationPaddingNew['top'] . 'px' : esc_attr($paginationPaddingNew['top'])) . ' ' .
+                            (is_numeric($paginationPaddingNew['right']) ? $paginationPaddingNew['right'] . 'px' : esc_attr($paginationPaddingNew['right'])) . ' ' .
+                            (is_numeric($paginationPaddingNew['bottom']) ? $paginationPaddingNew['bottom'] . 'px' : esc_attr($paginationPaddingNew['bottom'])) . ' ' .
+                            (is_numeric($paginationPaddingNew['left']) ? $paginationPaddingNew['left'] . 'px' : esc_attr($paginationPaddingNew['left']));
 
             $gap = is_numeric($paginationGap) ? $paginationGap . 'px' : esc_attr($paginationGap);
             $fontSize = is_numeric($paginationFontSize) ? $paginationFontSize . 'px' : esc_attr($paginationFontSize);
@@ -7390,7 +7394,7 @@ function fancy_post_grid_render_callback($attributes) {
                     $styled_link = preg_replace_callback(
                         '/<(a|span)([^>]*)>/',
                         function ($matches) use (
-                            $borderWidth, $paginationBorderStyle, $paginationBorderColor, $borderRadius,
+                            $borderWidth, $paginationBorderStyle, $paginationBorderColor, $borderRadius,$padding,
                             $paginationTextColor, $paginationBackgroundColor,
                             $paginationHoverTextColor, $paginationHoverBackgroundColor, $paginationHoverBorderColor,
                             $paginationActiveTextColor, $paginationActiveBackgroundColor, $paginationActiveBorderColor,$fontSize
@@ -7407,6 +7411,7 @@ function fancy_post_grid_render_callback($attributes) {
                             $style .= 'border-style:' . esc_attr($paginationBorderStyle) . '; ';
                             $style .= 'border-color:' . esc_attr($is_current ? $paginationActiveBorderColor : $paginationBorderColor) . '; ';
                             $style .= 'border-radius:' . esc_attr($borderRadius) . '; ';
+                            $style .= 'padding:' . esc_attr($padding) . '; ';
                             $style .= 'color:' . esc_attr($is_current ? $paginationActiveTextColor : $paginationTextColor) . '; ';
                             $style .= 'background-color:' . esc_attr($is_current ? $paginationActiveBackgroundColor : $paginationBackgroundColor) . '; ';
                             
