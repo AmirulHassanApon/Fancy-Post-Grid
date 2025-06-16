@@ -3032,26 +3032,28 @@ function fancy_post_grid_render_callback($attributes) {
                         // Margin
                         if (!empty($thumbnailMargin['top']) || !empty($thumbnailMargin['right']) || !empty($thumbnailMargin['bottom']) || !empty($thumbnailMargin['left'])) {
                             $output .= 'margin: ' . 
-                                (is_numeric($thumbnailMargin['top']) ? $thumbnailMargin['top'] . 'px' : esc_attr($thumbnailMargin['top'])) . ' ' . 
-                                (is_numeric($thumbnailMargin['right']) ? $thumbnailMargin['right'] . 'px' : esc_attr($thumbnailMargin['right'])) . ' ' . 
-                                (is_numeric($thumbnailMargin['bottom']) ? $thumbnailMargin['bottom'] . 'px' : esc_attr($thumbnailMargin['bottom'])) . ' ' . 
-                                (is_numeric($thumbnailMargin['left']) ? $thumbnailMargin['left'] . 'px' : esc_attr($thumbnailMargin['left'])) . '; ';
+                                (isset($thumbnailMargin['top']) && $thumbnailMargin['top'] !== '' ? (is_numeric($thumbnailMargin['top']) ? $thumbnailMargin['top'] . 'px' : esc_attr($thumbnailMargin['top'])) : '0px') . ' ' .
+                                (isset($thumbnailMargin['right']) && $thumbnailMargin['right'] !== '' ? (is_numeric($thumbnailMargin['right']) ? $thumbnailMargin['right'] . 'px' : esc_attr($thumbnailMargin['right'])) : '0px') . ' ' .
+                                (isset($thumbnailMargin['bottom']) && $thumbnailMargin['bottom'] !== '' ? (is_numeric($thumbnailMargin['bottom']) ? $thumbnailMargin['bottom'] . 'px' : esc_attr($thumbnailMargin['bottom'])) : '0px') . ' ' .
+                                (isset($thumbnailMargin['left']) && $thumbnailMargin['left'] !== '' ? (is_numeric($thumbnailMargin['left']) ? $thumbnailMargin['left'] . 'px' : esc_attr($thumbnailMargin['left'])) : '0px') . '; ';
                         }
 
                         // Padding
                         if (!empty($thumbnailPadding['top']) || !empty($thumbnailPadding['right']) || !empty($thumbnailPadding['bottom']) || !empty($thumbnailPadding['left'])) {
                             $output .= 'padding: ' . 
-                                (is_numeric($thumbnailPadding['top']) ? $thumbnailPadding['top'] . 'px' : esc_attr($thumbnailPadding['top'])) . ' ' . 
-                                (is_numeric($thumbnailPadding['right']) ? $thumbnailPadding['right'] . 'px' : esc_attr($thumbnailPadding['right'])) . ' ' . 
-                                (is_numeric($thumbnailPadding['bottom']) ? $thumbnailPadding['bottom'] . 'px' : esc_attr($thumbnailPadding['bottom'])) . ' ' . 
-                                (is_numeric($thumbnailPadding['left']) ? $thumbnailPadding['left'] . 'px' : esc_attr($thumbnailPadding['left'])) . '; ';
+                                (isset($thumbnailPadding['top']) && $thumbnailPadding['top'] !== '' ? (is_numeric($thumbnailPadding['top']) ? $thumbnailPadding['top'] . 'px' : esc_attr($thumbnailPadding['top'])) : '0px') . ' ' .
+                                (isset($thumbnailPadding['right']) && $thumbnailPadding['right'] !== '' ? (is_numeric($thumbnailPadding['right']) ? $thumbnailPadding['right'] . 'px' : esc_attr($thumbnailPadding['right'])) : '0px') . ' ' .
+                                (isset($thumbnailPadding['bottom']) && $thumbnailPadding['bottom'] !== '' ? (is_numeric($thumbnailPadding['bottom']) ? $thumbnailPadding['bottom'] . 'px' : esc_attr($thumbnailPadding['bottom'])) : '0px') . ' ' .
+                                (isset($thumbnailPadding['left']) && $thumbnailPadding['left'] !== '' ? (is_numeric($thumbnailPadding['left']) ? $thumbnailPadding['left'] . 'px' : esc_attr($thumbnailPadding['left'])) : '0px') . '; ';
                         }
-                        if ( !empty($thumbnailBorderRadius['top']) || !empty($thumbnailBorderRadius['right']) || !empty($thumbnailBorderRadius['bottom']) || !empty($thumbnailBorderRadius['left'])) {
-                            $output .= ' border-radius: ' .
-                                (is_numeric($thumbnailBorderRadius['top']) ? $thumbnailBorderRadius['top'] . 'px' : esc_attr($thumbnailBorderRadius['top'])) . ' ' .
-                                (is_numeric($thumbnailBorderRadius['right']) ? $thumbnailBorderRadius['right'] . 'px' : esc_attr($thumbnailBorderRadius['right'])) . ' ' .
-                                (is_numeric($thumbnailBorderRadius['bottom']) ? $thumbnailBorderRadius['bottom'] . 'px' : esc_attr($thumbnailBorderRadius['bottom'])) . ' ' .
-                                (is_numeric($thumbnailBorderRadius['left']) ? $thumbnailBorderRadius['left'] . 'px' : esc_attr($thumbnailBorderRadius['left'])) . ';';
+
+                        // Border Radius
+                        if (!empty($thumbnailBorderRadius['top']) || !empty($thumbnailBorderRadius['right']) || !empty($thumbnailBorderRadius['bottom']) || !empty($thumbnailBorderRadius['left'])) {
+                            $output .= 'border-radius: ' .
+                                (isset($thumbnailBorderRadius['top']) && $thumbnailBorderRadius['top'] !== '' ? (is_numeric($thumbnailBorderRadius['top']) ? $thumbnailBorderRadius['top'] . 'px' : esc_attr($thumbnailBorderRadius['top'])) : '0px') . ' ' .
+                                (isset($thumbnailBorderRadius['right']) && $thumbnailBorderRadius['right'] !== '' ? (is_numeric($thumbnailBorderRadius['right']) ? $thumbnailBorderRadius['right'] . 'px' : esc_attr($thumbnailBorderRadius['right'])) : '0px') . ' ' .
+                                (isset($thumbnailBorderRadius['bottom']) && $thumbnailBorderRadius['bottom'] !== '' ? (is_numeric($thumbnailBorderRadius['bottom']) ? $thumbnailBorderRadius['bottom'] . 'px' : esc_attr($thumbnailBorderRadius['bottom'])) : '0px') . ' ' .
+                                (isset($thumbnailBorderRadius['left']) && $thumbnailBorderRadius['left'] !== '' ? (is_numeric($thumbnailBorderRadius['left']) ? $thumbnailBorderRadius['left'] . 'px' : esc_attr($thumbnailBorderRadius['left'])) : '0px') . ';';
                         }
 
                         $output .= '">';
@@ -3109,24 +3111,31 @@ function fancy_post_grid_render_callback($attributes) {
                     // Margin
                     if (!empty($contentitemMarginNew['top']) || !empty($contentitemMarginNew['right']) || !empty($contentitemMarginNew['bottom']) || !empty($contentitemMarginNew['left'])) {
                         $output .= 'margin: ' .
-                            (is_numeric($contentitemMarginNew['top']) ? $contentitemMarginNew['top'] . 'px' : esc_attr($contentitemMarginNew['top'])) . ' ' .
-                            (is_numeric($contentitemMarginNew['right']) ? $contentitemMarginNew['right'] . 'px' : esc_attr($contentitemMarginNew['right'])) . ' ' .
-                            (is_numeric($contentitemMarginNew['bottom']) ? $contentitemMarginNew['bottom'] . 'px' : esc_attr($contentitemMarginNew['bottom'])) . ' ' .
-                            (is_numeric($contentitemMarginNew['left']) ? $contentitemMarginNew['left'] . 'px' : esc_attr($contentitemMarginNew['left'])) . '; ';
+                            (isset($contentitemMarginNew['top']) && $contentitemMarginNew['top'] !== '' ? (is_numeric($contentitemMarginNew['top']) ? $contentitemMarginNew['top'] . 'px' : esc_attr($contentitemMarginNew['top'])) : '0px') . ' ' .
+                            (isset($contentitemMarginNew['right']) && $contentitemMarginNew['right'] !== '' ? (is_numeric($contentitemMarginNew['right']) ? $contentitemMarginNew['right'] . 'px' : esc_attr($contentitemMarginNew['right'])) : '0px') . ' ' .
+                            (isset($contentitemMarginNew['bottom']) && $contentitemMarginNew['bottom'] !== '' ? (is_numeric($contentitemMarginNew['bottom']) ? $contentitemMarginNew['bottom'] . 'px' : esc_attr($contentitemMarginNew['bottom'])) : '0px') . ' ' .
+                            (isset($contentitemMarginNew['left']) && $contentitemMarginNew['left'] !== '' ? (is_numeric($contentitemMarginNew['left']) ? $contentitemMarginNew['left'] . 'px' : esc_attr($contentitemMarginNew['left'])) : '0px') . '; ';
                     }
+
                     // Padding
-                    if ( !empty($contentitemPaddingNew['top']) || !empty($contentitemPaddingNew['right']) ||  !empty($contentitemPaddingNew['bottom']) || !empty($contentitemPaddingNew['left'])) {
-                        $output .= 'padding: ' .(isset($contentitemPaddingNew['top']) && $contentitemPaddingNew['top'] !== '' ? (is_numeric($contentitemPaddingNew['top']) ? $contentitemPaddingNew['top'] . 'px' : esc_attr($contentitemPaddingNew['top'])) : '0px') . ' ' . (isset($contentitemPaddingNew['right']) && $contentitemPaddingNew['right'] !== '' ? (is_numeric($contentitemPaddingNew['right']) ? $contentitemPaddingNew['right'] . 'px' : esc_attr($contentitemPaddingNew['right'])) : '0px') . ' ' . (isset($contentitemPaddingNew['bottom']) && $contentitemPaddingNew['bottom'] !== '' ? (is_numeric($contentitemPaddingNew['bottom']) ? $contentitemPaddingNew['bottom'] . 'px' : esc_attr($contentitemPaddingNew['bottom'])) : '0px') . ' ' . (isset($contentitemPaddingNew['left']) && $contentitemPaddingNew['left'] !== '' ? (is_numeric($contentitemPaddingNew['left']) ? $contentitemPaddingNew['left'] . 'px' : esc_attr($contentitemPaddingNew['left'])) : '0px') . '; '; 
-                    } else { // Default fallback
+                    if (!empty($contentitemPaddingNew['top']) || !empty($contentitemPaddingNew['right']) || !empty($contentitemPaddingNew['bottom']) || !empty($contentitemPaddingNew['left'])) {
+                        $output .= 'padding: ' .
+                            (isset($contentitemPaddingNew['top']) && $contentitemPaddingNew['top'] !== '' ? (is_numeric($contentitemPaddingNew['top']) ? $contentitemPaddingNew['top'] . 'px' : esc_attr($contentitemPaddingNew['top'])) : '0px') . ' ' .
+                            (isset($contentitemPaddingNew['right']) && $contentitemPaddingNew['right'] !== '' ? (is_numeric($contentitemPaddingNew['right']) ? $contentitemPaddingNew['right'] . 'px' : esc_attr($contentitemPaddingNew['right'])) : '0px') . ' ' .
+                            (isset($contentitemPaddingNew['bottom']) && $contentitemPaddingNew['bottom'] !== '' ? (is_numeric($contentitemPaddingNew['bottom']) ? $contentitemPaddingNew['bottom'] . 'px' : esc_attr($contentitemPaddingNew['bottom'])) : '0px') . ' ' .
+                            (isset($contentitemPaddingNew['left']) && $contentitemPaddingNew['left'] !== '' ? (is_numeric($contentitemPaddingNew['left']) ? $contentitemPaddingNew['left'] . 'px' : esc_attr($contentitemPaddingNew['left'])) : '0px') . '; ';
+                    } else {
+                        // Default fallback
                         $output .= 'padding: 20px 0px 0px 0px;';
                     }
-                    // Check if at least one side is not empty
-                    if ( !empty($contentBorderWidth['top']) || !empty($contentBorderWidth['right']) || !empty($contentBorderWidth['bottom']) || !empty($contentBorderWidth['left'])) {
+
+                    // Border Width
+                    if (!empty($contentBorderWidth['top']) || !empty($contentBorderWidth['right']) || !empty($contentBorderWidth['bottom']) || !empty($contentBorderWidth['left'])) {
                         $output .= 'border-width: ' .
-                            (is_numeric($contentBorderWidth['top']) ? $contentBorderWidth['top'] . 'px' : esc_attr($contentBorderWidth['top'])) . ' ' .
-                            (is_numeric($contentBorderWidth['right']) ? $contentBorderWidth['right'] . 'px' : esc_attr($contentBorderWidth['right'])) . ' ' .
-                            (is_numeric($contentBorderWidth['bottom']) ? $contentBorderWidth['bottom'] . 'px' : esc_attr($contentBorderWidth['bottom'])) . ' ' .
-                            (is_numeric($contentBorderWidth['left']) ? $contentBorderWidth['left'] . 'px' : esc_attr($contentBorderWidth['left'])) . '; ';
+                            (isset($contentBorderWidth['top']) && $contentBorderWidth['top'] !== '' ? (is_numeric($contentBorderWidth['top']) ? $contentBorderWidth['top'] . 'px' : esc_attr($contentBorderWidth['top'])) : '0px') . ' ' .
+                            (isset($contentBorderWidth['right']) && $contentBorderWidth['right'] !== '' ? (is_numeric($contentBorderWidth['right']) ? $contentBorderWidth['right'] . 'px' : esc_attr($contentBorderWidth['right'])) : '0px') . ' ' .
+                            (isset($contentBorderWidth['bottom']) && $contentBorderWidth['bottom'] !== '' ? (is_numeric($contentBorderWidth['bottom']) ? $contentBorderWidth['bottom'] . 'px' : esc_attr($contentBorderWidth['bottom'])) : '0px') . ' ' .
+                            (isset($contentBorderWidth['left']) && $contentBorderWidth['left'] !== '' ? (is_numeric($contentBorderWidth['left']) ? $contentBorderWidth['left'] . 'px' : esc_attr($contentBorderWidth['left'])) : '0px') . '; ';
                     }
                     // Border Style
                     if (!empty($contentNormalBorderType)) {
@@ -3157,18 +3166,19 @@ function fancy_post_grid_render_callback($attributes) {
                     // Margin
                     if (!empty($postTitleMargin['top']) || !empty($postTitleMargin['right']) || !empty($postTitleMargin['bottom']) || !empty($postTitleMargin['left'])) {
                         $titleStyles .= 'margin: ' .
-                            (is_numeric($postTitleMargin['top']) ? $postTitleMargin['top'] . 'px' : esc_attr($postTitleMargin['top'])) . ' ' .
-                            (is_numeric($postTitleMargin['right']) ? $postTitleMargin['right'] . 'px' : esc_attr($postTitleMargin['right'])) . ' ' .
-                            (is_numeric($postTitleMargin['bottom']) ? $postTitleMargin['bottom'] . 'px' : esc_attr($postTitleMargin['bottom'])) . ' ' .
-                            (is_numeric($postTitleMargin['left']) ? $postTitleMargin['left'] . 'px' : esc_attr($postTitleMargin['left'])) . '; ';
+                            (isset($postTitleMargin['top']) && $postTitleMargin['top'] !== '' ? (is_numeric($postTitleMargin['top']) ? $postTitleMargin['top'] . 'px' : esc_attr($postTitleMargin['top'])) : '0px') . ' ' .
+                            (isset($postTitleMargin['right']) && $postTitleMargin['right'] !== '' ? (is_numeric($postTitleMargin['right']) ? $postTitleMargin['right'] . 'px' : esc_attr($postTitleMargin['right'])) : '0px') . ' ' .
+                            (isset($postTitleMargin['bottom']) && $postTitleMargin['bottom'] !== '' ? (is_numeric($postTitleMargin['bottom']) ? $postTitleMargin['bottom'] . 'px' : esc_attr($postTitleMargin['bottom'])) : '0px') . ' ' .
+                            (isset($postTitleMargin['left']) && $postTitleMargin['left'] !== '' ? (is_numeric($postTitleMargin['left']) ? $postTitleMargin['left'] . 'px' : esc_attr($postTitleMargin['left'])) : '0px') . '; ';
                     }
+
                     // Padding
                     if (!empty($postTitlePadding['top']) || !empty($postTitlePadding['right']) || !empty($postTitlePadding['bottom']) || !empty($postTitlePadding['left'])) {
                         $titleStyles .= 'padding: ' .
-                            (is_numeric($postTitlePadding['top']) ? $postTitlePadding['top'] . 'px' : esc_attr($postTitlePadding['top'])) . ' ' .
-                            (is_numeric($postTitlePadding['right']) ? $postTitlePadding['right'] . 'px' : esc_attr($postTitlePadding['right'])) . ' ' .
-                            (is_numeric($postTitlePadding['bottom']) ? $postTitlePadding['bottom'] . 'px' : esc_attr($postTitlePadding['bottom'])) . ' ' .
-                            (is_numeric($postTitlePadding['left']) ? $postTitlePadding['left'] . 'px' : esc_attr($postTitlePadding['left'])) . '; ';
+                            (isset($postTitlePadding['top']) && $postTitlePadding['top'] !== '' ? (is_numeric($postTitlePadding['top']) ? $postTitlePadding['top'] . 'px' : esc_attr($postTitlePadding['top'])) : '0px') . ' ' .
+                            (isset($postTitlePadding['right']) && $postTitlePadding['right'] !== '' ? (is_numeric($postTitlePadding['right']) ? $postTitlePadding['right'] . 'px' : esc_attr($postTitlePadding['right'])) : '0px') . ' ' .
+                            (isset($postTitlePadding['bottom']) && $postTitlePadding['bottom'] !== '' ? (is_numeric($postTitlePadding['bottom']) ? $postTitlePadding['bottom'] . 'px' : esc_attr($postTitlePadding['bottom'])) : '0px') . ' ' .
+                            (isset($postTitlePadding['left']) && $postTitlePadding['left'] !== '' ? (is_numeric($postTitlePadding['left']) ? $postTitlePadding['left'] . 'px' : esc_attr($postTitlePadding['left'])) : '0px') . '; ';
                     }
                     // Class name
                     $classNames = 'title' 
@@ -3237,19 +3247,20 @@ function fancy_post_grid_render_callback($attributes) {
                         // Margin
                         if (!empty($metaMarginNew['top']) || !empty($metaMarginNew['right']) || !empty($metaMarginNew['bottom']) || !empty($metaMarginNew['left'])) {
                             $output .= 'margin: ' .
-                                (is_numeric($metaMarginNew['top']) ? $metaMarginNew['top'] . 'px' : esc_attr($metaMarginNew['top'])) . ' ' .
-                                (is_numeric($metaMarginNew['right']) ? $metaMarginNew['right'] . 'px' : esc_attr($metaMarginNew['right'])) . ' ' .
-                                (is_numeric($metaMarginNew['bottom']) ? $metaMarginNew['bottom'] . 'px' : esc_attr($metaMarginNew['bottom'])) . ' ' .
-                                (is_numeric($metaMarginNew['left']) ? $metaMarginNew['left'] . 'px' : esc_attr($metaMarginNew['left'])) . '; ';
+                                (isset($metaMarginNew['top']) && $metaMarginNew['top'] !== '' ? (is_numeric($metaMarginNew['top']) ? $metaMarginNew['top'] . 'px' : esc_attr($metaMarginNew['top'])) : '0px') . ' ' .
+                                (isset($metaMarginNew['right']) && $metaMarginNew['right'] !== '' ? (is_numeric($metaMarginNew['right']) ? $metaMarginNew['right'] . 'px' : esc_attr($metaMarginNew['right'])) : '0px') . ' ' .
+                                (isset($metaMarginNew['bottom']) && $metaMarginNew['bottom'] !== '' ? (is_numeric($metaMarginNew['bottom']) ? $metaMarginNew['bottom'] . 'px' : esc_attr($metaMarginNew['bottom'])) : '0px') . ' ' .
+                                (isset($metaMarginNew['left']) && $metaMarginNew['left'] !== '' ? (is_numeric($metaMarginNew['left']) ? $metaMarginNew['left'] . 'px' : esc_attr($metaMarginNew['left'])) : '0px') . '; ';
                         }
+
                         // Padding
                         if (!empty($metaPadding['top']) || !empty($metaPadding['right']) || !empty($metaPadding['bottom']) || !empty($metaPadding['left'])) {
                             $output .= 'padding: ' .
-                                (is_numeric($metaPadding['top']) ? $metaPadding['top'] . 'px' : esc_attr($metaPadding['top'])) . ' ' .
-                                (is_numeric($metaPadding['right']) ? $metaPadding['right'] . 'px' : esc_attr($metaPadding['right'])) . ' ' .
-                                (is_numeric($metaPadding['bottom']) ? $metaPadding['bottom'] . 'px' : esc_attr($metaPadding['bottom'])) . ' ' .
-                                (is_numeric($metaPadding['left']) ? $metaPadding['left'] . 'px' : esc_attr($metaPadding['left'])) . '; ';
-                        }   
+                                (isset($metaPadding['top']) && $metaPadding['top'] !== '' ? (is_numeric($metaPadding['top']) ? $metaPadding['top'] . 'px' : esc_attr($metaPadding['top'])) : '0px') . ' ' .
+                                (isset($metaPadding['right']) && $metaPadding['right'] !== '' ? (is_numeric($metaPadding['right']) ? $metaPadding['right'] . 'px' : esc_attr($metaPadding['right'])) : '0px') . ' ' .
+                                (isset($metaPadding['bottom']) && $metaPadding['bottom'] !== '' ? (is_numeric($metaPadding['bottom']) ? $metaPadding['bottom'] . 'px' : esc_attr($metaPadding['bottom'])) : '0px') . ' ' .
+                                (isset($metaPadding['left']) && $metaPadding['left'] !== '' ? (is_numeric($metaPadding['left']) ? $metaPadding['left'] . 'px' : esc_attr($metaPadding['left'])) : '0px') . '; ';
+                        }  
                         
                         // Color
                         if (!empty($metaTextColor)) {
@@ -3458,19 +3469,19 @@ function fancy_post_grid_render_callback($attributes) {
                     // Margin
                     if (!empty($excerptMargin['top']) || !empty($excerptMargin['right']) || !empty($excerptMargin['bottom']) || !empty($excerptMargin['left'])) {
                         $excerptStyles .= 'margin: ' .
-                            (is_numeric($excerptMargin['top']) ? $excerptMargin['top'] . 'px' : esc_attr($excerptMargin['top'])) . ' ' .
-                            (is_numeric($excerptMargin['right']) ? $excerptMargin['right'] . 'px' : esc_attr($excerptMargin['right'])) . ' ' .
-                            (is_numeric($excerptMargin['bottom']) ? $excerptMargin['bottom'] . 'px' : esc_attr($excerptMargin['bottom'])) . ' ' .
-                            (is_numeric($excerptMargin['left']) ? $excerptMargin['left'] . 'px' : esc_attr($excerptMargin['left'])) . '; ';
+                            (isset($excerptMargin['top']) && $excerptMargin['top'] !== '' ? (is_numeric($excerptMargin['top']) ? $excerptMargin['top'] . 'px' : esc_attr($excerptMargin['top'])) : '0px') . ' ' .
+                            (isset($excerptMargin['right']) && $excerptMargin['right'] !== '' ? (is_numeric($excerptMargin['right']) ? $excerptMargin['right'] . 'px' : esc_attr($excerptMargin['right'])) : '0px') . ' ' .
+                            (isset($excerptMargin['bottom']) && $excerptMargin['bottom'] !== '' ? (is_numeric($excerptMargin['bottom']) ? $excerptMargin['bottom'] . 'px' : esc_attr($excerptMargin['bottom'])) : '0px') . ' ' .
+                            (isset($excerptMargin['left']) && $excerptMargin['left'] !== '' ? (is_numeric($excerptMargin['left']) ? $excerptMargin['left'] . 'px' : esc_attr($excerptMargin['left'])) : '0px') . '; ';
                     }
 
                     // Padding
                     if (!empty($excerptPadding['top']) || !empty($excerptPadding['right']) || !empty($excerptPadding['bottom']) || !empty($excerptPadding['left'])) {
                         $excerptStyles .= 'padding: ' .
-                            (is_numeric($excerptPadding['top']) ? $excerptPadding['top'] . 'px' : esc_attr($excerptPadding['top'])) . ' ' .
-                            (is_numeric($excerptPadding['right']) ? $excerptPadding['right'] . 'px' : esc_attr($excerptPadding['right'])) . ' ' .
-                            (is_numeric($excerptPadding['bottom']) ? $excerptPadding['bottom'] . 'px' : esc_attr($excerptPadding['bottom'])) . ' ' .
-                            (is_numeric($excerptPadding['left']) ? $excerptPadding['left'] . 'px' : esc_attr($excerptPadding['left'])) . '; ';
+                            (isset($excerptPadding['top']) && $excerptPadding['top'] !== '' ? (is_numeric($excerptPadding['top']) ? $excerptPadding['top'] . 'px' : esc_attr($excerptPadding['top'])) : '0px') . ' ' .
+                            (isset($excerptPadding['right']) && $excerptPadding['right'] !== '' ? (is_numeric($excerptPadding['right']) ? $excerptPadding['right'] . 'px' : esc_attr($excerptPadding['right'])) : '0px') . ' ' .
+                            (isset($excerptPadding['bottom']) && $excerptPadding['bottom'] !== '' ? (is_numeric($excerptPadding['bottom']) ? $excerptPadding['bottom'] . 'px' : esc_attr($excerptPadding['bottom'])) : '0px') . ' ' .
+                            (isset($excerptPadding['left']) && $excerptPadding['left'] !== '' ? (is_numeric($excerptPadding['left']) ? $excerptPadding['left'] . 'px' : esc_attr($excerptPadding['left'])) : '0px') . '; ';
                     }
 
                     // Handle hover logic conditionally
