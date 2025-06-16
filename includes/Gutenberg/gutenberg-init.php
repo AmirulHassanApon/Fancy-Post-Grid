@@ -3556,7 +3556,7 @@ function fancy_post_grid_render_callback($attributes) {
                 $output .= '<style>' . $afterMetaStyles . '</style>';
 
                 $afterContentStyles = '.pre-blog-item.style_12:hover .blog-inner-wrap .pre-blog-content {';
-                $afterContentStyles .= 'background: ' . (!empty($contentBgColor) ? esc_attr($contentBgColor) : '#fff') . ';';
+                $afterContentStyles .= 'background: ' . (!empty($contentBgColor) ? esc_attr($contentBgColor) : '#007aff') . ';';
                 $afterContentStyles .= '}';
                 $output .= '<style>' . $afterContentStyles . '</style>';
 
