@@ -1687,7 +1687,7 @@
                                     ...(attributes.contentitemMarginNew ? { margin: getSpacingValue(attributes.contentitemMarginNew) } : {}),
                                     ...(attributes.contentitemPaddingNew
                                       ? { padding: getSpacingValue(attributes.contentitemPaddingNew) }
-                                      : { padding: '20px 0px 20px 0px' }), // your default fallback
+                                      : { padding: '20px 0px 0px 0px' }), // your default fallback
                                     ...(attributes.contentBorderWidth ? { borderWidth: getSpacingValue(attributes.contentBorderWidth) } : {}),
                                     ...(attributes.contentnormalBorderType ? { borderStyle: attributes.contentnormalBorderType } : {}),
                                     ...(contentBgColor ? { backgroundColor: contentBgColor } : {}),
