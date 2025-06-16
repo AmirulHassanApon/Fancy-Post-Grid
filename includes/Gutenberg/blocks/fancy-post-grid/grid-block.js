@@ -74,11 +74,11 @@
             //SECTION Area
             sectionBgColor: { type: 'string', default: '' },
             sectionMargin: { type: 'object' },
-            sectionPadding: { type: 'object', default: { top: '0', right: '0', bottom: '0', left: '0' }, },            
+            sectionPadding: { type: 'object'},            
             //ITEM Box           
             itemMargin: { type: 'object' },
             itemPadding: { type: 'object' },
-            itemBorderRadius: { type: 'object', default: { top: '5', right: '5', bottom: '5', left: '5' }, },
+            itemBorderRadius: { type: 'object' },
             itemGap: { type: 'number', default: '30' },
             itemBoxAlignment: { type: 'string'},
             itemBorderType: { type: 'string', default: '' },
@@ -86,11 +86,11 @@
             itemBoxShadowColor: { type: 'string', default: '' },  
             itemBackgroundColor: { type: 'string', default: '' },
             itemBorderColor: { type: 'string', default: '' },
-            itemBorderWidth: { type: 'object', default: { top: '0', right: '0', bottom: '0', left: '0' }, },            
+            itemBorderWidth: { type: 'object' },            
             //Content Box
-            contentitemMarginNew: { type: 'object', default: { top: '0', right: '0', bottom: '0', left: '0' }, },
+            contentitemMarginNew: { type: 'object' },
             contentitemPaddingNew: { type: 'object' },
-            contentBorderWidth: { type: 'object', default: { top: '0', right: '0', bottom: '0', left: '0' }, },
+            contentBorderWidth: { type: 'object' },
             contentnormalBorderType: { type: 'string', default: '' },     
             contentBgColor: { type: 'string', default: '' },       
             contentBorderColor: { type: 'string', default: '' },       
@@ -1881,12 +1881,19 @@
                           null,
                           wp.element.createElement('style', null, `
                               .pre-blog-item.style_12:after {
-                                  content: '';
-                                  border-color: ${attributes.itemBorderColor || '#000'};
-                                  border-type: ${attributes.itemBorderType || 'solid'} ;
-                                  border-width: ${getSpacingValue(attributes.itemBorderWidth) || '2px'} ;
+                                  
+                                  border-color: ${attributes.itemBorderColor || '#007aff'};
+                                  border-style: ${attributes.itemBorderType || 'solid'} ;
+                                  border-width: ${getSpacingValue(attributes.itemBorderWidth) || '1px 1px 1px 1px'} ;
+                                  border-radius: ${getSpacingValue(attributes.itemBorderRadius) || '5px 5px 5px 5px'} ;
                                   
                               }
+                              .pre-blog-item.style_12 .blog-inner-wrap .pre-image-wrap .pre-blog-meta::after {
+                                  border-style:  solid ;
+                                  border-width:  1px 1px 1px 1px ;
+                                  border-color: ${attributes.metaBgColor || '#fff'};
+
+                              },
                           `),
                 wp.element.createElement(
                     'div',
@@ -1916,9 +1923,8 @@
                                       : { margin: '40px 0px 0px 0px' }), // your default fallback
                                     ...(attributes.itemPadding
                                       ? { padding: getSpacingValue(attributes.itemPadding) }
-                                      : { padding: '0px 0px 0px 0px' }), // your default fallback                                   
-                                    ...(attributes.itemBorderRadius ? { borderRadius: getSpacingValue(attributes.itemBorderRadius) } : {}),
-                                    
+                                      : { padding: '0px 0px 0px 0px' }), // your default fallback       
+
                                     ...(attributes.itemBackgroundColor ? { backgroundColor: attributes.itemBackgroundColor } : {}),
                                     
                                     ...((getSpacingValue(attributes.itemBoxShadow) || attributes.itemBoxShadowColor) ? {
@@ -2087,7 +2093,7 @@
                                     wp.element.createElement(
                                         titleTag,
                                         {
-                                            className: `pre-post-title align-${postTitleAlignment} ${titleHoverUnderLine === 'enable' ? ' underline' : ''}`,
+                                            className: `pre-post-title align-${postTitleAlignment}`,
                                             style: {
                                                 
                                                 ...(attributes.postTitleMargin ? { margin: getSpacingValue(attributes.postTitleMargin) }: { margin: '0px 0px 42px 0px' }), 
