@@ -3902,7 +3902,7 @@ function fancy_post_grid_render_callback($attributes) {
                     if ( !empty($postTitleMargin['top']) || !empty($postTitleMargin['right']) ||  !empty($postTitleMargin['bottom']) || !empty($postTitleMargin['left'])) {
                         $titleStyles .= 'margin: ' .(isset($postTitleMargin['top']) && $postTitleMargin['top'] !== '' ? (is_numeric($postTitleMargin['top']) ? $postTitleMargin['top'] . 'px' : esc_attr($postTitleMargin['top'])) : '0px') . ' ' . (isset($postTitleMargin['right']) && $postTitleMargin['right'] !== '' ? (is_numeric($postTitleMargin['right']) ? $postTitleMargin['right'] . 'px' : esc_attr($postTitleMargin['right'])) : '0px') . ' ' . (isset($postTitleMargin['bottom']) && $postTitleMargin['bottom'] !== '' ? (is_numeric($postTitleMargin['bottom']) ? $contentitemPaddingNew['bottom'] . 'px' : esc_attr($postTitleMargin['bottom'])) : '0px') . ' ' . (isset($postTitleMargin['left']) && $postTitleMargin['left'] !== '' ? (is_numeric($postTitleMargin['left']) ? $postTitleMargin['left'] . 'px' : esc_attr($postTitleMargin['left'])) : '0px') . '; '; 
                     } else { // Default fallback
-                        $titleStyles .= 'margin: 0px 0px 28px 0px;';
+                        $titleStyles .= 'margin: 0px 0px 42px 0px;';
                     }
                     // Padding
                     if (!empty($postTitlePadding['top']) || !empty($postTitlePadding['right']) || !empty($postTitlePadding['bottom']) || !empty($postTitlePadding['left'])) {
