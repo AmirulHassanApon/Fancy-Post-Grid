@@ -6590,16 +6590,18 @@ img {
     .rs-blog-layout-30-item .rs-thumb .meta-date span{
         display: inline-block;
         background: #000;
-        padding: 8px 25px;
+        padding: 8px 20px;
         border-radius: 5px 5px 0 0;
         opacity: 1;
         background: #007aff;
         color: #ffffff;
+        font-size: 16px;
     }
     .rs-blog-layout-30-item .rs-content{
         padding: 40px;
         display: flex;
         flex-direction: column;
+        text-align: center;
     }
     .rs-blog-layout-30-item .rs-content .title{
         font-size: 20px;
@@ -6651,6 +6653,7 @@ img {
         display: flex;
         flex-wrap: wrap;
         gap: 8px 15px;
+        justify-content: center;
     }
     .rs-blog-layout-30-item .rs-content ul li a{
         text-decoration: none;
