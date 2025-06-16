@@ -6600,7 +6600,7 @@ img {
         font-size: 20px;
         line-height: 1.5;
         order: 1;
-        text-align: center;
+        margin-bottom: 10px;
     }
     .rs-blog-layout-30-item .rs-content .title.align-start{
         text-align: left;
@@ -6619,14 +6619,33 @@ img {
     .rs-blog-layout-30-item .rs-content .title a:hover{
         color: #007aff;
     }
-    .rs-blog-layout-30-item .rs-content .rs-meta.align-start{
+    .rs-blog-layout-30-item .rs-content .rs-meta ul{
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px 15px;
+    }
+    .rs-blog-layout-30-item.align-start .rs-content .rs-meta ul{
+        justify-content: flex-start;
+    }
+    .rs-blog-layout-30-item.align-center .rs-content .rs-meta ul{
+        justify-content: center;
+    }
+    .rs-blog-layout-30-item.align-end .rs-content .rs-meta ul{
+        justify-content: flex-end;
+    }
+    .rs-blog-layout-30-item .rs-content .rs-meta.align-start ul{
         text-align: left;
+        justify-content: flex-start;
     }
-    .rs-blog-layout-30-item .rs-content .rs-meta.align-center{
+    .rs-blog-layout-30-item .rs-content .rs-meta.align-center ul{
         text-align: center;
+        justify-content: center;
     }
-    .rs-blog-layout-30-item .rs-content .rs-meta.align-end{
+    .rs-blog-layout-30-item .rs-content .rs-meta.align-end ul{
         text-align: right;
+        justify-content: flex-end;
     }
     .rs-blog-layout-30-item .rs-content .rs-meta ul li{
         display: inline-block;
@@ -6641,14 +6660,9 @@ img {
     .rs-blog-layout-30-item .rs-content .rs-meta ul li:last-child{
         margin-right: 0;
     }
-    .rs-blog-layout-30-item .rs-content .rs-meta ul{
-        margin: 0;
-        padding: 0;
-        display: flex;
-        flex-wrap: wrap;
-        gap: 8px 15px;
-        justify-content: center;
-    }
+
+
+
     .rs-blog-layout-30-item .rs-content ul li a{
         text-decoration: none;
     }
@@ -6665,9 +6679,9 @@ img {
         order: 3;
     }
     .rs-blog-layout-30-item .rs-content .fpg-excerpt p{
-        
         color: #666666;
         font-weight: 400;
+        margin-top: 10px;
     }
 
     .rs-blog-layout-30-item .rs-content .fpg-excerpt.align-start{
