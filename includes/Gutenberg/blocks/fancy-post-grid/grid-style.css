@@ -3283,8 +3283,6 @@ img {
 
 /* blog layout 12 css */
 .rs-blog-layout-12{
-    padding-top: 120px;
-    padding-bottom: 120px;
 }
 
 
@@ -3392,6 +3390,9 @@ img {
     flex-wrap: wrap;
     padding: 0px;
     margin: 0px;
+}
+.pre-blog-item.style_12 .blog-inner-wrap .pre-blog-content ul .meta-separator{
+    color: #fff;
 }
 
 .pre-blog-item.style_12 .blog-inner-wrap .pre-blog-content ul li a {
