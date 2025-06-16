@@ -909,29 +909,26 @@ function fancy_post_grid_render_callback($attributes) {
                     $output .= '<div class="rs-thumb" style="';
 
                     // Margin
-                    if (!empty($thumbnailMargin['top']) || !empty($thumbnailMargin['right']) || !empty($thumbnailMargin['bottom']) || !empty($thumbnailMargin['left'])) {
-                        $output .= 'margin: ' . 
-                            (is_numeric($thumbnailMargin['top']) ? $thumbnailMargin['top'] . 'px' : esc_attr($thumbnailMargin['top'])) . ' ' . 
-                            (is_numeric($thumbnailMargin['right']) ? $thumbnailMargin['right'] . 'px' : esc_attr($thumbnailMargin['right'])) . ' ' . 
-                            (is_numeric($thumbnailMargin['bottom']) ? $thumbnailMargin['bottom'] . 'px' : esc_attr($thumbnailMargin['bottom'])) . ' ' . 
-                            (is_numeric($thumbnailMargin['left']) ? $thumbnailMargin['left'] . 'px' : esc_attr($thumbnailMargin['left'])) . '; ';
-                    }
+                    $output .= 'margin: ' . 
+                        (isset($thumbnailMargin['top']) && $thumbnailMargin['top'] !== '' ? (is_numeric($thumbnailMargin['top']) ? $thumbnailMargin['top'] . 'px' : esc_attr($thumbnailMargin['top'])) : '0px') . ' ' .
+                        (isset($thumbnailMargin['right']) && $thumbnailMargin['right'] !== '' ? (is_numeric($thumbnailMargin['right']) ? $thumbnailMargin['right'] . 'px' : esc_attr($thumbnailMargin['right'])) : '0px') . ' ' .
+                        (isset($thumbnailMargin['bottom']) && $thumbnailMargin['bottom'] !== '' ? (is_numeric($thumbnailMargin['bottom']) ? $thumbnailMargin['bottom'] . 'px' : esc_attr($thumbnailMargin['bottom'])) : '0px') . ' ' .
+                        (isset($thumbnailMargin['left']) && $thumbnailMargin['left'] !== '' ? (is_numeric($thumbnailMargin['left']) ? $thumbnailMargin['left'] . 'px' : esc_attr($thumbnailMargin['left'])) : '0px') . '; ';
 
                     // Padding
-                    if (!empty($thumbnailPadding['top']) || !empty($thumbnailPadding['right']) || !empty($thumbnailPadding['bottom']) || !empty($thumbnailPadding['left'])) {
-                        $output .= 'padding: ' . 
-                            (is_numeric($thumbnailPadding['top']) ? $thumbnailPadding['top'] . 'px' : esc_attr($thumbnailPadding['top'])) . ' ' . 
-                            (is_numeric($thumbnailPadding['right']) ? $thumbnailPadding['right'] . 'px' : esc_attr($thumbnailPadding['right'])) . ' ' . 
-                            (is_numeric($thumbnailPadding['bottom']) ? $thumbnailPadding['bottom'] . 'px' : esc_attr($thumbnailPadding['bottom'])) . ' ' . 
-                            (is_numeric($thumbnailPadding['left']) ? $thumbnailPadding['left'] . 'px' : esc_attr($thumbnailPadding['left'])) . '; ';
-                    }
-                    if ( !empty($thumbnailBorderRadius['top']) || !empty($thumbnailBorderRadius['right']) || !empty($thumbnailBorderRadius['bottom']) || !empty($thumbnailBorderRadius['left'])) {
-                        $output .= ' border-radius: ' .
-                            (is_numeric($thumbnailBorderRadius['top']) ? $thumbnailBorderRadius['top'] . 'px' : esc_attr($thumbnailBorderRadius['top'])) . ' ' .
-                            (is_numeric($thumbnailBorderRadius['right']) ? $thumbnailBorderRadius['right'] . 'px' : esc_attr($thumbnailBorderRadius['right'])) . ' ' .
-                            (is_numeric($thumbnailBorderRadius['bottom']) ? $thumbnailBorderRadius['bottom'] . 'px' : esc_attr($thumbnailBorderRadius['bottom'])) . ' ' .
-                            (is_numeric($thumbnailBorderRadius['left']) ? $thumbnailBorderRadius['left'] . 'px' : esc_attr($thumbnailBorderRadius['left'])) . ';';
-                    }
+                    $output .= 'padding: ' . 
+                        (isset($thumbnailPadding['top']) && $thumbnailPadding['top'] !== '' ? (is_numeric($thumbnailPadding['top']) ? $thumbnailPadding['top'] . 'px' : esc_attr($thumbnailPadding['top'])) : '0px') . ' ' .
+                        (isset($thumbnailPadding['right']) && $thumbnailPadding['right'] !== '' ? (is_numeric($thumbnailPadding['right']) ? $thumbnailPadding['right'] . 'px' : esc_attr($thumbnailPadding['right'])) : '0px') . ' ' .
+                        (isset($thumbnailPadding['bottom']) && $thumbnailPadding['bottom'] !== '' ? (is_numeric($thumbnailPadding['bottom']) ? $thumbnailPadding['bottom'] . 'px' : esc_attr($thumbnailPadding['bottom'])) : '0px') . ' ' .
+                        (isset($thumbnailPadding['left']) && $thumbnailPadding['left'] !== '' ? (is_numeric($thumbnailPadding['left']) ? $thumbnailPadding['left'] . 'px' : esc_attr($thumbnailPadding['left'])) : '0px') . '; ';
+
+                    // Border Radius
+                    $output .= 'border-radius: ' .
+                        (isset($thumbnailBorderRadius['top']) && $thumbnailBorderRadius['top'] !== '' ? (is_numeric($thumbnailBorderRadius['top']) ? $thumbnailBorderRadius['top'] . 'px' : esc_attr($thumbnailBorderRadius['top'])) : '0px') . ' ' .
+                        (isset($thumbnailBorderRadius['right']) && $thumbnailBorderRadius['right'] !== '' ? (is_numeric($thumbnailBorderRadius['right']) ? $thumbnailBorderRadius['right'] . 'px' : esc_attr($thumbnailBorderRadius['right'])) : '0px') . ' ' .
+                        (isset($thumbnailBorderRadius['bottom']) && $thumbnailBorderRadius['bottom'] !== '' ? (is_numeric($thumbnailBorderRadius['bottom']) ? $thumbnailBorderRadius['bottom'] . 'px' : esc_attr($thumbnailBorderRadius['bottom'])) : '0px') . ' ' .
+                        (isset($thumbnailBorderRadius['left']) && $thumbnailBorderRadius['left'] !== '' ? (is_numeric($thumbnailBorderRadius['left']) ? $thumbnailBorderRadius['left'] . 'px' : esc_attr($thumbnailBorderRadius['left'])) : '0px') . ';';
+
 
                     $output .= '">';
 
