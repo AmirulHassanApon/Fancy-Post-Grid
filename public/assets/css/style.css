@@ -6201,7 +6201,7 @@ img {
         background: transparent !important;
     }
     .rs-blog-layout-28-item .rs-content .rs-btn.fpg-border:hover{
-        color: #BB0B0B;
+        color: #007aff;
         background: transparent !important;
     }
     
@@ -6212,7 +6212,7 @@ img {
         bottom: 0;
         height: 2px;
         width: 0%;
-        background: #BB0B0B;
+        background: #007aff;
         transition: all ease 0.3s;
     }
     .rs-blog-layout-28-item .rs-content .rs-btn.fpg-border:hover::before{
@@ -6230,7 +6230,7 @@ img {
     }
     
     .rs-blog-layout-28-item .rs-content .rs-btn.fpg-flat:hover{
-        color: #BB0B0B;
+        color: #007aff;
         background: transparent !important;
     }
     .rs-blog-layout-28-item .rs-thumb{
