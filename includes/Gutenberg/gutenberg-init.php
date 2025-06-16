@@ -7373,6 +7373,7 @@ function fancy_post_grid_render_callback($attributes) {
                 (isset($paginationMarginNew['bottom']) && $paginationMarginNew['bottom'] !== '' ? (is_numeric($paginationMarginNew['bottom']) ? $paginationMarginNew['bottom'] . 'px' : esc_attr($paginationMarginNew['bottom'])) : '0px') . ' ' .
                 (isset($paginationMarginNew['left']) && $paginationMarginNew['left'] !== '' ? (is_numeric($paginationMarginNew['left']) ? $paginationMarginNew['left'] . 'px' : esc_attr($paginationMarginNew['left'])) : '0px');
 
+
             $borderWidth = 
                 (isset($paginationBorderWidthNew['top']) && $paginationBorderWidthNew['top'] !== '' ? (is_numeric($paginationBorderWidthNew['top']) ? $paginationBorderWidthNew['top'] . 'px' : esc_attr($paginationBorderWidthNew['top'])) : '0px') . ' ' .
                 (isset($paginationBorderWidthNew['right']) && $paginationBorderWidthNew['right'] !== '' ? (is_numeric($paginationBorderWidthNew['right']) ? $paginationBorderWidthNew['right'] . 'px' : esc_attr($paginationBorderWidthNew['right'])) : '0px') . ' ' .
