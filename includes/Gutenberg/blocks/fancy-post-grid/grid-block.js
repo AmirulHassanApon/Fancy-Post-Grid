@@ -1657,12 +1657,13 @@
                                     showPostDate && wp.element.createElement(
                                         'div', 
                                             { className: 'meta-date', style: { 
-                                                color: metaTextColor, 
+                                                 
                                                 fontSize: `${metaFontSize}px`,
+
                                             } },
                                             wp.element.createElement(
                                                 'span', 
-                                                { style: { display: 'flex', alignItems: 'center', gap: '5px' } }, 
+                                                { style: { display: 'flex', alignItems: 'center', gap: '5px',color: metaTextColor, ...(metaBgColor ? { backgroundColor: metaBgColor } : {}), } }, 
                                                 showMetaIcon && showPostDateIcon &&
                                                 wp.element.createElement('i', { 
                                                     className: 'fas fa-calendar-alt',
