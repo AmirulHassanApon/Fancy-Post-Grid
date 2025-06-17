@@ -3673,6 +3673,8 @@ img {
         flex-wrap: wrap;
         gap: 8px 15px;
         padding: 0px;
+        margin: 0;
+        list-style-type: none;
     }
     .rs-blog-layout-13-item .rs-content .rs-meta ul li{
         font-size: 15px;
@@ -3684,7 +3686,7 @@ img {
     }
     .rs-blog-layout-13-item .rs-content .rs-meta ul li img{
         width: 40px;
-        margin-right: 5px;
+        margin-right: 8px;
         border-radius: 50%;
     }
     .rs-blog-layout-13-item .rs-content .rs-meta ul li a{
