@@ -3111,7 +3111,7 @@
                                 showPostDate && wp.element.createElement(
                                     'div', 
                                         { className: `rs-meta post-meta align-${metaAlignment} `, style: { 
-                                            ...(attributes.metaMarginNew ? { margin: getSpacingValue(attributes.metaMarginNew) }: { margin: '20px 0px 20px 0px' }), 
+                                            ...(attributes.metaMarginNew ? { margin: getSpacingValue(attributes.metaMarginNew) }: { margin: '20px 0px 0px 0px' }), 
                                             ...(attributes.metaPadding ? { padding: getSpacingValue(attributes.metaPadding) }: { padding: '0px 0px 0px 0px' }),
                                             ...(metaTextColor ? { color: metaTextColor } : {}),
                                             ...(typeof metaOrder !== 'undefined' ? { order: metaOrder } : {}),
