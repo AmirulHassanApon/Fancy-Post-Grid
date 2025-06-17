@@ -4065,8 +4065,7 @@ img {
 
     /* blog layout 15 css */
     .rs-blog-layout-15{
-        padding-top: 90px;
-        padding-bottom: 120px;
+        padding: 60px 30px 90px;
         background: #267ece;
     }
     .rs-blog-layout-15 .rs-blog-layout-6-filter {
