@@ -4186,7 +4186,15 @@ function fancy_post_grid_render_callback($attributes) {
             } 
             elseif ($gridLayoutStyle === 'style6') {
                 // Full post layout
+                $afterMetaStyles = '.rs-blog-layout-13-item .rs-thumb .pre-blog-meta::after {';
                 
+                $afterMetaStyles .= 'border-color: ' . (!empty($metaBgColor) ? esc_attr($metaBgColor) : '#fff') . ';';
+                $afterMetaStyles .= 'border-style: solid ;';
+                $afterMetaStyles .= 'border-width: 1px; ';
+                
+                $afterMetaStyles .= '}';
+                $output .= '<style>' . $afterMetaStyles . '</style>';
+
                 $output .= '<div class="rs-blog-layout-13-item align-' . $itemBoxAlignment6 . ' ' . $hoverAnimation . '" style="';
                     // MARGIN    
                     if ( !empty($itemMargin['top']) || !empty($itemMargin['right']) ||  !empty($itemMargin['bottom']) || !empty($itemMargin['left'])) {
@@ -4301,10 +4309,10 @@ function fancy_post_grid_render_callback($attributes) {
                     }
                     
                     if ($showPostDate) {
-                        $output .= '<div class="pre-blog-meta" style="color:' . esc_attr($metaTextColor) . '; ">';
+                        $output .= '<div class="pre-blog-meta" style="background:' . esc_attr($metaBgColor) . '; ">';
                         
-                        $output .= '<span class="pre-date">' . esc_html(get_the_date('d')) . '</span>';
-                        $output .= '<span class="pre-month"> ' . esc_html(get_the_date('F')) . '</span>'; 
+                        $output .= '<span class="pre-date" style="color:' . esc_attr($metaTextColor) . '; ">' . esc_html(get_the_date('d')) . '</span>';
+                        $output .= '<span class="pre-month" style="color:' . esc_attr($metaTextColor) . '; "> ' . esc_html(get_the_date('F')) . '</span>'; 
                         $output .= '</div>';
                     }
                     $output .= '</div>';
@@ -4330,7 +4338,7 @@ function fancy_post_grid_render_callback($attributes) {
                             (isset($contentitemPaddingNew['left']) && $contentitemPaddingNew['left'] !== '' ? (is_numeric($contentitemPaddingNew['left']) ? $contentitemPaddingNew['left'] . 'px' : esc_attr($contentitemPaddingNew['left'])) : '0px') . '; ';
                     } else {
                         // Default fallback
-                        $output .= 'padding: 0px 0px 0px 0px;';
+                        $output .= 'padding: 30px 25px 30px 30px;';
                     }
 
                     // Border Width
