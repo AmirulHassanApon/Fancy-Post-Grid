@@ -2396,15 +2396,15 @@
                                           [                                            
                                             // Post Author
                                             showPostAuthor && wp.element.createElement(
-                                              'div',
-                                                {
-                                                    className: 'meta-author',
-                                                    style: {
-                                                        ...(metaTextColor ? { color: metaTextColor } : {}),
-                                                        ...(metaFontSize ? { fontSize: `${metaFontSize}px` } : {})
-                                                    },
-                                                },
-                                                
+                                              'li',
+                                              {
+                                                  className: 'meta-author',
+                                                  style: {
+                                                      ...(metaTextColor ? { color: metaTextColor } : {}),
+                                                      ...(metaFontSize ? { fontSize: `${metaFontSize}px` } : {})
+                                                  },
+                                              },
+                                              
                                                 // Author Avatar (Image)
                                                 showMetaIcon && showPostAuthorIcon && post._embedded?.author?.[0]?.avatar_urls?.['48'] &&
                                                     wp.element.createElement('img', {
@@ -3117,30 +3117,30 @@
                                               },
                                           },
                                           
-                                          // Author Avatar (Image)
-                                          showMetaIcon && showPostAuthorIcon && post._embedded?.author?.[0]?.avatar_urls?.['48'] &&
-                                              wp.element.createElement('img', {
-                                                  src: post._embedded.author[0].avatar_urls['48'],
-                                                  alt: post._embedded.author[0].name,
-                                              }),
+                                            // Author Avatar (Image)
+                                            showMetaIcon && showPostAuthorIcon && post._embedded?.author?.[0]?.avatar_urls?.['48'] &&
+                                                wp.element.createElement('img', {
+                                                    src: post._embedded.author[0].avatar_urls['48'],
+                                                    alt: post._embedded.author[0].name,
+                                                }),
 
-                                          // Author Name and Prefix inside <span>
-                                          wp.element.createElement(
-                                              'span',
-                                              null,
-                                              wp.element.createElement(
-                                                  'a',
-                                                  {
-                                                      href: post._embedded?.author?.[0]?.link || '#',
-                                                      style: {
-                                                          textDecoration: 'none',
-                                                          color: metaTextColor || 'inherit'
-                                                      },
-                                                  },
-                                                  `${metaAuthorPrefix ? metaAuthorPrefix + ' ' : ''}${post._embedded?.author?.[0]?.name || ''}`
-                                              )
-                                          )
-                                      ),
+                                            // Author Name and Prefix inside <span>
+                                            wp.element.createElement(
+                                                'span',
+                                                null,
+                                                wp.element.createElement(
+                                                    'a',
+                                                    {
+                                                        href: post._embedded?.author?.[0]?.link || '#',
+                                                        style: {
+                                                            textDecoration: 'none',
+                                                            color: metaTextColor || 'inherit'
+                                                        },
+                                                    },
+                                                    `${metaAuthorPrefix ? metaAuthorPrefix + ' ' : ''}${post._embedded?.author?.[0]?.name || ''}`
+                                                )
+                                            )
+                                        ),
 
 
                                       wp.element.createElement(
