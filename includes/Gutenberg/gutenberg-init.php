@@ -5029,30 +5029,39 @@ function fancy_post_grid_render_callback($attributes) {
 
                         $categories_list = get_the_category($post_id);
                         if (!empty($categories_list)) {
-                            $linked_categories = array();
+                            $first_category = $categories_list[0];
+                            $category_url = get_category_link($first_category->term_id);
 
-                            foreach ($categories_list as $category) {
-                                $url = get_category_link($category->term_id);
-                                $linked_categories[] = '<a href="' . esc_url($url) . '" style="'
-                                    . (!empty($metaTextColor) ? 'color:' . esc_attr($metaTextColor) . '; ' : '')
-                                    . (!empty($metaFontSize) ? 'font-size:' . esc_attr($metaFontSize) . 'px; ' : '')
-                                    . '">'
-                                    . esc_html($category->name)
-                                    . '</a>';
+                            $meta .= '<a href="' . esc_url($category_url) . '" style="';
+
+                            if (!empty($metaTextColor)) {
+                                $meta .= 'color:' . esc_attr($metaTextColor) . '; ';
                             }
 
-                            $meta .= ($showPostCategoryIcon && $showMetaIcon)
-                                ? '<i class="fas fa-folder" style="'
-                                    . (!empty($metaIconColor) ? 'color:' . esc_attr($metaIconColor) . '; ' : '')
-                                    . (!empty($metaFontSize) ? 'font-size:' . esc_attr($metaFontSize) . 'px; ' : '')
-                                    . '"></i> '
-                                : '';
+                            if (!empty($metaFontSize)) {
+                                $meta .= 'font-size:' . esc_attr($metaFontSize) . 'px; ';
+                            }
 
-                            $meta .= implode(', ', $linked_categories);
+                            $meta .= '">';
+
+                            if ($showPostCategoryIcon && $showMetaIcon) {
+                                $meta .= '<i class="fas fa-folder" style="';
+                                if (!empty($metaIconColor)) {
+                                    $meta .= 'color:' . esc_attr($metaIconColor) . '; ';
+                                }
+                                if (!empty($metaFontSize)) {
+                                    $meta .= 'font-size:' . esc_attr($metaFontSize) . 'px; ';
+                                }
+                                $meta .= '"></i> ';
+                            }
+
+                            $meta .= esc_html($first_category->name);
+                            $meta .= '</a>';
                         }
 
                         $meta_items[] = $meta;
                     }
+
                     
                     // Now join meta items with the separator
                     if (!empty($meta_items)) {
