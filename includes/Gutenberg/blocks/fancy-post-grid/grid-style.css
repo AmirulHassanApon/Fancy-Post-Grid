@@ -3693,7 +3693,7 @@ img {
     }
     .rs-blog-layout-13-item .rs-content .rs-meta ul li img{
         width: 40px;
-        margin-right: 5px;
+        margin-right: 8px;
         border-radius: 50%;
     }
     .rs-blog-layout-13-item .rs-content .rs-meta ul li a{
@@ -3739,7 +3739,7 @@ img {
     .rs-blog-layout-13-item .rs-content .title a{
         color: #002559;
         text-decoration: none;
-        margin: 10px 0px 20px 0px;
+        margin: 10px 0px 0px 0px;
         display: block;
     }
     .rs-blog-layout-13-item .rs-content a{
