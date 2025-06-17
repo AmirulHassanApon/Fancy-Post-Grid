@@ -5191,7 +5191,7 @@ function fancy_post_grid_render_callback($attributes) {
                             (isset($contentitemPaddingNew['left']) && $contentitemPaddingNew['left'] !== '' ? (is_numeric($contentitemPaddingNew['left']) ? $contentitemPaddingNew['left'] . 'px' : esc_attr($contentitemPaddingNew['left'])) : '0px') . '; ';
                     } else {
                         // Default fallback
-                        $output .= 'padding: 0px 0px 0px 0px;';
+                        $output .= 'padding: 20px 20px 20px 20px;';
                     }
 
                     // Border Width
