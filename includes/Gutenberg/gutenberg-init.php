@@ -207,7 +207,7 @@ function fancy_post_grid_render_callback($attributes) {
     $itemPadding = isset($attributes['itemPadding']) ? $attributes['itemPadding'] : ['top' => '0', 'right' => '0', 'bottom' => '0', 'left' => '0'];
     $itemMargin = isset($attributes['itemMargin']) ? $attributes['itemMargin'] : ['top' => '0', 'right' => '0', 'bottom' => '0', 'left' => '0'];
     $itemBorderRadius = isset($attributes['itemBorderRadius']) ? $attributes['itemBorderRadius'] : ['top' => '5', 'right' => '5', 'bottom' => '5', 'left' => '5'];
-    $itemBorderWidth = isset($attributes['itemBorderWidth']) ? $attributes['itemBorderWidth'] : ['top' => '0', 'right' => '0', 'bottom' => '0', 'left' => '0'];
+    $itemBorderWidth = isset($attributes['itemBorderWidth']) ? $attributes['itemBorderWidth'] : ['top' => '', 'right' => '', 'bottom' => '', 'left' => ''];
     $itemBoxAlignment   = isset($attributes['itemBoxAlignment']) ? sanitize_text_field($attributes['itemBoxAlignment']) : '';
     $itemBorderType     = isset($attributes['itemBorderType']) ? sanitize_text_field($attributes['itemBorderType']) : '';
     $itemBoxShadow = isset($attributes['itemBoxShadow']) ? $attributes['itemBoxShadow'] : ['top' => '', 'right' => '', 'bottom' => '', 'left' => ''];
