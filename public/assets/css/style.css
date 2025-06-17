@@ -4301,6 +4301,7 @@ img {
         font-weight: 700;
         line-height: 1.4;
         order: 1;
+        margin-bottom: 0;
     }
     .rs-blog-layout-16-item .rs-content .title a{
         color: #071230;
