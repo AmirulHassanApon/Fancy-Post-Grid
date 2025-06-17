@@ -2551,7 +2551,7 @@
                                 style: {
                                     ...(attributes.itemMargin
                                       ? { margin: getSpacingValue(attributes.itemMargin) }
-                                      : { margin: '40px 0px 40px 0px' }), // your default fallback
+                                      : { margin: '40px 0px 0px 0px' }), // your default fallback
                                     ...(attributes.itemPadding
                                       ? { padding: getSpacingValue(attributes.itemPadding) }
                                       : { padding: '0px 0px 0px 0px' }), // your default fallback
@@ -2566,7 +2566,7 @@
                                     } : {})
                                 },
                             },
-                            
+
                             
                             // Thumbnail Display with Link if enabled
                             showThumbnail && thumbnail &&
