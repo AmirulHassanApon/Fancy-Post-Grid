@@ -4737,8 +4737,6 @@ img {
 
     /* blog layout 19 css */
     .rs-blog-layout-19{
-        padding-top: 90px;
-        padding-bottom: 120px;
     }
     .rs-blog-layout-19-item{
         background: #fff;
@@ -4754,6 +4752,9 @@ img {
     }
     .rs-blog-layout-19-item .rs-thumb {
         overflow: hidden;
+    }
+    .rs-blog-layout-19-item .rs-thumb a{
+        display: block;
     }
     .rs-blog-layout-19-item .rs-thumb img{
         transition: all linear 0.3s;
