@@ -3945,6 +3945,9 @@ img {
     .rs-blog-layout-14-item .rs-thumb {
         overflow: hidden;
     }
+    .rs-blog-layout-14-item .rs-thumb a{
+        display: block;
+    }
     .rs-blog-layout-14-item .rs-thumb img{
         width: 100%;
         transition: all linear 0.3s;
@@ -3967,6 +3970,7 @@ img {
         font-size: 20px;
         font-weight: 600;
         order: 1;
+        margin-bottom: 0;
     }
     .rs-blog-layout-14-item .rs-content .title a{
         color: #071230;
