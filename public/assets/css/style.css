@@ -3976,6 +3976,7 @@ img {
         color: #071230;
         text-decoration: none;
         display: block;
+        line-height: 1.6;
     }
     .rs-blog-layout-14-item .rs-content .title a:hover{
         color: #337ccf;
