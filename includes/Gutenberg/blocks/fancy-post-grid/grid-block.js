@@ -2680,19 +2680,25 @@
                                                   day: 'numeric',
                                               })}`
                                         ),
-                                        showPostAuthor && wp.element.createElement(
-                                            'a', 
-                                            {  style: { 
-                                                color: metaTextColor, 
-                                                fontSize: `${metaFontSize}px`,
-                                            } },
-                                            showMetaIcon && showPostCategoryIcon &&
-                                                wp.element.createElement('i', { className: 'fas fa-folder',style:{ 
-                                                        ...(metaIconColor ? { color: metaIconColor } : {}),
-                                                        ...(metaFontSize ? { fontSize: `${metaFontSize}px` } : {})
-                                                    } }), // Font Awesome folder icon
-                                                ` ${post._embedded?.['wp:term']?.[0]?.map(cat => cat.name).join(', ')}`
-                                        ),
+                                        showPostCategory && wp.element.createElement(
+                                          'a', 
+                                          {  
+                                              href: post._embedded?.['wp:term']?.[0]?.[0]?.link || '#', // fallback to '#' if no link
+                                              style: { 
+                                                  color: metaTextColor, 
+                                                  fontSize: `${metaFontSize}px`,
+                                              } 
+                                          },
+                                          showMetaIcon && showPostCategoryIcon &&
+                                              wp.element.createElement('i', {
+                                                  className: 'fas fa-folder',
+                                                  style: {
+                                                      ...(metaIconColor ? { color: metaIconColor } : {}),
+                                                      ...(metaFontSize ? { fontSize: `${metaFontSize}px` } : {})
+                                                  }
+                                              }),
+                                          ` ${post._embedded?.['wp:term']?.[0]?.map(cat => cat.name).join(', ')}`
+                                      ),
                                     ),
                             ) ,
                             
