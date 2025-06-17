@@ -2528,7 +2528,7 @@
                 content = wp.element.createElement(
                     'div',
                     { 
-                        className: 'rs-blog-layout-14 grey fancy-post-grid', 
+                        className: 'rs-blog-layout-14 fancy-post-grid', 
                         style: { 
                             display: 'grid', 
                             gridTemplateColumns: `repeat(${newGridColumns7}, 1fr)`, 
@@ -2547,7 +2547,7 @@
                         
                         return wp.element.createElement('div', { 
                             key: post.id, 
-                                className: `fancy-post-item rs-blog-layout-14-item align-${itemBoxAlignment7} ${hoverAnimation}`,
+                                className: `fancy-post-item rs-blog-layout-14-item grey align-${itemBoxAlignment7} ${hoverAnimation}`,
                                 style: {
                                     ...(attributes.itemMargin
                                       ? { margin: getSpacingValue(attributes.itemMargin) }
@@ -2566,6 +2566,7 @@
                                     } : {})
                                 },
                             },
+                            
                             
                             // Thumbnail Display with Link if enabled
                             showThumbnail && thumbnail &&
