@@ -3855,7 +3855,7 @@
                                       : { margin: '0px 0px 40px 0px' }), // your default fallback
                                     ...(attributes.itemPadding
                                       ? { padding: getSpacingValue(attributes.itemPadding) }
-                                      : { padding: '0px 0px 40px 0px' }), // your default fallback
+                                      : { padding: '0px 0px 0px 0px' }), // your default fallback
                                     
                                     ...(attributes.itemBorderRadius ? { borderRadius: getSpacingValue(attributes.itemBorderRadius) } : {}),
                                     ...(attributes.itemBorderWidth ? { borderWidth: getSpacingValue(attributes.itemBorderWidth) } : {}),
