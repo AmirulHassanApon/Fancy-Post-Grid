@@ -4858,6 +4858,19 @@ img {
     .rs-blog-layout-19-item .rs-content .title a:hover{
         color: #007aff;
     }
+    .rs-blog-layout-19-item .rs-content .title.underline a{
+        display: inline;
+        transition: all 0.5s ease;
+        text-decoration: none;
+        background-image: linear-gradient(to bottom, #007aff 0%, #007aff 100%);
+        background-size: 0 2px;
+        background-repeat: no-repeat;
+        background-position: left 100%;
+        transition: all 0.7s !important;
+    }
+    .rs-blog-layout-19-item .rs-content .title.underline a:hover {
+        background-size: 100% 2px;
+    }
     .rs-blog-layout-19-item .rs-content .title.align-start{
         text-align: left;
     }
@@ -5018,8 +5031,7 @@ img {
 
     /* blog layout 21 css */
     .rs-blog-layout-21{
-        padding-top: 90px;
-        padding-bottom: 120px;
+        padding: 60px 30px 90px;
         background: #FFE0E0;
     }
     .rs-blog-layout-21-item{
@@ -5040,6 +5052,9 @@ img {
     .rs-blog-layout-21-item .rs-thumb{
         position: relative;
         overflow: hidden;
+    }
+    .rs-blog-layout-21-item .rs-thumb a{
+        display: block;
     }
     .rs-blog-layout-21-item .rs-thumb svg{
         position: absolute;
@@ -5109,6 +5124,7 @@ img {
         font-size: 26px;
         line-height: 36px;
         order: 2;
+        margin-bottom: 10px;
     }
     .rs-blog-layout-21-item .rs-content .title a{
         color: #391711;
@@ -5131,6 +5147,19 @@ img {
     }
     .rs-blog-layout-21-item .rs-content .title.align-end{
         text-align: right;
+    }
+    .rs-blog-layout-21-item .rs-content .title.underline a{
+        display: inline;
+        transition: all 0.5s ease;
+        text-decoration: none;
+        background-image: linear-gradient(to bottom, #E35E47 0%, #E35E47 100%);
+        background-size: 0 2px;
+        background-repeat: no-repeat;
+        background-position: left 100%;
+        transition: all 0.7s !important;
+    }
+    .rs-blog-layout-21-item .rs-content .title.underline a:hover {
+        background-size: 100% 2px;
     }
     .rs-blog-layout-21-item .rs-content .btn-wrapper{
         order: 3;
