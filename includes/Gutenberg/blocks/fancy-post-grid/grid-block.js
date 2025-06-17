@@ -2688,7 +2688,9 @@
                                               style: { 
                                                   color: metaTextColor, 
                                                   fontSize: `${metaFontSize}px`,
+                                                  backgroundColor: metaBgColor, 
                                               } 
+                                              
                                           },
                                           showMetaIcon && showPostCategoryIcon &&
                                               wp.element.createElement('i', {
