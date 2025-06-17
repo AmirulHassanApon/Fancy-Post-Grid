@@ -3640,8 +3640,6 @@ img {
 
   /* blog layout 13 css */
   .rs-blog-layout-13{
-    padding-top: 90px;
-    padding-bottom: 120px;
   }
   .rs-blog-layout-13-item {
     position: relative;
@@ -3673,7 +3671,7 @@ img {
         flex-wrap: wrap;
         gap: 8px 15px;
         padding: 0px;
-        margin: 0;
+        margin: 0 0 10px;
         list-style-type: none;
     }
     .rs-blog-layout-13-item .rs-content .rs-meta ul li{
@@ -3742,6 +3740,21 @@ img {
     }
     .rs-blog-layout-13-item .rs-content .title a:hover{
         color: #CB003B;
+    }
+    .rs-blog-layout-13-item .rs-content .title.underline a{
+        display: inline;
+        transition: all 0.5s ease;
+        text-decoration: none;
+        background-image: linear-gradient(to bottom, #CB003B 0%, #CB003B 100%);
+        background-size: 0 2px;
+        background-repeat: no-repeat;
+        background-position: left 100%;
+        transition: all 0.7s !important;
+    }
+
+
+    .rs-blog-layout-13-item .rs-content .title.underline a:hover {
+        background-size: 100% 2px;
     }
     .rs-blog-layout-13-item .rs-content .btn-wrapper {
         order: 3;
@@ -3859,6 +3872,9 @@ img {
         position: relative;
     }
 
+    .rs-blog-layout-13-item .rs-thumb a{
+        display: block;
+    }
     .rs-blog-layout-13-item .rs-thumb img{
         transition: all ease 0.3s;
         transform: scale(1);
@@ -3909,15 +3925,12 @@ img {
 
     /* blog layout 14 css */
     .rs-blog-layout-14{
-        padding-top: 90px;
-        padding-bottom: 120px;
     }
     .rs-blog-layout-14-item{
         position: relative;
         border-radius: 5px;
         overflow: hidden;
         margin-top: 30px;
-        background: #fff;
     }
     .rs-blog-layout-14-item.align-start{
         text-align: left;
@@ -3974,6 +3987,16 @@ img {
         flex-direction: column;
         gap: 8px;
         width: 50%;
+    }
+    .rs-blog-layout-14-item .rs-content .rs-meta a{
+        background: #337ccf;
+        color: #fff;
+        padding: 2px 10px 2px 15px;
+        border-radius: 30px;
+        position: relative;
+        font-size: 14px;
+        font-weight: 600;
+        text-decoration: none;
     }
     .rs-blog-layout-14-item .rs-content .rs-meta div{
         color: #7A7A7A;
