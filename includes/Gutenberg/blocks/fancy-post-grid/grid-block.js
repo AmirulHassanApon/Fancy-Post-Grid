@@ -2221,6 +2221,17 @@
             }
             else if (gridLayoutStyle === 'style6' && posts && posts.length) {
                 content = wp.element.createElement(
+                          wp.element.Fragment,
+                          null,
+                          wp.element.createElement('style', null, `
+                              
+                              .rs-blog-layout-13-item .rs-thumb .pre-blog-meta::after {
+                                  border-style:  solid ;
+                                  border-width:  1px 1px 1px 1px ;
+                                  border-color: ${attributes.metaBgColor || '#fff'};
+                              },
+                          `),
+                wp.element.createElement(
                     'div',
                     { 
                         className: 'rs-blog-layout-13 fancy-post-grid', 
@@ -2295,15 +2306,18 @@
                                     showPostDate && wp.element.createElement(
                                         'div', 
                                         { className: 'pre-blog-meta', style: { 
-                                            color: metaTextColor, 
-                                            fontSize: `${metaFontSize}px`,
+                                            backgroundColor: metaBgColor, 
                                         } },
                                         
-                                        wp.element.createElement('span', { className: 'pre-date' }, 
+                                        wp.element.createElement('span', { className: 'pre-date',style: { 
+                                            color: metaTextColor, 
+                                        } }, 
                                             new Date(post.date).toLocaleDateString(undefined, { day: 'numeric' })
                                         ),
                                         '',
-                                        wp.element.createElement('span', { className: 'pre-month' }, 
+                                        wp.element.createElement('span', { className: 'pre-month',style: { 
+                                            color: metaTextColor, 
+                                        } }, 
                                             new Date(post.date).toLocaleDateString(undefined, { month: 'short' })
                                         ),
                                         ' ',
@@ -2497,6 +2511,7 @@
                         );
                     }),
                     
+                ),
                 );
                 
                 // Add pagination below the posts
