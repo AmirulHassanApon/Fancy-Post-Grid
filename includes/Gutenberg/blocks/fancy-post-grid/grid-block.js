@@ -2567,6 +2567,7 @@
                                 },
                             },
                             
+                            
                             // Thumbnail Display with Link if enabled
                             showThumbnail && thumbnail &&
                                 wp.element.createElement(
