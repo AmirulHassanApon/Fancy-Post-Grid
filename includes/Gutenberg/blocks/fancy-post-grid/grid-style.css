@@ -3935,6 +3935,7 @@ img {
         border-radius: 5px;
         overflow: hidden;
         margin-top: 30px;
+        border: 1px solid #efefef;
     }
     .rs-blog-layout-14-item.align-start{
         text-align: left;
