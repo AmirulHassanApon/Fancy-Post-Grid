@@ -4275,6 +4275,9 @@ img {
     .rs-blog-layout-16-item .rs-thumb {
         overflow: hidden;
     }
+    .rs-blog-layout-16-item .rs-thumb a{
+        display: block;
+    }
     .rs-blog-layout-16-item .rs-thumb img{
         width: 100%;
         transition: all linear 0.3s;
@@ -4360,7 +4363,7 @@ img {
         color: #7A7A7A;
     }
     .rs-blog-layout-16-item .rs-content .rs-meta .meta-date span i{
-        color: #071230;
+        color: #7A7A7A;
         display: inline-block;
         margin-right: 6px;
     }
