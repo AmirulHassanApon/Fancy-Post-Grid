@@ -7143,7 +7143,7 @@ function fancy_post_grid_render_callback($attributes) {
                             (isset($itemPadding['bottom']) && $itemPadding['bottom'] !== '' ? (is_numeric($itemPadding['bottom']) ? $itemPadding['bottom'] . 'px' : esc_attr($itemPadding['bottom'])) : '0px') . ' ' .
                             (isset($itemPadding['left']) && $itemPadding['left'] !== '' ? (is_numeric($itemPadding['left']) ? $itemPadding['left'] . 'px' : esc_attr($itemPadding['left'])) : '0px') . '; ';
                     } else {
-                        $output .= 'padding: 0px 0px 40px 0px;';
+                        $output .= 'padding: 0px 0px 0px 0px;';
                     }
 
 
