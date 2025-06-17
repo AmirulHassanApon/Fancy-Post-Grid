@@ -5488,6 +5488,9 @@ function fancy_post_grid_render_callback($attributes) {
                         if (!empty($metaTextColor)) {
                             $meta .= 'color:' . esc_attr($metaTextColor) . '; ';
                         }
+                        if (!empty($metaBgColor)) {
+                            $meta .= 'background-color:' . esc_attr($metaBgColor) . '; ';
+                        }
 
                         if (!empty($metaFontSize)) {
                             $meta .= 'font-size:' . esc_attr($metaFontSize) . 'px; ';
