@@ -4279,6 +4279,9 @@ img {
     .rs-blog-layout-16-item .rs-thumb {
         overflow: hidden;
     }
+    .rs-blog-layout-16-item .rs-thumb a{
+        display: block;
+    }
     .rs-blog-layout-16-item .rs-thumb img{
         width: 100%;
         transition: all linear 0.3s;
@@ -4303,6 +4306,7 @@ img {
         font-weight: 700;
         line-height: 1.4;
         order: 1;
+        text-align: center;
     }
     .rs-blog-layout-16-item .rs-content .title a{
         color: #071230;
@@ -4345,6 +4349,12 @@ img {
         text-align: left;
     }
     .rs-blog-layout-16-item .rs-content .rs-meta .meta-author span,.rs-blog-layout-16-item .rs-content .rs-meta .meta-author span a{
+        font-weight: 600;
+        font-size: 14px;
+        text-decoration: none;
+        color: #7A7A7A;
+    }
+    .rs-blog-layout-16-item .rs-content .rs-meta .meta-date{
         font-weight: 600;
         font-size: 14px;
         text-decoration: none;
@@ -4727,8 +4737,6 @@ img {
 
     /* blog layout 19 css */
     .rs-blog-layout-19{
-        padding-top: 90px;
-        padding-bottom: 120px;
     }
     .rs-blog-layout-19-item{
         background: #fff;
@@ -4744,6 +4752,9 @@ img {
     }
     .rs-blog-layout-19-item .rs-thumb {
         overflow: hidden;
+    }
+    .rs-blog-layout-19-item .rs-thumb a{
+        display: block;
     }
     .rs-blog-layout-19-item .rs-thumb img{
         transition: all linear 0.3s;
