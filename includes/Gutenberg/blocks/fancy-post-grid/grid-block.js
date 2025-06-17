@@ -2953,6 +2953,7 @@
                                         'div', // Changed from 'li' to 'div'
                                         { className: 'rs-category', style: { 
                                             color: metaTextColor, 
+                                            backgroundColor: metaBgColor, 
                                             fontSize: `${metaFontSize}px`,
                                         } },
                                         showMetaIcon && showPostCategoryIcon &&
