@@ -4303,6 +4303,7 @@ img {
         line-height: 1.4;
         order: 1;
         margin-bottom: 0;
+        text-align: center;
     }
     .rs-blog-layout-16-item .rs-content .title a{
         color: #071230;
