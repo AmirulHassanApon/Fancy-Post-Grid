@@ -3534,10 +3534,10 @@ function fancy_post_grid_render_callback($attributes) {
                 $afterStyles .= 'border-color: ' . (!empty($itemBorderColor) ? esc_attr($itemBorderColor) : '#007aff') . ';';
                 $afterStyles .= 'border-style: ' . (!empty($itemBorderType) ? esc_attr($itemBorderType) : 'solid') . ';';
                 $afterStyles .= 'border-width: ' .
-                            (isset($itemBorderWidth['top']) && $itemBorderWidth['top'] !== '' ? (is_numeric($itemBorderWidth['top']) ? $itemBorderWidth['top'] . 'px' : esc_attr($itemBorderWidth['top'])) : '0px') . ' ' .
-                            (isset($itemBorderWidth['right']) && $itemBorderWidth['right'] !== '' ? (is_numeric($itemBorderWidth['right']) ? $itemBorderWidth['right'] . 'px' : esc_attr($itemBorderWidth['right'])) : '0px') . ' ' .
-                            (isset($itemBorderWidth['bottom']) && $itemBorderWidth['bottom'] !== '' ? (is_numeric($itemBorderWidth['bottom']) ? $itemBorderWidth['bottom'] . 'px' : esc_attr($itemBorderWidth['bottom'])) : '0px') . ' ' .
-                            (isset($itemBorderWidth['left']) && $itemBorderWidth['left'] !== '' ? (is_numeric($itemBorderWidth['left']) ? $itemBorderWidth['left'] . 'px' : esc_attr($itemBorderWidth['left'])) : '0px') . '; ';
+                            (isset($itemBorderWidth['top']) && $itemBorderWidth['top'] !== '' ? (is_numeric($itemBorderWidth['top']) ? $itemBorderWidth['top'] . 'px' : esc_attr($itemBorderWidth['top'])) : '1px') . ' ' .
+                            (isset($itemBorderWidth['right']) && $itemBorderWidth['right'] !== '' ? (is_numeric($itemBorderWidth['right']) ? $itemBorderWidth['right'] . 'px' : esc_attr($itemBorderWidth['right'])) : '1px') . ' ' .
+                            (isset($itemBorderWidth['bottom']) && $itemBorderWidth['bottom'] !== '' ? (is_numeric($itemBorderWidth['bottom']) ? $itemBorderWidth['bottom'] . 'px' : esc_attr($itemBorderWidth['bottom'])) : '1px') . ' ' .
+                            (isset($itemBorderWidth['left']) && $itemBorderWidth['left'] !== '' ? (is_numeric($itemBorderWidth['left']) ? $itemBorderWidth['left'] . 'px' : esc_attr($itemBorderWidth['left'])) : '1px') . '; ';
                 $afterStyles .= 'border-radius: ' .
                             (isset($itemBorderRadius['top']) && $itemBorderRadius['top'] !== '' ? (is_numeric($itemBorderRadius['top']) ? $itemBorderRadius['top'] . 'px' : esc_attr($itemBorderRadius['top'])) : '0px') . ' ' .
                             (isset($itemBorderRadius['right']) && $itemBorderRadius['right'] !== '' ? (is_numeric($itemBorderRadius['right']) ? $itemBorderRadius['right'] . 'px' : esc_attr($itemBorderRadius['right'])) : '0px') . ' ' .
