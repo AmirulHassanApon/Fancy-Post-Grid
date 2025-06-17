@@ -3931,6 +3931,7 @@ img {
         border-radius: 5px;
         overflow: hidden;
         margin-top: 30px;
+        border: 1px solid #efefef;
     }
     .rs-blog-layout-14-item.align-start{
         text-align: left;
@@ -3943,6 +3944,9 @@ img {
     }
     .rs-blog-layout-14-item .rs-thumb {
         overflow: hidden;
+    }
+    .rs-blog-layout-14-item .rs-thumb a{
+        display: block;
     }
     .rs-blog-layout-14-item .rs-thumb img{
         width: 100%;
@@ -3966,11 +3970,13 @@ img {
         font-size: 20px;
         font-weight: 600;
         order: 1;
+        margin-bottom: 0;
     }
     .rs-blog-layout-14-item .rs-content .title a{
         color: #071230;
         text-decoration: none;
         display: block;
+        line-height: 1.6;
     }
     .rs-blog-layout-14-item .rs-content .title a:hover{
         color: #337ccf;
