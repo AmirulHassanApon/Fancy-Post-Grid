@@ -4161,6 +4161,15 @@ img {
     .rs-blog-layout-15-item .rs-content .title.underline a:hover {
         background-size: 100% 2px;
     }
+    .rs-blog-layout-15-item .rs-content .title.align-start{
+        text-align: left;
+    }
+    .rs-blog-layout-15-item .rs-content .title.align-center{
+        text-align: center;
+    }
+    .rs-blog-layout-15-item .rs-content .title.align-end{
+        text-align: right;
+    }
     .rs-blog-layout-15-item .rs-content .rs-meta{
         display: flex;
         align-items: center;
@@ -4201,6 +4210,9 @@ img {
     .rs-blog-layout-15-item .rs-thumb{
         position: relative;
         overflow: hidden;
+    }
+    .rs-blog-layout-15-item .rs-thumb a{
+        display: block;
     }
     .rs-blog-layout-15-item .rs-thumb img{
         transition: all linear 0.3s;
