@@ -12249,11 +12249,12 @@ function fancy_post_slider_render_callback($attributes) {
     // Pagination & navigation
     
     $output .= '<style>
-        .swiper-pagination-1 .swiper-pagination-bullet {
+
+        .rs-blog-layout-1 .swiper_wrap .swiper-pagination .swiper-pagination-bullet {
             background-color: ' . esc_attr($sliderDots) . ';
             opacity: 1;
         }
-        .swiper-pagination-1 .swiper-pagination-bullet-active {
+        .rs-blog-layout-1 .swiper_wrap .swiper-pagination .swiper-pagination-bullet.swiper-pagination-bullet-active, .rs-blog-layout-1 .swiper_wrap .swiper-pagination .swiper-pagination-bullet:hover {
             background-color: ' . esc_attr($sliderDotsActive) . ';
         }
         .swiper-pagination-1 .swiper-pagination-fraction .swiper-pagination-current {
