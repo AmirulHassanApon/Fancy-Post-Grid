@@ -7962,6 +7962,8 @@ function fancy_post_slider_render_callback($attributes) {
     $arrowWeight = isset($attributes['arrowWeight']) ? absint($attributes['arrowWeight']) : '';
     $bulletHeight = isset($attributes['bulletHeight']) ? absint($attributes['bulletHeight']) : '';
     $bulletWeight = isset($attributes['bulletWeight']) ? absint($attributes['bulletWeight']) : '';
+    $arrowBorderRadius = isset($attributes['arrowBorderRadius']) ? array_map('sanitize_text_field', $attributes['arrowBorderRadius']) : ['top' => '', 'right' => '', 'bottom' => '', 'left' => ''];
+    $bulletsRadius = isset($attributes['bulletsRadius']) ? array_map('sanitize_text_field', $attributes['bulletsRadius']) : ['top' => '', 'right' => '', 'bottom' => '', 'left' => ''];
     
     //END ATTRIBUTES
     
@@ -8847,7 +8849,7 @@ function fancy_post_slider_render_callback($attributes) {
                 if ( !empty($itemMargin['top']) || !empty($itemMargin['right']) ||  !empty($itemMargin['bottom']) || !empty($itemMargin['left'])) {
                     $output .= 'margin: ' .(isset($itemMargin['top']) && $itemMargin['top'] !== '' ? (is_numeric($itemMargin['top']) ? $itemMargin['top'] . 'px' : esc_attr($itemMargin['top'])) : '0px') . ' ' . (isset($itemMargin['right']) && $itemMargin['right'] !== '' ? (is_numeric($itemMargin['right']) ? $itemMargin['right'] . 'px' : esc_attr($itemMargin['right'])) : '0px') . ' ' . (isset($itemMargin['bottom']) && $itemMargin['bottom'] !== '' ? (is_numeric($itemMargin['bottom']) ? $itemMargin['bottom'] . 'px' : esc_attr($itemMargin['bottom'])) : '0px') . ' ' . (isset($itemMargin['left']) && $itemMargin['left'] !== '' ? (is_numeric($itemMargin['left']) ? $itemMargin['left'] . 'px' : esc_attr($itemMargin['left'])) : '0px') . '; '; 
                 } else { // Default fallback
-                    $output .= 'margin: 40px 0px 0px 0px;';
+                    $output .= 'margin: 40px 0px 40px 0px;';
                 }
 
                 // Padding
@@ -12242,10 +12244,17 @@ function fancy_post_slider_render_callback($attributes) {
             .swiper-button-next:hover::after {
                 color: ' . esc_attr($arrowHoverColor) . ' !important;
             }
-            .swiper_wrap .swiper-button-next, .swiper_wrap .swiper-button-prev {
-                
+            .swiper_wrap .swiper-button-next, .swiper_wrap .swiper-button-prev{
                 height: ' . esc_attr($arrowHeight) . 'px !important;
                 width: ' . esc_attr($arrowWeight) . 'px !important;
+            }
+            .rs-blog-layout-1 .swiper_wrap .swiper-button-prev,.rs-blog-layout-1 .swiper_wrap .swiper-button-next {
+                
+                border-radius: ' .
+                        (isset($arrowBorderRadius['top']) && $arrowBorderRadius['top'] !== '' ? (is_numeric($arrowBorderRadius['top']) ? $arrowBorderRadius['top'] . 'px' : esc_attr($arrowBorderRadius['top'])) : '0px') . ' ' .
+                        (isset($arrowBorderRadius['right']) && $arrowBorderRadius['right'] !== '' ? (is_numeric($arrowBorderRadius['right']) ? $arrowBorderRadius['right'] . 'px' : esc_attr($arrowBorderRadius['right'])) : '0px') . ' ' .
+                        (isset($arrowBorderRadius['bottom']) && $arrowBorderRadius['bottom'] !== '' ? (is_numeric($arrowBorderRadius['bottom']) ? $arrowBorderRadius['bottom'] . 'px' : esc_attr($arrowBorderRadius['bottom'])) : '0px') . ' ' .
+                        (isset($arrowBorderRadius['left']) && $arrowBorderRadius['left'] !== '' ? (is_numeric($arrowBorderRadius['left']) ? $arrowBorderRadius['left'] . 'px' : esc_attr($arrowBorderRadius['left'])) : '0px') . ';
                 
             }
         </style>';
@@ -12264,6 +12273,11 @@ function fancy_post_slider_render_callback($attributes) {
             background-color: ' . esc_attr($sliderDots) . ';
             height: ' . esc_attr($bulletHeight) . 'px !important;
             width: ' . esc_attr($bulletWeight) . 'px !important;
+            border-radius: ' .
+                        (isset($bulletsRadius['top']) && $bulletsRadius['top'] !== '' ? (is_numeric($bulletsRadius['top']) ? $bulletsRadius['top'] . 'px' : esc_attr($bulletsRadius['top'])) : '0px') . ' ' .
+                        (isset($bulletsRadius['right']) && $bulletsRadius['right'] !== '' ? (is_numeric($bulletsRadius['right']) ? $bulletsRadius['right'] . 'px' : esc_attr($bulletsRadius['right'])) : '0px') . ' ' .
+                        (isset($bulletsRadius['bottom']) && $bulletsRadius['bottom'] !== '' ? (is_numeric($bulletsRadius['bottom']) ? $bulletsRadius['bottom'] . 'px' : esc_attr($bulletsRadius['bottom'])) : '0px') . ' ' .
+                        (isset($bulletsRadius['left']) && $bulletsRadius['left'] !== '' ? (is_numeric($bulletsRadius['left']) ? $bulletsRadius['left'] . 'px' : esc_attr($bulletsRadius['left'])) : '0px') . ';
             opacity: 1;
         }
         .rs-blog-layout-1 .swiper_wrap .swiper-pagination .swiper-pagination-bullet.swiper-pagination-bullet-active, .rs-blog-layout-1 .swiper_wrap .swiper-pagination .swiper-pagination-bullet:hover {
