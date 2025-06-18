@@ -138,6 +138,7 @@
             metaMarginNew: { type: 'object' }, 
             metaPadding: { type: 'object' }, 
             metaTextColor: { type: 'string', default: '' },
+            metaBgColor: { type: 'string', default: '' },
             separatorColor: { type: 'string', default: '' },
             metaIconColor: { type: 'string', default: '' },
             
@@ -212,7 +213,7 @@
                 excerptPadding,excerptColor,excerptBgColor,excerptHoverColor,excerptHoverBgColor,
                 excerptHoverBorderColor,
 
-                metaAlignment,metaFontSize,metaMarginNew,metaPadding,metaTextColor,separatorColor,metaIconColor,
+                metaAlignment,metaFontSize,metaMarginNew,metaPadding,metaTextColor,metaBgColor,separatorColor,metaIconColor,
 
                 buttonAlignment,buttonMarginNew,buttonPaddingNew,buttonTextColor,buttonBackgroundColor,buttonBorderType,buttonFontWeight,
                 buttonBorderWidth,buttonBorderRadius,buttonFontSize,buttonHoverTextColor,buttonHoverBackgroundColor,
@@ -1348,6 +1349,7 @@
                                                                         style: {
                                                                             ...(metaTextColor ? { color: metaTextColor } : {}),
                                                                             ...(metaFontSize ? { fontSize: `${metaFontSize}px` } : {}),
+                                                                            ...(metaBgColor ? { backgroundColor: metaBgColor } : {}),
                                                                             textDecoration: 'none'
                                                                         }
                                                                     },
@@ -3758,6 +3760,18 @@
                                     wp.element.createElement(Button, {
                                         isSecondary: true,
                                         onClick: () => setAttributes({ metaTextColor: '' }),
+                                        style: { marginTop: '10px' },
+                                    }, __('Clear Color', 'fancy-post-grid')),
+
+                                    // Meta Text Color
+                                    wp.element.createElement('p', {}, __('Meta Background Color', 'fancy-post-grid')),
+                                    wp.element.createElement(wp.components.ColorPicker, {
+                                        color: attributes.metaBgColor,
+                                        onChangeComplete: (value) => setAttributes({ metaBgColor: value.hex }),
+                                    }),
+                                    wp.element.createElement(Button, {
+                                        isSecondary: true,
+                                        onClick: () => setAttributes({ metaBgColor: '' }),
                                         style: { marginTop: '10px' },
                                     }, __('Clear Color', 'fancy-post-grid')),
 
