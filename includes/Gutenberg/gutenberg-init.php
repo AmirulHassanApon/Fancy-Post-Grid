@@ -7949,6 +7949,8 @@ function fancy_post_slider_render_callback($attributes) {
 
     $sliderDots = isset($attributes['sliderDots']) ? sanitize_hex_color($attributes['sliderDots']) : '';
     $sliderDotsActive = isset($attributes['sliderDotsActive']) ? sanitize_hex_color($attributes['sliderDotsActive']) : '';
+    $normalProcessColor = isset($attributes['normalProcessColor']) ? sanitize_hex_color($attributes['normalProcessColor']) : '';
+    $activeProcessColor = isset($attributes['activeProcessColor']) ? sanitize_hex_color($attributes['activeProcessColor']) : '';
     $arrowColor = isset($attributes['arrowColor']) ? sanitize_hex_color($attributes['arrowColor']) : '';
     $arrowHoverColor = isset($attributes['arrowHoverColor']) ? sanitize_hex_color($attributes['arrowHoverColor']) : '';
     $arrowBgColorr = isset($attributes['arrowBgColorr']) ? sanitize_hex_color($attributes['arrowBgColorr']) : '';
@@ -12257,8 +12259,17 @@ function fancy_post_slider_render_callback($attributes) {
         .rs-blog-layout-1 .swiper_wrap .swiper-pagination .swiper-pagination-bullet.swiper-pagination-bullet-active, .rs-blog-layout-1 .swiper_wrap .swiper-pagination .swiper-pagination-bullet:hover {
             background-color: ' . esc_attr($sliderDotsActive) . ';
         }
-        .swiper-pagination-1 .swiper-pagination-fraction .swiper-pagination-current {
-            background-color: ' . esc_attr($sliderDots) . ';
+        .swiper_wrap .swiper-pagination-fraction {
+            color: ' . esc_attr($fractionCurrentColor) . ';
+            font-size: ' . esc_attr($fractionFontSize) . ';
+            opacity: 1;   
+        }
+        .rs-blog-layout-1 .swiper_wrap .swiper-pagination-progressbar {
+            background-color: ' . esc_attr($normalProcessColor) . ';
+            opacity: 1;
+        }
+        .rs-blog-layout-1 .swiper_wrap .swiper-pagination-progressbar .swiper-pagination-progressbar-fill {
+            background-color: ' . esc_attr($activeProcessColor) . ';
             opacity: 1;
         }
         
