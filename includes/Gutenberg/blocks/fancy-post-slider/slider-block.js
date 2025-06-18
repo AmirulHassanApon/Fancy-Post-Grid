@@ -604,7 +604,7 @@
                                                                     className: `blog-meta post-meta align-${metaAlignment} `, 
                                                                     style: { 
                                                                         ...(attributes.metaMarginNew ? { margin: getSpacingValue(attributes.metaMarginNew) }: { margin: '0px 0px 0px 0px' }), 
-                                                                        ...(attributes.metaPadding ? { padding: getSpacingValue(attributes.metaPadding) }: { padding: '0px 0px 0px 0px' }),
+                                                                        ...(attributes.metaPadding ? { padding: getSpacingValue(attributes.metaPadding) }: { padding: '0px 0px 12px 0px' }),
                                                                         ...(metaTextColor ? { color: metaTextColor } : {}),
                                                                         ...(typeof metaOrder !== 'undefined' ? { order: metaOrder } : {}),
                                                                         ...(metaFontSize ? { fontSize: `${metaFontSize}px` } : {})

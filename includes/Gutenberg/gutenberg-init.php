@@ -9590,7 +9590,7 @@ function fancy_post_slider_render_callback($attributes) {
             $output .= '">';
             // Thumbnail
             if ($thumbnail && $showThumbnail) {
-                $output .= '<div class="thumb" style="';
+                $output .= '<div class="rs-thumb" style="';
 
                 // Margin
                 if (!empty($thumbnailMargin['top']) || !empty($thumbnailMargin['right']) || !empty($thumbnailMargin['bottom']) || !empty($thumbnailMargin['left'])) {
@@ -9610,22 +9610,26 @@ function fancy_post_slider_render_callback($attributes) {
                         (isset($thumbnailPadding['left']) && $thumbnailPadding['left'] !== '' ? (is_numeric($thumbnailPadding['left']) ? $thumbnailPadding['left'] . 'px' : esc_attr($thumbnailPadding['left'])) : '0px') . '; ';
                 }
 
+                // Border Radius
+                if (!empty($thumbnailBorderRadius['top']) || !empty($thumbnailBorderRadius['right']) || !empty($thumbnailBorderRadius['bottom']) || !empty($thumbnailBorderRadius['left'])) {
+                    $output .= 'border-radius: ' .
+                        (isset($thumbnailBorderRadius['top']) && $thumbnailBorderRadius['top'] !== '' ? (is_numeric($thumbnailBorderRadius['top']) ? $thumbnailBorderRadius['top'] . 'px' : esc_attr($thumbnailBorderRadius['top'])) : '0px') . ' ' .
+                        (isset($thumbnailBorderRadius['right']) && $thumbnailBorderRadius['right'] !== '' ? (is_numeric($thumbnailBorderRadius['right']) ? $thumbnailBorderRadius['right'] . 'px' : esc_attr($thumbnailBorderRadius['right'])) : '0px') . ' ' .
+                        (isset($thumbnailBorderRadius['bottom']) && $thumbnailBorderRadius['bottom'] !== '' ? (is_numeric($thumbnailBorderRadius['bottom']) ? $thumbnailBorderRadius['bottom'] . 'px' : esc_attr($thumbnailBorderRadius['bottom'])) : '0px') . ' ' .
+                        (isset($thumbnailBorderRadius['left']) && $thumbnailBorderRadius['left'] !== '' ? (is_numeric($thumbnailBorderRadius['left']) ? $thumbnailBorderRadius['left'] . 'px' : esc_attr($thumbnailBorderRadius['left'])) : '0px') . ';';
+                }
+
                 $output .= '">';
 
                 // Anchor with optional border-radius and overflow
-                $output .= '<a href="' . esc_url($permalink) . '" style="';
-
-                    // Border Radius
-                    if (!empty($thumbnailBorderRadius['top']) || !empty($thumbnailBorderRadius['right']) || !empty($thumbnailBorderRadius['bottom']) || !empty($thumbnailBorderRadius['left'])) {
-                        $output .= 'border-radius: ' .
-                            (isset($thumbnailBorderRadius['top']) && $thumbnailBorderRadius['top'] !== '' ? (is_numeric($thumbnailBorderRadius['top']) ? $thumbnailBorderRadius['top'] . 'px' : esc_attr($thumbnailBorderRadius['top'])) : '0px') . ' ' .
-                            (isset($thumbnailBorderRadius['right']) && $thumbnailBorderRadius['right'] !== '' ? (is_numeric($thumbnailBorderRadius['right']) ? $thumbnailBorderRadius['right'] . 'px' : esc_attr($thumbnailBorderRadius['right'])) : '0px') . ' ' .
-                            (isset($thumbnailBorderRadius['bottom']) && $thumbnailBorderRadius['bottom'] !== '' ? (is_numeric($thumbnailBorderRadius['bottom']) ? $thumbnailBorderRadius['bottom'] . 'px' : esc_attr($thumbnailBorderRadius['bottom'])) : '0px') . ' ' .
-                            (isset($thumbnailBorderRadius['left']) && $thumbnailBorderRadius['left'] !== '' ? (is_numeric($thumbnailBorderRadius['left']) ? $thumbnailBorderRadius['left'] . 'px' : esc_attr($thumbnailBorderRadius['left'])) : '0px') . ';';
-                    }
-
-                $output .= '">';
-                $output .= $thumbnail . '</a></div>';
+                if ($thumbnailLink) {
+                    $output .= '<a href="' . esc_url($permalink) . '">';
+                    $output .= $thumbnail;
+                    $output .= '</a>';
+                } else {
+                    $output .= $thumbnail;
+                }
+                $output .= '</div>';
             }
             // END Thumbnail
             
@@ -10198,21 +10202,26 @@ function fancy_post_slider_render_callback($attributes) {
                         (isset($thumbnailPadding['left']) && $thumbnailPadding['left'] !== '' ? (is_numeric($thumbnailPadding['left']) ? $thumbnailPadding['left'] . 'px' : esc_attr($thumbnailPadding['left'])) : '0px') . '; ';
                 }
 
+                // Border Radius
+                if (!empty($thumbnailBorderRadius['top']) || !empty($thumbnailBorderRadius['right']) || !empty($thumbnailBorderRadius['bottom']) || !empty($thumbnailBorderRadius['left'])) {
+                    $output .= 'border-radius: ' .
+                        (isset($thumbnailBorderRadius['top']) && $thumbnailBorderRadius['top'] !== '' ? (is_numeric($thumbnailBorderRadius['top']) ? $thumbnailBorderRadius['top'] . 'px' : esc_attr($thumbnailBorderRadius['top'])) : '0px') . ' ' .
+                        (isset($thumbnailBorderRadius['right']) && $thumbnailBorderRadius['right'] !== '' ? (is_numeric($thumbnailBorderRadius['right']) ? $thumbnailBorderRadius['right'] . 'px' : esc_attr($thumbnailBorderRadius['right'])) : '0px') . ' ' .
+                        (isset($thumbnailBorderRadius['bottom']) && $thumbnailBorderRadius['bottom'] !== '' ? (is_numeric($thumbnailBorderRadius['bottom']) ? $thumbnailBorderRadius['bottom'] . 'px' : esc_attr($thumbnailBorderRadius['bottom'])) : '0px') . ' ' .
+                        (isset($thumbnailBorderRadius['left']) && $thumbnailBorderRadius['left'] !== '' ? (is_numeric($thumbnailBorderRadius['left']) ? $thumbnailBorderRadius['left'] . 'px' : esc_attr($thumbnailBorderRadius['left'])) : '0px') . ';';
+                }
+
                 $output .= '">';
 
                 // Anchor with optional border-radius and overflow
-                $output .= '<a href="' . esc_url($permalink) . '" style="';
-
-                    if (!empty($thumbnailBorderRadius['top']) || !empty($thumbnailBorderRadius['right']) || !empty($thumbnailBorderRadius['bottom']) || !empty($thumbnailBorderRadius['left'])) {
-                        $output .= 'border-radius: ' .
-                            (isset($thumbnailBorderRadius['top']) && $thumbnailBorderRadius['top'] !== '' ? (is_numeric($thumbnailBorderRadius['top']) ? $thumbnailBorderRadius['top'] . 'px' : esc_attr($thumbnailBorderRadius['top'])) : '0px') . ' ' .
-                            (isset($thumbnailBorderRadius['right']) && $thumbnailBorderRadius['right'] !== '' ? (is_numeric($thumbnailBorderRadius['right']) ? $thumbnailBorderRadius['right'] . 'px' : esc_attr($thumbnailBorderRadius['right'])) : '0px') . ' ' .
-                            (isset($thumbnailBorderRadius['bottom']) && $thumbnailBorderRadius['bottom'] !== '' ? (is_numeric($thumbnailBorderRadius['bottom']) ? $thumbnailBorderRadius['bottom'] . 'px' : esc_attr($thumbnailBorderRadius['bottom'])) : '0px') . ' ' .
-                            (isset($thumbnailBorderRadius['left']) && $thumbnailBorderRadius['left'] !== '' ? (is_numeric($thumbnailBorderRadius['left']) ? $thumbnailBorderRadius['left'] . 'px' : esc_attr($thumbnailBorderRadius['left'])) : '0px') . ';';
-                    }
-
-                $output .= '">';
-                $output .= $thumbnail . '</a></div>';
+                if ($thumbnailLink) {
+                    $output .= '<a href="' . esc_url($permalink) . '">';
+                    $output .= $thumbnail;
+                    $output .= '</a>';
+                } else {
+                    $output .= $thumbnail;
+                }
+                $output .= '</div>';
             }
             // END Thumbnail
             
@@ -10696,21 +10705,26 @@ function fancy_post_slider_render_callback($attributes) {
                         (isset($thumbnailPadding['left']) && $thumbnailPadding['left'] !== '' ? (is_numeric($thumbnailPadding['left']) ? $thumbnailPadding['left'] . 'px' : esc_attr($thumbnailPadding['left'])) : '0px') . '; ';
                 }
 
+                // Border Radius
+                if (!empty($thumbnailBorderRadius['top']) || !empty($thumbnailBorderRadius['right']) || !empty($thumbnailBorderRadius['bottom']) || !empty($thumbnailBorderRadius['left'])) {
+                    $output .= 'border-radius: ' .
+                        (isset($thumbnailBorderRadius['top']) && $thumbnailBorderRadius['top'] !== '' ? (is_numeric($thumbnailBorderRadius['top']) ? $thumbnailBorderRadius['top'] . 'px' : esc_attr($thumbnailBorderRadius['top'])) : '0px') . ' ' .
+                        (isset($thumbnailBorderRadius['right']) && $thumbnailBorderRadius['right'] !== '' ? (is_numeric($thumbnailBorderRadius['right']) ? $thumbnailBorderRadius['right'] . 'px' : esc_attr($thumbnailBorderRadius['right'])) : '0px') . ' ' .
+                        (isset($thumbnailBorderRadius['bottom']) && $thumbnailBorderRadius['bottom'] !== '' ? (is_numeric($thumbnailBorderRadius['bottom']) ? $thumbnailBorderRadius['bottom'] . 'px' : esc_attr($thumbnailBorderRadius['bottom'])) : '0px') . ' ' .
+                        (isset($thumbnailBorderRadius['left']) && $thumbnailBorderRadius['left'] !== '' ? (is_numeric($thumbnailBorderRadius['left']) ? $thumbnailBorderRadius['left'] . 'px' : esc_attr($thumbnailBorderRadius['left'])) : '0px') . ';';
+                }
+
                 $output .= '">';
 
                 // Anchor with optional border-radius and overflow
-                $output .= '<a href="' . esc_url($permalink) . '" style="';
-
-                    if (!empty($thumbnailBorderRadius['top']) || !empty($thumbnailBorderRadius['right']) || !empty($thumbnailBorderRadius['bottom']) || !empty($thumbnailBorderRadius['left'])) {
-                        $output .= 'border-radius: ' .
-                            (isset($thumbnailBorderRadius['top']) && $thumbnailBorderRadius['top'] !== '' ? (is_numeric($thumbnailBorderRadius['top']) ? $thumbnailBorderRadius['top'] . 'px' : esc_attr($thumbnailBorderRadius['top'])) : '0px') . ' ' .
-                            (isset($thumbnailBorderRadius['right']) && $thumbnailBorderRadius['right'] !== '' ? (is_numeric($thumbnailBorderRadius['right']) ? $thumbnailBorderRadius['right'] . 'px' : esc_attr($thumbnailBorderRadius['right'])) : '0px') . ' ' .
-                            (isset($thumbnailBorderRadius['bottom']) && $thumbnailBorderRadius['bottom'] !== '' ? (is_numeric($thumbnailBorderRadius['bottom']) ? $thumbnailBorderRadius['bottom'] . 'px' : esc_attr($thumbnailBorderRadius['bottom'])) : '0px') . ' ' .
-                            (isset($thumbnailBorderRadius['left']) && $thumbnailBorderRadius['left'] !== '' ? (is_numeric($thumbnailBorderRadius['left']) ? $thumbnailBorderRadius['left'] . 'px' : esc_attr($thumbnailBorderRadius['left'])) : '0px') . ';';
-                    }
-
-                $output .= '">';
-                $output .= $thumbnail . '</a></div>';
+                if ($thumbnailLink) {
+                    $output .= '<a href="' . esc_url($permalink) . '">';
+                    $output .= $thumbnail;
+                    $output .= '</a>';
+                } else {
+                    $output .= $thumbnail;
+                }
+                $output .= '</div>';
             }
             // END Thumbnail
             
@@ -11546,47 +11560,284 @@ function fancy_post_slider_render_callback($attributes) {
 
             // Thumbnail
             if ($thumbnail && $showThumbnail) {
-                $output .= '<div class="rs-thumb" style="';
 
-                // Margin
-                if (!empty($thumbnailMargin['top']) || !empty($thumbnailMargin['right']) || !empty($thumbnailMargin['bottom']) || !empty($thumbnailMargin['left'])) {
-                    $output .= 'margin: ' . 
-                        (isset($thumbnailMargin['top']) && $thumbnailMargin['top'] !== '' ? (is_numeric($thumbnailMargin['top']) ? $thumbnailMargin['top'] . 'px' : esc_attr($thumbnailMargin['top'])) : '0px') . ' ' .
-                        (isset($thumbnailMargin['right']) && $thumbnailMargin['right'] !== '' ? (is_numeric($thumbnailMargin['right']) ? $thumbnailMargin['right'] . 'px' : esc_attr($thumbnailMargin['right'])) : '0px') . ' ' .
-                        (isset($thumbnailMargin['bottom']) && $thumbnailMargin['bottom'] !== '' ? (is_numeric($thumbnailMargin['bottom']) ? $thumbnailMargin['bottom'] . 'px' : esc_attr($thumbnailMargin['bottom'])) : '0px') . ' ' .
-                        (isset($thumbnailMargin['left']) && $thumbnailMargin['left'] !== '' ? (is_numeric($thumbnailMargin['left']) ? $thumbnailMargin['left'] . 'px' : esc_attr($thumbnailMargin['left'])) : '0px') . '; ';
-                }
+                        $output .= '<div class="rs-thumb" style="';
+                            // Margin
+                            if (!empty($thumbnailMargin['top']) || !empty($thumbnailMargin['right']) || !empty($thumbnailMargin['bottom']) || !empty($thumbnailMargin['left'])) {
+                                $output .= 'margin: ' . 
+                                    (isset($thumbnailMargin['top']) && $thumbnailMargin['top'] !== '' ? (is_numeric($thumbnailMargin['top']) ? $thumbnailMargin['top'] . 'px' : esc_attr($thumbnailMargin['top'])) : '0px') . ' ' .
+                                    (isset($thumbnailMargin['right']) && $thumbnailMargin['right'] !== '' ? (is_numeric($thumbnailMargin['right']) ? $thumbnailMargin['right'] . 'px' : esc_attr($thumbnailMargin['right'])) : '0px') . ' ' .
+                                    (isset($thumbnailMargin['bottom']) && $thumbnailMargin['bottom'] !== '' ? (is_numeric($thumbnailMargin['bottom']) ? $thumbnailMargin['bottom'] . 'px' : esc_attr($thumbnailMargin['bottom'])) : '0px') . ' ' .
+                                    (isset($thumbnailMargin['left']) && $thumbnailMargin['left'] !== '' ? (is_numeric($thumbnailMargin['left']) ? $thumbnailMargin['left'] . 'px' : esc_attr($thumbnailMargin['left'])) : '0px') . '; ';
+                            }
 
-                // Padding
-                if (!empty($thumbnailPadding['top']) || !empty($thumbnailPadding['right']) || !empty($thumbnailPadding['bottom']) || !empty($thumbnailPadding['left'])) {
-                    $output .= 'padding: ' . 
-                        (isset($thumbnailPadding['top']) && $thumbnailPadding['top'] !== '' ? (is_numeric($thumbnailPadding['top']) ? $thumbnailPadding['top'] . 'px' : esc_attr($thumbnailPadding['top'])) : '0px') . ' ' .
-                        (isset($thumbnailPadding['right']) && $thumbnailPadding['right'] !== '' ? (is_numeric($thumbnailPadding['right']) ? $thumbnailPadding['right'] . 'px' : esc_attr($thumbnailPadding['right'])) : '0px') . ' ' .
-                        (isset($thumbnailPadding['bottom']) && $thumbnailPadding['bottom'] !== '' ? (is_numeric($thumbnailPadding['bottom']) ? $thumbnailPadding['bottom'] . 'px' : esc_attr($thumbnailPadding['bottom'])) : '0px') . ' ' .
-                        (isset($thumbnailPadding['left']) && $thumbnailPadding['left'] !== '' ? (is_numeric($thumbnailPadding['left']) ? $thumbnailPadding['left'] . 'px' : esc_attr($thumbnailPadding['left'])) : '0px') . '; ';
-                }
+                            // Padding
+                            if (!empty($thumbnailPadding['top']) || !empty($thumbnailPadding['right']) || !empty($thumbnailPadding['bottom']) || !empty($thumbnailPadding['left'])) {
+                                $output .= 'padding: ' . 
+                                    (isset($thumbnailPadding['top']) && $thumbnailPadding['top'] !== '' ? (is_numeric($thumbnailPadding['top']) ? $thumbnailPadding['top'] . 'px' : esc_attr($thumbnailPadding['top'])) : '0px') . ' ' .
+                                    (isset($thumbnailPadding['right']) && $thumbnailPadding['right'] !== '' ? (is_numeric($thumbnailPadding['right']) ? $thumbnailPadding['right'] . 'px' : esc_attr($thumbnailPadding['right'])) : '0px') . ' ' .
+                                    (isset($thumbnailPadding['bottom']) && $thumbnailPadding['bottom'] !== '' ? (is_numeric($thumbnailPadding['bottom']) ? $thumbnailPadding['bottom'] . 'px' : esc_attr($thumbnailPadding['bottom'])) : '0px') . ' ' .
+                                    (isset($thumbnailPadding['left']) && $thumbnailPadding['left'] !== '' ? (is_numeric($thumbnailPadding['left']) ? $thumbnailPadding['left'] . 'px' : esc_attr($thumbnailPadding['left'])) : '0px') . '; ';
+                            }
 
-                // Border Radius
-                if (!empty($thumbnailBorderRadius['top']) || !empty($thumbnailBorderRadius['right']) || !empty($thumbnailBorderRadius['bottom']) || !empty($thumbnailBorderRadius['left'])) {
-                    $output .= 'border-radius: ' .
-                        (isset($thumbnailBorderRadius['top']) && $thumbnailBorderRadius['top'] !== '' ? (is_numeric($thumbnailBorderRadius['top']) ? $thumbnailBorderRadius['top'] . 'px' : esc_attr($thumbnailBorderRadius['top'])) : '0px') . ' ' .
-                        (isset($thumbnailBorderRadius['right']) && $thumbnailBorderRadius['right'] !== '' ? (is_numeric($thumbnailBorderRadius['right']) ? $thumbnailBorderRadius['right'] . 'px' : esc_attr($thumbnailBorderRadius['right'])) : '0px') . ' ' .
-                        (isset($thumbnailBorderRadius['bottom']) && $thumbnailBorderRadius['bottom'] !== '' ? (is_numeric($thumbnailBorderRadius['bottom']) ? $thumbnailBorderRadius['bottom'] . 'px' : esc_attr($thumbnailBorderRadius['bottom'])) : '0px') . ' ' .
-                        (isset($thumbnailBorderRadius['left']) && $thumbnailBorderRadius['left'] !== '' ? (is_numeric($thumbnailBorderRadius['left']) ? $thumbnailBorderRadius['left'] . 'px' : esc_attr($thumbnailBorderRadius['left'])) : '0px') . ';';
-                }
+                            // Border Radius
+                            if (!empty($thumbnailBorderRadius['top']) || !empty($thumbnailBorderRadius['right']) || !empty($thumbnailBorderRadius['bottom']) || !empty($thumbnailBorderRadius['left'])) {
+                                $output .= 'border-radius: ' .
+                                    (isset($thumbnailBorderRadius['top']) && $thumbnailBorderRadius['top'] !== '' ? (is_numeric($thumbnailBorderRadius['top']) ? $thumbnailBorderRadius['top'] . 'px' : esc_attr($thumbnailBorderRadius['top'])) : '0px') . ' ' .
+                                    (isset($thumbnailBorderRadius['right']) && $thumbnailBorderRadius['right'] !== '' ? (is_numeric($thumbnailBorderRadius['right']) ? $thumbnailBorderRadius['right'] . 'px' : esc_attr($thumbnailBorderRadius['right'])) : '0px') . ' ' .
+                                    (isset($thumbnailBorderRadius['bottom']) && $thumbnailBorderRadius['bottom'] !== '' ? (is_numeric($thumbnailBorderRadius['bottom']) ? $thumbnailBorderRadius['bottom'] . 'px' : esc_attr($thumbnailBorderRadius['bottom'])) : '0px') . ' ' .
+                                    (isset($thumbnailBorderRadius['left']) && $thumbnailBorderRadius['left'] !== '' ? (is_numeric($thumbnailBorderRadius['left']) ? $thumbnailBorderRadius['left'] . 'px' : esc_attr($thumbnailBorderRadius['left'])) : '0px') . ';';
+                            }
 
-                $output .= '">';
+                        $output .= '">';
+                        
 
-                // Anchor with optional border-radius and overflow
-                if ($thumbnailLink) {
-                    $output .= '<a href="' . esc_url($permalink) . '">';
-                    $output .= $thumbnail;
-                    $output .= '</a>';
-                } else {
-                    $output .= $thumbnail;
-                }
-                $output .= '</div>';
-            }
+                        // Anchor with optional border-radius and overflow
+                        if ($thumbnailLink) {
+                            $output .= '<a href="' . esc_url($permalink) . '">';
+                            $output .= $thumbnail;
+                            $output .= '</a>';
+                        } else {
+                            $output .= $thumbnail;
+                        }
+                    
+
+                        // Now Insert Meta Data inside the Thumbnail
+                        if ($showMetaData) {
+                            
+                            $output .= '<div class="rs-meta align-' . esc_attr($metaAlignment) . '"';
+
+                            $metaStyle = '';
+                            if (!empty($metaBgColor)) {
+                                $metaStyle .= 'background-color: ' . esc_attr($metaBgColor) . '; ';
+                            }
+
+                            if (!empty($metaStyle)) {
+                                $output .= ' style="' . trim($metaStyle) . '"';
+                            }
+
+                            $output .= '>';
+                                $output .= '<ul class="meta-data-list " style="';  
+                                    // Margin
+                                    if (!empty($metaMarginNew['top']) || !empty($metaMarginNew['right']) || !empty($metaMarginNew['bottom']) || !empty($metaMarginNew['left'])) {
+                                        $output .= 'margin: ' .
+                                            (isset($metaMarginNew['top']) && $metaMarginNew['top'] !== '' ? (is_numeric($metaMarginNew['top']) ? $metaMarginNew['top'] . 'px' : esc_attr($metaMarginNew['top'])) : '0px') . ' ' .
+                                            (isset($metaMarginNew['right']) && $metaMarginNew['right'] !== '' ? (is_numeric($metaMarginNew['right']) ? $metaMarginNew['right'] . 'px' : esc_attr($metaMarginNew['right'])) : '0px') . ' ' .
+                                            (isset($metaMarginNew['bottom']) && $metaMarginNew['bottom'] !== '' ? (is_numeric($metaMarginNew['bottom']) ? $metaMarginNew['bottom'] . 'px' : esc_attr($metaMarginNew['bottom'])) : '0px') . ' ' .
+                                            (isset($metaMarginNew['left']) && $metaMarginNew['left'] !== '' ? (is_numeric($metaMarginNew['left']) ? $metaMarginNew['left'] . 'px' : esc_attr($metaMarginNew['left'])) : '0px') . '; ';
+                                    }
+
+                                    // Padding
+                                    if (!empty($metaPadding['top']) || !empty($metaPadding['right']) || !empty($metaPadding['bottom']) || !empty($metaPadding['left'])) {
+                                        $output .= 'padding: ' .
+                                            (isset($metaPadding['top']) && $metaPadding['top'] !== '' ? (is_numeric($metaPadding['top']) ? $metaPadding['top'] . 'px' : esc_attr($metaPadding['top'])) : '0px') . ' ' .
+                                            (isset($metaPadding['right']) && $metaPadding['right'] !== '' ? (is_numeric($metaPadding['right']) ? $metaPadding['right'] . 'px' : esc_attr($metaPadding['right'])) : '0px') . ' ' .
+                                            (isset($metaPadding['bottom']) && $metaPadding['bottom'] !== '' ? (is_numeric($metaPadding['bottom']) ? $metaPadding['bottom'] . 'px' : esc_attr($metaPadding['bottom'])) : '0px') . ' ' .
+                                            (isset($metaPadding['left']) && $metaPadding['left'] !== '' ? (is_numeric($metaPadding['left']) ? $metaPadding['left'] . 'px' : esc_attr($metaPadding['left'])) : '0px') . '; ';
+                                    }  
+                                    
+                                    // Color
+                                    if (!empty($metaTextColor)) {
+                                        $output .= 'color: ' . esc_attr($metaTextColor) . '; ';
+                                    }
+                                    // Order
+                                    if (!empty($metaOrder)) {
+                                        $output .= 'order: ' . esc_attr($metaOrder) . '; ';
+                                    }
+                                $output .= '">';
+
+                                    $meta_items = [];
+
+                                    // Date
+                                    if ($showPostDate) {
+                                        $meta = '<li class="meta-date" style="';
+
+                                        // Color
+                                        if (!empty($metaTextColor)) {
+                                            $meta .= 'color:' . esc_attr($metaTextColor) . '; ';
+                                        }
+
+                                        // Font size
+                                        if (!empty($metaFontSize)) {
+                                            $meta .= 'font-size:' . esc_attr($metaFontSize) . 'px; ';
+                                        }
+
+                                        $meta .= '">';
+
+                                        // Icon
+                                        if ($showPostDateIcon && $showMetaIcon) {
+                                            $meta .= '<i class="fas fa-calendar-alt" style="';
+
+                                            if (!empty($metaIconColor)) {
+                                                $meta .= 'color:' . esc_attr($metaIconColor) . '; ';
+                                            }
+
+                                            if (!empty($metaFontSize)) {
+                                                $meta .= 'font-size:' . esc_attr($metaFontSize) . 'px; ';
+                                            }
+
+                                            $meta .= '"></i> ';
+                                        }
+
+                                        $meta .= esc_html($getdate) . '</li>';
+                                        $meta_items[] = $meta;
+                                    }
+                                    // Author
+                                    if ($showPostAuthor) {
+                                        $meta = '<li class="meta-author" style="';
+
+                                        if (!empty($metaTextColor)) {
+                                            $meta .= 'color:' . esc_attr($metaTextColor) . '; ';
+                                        }
+
+                                        if (!empty($metaFontSize)) {
+                                            $meta .= 'font-size:' . esc_attr($metaFontSize) . 'px; ';
+                                        }
+
+                                        $meta .= '">';
+
+                                        if ($showPostAuthorIcon && $showMetaIcon) {
+                                            $meta .= '<i class="fas fa-user" style="';
+
+                                            if (!empty($metaIconColor)) {
+                                                $meta .= 'color:' . esc_attr($metaIconColor) . '; ';
+                                            }
+
+                                            if (!empty($metaFontSize)) {
+                                                $meta .= 'font-size:' . esc_attr($metaFontSize) . 'px; ';
+                                            }
+
+                                            $meta .= '"></i> ';
+                                        }
+
+                                        $meta .= esc_html($metaAuthorPrefix) . ' ' . esc_html($author) . '</li>';
+                                        $meta_items[] = $meta;
+                                    }
+                                    // Category
+                                    if ($showPostCategory) {
+                                        $meta = '<li class="meta-categories" style="';
+
+                                        if (!empty($metaTextColor)) {
+                                            $meta .= 'color:' . esc_attr($metaTextColor) . '; ';
+                                        }
+
+                                        if (!empty($metaFontSize)) {
+                                            $meta .= 'font-size:' . esc_attr($metaFontSize) . 'px; ';
+                                        }
+
+                                        $meta .= '">';
+
+                                        if ($showPostCategoryIcon && $showMetaIcon) {
+                                            $meta .= '<i class="fas fa-folder" style="';
+
+                                            if (!empty($metaIconColor)) {
+                                                $meta .= 'color:' . esc_attr($metaIconColor) . '; ';
+                                            }
+
+                                            if (!empty($metaFontSize)) {
+                                                $meta .= 'font-size:' . esc_attr($metaFontSize) . 'px; ';
+                                            }
+
+                                            $meta .= '"></i> ';
+                                        }
+
+                                        // Get category names without links
+                                        $categories_list = get_the_category($post_id);
+                                        if (!empty($categories_list)) {
+                                            $category_names = array();
+                                            foreach ($categories_list as $category) {
+                                                $category_names[] = esc_html($category->name);
+                                            }
+                                            $meta .= implode(', ', $category_names); // comma-separated plain text categories
+                                        }
+
+                                        $meta .= '</li>';
+                                        $meta_items[] = $meta;
+                                    }
+                                    // Tags
+                                    if ($showPostTags && !empty($tags)) {
+                                        $meta = '<li class="meta-tags" style="';
+
+                                        if (!empty($metaTextColor)) {
+                                            $meta .= 'color:' . esc_attr($metaTextColor) . '; ';
+                                        }
+
+                                        if (!empty($metaFontSize)) {
+                                            $meta .= 'font-size:' . esc_attr($metaFontSize) . 'px; ';
+                                        }
+
+                                        $meta .= '">';
+
+                                        if ($showPostTagsIcon && $showMetaIcon) {
+                                            $meta .= '<i class="fas fa-tags" style="';
+
+                                            if (!empty($metaIconColor)) {
+                                                $meta .= 'color:' . esc_attr($metaIconColor) . '; ';
+                                            }
+
+                                            if (!empty($metaFontSize)) {
+                                                $meta .= 'font-size:' . esc_attr($metaFontSize) . 'px; ';
+                                            }
+
+                                            $meta .= '"></i> ';
+                                        }
+
+                                        $meta .= esc_html__('Tags:', 'fancy-post-grid') . ' ' . $tags . '</li>';
+                                        $meta_items[] = $meta;
+                                    }
+                                    // Comment Count
+                                    if ($showPostCommentsCount) {
+                                        $meta = '<li class="meta-comment-count" style="';
+                                        if (!empty($metaTextColor)) {
+                                            $meta .= 'color:' . esc_attr($metaTextColor) . '; ';
+                                        }
+                                        if (!empty($metaFontSize)) {
+                                            $meta .= 'font-size:' . esc_attr($metaFontSize) . 'px; ';
+                                        }
+
+                                        $meta .= '">';
+
+                                        if ($showPostCommentsCountIcon && $showMetaIcon) {
+                                            $meta .= '<i class="fas fa-comments" style="';
+                                            if (!empty($metaIconColor)) {
+                                                $meta .= 'color:' . esc_attr($metaIconColor) . '; ';
+                                            }
+                                            if (!empty($metaFontSize)) {
+                                                $meta .= 'font-size:' . esc_attr($metaFontSize) . 'px; ';
+                                            }
+                                            $meta .= '"></i> ';
+                                        }
+
+                                        $meta .= esc_html($comments_count) . ' ' . esc_html__('Comments', 'fancy-post-grid') . '</li>';
+                                        $meta_items[] = $meta;
+                                    }
+                                    // Now join meta items with the separator
+                                    if (!empty($meta_items)) {
+                                        $separator = '';
+
+                                        if ($metaSeperator !== '') {
+                                            $separator = '';
+                                            if (!empty($metaSeperator) && strtolower($metaSeperator) !== 'none') {
+                                                $separatorStyle = '';
+                                                if (!empty($separatorColor)) {
+                                                    $separatorStyle .= 'color:' . esc_attr($separatorColor) . '; ';
+                                                }
+                                                if (!empty($metaFontSize)) {
+                                                    $separatorStyle .= 'font-size:' . esc_attr($metaFontSize) . 'px; ';
+                                                }
+
+                                                $separator = '<span class="meta-separator" style="' . esc_attr(trim($separatorStyle)) . '">' . esc_html($metaSeperator) . '</span>';
+                                            }
+                                        }
+
+                                        $output .= implode($separator, $meta_items);
+                                    }
+                                $output .= '</ul>'; // ul Close 
+                            $output .= '</div>'; // Close meta-data-list
+                        }
+
+                        $output .= '</div>'; // Close fancy-post-image rs-thumb
+                    }
             // END Thumbnail
             
             // MAIN Content
@@ -21374,12 +21625,6 @@ function fancy_post_isotope_render_callback($attributes) {
                                     (isset($thumbnailPadding['left']) && $thumbnailPadding['left'] !== '' ? (is_numeric($thumbnailPadding['left']) ? $thumbnailPadding['left'] . 'px' : esc_attr($thumbnailPadding['left'])) : '0px') . '; ';
                             }
 
-                        $output .= '">';
-                        
-
-                        // Anchor with optional border-radius and overflow
-                        $output .= '<a href="' . esc_url($permalink) . '" style="';
-
                             // Border Radius
                             if (!empty($thumbnailBorderRadius['top']) || !empty($thumbnailBorderRadius['right']) || !empty($thumbnailBorderRadius['bottom']) || !empty($thumbnailBorderRadius['left'])) {
                                 $output .= 'border-radius: ' .
@@ -21390,229 +21635,251 @@ function fancy_post_isotope_render_callback($attributes) {
                             }
 
                         $output .= '">';
-                        $output .= $thumbnail . '</a>';
+                        
 
-                            // Now Insert Meta Data inside the Thumbnail
-                            if ($showMetaData) {
-                                $output .= '<div class="rs-meta align-' . $metaAlignment3 . '">';
-                                    $output .= '<ul class="meta-data-list align-' . $metaAlignment3 . ' " style="';  
-                                        // Margin
-                                        if (!empty($metaMarginNew['top']) || !empty($metaMarginNew['right']) || !empty($metaMarginNew['bottom']) || !empty($metaMarginNew['left'])) {
-                                            $output .= 'margin: ' .
-                                                (isset($metaMarginNew['top']) && $metaMarginNew['top'] !== '' ? (is_numeric($metaMarginNew['top']) ? $metaMarginNew['top'] . 'px' : esc_attr($metaMarginNew['top'])) : '0px') . ' ' .
-                                                (isset($metaMarginNew['right']) && $metaMarginNew['right'] !== '' ? (is_numeric($metaMarginNew['right']) ? $metaMarginNew['right'] . 'px' : esc_attr($metaMarginNew['right'])) : '0px') . ' ' .
-                                                (isset($metaMarginNew['bottom']) && $metaMarginNew['bottom'] !== '' ? (is_numeric($metaMarginNew['bottom']) ? $metaMarginNew['bottom'] . 'px' : esc_attr($metaMarginNew['bottom'])) : '0px') . ' ' .
-                                                (isset($metaMarginNew['left']) && $metaMarginNew['left'] !== '' ? (is_numeric($metaMarginNew['left']) ? $metaMarginNew['left'] . 'px' : esc_attr($metaMarginNew['left'])) : '0px') . '; ';
-                                        }
+                        // Anchor with optional border-radius and overflow
+                        if ($thumbnailLink) {
+                            $output .= '<a href="' . esc_url($permalink) . '">';
+                            $output .= $thumbnail;
+                            $output .= '</a>';
+                        } else {
+                            $output .= $thumbnail;
+                        }
+                    
 
-                                        // Padding
-                                        if (!empty($metaPadding['top']) || !empty($metaPadding['right']) || !empty($metaPadding['bottom']) || !empty($metaPadding['left'])) {
-                                            $output .= 'padding: ' .
-                                                (isset($metaPadding['top']) && $metaPadding['top'] !== '' ? (is_numeric($metaPadding['top']) ? $metaPadding['top'] . 'px' : esc_attr($metaPadding['top'])) : '0px') . ' ' .
-                                                (isset($metaPadding['right']) && $metaPadding['right'] !== '' ? (is_numeric($metaPadding['right']) ? $metaPadding['right'] . 'px' : esc_attr($metaPadding['right'])) : '0px') . ' ' .
-                                                (isset($metaPadding['bottom']) && $metaPadding['bottom'] !== '' ? (is_numeric($metaPadding['bottom']) ? $metaPadding['bottom'] . 'px' : esc_attr($metaPadding['bottom'])) : '0px') . ' ' .
-                                                (isset($metaPadding['left']) && $metaPadding['left'] !== '' ? (is_numeric($metaPadding['left']) ? $metaPadding['left'] . 'px' : esc_attr($metaPadding['left'])) : '0px') . '; ';
-                                        }  
-                                        
+                        // Now Insert Meta Data inside the Thumbnail
+                        if ($showMetaData) {
+                            
+                            $output .= '<div class="rs-meta align-' . esc_attr($metaAlignment) . '"';
+
+                            $metaStyle = '';
+                            if (!empty($metaBgColor)) {
+                                $metaStyle .= 'background-color: ' . esc_attr($metaBgColor) . '; ';
+                            }
+
+                            if (!empty($metaStyle)) {
+                                $output .= ' style="' . trim($metaStyle) . '"';
+                            }
+
+                            $output .= '>';
+                                $output .= '<ul class="meta-data-list " style="';  
+                                    // Margin
+                                    if (!empty($metaMarginNew['top']) || !empty($metaMarginNew['right']) || !empty($metaMarginNew['bottom']) || !empty($metaMarginNew['left'])) {
+                                        $output .= 'margin: ' .
+                                            (isset($metaMarginNew['top']) && $metaMarginNew['top'] !== '' ? (is_numeric($metaMarginNew['top']) ? $metaMarginNew['top'] . 'px' : esc_attr($metaMarginNew['top'])) : '0px') . ' ' .
+                                            (isset($metaMarginNew['right']) && $metaMarginNew['right'] !== '' ? (is_numeric($metaMarginNew['right']) ? $metaMarginNew['right'] . 'px' : esc_attr($metaMarginNew['right'])) : '0px') . ' ' .
+                                            (isset($metaMarginNew['bottom']) && $metaMarginNew['bottom'] !== '' ? (is_numeric($metaMarginNew['bottom']) ? $metaMarginNew['bottom'] . 'px' : esc_attr($metaMarginNew['bottom'])) : '0px') . ' ' .
+                                            (isset($metaMarginNew['left']) && $metaMarginNew['left'] !== '' ? (is_numeric($metaMarginNew['left']) ? $metaMarginNew['left'] . 'px' : esc_attr($metaMarginNew['left'])) : '0px') . '; ';
+                                    }
+
+                                    // Padding
+                                    if (!empty($metaPadding['top']) || !empty($metaPadding['right']) || !empty($metaPadding['bottom']) || !empty($metaPadding['left'])) {
+                                        $output .= 'padding: ' .
+                                            (isset($metaPadding['top']) && $metaPadding['top'] !== '' ? (is_numeric($metaPadding['top']) ? $metaPadding['top'] . 'px' : esc_attr($metaPadding['top'])) : '0px') . ' ' .
+                                            (isset($metaPadding['right']) && $metaPadding['right'] !== '' ? (is_numeric($metaPadding['right']) ? $metaPadding['right'] . 'px' : esc_attr($metaPadding['right'])) : '0px') . ' ' .
+                                            (isset($metaPadding['bottom']) && $metaPadding['bottom'] !== '' ? (is_numeric($metaPadding['bottom']) ? $metaPadding['bottom'] . 'px' : esc_attr($metaPadding['bottom'])) : '0px') . ' ' .
+                                            (isset($metaPadding['left']) && $metaPadding['left'] !== '' ? (is_numeric($metaPadding['left']) ? $metaPadding['left'] . 'px' : esc_attr($metaPadding['left'])) : '0px') . '; ';
+                                    }  
+                                    
+                                    // Color
+                                    if (!empty($metaTextColor)) {
+                                        $output .= 'color: ' . esc_attr($metaTextColor) . '; ';
+                                    }
+                                    // Order
+                                    if (!empty($metaOrder)) {
+                                        $output .= 'order: ' . esc_attr($metaOrder) . '; ';
+                                    }
+                                $output .= '">';
+
+                                    $meta_items = [];
+
+                                    // Date
+                                    if ($showPostDate) {
+                                        $meta = '<li class="meta-date" style="';
+
                                         // Color
                                         if (!empty($metaTextColor)) {
-                                            $output .= 'color: ' . esc_attr($metaTextColor) . '; ';
+                                            $meta .= 'color:' . esc_attr($metaTextColor) . '; ';
                                         }
-                                        // Order
-                                        if (!empty($metaOrder)) {
-                                            $output .= 'order: ' . esc_attr($metaOrder) . '; ';
+
+                                        // Font size
+                                        if (!empty($metaFontSize)) {
+                                            $meta .= 'font-size:' . esc_attr($metaFontSize) . 'px; ';
                                         }
-                                    $output .= '">';
 
-                                        $meta_items = [];
+                                        $meta .= '">';
 
-                                        // Date
-                                        if ($showPostDate) {
-                                            $meta = '<li class="meta-date" style="';
+                                        // Icon
+                                        if ($showPostDateIcon && $showMetaIcon) {
+                                            $meta .= '<i class="fas fa-calendar-alt" style="';
 
-                                            // Color
-                                            if (!empty($metaTextColor)) {
-                                                $meta .= 'color:' . esc_attr($metaTextColor) . '; ';
-                                            }
-
-                                            // Font size
-                                            if (!empty($metaFontSize)) {
-                                                $meta .= 'font-size:' . esc_attr($metaFontSize) . 'px; ';
-                                            }
-
-                                            $meta .= '">';
-
-                                            // Icon
-                                            if ($showPostDateIcon && $showMetaIcon) {
-                                                $meta .= '<i class="fas fa-calendar-alt" style="';
-
-                                                if (!empty($metaIconColor)) {
-                                                    $meta .= 'color:' . esc_attr($metaIconColor) . '; ';
-                                                }
-
-                                                if (!empty($metaFontSize)) {
-                                                    $meta .= 'font-size:' . esc_attr($metaFontSize) . 'px; ';
-                                                }
-
-                                                $meta .= '"></i> ';
-                                            }
-
-                                            $meta .= esc_html($getdate) . '</li>';
-                                            $meta_items[] = $meta;
-                                        }
-                                        // Author
-                                        if ($showPostAuthor) {
-                                            $meta = '<li class="meta-author" style="';
-
-                                            if (!empty($metaTextColor)) {
-                                                $meta .= 'color:' . esc_attr($metaTextColor) . '; ';
+                                            if (!empty($metaIconColor)) {
+                                                $meta .= 'color:' . esc_attr($metaIconColor) . '; ';
                                             }
 
                                             if (!empty($metaFontSize)) {
                                                 $meta .= 'font-size:' . esc_attr($metaFontSize) . 'px; ';
                                             }
 
-                                            $meta .= '">';
-
-                                            if ($showPostAuthorIcon && $showMetaIcon) {
-                                                $meta .= '<i class="fas fa-user" style="';
-
-                                                if (!empty($metaIconColor)) {
-                                                    $meta .= 'color:' . esc_attr($metaIconColor) . '; ';
-                                                }
-
-                                                if (!empty($metaFontSize)) {
-                                                    $meta .= 'font-size:' . esc_attr($metaFontSize) . 'px; ';
-                                                }
-
-                                                $meta .= '"></i> ';
-                                            }
-
-                                            $meta .= esc_html($metaAuthorPrefix) . ' ' . esc_html($author) . '</li>';
-                                            $meta_items[] = $meta;
+                                            $meta .= '"></i> ';
                                         }
-                                        // Category
-                                        if ($showPostCategory) {
-                                            $meta = '<li class="meta-categories" style="';
 
-                                            if (!empty($metaTextColor)) {
-                                                $meta .= 'color:' . esc_attr($metaTextColor) . '; ';
+                                        $meta .= esc_html($getdate) . '</li>';
+                                        $meta_items[] = $meta;
+                                    }
+                                    // Author
+                                    if ($showPostAuthor) {
+                                        $meta = '<li class="meta-author" style="';
+
+                                        if (!empty($metaTextColor)) {
+                                            $meta .= 'color:' . esc_attr($metaTextColor) . '; ';
+                                        }
+
+                                        if (!empty($metaFontSize)) {
+                                            $meta .= 'font-size:' . esc_attr($metaFontSize) . 'px; ';
+                                        }
+
+                                        $meta .= '">';
+
+                                        if ($showPostAuthorIcon && $showMetaIcon) {
+                                            $meta .= '<i class="fas fa-user" style="';
+
+                                            if (!empty($metaIconColor)) {
+                                                $meta .= 'color:' . esc_attr($metaIconColor) . '; ';
                                             }
 
                                             if (!empty($metaFontSize)) {
                                                 $meta .= 'font-size:' . esc_attr($metaFontSize) . 'px; ';
                                             }
 
-                                            $meta .= '">';
-
-                                            if ($showPostCategoryIcon && $showMetaIcon) {
-                                                $meta .= '<i class="fas fa-folder" style="';
-
-                                                if (!empty($metaIconColor)) {
-                                                    $meta .= 'color:' . esc_attr($metaIconColor) . '; ';
-                                                }
-
-                                                if (!empty($metaFontSize)) {
-                                                    $meta .= 'font-size:' . esc_attr($metaFontSize) . 'px; ';
-                                                }
-
-                                                $meta .= '"></i> ';
-                                            }
-
-                                            // Get category names without links
-                                            $categories_list = get_the_category($post_id);
-                                            if (!empty($categories_list)) {
-                                                $category_names = array();
-                                                foreach ($categories_list as $category) {
-                                                    $category_names[] = esc_html($category->name);
-                                                }
-                                                $meta .= implode(', ', $category_names); // comma-separated plain text categories
-                                            }
-
-                                            $meta .= '</li>';
-                                            $meta_items[] = $meta;
+                                            $meta .= '"></i> ';
                                         }
-                                        // Tags
-                                        if ($showPostTags && !empty($tags)) {
-                                            $meta = '<li class="meta-tags" style="';
 
-                                            if (!empty($metaTextColor)) {
-                                                $meta .= 'color:' . esc_attr($metaTextColor) . '; ';
+                                        $meta .= esc_html($metaAuthorPrefix) . ' ' . esc_html($author) . '</li>';
+                                        $meta_items[] = $meta;
+                                    }
+                                    // Category
+                                    if ($showPostCategory) {
+                                        $meta = '<li class="meta-categories" style="';
+
+                                        if (!empty($metaTextColor)) {
+                                            $meta .= 'color:' . esc_attr($metaTextColor) . '; ';
+                                        }
+
+                                        if (!empty($metaFontSize)) {
+                                            $meta .= 'font-size:' . esc_attr($metaFontSize) . 'px; ';
+                                        }
+
+                                        $meta .= '">';
+
+                                        if ($showPostCategoryIcon && $showMetaIcon) {
+                                            $meta .= '<i class="fas fa-folder" style="';
+
+                                            if (!empty($metaIconColor)) {
+                                                $meta .= 'color:' . esc_attr($metaIconColor) . '; ';
                                             }
 
                                             if (!empty($metaFontSize)) {
                                                 $meta .= 'font-size:' . esc_attr($metaFontSize) . 'px; ';
                                             }
 
-                                            $meta .= '">';
-
-                                            if ($showPostTagsIcon && $showMetaIcon) {
-                                                $meta .= '<i class="fas fa-tags" style="';
-
-                                                if (!empty($metaIconColor)) {
-                                                    $meta .= 'color:' . esc_attr($metaIconColor) . '; ';
-                                                }
-
-                                                if (!empty($metaFontSize)) {
-                                                    $meta .= 'font-size:' . esc_attr($metaFontSize) . 'px; ';
-                                                }
-
-                                                $meta .= '"></i> ';
-                                            }
-
-                                            $meta .= esc_html__('Tags:', 'fancy-post-grid') . ' ' . $tags . '</li>';
-                                            $meta_items[] = $meta;
+                                            $meta .= '"></i> ';
                                         }
-                                        // Comment Count
-                                        if ($showPostCommentsCount) {
-                                            $meta = '<li class="meta-comment-count" style="';
-                                            if (!empty($metaTextColor)) {
-                                                $meta .= 'color:' . esc_attr($metaTextColor) . '; ';
+
+                                        // Get category names without links
+                                        $categories_list = get_the_category($post_id);
+                                        if (!empty($categories_list)) {
+                                            $category_names = array();
+                                            foreach ($categories_list as $category) {
+                                                $category_names[] = esc_html($category->name);
                                             }
+                                            $meta .= implode(', ', $category_names); // comma-separated plain text categories
+                                        }
+
+                                        $meta .= '</li>';
+                                        $meta_items[] = $meta;
+                                    }
+                                    // Tags
+                                    if ($showPostTags && !empty($tags)) {
+                                        $meta = '<li class="meta-tags" style="';
+
+                                        if (!empty($metaTextColor)) {
+                                            $meta .= 'color:' . esc_attr($metaTextColor) . '; ';
+                                        }
+
+                                        if (!empty($metaFontSize)) {
+                                            $meta .= 'font-size:' . esc_attr($metaFontSize) . 'px; ';
+                                        }
+
+                                        $meta .= '">';
+
+                                        if ($showPostTagsIcon && $showMetaIcon) {
+                                            $meta .= '<i class="fas fa-tags" style="';
+
+                                            if (!empty($metaIconColor)) {
+                                                $meta .= 'color:' . esc_attr($metaIconColor) . '; ';
+                                            }
+
                                             if (!empty($metaFontSize)) {
                                                 $meta .= 'font-size:' . esc_attr($metaFontSize) . 'px; ';
                                             }
 
-                                            $meta .= '">';
-
-                                            if ($showPostCommentsCountIcon && $showMetaIcon) {
-                                                $meta .= '<i class="fas fa-comments" style="';
-                                                if (!empty($metaIconColor)) {
-                                                    $meta .= 'color:' . esc_attr($metaIconColor) . '; ';
-                                                }
-                                                if (!empty($metaFontSize)) {
-                                                    $meta .= 'font-size:' . esc_attr($metaFontSize) . 'px; ';
-                                                }
-                                                $meta .= '"></i> ';
-                                            }
-
-                                            $meta .= esc_html($comments_count) . ' ' . esc_html__('Comments', 'fancy-post-grid') . '</li>';
-                                            $meta_items[] = $meta;
+                                            $meta .= '"></i> ';
                                         }
-                                        // Now join meta items with the separator
-                                        if (!empty($meta_items)) {
+
+                                        $meta .= esc_html__('Tags:', 'fancy-post-grid') . ' ' . $tags . '</li>';
+                                        $meta_items[] = $meta;
+                                    }
+                                    // Comment Count
+                                    if ($showPostCommentsCount) {
+                                        $meta = '<li class="meta-comment-count" style="';
+                                        if (!empty($metaTextColor)) {
+                                            $meta .= 'color:' . esc_attr($metaTextColor) . '; ';
+                                        }
+                                        if (!empty($metaFontSize)) {
+                                            $meta .= 'font-size:' . esc_attr($metaFontSize) . 'px; ';
+                                        }
+
+                                        $meta .= '">';
+
+                                        if ($showPostCommentsCountIcon && $showMetaIcon) {
+                                            $meta .= '<i class="fas fa-comments" style="';
+                                            if (!empty($metaIconColor)) {
+                                                $meta .= 'color:' . esc_attr($metaIconColor) . '; ';
+                                            }
+                                            if (!empty($metaFontSize)) {
+                                                $meta .= 'font-size:' . esc_attr($metaFontSize) . 'px; ';
+                                            }
+                                            $meta .= '"></i> ';
+                                        }
+
+                                        $meta .= esc_html($comments_count) . ' ' . esc_html__('Comments', 'fancy-post-grid') . '</li>';
+                                        $meta_items[] = $meta;
+                                    }
+                                    // Now join meta items with the separator
+                                    if (!empty($meta_items)) {
+                                        $separator = '';
+
+                                        if ($metaSeperator !== '') {
                                             $separator = '';
-
-                                            if ($metaSeperator !== '') {
-                                                $separator = '';
-                                                if (!empty($metaSeperator) && strtolower($metaSeperator) !== 'none') {
-                                                    $separatorStyle = '';
-                                                    if (!empty($separatorColor)) {
-                                                        $separatorStyle .= 'color:' . esc_attr($separatorColor) . '; ';
-                                                    }
-                                                    if (!empty($metaFontSize)) {
-                                                        $separatorStyle .= 'font-size:' . esc_attr($metaFontSize) . 'px; ';
-                                                    }
-
-                                                    $separator = '<span class="meta-separator" style="' . esc_attr(trim($separatorStyle)) . '">' . esc_html($metaSeperator) . '</span>';
+                                            if (!empty($metaSeperator) && strtolower($metaSeperator) !== 'none') {
+                                                $separatorStyle = '';
+                                                if (!empty($separatorColor)) {
+                                                    $separatorStyle .= 'color:' . esc_attr($separatorColor) . '; ';
                                                 }
-                                            }
+                                                if (!empty($metaFontSize)) {
+                                                    $separatorStyle .= 'font-size:' . esc_attr($metaFontSize) . 'px; ';
+                                                }
 
-                                            $output .= implode($separator, $meta_items);
+                                                $separator = '<span class="meta-separator" style="' . esc_attr(trim($separatorStyle)) . '">' . esc_html($metaSeperator) . '</span>';
+                                            }
                                         }
-                                    $output .= '</ul>'; // ul Close 
-                                $output .= '</div>'; // Close meta-data-list
-                            }
+
+                                        $output .= implode($separator, $meta_items);
+                                    }
+                                $output .= '</ul>'; // ul Close 
+                            $output .= '</div>'; // Close meta-data-list
+                        }
 
                         $output .= '</div>'; // Close fancy-post-image rs-thumb
                     }
