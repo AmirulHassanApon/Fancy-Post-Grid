@@ -172,6 +172,8 @@
             arrowWeight: { type: 'number', default: '' },
             fractionCurrentColor: { type: 'string', default: '' },
             fractionFontSize: { type: 'number', default: '' },
+            arrowBorderRadius: { type: 'object' },
+            bulletsRadius: { type: 'object' },
             
             postType: { type: 'string', default: 'post' },
             
@@ -215,7 +217,7 @@
                 buttonAlignment,buttonMarginNew,buttonPaddingNew,buttonTextColor,buttonBackgroundColor,buttonBorderType,buttonFontWeight,
                 buttonBorderWidth,buttonBorderRadius,buttonFontSize,buttonHoverTextColor,buttonHoverBackgroundColor,
                 buttonBorderColor,buttonHoverBorderColor,
-                sliderDots,sliderDotsActive,normalProcessColor,activeProcessColor,arrowColor,arrowHoverColor,arrowBgColorr,arrowBgHoverColor,arrowFontSize,fractionCurrentColor,fractionFontSize,arrowHeight,arrowWeight,bulletHeight,bulletWeight,
+                sliderDots,sliderDotsActive,normalProcessColor,activeProcessColor,arrowColor,arrowHoverColor,arrowBgColorr,arrowBgHoverColor,arrowFontSize,fractionCurrentColor,fractionFontSize,arrowHeight,arrowWeight,bulletHeight,bulletWeight,arrowBorderRadius,bulletsRadius,
                  
                 postType  } = attributes;
 
@@ -452,6 +454,7 @@
                 
                         height: ${arrowHeight}px !important;
                         width: ${arrowWeight}px !important;
+                        border-radius: ${attributes.arrowBorderRadius ? getSpacingValue(attributes.arrowBorderRadius) : ''} !important;
                     }
 
                 `;
@@ -853,7 +856,7 @@
                 
                 content = wp.element.createElement(
                     'div',
-                    { className: 'rs-blog-layout-2 grey fancy-post-grid'  },
+                    { className: 'rs-blog-layout-2 fancy-post-grid'  },
                     wp.element.createElement(
                         'div',
                         { className: 'container' },
@@ -902,7 +905,7 @@
                                                                 
                                                                 ...(attributes.itemMargin
                                                                   ? { margin: getSpacingValue(attributes.itemMargin) }
-                                                                  : { margin: '40px 0px 0px 0px' }), // your default fallback
+                                                                  : { margin: '40px 0px 40px 0px' }), // your default fallback
                                                                 ...(attributes.itemPadding
                                                                   ? { padding: getSpacingValue(attributes.itemPadding) }
                                                                   : { padding: '0px 0px 0px 0px' }), // your default fallback
@@ -4004,6 +4007,12 @@
                                         min: 1,
                                         max: 100,
                                     }),
+                                    // Bullet Border Radius
+                                    wp.element.createElement(__experimentalBoxControl, {
+                                        label: __('Bullet Border Radius', 'fancy-post-grid'),
+                                        values: attributes.bulletsRadius,
+                                        onChange: (value) => setAttributes({ bulletsRadius: value }),
+                                    }),
 
                                     // Fraction Color
                                     wp.element.createElement('p', {}, __('Fraction Color', 'fancy-post-grid')),
@@ -4122,6 +4131,12 @@
                                         onChange: (value) => setAttributes({ arrowWeight: value }),
                                         min: 1,
                                         max: 100,
+                                    }),
+                                    // Arrow Border Radius
+                                    wp.element.createElement(__experimentalBoxControl, {
+                                        label: __('Arrow Border Radius', 'fancy-post-grid'),
+                                        values: attributes.arrowBorderRadius,
+                                        onChange: (value) => setAttributes({ arrowBorderRadius: value }),
                                     }),
                                     
                                 ),    
