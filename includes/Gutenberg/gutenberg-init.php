@@ -7956,10 +7956,12 @@ function fancy_post_slider_render_callback($attributes) {
     $arrowBgColorr = isset($attributes['arrowBgColorr']) ? sanitize_hex_color($attributes['arrowBgColorr']) : '';
     $arrowBgHoverColor = isset($attributes['arrowBgHoverColor']) ? sanitize_hex_color($attributes['arrowBgHoverColor']) : '';
     $arrowFontSize = isset($attributes['arrowFontSize']) ? absint($attributes['arrowFontSize']) : '';
-    $fractionCurrentColor = isset($attributes['fractionCurrentColor']) ? sanitize_hex_color($attributes['fractionCurrentColor']) : '';
-    
+    $fractionCurrentColor = isset($attributes['fractionCurrentColor']) ? sanitize_hex_color($attributes['fractionCurrentColor']) : '';   
     $fractionFontSize = isset($attributes['fractionFontSize']) ? absint($attributes['fractionFontSize']) : '';
-    
+    $arrowHeight = isset($attributes['arrowHeight']) ? absint($attributes['arrowHeight']) : '';
+    $arrowWeight = isset($attributes['arrowWeight']) ? absint($attributes['arrowWeight']) : '';
+    $bulletHeight = isset($attributes['bulletHeight']) ? absint($attributes['bulletHeight']) : '';
+    $bulletWeight = isset($attributes['bulletWeight']) ? absint($attributes['bulletWeight']) : '';
     
     //END ATTRIBUTES
     
@@ -12240,6 +12242,12 @@ function fancy_post_slider_render_callback($attributes) {
             .swiper-button-next:hover::after {
                 color: ' . esc_attr($arrowHoverColor) . ' !important;
             }
+            .swiper_wrap .swiper-button-next, .swiper_wrap .swiper-button-prev {
+                
+                height: ' . esc_attr($arrowHeight) . 'px !important;
+                width: ' . esc_attr($arrowWeight) . 'px !important;
+                
+            }
         </style>';
     }
 
@@ -12254,6 +12262,8 @@ function fancy_post_slider_render_callback($attributes) {
 
         .rs-blog-layout-1 .swiper_wrap .swiper-pagination .swiper-pagination-bullet {
             background-color: ' . esc_attr($sliderDots) . ';
+            height: ' . esc_attr($bulletHeight) . 'px !important;
+            width: ' . esc_attr($bulletWeight) . 'px !important;
             opacity: 1;
         }
         .rs-blog-layout-1 .swiper_wrap .swiper-pagination .swiper-pagination-bullet.swiper-pagination-bullet-active, .rs-blog-layout-1 .swiper_wrap .swiper-pagination .swiper-pagination-bullet:hover {

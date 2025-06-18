@@ -159,6 +159,8 @@
             //sLIDER OPTION
             sliderDots: { type: 'string', default: '' },
             sliderDotsActive: { type: 'string', default: '' },
+            bulletHeight: { type: 'number', default: '' },
+            bulletWeight: { type: 'number', default: '' },
             normalProcessColor: { type: 'string', default: '' },
             activeProcessColor: { type: 'string', default: '' },
             arrowColor: { type: 'string', default: '' },
@@ -166,6 +168,8 @@
             arrowBgColorr: { type: 'string', default: '' },
             arrowBgHoverColor: { type: 'string', default: '' },
             arrowFontSize: { type: 'number', default: '' },
+            arrowHeight: { type: 'number', default: '' },
+            arrowWeight: { type: 'number', default: '' },
             fractionCurrentColor: { type: 'string', default: '' },
             fractionFontSize: { type: 'number', default: '' },
             
@@ -211,7 +215,7 @@
                 buttonAlignment,buttonMarginNew,buttonPaddingNew,buttonTextColor,buttonBackgroundColor,buttonBorderType,buttonFontWeight,
                 buttonBorderWidth,buttonBorderRadius,buttonFontSize,buttonHoverTextColor,buttonHoverBackgroundColor,
                 buttonBorderColor,buttonHoverBorderColor,
-                sliderDots,sliderDotsActive,normalProcessColor,activeProcessColor,arrowColor,arrowHoverColor,arrowBgColorr,arrowBgHoverColor,arrowFontSize,fractionCurrentColor,fractionFontSize,
+                sliderDots,sliderDotsActive,normalProcessColor,activeProcessColor,arrowColor,arrowHoverColor,arrowBgColorr,arrowBgHoverColor,arrowFontSize,fractionCurrentColor,fractionFontSize,arrowHeight,arrowWeight,bulletHeight,bulletWeight,
                  
                 postType  } = attributes;
 
@@ -444,6 +448,12 @@
                     .swiper-button-prev:hover::after {
                         color: ${arrowHoverColor} !important; /* Hover arrow color */
                     }
+                    .swiper_wrap .swiper-button-next, .swiper_wrap .swiper-button-prev {
+                
+                        height: ${arrowHeight}px !important;
+                        width: ${arrowWeight}px !important;
+                    }
+
                 `;
                 document.head.appendChild(style);
 
@@ -3952,10 +3962,10 @@
                                                                                                                                      
                                 ),
                                 
-                                wp.element.createElement(PanelBody, { title: __('Slider Dot & Arrow Style', 'fancy-post-grid'), initialOpen: false },
+                                wp.element.createElement(PanelBody, { title: __('Pagination & Arrow Style', 'fancy-post-grid'), initialOpen: false },
 
-                                    // Slider Dots Color
-                                    wp.element.createElement('p', {}, __('Slider Dots Color', 'fancy-post-grid')),
+                                    // Slider Bullets Color
+                                    wp.element.createElement('p', {}, __('Bullets Color', 'fancy-post-grid')),
                                     wp.element.createElement(wp.components.ColorPicker, {
                                         color: attributes.sliderDots,
                                         onChangeComplete: (value) => setAttributes({ sliderDots: value.hex }),
@@ -3966,8 +3976,8 @@
                                         style: { marginTop: '10px' },
                                     }, __('Clear Color', 'fancy-post-grid')),
 
-                                    // Slider Dots Active Color
-                                    wp.element.createElement('p', {}, __('Slider Dots Active Color', 'fancy-post-grid')),
+                                    // Slider Bullets Active Color
+                                    wp.element.createElement('p', {}, __('Bullets Active Color', 'fancy-post-grid')),
                                     wp.element.createElement(wp.components.ColorPicker, {
                                         color: attributes.sliderDotsActive,
                                         onChangeComplete: (value) => setAttributes({ sliderDotsActive: value.hex }),
@@ -3977,8 +3987,46 @@
                                         onClick: () => setAttributes({ sliderDotsActive: '' }),
                                         style: { marginTop: '10px' },
                                     }, __('Clear Color', 'fancy-post-grid')),
+                                    // Bullet Height
+                                    wp.element.createElement('p', {}, __('Bullet Height (px)', 'fancy-post-grid')),
+                                    wp.element.createElement(wp.components.RangeControl, {
+                                        value: attributes.bulletHeight,
+                                        onChange: (value) => setAttributes({ bulletHeight: value }),
+                                        min: 1,
+                                        max: 100,
+                                    }),
 
-                                    // Pagination Color
+                                    // Bullet Weight
+                                    wp.element.createElement('p', {}, __('Bullet Weight (px)', 'fancy-post-grid')),
+                                    wp.element.createElement(wp.components.RangeControl, {
+                                        value: attributes.bulletWeight,
+                                        onChange: (value) => setAttributes({ bulletWeight: value }),
+                                        min: 1,
+                                        max: 100,
+                                    }),
+
+                                    // Fraction Color
+                                    wp.element.createElement('p', {}, __('Fraction Color', 'fancy-post-grid')),
+                                    wp.element.createElement(wp.components.ColorPicker, {
+                                        color: attributes.fractionCurrentColor,
+                                        onChangeComplete: (value) => setAttributes({ fractionCurrentColor: value.hex }),
+                                    }),
+                                    wp.element.createElement(Button, {
+                                        isSecondary: true,
+                                        onClick: () => setAttributes({ fractionCurrentColor: '' }),
+                                        style: { marginTop: '10px' },
+                                    }, __('Clear Color', 'fancy-post-grid')),
+
+                                    // Fraction Font Size
+                                    wp.element.createElement('p', {}, __('Fraction Font Size (px)', 'fancy-post-grid')),
+                                    wp.element.createElement(wp.components.RangeControl, {
+                                        value: attributes.fractionFontSize,
+                                        onChange: (value) => setAttributes({ fractionFontSize: value }),
+                                        min: 8,
+                                        max: 48,
+                                    }),
+
+                                    // Progress Color
                                     wp.element.createElement('p', {}, __('Normal Progress Color', 'fancy-post-grid')),
                                     wp.element.createElement(wp.components.ColorPicker, {
                                         color: attributes.normalProcessColor,
@@ -3990,7 +4038,7 @@
                                         style: { marginTop: '10px' },
                                     }, __('Clear Color', 'fancy-post-grid')),
 
-                                    // Slider Dots Active Color
+                                    // Active Progress Color
                                     wp.element.createElement('p', {}, __('Active Progress Color', 'fancy-post-grid')),
                                     wp.element.createElement(wp.components.ColorPicker, {
                                         color: attributes.activeProcessColor,
@@ -4055,29 +4103,27 @@
                                     wp.element.createElement(wp.components.RangeControl, {
                                         value: attributes.arrowFontSize,
                                         onChange: (value) => setAttributes({ arrowFontSize: value }),
-                                        min: 8,
-                                        max: 48,
+                                        min: 1,
+                                        max: 100,
                                     }),
-                                    // Fraction Color
-                                    wp.element.createElement('p', {}, __('Fraction Color', 'fancy-post-grid')),
-                                    wp.element.createElement(wp.components.ColorPicker, {
-                                        color: attributes.fractionCurrentColor,
-                                        onChangeComplete: (value) => setAttributes({ fractionCurrentColor: value.hex }),
-                                    }),
-                                    wp.element.createElement(Button, {
-                                        isSecondary: true,
-                                        onClick: () => setAttributes({ fractionCurrentColor: '' }),
-                                        style: { marginTop: '10px' },
-                                    }, __('Clear Color', 'fancy-post-grid')),
-
-                                    // Arrow Icon Font Size
-                                    wp.element.createElement('p', {}, __('Fraction Font Size (px)', 'fancy-post-grid')),
+                                    // Arrow Height
+                                    wp.element.createElement('p', {}, __('Arrow Height (px)', 'fancy-post-grid')),
                                     wp.element.createElement(wp.components.RangeControl, {
-                                        value: attributes.fractionFontSize,
-                                        onChange: (value) => setAttributes({ fractionFontSize: value }),
-                                        min: 8,
-                                        max: 48,
+                                        value: attributes.arrowHeight,
+                                        onChange: (value) => setAttributes({ arrowHeight: value }),
+                                        min: 1,
+                                        max: 100,
                                     }),
+
+                                    // Arrow Weight
+                                    wp.element.createElement('p', {}, __('Arrow Weight (px)', 'fancy-post-grid')),
+                                    wp.element.createElement(wp.components.RangeControl, {
+                                        value: attributes.arrowWeight,
+                                        onChange: (value) => setAttributes({ arrowWeight: value }),
+                                        min: 1,
+                                        max: 100,
+                                    }),
+                                    
                                 ),    
                             ) : wp.element.createElement(PanelBody, { title: __('Settings Style', 'fancy-post-grid'), initialOpen: false },
                                 
