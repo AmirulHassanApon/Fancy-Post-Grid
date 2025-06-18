@@ -915,7 +915,7 @@
                                                                       ...(attributes.thumbnailMargin ? { margin: getSpacingValue(attributes.thumbnailMargin) } : {}),
                                                                       ...(attributes.thumbnailPadding ? { padding: getSpacingValue(attributes.thumbnailPadding) } : {}),
                                                                       
-                                                                      ...(attributes.itemPadding
+                                                                      ...(attributes.thumbnailBorderRadius
                                                                         ? { borderRadius: getSpacingValue(attributes.thumbnailBorderRadius) }
                                                                         : { borderRadius: '5px 5px 0px 0px' }), // your default fallback
                                                                       overflow: 'hidden', // Prevent overflow on border-radius
@@ -1275,7 +1275,7 @@
                                                                       ...(attributes.thumbnailMargin ? { margin: getSpacingValue(attributes.thumbnailMargin) } : {}),
                                                                       ...(attributes.thumbnailPadding ? { padding: getSpacingValue(attributes.thumbnailPadding) } : {}),
                                                                       
-                                                                      ...(attributes.itemPadding
+                                                                      ...(attributes.thumbnailBorderRadius
                                                                         ? { borderRadius: getSpacingValue(attributes.thumbnailBorderRadius) }
                                                                         : { borderRadius: '10px 10px 10px 10px' }), // your default fallback
                                                                       overflow: 'hidden', // Prevent overflow on border-radius
@@ -1951,7 +1951,7 @@
                                                                       ...(attributes.thumbnailMargin ? { margin: getSpacingValue(attributes.thumbnailMargin) } : {}),
                                                                       ...(attributes.thumbnailPadding ? { padding: getSpacingValue(attributes.thumbnailPadding) } : {}),
                                                                       
-                                                                      ...(attributes.itemPadding
+                                                                      ...(attributes.thumbnailBorderRadius
                                                                         ? { borderRadius: getSpacingValue(attributes.thumbnailBorderRadius) }
                                                                         : { borderRadius: '30px 30px 30px 30px' }), // your default fallback
                                                                       overflow: 'hidden', // Prevent overflow on border-radius
@@ -2226,7 +2226,7 @@
                                                                       ...(attributes.thumbnailMargin ? { margin: getSpacingValue(attributes.thumbnailMargin) } : {}),
                                                                       ...(attributes.thumbnailPadding ? { padding: getSpacingValue(attributes.thumbnailPadding) } : {}),
                                                                       
-                                                                      ...(attributes.itemPadding
+                                                                      ...(attributes.thumbnailBorderRadius
                                                                         ? { borderRadius: getSpacingValue(attributes.thumbnailBorderRadius) }
                                                                         : { borderRadius: '0px 0px 0px 0px' }), // your default fallback
                                                                       overflow: 'hidden', // Prevent overflow on border-radius
