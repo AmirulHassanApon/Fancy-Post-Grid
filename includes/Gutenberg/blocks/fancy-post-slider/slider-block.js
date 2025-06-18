@@ -553,7 +553,7 @@
                                                                         ...(attributes.thumbnailMargin ? { margin: getSpacingValue(attributes.thumbnailMargin) } : {}),
                                                                         ...(attributes.thumbnailPadding ? { padding: getSpacingValue(attributes.thumbnailPadding) } : {}),
                                                                         
-                                                                        ...(attributes.itemPadding
+                                                                        ...(attributes.thumbnailBorderRadius
                                                                           ? { borderRadius: getSpacingValue(attributes.thumbnailBorderRadius) }
                                                                           : { borderRadius: '70px 0px 0px 0px' }), // your default fallback
                                                                         overflow: 'hidden', // Prevent overflow on border-radius
