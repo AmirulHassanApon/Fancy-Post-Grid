@@ -5791,7 +5791,7 @@ img {
         display: flex;
         align-items: center;
         gap: 15px;
-        margin-bottom: 15px;
+        margin-bottom: 5px;
     }
     .rs-blog-layout-26-item .rs-content .rs-meta .meta-date span{
         font-size: 22px;
@@ -5898,8 +5898,8 @@ img {
         text-align: right;
     }
     .rs-blog-layout-26-item .rs-content .title a{
-        margin-top: 16px;
-        margin-bottom: 20px;
+        margin-top: 0px;
+        margin-bottom: 0px;
         color: #003b40;
         transition: all linear 0.3s;
         text-decoration: none;
@@ -5989,6 +5989,7 @@ img {
     }
     .rs-blog-layout-26-item .rs-content p{
         order: 3;
+        margin-top: 10px;
     }
     .rs-blog-layout-26-item:hover .rs-content p{
         color: #fff;
