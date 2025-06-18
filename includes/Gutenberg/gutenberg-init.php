@@ -12261,7 +12261,7 @@ function fancy_post_slider_render_callback($attributes) {
         }
         .swiper_wrap .swiper-pagination-fraction {
             color: ' . esc_attr($fractionCurrentColor) . ';
-            font-size: ' . esc_attr($fractionFontSize) . ';
+            font-size: ' . esc_attr($fractionFontSize) . 'px !important;
             opacity: 1;   
         }
         .rs-blog-layout-1 .swiper_wrap .swiper-pagination-progressbar {
