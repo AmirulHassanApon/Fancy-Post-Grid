@@ -159,6 +159,8 @@
             //sLIDER OPTION
             sliderDots: { type: 'string', default: '' },
             sliderDotsActive: { type: 'string', default: '' },
+            normalProcessColor: { type: 'string', default: '' },
+            activeProcessColor: { type: 'string', default: '' },
             arrowColor: { type: 'string', default: '' },
             arrowHoverColor: { type: 'string', default: '' },
             arrowBgColorr: { type: 'string', default: '' },
@@ -209,7 +211,7 @@
                 buttonAlignment,buttonMarginNew,buttonPaddingNew,buttonTextColor,buttonBackgroundColor,buttonBorderType,buttonFontWeight,
                 buttonBorderWidth,buttonBorderRadius,buttonFontSize,buttonHoverTextColor,buttonHoverBackgroundColor,
                 buttonBorderColor,buttonHoverBorderColor,
-                sliderDots,sliderDotsActive,arrowColor,arrowHoverColor,arrowBgColorr,arrowBgHoverColor,arrowFontSize,fractionCurrentColor,fractionFontSize,
+                sliderDots,sliderDotsActive,normalProcessColor,activeProcessColor,arrowColor,arrowHoverColor,arrowBgColorr,arrowBgHoverColor,arrowFontSize,fractionCurrentColor,fractionFontSize,
                  
                 postType  } = attributes;
 
@@ -3976,6 +3978,30 @@
                                         style: { marginTop: '10px' },
                                     }, __('Clear Color', 'fancy-post-grid')),
 
+                                    // Pagination Color
+                                    wp.element.createElement('p', {}, __('Normal Progress Color', 'fancy-post-grid')),
+                                    wp.element.createElement(wp.components.ColorPicker, {
+                                        color: attributes.normalProcessColor,
+                                        onChangeComplete: (value) => setAttributes({ normalProcessColor: value.hex }),
+                                    }),
+                                    wp.element.createElement(Button, {
+                                        isSecondary: true,
+                                        onClick: () => setAttributes({ normalProcessColor: '' }),
+                                        style: { marginTop: '10px' },
+                                    }, __('Clear Color', 'fancy-post-grid')),
+
+                                    // Slider Dots Active Color
+                                    wp.element.createElement('p', {}, __('Active Progress Color', 'fancy-post-grid')),
+                                    wp.element.createElement(wp.components.ColorPicker, {
+                                        color: attributes.activeProcessColor,
+                                        onChangeComplete: (value) => setAttributes({ activeProcessColor: value.hex }),
+                                    }),
+                                    wp.element.createElement(Button, {
+                                        isSecondary: true,
+                                        onClick: () => setAttributes({ activeProcessColor: '' }),
+                                        style: { marginTop: '10px' },
+                                    }, __('Clear Color', 'fancy-post-grid')),
+
                                     // Arrow Color
                                     wp.element.createElement('p', {}, __('Arrow Color', 'fancy-post-grid')),
                                     wp.element.createElement(wp.components.ColorPicker, {
@@ -4032,8 +4058,8 @@
                                         min: 8,
                                         max: 48,
                                     }),
-                                    // Arrow Background Color
-                                    wp.element.createElement('p', {}, __('Fraction Current Color', 'fancy-post-grid')),
+                                    // Fraction Color
+                                    wp.element.createElement('p', {}, __('Fraction Color', 'fancy-post-grid')),
                                     wp.element.createElement(wp.components.ColorPicker, {
                                         color: attributes.fractionCurrentColor,
                                         onChangeComplete: (value) => setAttributes({ fractionCurrentColor: value.hex }),
@@ -4043,8 +4069,6 @@
                                         onClick: () => setAttributes({ fractionCurrentColor: '' }),
                                         style: { marginTop: '10px' },
                                     }, __('Clear Color', 'fancy-post-grid')),
-
-                                    
 
                                     // Arrow Icon Font Size
                                     wp.element.createElement('p', {}, __('Fraction Font Size (px)', 'fancy-post-grid')),
