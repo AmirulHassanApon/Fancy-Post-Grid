@@ -7895,11 +7895,11 @@ function fancy_post_slider_render_callback($attributes) {
     $thumbnailBorderRadius = isset($attributes['thumbnailBorderRadius']) ? $attributes['thumbnailBorderRadius'] : ['top' => '5', 'right' => '5', 'bottom' => '5', 'left' => '5'];
 
     // Post Title
-    $postTitleFontSize      = isset($attributes['postTitleFontSize']) ? absint($attributes['postTitleFontSize']) : 24;
+    $postTitleFontSize      = isset($attributes['postTitleFontSize']) ? absint($attributes['postTitleFontSize']) : '';
     $postTitleLineHeight    = isset($attributes['postTitleLineHeight']) ? floatval($attributes['postTitleLineHeight']) : '';
     $postTitleLetterSpacing = isset($attributes['postTitleLetterSpacing']) ? floatval($attributes['postTitleLetterSpacing']) : '';
-    $postTitleFontWeight    = isset($attributes['postTitleFontWeight']) ? sanitize_text_field($attributes['postTitleFontWeight']) : '600';
-    $postTitleAlignment     = isset($attributes['postTitleAlignment']) ? sanitize_text_field($attributes['postTitleAlignment']) : 'start';
+    $postTitleFontWeight    = isset($attributes['postTitleFontWeight']) ? sanitize_text_field($attributes['postTitleFontWeight']) : '';
+    $postTitleAlignment     = isset($attributes['postTitleAlignment']) ? sanitize_text_field($attributes['postTitleAlignment']) : '';
     $postTitleColor         = isset($attributes['postTitleColor']) ? sanitize_hex_color($attributes['postTitleColor']) : '';
     $postTitleBgColor       = isset($attributes['postTitleBgColor']) ? sanitize_hex_color($attributes['postTitleBgColor']) : ''; 
     $postTitleHoverColor    = isset($attributes['postTitleHoverColor']) ? sanitize_hex_color($attributes['postTitleHoverColor']) : '';
@@ -7913,7 +7913,7 @@ function fancy_post_slider_render_callback($attributes) {
     $excerptLetterSpacing = isset($attributes['excerptLetterSpacing']) ? floatval($attributes['excerptLetterSpacing']) : '';
     $excerptFontWeight = isset($attributes['excerptFontWeight']) ? sanitize_text_field($attributes['excerptFontWeight']) : '';
     $excerptAlignment = isset($attributes['excerptAlignment']) ? sanitize_text_field($attributes['excerptAlignment']) : '';
-    $excerptMargin = isset($attributes['excerptMargin']) ? array_map('sanitize_text_field', $attributes['excerptMargin']) : ['top' => '10', 'right' => '0', 'bottom' => '10', 'left' => '0'];
+    $excerptMargin = isset($attributes['excerptMargin']) ? array_map('sanitize_text_field', $attributes['excerptMargin']) : ['top' => '0', 'right' => '0', 'bottom' => '0', 'left' => '0'];
     $excerptPadding = isset($attributes['excerptPadding']) ? array_map('sanitize_text_field', $attributes['excerptPadding']) : ['top' => '0', 'right' => '0', 'bottom' => '0', 'left' => '0'];
     $excerptColor = isset($attributes['excerptColor']) ? sanitize_hex_color($attributes['excerptColor']) : '';
     $excerptBgColor = isset($attributes['excerptBgColor']) ? sanitize_hex_color($attributes['excerptBgColor']) : '';
@@ -7996,36 +7996,23 @@ function fancy_post_slider_render_callback($attributes) {
               ? 'fancy_post_square' : $thumbnailSize; 
     $thumbnailSize7 = ($sliderLayoutStyle === 'style7' && $thumbnailSize == null)
               ? 'fancy_post_landscape' : $thumbnailSize;
-    // MetaAlignment
-    $metaAlignment1 = ($sliderLayoutStyle === 'style1' && $metaAlignment == null)
-              ? 'start' : $metaAlignment; 
-    $metaAlignment2 = ($sliderLayoutStyle === 'style2' && $metaAlignment == null)
-              ? 'start' : $metaAlignment; 
-    $metaAlignment3 = ($sliderLayoutStyle === 'style3' && $metaAlignment == null)
-              ? 'center' : $metaAlignment; 
-    $metaAlignment4 = ($sliderLayoutStyle === 'style4' && $metaAlignment == null)
-              ? 'center' : $metaAlignment; 
-    $metaAlignment5 = ($sliderLayoutStyle === 'style5' && $metaAlignment == null)
-              ? 'start' : $metaAlignment; 
-    $metaAlignment6 = ($sliderLayoutStyle === 'style6' && $metaAlignment == null)
-              ? 'start' : $metaAlignment; 
-    $metaAlignment7 = ($sliderLayoutStyle === 'style7' && $metaAlignment == null)
-              ? 'end' : $metaAlignment; 
-    // ExcerptAlignment
-    $excerptAlignment1 = ($sliderLayoutStyle === 'style1' && $excerptAlignment == null)
-              ? 'start' : $excerptAlignment; 
-    $excerptAlignment2 = ($sliderLayoutStyle === 'style2' && $excerptAlignment == null)
-              ? 'start' : $excerptAlignment; 
-    $excerptAlignment3 = ($sliderLayoutStyle === 'style3' && $excerptAlignment == null)
-              ? 'center' : $excerptAlignment; 
-    $excerptAlignment4 = ($sliderLayoutStyle === 'style4' && $excerptAlignment == null)
-              ? 'center' : $excerptAlignment; 
-    $excerptAlignment5 = ($sliderLayoutStyle === 'style5' && $excerptAlignment == null)
-              ? 'start' : $excerptAlignment; 
-    $excerptAlignment6 = ($sliderLayoutStyle === 'style6' && $excerptAlignment == null)
-              ? 'start' : $excerptAlignment; 
-    $excerptAlignment7 = ($sliderLayoutStyle === 'style7' && $excerptAlignment == null)
-              ? 'start' : $excerptAlignment; 
+
+    // thumbnailSize
+    $itemBoxAlignment1 = ($sliderLayoutStyle === 'style1' && $itemBoxAlignment == null)
+              ? 'start' : $itemBoxAlignment; 
+    $itemBoxAlignment2 = ($sliderLayoutStyle === 'style2' && $itemBoxAlignment == null)
+              ? 'start' : $itemBoxAlignment; 
+    $itemBoxAlignment3 = ($sliderLayoutStyle === 'style3' && $itemBoxAlignment == null)
+              ? 'center' : $itemBoxAlignment; 
+    $itemBoxAlignment4 = ($sliderLayoutStyle === 'style4' && $itemBoxAlignment == null)
+              ? 'start' : $itemBoxAlignment; 
+    $itemBoxAlignment5 = ($sliderLayoutStyle === 'style5' && $itemBoxAlignment == null)
+              ? 'start' : $itemBoxAlignment; 
+    $itemBoxAlignment6 = ($sliderLayoutStyle === 'style6' && $itemBoxAlignment == null)
+              ? 'start' : $itemBoxAlignment; 
+    $itemBoxAlignment7 = ($sliderLayoutStyle === 'style7' && $itemBoxAlignment == null)
+              ? 'start' : $itemBoxAlignment;           
+     
     // buttonStyle
     $buttonStyle1 = ($sliderLayoutStyle === 'style1' && $buttonStyle == null)
               ? 'fpg-border' : $buttonStyle; 
@@ -8170,7 +8157,7 @@ function fancy_post_slider_render_callback($attributes) {
         if ($sliderLayoutStyle === 'style1') {
             $output .= '<div class="swiper-slide">';
             // Full post layout
-            $output .= '<div class="blog-item align-' . $itemBoxAlignment . ' ' . $hoverAnimation . '" style="';
+            $output .= '<div class="blog-item align-' . $itemBoxAlignment1 . ' ' . $hoverAnimation . '" style="';
                 // MARGIN    
                 if ( !empty($itemMargin['top']) || !empty($itemMargin['right']) ||  !empty($itemMargin['bottom']) || !empty($itemMargin['left'])) {
                     $output .= 'margin: ' .(isset($itemMargin['top']) && $itemMargin['top'] !== '' ? (is_numeric($itemMargin['top']) ? $itemMargin['top'] . 'px' : esc_attr($itemMargin['top'])) : '0px') . ' ' . (isset($itemMargin['right']) && $itemMargin['right'] !== '' ? (is_numeric($itemMargin['right']) ? $itemMargin['right'] . 'px' : esc_attr($itemMargin['right'])) : '0px') . ' ' . (isset($itemMargin['bottom']) && $itemMargin['bottom'] !== '' ? (is_numeric($itemMargin['bottom']) ? $itemMargin['bottom'] . 'px' : esc_attr($itemMargin['bottom'])) : '0px') . ' ' . (isset($itemMargin['left']) && $itemMargin['left'] !== '' ? (is_numeric($itemMargin['left']) ? $itemMargin['left'] . 'px' : esc_attr($itemMargin['left'])) : '0px') . '; '; 
@@ -8337,7 +8324,7 @@ function fancy_post_slider_render_callback($attributes) {
 
             // Meta Data
             if ($showMetaData) {
-                    $output .= '<ul class="blog-meta align-' . $metaAlignment1 . ' " style="';  
+                    $output .= '<ul class="blog-meta align-' . $metaAlignment . ' " style="';  
                         // Margin
                         if (!empty($metaMarginNew['top']) || !empty($metaMarginNew['right']) || !empty($metaMarginNew['bottom']) || !empty($metaMarginNew['left'])) {
                             $output .= 'margin: ' .
@@ -8711,7 +8698,7 @@ function fancy_post_slider_render_callback($attributes) {
                     $hoverOut .= 'this.style.borderColor=\'inherit\';';
                 }
 
-                $output .= '<div class="desc' . ' align-' . esc_attr($excerptAlignment1) . '" style="' . esc_attr(trim($excerptStyles)) . '"';
+                $output .= '<div class="desc' . ' align-' . esc_attr($excerptAlignment) . '" style="' . esc_attr(trim($excerptStyles)) . '"';
 
                 if (!empty($hoverIn) || !empty($hoverOut)) {
                     $output .= ' onmouseover="' . esc_attr($hoverIn) . '"';
@@ -8853,7 +8840,7 @@ function fancy_post_slider_render_callback($attributes) {
         elseif ($sliderLayoutStyle === 'style2') {
             $output .= '<div class="swiper-slide">';
             // Full post layout
-            $output .= '<div class="blog-item align-' . $itemBoxAlignment . ' ' . $hoverAnimation . '" style="';
+            $output .= '<div class="blog-item align-' . $itemBoxAlignment2 . ' ' . $hoverAnimation . '" style="';
                 // MARGIN    
                 if ( !empty($itemMargin['top']) || !empty($itemMargin['right']) ||  !empty($itemMargin['bottom']) || !empty($itemMargin['left'])) {
                     $output .= 'margin: ' .(isset($itemMargin['top']) && $itemMargin['top'] !== '' ? (is_numeric($itemMargin['top']) ? $itemMargin['top'] . 'px' : esc_attr($itemMargin['top'])) : '0px') . ' ' . (isset($itemMargin['right']) && $itemMargin['right'] !== '' ? (is_numeric($itemMargin['right']) ? $itemMargin['right'] . 'px' : esc_attr($itemMargin['right'])) : '0px') . ' ' . (isset($itemMargin['bottom']) && $itemMargin['bottom'] !== '' ? (is_numeric($itemMargin['bottom']) ? $itemMargin['bottom'] . 'px' : esc_attr($itemMargin['bottom'])) : '0px') . ' ' . (isset($itemMargin['left']) && $itemMargin['left'] !== '' ? (is_numeric($itemMargin['left']) ? $itemMargin['left'] . 'px' : esc_attr($itemMargin['left'])) : '0px') . '; '; 
@@ -9011,7 +8998,7 @@ function fancy_post_slider_render_callback($attributes) {
             $output .= '">';
             // Meta Data
             if ($showMetaData) {
-                $output .= '<ul class="blog-meta align-' . $metaAlignment2 . ' " style="';  
+                $output .= '<ul class="blog-meta align-' . $metaAlignment . ' " style="';  
                     // Margin
                     if (!empty($metaMarginNew['top']) || !empty($metaMarginNew['right']) || !empty($metaMarginNew['bottom']) || !empty($metaMarginNew['left'])) {
                         $output .= 'margin: ' .
@@ -9385,7 +9372,7 @@ function fancy_post_slider_render_callback($attributes) {
                     $hoverOut .= 'this.style.borderColor=\'inherit\';';
                 }
 
-                $output .= '<div class="desc' . ' align-' . esc_attr($excerptAlignment2) . '" style="' . esc_attr(trim($excerptStyles)) . '"';
+                $output .= '<div class="desc' . ' align-' . esc_attr($excerptAlignment) . '" style="' . esc_attr(trim($excerptStyles)) . '"';
 
                 if (!empty($hoverIn) || !empty($hoverOut)) {
                     $output .= ' onmouseover="' . esc_attr($hoverIn) . '"';
@@ -9526,7 +9513,7 @@ function fancy_post_slider_render_callback($attributes) {
         elseif ($sliderLayoutStyle === 'style3') {
             $output .= '<div class="swiper-slide">';
             // Full post layout
-            $output .= '<div class="rs-blog__single align-' . $itemBoxAlignment . ' ' . $hoverAnimation . '" style="';
+            $output .= '<div class="rs-blog__single align-' . $itemBoxAlignment3 . ' ' . $hoverAnimation . '" style="';
                 // MARGIN    
                 if ( !empty($itemMargin['top']) || !empty($itemMargin['right']) ||  !empty($itemMargin['bottom']) || !empty($itemMargin['left'])) {
                     $output .= 'margin: ' .(isset($itemMargin['top']) && $itemMargin['top'] !== '' ? (is_numeric($itemMargin['top']) ? $itemMargin['top'] . 'px' : esc_attr($itemMargin['top'])) : '0px') . ' ' . (isset($itemMargin['right']) && $itemMargin['right'] !== '' ? (is_numeric($itemMargin['right']) ? $itemMargin['right'] . 'px' : esc_attr($itemMargin['right'])) : '0px') . ' ' . (isset($itemMargin['bottom']) && $itemMargin['bottom'] !== '' ? (is_numeric($itemMargin['bottom']) ? $itemMargin['bottom'] . 'px' : esc_attr($itemMargin['bottom'])) : '0px') . ' ' . (isset($itemMargin['left']) && $itemMargin['left'] !== '' ? (is_numeric($itemMargin['left']) ? $itemMargin['left'] . 'px' : esc_attr($itemMargin['left'])) : '0px') . '; '; 
@@ -9793,7 +9780,7 @@ function fancy_post_slider_render_callback($attributes) {
             }
             // Meta Data
             if ($showMetaData) {
-                $output .= '<ul class="blog-meta align-' . $metaAlignment3 . ' " style="';  
+                $output .= '<ul class="blog-meta align-' . $metaAlignment . ' " style="';  
                     // Margin
                     if (!empty($metaMarginNew['top']) || !empty($metaMarginNew['right']) || !empty($metaMarginNew['bottom']) || !empty($metaMarginNew['left'])) {
                         $output .= 'margin: ' .
@@ -9959,7 +9946,7 @@ function fancy_post_slider_render_callback($attributes) {
                     $hoverOut .= 'this.style.borderColor=\'inherit\';';
                 }
 
-                $output .= '<div class="desc' . ' align-' . esc_attr($excerptAlignment1) . '" style="' . esc_attr(trim($excerptStyles)) . '"';
+                $output .= '<div class="desc' . ' align-' . esc_attr($excerptAlignment) . '" style="' . esc_attr(trim($excerptStyles)) . '"';
 
                 if (!empty($hoverIn) || !empty($hoverOut)) {
                     $output .= ' onmouseover="' . esc_attr($hoverIn) . '"';
@@ -10115,7 +10102,7 @@ function fancy_post_slider_render_callback($attributes) {
         elseif ($sliderLayoutStyle === 'style4') {
             $output .= '<div class="swiper-slide">';
             // Full post layout
-            $output .= '<div class="rs-blog__item align-' . $itemBoxAlignment . ' ' . $hoverAnimation . '" style="';
+            $output .= '<div class="rs-blog__item align-' . $itemBoxAlignment4 . ' ' . $hoverAnimation . '" style="';
                 // MARGIN    
                 if ( !empty($itemMargin['top']) || !empty($itemMargin['right']) ||  !empty($itemMargin['bottom']) || !empty($itemMargin['left'])) {
                     $output .= 'margin: ' .(isset($itemMargin['top']) && $itemMargin['top'] !== '' ? (is_numeric($itemMargin['top']) ? $itemMargin['top'] . 'px' : esc_attr($itemMargin['top'])) : '0px') . ' ' . (isset($itemMargin['right']) && $itemMargin['right'] !== '' ? (is_numeric($itemMargin['right']) ? $itemMargin['right'] . 'px' : esc_attr($itemMargin['right'])) : '0px') . ' ' . (isset($itemMargin['bottom']) && $itemMargin['bottom'] !== '' ? (is_numeric($itemMargin['bottom']) ? $itemMargin['bottom'] . 'px' : esc_attr($itemMargin['bottom'])) : '0px') . ' ' . (isset($itemMargin['left']) && $itemMargin['left'] !== '' ? (is_numeric($itemMargin['left']) ? $itemMargin['left'] . 'px' : esc_attr($itemMargin['left'])) : '0px') . '; '; 
@@ -10441,7 +10428,7 @@ function fancy_post_slider_render_callback($attributes) {
                     $hoverOut .= 'this.style.borderColor=\'inherit\';';
                 }
 
-                $output .= '<div class="desc' . ' align-' . esc_attr($excerptAlignment1) . '" style="' . esc_attr(trim($excerptStyles)) . '"';
+                $output .= '<div class="desc' . ' align-' . esc_attr($excerptAlignment) . '" style="' . esc_attr(trim($excerptStyles)) . '"';
 
                 if (!empty($hoverIn) || !empty($hoverOut)) {
                     $output .= ' onmouseover="' . esc_attr($hoverIn) . '"';
@@ -10613,7 +10600,7 @@ function fancy_post_slider_render_callback($attributes) {
         elseif ($sliderLayoutStyle === 'style5') {
             $output .= '<div class="swiper-slide">';
             // Full post layout
-            $output .= '<div class="rs-blog-layout-18-item align-' . $itemBoxAlignment . ' ' . $hoverAnimation . '" style="';
+            $output .= '<div class="rs-blog-layout-18-item align-' . $itemBoxAlignment5 . ' ' . $hoverAnimation . '" style="';
                 // MARGIN    
                 if ( !empty($itemMargin['top']) || !empty($itemMargin['right']) ||  !empty($itemMargin['bottom']) || !empty($itemMargin['left'])) {
                     $output .= 'margin: ' .(isset($itemMargin['top']) && $itemMargin['top'] !== '' ? (is_numeric($itemMargin['top']) ? $itemMargin['top'] . 'px' : esc_attr($itemMargin['top'])) : '0px') . ' ' . (isset($itemMargin['right']) && $itemMargin['right'] !== '' ? (is_numeric($itemMargin['right']) ? $itemMargin['right'] . 'px' : esc_attr($itemMargin['right'])) : '0px') . ' ' . (isset($itemMargin['bottom']) && $itemMargin['bottom'] !== '' ? (is_numeric($itemMargin['bottom']) ? $itemMargin['bottom'] . 'px' : esc_attr($itemMargin['bottom'])) : '0px') . ' ' . (isset($itemMargin['left']) && $itemMargin['left'] !== '' ? (is_numeric($itemMargin['left']) ? $itemMargin['left'] . 'px' : esc_attr($itemMargin['left'])) : '0px') . '; '; 
@@ -10771,7 +10758,7 @@ function fancy_post_slider_render_callback($attributes) {
             // Meta Data
             if ($showMetaData) {
                 $output .='<div class="rs-meta">';  
-                $output .= '<ul class="blog-meta align-' . $metaAlignment5 . ' " style="';  
+                $output .= '<ul class="blog-meta align-' . $metaAlignment . ' " style="';  
                     // Margin
                     if (!empty($metaMarginNew['top']) || !empty($metaMarginNew['right']) || !empty($metaMarginNew['bottom']) || !empty($metaMarginNew['left'])) {
                         $output .= 'margin: ' .
@@ -11110,7 +11097,7 @@ function fancy_post_slider_render_callback($attributes) {
         elseif ($sliderLayoutStyle === 'style6') {
             $output .= '<div class="swiper-slide">';
             // Full post layout
-            $output .= '<div class="rs-blog-layout-23-item align-' . $itemBoxAlignment . ' ' . $hoverAnimation . '" style="';
+            $output .= '<div class="rs-blog-layout-23-item align-' . $itemBoxAlignment6 . ' ' . $hoverAnimation . '" style="';
                 // MARGIN    
                 if ( !empty($itemMargin['top']) || !empty($itemMargin['right']) ||  !empty($itemMargin['bottom']) || !empty($itemMargin['left'])) {
                     $output .= 'margin: ' .(isset($itemMargin['top']) && $itemMargin['top'] !== '' ? (is_numeric($itemMargin['top']) ? $itemMargin['top'] . 'px' : esc_attr($itemMargin['top'])) : '0px') . ' ' . (isset($itemMargin['right']) && $itemMargin['right'] !== '' ? (is_numeric($itemMargin['right']) ? $itemMargin['right'] . 'px' : esc_attr($itemMargin['right'])) : '0px') . ' ' . (isset($itemMargin['bottom']) && $itemMargin['bottom'] !== '' ? (is_numeric($itemMargin['bottom']) ? $itemMargin['bottom'] . 'px' : esc_attr($itemMargin['bottom'])) : '0px') . ' ' . (isset($itemMargin['left']) && $itemMargin['left'] !== '' ? (is_numeric($itemMargin['left']) ? $itemMargin['left'] . 'px' : esc_attr($itemMargin['left'])) : '0px') . '; '; 
@@ -11478,7 +11465,7 @@ function fancy_post_slider_render_callback($attributes) {
             // Swiper Slide
             $output .= '<div class="swiper-slide">';
             // Full post layout
-            $output .= '<div class="rs-blog-layout-28-item align-' . $itemBoxAlignment . ' ' . $hoverAnimation . '" style="';
+            $output .= '<div class="rs-blog-layout-28-item align-' . $itemBoxAlignment7 . ' ' . $hoverAnimation . '" style="';
                 // MARGIN    
                 if ( !empty($itemMargin['top']) || !empty($itemMargin['right']) ||  !empty($itemMargin['bottom']) || !empty($itemMargin['left'])) {
                     $output .= 'margin: ' .(isset($itemMargin['top']) && $itemMargin['top'] !== '' ? (is_numeric($itemMargin['top']) ? $itemMargin['top'] . 'px' : esc_attr($itemMargin['top'])) : '0px') . ' ' . (isset($itemMargin['right']) && $itemMargin['right'] !== '' ? (is_numeric($itemMargin['right']) ? $itemMargin['right'] . 'px' : esc_attr($itemMargin['right'])) : '0px') . ' ' . (isset($itemMargin['bottom']) && $itemMargin['bottom'] !== '' ? (is_numeric($itemMargin['bottom']) ? $itemMargin['bottom'] . 'px' : esc_attr($itemMargin['bottom'])) : '0px') . ' ' . (isset($itemMargin['left']) && $itemMargin['left'] !== '' ? (is_numeric($itemMargin['left']) ? $itemMargin['left'] . 'px' : esc_attr($itemMargin['left'])) : '0px') . '; '; 
@@ -11589,8 +11576,8 @@ function fancy_post_slider_render_callback($attributes) {
 
                 // Now Insert Meta Data inside the Thumbnail
                 if ($showMetaData) {
-                    $output .= '<div class="rs-meta align-' . $metaAlignment3 . '">';
-                        $output .= '<ul class="meta-data-list align-' . $metaAlignment3 . ' " style="';  
+                    $output .= '<div class="rs-meta align-' . $metaAlignment . '">';
+                        $output .= '<ul class="meta-data-list " style="';  
                             // Margin
                             if (!empty($metaMarginNew['top']) || !empty($metaMarginNew['right']) || !empty($metaMarginNew['bottom']) || !empty($metaMarginNew['left'])) {
                                 $output .= 'margin: ' .
@@ -12013,7 +12000,7 @@ function fancy_post_slider_render_callback($attributes) {
                         $hoverOut .= 'this.style.borderColor=\'inherit\';';
                     }
 
-                    $output .= '<div class="fpg-excerpt' . ' align-' . esc_attr($excerptAlignment7) . '" style="' . esc_attr(trim($excerptStyles)) . '"';
+                    $output .= '<div class="fpg-excerpt' . ' align-' . esc_attr($excerptAlignment) . '" style="' . esc_attr(trim($excerptStyles)) . '"';
 
                     if (!empty($hoverIn) || !empty($hoverOut)) {
                         $output .= ' onmouseover="' . esc_attr($hoverIn) . '"';

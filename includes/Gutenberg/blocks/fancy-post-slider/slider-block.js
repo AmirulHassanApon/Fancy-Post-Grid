@@ -87,7 +87,7 @@
             itemPadding: { type: 'object' },
             itemBorderRadius: { type: 'object' },
             itemGap: { type: 'number', default: '30' },
-            itemBoxAlignment: { type: 'string', default: 'start' },
+            itemBoxAlignment: { type: 'string' },
             itemBorderType: { type: 'string', default: '' },
             itemBoxShadow: { type: 'object' },
             itemBoxShadowColor: { type: 'string', default: '' },  
@@ -228,6 +228,21 @@
               ? 'fancy_post_square' : attributes.thumbnailSize; 
             const thumbnailSize7 = (sliderLayoutStyle === 'style7' && attributes.thumbnailSize == null)
               ? 'fancy_post_landscape' : attributes.thumbnailSize;
+            // itemBoxAlignment
+            const itemBoxAlignment1 = (sliderLayoutStyle === 'style1' && attributes.itemBoxAlignment == null)
+              ? 'start' : attributes.itemBoxAlignment; 
+            const itemBoxAlignment2 = (sliderLayoutStyle === 'style2' && attributes.itemBoxAlignment == null)
+              ? 'start' : attributes.itemBoxAlignment;  
+            const itemBoxAlignment3 = (sliderLayoutStyle === 'style3' && attributes.itemBoxAlignment == null)
+              ? 'center' : attributes.itemBoxAlignment;
+            const itemBoxAlignment4 = (sliderLayoutStyle === 'style4' && attributes.itemBoxAlignment == null)
+              ? 'start' : attributes.itemBoxAlignment; 
+            const itemBoxAlignment5 = (sliderLayoutStyle === 'style5' && attributes.itemBoxAlignment == null)
+              ? 'start' : attributes.itemBoxAlignment;  
+            const itemBoxAlignment6 = (sliderLayoutStyle === 'style6' && attributes.itemBoxAlignment == null)
+              ? 'start' : attributes.itemBoxAlignment; 
+            const itemBoxAlignment7 = (sliderLayoutStyle === 'style7' && attributes.itemBoxAlignment == null)
+              ? 'start' : attributes.itemBoxAlignment;  
 
             const buttonStyle1 = (sliderLayoutStyle === 'style1' && attributes.buttonStyle == null)
               ? 'fpg-border' : attributes.buttonStyle; 
@@ -509,7 +524,7 @@
                                                             className: 'swiper-slide' },
                                                         wp.element.createElement(
                                                         'div',
-                                                        { className: `fancy-post-item blog-item align-${itemBoxAlignment} ${hoverAnimation}`,
+                                                        { className: `fancy-post-item blog-item align-${itemBoxAlignment1} ${hoverAnimation}`,
                                                             style: {
                                                                 
                                                                 ...(attributes.itemMargin
@@ -706,7 +721,7 @@
                                                                         className: `blog-title align-${postTitleAlignment} ${titleHoverUnderLine === 'enable' ? ' underline' : ''}`,
                                                                         style: {
                                                                             
-                                                                            ...(attributes.postTitleMargin ? { margin: getSpacingValue(attributes.postTitleMargin) }: { margin: '10px 0px 0px 0px' }), 
+                                                                            ...(attributes.postTitleMargin ? { margin: getSpacingValue(attributes.postTitleMargin) }: { margin: '0px 0px 0px 0px' }), 
                                                                             ...(attributes.postTitlePadding ? { padding: getSpacingValue(attributes.postTitlePadding) }: { padding: '0px 0px 0px 0px' }), 
                                                                             
                                                                             ...(postTitleBgColor ? { backgroundColor: postTitleBgColor } : {}),
@@ -870,7 +885,7 @@
                                                             className: 'swiper-slide', },
                                                         wp.element.createElement(
                                                         'div',
-                                                        { className: `fancy-post-item blog-item align-${itemBoxAlignment} ${hoverAnimation}`,
+                                                        { className: `fancy-post-item blog-item align-${itemBoxAlignment2} ${hoverAnimation}`,
                                                             style: {
                                                                 
                                                                 ...(attributes.itemMargin
@@ -1231,7 +1246,7 @@
                                                             className: 'swiper-slide',},
                                                         wp.element.createElement(
                                                         'div',
-                                                        { className: `fancy-post-item rs-blog__single align-${itemBoxAlignment} ${hoverAnimation}`,
+                                                        { className: `fancy-post-item rs-blog__single align-${itemBoxAlignment3} ${hoverAnimation}`,
                                                           style: {
                                                               
                                                               ...(attributes.itemMargin
@@ -1617,7 +1632,7 @@
                                                             className: 'swiper-slide' },
                                                         wp.element.createElement(
                                                         'div',
-                                                        { className: `fancy-post-item rs-blog__item align-${itemBoxAlignment} ${hoverAnimation}`,
+                                                        { className: `fancy-post-item rs-blog__item align-${itemBoxAlignment4} ${hoverAnimation}`,
                                                             style: {
                                                                 
                                                                 ...(attributes.itemMargin
@@ -1907,7 +1922,7 @@
                                                             className: 'swiper-slide' },
                                                         wp.element.createElement(
                                                         'div',
-                                                        { className: `fancy-post-item rs-blog-layout-18-item align-${itemBoxAlignment} ${hoverAnimation}`,
+                                                        { className: `fancy-post-item rs-blog-layout-18-item align-${itemBoxAlignment5} ${hoverAnimation}`,
                                                             style: {
                                                                 
                                                                 ...(attributes.itemMargin
@@ -2182,7 +2197,7 @@
                                                             className: 'swiper-slide' },
                                                         wp.element.createElement(
                                                         'div',
-                                                        { className: `fancy-post-item rs-blog-layout-23-item align-${itemBoxAlignment} ${hoverAnimation}`,
+                                                        { className: `fancy-post-item rs-blog-layout-23-item align-${itemBoxAlignment6} ${hoverAnimation}`,
                                                             style: {
                                                                 
                                                                 ...(attributes.itemMargin
@@ -2401,7 +2416,7 @@
                                                         },
                                                         wp.element.createElement(
                                                         'div',
-                                                        { className: `fancy-post-item rs-blog-layout-28-item align-${itemBoxAlignment} ${hoverAnimation}`,
+                                                        { className: `fancy-post-item rs-blog-layout-28-item align-${itemBoxAlignment7} ${hoverAnimation}`,
                                                             style: {
                                                                 ...(attributes.itemMargin
                                                                   ? { margin: getSpacingValue(attributes.itemMargin) }
