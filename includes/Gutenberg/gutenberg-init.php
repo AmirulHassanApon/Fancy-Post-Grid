@@ -7932,7 +7932,7 @@ function fancy_post_slider_render_callback($attributes) {
     $metaIconColor = isset($attributes['metaIconColor']) ? sanitize_hex_color($attributes['metaIconColor']) : '';
     
     // Button Alignment
-    $buttonAlignment = isset($attributes['buttonAlignment']) ? sanitize_text_field($attributes['buttonAlignment']) : 'start';
+    $buttonAlignment = isset($attributes['buttonAlignment']) ? sanitize_text_field($attributes['buttonAlignment']) : '';
     $buttonMarginNew = isset($attributes['buttonMarginNew']) ? array_map('sanitize_text_field', $attributes['buttonMarginNew']) : ['top' => '0', 'right' => '0', 'bottom' => '0', 'left' => '0'];
     $buttonPaddingNew = isset($attributes['buttonPaddingNew']) ? array_map('sanitize_text_field', $attributes['buttonPaddingNew']) : ['top' => '0', 'right' => '0', 'bottom' => '0', 'left' => '0'];
     $buttonFontSize = isset($attributes['buttonFontSize']) ? absint($attributes['buttonFontSize']) : '';
@@ -12463,42 +12463,6 @@ function fancy_post_list_render_callback($attributes) {
     $thumbnailSize8R = ($listLayoutStyle === 'style8' && $rightThumbnailSize == null)
               ? 'fancy_post_custom_size' : $rightThumbnailSize; 
 
-    // MetaAlignment
-    $metaAlignment1 = ($listLayoutStyle === 'style1' && $metaAlignment == null)
-              ? 'start' : $metaAlignment; 
-    $metaAlignment2 = ($listLayoutStyle === 'style2' && $metaAlignment == null)
-              ? 'start' : $metaAlignment; 
-    $metaAlignment3 = ($listLayoutStyle === 'style3' && $metaAlignment == null)
-              ? 'start' : $metaAlignment; 
-    $metaAlignment4 = ($listLayoutStyle === 'style4' && $metaAlignment == null)
-              ? 'center' : $metaAlignment; 
-    $metaAlignment5 = ($listLayoutStyle === 'style5' && $metaAlignment == null)
-              ? 'start' : $metaAlignment; 
-    $metaAlignment6 = ($listLayoutStyle === 'style6' && $metaAlignment == null)
-              ? 'start' : $metaAlignment; 
-    $metaAlignment7 = ($listLayoutStyle === 'style7' && $metaAlignment == null)
-              ? 'start' : $metaAlignment; 
-    $metaAlignment8 = ($listLayoutStyle === 'style8' && $metaAlignment == null)
-              ? 'start' : $metaAlignment;
-
-    // ExcerptAlignment
-    $excerptAlignment1 = ($listLayoutStyle === 'style1' && $excerptAlignment == null)
-              ? 'start' : $excerptAlignment; 
-    $excerptAlignment2 = ($listLayoutStyle === 'style2' && $excerptAlignment == null)
-              ? 'start' : $excerptAlignment; 
-    $excerptAlignment3 = ($listLayoutStyle === 'style3' && $excerptAlignment == null)
-              ? 'start' : $excerptAlignment; 
-    $excerptAlignment4 = ($listLayoutStyle === 'style4' && $excerptAlignment == null)
-              ? 'center' : $excerptAlignment; 
-    $excerptAlignment5 = ($listLayoutStyle === 'style5' && $excerptAlignment == null)
-              ? 'start' : $excerptAlignment; 
-    $excerptAlignment6 = ($listLayoutStyle === 'style6' && $excerptAlignment == null)
-              ? 'start' : $excerptAlignment; 
-    $excerptAlignment7 = ($listLayoutStyle === 'style7' && $excerptAlignment == null)
-              ? 'start' : $excerptAlignment; 
-    $excerptAlignment8 = ($listLayoutStyle === 'style8' && $excerptAlignment == null)
-              ? 'start' : $excerptAlignment;   
-
     // buttonStyle
     $buttonStyle1 = ($listLayoutStyle === 'style1' && $buttonStyle == null)
               ? 'fpg-flat' : $buttonStyle; 
@@ -13027,7 +12991,7 @@ function fancy_post_list_render_callback($attributes) {
 
                             // Meta Data
                             if ($showMetaData) {
-                                $output .= '<ul class="meta-data-list align-' . $metaAlignment1 . ' " style="';  
+                                $output .= '<ul class="meta-data-list align-' . $metaAlignment . ' " style="';  
                                     // Margin
                                     if (!empty($metaMarginNew['top']) || !empty($metaMarginNew['right']) || !empty($metaMarginNew['bottom']) || !empty($metaMarginNew['left'])) {
                                         $output .= 'margin: ' .
@@ -13359,7 +13323,7 @@ function fancy_post_list_render_callback($attributes) {
                                     $hoverOut .= 'this.style.borderColor=\'inherit\';';
                                 }
 
-                                $output .= '<div class="fpg-excerpt' . ' align-' . esc_attr($excerptAlignment1) . '" style="' . esc_attr(trim($excerptStyles)) . '"';
+                                $output .= '<div class="fpg-excerpt' . ' align-' . esc_attr($excerptAlignment) . '" style="' . esc_attr(trim($excerptStyles)) . '"';
 
                                 if (!empty($hoverIn) || !empty($hoverOut)) {
                                     $output .= ' onmouseover="' . esc_attr($hoverIn) . '"';
@@ -13657,7 +13621,7 @@ function fancy_post_list_render_callback($attributes) {
 
                             // Meta Data
                             if ($showMetaData) {
-                                $output .= '<ul class="meta-data-list align-' . $metaAlignment1 . ' " style="';  
+                                $output .= '<ul class="meta-data-list align-' . $metaAlignment . ' " style="';  
                                     // Margin
                                     if (!empty($metaMarginNew['top']) || !empty($metaMarginNew['right']) || !empty($metaMarginNew['bottom']) || !empty($metaMarginNew['left'])) {
                                         $output .= 'margin: ' .
@@ -14183,7 +14147,7 @@ function fancy_post_list_render_callback($attributes) {
 
                             // Meta Data
                             if ($showMetaData) {
-                                $output .= '<ul class="blog-meta align-' . $metaAlignment2 . ' " style="';  
+                                $output .= '<ul class="blog-meta align-' . $metaAlignment . ' " style="';  
                                     // Margin
                                     if (!empty($metaMarginNew['top']) || !empty($metaMarginNew['right']) || !empty($metaMarginNew['bottom']) || !empty($metaMarginNew['left'])) {
                                         $output .= 'margin: ' .
@@ -14555,7 +14519,7 @@ function fancy_post_list_render_callback($attributes) {
                                     $hoverOut .= 'this.style.borderColor=\'inherit\';';
                                 }
 
-                                $output .= '<div class="desc' . ' align-' . esc_attr($excerptAlignment2) . '" style="' . esc_attr(trim($excerptStyles)) . '"';
+                                $output .= '<div class="desc' . ' align-' . esc_attr($excerptAlignment) . '" style="' . esc_attr(trim($excerptStyles)) . '"';
 
                                 if (!empty($hoverIn) || !empty($hoverOut)) {
                                     $output .= ' onmouseover="' . esc_attr($hoverIn) . '"';
@@ -14839,7 +14803,7 @@ function fancy_post_list_render_callback($attributes) {
 
                             // Meta Data
                             if ($showMetaData) {
-                                $output .= '<ul class="blog-meta align-' . $metaAlignment2 . ' " style="';  
+                                $output .= '<ul class="blog-meta align-' . $metaAlignment . ' " style="';  
                                     // Margin
                                     if (!empty($metaMarginNew['top']) || !empty($metaMarginNew['right']) || !empty($metaMarginNew['bottom']) || !empty($metaMarginNew['left'])) {
                                         $output .= 'margin: ' .
@@ -15193,7 +15157,7 @@ function fancy_post_list_render_callback($attributes) {
                             // Meta Data
                             if ($showMetaData) {
                                 $output .= '<div class="rs-meta">';        
-                                $output .= '<ul class="blog-meta align-' . $metaAlignment3 . ' " style="';  
+                                $output .= '<ul class="blog-meta align-' . $metaAlignment . ' " style="';  
                                     // Margin
                                     if (!empty($metaMarginNew['top']) || !empty($metaMarginNew['right']) || !empty($metaMarginNew['bottom']) || !empty($metaMarginNew['left'])) {
                                         $output .= 'margin: ' .
@@ -15748,7 +15712,7 @@ function fancy_post_list_render_callback($attributes) {
                             // Meta Data
                             if ($showMetaData) {
                                 $output .= '<div class="rs-meta">';        
-                                $output .= '<ul class="blog-meta align-' . $metaAlignment3 . ' " style="';  
+                                $output .= '<ul class="blog-meta align-' . $metaAlignment . ' " style="';  
                                     // Margin
                                     if (!empty($metaMarginNew['top']) || !empty($metaMarginNew['right']) || !empty($metaMarginNew['bottom']) || !empty($metaMarginNew['left'])) {
                                         $output .= 'margin: ' .
@@ -16005,7 +15969,7 @@ function fancy_post_list_render_callback($attributes) {
                                     $hoverOut .= 'this.style.borderColor=\'inherit\';';
                                 }
 
-                                $output .= '<div class="fpg-excerpt' . ' align-' . esc_attr($excerptAlignment3) . '" style="' . esc_attr(trim($excerptStyles)) . '"';
+                                $output .= '<div class="fpg-excerpt' . ' align-' . esc_attr($excerptAlignment) . '" style="' . esc_attr(trim($excerptStyles)) . '"';
 
                                 if (!empty($hoverIn) || !empty($hoverOut)) {
                                     $output .= ' onmouseover="' . esc_attr($hoverIn) . '"';
@@ -16289,7 +16253,7 @@ function fancy_post_list_render_callback($attributes) {
                         // Meta Data
                         if ($showMetaData) {
                             $output .= '<div class="rs-meta">';        
-                                $output .= '<ul class="blog-meta align-' . $metaAlignment3 . ' " style="';  
+                                $output .= '<ul class="blog-meta align-' . $metaAlignment . ' " style="';  
                                     // Margin
                                     if (!empty($metaMarginNew['top']) || !empty($metaMarginNew['right']) || !empty($metaMarginNew['bottom']) || !empty($metaMarginNew['left'])) {
                                         $output .= 'margin: ' .
@@ -16739,7 +16703,7 @@ function fancy_post_list_render_callback($attributes) {
                         // Meta Data
                         if ($showMetaData) {
                             $output .= '<div class="rs-meta">';        
-                                $output .= '<ul class="blog-meta align-' . $metaAlignment5 . ' " style="';  
+                                $output .= '<ul class="blog-meta align-' . $metaAlignment . ' " style="';  
                                     // Margin
                                     if (!empty($metaMarginNew['top']) || !empty($metaMarginNew['right']) || !empty($metaMarginNew['bottom']) || !empty($metaMarginNew['left'])) {
                                         $output .= 'margin: ' .
@@ -17009,7 +16973,7 @@ function fancy_post_list_render_callback($attributes) {
                                 $hoverOut .= 'this.style.borderColor=\'inherit\';';
                             }
 
-                            $output .= '<div class="fpg-excerpt' . ' align-' . esc_attr($excerptAlignment5) . '" style="' . esc_attr(trim($excerptStyles)) . '"';
+                            $output .= '<div class="fpg-excerpt' . ' align-' . esc_attr($excerptAlignment) . '" style="' . esc_attr(trim($excerptStyles)) . '"';
 
                             if (!empty($hoverIn) || !empty($hoverOut)) {
                                 $output .= ' onmouseover="' . esc_attr($hoverIn) . '"';
@@ -17288,7 +17252,7 @@ function fancy_post_list_render_callback($attributes) {
                         // Meta Data
                         if ($showMetaData) {
                             $output .= '<div class="rs-meta">';        
-                                $output .= '<ul class="blog-meta align-' . $metaAlignment6 . ' " style="';  
+                                $output .= '<ul class="blog-meta align-' . $metaAlignment . ' " style="';  
                                     // Margin
                                     if (!empty($metaMarginNew['top']) || !empty($metaMarginNew['right']) || !empty($metaMarginNew['bottom']) || !empty($metaMarginNew['left'])) {
                                         $output .= 'margin: ' .
@@ -17618,7 +17582,7 @@ function fancy_post_list_render_callback($attributes) {
 
                         // Meta Data
                         if ($showMetaData) {
-                            $output .= '<div class="rs-cat align-' . $metaAlignment7 . '" style="';
+                            $output .= '<div class="rs-cat align-' . $metaAlignment . '" style="';
 
                             // Margin
                             if (!empty($metaMarginNew['top']) || !empty($metaMarginNew['right']) || !empty($metaMarginNew['bottom']) || !empty($metaMarginNew['left'])) {
@@ -18018,7 +17982,7 @@ function fancy_post_list_render_callback($attributes) {
                             //meta
                             if ($showMetaData) {
                                 $output .= '<div class="rs-meta">';        
-                                    $output .= '<ul class="blog-meta align-' . $metaAlignment8 . ' " style="';  
+                                    $output .= '<ul class="blog-meta align-' . $metaAlignment . ' " style="';  
                                         // Margin
                                         if (!empty($metaMarginNew['top']) || !empty($metaMarginNew['right']) || !empty($metaMarginNew['bottom']) || !empty($metaMarginNew['left'])) {
                                             $output .= 'margin: ' .
@@ -18426,7 +18390,7 @@ function fancy_post_list_render_callback($attributes) {
                             //meta
                             if ($showMetaData) {
                                 $output .= '<div class="rs-meta">';        
-                                    $output .= '<ul class="blog-meta align-' . $metaAlignment8 . ' " style="';  
+                                    $output .= '<ul class="blog-meta align-' . $metaAlignment . ' " style="';  
                                         // Margin
                                         if (!empty($metaMarginNew['top']) || !empty($metaMarginNew['right']) || !empty($metaMarginNew['bottom']) || !empty($metaMarginNew['left'])) {
                                             $output .= 'margin: ' .
@@ -19101,9 +19065,9 @@ function fancy_post_isotope_render_callback($attributes) {
     $metaPadding = isset($attributes['metaPadding']) ? $attributes['metaPadding'] : ['top' => '0', 'right' => '0', 'bottom' => '0', 'left' => '0'];
     $metaTextColor = isset($attributes['metaTextColor']) ? sanitize_hex_color($attributes['metaTextColor']) : '';
     $separatorColor = isset($attributes['separatorColor']) ? sanitize_hex_color($attributes['separatorColor']) : '';
-    $metaFontSize = isset($attributes['metaFontSize']) ? absint($attributes['metaFontSize']) : '15';
+    $metaFontSize = isset($attributes['metaFontSize']) ? absint($attributes['metaFontSize']) : '';
     $metaIconColor = isset($attributes['metaIconColor']) ? sanitize_hex_color($attributes['metaIconColor']) : '';
-    
+    $metaBgColor = isset($attributes['metaBgColor']) ? sanitize_hex_color($attributes['metaBgColor']) : '';
     // Button Alignment
     $buttonAlignment = isset($attributes['buttonAlignment']) ? sanitize_text_field($attributes['buttonAlignment']) : 'start';
     $buttonMarginNew = isset($attributes['buttonMarginNew']) ? array_map('sanitize_text_field', $attributes['buttonMarginNew']) : ['top' => '0', 'right' => '0', 'bottom' => '0', 'left' => '0'];
@@ -19216,21 +19180,6 @@ function fancy_post_isotope_render_callback($attributes) {
     $fancyPostFilterAlignment7 = ($isotopeLayoutStyle === 'style7' && $fancyPostFilterAlignment == null)
               ? 'flex-start' : $fancyPostFilterAlignment; 
      
-    // ExcerptAlignment
-    $excerptAlignment1 = ($isotopeLayoutStyle === 'style1' && $excerptAlignment == null)
-              ? 'start' : $excerptAlignment; 
-    $excerptAlignment2 = ($isotopeLayoutStyle === 'style2' && $excerptAlignment == null)
-              ? 'start' : $excerptAlignment; 
-    $excerptAlignment3 = ($isotopeLayoutStyle === 'style3' && $excerptAlignment == null)
-              ? 'start' : $excerptAlignment; 
-    $excerptAlignment4 = ($isotopeLayoutStyle === 'style4' && $excerptAlignment == null)
-              ? 'center' : $excerptAlignment; 
-    $excerptAlignment5 = ($isotopeLayoutStyle === 'style5' && $excerptAlignment == null)
-              ? 'start' : $excerptAlignment; 
-    $excerptAlignment6 = ($isotopeLayoutStyle === 'style6' && $excerptAlignment == null)
-              ? 'start' : $excerptAlignment; 
-    $excerptAlignment7 = ($isotopeLayoutStyle === 'style7' && $excerptAlignment == null)
-              ? 'start' : $excerptAlignment; 
    
     // buttonStyle
     $buttonStyle1 = ($isotopeLayoutStyle === 'style1' && $buttonStyle == null)
@@ -20689,7 +20638,7 @@ function fancy_post_isotope_render_callback($attributes) {
                         $hoverOut .= 'this.style.borderColor=\'inherit\';';
                     }
 
-                    $output .= '<div class="fpg-excerpt' . ' align-' . esc_attr($excerptAlignment1) . '" style="' . esc_attr(trim($excerptStyles)) . '"';
+                    $output .= '<div class="fpg-excerpt' . ' align-' . esc_attr($excerptAlignment) . '" style="' . esc_attr(trim($excerptStyles)) . '"';
 
                     if (!empty($hoverIn) || !empty($hoverOut)) {
                         $output .= ' onmouseover="' . esc_attr($hoverIn) . '"';
@@ -21385,7 +21334,7 @@ function fancy_post_isotope_render_callback($attributes) {
                         $hoverOut .= 'this.style.borderColor=\'inherit\';';
                     }
 
-                    $output .= '<div class="fpg-excerpt' . ' align-' . esc_attr($excerptAlignment2) . '" style="' . esc_attr(trim($excerptStyles)) . '"';
+                    $output .= '<div class="fpg-excerpt' . ' align-' . esc_attr($excerptAlignment) . '" style="' . esc_attr(trim($excerptStyles)) . '"';
 
                     if (!empty($hoverIn) || !empty($hoverOut)) {
                         $output .= ' onmouseover="' . esc_attr($hoverIn) . '"';
@@ -22085,7 +22034,7 @@ function fancy_post_isotope_render_callback($attributes) {
                         $hoverOut .= 'this.style.borderColor=\'inherit\';';
                     }
 
-                    $output .= '<div class="fpg-excerpt' . ' align-' . esc_attr($excerptAlignment3) . '" style="' . esc_attr(trim($excerptStyles)) . '"';
+                    $output .= '<div class="fpg-excerpt' . ' align-' . esc_attr($excerptAlignment) . '" style="' . esc_attr(trim($excerptStyles)) . '"';
 
                     if (!empty($hoverIn) || !empty($hoverOut)) {
                         $output .= ' onmouseover="' . esc_attr($hoverIn) . '"';
@@ -22229,6 +22178,7 @@ function fancy_post_isotope_render_callback($attributes) {
             else if ($isotopeLayoutStyle === 'style4') {
                 // Full post layout
                 $output .= '<div class="' . esc_attr($column_class) . ' rs-grid-item' . esc_attr($category_classes) . '">'; 
+                // Full post layout
                 $output .= '<div class="rs-blog-layout-30-item align-' . $itemBoxAlignment . ' ' . $hoverAnimation . '" style="';
                     // MARGIN    
                     if ( !empty($itemMargin['top']) || !empty($itemMargin['right']) ||  !empty($itemMargin['bottom']) || !empty($itemMargin['left'])) {
@@ -22271,15 +22221,6 @@ function fancy_post_isotope_render_callback($attributes) {
                         $output .= 'border-width: 0px;';
                     }
 
-                    // Border Width
-                    if (!empty($itemBorderWidth['top']) || !empty($itemBorderWidth['right']) || !empty($itemBorderWidth['bottom']) || !empty($itemBorderWidth['left'])) {
-                        $output .= 'border-width: ' . 
-                            (is_numeric($itemBorderWidth['top']) ? $itemBorderWidth['top'] . 'px' : esc_attr($itemBorderWidth['top'])) . ' ' . 
-                            (is_numeric($itemBorderWidth['right']) ? $itemBorderWidth['right'] . 'px' : esc_attr($itemBorderWidth['right'])) . ' ' . 
-                            (is_numeric($itemBorderWidth['bottom']) ? $itemBorderWidth['bottom'] . 'px' : esc_attr($itemBorderWidth['bottom'])) . ' ' . 
-                            (is_numeric($itemBorderWidth['left']) ? $itemBorderWidth['left'] . 'px' : esc_attr($itemBorderWidth['left'])) . '; ';
-                    }
-
                     // Border Style & Color
                     if (!empty($itemBorderType)) {
                         $output .= 'border-style: ' . esc_attr($itemBorderType) . '; ';
@@ -22310,7 +22251,7 @@ function fancy_post_isotope_render_callback($attributes) {
                     }
 
                 $output .= '">';
-
+                
                 // Thumbnail
                 if ($thumbnail && $showThumbnail) {
                     $output .= '<div class="rs-thumb" style="';
@@ -22333,22 +22274,26 @@ function fancy_post_isotope_render_callback($attributes) {
                                 (isset($thumbnailPadding['left']) && $thumbnailPadding['left'] !== '' ? (is_numeric($thumbnailPadding['left']) ? $thumbnailPadding['left'] . 'px' : esc_attr($thumbnailPadding['left'])) : '0px') . '; ';
                         }
 
+                        // Border Radius
+                        if (!empty($thumbnailBorderRadius['top']) || !empty($thumbnailBorderRadius['right']) || !empty($thumbnailBorderRadius['bottom']) || !empty($thumbnailBorderRadius['left'])) {
+                            $output .= 'border-radius: ' .
+                                (isset($thumbnailBorderRadius['top']) && $thumbnailBorderRadius['top'] !== '' ? (is_numeric($thumbnailBorderRadius['top']) ? $thumbnailBorderRadius['top'] . 'px' : esc_attr($thumbnailBorderRadius['top'])) : '0px') . ' ' .
+                                (isset($thumbnailBorderRadius['right']) && $thumbnailBorderRadius['right'] !== '' ? (is_numeric($thumbnailBorderRadius['right']) ? $thumbnailBorderRadius['right'] . 'px' : esc_attr($thumbnailBorderRadius['right'])) : '0px') . ' ' .
+                                (isset($thumbnailBorderRadius['bottom']) && $thumbnailBorderRadius['bottom'] !== '' ? (is_numeric($thumbnailBorderRadius['bottom']) ? $thumbnailBorderRadius['bottom'] . 'px' : esc_attr($thumbnailBorderRadius['bottom'])) : '0px') . ' ' .
+                                (isset($thumbnailBorderRadius['left']) && $thumbnailBorderRadius['left'] !== '' ? (is_numeric($thumbnailBorderRadius['left']) ? $thumbnailBorderRadius['left'] . 'px' : esc_attr($thumbnailBorderRadius['left'])) : '0px') . ';';
+                        }
+
                         $output .= '">';
 
                         // Anchor with optional border-radius and overflow
-                        $output .= '<a href="' . esc_url($permalink) . '" style="';
-
-                            // Border Radius
-                            if (!empty($thumbnailBorderRadius['top']) || !empty($thumbnailBorderRadius['right']) || !empty($thumbnailBorderRadius['bottom']) || !empty($thumbnailBorderRadius['left'])) {
-                                $output .= 'border-radius: ' .
-                                    (isset($thumbnailBorderRadius['top']) && $thumbnailBorderRadius['top'] !== '' ? (is_numeric($thumbnailBorderRadius['top']) ? $thumbnailBorderRadius['top'] . 'px' : esc_attr($thumbnailBorderRadius['top'])) : '0px') . ' ' .
-                                    (isset($thumbnailBorderRadius['right']) && $thumbnailBorderRadius['right'] !== '' ? (is_numeric($thumbnailBorderRadius['right']) ? $thumbnailBorderRadius['right'] . 'px' : esc_attr($thumbnailBorderRadius['right'])) : '0px') . ' ' .
-                                    (isset($thumbnailBorderRadius['bottom']) && $thumbnailBorderRadius['bottom'] !== '' ? (is_numeric($thumbnailBorderRadius['bottom']) ? $thumbnailBorderRadius['bottom'] . 'px' : esc_attr($thumbnailBorderRadius['bottom'])) : '0px') . ' ' .
-                                    (isset($thumbnailBorderRadius['left']) && $thumbnailBorderRadius['left'] !== '' ? (is_numeric($thumbnailBorderRadius['left']) ? $thumbnailBorderRadius['left'] . 'px' : esc_attr($thumbnailBorderRadius['left'])) : '0px') . ';';
-                            }
-
-                        $output .= '">';
-                        $output .= $thumbnail . '</a>';
+                        if ($thumbnailLink) {
+                            $output .= '<a href="' . esc_url($permalink) . '">';
+                            $output .= $thumbnail;
+                            $output .= '</a>';
+                        } else {
+                            $output .= $thumbnail;
+                        }
+                    
 
                         // Date
                         if ($showPostDate) {
@@ -22360,9 +22305,12 @@ function fancy_post_isotope_render_callback($attributes) {
                             if (!empty($metaFontSize)) {
                                 $style .= 'font-size:' . esc_attr($metaFontSize) . 'px;';
                             }
+                            if (!empty($metaBgColor)) {
+                                $style .= 'background-color: ' . esc_attr($metaBgColor) . '; ';
+                            }
 
-                            $output .= '<div class="meta-date" style="' . $style . '">';
-                            $output .= '<span>';
+                            $output .= '<div class="meta-date" >';
+                            $output .= '<span style="' . $style . '">';
 
                             // Build dynamic style for the icon
                             $iconStyle = '';
@@ -22405,7 +22353,7 @@ function fancy_post_isotope_render_callback($attributes) {
                             (isset($contentitemPaddingNew['left']) && $contentitemPaddingNew['left'] !== '' ? (is_numeric($contentitemPaddingNew['left']) ? $contentitemPaddingNew['left'] . 'px' : esc_attr($contentitemPaddingNew['left'])) : '0px') . '; ';
                     } else {
                         // Default fallback
-                        $output .= 'padding: 20px 0px 20px 0px;';
+                        $output .= 'padding: 20px 0px 0px 0px;';
                     }
 
                     // Border Width
@@ -22496,10 +22444,20 @@ function fancy_post_isotope_render_callback($attributes) {
                     if (!empty($postTitleColor)) {
                         $style .= 'color: ' . esc_attr($postTitleColor) . '; ';
                         $mouseoutStyle = 'this.style.color=\'' . esc_attr($postTitleColor) . '\';';
+                        if ($titleHoverUnderLine === 'enable') {
+                            $style .= 'background-image: linear-gradient(to bottom, ' . esc_attr($postTitleColor) . ' 0%, ' . esc_attr($postTitleColor) . ' 100%); ';
+                            $style .= 'background-position: 0 100%; ';
+                            $mouseoutStyle .= ' this.style.backgroundImage=\'linear-gradient(to bottom, ' . esc_attr($postTitleColor) . ' 0%, ' . esc_attr($postTitleColor) . ' 100%)\';';
+                            $mouseoutStyle .= ' this.style.backgroundPosition=\'0 100%\';';
+                        }
                     }
                     // Build hover color style if set
                     if (!empty($postTitleHoverColor)) {
                         $hoverStyle = 'this.style.color=\'' . esc_attr($postTitleHoverColor) . '\';';
+                        if ($titleHoverUnderLine === 'enable') {
+                            $hoverStyle .= ' this.style.backgroundImage=\'linear-gradient(to bottom, ' . esc_attr($postTitleHoverColor) . ' 0%, ' . esc_attr($postTitleHoverColor) . ' 100%)\';';
+                            $hoverStyle .= ' this.style.backgroundPosition=\'0 100%\';';
+                        }
                     }
                     // Final output
                     $output .= '<a href="' . esc_url($permalink) . '" 
@@ -22511,7 +22469,7 @@ function fancy_post_isotope_render_callback($attributes) {
                 }
                 // Now Insert Meta Data inside the Thumbnail
                 if ($showMetaData) {
-                    $output .= '<div class="rs-meta align-' . $metaAlignment4 . '">';
+                    $output .= '<div class="rs-meta align-' . $metaAlignment . '">';
                     $output .= '<ul class="meta-data-list" style="';  
                         // Margin
                         if (!empty($metaMarginNew['top']) || !empty($metaMarginNew['right']) || !empty($metaMarginNew['bottom']) || !empty($metaMarginNew['left'])) {
@@ -22529,7 +22487,7 @@ function fancy_post_isotope_render_callback($attributes) {
                                 (isset($metaPadding['right']) && $metaPadding['right'] !== '' ? (is_numeric($metaPadding['right']) ? $metaPadding['right'] . 'px' : esc_attr($metaPadding['right'])) : '0px') . ' ' .
                                 (isset($metaPadding['bottom']) && $metaPadding['bottom'] !== '' ? (is_numeric($metaPadding['bottom']) ? $metaPadding['bottom'] . 'px' : esc_attr($metaPadding['bottom'])) : '0px') . ' ' .
                                 (isset($metaPadding['left']) && $metaPadding['left'] !== '' ? (is_numeric($metaPadding['left']) ? $metaPadding['left'] . 'px' : esc_attr($metaPadding['left'])) : '0px') . '; ';
-                        }   
+                        }  
                         
                         // Color
                         if (!empty($metaTextColor)) {
@@ -22699,6 +22657,7 @@ function fancy_post_isotope_render_callback($attributes) {
                 // Excerpt
                 if ($showPostExcerpt) {
                     $excerptStyles = '';
+                    $excerptColorStyles = '';
 
                     // Order
                     if (!empty($excerptOrder)) {
@@ -22723,11 +22682,11 @@ function fancy_post_isotope_render_callback($attributes) {
                     }
 
                     if (!empty($excerptColor)) {
-                        $excerptStyles .= 'color: ' . esc_attr($excerptColor) . '; ';
+                        $excerptColorStyles .= 'color: ' . esc_attr($excerptColor) . '; ';
                     }
 
                     if (!empty($excerptBgColor)) {
-                        $excerptStyles .= 'background-color: ' . esc_attr($excerptBgColor) . '; ';
+                        $excerptColorStyles .= 'background-color: ' . esc_attr($excerptBgColor) . '; ';
                     }
 
                     if (!empty($excerptBorderType)) {
@@ -22771,15 +22730,21 @@ function fancy_post_isotope_render_callback($attributes) {
                         $hoverOut .= 'this.style.borderColor=\'inherit\';';
                     }
 
-                    $output .= '<div class="fpg-excerpt' . ' align-' . esc_attr($excerptAlignment4) . '" style="' . esc_attr(trim($excerptStyles)) . '"';
-
-                    if (!empty($hoverIn) || !empty($hoverOut)) {
-                        $output .= ' onmouseover="' . esc_attr($hoverIn) . '"';
-                        $output .= ' onmouseout="' . esc_attr($hoverOut) . '"';
-                    }
+                    $output .= '<div class="fpg-excerpt' . ' align-' . esc_attr($excerptAlignment) . '" style="' . esc_attr(trim($excerptStyles)) . '"';
 
                     $output .= '>';
-                    $output .= '<p>' . esc_html($excerpt) . '</p>';
+                    $output .= '<p style="' . esc_attr(trim($excerptColorStyles)) . '"';
+
+                        if (!empty($hoverIn) || !empty($hoverOut)) {
+                            if (!empty($hoverIn)) {
+                                $output .= ' onmouseover="' . esc_attr($hoverIn) . '"';
+                            }
+                            if (!empty($hoverOut)) {
+                                $output .= ' onmouseout="' . esc_attr($hoverOut) . '"';
+                            }
+                        }
+
+                        $output .= '>' . esc_html($excerpt) . '</p>';
                     $output .= '</div>';
                 }
                 // End Excerpt
@@ -22787,13 +22752,16 @@ function fancy_post_isotope_render_callback($attributes) {
                 $output .= '</div>';
                 // End MAIN Content
                 $output .= '</div>';
+                // End Full post layout
                 $output .= '</div>';
                 // End Full post layout
             }
             elseif ($isotopeLayoutStyle === 'style5') {
                 // Full post layout
                 $output .= '<div class="' . esc_attr($column_class) . ' rs-grid-item' . esc_attr($category_classes) . '">';
+                // Full post layout
                 $output .= '<div class="pre-blog-item style_12 pre-blog-meta-style2 default">';
+                
                 $output .= '<div class="blog-inner-wrap pre-thum-default pre-meta-blocks top align-' . $itemBoxAlignment . ' ' . $hoverAnimation . '" style="';
                     // MARGIN    
                     if ( !empty($itemMargin['top']) || !empty($itemMargin['right']) ||  !empty($itemMargin['bottom']) || !empty($itemMargin['left'])) {
@@ -22811,37 +22779,6 @@ function fancy_post_isotope_render_callback($attributes) {
                             (isset($itemPadding['left']) && $itemPadding['left'] !== '' ? (is_numeric($itemPadding['left']) ? $itemPadding['left'] . 'px' : esc_attr($itemPadding['left'])) : '0px') . '; ';
                     } else {
                         $output .= 'padding: 0px;';
-                    }
-
-
-                    // Border Radius
-                    if (!empty($itemBorderRadius['top']) || !empty($itemBorderRadius['right']) || !empty($itemBorderRadius['bottom']) || !empty($itemBorderRadius['left'])) {
-                        $output .= 'border-radius: ' .
-                            (isset($itemBorderRadius['top']) && $itemBorderRadius['top'] !== '' ? (is_numeric($itemBorderRadius['top']) ? $itemBorderRadius['top'] . 'px' : esc_attr($itemBorderRadius['top'])) : '0px') . ' ' .
-                            (isset($itemBorderRadius['right']) && $itemBorderRadius['right'] !== '' ? (is_numeric($itemBorderRadius['right']) ? $itemBorderRadius['right'] . 'px' : esc_attr($itemBorderRadius['right'])) : '0px') . ' ' .
-                            (isset($itemBorderRadius['bottom']) && $itemBorderRadius['bottom'] !== '' ? (is_numeric($itemBorderRadius['bottom']) ? $itemBorderRadius['bottom'] . 'px' : esc_attr($itemBorderRadius['bottom'])) : '0px') . ' ' .
-                            (isset($itemBorderRadius['left']) && $itemBorderRadius['left'] !== '' ? (is_numeric($itemBorderRadius['left']) ? $itemBorderRadius['left'] . 'px' : esc_attr($itemBorderRadius['left'])) : '0px') . '; ';
-                    } else {
-                        $output .= 'border-radius: 0px;';
-                    }
-
-                    // Border Width
-                    if (!empty($itemBorderWidth['top']) || !empty($itemBorderWidth['right']) || !empty($itemBorderWidth['bottom']) || !empty($itemBorderWidth['left'])) {
-                        $output .= 'border-width: ' .
-                            (isset($itemBorderWidth['top']) && $itemBorderWidth['top'] !== '' ? (is_numeric($itemBorderWidth['top']) ? $itemBorderWidth['top'] . 'px' : esc_attr($itemBorderWidth['top'])) : '0px') . ' ' .
-                            (isset($itemBorderWidth['right']) && $itemBorderWidth['right'] !== '' ? (is_numeric($itemBorderWidth['right']) ? $itemBorderWidth['right'] . 'px' : esc_attr($itemBorderWidth['right'])) : '0px') . ' ' .
-                            (isset($itemBorderWidth['bottom']) && $itemBorderWidth['bottom'] !== '' ? (is_numeric($itemBorderWidth['bottom']) ? $itemBorderWidth['bottom'] . 'px' : esc_attr($itemBorderWidth['bottom'])) : '0px') . ' ' .
-                            (isset($itemBorderWidth['left']) && $itemBorderWidth['left'] !== '' ? (is_numeric($itemBorderWidth['left']) ? $itemBorderWidth['left'] . 'px' : esc_attr($itemBorderWidth['left'])) : '0px') . '; ';
-                    } else {
-                        $output .= 'border-width: 0px;';
-                    }
-
-                    // Border Style & Color
-                    if (!empty($itemBorderType)) {
-                        $output .= 'border-style: ' . esc_attr($itemBorderType) . '; ';
-                    }
-                    if (!empty($itemBorderColor)) {
-                        $output .= 'border-color: ' . esc_attr($itemBorderColor) . '; ';
                     }
 
                     // Background Color
@@ -22865,56 +22802,59 @@ function fancy_post_isotope_render_callback($attributes) {
                             (!empty($itemBoxShadowColor) ? esc_attr($itemBoxShadowColor) : 'rgba(0,0,0,0.1)') . '; ';
                     }
 
-                $output .= '">'; 
-                    // Thumbnail
-                    if ($thumbnail && $showThumbnail) {
-                        $output .= '<div class="pre-image-wrap" style="';
+                $output .= '">';    
+                // Thumbnail
+                if ($thumbnail && $showThumbnail) {
+                    $output .= '<div class="pre-image-wrap" style="';
 
-                        // Margin
-                        if (!empty($thumbnailMargin['top']) || !empty($thumbnailMargin['right']) || !empty($thumbnailMargin['bottom']) || !empty($thumbnailMargin['left'])) {
-                            $output .= 'margin: ' . 
-                                (isset($thumbnailMargin['top']) && $thumbnailMargin['top'] !== '' ? (is_numeric($thumbnailMargin['top']) ? $thumbnailMargin['top'] . 'px' : esc_attr($thumbnailMargin['top'])) : '0px') . ' ' .
-                                (isset($thumbnailMargin['right']) && $thumbnailMargin['right'] !== '' ? (is_numeric($thumbnailMargin['right']) ? $thumbnailMargin['right'] . 'px' : esc_attr($thumbnailMargin['right'])) : '0px') . ' ' .
-                                (isset($thumbnailMargin['bottom']) && $thumbnailMargin['bottom'] !== '' ? (is_numeric($thumbnailMargin['bottom']) ? $thumbnailMargin['bottom'] . 'px' : esc_attr($thumbnailMargin['bottom'])) : '0px') . ' ' .
-                                (isset($thumbnailMargin['left']) && $thumbnailMargin['left'] !== '' ? (is_numeric($thumbnailMargin['left']) ? $thumbnailMargin['left'] . 'px' : esc_attr($thumbnailMargin['left'])) : '0px') . '; ';
-                        }
+                    // Margin
+                    if (!empty($thumbnailMargin['top']) || !empty($thumbnailMargin['right']) || !empty($thumbnailMargin['bottom']) || !empty($thumbnailMargin['left'])) {
+                        $output .= 'margin: ' . 
+                            (isset($thumbnailMargin['top']) && $thumbnailMargin['top'] !== '' ? (is_numeric($thumbnailMargin['top']) ? $thumbnailMargin['top'] . 'px' : esc_attr($thumbnailMargin['top'])) : '0px') . ' ' .
+                            (isset($thumbnailMargin['right']) && $thumbnailMargin['right'] !== '' ? (is_numeric($thumbnailMargin['right']) ? $thumbnailMargin['right'] . 'px' : esc_attr($thumbnailMargin['right'])) : '0px') . ' ' .
+                            (isset($thumbnailMargin['bottom']) && $thumbnailMargin['bottom'] !== '' ? (is_numeric($thumbnailMargin['bottom']) ? $thumbnailMargin['bottom'] . 'px' : esc_attr($thumbnailMargin['bottom'])) : '0px') . ' ' .
+                            (isset($thumbnailMargin['left']) && $thumbnailMargin['left'] !== '' ? (is_numeric($thumbnailMargin['left']) ? $thumbnailMargin['left'] . 'px' : esc_attr($thumbnailMargin['left'])) : '0px') . '; ';
+                    }
 
-                        // Padding
-                        if (!empty($thumbnailPadding['top']) || !empty($thumbnailPadding['right']) || !empty($thumbnailPadding['bottom']) || !empty($thumbnailPadding['left'])) {
-                            $output .= 'padding: ' . 
-                                (isset($thumbnailPadding['top']) && $thumbnailPadding['top'] !== '' ? (is_numeric($thumbnailPadding['top']) ? $thumbnailPadding['top'] . 'px' : esc_attr($thumbnailPadding['top'])) : '0px') . ' ' .
-                                (isset($thumbnailPadding['right']) && $thumbnailPadding['right'] !== '' ? (is_numeric($thumbnailPadding['right']) ? $thumbnailPadding['right'] . 'px' : esc_attr($thumbnailPadding['right'])) : '0px') . ' ' .
-                                (isset($thumbnailPadding['bottom']) && $thumbnailPadding['bottom'] !== '' ? (is_numeric($thumbnailPadding['bottom']) ? $thumbnailPadding['bottom'] . 'px' : esc_attr($thumbnailPadding['bottom'])) : '0px') . ' ' .
-                                (isset($thumbnailPadding['left']) && $thumbnailPadding['left'] !== '' ? (is_numeric($thumbnailPadding['left']) ? $thumbnailPadding['left'] . 'px' : esc_attr($thumbnailPadding['left'])) : '0px') . '; ';
-                        }
+                    // Padding
+                    if (!empty($thumbnailPadding['top']) || !empty($thumbnailPadding['right']) || !empty($thumbnailPadding['bottom']) || !empty($thumbnailPadding['left'])) {
+                        $output .= 'padding: ' . 
+                            (isset($thumbnailPadding['top']) && $thumbnailPadding['top'] !== '' ? (is_numeric($thumbnailPadding['top']) ? $thumbnailPadding['top'] . 'px' : esc_attr($thumbnailPadding['top'])) : '0px') . ' ' .
+                            (isset($thumbnailPadding['right']) && $thumbnailPadding['right'] !== '' ? (is_numeric($thumbnailPadding['right']) ? $thumbnailPadding['right'] . 'px' : esc_attr($thumbnailPadding['right'])) : '0px') . ' ' .
+                            (isset($thumbnailPadding['bottom']) && $thumbnailPadding['bottom'] !== '' ? (is_numeric($thumbnailPadding['bottom']) ? $thumbnailPadding['bottom'] . 'px' : esc_attr($thumbnailPadding['bottom'])) : '0px') . ' ' .
+                            (isset($thumbnailPadding['left']) && $thumbnailPadding['left'] !== '' ? (is_numeric($thumbnailPadding['left']) ? $thumbnailPadding['left'] . 'px' : esc_attr($thumbnailPadding['left'])) : '0px') . '; ';
+                    }
 
-                        $output .= '">';
+                    // Border Radius
+                    if (!empty($thumbnailBorderRadius['top']) || !empty($thumbnailBorderRadius['right']) || !empty($thumbnailBorderRadius['bottom']) || !empty($thumbnailBorderRadius['left'])) {
+                        $output .= 'border-radius: ' .
+                            (isset($thumbnailBorderRadius['top']) && $thumbnailBorderRadius['top'] !== '' ? (is_numeric($thumbnailBorderRadius['top']) ? $thumbnailBorderRadius['top'] . 'px' : esc_attr($thumbnailBorderRadius['top'])) : '0px') . ' ' .
+                            (isset($thumbnailBorderRadius['right']) && $thumbnailBorderRadius['right'] !== '' ? (is_numeric($thumbnailBorderRadius['right']) ? $thumbnailBorderRadius['right'] . 'px' : esc_attr($thumbnailBorderRadius['right'])) : '0px') . ' ' .
+                            (isset($thumbnailBorderRadius['bottom']) && $thumbnailBorderRadius['bottom'] !== '' ? (is_numeric($thumbnailBorderRadius['bottom']) ? $thumbnailBorderRadius['bottom'] . 'px' : esc_attr($thumbnailBorderRadius['bottom'])) : '0px') . ' ' .
+                            (isset($thumbnailBorderRadius['left']) && $thumbnailBorderRadius['left'] !== '' ? (is_numeric($thumbnailBorderRadius['left']) ? $thumbnailBorderRadius['left'] . 'px' : esc_attr($thumbnailBorderRadius['left'])) : '0px') . ';';
+                    }
 
-                        // Anchor with optional border-radius and overflow
-                        $output .= '<a href="' . esc_url($permalink) . '" style="';
+                    $output .= '">';
 
-                            // Border Radius
-                            if (!empty($thumbnailBorderRadius['top']) || !empty($thumbnailBorderRadius['right']) || !empty($thumbnailBorderRadius['bottom']) || !empty($thumbnailBorderRadius['left'])) {
-                                $output .= 'border-radius: ' .
-                                    (isset($thumbnailBorderRadius['top']) && $thumbnailBorderRadius['top'] !== '' ? (is_numeric($thumbnailBorderRadius['top']) ? $thumbnailBorderRadius['top'] . 'px' : esc_attr($thumbnailBorderRadius['top'])) : '0px') . ' ' .
-                                    (isset($thumbnailBorderRadius['right']) && $thumbnailBorderRadius['right'] !== '' ? (is_numeric($thumbnailBorderRadius['right']) ? $thumbnailBorderRadius['right'] . 'px' : esc_attr($thumbnailBorderRadius['right'])) : '0px') . ' ' .
-                                    (isset($thumbnailBorderRadius['bottom']) && $thumbnailBorderRadius['bottom'] !== '' ? (is_numeric($thumbnailBorderRadius['bottom']) ? $thumbnailBorderRadius['bottom'] . 'px' : esc_attr($thumbnailBorderRadius['bottom'])) : '0px') . ' ' .
-                                    (isset($thumbnailBorderRadius['left']) && $thumbnailBorderRadius['left'] !== '' ? (is_numeric($thumbnailBorderRadius['left']) ? $thumbnailBorderRadius['left'] . 'px' : esc_attr($thumbnailBorderRadius['left'])) : '0px') . ';';
-                            }
-
-                        $output .= '">';
-                        $output .= $thumbnail . '</a>';
-                        if ($showPostDate) {
-                            $output .= '<div class="pre-blog-meta" style="color:' . esc_attr($metaTextColor) . '; ">';
-                            
-                            $output .= '<span class="pre-date">' . esc_html(get_the_date('d')) . '</span>';
-                            $output .= '<span class="pre-month"> ' . esc_html(get_the_date('F')) . '</span>'; 
-                            $output .= '</div>';
-                        }
+                    // Anchor with optional border-radius and overflow
+                    if ($thumbnailLink) {
+                        $output .= '<a href="' . esc_url($permalink) . '">';
+                        $output .= $thumbnail;
+                        $output .= '</a>';
+                    } else {
+                        $output .= $thumbnail;
+                    }
+                    
+                    if ($showPostDate) {
+                        $output .= '<div class="pre-blog-meta" style="background:' . esc_attr($metaBgColor) . '; ">';
+                        
+                        $output .= '<span class="pre-date" style="color:' . esc_attr($metaTextColor) . '; " >' . esc_html(get_the_date('d')) . '</span>';
+                        $output .= '<span class="pre-month" style="color:' . esc_attr($metaTextColor) . '; " > ' . esc_html(get_the_date('F')) . '</span>'; 
                         $output .= '</div>';
                     }
+                    $output .= '</div>';
+                }
                 
-
                 // MAIN Content
                 $output .= '<div class="pre-blog-content" style="';
                     // Margin
@@ -22950,10 +22890,7 @@ function fancy_post_isotope_render_callback($attributes) {
                     if (!empty($contentNormalBorderType)) {
                         $output .= 'border-style: ' . esc_attr($contentNormalBorderType) . '; ';
                     }
-                    // Background Color
-                    if (!empty($contentBgColor)) {
-                        $output .= 'background-color: ' . esc_attr($contentBgColor) . '; ';
-                    }
+                    
                     // Border Color
                     if (!empty($contentBorderColor)) {
                         $output .= 'border-color: ' . esc_attr($contentBorderColor) . '; ';
@@ -22962,7 +22899,7 @@ function fancy_post_isotope_render_callback($attributes) {
 
                 // Meta Data
                 if ($showMetaData) {
-                    $output .= '<ul class="meta-data-list align-' . $metaAlignment5 . ' " style="';  
+                    $output .= '<ul class="meta-data-list align-' . $metaAlignment . ' " style="';  
                         // Margin
                         if (!empty($metaMarginNew['top']) || !empty($metaMarginNew['right']) || !empty($metaMarginNew['bottom']) || !empty($metaMarginNew['left'])) {
                             $output .= 'margin: ' .
@@ -22979,7 +22916,7 @@ function fancy_post_isotope_render_callback($attributes) {
                                 (isset($metaPadding['right']) && $metaPadding['right'] !== '' ? (is_numeric($metaPadding['right']) ? $metaPadding['right'] . 'px' : esc_attr($metaPadding['right'])) : '0px') . ' ' .
                                 (isset($metaPadding['bottom']) && $metaPadding['bottom'] !== '' ? (is_numeric($metaPadding['bottom']) ? $metaPadding['bottom'] . 'px' : esc_attr($metaPadding['bottom'])) : '0px') . ' ' .
                                 (isset($metaPadding['left']) && $metaPadding['left'] !== '' ? (is_numeric($metaPadding['left']) ? $metaPadding['left'] . 'px' : esc_attr($metaPadding['left'])) : '0px') . '; ';
-                        }  
+                        }   
                         
                         // Color
                         if (!empty($metaTextColor)) {
@@ -23164,9 +23101,8 @@ function fancy_post_isotope_render_callback($attributes) {
                     if ( !empty($postTitleMargin['top']) || !empty($postTitleMargin['right']) ||  !empty($postTitleMargin['bottom']) || !empty($postTitleMargin['left'])) {
                         $titleStyles .= 'margin: ' .(isset($postTitleMargin['top']) && $postTitleMargin['top'] !== '' ? (is_numeric($postTitleMargin['top']) ? $postTitleMargin['top'] . 'px' : esc_attr($postTitleMargin['top'])) : '0px') . ' ' . (isset($postTitleMargin['right']) && $postTitleMargin['right'] !== '' ? (is_numeric($postTitleMargin['right']) ? $postTitleMargin['right'] . 'px' : esc_attr($postTitleMargin['right'])) : '0px') . ' ' . (isset($postTitleMargin['bottom']) && $postTitleMargin['bottom'] !== '' ? (is_numeric($postTitleMargin['bottom']) ? $contentitemPaddingNew['bottom'] . 'px' : esc_attr($postTitleMargin['bottom'])) : '0px') . ' ' . (isset($postTitleMargin['left']) && $postTitleMargin['left'] !== '' ? (is_numeric($postTitleMargin['left']) ? $postTitleMargin['left'] . 'px' : esc_attr($postTitleMargin['left'])) : '0px') . '; '; 
                     } else { // Default fallback
-                        $titleStyles .= 'margin: 0px 0px 28px 0px;';
+                        $titleStyles .= 'margin: 0px 0px 42px 0px;';
                     }
-
                     // Padding
                     if (!empty($postTitlePadding['top']) || !empty($postTitlePadding['right']) || !empty($postTitlePadding['bottom']) || !empty($postTitlePadding['left'])) {
                         $titleStyles .= 'padding: ' .
@@ -23176,9 +23112,7 @@ function fancy_post_isotope_render_callback($attributes) {
                             (isset($postTitlePadding['left']) && $postTitlePadding['left'] !== '' ? (is_numeric($postTitlePadding['left']) ? $postTitlePadding['left'] . 'px' : esc_attr($postTitlePadding['left'])) : '0px') . '; ';
                     }
                     // Class name
-                    $classNames = 'pre-post-title' 
-                        . ($titleHoverUnderLine === 'enable' ? ' underline' : '') 
-                        . ' align-' . esc_attr($postTitleAlignment);
+                    $classNames = 'pre-post-title' . ' align-' . esc_attr($postTitleAlignment);
                     // Hover JS (conditionally included)
                     $onmouseover = !empty($postTitleHoverBgColor) 
                         ? ' onmouseover="this.style.backgroundColor=\'' . esc_attr($postTitleHoverBgColor) . '\';"' 
@@ -23212,10 +23146,20 @@ function fancy_post_isotope_render_callback($attributes) {
                     if (!empty($postTitleColor)) {
                         $style .= 'color: ' . esc_attr($postTitleColor) . '; ';
                         $mouseoutStyle = 'this.style.color=\'' . esc_attr($postTitleColor) . '\';';
+                        if ($titleHoverUnderLine === 'enable') {
+                            $style .= 'background-image: linear-gradient(to bottom, ' . esc_attr($postTitleColor) . ' 0%, ' . esc_attr($postTitleColor) . ' 100%); ';
+                            $style .= 'background-position: 0 100%; ';
+                            $mouseoutStyle .= ' this.style.backgroundImage=\'linear-gradient(to bottom, ' . esc_attr($postTitleColor) . ' 0%, ' . esc_attr($postTitleColor) . ' 100%)\';';
+                            $mouseoutStyle .= ' this.style.backgroundPosition=\'0 100%\';';
+                        }
                     }
                     // Build hover color style if set
                     if (!empty($postTitleHoverColor)) {
                         $hoverStyle = 'this.style.color=\'' . esc_attr($postTitleHoverColor) . '\';';
+                        if ($titleHoverUnderLine === 'enable') {
+                            $hoverStyle .= ' this.style.backgroundImage=\'linear-gradient(to bottom, ' . esc_attr($postTitleHoverColor) . ' 0%, ' . esc_attr($postTitleHoverColor) . ' 100%)\';';
+                            $hoverStyle .= ' this.style.backgroundPosition=\'0 100%\';';
+                        }
                     }
                     // Final output
                     $output .= '<a href="' . esc_url($permalink) . '" 
@@ -23301,7 +23245,7 @@ function fancy_post_isotope_render_callback($attributes) {
                         $hoverOut .= 'this.style.borderColor=\'inherit\';';
                     }
 
-                    $output .= '<div class="pre-content' . ' align-' . esc_attr($excerptAlignment5) . '" style="' . esc_attr(trim($excerptStyles)) . '"';
+                    $output .= '<div class="pre-content' . ' align-' . esc_attr($excerptAlignment) . '" style="' . esc_attr(trim($excerptStyles)) . '"';
 
                     if (!empty($hoverIn) || !empty($hoverOut)) {
                         $output .= ' onmouseover="' . esc_attr($hoverIn) . '"';
@@ -23414,7 +23358,6 @@ function fancy_post_isotope_render_callback($attributes) {
 
                     $output .= '>';
 
-                    // Icon handling
                     $fontSizeStyle = !empty($buttonFontSize) ? ' style="font-size: ' . esc_attr($buttonFontSize) . 'px;"' : '';
 
                     $leftIcon  = '<i class="ri-arrow-right-line"' . $fontSizeStyle . '></i>';
@@ -23438,6 +23381,7 @@ function fancy_post_isotope_render_callback($attributes) {
                 // End MAIN Content
                 $output .= '</div>';
                 $output .= '</div>';
+                // End Full post layout
                 $output .= '</div>';
                 // End Full post layout
             } 
@@ -24276,7 +24220,7 @@ function fancy_post_isotope_render_callback($attributes) {
                         $hoverOut .= 'this.style.borderColor=\'inherit\';';
                     }
 
-                    $output .= '<p class="fpg-excerpt' . ' align-' . esc_attr($excerptAlignment7) . '" style="' . esc_attr(trim($excerptStyles)) . '"';
+                    $output .= '<p class="fpg-excerpt' . ' align-' . esc_attr($excerptAlignment) . '" style="' . esc_attr(trim($excerptStyles)) . '"';
 
                     if (!empty($hoverIn) || !empty($hoverOut)) {
                         $output .= ' onmouseover="' . esc_attr($hoverIn) . '"';
