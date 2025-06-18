@@ -12269,7 +12269,7 @@ function fancy_post_slider_render_callback($attributes) {
     
     $output .= '<style>
 
-        .rs-blog-layout-1 .swiper_wrap .swiper-pagination .swiper-pagination-bullet,.rs-blog-layout-2 .swiper_wrap .swiper-pagination .swiper-pagination-bullet{
+        .rs-blog-layout-1 .swiper_wrap .swiper-pagination .swiper-pagination-bullet,.rs-blog-layout-2 .swiper_wrap .swiper-pagination .swiper-pagination-bullet,.rs-blog-layout-3 .swiper_wrap .swiper-pagination .swiper-pagination-bullet{
             background-color: ' . esc_attr($sliderDots) . ';
             height: ' . esc_attr($bulletHeight) . 'px !important;
             width: ' . esc_attr($bulletWeight) . 'px !important;
