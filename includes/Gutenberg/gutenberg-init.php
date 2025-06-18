@@ -12280,7 +12280,7 @@ function fancy_post_slider_render_callback($attributes) {
                         (isset($bulletsRadius['left']) && $bulletsRadius['left'] !== '' ? (is_numeric($bulletsRadius['left']) ? $bulletsRadius['left'] . 'px' : esc_attr($bulletsRadius['left'])) : '0px') . ';
             opacity: 1;
         }
-        .rs-blog-layout-1 .swiper_wrap .swiper-pagination .swiper-pagination-bullet.swiper-pagination-bullet-active, .rs-blog-layout-1 .swiper_wrap .swiper-pagination .swiper-pagination-bullet:hover,.rs-blog-layout-2 .swiper_wrap .swiper-pagination .swiper-pagination-bullet.swiper-pagination-bullet-active, .rs-blog-layout-2 .swiper_wrap .swiper-pagination .swiper-pagination-bullet:hover {
+        .rs-blog-layout-1 .swiper_wrap .swiper-pagination .swiper-pagination-bullet.swiper-pagination-bullet-active, .rs-blog-layout-1 .swiper_wrap .swiper-pagination .swiper-pagination-bullet:hover,.rs-blog-layout-2 .swiper_wrap .swiper-pagination .swiper-pagination-bullet.swiper-pagination-bullet-active, .rs-blog-layout-2 .swiper_wrap .swiper-pagination .swiper-pagination-bullet:hover,.rs-blog-layout-3 .swiper_wrap .swiper-pagination .swiper-pagination-bullet.swiper-pagination-bullet-active, .rs-blog-layout-3 .swiper_wrap .swiper-pagination .swiper-pagination-bullet:hover {
             background-color: ' . esc_attr($sliderDotsActive) . ';
         }
         .swiper_wrap .swiper-pagination-fraction {
@@ -12288,11 +12288,11 @@ function fancy_post_slider_render_callback($attributes) {
             font-size: ' . esc_attr($fractionFontSize) . 'px !important;
             opacity: 1;   
         }
-        .rs-blog-layout-1 .swiper_wrap .swiper-pagination-progressbar,.rs-blog-layout-2 .swiper_wrap .swiper-pagination-progressbar {
+        .rs-blog-layout-1 .swiper_wrap .swiper-pagination-progressbar,.rs-blog-layout-2 .swiper_wrap .swiper-pagination-progressbar,.rs-blog-layout-3 .swiper_wrap .swiper-pagination-progressbar {
             background-color: ' . esc_attr($normalProcessColor) . ';
             opacity: 1;
         }
-        .rs-blog-layout-1 .swiper_wrap .swiper-pagination-progressbar .swiper-pagination-progressbar-fill,.rs-blog-layout-2 .swiper_wrap .swiper-pagination-progressbar .swiper-pagination-progressbar-fill {
+        .rs-blog-layout-1 .swiper_wrap .swiper-pagination-progressbar .swiper-pagination-progressbar-fill,.rs-blog-layout-2 .swiper_wrap .swiper-pagination-progressbar .swiper-pagination-progressbar-fill,.rs-blog-layout-3 .swiper_wrap .swiper-pagination-progressbar .swiper-pagination-progressbar-fill {
             background-color: ' . esc_attr($activeProcessColor) . ';
             opacity: 1;
         }
