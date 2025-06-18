@@ -156,8 +156,7 @@ img {
 /* Slider layout 1 css */
 
 .rs-blog-layout-1 {
-    padding-top: 80px;
-    padding-bottom: 150px;
+    
 }
 
 .rs-blog-layout-1 .blog-item {
@@ -187,20 +186,20 @@ img {
 .rs-blog-layout-1 .blog-item .image-wrap a{
     display: block;
 }
-.rs-blog-layout-1 .blog-item .image-wrap a img {
+.rs-blog-layout-1 .blog-item .image-wrap img {
     transition: all 0.5s ease 0s;
     display: block;
     transform: scale(1);
 }
 
-.rs-blog-layout-1 .blog-item.hover-zoom_in:hover .image-wrap a img{
+.rs-blog-layout-1 .blog-item.hover-zoom_in:hover .image-wrap img{
     transform: scale(1.1);
 }
 
-.rs-blog-layout-1 .blog-item.hover-zoom_out .image-wrap a img{
+.rs-blog-layout-1 .blog-item.hover-zoom_out .image-wrap img{
     transform: scale(1.1);
 }
-.rs-blog-layout-1 .blog-item.hover-zoom_out:hover .image-wrap a img{
+.rs-blog-layout-1 .blog-item.hover-zoom_out:hover .image-wrap img{
     transform: scale(1);
 }
 

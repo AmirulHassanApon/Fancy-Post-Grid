@@ -290,7 +290,8 @@ img {
 }
 
 .rs-blog-layout-1 .blog-item .blog-content .desc p{
-    margin: 0 0 18px;
+    margin: 0 0 0px;
+    color: #000000;
 }
 .rs-blog-layout-1 .blog-item .blog-content .desc.align-start{
     text-align: left;
