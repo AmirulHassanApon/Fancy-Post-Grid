@@ -7892,7 +7892,7 @@ function fancy_post_slider_render_callback($attributes) {
     // Thumbnail
     $thumbnailMargin = isset($attributes['thumbnailMargin']) ? $attributes['thumbnailMargin'] : ['top' => '0', 'right' => '0', 'bottom' => '0', 'left' => '0'];
     $thumbnailPadding = isset($attributes['thumbnailPadding']) ? $attributes['thumbnailPadding'] : ['top' => '0', 'right' => '0', 'bottom' => '0', 'left' => '0'];
-    $thumbnailBorderRadius = isset($attributes['thumbnailBorderRadius']) ? $attributes['thumbnailBorderRadius'] : ['top' => '5', 'right' => '5', 'bottom' => '5', 'left' => '5'];
+    $thumbnailBorderRadius = isset($attributes['thumbnailBorderRadius']) ? $attributes['thumbnailBorderRadius'] : ['top' => '', 'right' => '', 'bottom' => '', 'left' => ''];
 
     // Post Title
     $postTitleFontSize      = isset($attributes['postTitleFontSize']) ? absint($attributes['postTitleFontSize']) : '';
@@ -8251,21 +8251,18 @@ function fancy_post_slider_render_callback($attributes) {
                         (isset($thumbnailPadding['left']) && $thumbnailPadding['left'] !== '' ? (is_numeric($thumbnailPadding['left']) ? $thumbnailPadding['left'] . 'px' : esc_attr($thumbnailPadding['left'])) : '0px') . '; ';
                 }
 
+                // Border Radius
+                if (!empty($thumbnailBorderRadius['top']) || !empty($thumbnailBorderRadius['right']) || !empty($thumbnailBorderRadius['bottom']) || !empty($thumbnailBorderRadius['left'])) {
+                    $output .= 'border-radius: ' .
+                        (isset($thumbnailBorderRadius['top']) && $thumbnailBorderRadius['top'] !== '' ? (is_numeric($thumbnailBorderRadius['top']) ? $thumbnailBorderRadius['top'] . 'px' : esc_attr($thumbnailBorderRadius['top'])) : '0px') . ' ' .
+                        (isset($thumbnailBorderRadius['right']) && $thumbnailBorderRadius['right'] !== '' ? (is_numeric($thumbnailBorderRadius['right']) ? $thumbnailBorderRadius['right'] . 'px' : esc_attr($thumbnailBorderRadius['right'])) : '0px') . ' ' .
+                        (isset($thumbnailBorderRadius['bottom']) && $thumbnailBorderRadius['bottom'] !== '' ? (is_numeric($thumbnailBorderRadius['bottom']) ? $thumbnailBorderRadius['bottom'] . 'px' : esc_attr($thumbnailBorderRadius['bottom'])) : '0px') . ' ' .
+                        (isset($thumbnailBorderRadius['left']) && $thumbnailBorderRadius['left'] !== '' ? (is_numeric($thumbnailBorderRadius['left']) ? $thumbnailBorderRadius['left'] . 'px' : esc_attr($thumbnailBorderRadius['left'])) : '0px') . ';';
+                }
+
                 $output .= '">';
 
                 // Anchor with optional border-radius and overflow
-                $output .= '<a href="' . esc_url($permalink) . '" style="';
-
-                    // Border Radius
-                    if (!empty($thumbnailBorderRadius['top']) || !empty($thumbnailBorderRadius['right']) || !empty($thumbnailBorderRadius['bottom']) || !empty($thumbnailBorderRadius['left'])) {
-                        $output .= 'border-radius: ' .
-                            (isset($thumbnailBorderRadius['top']) && $thumbnailBorderRadius['top'] !== '' ? (is_numeric($thumbnailBorderRadius['top']) ? $thumbnailBorderRadius['top'] . 'px' : esc_attr($thumbnailBorderRadius['top'])) : '0px') . ' ' .
-                            (isset($thumbnailBorderRadius['right']) && $thumbnailBorderRadius['right'] !== '' ? (is_numeric($thumbnailBorderRadius['right']) ? $thumbnailBorderRadius['right'] . 'px' : esc_attr($thumbnailBorderRadius['right'])) : '0px') . ' ' .
-                            (isset($thumbnailBorderRadius['bottom']) && $thumbnailBorderRadius['bottom'] !== '' ? (is_numeric($thumbnailBorderRadius['bottom']) ? $thumbnailBorderRadius['bottom'] . 'px' : esc_attr($thumbnailBorderRadius['bottom'])) : '0px') . ' ' .
-                            (isset($thumbnailBorderRadius['left']) && $thumbnailBorderRadius['left'] !== '' ? (is_numeric($thumbnailBorderRadius['left']) ? $thumbnailBorderRadius['left'] . 'px' : esc_attr($thumbnailBorderRadius['left'])) : '0px') . ';';
-                    }
-
-                $output .= '">';
                 if ($thumbnailLink) {
                     $output .= '<a href="' . esc_url($permalink) . '">';
                     $output .= $thumbnail;
