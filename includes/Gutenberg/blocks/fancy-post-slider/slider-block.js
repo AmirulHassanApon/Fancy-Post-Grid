@@ -1744,6 +1744,7 @@
                                                                     style: {
                                                                         ...(metaTextColor ? { color: metaTextColor } : {}),
                                                                         ...(metaFontSize ? { fontSize: `${metaFontSize}px` } : {}),
+                                                                        ...(metaBgColor ? { backgroundColor: metaBgColor } : {}),
                                                                         textDecoration: 'none'
                                                                     }
                                                                 },
@@ -2022,7 +2023,9 @@
                                                             }, 
                                                                                                                                                                                    
                                                             showMetaData && wp.element.createElement('div', { 
-                                                                    className: `rs-meta post-meta align-${metaAlignment} `},
+                                                                    className: `rs-meta post-meta align-${metaAlignment} `,style: { 
+                                                                        ...(metaBgColor ? { background: metaBgColor } : {}),
+                                                                    } },
                                                                 wp.element.createElement('ul', { 
                                                                     className: 'blog-meta post-meta', 
                                                                     style: { 
