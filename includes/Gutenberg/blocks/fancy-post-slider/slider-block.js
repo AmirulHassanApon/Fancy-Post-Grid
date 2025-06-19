@@ -2382,7 +2382,7 @@
                                                                       onMouseLeave: (e) => {
                                                                           e.currentTarget.style.backgroundColor = postTitleBgColor;
                                                                           
-                                                                      }, 
+                                                                      },
                                                                       ...(postLinkType === 'nolink' ? titleTextHoverHandlers : {}), // attach hover if nolink
                                                                   },
                                                                   postLinkType === 'yeslink'
@@ -2402,7 +2402,7 @@
                                                                           ? post.title.rendered.split(' ').slice(0, titleLength).join(' ')
                                                                           : post.title.rendered.substring(0, titleLength))
                                                               ),
-                                  
+                    
                                                             showReadMoreButton &&
                                                               wp.element.createElement(
                                                                 'div',
