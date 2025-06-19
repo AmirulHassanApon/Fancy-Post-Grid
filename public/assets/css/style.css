@@ -964,6 +964,7 @@ img {
 .rs-blog-layout-3 .rs-blog__single .content .title.underline a:hover {
     background-size: 100% 2px;
 }
+
 @media only screen and (min-width: 992px) and (max-width: 1199px) {
     .rs-blog-layout-3 .rs-blog__single .content .title a {
         font-size: 20px;
@@ -1023,7 +1024,6 @@ img {
     margin-top: 11px;
     margin-bottom: 32px;
     padding: 0 20px;
-    text-align: center;
     color:#454545;
 }
 
