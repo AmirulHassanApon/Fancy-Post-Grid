@@ -3478,9 +3478,9 @@
                                         label: __('Text Alignment', 'fancy-post-grid'),
                                         value: attributes.postTitleAlignment,
                                         options: [
-                                            { label: __('Left', 'fancy-post-grid'), value: 'left' },
+                                            { label: __('Left', 'fancy-post-grid'), value: 'start' },
                                             { label: __('Center', 'fancy-post-grid'), value: 'center' },
-                                            { label: __('Right', 'fancy-post-grid'), value: 'right' }
+                                            { label: __('Right', 'fancy-post-grid'), value: 'end' }
                                         ],
                                         onChange: (value) => setAttributes({ postTitleAlignment: value }),
                                     }),
