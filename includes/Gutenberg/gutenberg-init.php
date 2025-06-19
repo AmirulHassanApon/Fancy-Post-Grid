@@ -9700,49 +9700,43 @@ function fancy_post_slider_render_callback($attributes) {
                 if (!empty($titleOrder)) {
                     $titleStyles .= 'order: ' . esc_attr($titleOrder) . '; ';
                 }
-                // Background color
-                if (!empty($postTitleBgColor)) {
-                    $titleStyles .= 'background-color: ' . esc_attr($postTitleBgColor) . '; ';
-                }
+
                 // Margin
-                if (!empty($postTitleMargin['top']) || !empty($postTitleMargin['right']) || !empty($postTitleMargin['bottom']) || !empty($postTitleMargin['left'])) {
+                if (
+                    isset($postTitleMargin['top']) || isset($postTitleMargin['right']) ||
+                    isset($postTitleMargin['bottom']) || isset($postTitleMargin['left'])
+                ) {
                     $titleStyles .= 'margin: ' .
-                        (isset($postTitleMargin['top']) && $postTitleMargin['top'] !== '' ? (is_numeric($postTitleMargin['top']) ? $postTitleMargin['top'] . 'px' : esc_attr($postTitleMargin['top'])) : '0px') . ' ' .
-                        (isset($postTitleMargin['right']) && $postTitleMargin['right'] !== '' ? (is_numeric($postTitleMargin['right']) ? $postTitleMargin['right'] . 'px' : esc_attr($postTitleMargin['right'])) : '0px') . ' ' .
-                        (isset($postTitleMargin['bottom']) && $postTitleMargin['bottom'] !== '' ? (is_numeric($postTitleMargin['bottom']) ? $postTitleMargin['bottom'] . 'px' : esc_attr($postTitleMargin['bottom'])) : '0px') . ' ' .
-                        (isset($postTitleMargin['left']) && $postTitleMargin['left'] !== '' ? (is_numeric($postTitleMargin['left']) ? $postTitleMargin['left'] . 'px' : esc_attr($postTitleMargin['left'])) : '0px') . '; ';
+                        (isset($postTitleMargin['top']) ? (is_numeric($postTitleMargin['top']) ? $postTitleMargin['top'] . 'px' : esc_attr($postTitleMargin['top'])) : '0px') . ' ' .
+                        (isset($postTitleMargin['right']) ? (is_numeric($postTitleMargin['right']) ? $postTitleMargin['right'] . 'px' : esc_attr($postTitleMargin['right'])) : '0px') . ' ' .
+                        (isset($postTitleMargin['bottom']) ? (is_numeric($postTitleMargin['bottom']) ? $postTitleMargin['bottom'] . 'px' : esc_attr($postTitleMargin['bottom'])) : '0px') . ' ' .
+                        (isset($postTitleMargin['left']) ? (is_numeric($postTitleMargin['left']) ? $postTitleMargin['left'] . 'px' : esc_attr($postTitleMargin['left'])) : '0px') . '; ';
                 }
 
                 // Padding
-                if (!empty($postTitlePadding['top']) || !empty($postTitlePadding['right']) || !empty($postTitlePadding['bottom']) || !empty($postTitlePadding['left'])) {
+                if (
+                    isset($postTitlePadding['top']) || isset($postTitlePadding['right']) ||
+                    isset($postTitlePadding['bottom']) || isset($postTitlePadding['left'])
+                ) {
                     $titleStyles .= 'padding: ' .
-                        (isset($postTitlePadding['top']) && $postTitlePadding['top'] !== '' ? (is_numeric($postTitlePadding['top']) ? $postTitlePadding['top'] . 'px' : esc_attr($postTitlePadding['top'])) : '0px') . ' ' .
-                        (isset($postTitlePadding['right']) && $postTitlePadding['right'] !== '' ? (is_numeric($postTitlePadding['right']) ? $postTitlePadding['right'] . 'px' : esc_attr($postTitlePadding['right'])) : '0px') . ' ' .
-                        (isset($postTitlePadding['bottom']) && $postTitlePadding['bottom'] !== '' ? (is_numeric($postTitlePadding['bottom']) ? $postTitlePadding['bottom'] . 'px' : esc_attr($postTitlePadding['bottom'])) : '0px') . ' ' .
-                        (isset($postTitlePadding['left']) && $postTitlePadding['left'] !== '' ? (is_numeric($postTitlePadding['left']) ? $postTitlePadding['left'] . 'px' : esc_attr($postTitlePadding['left'])) : '0px') . '; ';
+                        (isset($postTitlePadding['top']) ? (is_numeric($postTitlePadding['top']) ? $postTitlePadding['top'] . 'px' : esc_attr($postTitlePadding['top'])) : '0px') . ' ' .
+                        (isset($postTitlePadding['right']) ? (is_numeric($postTitlePadding['right']) ? $postTitlePadding['right'] . 'px' : esc_attr($postTitlePadding['right'])) : '0px') . ' ' .
+                        (isset($postTitlePadding['bottom']) ? (is_numeric($postTitlePadding['bottom']) ? $postTitlePadding['bottom'] . 'px' : esc_attr($postTitlePadding['bottom'])) : '0px') . ' ' .
+                        (isset($postTitlePadding['left']) ? (is_numeric($postTitlePadding['left']) ? $postTitlePadding['left'] . 'px' : esc_attr($postTitlePadding['left'])) : '0px') . '; ';
                 }
-                // Class name
-                $classNames = 'title' 
-                    . ($titleHoverUnderLine === 'enable' ? ' underline' : '') 
-                    . ' align-' . esc_attr($postTitleAlignment);
-                // Hover JS (conditionally included)
-                $onmouseover = !empty($postTitleHoverBgColor) 
-                    ? ' onmouseover="this.style.backgroundColor=\'' . esc_attr($postTitleHoverBgColor) . '\';"' 
-                    : '';
-                $onmouseout = !empty($postTitleBgColor) 
-                    ? ' onmouseout="this.style.backgroundColor=\'' . esc_attr($postTitleBgColor) . '\';"' 
-                    : '';
-                // Final output
-                $output .= '<' . esc_attr($titleTag) . ' class="' . esc_attr($classNames) . '" style="' . esc_attr(trim($titleStyles)) . '"' 
-                    . $onmouseover 
-                    . $onmouseout 
-                    . '>';
 
+                // Class name
+                $classNames = 'title' .
+                    ($titleHoverUnderLine === 'enable' ? ' underline' : '') .
+                    ' align-' . esc_attr($postTitleAlignment);
+
+                $output .= '<' . esc_attr($titleTag) . ' class="' . esc_attr($classNames) . '" style="' . esc_attr(trim($titleStyles)) . '">';
+
+                // Build inline styles for <a>
                 $style = '';
                 $hoverStyle = '';
                 $mouseoutStyle = '';
 
-                // Build inline styles conditionally
                 if (!empty($postTitleFontSize)) {
                     $style .= 'font-size: ' . esc_attr($postTitleFontSize) . 'px; ';
                 }
@@ -9757,20 +9751,28 @@ function fancy_post_slider_render_callback($attributes) {
                 }
                 if (!empty($postTitleColor)) {
                     $style .= 'color: ' . esc_attr($postTitleColor) . '; ';
-                    $mouseoutStyle = 'this.style.color=\'' . esc_attr($postTitleColor) . '\';';
+                    $mouseoutStyle .= 'this.style.color=\'' . esc_attr($postTitleColor) . '\';';
                 }
-                // Build hover color style if set
+                if (!empty($postTitleBgColor)) {
+                    $style .= 'background: ' . esc_attr($postTitleBgColor) . '; ';
+                    $mouseoutStyle .= 'this.style.background=\'' . esc_attr($postTitleBgColor) . '\';';
+                }
+                
+                if (!empty($postTitleHoverBgColor)) {
+                    $hoverStyle .= 'this.style.background=\'' . esc_attr($postTitleHoverBgColor) . '\';';
+                }
                 if (!empty($postTitleHoverColor)) {
-                    $hoverStyle = 'this.style.color=\'' . esc_attr($postTitleHoverColor) . '\';';
+                    $hoverStyle .= 'this.style.color=\'' . esc_attr($postTitleHoverColor) . '\';';
                 }
-                // Final output
-                $output .= '<a href="' . esc_url($permalink) . '" 
-                    style="' . esc_attr(trim($style)) . '"'
+                $output .= '<a href="' . esc_url($permalink) . '"'
+                    . ' style="' . esc_attr(trim($style)) . '"'
                     . (!empty($hoverStyle) ? ' onmouseover="' . $hoverStyle . '"' : '')
-                    . (!empty($mouseoutStyle) ? ' onmouseout="' . $mouseoutStyle . '"' : '') . '>'
-                    . esc_html($croppedTitle) . '</a>';    
+                    . (!empty($mouseoutStyle) ? ' onmouseout="' . $mouseoutStyle . '"' : '')
+                    . '>' . esc_html($croppedTitle) . '</a>';
+
                 $output .= '</' . esc_attr($titleTag) . '>';
             }
+
             // Meta Data
             if ($showMetaData) {
                 $output .= '<ul class="blog-meta align-' . $metaAlignment . ' " style="';  
@@ -9947,12 +9949,24 @@ function fancy_post_slider_render_callback($attributes) {
             $output .= '<div class="rs-blog-author">';
 
                 if ($showPostAuthor) {
+                    $meta = '';
+
+                    if (!empty($metaTextColor)) {
+                        $meta .= 'color:' . esc_attr($metaTextColor) . '; ';
+                    }
+
+                    if (!empty($metaFontSize)) {
+                        $meta .= 'font-size:' . esc_attr($metaFontSize) . 'px; ';
+                    }
+
                     $output .= '<div class="user">';
                     $output .= '<a href="' . esc_url(get_author_posts_url(get_the_author_meta('ID'))) . '">';
                     $output .= '<div class="author-thumb">';
                     $output .= get_avatar(get_the_author_meta('ID'), 32);
                     $output .= '</div>';
-                    $output .= '<span>' . esc_html__('by', 'fancy-post-grid') . ' ' . get_the_author() . '</span>';
+                    $output .= '<span style="' . esc_attr(trim($meta)) . '">';
+                    $output .= esc_html__('by', 'fancy-post-grid') . ' ' . get_the_author();
+                    $output .= '</span>';
                     $output .= '</a>';
                     $output .= '</div>';
                 }
@@ -10010,27 +10024,19 @@ function fancy_post_slider_render_callback($attributes) {
                     }
 
                     // Border Radius
-                    // if (!empty($buttonBorderRadius['top']) || !empty($buttonBorderRadius['right']) || !empty($buttonBorderRadius['bottom']) || !empty($buttonBorderRadius['left'])) {
-                    //     $buttonInlineStyles .= 'border-radius: ' .
-                    //         (isset($buttonBorderRadius['top']) && $buttonBorderRadius['top'] !== '' ? (is_numeric($buttonBorderRadius['top']) ? $buttonBorderRadius['top'] . 'px' : esc_attr($buttonBorderRadius['top'])) : '0px') . ' ' .
-                    //         (isset($buttonBorderRadius['right']) && $buttonBorderRadius['right'] !== '' ? (is_numeric($buttonBorderRadius['right']) ? $buttonBorderRadius['right'] . 'px' : esc_attr($buttonBorderRadius['right'])) : '0px') . ' ' .
-                    //         (isset($buttonBorderRadius['bottom']) && $buttonBorderRadius['bottom'] !== '' ? (is_numeric($buttonBorderRadius['bottom']) ? $buttonBorderRadius['bottom'] . 'px' : esc_attr($buttonBorderRadius['bottom'])) : '0px') . ' ' .
-                    //         (isset($buttonBorderRadius['left']) && $buttonBorderRadius['left'] !== '' ? (is_numeric($buttonBorderRadius['left']) ? $buttonBorderRadius['left'] . 'px' : esc_attr($buttonBorderRadius['left'])) : '0px') . '; ';
-                    // }
+                    
                     if (
-    isset($buttonBorderRadius['top']) || 
-    isset($buttonBorderRadius['right']) || 
-    isset($buttonBorderRadius['bottom']) || 
-    isset($buttonBorderRadius['left'])
-) {
-    $buttonInlineStyles .= 'border-radius: ' .
-        (isset($buttonBorderRadius['top']) ? (is_numeric($buttonBorderRadius['top']) ? $buttonBorderRadius['top'] . 'px' : esc_attr($buttonBorderRadius['top'])) : '0px') . ' ' .
-        (isset($buttonBorderRadius['right']) ? (is_numeric($buttonBorderRadius['right']) ? $buttonBorderRadius['right'] . 'px' : esc_attr($buttonBorderRadius['right'])) : '0px') . ' ' .
-        (isset($buttonBorderRadius['bottom']) ? (is_numeric($buttonBorderRadius['bottom']) ? $buttonBorderRadius['bottom'] . 'px' : esc_attr($buttonBorderRadius['bottom'])) : '0px') . ' ' .
-        (isset($buttonBorderRadius['left']) ? (is_numeric($buttonBorderRadius['left']) ? $buttonBorderRadius['left'] . 'px' : esc_attr($buttonBorderRadius['left'])) : '0px') . '; ';
-}
-
-
+                        isset($buttonBorderRadius['top']) || 
+                        isset($buttonBorderRadius['right']) || 
+                        isset($buttonBorderRadius['bottom']) || 
+                        isset($buttonBorderRadius['left'])
+                    ) {
+                        $buttonInlineStyles .= 'border-radius: ' .
+                            (isset($buttonBorderRadius['top']) ? (is_numeric($buttonBorderRadius['top']) ? $buttonBorderRadius['top'] . 'px' : esc_attr($buttonBorderRadius['top'])) : '0px') . ' ' .
+                            (isset($buttonBorderRadius['right']) ? (is_numeric($buttonBorderRadius['right']) ? $buttonBorderRadius['right'] . 'px' : esc_attr($buttonBorderRadius['right'])) : '0px') . ' ' .
+                            (isset($buttonBorderRadius['bottom']) ? (is_numeric($buttonBorderRadius['bottom']) ? $buttonBorderRadius['bottom'] . 'px' : esc_attr($buttonBorderRadius['bottom'])) : '0px') . ' ' .
+                            (isset($buttonBorderRadius['left']) ? (is_numeric($buttonBorderRadius['left']) ? $buttonBorderRadius['left'] . 'px' : esc_attr($buttonBorderRadius['left'])) : '0px') . '; ';
+                    }
                     // Padding
                     if (!empty($buttonPaddingNew['top']) || !empty($buttonPaddingNew['right']) || !empty($buttonPaddingNew['bottom']) || !empty($buttonPaddingNew['left'])) {
                         $buttonInlineStyles .= 'padding: ' .
