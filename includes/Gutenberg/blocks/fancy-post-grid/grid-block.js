@@ -124,7 +124,6 @@
             excerptBgColor: { type: 'string', default: '' },
             excerptHoverColor: { type: 'string', default: '' },
             excerptHoverBgColor: { type: 'string', default: '' },
-            excerptHoverBorderColor: { type: 'string', default: '' },
             //meta 
             metaFontSize: { type: 'number' },
             metaAlignment: { type: 'string' },
@@ -204,7 +203,7 @@
                 
                 excerptFontSize,excerptLineHeight,excerptLetterSpacing,excerptFontWeight,excerptAlignment,excerptMargin,
                 excerptPadding,excerptColor,excerptBgColor,excerptHoverColor,excerptHoverBgColor,
-                excerptHoverBorderColor,
+                
 
                 metaAlignment,metaFontSize,metaMarginNew,metaPadding,metaTextColor,separatorColor,metaIconColor,metaBgColor,
 
@@ -5015,16 +5014,6 @@
                                                             style: { marginTop: '10px' },
                                                         }, __('Clear Color', 'fancy-post-grid')),
 
-                                                        wp.element.createElement('p', {}, __('Hover Border Color', 'fancy-post-grid')),
-                                                        wp.element.createElement(wp.components.ColorPicker, {
-                                                            color: attributes.excerptHoverBorderColor,
-                                                            onChangeComplete: (value) => setAttributes({ excerptHoverBorderColor: value.hex }),
-                                                        }),
-                                                        wp.element.createElement(Button, {
-                                                            isSecondary: true,
-                                                            onClick: () => setAttributes({ sectionBgColor: '' }),
-                                                            style: { marginTop: '10px' },
-                                                        }, __('Clear Color', 'fancy-post-grid')),
                                                     );
                                             }
                                         }
