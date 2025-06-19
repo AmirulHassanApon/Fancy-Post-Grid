@@ -10489,33 +10489,18 @@ function fancy_post_slider_render_callback($attributes) {
             
             //Footer
             $output .= '<div class="rs-blog-footer" style="order: ' . esc_attr($buttonOrder) . ';">';
-                $meta = '<span class="meta-comment-count" style="';
-
-                if (!empty($metaTextColor)) {
-                    $meta .= 'color:' . esc_attr($metaTextColor) . '; ';
-                }
-                if (!empty($metaFontSize)) {
-                    $meta .= 'font-size:' . esc_attr($metaFontSize) . 'px; ';
-                }
-
-                $meta .= '">';
-
-                    // meta icon
-                    $meta .= '<i class="fas fa-comments" style="';
-                    if (!empty($metaIconColor)) {
-                        $meta .= 'color:' . esc_attr($metaIconColor) . '; ';
-                    }
-                    if (!empty($metaFontSize)) {
-                        $meta .= 'font-size:' . esc_attr($metaFontSize) . 'px; ';
-                    }
-                    $meta .= '"></i> ';
                 
-
-                $meta .= esc_html($comments_count) . ' ' . esc_html__('Comments', 'fancy-post-grid') . '</span>';
-                $output .= $meta;
-
+                if ($showPostAuthor) {
+                    $output .= '<div class="user">';
+                    $output .= '<a href="' . esc_url(get_author_posts_url(get_the_author_meta('ID'))) . '">';
+                    $output .= '<div class="author-thumb">';
+                    $output .= get_avatar(get_the_author_meta('ID'), 32);
+                    $output .= '</div>';
+                    $output .= '<span>' . esc_html__('by', 'fancy-post-grid') . ' ' . get_the_author() . '</span>';
+                    $output .= '</a>';
+                    $output .= '</div>';
+                }
                 
-
                 if ($showReadMoreButton) {
                     // Button wrapper styles
                     $buttonWrapperStyle = '';
