@@ -313,9 +313,10 @@
 
             const titleTextHoverHandlers = {
                 onMouseEnter: (e) => {
-                    e.currentTarget.style.color = postTitleHoverColor;
+                    
                     e.currentTarget.style.backgroundImage = `linear-gradient(to bottom, ${postTitleHoverColor} 0%, ${postTitleHoverColor} 100%)`;
                     e.currentTarget.style.backgroundPosition = '0 100%';
+                    e.currentTarget.style.color = postTitleHoverColor;
                 },
                 onMouseLeave: (e) => {
                     e.currentTarget.style.color = postTitleColor;
@@ -2414,46 +2415,44 @@
                                                                   },
                                                                 },
                                                                 wp.element.createElement(
-                                                                  'a',
-                                                                  {
-                                                                    href: post.link,
-                                                                    target: postLinkTarget === 'newWindow' ? '_blank' : '_self',
-                                                                    className: `rs-btn read-more ${buttonStyle6}`, // e.g., 'fpg-border'
-                                                                    style: {
-                                                                      ...(buttonBackgroundColor ? { background: buttonBackgroundColor } : {}),
-                                                                      ...(buttonTextColor ? { color: buttonTextColor } : {}),
-                                                                      ...(buttonBorderColor ? { borderColor: buttonBorderColor } : {}),
-                                                                      ...(buttonBorderType ? { borderStyle: buttonBorderType } : {}),
-                                                                      ...(buttonFontWeight ? { fontWeight: buttonFontWeight } : {}),
-                                                                      ...(attributes.buttonBorderWidth ? { borderWidth: getSpacingValue(attributes.buttonBorderWidth) } : { borderWidth: '0px' }),
-                                                                      ...(attributes.buttonPaddingNew ? { padding: getSpacingValue(attributes.buttonPaddingNew) } : { padding: '0px' }),
-                                                                      ...(attributes.buttonBorderRadius ? { borderRadius: getSpacingValue(attributes.buttonBorderRadius) } : {}),
-                                                                      ...(buttonFontSize ? { fontSize: `${buttonFontSize}px` } : {}),
-                                                                      ...(buttonStyle === 'fpg-flat' ? { textDecoration: 'none' } : { textDecoration: 'inherit' }),
-                                                                    },
-                                                                    onMouseEnter: (e) => {
-                                                                      e.currentTarget.style.color = buttonHoverTextColor || '';
-                                                                      e.currentTarget.style.background = buttonHoverBackgroundColor || '';
-                                                                      e.currentTarget.style.borderColor = buttonHoverBorderColor || '';
-                                                                    },
-                                                                    onMouseLeave: (e) => {
-                                                                      e.currentTarget.style.color = buttonTextColor || '';
-                                                                      e.currentTarget.style.background = buttonBackgroundColor || '';
-                                                                      e.currentTarget.style.borderColor = buttonBorderColor || '';
-                                                                    },
-                                                                  },
-                                                                  wp.element.createElement(
-                                                                    'div',
-                                                                    { className: 'blog-btn' },
-                                                                    readMoreLabel || 'Read More'
-                                                                  ),
-                                                                  iconPosition === 'right' &&
-                                                                    showButtonIcon &&
-                                                                    wp.element.createElement('i', {
-                                                                      className: 'fas fa-arrow-right',
-                                                                      style: { marginLeft: '5px' },
-                                                                    })
-                                                                )
+  'a',
+  {
+    href: post.link,
+    target: postLinkTarget === 'newWindow' ? '_blank' : '_self',
+    className: `rs-btn read-more ${buttonStyle6}`,
+    style: {
+      ...(buttonBackgroundColor ? { background: buttonBackgroundColor } : {}),
+      ...(buttonTextColor ? { color: buttonTextColor } : {}),
+      ...(buttonBorderColor ? { borderColor: buttonBorderColor } : {}),
+      ...(buttonBorderType ? { borderStyle: buttonBorderType } : {}),
+      ...(buttonFontWeight ? { fontWeight: buttonFontWeight } : {}),
+      ...(attributes.buttonBorderWidth ? { borderWidth: getSpacingValue(attributes.buttonBorderWidth) } : { borderWidth: '0px' }),
+      ...(attributes.buttonPaddingNew ? { padding: getSpacingValue(attributes.buttonPaddingNew) } : { padding: '0px' }),
+      ...(attributes.buttonBorderRadius ? { borderRadius: getSpacingValue(attributes.buttonBorderRadius) } : {}),
+      ...(buttonFontSize ? { fontSize: `${buttonFontSize}px` } : {}),
+      ...(buttonStyle === 'fpg-flat' ? { textDecoration: 'none' } : { textDecoration: 'inherit' }),
+    },
+    onMouseEnter: (e) => {
+      e.currentTarget.style.color = buttonHoverTextColor || '';
+      e.currentTarget.style.background = buttonHoverBackgroundColor || '';
+      e.currentTarget.style.borderColor = buttonHoverBorderColor || '';
+    },
+    onMouseLeave: (e) => {
+      e.currentTarget.style.color = buttonTextColor || '';
+      e.currentTarget.style.background = buttonBackgroundColor || '';
+      e.currentTarget.style.borderColor = buttonBorderColor || '';
+    },
+  },
+  // Button text
+  readMoreLabel || 'Read More',
+  // Optional icon if position is right
+  iconPosition === 'right' &&
+    showButtonIcon &&
+    wp.element.createElement('i', {
+      className: 'fas fa-arrow-right',
+      style: { marginLeft: '5px' },
+    })
+)
                                                               )
 
                                                         )    
