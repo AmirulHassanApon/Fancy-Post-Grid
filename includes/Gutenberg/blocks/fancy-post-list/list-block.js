@@ -84,7 +84,7 @@
             itemPadding: { type: 'object' },
             itemBorderRadius: { type: 'object' },
             itemGap: { type: 'number', default: 30 },
-            itemBoxAlignment: { type: 'string', default: 'start' },
+            itemBoxAlignment: { type: 'string'},
             itemBorderType: { type: 'string', default: '' },
             itemBoxShadow: { type: 'object',  },
             itemBoxShadowColor: { type: 'string', default: '' },  
