@@ -1137,6 +1137,13 @@
                                                                             ...(titleOrder !== undefined ? { order: titleOrder } : {}),
                                                                             ...(postLinkType === 'nolink' ? titleTextStyle : {}), // apply if nolink
                                                                         },
+                                                                        onMouseEnter: (e) => {
+                                                                              e.currentTarget.style.backgroundColor = postTitleHoverBgColor;
+                                                                          },
+                                                                          onMouseLeave: (e) => {
+                                                                              e.currentTarget.style.backgroundColor = postTitleBgColor;
+                                                                              
+                                                                          },
                                                                         ...(postLinkType === 'nolink' ? titleTextHoverHandlers : {}), // attach hover if nolink
                                                                     },
                                                                     postLinkType === 'yeslink'
@@ -1791,13 +1798,20 @@
                                                                         className: `title align-${postTitleAlignment} ${titleHoverUnderLine === 'enable' ? ' underline' : ''}`,
                                                                         style: {
                                                                             
-                                                                            ...(attributes.postTitleMargin ? { margin: getSpacingValue(attributes.postTitleMargin) }: { margin: '10px 0px 0px 0px' }), 
+                                                                            ...(attributes.postTitleMargin ? { margin: getSpacingValue(attributes.postTitleMargin) }: { margin: '0px 0px 0px 0px' }), 
                                                                             ...(attributes.postTitlePadding ? { padding: getSpacingValue(attributes.postTitlePadding) }: { padding: '0px 0px 0px 0px' }), 
                                                                             
                                                                             ...(postTitleBgColor ? { backgroundColor: postTitleBgColor } : {}),
                                                                             ...(titleOrder !== undefined ? { order: titleOrder } : {}),
                                                                             ...(postLinkType === 'nolink' ? titleTextStyle : {}), // apply if nolink
                                                                         },
+                                                                        onMouseEnter: (e) => {
+                                                                              e.currentTarget.style.backgroundColor = postTitleHoverBgColor;
+                                                                          },
+                                                                          onMouseLeave: (e) => {
+                                                                              e.currentTarget.style.backgroundColor = postTitleBgColor;
+                                                                              
+                                                                          },
                                                                         ...(postLinkType === 'nolink' ? titleTextHoverHandlers : {}), // attach hover if nolink
                                                                     },
                                                                     postLinkType === 'yeslink'
@@ -1817,7 +1831,7 @@
                                                                             ? post.title.rendered.split(' ').slice(0, titleLength).join(' ')
                                                                             : post.title.rendered.substring(0, titleLength))
                                                                 ),
-                                                                                                    
+                                                                       
                                                             showPostExcerpt &&
                                                                 wp.element.createElement('p', { 
                                                                     className: `desc align-${excerptAlignment}`,
@@ -2395,6 +2409,7 @@
                                                                 {
                                                                   className: `rs-btn-box align-${buttonAlignment}`,
                                                                   style: {
+                                                                    order: buttonOrder,
                                                                     margin: getSpacingValue(attributes.buttonMarginNew) || '0px',
                                                                   },
                                                                 },
@@ -2690,12 +2705,21 @@
                                                                     {
                                                                         className: `title align-${postTitleAlignment} ${titleHoverUnderLine === 'enable' ? ' underline' : ''}`,
                                                                         style: {
+                                                                            
                                                                             ...(attributes.postTitleMargin ? { margin: getSpacingValue(attributes.postTitleMargin) }: { margin: '0px 0px 0px 0px' }), 
-                                                                            ...(attributes.postTitlePadding ? { padding: getSpacingValue(attributes.postTitlePadding) }: { padding: '5px 0px 10px 0px' }),
+                                                                            ...(attributes.postTitlePadding ? { padding: getSpacingValue(attributes.postTitlePadding) }: { padding: '0px 0px 0px 0px' }), 
+                                                                            
                                                                             ...(postTitleBgColor ? { backgroundColor: postTitleBgColor } : {}),
                                                                             ...(titleOrder !== undefined ? { order: titleOrder } : {}),
                                                                             ...(postLinkType === 'nolink' ? titleTextStyle : {}), // apply if nolink
                                                                         },
+                                                                        onMouseEnter: (e) => {
+                                                                              e.currentTarget.style.backgroundColor = postTitleHoverBgColor;
+                                                                          },
+                                                                          onMouseLeave: (e) => {
+                                                                              e.currentTarget.style.backgroundColor = postTitleBgColor;
+                                                                              
+                                                                          },
                                                                         ...(postLinkType === 'nolink' ? titleTextHoverHandlers : {}), // attach hover if nolink
                                                                     },
                                                                     postLinkType === 'yeslink'
@@ -2715,7 +2739,7 @@
                                                                             ? post.title.rendered.split(' ').slice(0, titleLength).join(' ')
                                                                             : post.title.rendered.substring(0, titleLength))
                                                                 ),
-                                    
+                                
                                                             //Meta
                                                             showPostExcerpt &&
                                                                 wp.element.createElement('div', { 
