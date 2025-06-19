@@ -9523,7 +9523,7 @@ function fancy_post_slider_render_callback($attributes) {
         elseif ($sliderLayoutStyle === 'style3') {
             $afterMetaStyles = '.rs-blog-layout-3 .rs-blog__single .content .rs-blog-category a .icon svg path {';
                 
-            $afterMetaStyles .= 'fill: ' . (!empty($metaTextColor) ? esc_attr($metaTextColor) : '#fff') . ';';
+            $afterMetaStyles .= 'fill: ' . (!empty($metaTextColor) ? esc_attr($metaTextColor) : '#513de8') . ';';
             $afterMetaStyles .= '}';
             $output .= '<style>' . $afterMetaStyles . '</style>';
             $output .= '<div class="swiper-slide">';
