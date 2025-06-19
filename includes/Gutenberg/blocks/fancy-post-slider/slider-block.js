@@ -1827,29 +1827,44 @@
                                                               className: 'rs-blog-footer',style: { 
                                                                   order: buttonOrder}, },
 
-                                                              wp.element.createElement(
-                                                                    'span',
-                                                                    null,
+                                                              showPostAuthor &&
                                                                     wp.element.createElement(
-                                                                        'div',
+                                                                      'div',
+                                                                      { className: 'user' },
+                                                                      wp.element.createElement(
+                                                                        'a',
                                                                         {
-                                                                            className: 'meta-comment-count',
-                                                                            style: {
-                                                                                ...(metaTextColor ? { color: metaTextColor } : {}),
-                                                                                ...(metaFontSize ? { fontSize: `${metaFontSize}px` } : {})
-                                                                            }
+                                                                          href: post._embedded?.author?.[0]?.link || '#',
+                                                                          style: { textDecoration: 'none' },
                                                                         },
-                                                                        
-                                                                        wp.element.createElement('i', {
-                                                                            className: 'fas fa-comments',
+                                                                        wp.element.createElement(
+                                                                          'div',
+                                                                          {
+                                                                            className: 'author-thumb',
                                                                             style: {
-                                                                                ...(metaIconColor ? { color: metaIconColor } : {}),
-                                                                                ...(metaFontSize ? { fontSize: `${metaFontSize}px` } : {})
-                                                                            }
-                                                                        }),
-                                                                        ` ${post.comment_count ? post.comment_count : 0} Comments`
-                                                                    )
-                                                                ),
+                                                                              ...(metaTextColor ? { color: metaTextColor } : {}),
+                                                                              ...(metaFontSize ? { fontSize: `${metaFontSize}px` } : {}),
+                                                                            },
+                                                                          },
+                                                                          showMetaIcon &&
+                                                                            showPostAuthorIcon &&
+                                                                            post._embedded?.author?.[0]?.avatar_urls?.['48'] &&
+                                                                            wp.element.createElement('img', {
+                                                                              src: post._embedded.author[0].avatar_urls['48'],
+                                                                              srcSet: post._embedded.author[0].avatar_urls['96'] + ' 2x',
+                                                                              alt: post._embedded.author[0].name || '',
+                                                                              className: 'avatar avatar-32 photo',
+                                                                              width: '32',
+                                                                              height: '32',
+                                                                            })
+                                                                        ),
+                                                                        wp.element.createElement(
+                                                                          'span',
+                                                                          null,
+                                                                          ` ${metaAuthorPrefix ? metaAuthorPrefix + ' ' : 'by '}${post._embedded?.author?.[0]?.name || ''}`
+                                                                        )
+                                                                      )
+                                                                    ),
               
                                                       
                                                               showReadMoreButton &&  
