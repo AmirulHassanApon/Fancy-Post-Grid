@@ -4813,6 +4813,9 @@ img {
         bottom: -40px !important;
         transform: translateX(-50%);
     }
+    .rs-blog-layout-18 .swiper_wrap  .swiper-pagination-18 .swiper-pagination-progressbar-fill{
+        background: #3a15fb;
+    }
     .rs-blog-layout-18 .swiper_wrap .swiper-pagination-18 .swiper-pagination-bullet{
         height: 8px;
         width: 8px;
