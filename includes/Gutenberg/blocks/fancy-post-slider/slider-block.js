@@ -320,6 +320,29 @@
                 },
             };
 
+            const titleTextStyleS = {
+                ...(postTitleColor ? { color: postTitleColor } : {}),
+                ...(postTitleBgColor ? { backgroundColor: postTitleBgColor } : {}),
+                ...(postTitleFontSize ? { fontSize: `${postTitleFontSize}px` } : {}),
+                ...(postTitleFontWeight ? { fontWeight: postTitleFontWeight } : {}),
+                ...(postTitleLineHeight ? { lineHeight: postTitleLineHeight } : {}),
+                ...(postTitleLetterSpacing ? { letterSpacing: postTitleLetterSpacing } : {}),
+            };
+
+            const titleTextHoverHandlersS = {
+                onMouseEnter: (e) => {
+                    e.currentTarget.style.color = postTitleHoverColor;
+                    e.currentTarget.style.backgroundColor = postTitleHoverBgColor;
+                    e.currentTarget.style.backgroundImage = `linear-gradient(to bottom, ${postTitleHoverColor} 0%, ${postTitleHoverColor} 100%)`;
+                    e.currentTarget.style.backgroundPosition = '0 100%';
+                },
+                onMouseLeave: (e) => {
+                    
+                    e.currentTarget.style.backgroundColor = postTitleBgColor;
+                    e.currentTarget.style.color = postTitleColor;
+                },
+            };
+
             // Fetch posts dynamically based on the current page
             const { posts } = useSelect((select) => {
                 const query = {
@@ -1390,13 +1413,11 @@
                                                                       style: {
                                                                           
                                                                           ...(attributes.postTitleMargin ? { margin: getSpacingValue(attributes.postTitleMargin) }: { margin: '10px 0px 0px 0px' }), 
-                                                                          ...(attributes.postTitlePadding ? { padding: getSpacingValue(attributes.postTitlePadding) }: { padding: '0px 0px 0px 0px' }), 
-                                                                          
-                                                                          ...(postTitleBgColor ? { backgroundColor: postTitleBgColor } : {}),
+                                                                          ...(attributes.postTitlePadding ? { padding: getSpacingValue(attributes.postTitlePadding) }: { padding: '0px 0px 0px 0px' }),                                                                           
                                                                           ...(titleOrder !== undefined ? { order: titleOrder } : {}),
                                                                           ...(postLinkType === 'nolink' ? titleTextStyle : {}), // apply if nolink
                                                                       },
-                                                                      ...(postLinkType === 'nolink' ? titleTextHoverHandlers : {}), // attach hover if nolink
+                                                                      ...(postLinkType === 'nolink' ? titleTextHoverHandlersS : {}), // attach hover if nolink
                                                                   },
                                                                   postLinkType === 'yeslink'
                                                                       ? wp.element.createElement(
@@ -1404,8 +1425,8 @@
                                                                           {
                                                                               href: post.link,
                                                                               target: postLinkTarget === 'newWindow' ? '_blank' : '_self',
-                                                                              style: titleTextStyle,
-                                                                              ...titleTextHoverHandlers,
+                                                                              style: titleTextStyleS,
+                                                                              ...titleTextHoverHandlersS,
                                                                           },
                                                                           titleCropBy === 'word'
                                                                               ? post.title.rendered.split(' ').slice(0, titleLength).join(' ')
