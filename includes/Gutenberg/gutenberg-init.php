@@ -10304,8 +10304,19 @@ function fancy_post_slider_render_callback($attributes) {
                     $category = $categories[0]; // Show the first category only
 
                     $output .= '<div class="rs-category">';
-                    $output .= '<a href="' . esc_url(get_category_link($category->term_id)) . '">';
-                    
+                    // Anchor tag style
+                    $style = '';
+                    if (!empty($metaTextColor)) {
+                        $style .= 'color:' . esc_attr($metaTextColor) . '; ';
+                    }
+                    if (!empty($metaBgColor)) {
+                        $style .= 'background:' . esc_attr($metaBgColor) . '; ';
+                    }
+                    if (!empty($metaFontSize)) {
+                        $style .= 'font-size:' . esc_attr($metaFontSize) . 'px; ';
+                    }
+
+                    $output .= '<a href="' . esc_url(get_category_link($category->term_id)) . '" style="' . esc_attr($style) . '">';
                     $output .= esc_html($category->name);
                     $output .= '</a>';
                     $output .= '</div>';
@@ -10801,7 +10812,19 @@ function fancy_post_slider_render_callback($attributes) {
             $output .= '">';
             // Meta Data
             if ($showMetaData) {
-                $output .='<div class="rs-meta">';  
+                 
+                $output .= '<div class="rs-meta"';
+
+                $style = '';
+                if (!empty($metaBgColor)) {
+                    $style .= 'background:' . esc_attr($metaBgColor) . '; ';
+                }                       
+
+                if (!empty($style)) {
+                    $output .= ' style="' . esc_attr($style) . '"';
+                }
+
+                $output .= '>'; 
                 $output .= '<ul class="blog-meta align-' . $metaAlignment . ' " style="';  
                     // Margin
                     if (!empty($metaMarginNew['top']) || !empty($metaMarginNew['right']) || !empty($metaMarginNew['bottom']) || !empty($metaMarginNew['left'])) {
@@ -10825,6 +10848,7 @@ function fancy_post_slider_render_callback($attributes) {
                     if (!empty($metaTextColor)) {
                         $output .= 'color: ' . esc_attr($metaTextColor) . '; ';
                     }
+                    
                     // Order
                     if (!empty($metaOrder)) {
                         $output .= 'order: ' . esc_attr($metaOrder) . '; ';
