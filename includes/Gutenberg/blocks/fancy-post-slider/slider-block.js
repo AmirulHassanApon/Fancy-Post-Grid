@@ -27,6 +27,7 @@
             enableKeyboard: { type: 'boolean', default: true },
             enableLoop: { type: 'boolean', default: true },
             enableFreeMode: { type: 'boolean', default: true },
+            enableAutoPlay: { type: 'boolean', default: false },
             paginationClickable: { type: 'boolean', default: true },     
             autoPlaySpeed: { type: 'string', default: '3000' },
             paginationType: { type: 'string', default: 'bullets' },
@@ -184,7 +185,7 @@
         edit: function ({ attributes, setAttributes }) {
             const { 
                 gridColumns,sliderLayoutStyle
-                ,selectedCategory, selectedTag,orderBy, postLimit,enablePagination,enableArrow,enableDynamicBullets,enableKeyboard,enableLoop,enableFreeMode,paginationClickable,autoPlaySpeed,paginationType,
+                ,selectedCategory, selectedTag,orderBy, postLimit,enablePagination,enableArrow,enableDynamicBullets,enableKeyboard,enableLoop,enableFreeMode,enableAutoPlay,paginationClickable,autoPlaySpeed,paginationType,
                 postLinkTarget,thumbnailLink,postLinkType,
 
                 showPostTitle,showThumbnail,showPostExcerpt,showReadMoreButton,showMetaData,showPostDate
@@ -364,6 +365,7 @@
                 spaceBetween: attributes.itemGap,
                 slidesPerView: parseInt(attributes.gridColumns),
                 freeMode: attributes.enableFreeMode,
+                
                 dynamicBullets: attributes.enableDynamicBullets,
                 loop: attributes.enableLoop,
                 autoplay: {
@@ -2353,13 +2355,20 @@
                                                                       className: `title align-${postTitleAlignment} ${titleHoverUnderLine === 'enable' ? ' underline' : ''}`,
                                                                       style: {
                                                                           
-                                                                          ...(attributes.postTitleMargin ? { margin: getSpacingValue(attributes.postTitleMargin) }: { margin: '0px 0px 15px 0px' }), 
+                                                                          ...(attributes.postTitleMargin ? { margin: getSpacingValue(attributes.postTitleMargin) }: { margin: '10px 0px 0px 0px' }), 
                                                                           ...(attributes.postTitlePadding ? { padding: getSpacingValue(attributes.postTitlePadding) }: { padding: '0px 0px 0px 0px' }), 
                                                                           
                                                                           ...(postTitleBgColor ? { backgroundColor: postTitleBgColor } : {}),
                                                                           ...(titleOrder !== undefined ? { order: titleOrder } : {}),
                                                                           ...(postLinkType === 'nolink' ? titleTextStyle : {}), // apply if nolink
                                                                       },
+                                                                      onMouseEnter: (e) => {
+                                                                          e.currentTarget.style.backgroundColor = postTitleHoverBgColor;
+                                                                      },
+                                                                      onMouseLeave: (e) => {
+                                                                          e.currentTarget.style.backgroundColor = postTitleBgColor;
+                                                                          
+                                                                      }, 
                                                                       ...(postLinkType === 'nolink' ? titleTextHoverHandlers : {}), // attach hover if nolink
                                                                   },
                                                                   postLinkType === 'yeslink'
@@ -2379,7 +2388,7 @@
                                                                           ? post.title.rendered.split(' ').slice(0, titleLength).join(' ')
                                                                           : post.title.rendered.substring(0, titleLength))
                                                               ),
-                    
+                                  
                                                             showReadMoreButton &&
                                                               wp.element.createElement(
                                                                 'div',
@@ -2933,6 +2942,12 @@
                                         label: __('Enable Free Mode', 'fancy-post-grid'),
                                         checked: enableFreeMode,
                                         onChange: (value) => setAttributes({ enableFreeMode: value })
+                                    }),
+                                    // Enable Free Mode
+                                    wp.element.createElement(ToggleControl, {
+                                        label: __('Enable AutoPlay', 'fancy-post-grid'),
+                                        checked: enableAutoPlay,
+                                        onChange: (value) => setAttributes({ enableAutoPlay: value })
                                     }),
 
                                     // Enable Pagination Clickable Mode

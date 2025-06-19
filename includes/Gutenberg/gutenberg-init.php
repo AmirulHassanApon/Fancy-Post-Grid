@@ -7782,6 +7782,7 @@ function fancy_post_slider_render_callback($attributes) {
     $enableDynamicBullets = isset($attributes['enableDynamicBullets']) ? filter_var($attributes['enableDynamicBullets'], FILTER_VALIDATE_BOOLEAN) : false;
     $enableLoop = isset($attributes['enableLoop']) ? filter_var($attributes['enableLoop'], FILTER_VALIDATE_BOOLEAN) : true;
     $enableFreeMode = isset($attributes['enableFreeMode']) ? filter_var($attributes['enableFreeMode'], FILTER_VALIDATE_BOOLEAN) : true;
+    $enableAutoPlay = isset($attributes['enableAutoPlay']) ? filter_var($attributes['enableAutoPlay'], FILTER_VALIDATE_BOOLEAN) : false;
     $paginationClickable = isset($attributes['paginationClickable']) ? filter_var($attributes['paginationClickable'], FILTER_VALIDATE_BOOLEAN) : true;
     $paginationType = isset($attributes['paginationType']) ? sanitize_text_field($attributes['paginationType']) : 'bullets';
     $autoPlaySpeed = isset($attributes['autoPlaySpeed']) ? absint($attributes['autoPlaySpeed']) : 3000;
@@ -8020,10 +8021,6 @@ function fancy_post_slider_render_callback($attributes) {
         'slidesPerView' => $gridColumns, // Single slide
         'loop' => $enableLoop,
         'freeMode' => $enableFreeMode,
-        
-        'autoplay' => array(
-            'delay' => (int)$autoPlaySpeed,
-        ),
         'keyboard' => array(
             'enabled' => $enableKeyboard,
         ),
@@ -8038,6 +8035,13 @@ function fancy_post_slider_render_callback($attributes) {
             'prevEl' => '.swiper-button-prev',
         ),
     );
+    // Add autoplay config only if it's enabled
+    if ($enableAutoPlay) {
+        $swiper_config['autoplay'] = array(
+            'delay' => (int)$autoPlaySpeed,
+            
+        );
+    }
 
     // Convert to JSON
     $swiper_data_attr = esc_attr(wp_json_encode($swiper_config));
@@ -10939,85 +10943,84 @@ function fancy_post_slider_render_callback($attributes) {
 
             // title
             if ($showPostTitle) {
-                    $titleStyles = '';
+                $titleStyles = '';
 
-                    // Order
-                    if (!empty($titleOrder)) {
-                        $titleStyles .= 'order: ' . esc_attr($titleOrder) . '; ';
-                    }
-                    // Background color
-                    if (!empty($postTitleBgColor)) {
-                        $titleStyles .= 'background-color: ' . esc_attr($postTitleBgColor) . '; ';
-                    }
-                    // Margin
-                    if (!empty($postTitleMargin['top']) || !empty($postTitleMargin['right']) || !empty($postTitleMargin['bottom']) || !empty($postTitleMargin['left'])) {
-                        $titleStyles .= 'margin: ' .
-                            (isset($postTitleMargin['top']) && $postTitleMargin['top'] !== '' ? (is_numeric($postTitleMargin['top']) ? $postTitleMargin['top'] . 'px' : esc_attr($postTitleMargin['top'])) : '0px') . ' ' .
-                            (isset($postTitleMargin['right']) && $postTitleMargin['right'] !== '' ? (is_numeric($postTitleMargin['right']) ? $postTitleMargin['right'] . 'px' : esc_attr($postTitleMargin['right'])) : '0px') . ' ' .
-                            (isset($postTitleMargin['bottom']) && $postTitleMargin['bottom'] !== '' ? (is_numeric($postTitleMargin['bottom']) ? $postTitleMargin['bottom'] . 'px' : esc_attr($postTitleMargin['bottom'])) : '0px') . ' ' .
-                            (isset($postTitleMargin['left']) && $postTitleMargin['left'] !== '' ? (is_numeric($postTitleMargin['left']) ? $postTitleMargin['left'] . 'px' : esc_attr($postTitleMargin['left'])) : '0px') . '; ';
-                    }
-
-                    // Padding
-                    if (!empty($postTitlePadding['top']) || !empty($postTitlePadding['right']) || !empty($postTitlePadding['bottom']) || !empty($postTitlePadding['left'])) {
-                        $titleStyles .= 'padding: ' .
-                            (isset($postTitlePadding['top']) && $postTitlePadding['top'] !== '' ? (is_numeric($postTitlePadding['top']) ? $postTitlePadding['top'] . 'px' : esc_attr($postTitlePadding['top'])) : '0px') . ' ' .
-                            (isset($postTitlePadding['right']) && $postTitlePadding['right'] !== '' ? (is_numeric($postTitlePadding['right']) ? $postTitlePadding['right'] . 'px' : esc_attr($postTitlePadding['right'])) : '0px') . ' ' .
-                            (isset($postTitlePadding['bottom']) && $postTitlePadding['bottom'] !== '' ? (is_numeric($postTitlePadding['bottom']) ? $postTitlePadding['bottom'] . 'px' : esc_attr($postTitlePadding['bottom'])) : '0px') . ' ' .
-                            (isset($postTitlePadding['left']) && $postTitlePadding['left'] !== '' ? (is_numeric($postTitlePadding['left']) ? $postTitlePadding['left'] . 'px' : esc_attr($postTitlePadding['left'])) : '0px') . '; ';
-                    }
-                    // Class name
-                    $classNames = 'title' 
-                        . ($titleHoverUnderLine === 'enable' ? ' underline' : '') 
-                        . ' align-' . esc_attr($postTitleAlignment);
-                    // Hover JS (conditionally included)
-                    $onmouseover = !empty($postTitleHoverBgColor) 
-                        ? ' onmouseover="this.style.backgroundColor=\'' . esc_attr($postTitleHoverBgColor) . '\';"' 
-                        : '';
-                    $onmouseout = !empty($postTitleBgColor) 
-                        ? ' onmouseout="this.style.backgroundColor=\'' . esc_attr($postTitleBgColor) . '\';"' 
-                        : '';
-                    // Final output
-                    $output .= '<' . esc_attr($titleTag) . ' class="' . esc_attr($classNames) . '" style="' . esc_attr(trim($titleStyles)) . '"' 
-                        . $onmouseover 
-                        . $onmouseout 
-                        . '>';
-
-                    $style = '';
-                    $hoverStyle = '';
-                    $mouseoutStyle = '';
-
-                    // Build inline styles conditionally
-                    if (!empty($postTitleFontSize)) {
-                        $style .= 'font-size: ' . esc_attr($postTitleFontSize) . 'px; ';
-                    }
-                    if (!empty($postTitleLineHeight)) {
-                        $style .= 'line-height: ' . esc_attr($postTitleLineHeight) . '; ';
-                    }
-                    if (!empty($postTitleLetterSpacing)) {
-                        $style .= 'letter-spacing: ' . esc_attr($postTitleLetterSpacing) . 'px; ';
-                    }
-                    if (!empty($postTitleFontWeight)) {
-                        $style .= 'font-weight: ' . esc_attr($postTitleFontWeight) . '; ';
-                    }
-                    if (!empty($postTitleColor)) {
-                        $style .= 'color: ' . esc_attr($postTitleColor) . '; ';
-                        $mouseoutStyle = 'this.style.color=\'' . esc_attr($postTitleColor) . '\';';
-                    }
-                    // Build hover color style if set
-                    if (!empty($postTitleHoverColor)) {
-                        $hoverStyle = 'this.style.color=\'' . esc_attr($postTitleHoverColor) . '\';';
-                    }
-                    // Final output
-                    $output .= '<a href="' . esc_url($permalink) . '" 
-                        style="' . esc_attr(trim($style)) . '"'
-                        . (!empty($hoverStyle) ? ' onmouseover="' . $hoverStyle . '"' : '')
-                        . (!empty($mouseoutStyle) ? ' onmouseout="' . $mouseoutStyle . '"' : '') . '>'
-                        . esc_html($croppedTitle) . '</a>';    
-                    $output .= '</' . esc_attr($titleTag) . '>';
+                // Order
+                if (!empty($titleOrder)) {
+                    $titleStyles .= 'order: ' . esc_attr($titleOrder) . '; ';
+                }
+                // Background color
+                if (!empty($postTitleBgColor)) {
+                    $titleStyles .= 'background-color: ' . esc_attr($postTitleBgColor) . '; ';
+                }
+                // Margin
+                if (!empty($postTitleMargin['top']) || !empty($postTitleMargin['right']) || !empty($postTitleMargin['bottom']) || !empty($postTitleMargin['left'])) {
+                    $titleStyles .= 'margin: ' .
+                        (isset($postTitleMargin['top']) && $postTitleMargin['top'] !== '' ? (is_numeric($postTitleMargin['top']) ? $postTitleMargin['top'] . 'px' : esc_attr($postTitleMargin['top'])) : '0px') . ' ' .
+                        (isset($postTitleMargin['right']) && $postTitleMargin['right'] !== '' ? (is_numeric($postTitleMargin['right']) ? $postTitleMargin['right'] . 'px' : esc_attr($postTitleMargin['right'])) : '0px') . ' ' .
+                        (isset($postTitleMargin['bottom']) && $postTitleMargin['bottom'] !== '' ? (is_numeric($postTitleMargin['bottom']) ? $postTitleMargin['bottom'] . 'px' : esc_attr($postTitleMargin['bottom'])) : '0px') . ' ' .
+                        (isset($postTitleMargin['left']) && $postTitleMargin['left'] !== '' ? (is_numeric($postTitleMargin['left']) ? $postTitleMargin['left'] . 'px' : esc_attr($postTitleMargin['left'])) : '0px') . '; ';
                 }
 
-            
+                // Padding
+                if (!empty($postTitlePadding['top']) || !empty($postTitlePadding['right']) || !empty($postTitlePadding['bottom']) || !empty($postTitlePadding['left'])) {
+                    $titleStyles .= 'padding: ' .
+                        (isset($postTitlePadding['top']) && $postTitlePadding['top'] !== '' ? (is_numeric($postTitlePadding['top']) ? $postTitlePadding['top'] . 'px' : esc_attr($postTitlePadding['top'])) : '0px') . ' ' .
+                        (isset($postTitlePadding['right']) && $postTitlePadding['right'] !== '' ? (is_numeric($postTitlePadding['right']) ? $postTitlePadding['right'] . 'px' : esc_attr($postTitlePadding['right'])) : '0px') . ' ' .
+                        (isset($postTitlePadding['bottom']) && $postTitlePadding['bottom'] !== '' ? (is_numeric($postTitlePadding['bottom']) ? $postTitlePadding['bottom'] . 'px' : esc_attr($postTitlePadding['bottom'])) : '0px') . ' ' .
+                        (isset($postTitlePadding['left']) && $postTitlePadding['left'] !== '' ? (is_numeric($postTitlePadding['left']) ? $postTitlePadding['left'] . 'px' : esc_attr($postTitlePadding['left'])) : '0px') . '; ';
+                }
+                // Class name
+                $classNames = 'title' 
+                    . ($titleHoverUnderLine === 'enable' ? ' underline' : '') 
+                    . ' align-' . esc_attr($postTitleAlignment);
+                // Hover JS (conditionally included)
+                $onmouseover = !empty($postTitleHoverBgColor) 
+                    ? ' onmouseover="this.style.backgroundColor=\'' . esc_attr($postTitleHoverBgColor) . '\';"' 
+                    : '';
+                $onmouseout = !empty($postTitleBgColor) 
+                    ? ' onmouseout="this.style.backgroundColor=\'' . esc_attr($postTitleBgColor) . '\';"' 
+                    : '';
+                // Final output
+                $output .= '<' . esc_attr($titleTag) . ' class="' . esc_attr($classNames) . '" style="' . esc_attr(trim($titleStyles)) . '"' 
+                    . $onmouseover 
+                    . $onmouseout 
+                    . '>';
+
+                $style = '';
+                $hoverStyle = '';
+                $mouseoutStyle = '';
+
+                // Build inline styles conditionally
+                if (!empty($postTitleFontSize)) {
+                    $style .= 'font-size: ' . esc_attr($postTitleFontSize) . 'px; ';
+                }
+                if (!empty($postTitleLineHeight)) {
+                    $style .= 'line-height: ' . esc_attr($postTitleLineHeight) . '; ';
+                }
+                if (!empty($postTitleLetterSpacing)) {
+                    $style .= 'letter-spacing: ' . esc_attr($postTitleLetterSpacing) . 'px; ';
+                }
+                if (!empty($postTitleFontWeight)) {
+                    $style .= 'font-weight: ' . esc_attr($postTitleFontWeight) . '; ';
+                }
+                if (!empty($postTitleColor)) {
+                    $style .= 'color: ' . esc_attr($postTitleColor) . '; ';
+                    $mouseoutStyle = 'this.style.color=\'' . esc_attr($postTitleColor) . '\';';
+                }
+                // Build hover color style if set
+                if (!empty($postTitleHoverColor)) {
+                    $hoverStyle = 'this.style.color=\'' . esc_attr($postTitleHoverColor) . '\';';
+                }
+                // Final output
+                $output .= '<a href="' . esc_url($permalink) . '" 
+                    style="' . esc_attr(trim($style)) . '"'
+                    . (!empty($hoverStyle) ? ' onmouseover="' . $hoverStyle . '"' : '')
+                    . (!empty($mouseoutStyle) ? ' onmouseout="' . $mouseoutStyle . '"' : '') . '>'
+                    . esc_html($croppedTitle) . '</a>';    
+                $output .= '</' . esc_attr($titleTag) . '>';
+            }
+
             //Button
             if ($showReadMoreButton) {
                 // Button wrapper styles
@@ -11387,8 +11390,6 @@ function fancy_post_slider_render_callback($attributes) {
                     . esc_html($croppedTitle) . '</a>';    
                 $output .= '</' . esc_attr($titleTag) . '>';
             }
-
-            
             //Button
             if ($showReadMoreButton) {
                 // Button wrapper styles
