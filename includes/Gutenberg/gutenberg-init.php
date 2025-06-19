@@ -7874,7 +7874,7 @@ function fancy_post_slider_render_callback($attributes) {
     $itemMargin = isset($attributes['itemMargin']) ? $attributes['itemMargin'] : ['top' => '0', 'right' => '0', 'bottom' => '0', 'left' => '0'];
     $itemBorderRadius = isset($attributes['itemBorderRadius']) ? $attributes['itemBorderRadius'] : ['top' => '5', 'right' => '5', 'bottom' => '5', 'left' => '5'];
     $itemBorderWidth = isset($attributes['itemBorderWidth']) ? $attributes['itemBorderWidth'] : ['top' => '0', 'right' => '0', 'bottom' => '0', 'left' => '0'];
-    $itemBoxAlignment   = isset($attributes['itemBoxAlignment']) ? sanitize_text_field($attributes['itemBoxAlignment']) : 'start';
+    $itemBoxAlignment   = isset($attributes['itemBoxAlignment']) ? sanitize_text_field($attributes['itemBoxAlignment']) : '';
     $itemBorderType     = isset($attributes['itemBorderType']) ? sanitize_text_field($attributes['itemBorderType']) : '';
     $itemBoxShadow = isset($attributes['itemBoxShadow']) ? $attributes['itemBoxShadow'] : ['top' => '', 'right' => '', 'bottom' => '', 'left' => ''];
     $itemBackgroundColor = isset($attributes['itemBackgroundColor']) ? sanitize_hex_color($attributes['itemBackgroundColor']) : '';
@@ -9521,6 +9521,11 @@ function fancy_post_slider_render_callback($attributes) {
             $output .= '</div>';
         }
         elseif ($sliderLayoutStyle === 'style3') {
+            $afterMetaStyles = '.rs-blog-layout-3 .rs-blog__single .content .rs-blog-category a .icon svg path {';
+                
+            $afterMetaStyles .= 'fill: ' . (!empty($metaTextColor) ? esc_attr($metaTextColor) : '#fff') . ';';
+            $afterMetaStyles .= '}';
+            $output .= '<style>' . $afterMetaStyles . '</style>';
             $output .= '<div class="swiper-slide">';
             // Full post layout
             $output .= '<div class="rs-blog__single align-' . $itemBoxAlignment3 . ' ' . $hoverAnimation . '" style="';
@@ -9708,20 +9713,8 @@ function fancy_post_slider_render_callback($attributes) {
                         $style .= 'font-size:' . esc_attr($metaFontSize) . 'px; ';
                     }
 
-                    // Icon style (optional additions)
-                    $iconStyle = '';
-                    if (!empty($metaFontSize)) {
-                        $iconStyle .= 'width:' . esc_attr($metaFontSize) . 'px; height:' . esc_attr($metaFontSize) . 'px; ';
-                    }
-                    if (!empty($metaTextColor)) {
-                        $iconStyle .= 'background:' . esc_attr($metaTextColor) . '; ';
-                    }if (!empty($metaIconColor)) {
-                        $iconStyle .= 'color:' . esc_attr($metaIconColor) . '; ';
-                    }
-                    
-
                     $output .= '<a href="' . esc_url(get_category_link($category->term_id)) . '" style="' . esc_attr($style) . '">';
-                    $output .= '<div class="icon" style="' . esc_attr($iconStyle) . '">
+                    $output .= '<div class="icon">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="6" height="6" viewBox="0 0 6 6" fill="none">
                                         <path d="M3 0L5.59808 1.5V4.5L3 6L0.401924 4.5V1.5L3 0Z" fill="#513DE8"></path>
                                         <defs>
