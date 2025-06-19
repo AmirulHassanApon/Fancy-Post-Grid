@@ -7779,7 +7779,7 @@ function fancy_post_slider_render_callback($attributes) {
     $enablePagination = isset($attributes['enablePagination']) ? filter_var($attributes['enablePagination'], FILTER_VALIDATE_BOOLEAN) : true;
     $enableArrow = isset($attributes['enableArrow']) ? filter_var($attributes['enableArrow'], FILTER_VALIDATE_BOOLEAN) : true;
     $enableKeyboard = isset($attributes['enableKeyboard']) ? filter_var($attributes['enableKeyboard'], FILTER_VALIDATE_BOOLEAN) : true;
-    $enableDynamicBullets = isset($attributes['enableDynamicBullets']) ? filter_var($attributes['enableDynamicBullets'], FILTER_VALIDATE_BOOLEAN) : true;
+    $enableDynamicBullets = isset($attributes['enableDynamicBullets']) ? filter_var($attributes['enableDynamicBullets'], FILTER_VALIDATE_BOOLEAN) : false;
     $enableLoop = isset($attributes['enableLoop']) ? filter_var($attributes['enableLoop'], FILTER_VALIDATE_BOOLEAN) : true;
     $enableFreeMode = isset($attributes['enableFreeMode']) ? filter_var($attributes['enableFreeMode'], FILTER_VALIDATE_BOOLEAN) : true;
     $paginationClickable = isset($attributes['paginationClickable']) ? filter_var($attributes['paginationClickable'], FILTER_VALIDATE_BOOLEAN) : true;
@@ -8020,7 +8020,7 @@ function fancy_post_slider_render_callback($attributes) {
         'slidesPerView' => $gridColumns, // Single slide
         'loop' => $enableLoop,
         'freeMode' => $enableFreeMode,
-        'dynamicBullets' => $enableDynamicBullets,
+        
         'autoplay' => array(
             'delay' => (int)$autoPlaySpeed,
         ),
@@ -8030,6 +8030,7 @@ function fancy_post_slider_render_callback($attributes) {
         'pagination' => array(
             'el'        => '.swiper-pagination-1,.swiper-pagination-2,.swiper-pagination-3,.swiper-pagination-4,.swiper-pagination-18,.swiper-pagination-23',
             'clickable' => $paginationClickable,
+            'dynamicBullets' => $enableDynamicBullets,
             'type'      => $paginationType, // map 'default' to 'bullets'
         ),
         'navigation' => array(

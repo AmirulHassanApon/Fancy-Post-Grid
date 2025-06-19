@@ -23,7 +23,7 @@
             // Pagination settings
             enablePagination: { type: 'boolean', default: true },
             enableArrow: { type: 'boolean', default: true },
-            enableDynamicBullets: { type: 'boolean', default: true },
+            enableDynamicBullets: { type: 'boolean', default: false },
             enableKeyboard: { type: 'boolean', default: true },
             enableLoop: { type: 'boolean', default: true },
             enableFreeMode: { type: 'boolean', default: true },
