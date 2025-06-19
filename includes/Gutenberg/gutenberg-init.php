@@ -9907,45 +9907,40 @@ function fancy_post_slider_render_callback($attributes) {
 
             // Excerpt
             if ($showPostExcerpt) {
-                $excerptStyles = '';
-
-                // Order
-                if (!empty($excerptOrder)) {
-                    $excerptStyles .= 'order: ' . esc_attr($excerptOrder) . '; ';
-                }
+                $excerptTextStyles = '';
 
                 // Typography
                 if (!empty($excerptFontSize)) {
-                    $excerptStyles .= 'font-size: ' . esc_attr($excerptFontSize) . 'px; ';
+                    $excerptTextStyles .= 'font-size: ' . esc_attr($excerptFontSize) . 'px; ';
                 }
 
                 if (!empty($excerptLineHeight)) {
-                    $excerptStyles .= 'line-height: ' . esc_attr($excerptLineHeight) . '; ';
+                    $excerptTextStyles .= 'line-height: ' . esc_attr($excerptLineHeight) . '; ';
                 }
 
                 if (!empty($excerptLetterSpacing)) {
-                    $excerptStyles .= 'letter-spacing: ' . esc_attr($excerptLetterSpacing) . 'px; ';
+                    $excerptTextStyles .= 'letter-spacing: ' . esc_attr($excerptLetterSpacing) . 'px; ';
                 }
 
                 if (!empty($excerptFontWeight)) {
-                    $excerptStyles .= 'font-weight: ' . esc_attr($excerptFontWeight) . '; ';
+                    $excerptTextStyles .= 'font-weight: ' . esc_attr($excerptFontWeight) . '; ';
                 }
 
                 if (!empty($excerptColor)) {
-                    $excerptStyles .= 'color: ' . esc_attr($excerptColor) . '; ';
+                    $excerptTextStyles .= 'color: ' . esc_attr($excerptColor) . '; ';
                 }
 
                 if (!empty($excerptBgColor)) {
-                    $excerptStyles .= 'background-color: ' . esc_attr($excerptBgColor) . '; ';
+                    $excerptTextStyles .= 'background-color: ' . esc_attr($excerptBgColor) . '; ';
                 }
 
                 if (!empty($excerptBorderType)) {
-                    $excerptStyles .= 'border-style: ' . esc_attr($excerptBorderType) . '; ';
+                    $excerptTextStyles .= 'border-style: ' . esc_attr($excerptBorderType) . '; ';
                 }
 
                 // Margin
                 if (!empty($excerptMargin['top']) || !empty($excerptMargin['right']) || !empty($excerptMargin['bottom']) || !empty($excerptMargin['left'])) {
-                    $excerptStyles .= 'margin: ' .
+                    $excerptTextStyles .= 'margin: ' .
                         (is_numeric($excerptMargin['top']) ? $excerptMargin['top'] . 'px' : esc_attr($excerptMargin['top'])) . ' ' .
                         (is_numeric($excerptMargin['right']) ? $excerptMargin['right'] . 'px' : esc_attr($excerptMargin['right'])) . ' ' .
                         (is_numeric($excerptMargin['bottom']) ? $excerptMargin['bottom'] . 'px' : esc_attr($excerptMargin['bottom'])) . ' ' .
@@ -9954,14 +9949,14 @@ function fancy_post_slider_render_callback($attributes) {
 
                 // Padding
                 if (!empty($excerptPadding['top']) || !empty($excerptPadding['right']) || !empty($excerptPadding['bottom']) || !empty($excerptPadding['left'])) {
-                    $excerptStyles .= 'padding: ' .
+                    $excerptTextStyles .= 'padding: ' .
                         (is_numeric($excerptPadding['top']) ? $excerptPadding['top'] . 'px' : esc_attr($excerptPadding['top'])) . ' ' .
                         (is_numeric($excerptPadding['right']) ? $excerptPadding['right'] . 'px' : esc_attr($excerptPadding['right'])) . ' ' .
                         (is_numeric($excerptPadding['bottom']) ? $excerptPadding['bottom'] . 'px' : esc_attr($excerptPadding['bottom'])) . ' ' .
                         (is_numeric($excerptPadding['left']) ? $excerptPadding['left'] . 'px' : esc_attr($excerptPadding['left'])) . '; ';
                 }
 
-                // Handle hover logic conditionally
+                // Hover Effects
                 $hoverIn = '';
                 $hoverOut = '';
 
@@ -9980,7 +9975,8 @@ function fancy_post_slider_render_callback($attributes) {
                     $hoverOut .= 'this.style.borderColor=\'inherit\';';
                 }
 
-                $output .= '<div class="desc' . ' align-' . esc_attr($excerptAlignment) . '" style="' . esc_attr(trim($excerptStyles)) . '"';
+                // Final output: only <p> with all styling
+                $output .= '<p style="' . esc_attr(trim($excerptTextStyles)) . '"';
 
                 if (!empty($hoverIn) || !empty($hoverOut)) {
                     $output .= ' onmouseover="' . esc_attr($hoverIn) . '"';
@@ -9988,9 +9984,10 @@ function fancy_post_slider_render_callback($attributes) {
                 }
 
                 $output .= '>';
-                $output .= '<p>' . esc_html($excerpt) . '</p>';
-                $output .= '</div>';
+                $output .= esc_html($excerpt);
+                $output .= '</p>';
             }
+
             // End Excerpt
             //Footer
             $output .= '<div class="rs-blog-author">';
