@@ -1297,12 +1297,10 @@ img {
 
 /* blog layout 4 css */
 .rs-blog-layout-4 {
-    padding-top: 80px;
-    padding-bottom: 200px;
 }
 
 .rs-blog-layout-4 .rs-blog__item {
-    background: #ffffff;
+    background: #f3f3f3;
     border-radius: 10px;
     overflow: hidden;
     margin-top: 30px;
@@ -1322,6 +1320,9 @@ img {
 .rs-blog-layout-4 .rs-blog__item .rs-thumb{
     overflow: hidden;
     position: relative;
+}
+.rs-blog-layout-4 .rs-blog__item .rs-thumb a {
+    display: block;
 }
 .rs-blog-layout-4 .rs-blog__item .rs-thumb a img{
     transition: all linear 0.3s;
@@ -1343,13 +1344,17 @@ img {
     position: relative;
 }
 
-
+.rs-blog-layout-4 .swiper_wrap .swiper-pagination-progressbar .swiper-pagination-progressbar-fill{
+    background: #F79C53;
+}
 
 
 
 .rs-blog-layout-4 .rs-blog__item .rs-content {
     position: relative;
     padding: 22px 30px 20px;
+    display: flex;
+    flex-direction: column;
 }
 
 @media only screen and (max-width: 767px) {
