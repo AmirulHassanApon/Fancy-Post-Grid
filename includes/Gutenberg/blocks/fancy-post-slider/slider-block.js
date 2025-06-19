@@ -320,6 +320,29 @@
                 },
             };
 
+            const titleTextStyleS = {
+                ...(postTitleColor ? { color: postTitleColor } : {}),
+                ...(postTitleBgColor ? { backgroundColor: postTitleBgColor } : {}),
+                ...(postTitleFontSize ? { fontSize: `${postTitleFontSize}px` } : {}),
+                ...(postTitleFontWeight ? { fontWeight: postTitleFontWeight } : {}),
+                ...(postTitleLineHeight ? { lineHeight: postTitleLineHeight } : {}),
+                ...(postTitleLetterSpacing ? { letterSpacing: postTitleLetterSpacing } : {}),
+            };
+
+            const titleTextHoverHandlersS = {
+                onMouseEnter: (e) => {
+                    e.currentTarget.style.color = postTitleHoverColor;
+                    e.currentTarget.style.backgroundColor = postTitleHoverBgColor;
+                    e.currentTarget.style.backgroundImage = `linear-gradient(to bottom, ${postTitleHoverColor} 0%, ${postTitleHoverColor} 100%)`;
+                    e.currentTarget.style.backgroundPosition = '0 100%';
+                },
+                onMouseLeave: (e) => {
+                    
+                    e.currentTarget.style.backgroundColor = postTitleBgColor;
+                    e.currentTarget.style.color = postTitleColor;
+                },
+            };
+
             // Fetch posts dynamically based on the current page
             const { posts } = useSelect((select) => {
                 const query = {
@@ -743,6 +766,13 @@
                                                                             ...(titleOrder !== undefined ? { order: titleOrder } : {}),
                                                                             ...(postLinkType === 'nolink' ? titleTextStyle : {}), // apply if nolink
                                                                         },
+                                                                        onMouseEnter: (e) => {
+                                                                              e.currentTarget.style.backgroundColor = postTitleHoverBgColor;
+                                                                          },
+                                                                          onMouseLeave: (e) => {
+                                                                              e.currentTarget.style.backgroundColor = postTitleBgColor;
+                                                                              
+                                                                          },
                                                                         ...(postLinkType === 'nolink' ? titleTextHoverHandlers : {}), // attach hover if nolink
                                                                     },
                                                                     postLinkType === 'yeslink'
@@ -1390,13 +1420,11 @@
                                                                       style: {
                                                                           
                                                                           ...(attributes.postTitleMargin ? { margin: getSpacingValue(attributes.postTitleMargin) }: { margin: '10px 0px 0px 0px' }), 
-                                                                          ...(attributes.postTitlePadding ? { padding: getSpacingValue(attributes.postTitlePadding) }: { padding: '0px 0px 0px 0px' }), 
-                                                                          
-                                                                          ...(postTitleBgColor ? { backgroundColor: postTitleBgColor } : {}),
+                                                                          ...(attributes.postTitlePadding ? { padding: getSpacingValue(attributes.postTitlePadding) }: { padding: '0px 0px 0px 0px' }),                                                                           
                                                                           ...(titleOrder !== undefined ? { order: titleOrder } : {}),
                                                                           ...(postLinkType === 'nolink' ? titleTextStyle : {}), // apply if nolink
                                                                       },
-                                                                      ...(postLinkType === 'nolink' ? titleTextHoverHandlers : {}), // attach hover if nolink
+                                                                      ...(postLinkType === 'nolink' ? titleTextHoverHandlersS : {}), // attach hover if nolink
                                                                   },
                                                                   postLinkType === 'yeslink'
                                                                       ? wp.element.createElement(
@@ -1404,8 +1432,8 @@
                                                                           {
                                                                               href: post.link,
                                                                               target: postLinkTarget === 'newWindow' ? '_blank' : '_self',
-                                                                              style: titleTextStyle,
-                                                                              ...titleTextHoverHandlers,
+                                                                              style: titleTextStyleS,
+                                                                              ...titleTextHoverHandlersS,
                                                                           },
                                                                           titleCropBy === 'word'
                                                                               ? post.title.rendered.split(' ').slice(0, titleLength).join(' ')
@@ -1963,7 +1991,7 @@
                                                                 
                                                                 ...(attributes.itemMargin
                                                                   ? { margin: getSpacingValue(attributes.itemMargin) }
-                                                                  : { margin: '40px 0px 0px 0px' }), // your default fallback
+                                                                  : { margin: '40px 0px 40px 0px' }), // your default fallback
                                                                 ...(attributes.itemPadding
                                                                   ? { padding: getSpacingValue(attributes.itemPadding) }
                                                                   : { padding: '0px 0px 0px 0px' }), // your default fallback
@@ -2032,14 +2060,16 @@
                                                             }, 
                                                                                                                                                                                    
                                                             showMetaData && wp.element.createElement('div', { 
-                                                                    className: `rs-meta post-meta align-${metaAlignment} `,style: { 
+                                                                    className: `rs-meta post-meta align-${metaAlignment} `,
+                                                                    style: { 
                                                                         ...(metaBgColor ? { background: metaBgColor } : {}),
+                                                                        ...(attributes.metaMarginNew ? { margin: getSpacingValue(attributes.metaMarginNew) }: { margin: '' }), 
+                                                                        ...(attributes.metaPadding ? { padding: getSpacingValue(attributes.metaPadding) }: { padding: '' }),
                                                                     } },
                                                                 wp.element.createElement('ul', { 
                                                                     className: 'blog-meta post-meta', 
                                                                     style: { 
-                                                                        ...(attributes.metaMarginNew ? { margin: getSpacingValue(attributes.metaMarginNew) }: { margin: '' }), 
-                                                                        ...(attributes.metaPadding ? { padding: getSpacingValue(attributes.metaPadding) }: { padding: '' }),
+                                                                        
                                                                         ...(metaTextColor ? { color: metaTextColor } : {}),
                                                                         ...(typeof metaOrder !== 'undefined' ? { order: metaOrder } : {}),
                                                                         ...(metaFontSize ? { fontSize: `${metaFontSize}px` } : {})
@@ -2114,6 +2144,13 @@
                                                                           ...(postTitleBgColor ? { backgroundColor: postTitleBgColor } : {}),
                                                                           ...(titleOrder !== undefined ? { order: titleOrder } : {}),
                                                                           ...(postLinkType === 'nolink' ? titleTextStyle : {}), // apply if nolink
+                                                                      },
+                                                                      onMouseEnter: (e) => {
+                                                                          e.currentTarget.style.backgroundColor = postTitleHoverBgColor;
+                                                                      },
+                                                                      onMouseLeave: (e) => {
+                                                                          e.currentTarget.style.backgroundColor = postTitleBgColor;
+                                                                          
                                                                       },
                                                                       ...(postLinkType === 'nolink' ? titleTextHoverHandlers : {}), // attach hover if nolink
                                                                   },
