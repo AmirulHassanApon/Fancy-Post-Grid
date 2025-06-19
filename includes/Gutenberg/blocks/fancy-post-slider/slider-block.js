@@ -766,6 +766,13 @@
                                                                             ...(titleOrder !== undefined ? { order: titleOrder } : {}),
                                                                             ...(postLinkType === 'nolink' ? titleTextStyle : {}), // apply if nolink
                                                                         },
+                                                                        onMouseEnter: (e) => {
+                                                                              e.currentTarget.style.backgroundColor = postTitleHoverBgColor;
+                                                                          },
+                                                                          onMouseLeave: (e) => {
+                                                                              e.currentTarget.style.backgroundColor = postTitleBgColor;
+                                                                              
+                                                                          },
                                                                         ...(postLinkType === 'nolink' ? titleTextHoverHandlers : {}), // attach hover if nolink
                                                                     },
                                                                     postLinkType === 'yeslink'
@@ -1984,7 +1991,7 @@
                                                                 
                                                                 ...(attributes.itemMargin
                                                                   ? { margin: getSpacingValue(attributes.itemMargin) }
-                                                                  : { margin: '40px 0px 0px 0px' }), // your default fallback
+                                                                  : { margin: '40px 0px 40px 0px' }), // your default fallback
                                                                 ...(attributes.itemPadding
                                                                   ? { padding: getSpacingValue(attributes.itemPadding) }
                                                                   : { padding: '0px 0px 0px 0px' }), // your default fallback
@@ -2053,14 +2060,16 @@
                                                             }, 
                                                                                                                                                                                    
                                                             showMetaData && wp.element.createElement('div', { 
-                                                                    className: `rs-meta post-meta align-${metaAlignment} `,style: { 
+                                                                    className: `rs-meta post-meta align-${metaAlignment} `,
+                                                                    style: { 
                                                                         ...(metaBgColor ? { background: metaBgColor } : {}),
+                                                                        ...(attributes.metaMarginNew ? { margin: getSpacingValue(attributes.metaMarginNew) }: { margin: '' }), 
+                                                                        ...(attributes.metaPadding ? { padding: getSpacingValue(attributes.metaPadding) }: { padding: '' }),
                                                                     } },
                                                                 wp.element.createElement('ul', { 
                                                                     className: 'blog-meta post-meta', 
                                                                     style: { 
-                                                                        ...(attributes.metaMarginNew ? { margin: getSpacingValue(attributes.metaMarginNew) }: { margin: '' }), 
-                                                                        ...(attributes.metaPadding ? { padding: getSpacingValue(attributes.metaPadding) }: { padding: '' }),
+                                                                        
                                                                         ...(metaTextColor ? { color: metaTextColor } : {}),
                                                                         ...(typeof metaOrder !== 'undefined' ? { order: metaOrder } : {}),
                                                                         ...(metaFontSize ? { fontSize: `${metaFontSize}px` } : {})
@@ -2135,6 +2144,13 @@
                                                                           ...(postTitleBgColor ? { backgroundColor: postTitleBgColor } : {}),
                                                                           ...(titleOrder !== undefined ? { order: titleOrder } : {}),
                                                                           ...(postLinkType === 'nolink' ? titleTextStyle : {}), // apply if nolink
+                                                                      },
+                                                                      onMouseEnter: (e) => {
+                                                                          e.currentTarget.style.backgroundColor = postTitleHoverBgColor;
+                                                                      },
+                                                                      onMouseLeave: (e) => {
+                                                                          e.currentTarget.style.backgroundColor = postTitleBgColor;
+                                                                          
                                                                       },
                                                                       ...(postLinkType === 'nolink' ? titleTextHoverHandlers : {}), // attach hover if nolink
                                                                   },
