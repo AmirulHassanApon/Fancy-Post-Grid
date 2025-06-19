@@ -1345,10 +1345,7 @@
                                                             //Meta                                                           
                                                             wp.element.createElement('div', {
                                                                 className: 'rs-blog-category',
-                                                                style: {
-                                                                    ...(attributes.metaMarginNew ? { margin: getSpacingValue(attributes.metaMarginNew) }: { margin: '0px 0px 0px 0px' }), 
-                                                                    ...(attributes.metaPadding ? { padding: getSpacingValue(attributes.metaPadding) }: { padding: '0px 0px 0px 0px' }),
-                                                                }
+                                                                
                                                             },
                                                                 showPostCategory && post._embedded?.['wp:term']?.[0]?.length > 0 &&
                                                                 (() => {

@@ -9729,7 +9729,6 @@ function fancy_post_slider_render_callback($attributes) {
                     $output .= '</a>';
                     $output .= '</div>';
 
-
                 }
             }
    
