@@ -4553,9 +4553,6 @@ img {
 
     /* blog layout 18 css */
     .rs-blog-layout-18{
-        padding-top: 90px;
-        padding-bottom: 150px;
-        background: #FBFBFB;
     }
     .rs-blog-layout-18-item{
         position: relative;
@@ -4565,6 +4562,9 @@ img {
         border-radius: 30px;
         overflow: hidden;
         transition: all ease 0.3s;
+    }
+    .rs-blog-layout-18-item .rs-thumb a{
+        display: block;
     }
     .rs-blog-layout-18-item .rs-thumb img{
         transition: all ease 0.3s;
@@ -4633,6 +4633,7 @@ img {
         margin: 0;
         padding: 7px 30px 7px 20px;
         list-style-type: none;
+        gap: 10px;
     }
 
     .rs-blog-layout-18-item .rs-content .rs-meta ul li{
@@ -4676,6 +4677,21 @@ img {
     }
     .rs-blog-layout-18-item .rs-content .title a:hover{
         color: #3a15fb;
+    }
+    .rs-blog-layout-18-item .rs-content .title.underline a{
+        display: inline;
+        transition: all 0.5s ease;
+        text-decoration: none;
+        background-image: linear-gradient(to bottom, #3a15fb 0%, #3a15fb 100%);
+        background-size: 0 2px;
+        background-repeat: no-repeat;
+        background-position: left 100%;
+        transition: all 0.7s !important;
+    }
+
+
+    .rs-blog-layout-18-item .rs-content .title.underline a:hover {
+        background-size: 100% 2px;
     }
     .rs-blog-layout-18-item .rs-content .blgo-btn-box{
         width: 100%;
