@@ -9602,7 +9602,7 @@ function fancy_post_slider_render_callback($attributes) {
             $output .= '">';
             // Thumbnail
             if ($thumbnail && $showThumbnail) {
-                $output .= '<div class="rs-thumb" style="';
+                $output .= '<div class="thumb" style="';
 
                 // Margin
                 if (!empty($thumbnailMargin['top']) || !empty($thumbnailMargin['right']) || !empty($thumbnailMargin['bottom']) || !empty($thumbnailMargin['left'])) {
