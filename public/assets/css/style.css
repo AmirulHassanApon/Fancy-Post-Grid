@@ -827,8 +827,6 @@ img {
 /* blog Slider layout 3 css */
 
 .rs-blog-layout-3 {
-    padding-top: 80px;
-    padding-bottom: 220px;
 }
 
 .rs-blog-layout-3 .swiper_wrap {
@@ -1214,6 +1212,9 @@ img {
 .rs-blog-layout-3 .rs-blog__single .content .title.align-end a{
     text-align: right;
 }
+
+.rs-blog-layout-3 .rs-blog__single.align-center .content .title a
+
 .rs-blog-layout-3 .rs-blog__single .content .desc.align-start{
     text-align: left;
 }
