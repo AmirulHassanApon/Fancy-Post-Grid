@@ -254,7 +254,7 @@ function fancy_post_grid_render_callback($attributes) {
     $excerptBorderType = isset($attributes['excerptBorderType']) ? sanitize_text_field($attributes['excerptBorderType']) : '';
     $excerptHoverColor = isset($attributes['excerptHoverColor']) ? sanitize_hex_color($attributes['excerptHoverColor']) : '';
     $excerptHoverBgColor = isset($attributes['excerptHoverBgColor']) ? sanitize_hex_color($attributes['excerptHoverBgColor']) : '';
-    $excerptHoverBorderColor = isset($attributes['excerptHoverBorderColor']) ? sanitize_hex_color($attributes['excerptHoverBorderColor']) : '';
+    
 
     // Meta Data Attributes
     $metaAlignment = isset($attributes['metaAlignment']) ? sanitize_text_field($attributes['metaAlignment']) : '';
@@ -1401,11 +1401,6 @@ function fancy_post_grid_render_callback($attributes) {
                         $hoverOut .= 'this.style.backgroundColor=\'' . esc_attr($excerptBgColor) . '\';';
                     }
 
-                    if (!empty($excerptHoverBorderColor)) {
-                        $hoverIn .= 'this.style.borderColor=\'' . esc_attr($excerptHoverBorderColor) . '\';';
-                        $hoverOut .= 'this.style.borderColor=\'inherit\';';
-                    }
-
                     $output .= '<div class="fpg-excerpt' . ' align-' . esc_attr($excerptAlignment) . '" style="' . esc_attr(trim($excerptStyles)) . '"';
 
                     $output .= '>';
@@ -2052,11 +2047,6 @@ function fancy_post_grid_render_callback($attributes) {
                     if (!empty($excerptHoverBgColor)) {
                         $hoverIn .= 'this.style.backgroundColor=\'' . esc_attr($excerptHoverBgColor) . '\';';
                         $hoverOut .= 'this.style.backgroundColor=\'' . esc_attr($excerptBgColor) . '\';';
-                    }
-
-                    if (!empty($excerptHoverBorderColor)) {
-                        $hoverIn .= 'this.style.borderColor=\'' . esc_attr($excerptHoverBorderColor) . '\';';
-                        $hoverOut .= 'this.style.borderColor=\'inherit\';';
                     }
 
                     $output .= '<div class="fpg-excerpt' . ' align-' . esc_attr($excerptAlignment) . '" style="' . esc_attr(trim($excerptStyles)) . '"';
@@ -2805,11 +2795,6 @@ function fancy_post_grid_render_callback($attributes) {
                         $hoverOut .= 'this.style.backgroundColor=\'' . esc_attr($excerptBgColor) . '\';';
                     }
 
-                    if (!empty($excerptHoverBorderColor)) {
-                        $hoverIn .= 'this.style.borderColor=\'' . esc_attr($excerptHoverBorderColor) . '\';';
-                        $hoverOut .= 'this.style.borderColor=\'inherit\';';
-                    }
-
                     $output .= '<div class="fpg-excerpt' . ' align-' . esc_attr($excerptAlignment) . '" style="' . esc_attr(trim($excerptStyles)) . '"';
 
                     if (!empty($hoverIn) || !empty($hoverOut)) {
@@ -3497,11 +3482,6 @@ function fancy_post_grid_render_callback($attributes) {
                         $hoverOut .= 'this.style.backgroundColor=\'' . esc_attr($excerptBgColor) . '\';';
                     }
 
-                    if (!empty($excerptHoverBorderColor)) {
-                        $hoverIn .= 'this.style.borderColor=\'' . esc_attr($excerptHoverBorderColor) . '\';';
-                        $hoverOut .= 'this.style.borderColor=\'inherit\';';
-                    }
-
                     $output .= '<div class="fpg-excerpt' . ' align-' . esc_attr($excerptAlignment) . '" style="' . esc_attr(trim($excerptStyles)) . '"';
 
                     $output .= '>';
@@ -4038,11 +4018,6 @@ function fancy_post_grid_render_callback($attributes) {
                     if (!empty($excerptHoverBgColor)) {
                         $hoverIn .= 'this.style.backgroundColor=\'' . esc_attr($excerptHoverBgColor) . '\';';
                         $hoverOut .= 'this.style.backgroundColor=\'' . esc_attr($excerptBgColor) . '\';';
-                    }
-
-                    if (!empty($excerptHoverBorderColor)) {
-                        $hoverIn .= 'this.style.borderColor=\'' . esc_attr($excerptHoverBorderColor) . '\';';
-                        $hoverOut .= 'this.style.borderColor=\'inherit\';';
                     }
 
                     $output .= '<div class="pre-content' . ' align-' . esc_attr($excerptAlignment) . '" style="' . esc_attr(trim($excerptStyles)) . '"';
@@ -7542,11 +7517,6 @@ function fancy_post_grid_render_callback($attributes) {
                         $hoverOut .= 'this.style.backgroundColor=\'' . esc_attr($excerptBgColor) . '\';';
                     }
 
-                    if (!empty($excerptHoverBorderColor)) {
-                        $hoverIn .= 'this.style.borderColor=\'' . esc_attr($excerptHoverBorderColor) . '\';';
-                        $hoverOut .= 'this.style.borderColor=\'inherit\';';
-                    }
-
                     $output .= '<p class="fpg-excerpt' . ' align-' . esc_attr($excerptAlignment) . '" style="' . esc_attr(trim($excerptStyles)) . '"';
 
                     if (!empty($hoverIn) || !empty($hoverOut)) {
@@ -7920,7 +7890,6 @@ function fancy_post_slider_render_callback($attributes) {
     $excerptBorderType = isset($attributes['excerptBorderType']) ? sanitize_text_field($attributes['excerptBorderType']) : '';
     $excerptHoverColor = isset($attributes['excerptHoverColor']) ? sanitize_hex_color($attributes['excerptHoverColor']) : '';
     $excerptHoverBgColor = isset($attributes['excerptHoverBgColor']) ? sanitize_hex_color($attributes['excerptHoverBgColor']) : '';
-    $excerptHoverBorderColor = isset($attributes['excerptHoverBorderColor']) ? sanitize_hex_color($attributes['excerptHoverBorderColor']) : '';
 
     // Meta Data Attributes
     $metaAlignment = isset($attributes['metaAlignment']) ? sanitize_text_field($attributes['metaAlignment']) : '';
@@ -7943,6 +7912,7 @@ function fancy_post_slider_render_callback($attributes) {
     $buttonBackgroundColor = isset($attributes['buttonBackgroundColor']) ? sanitize_hex_color($attributes['buttonBackgroundColor']) : '';
     $buttonBorderType = isset($attributes['buttonBorderType']) ? sanitize_text_field($attributes['buttonBorderType']) : '';
     $buttonBorderRadius = isset($attributes['buttonBorderRadius']) ? array_map('sanitize_text_field', $attributes['buttonBorderRadius']) : ['top' => '', 'right' => '', 'bottom' => '', 'left' => ''];
+    // var_dump($buttonBorderRadius);
     $buttonHoverTextColor = isset($attributes['buttonHoverTextColor']) ? sanitize_hex_color($attributes['buttonHoverTextColor']) : '';
     $buttonHoverBackgroundColor = isset($attributes['buttonHoverBackgroundColor']) ? sanitize_hex_color($attributes['buttonHoverBackgroundColor']) : ''; 
     $buttonBorderColor = isset($attributes['buttonBorderColor']) ? sanitize_hex_color($attributes['buttonBorderColor']) : '';
@@ -8698,11 +8668,6 @@ function fancy_post_slider_render_callback($attributes) {
                     $hoverOut .= 'this.style.backgroundColor=\'' . esc_attr($excerptBgColor) . '\';';
                 }
 
-                if (!empty($excerptHoverBorderColor)) {
-                    $hoverIn .= 'this.style.borderColor=\'' . esc_attr($excerptHoverBorderColor) . '\';';
-                    $hoverOut .= 'this.style.borderColor=\'inherit\';';
-                }
-
                 $output .= '<div class="desc' . ' align-' . esc_attr($excerptAlignment) . '" style="' . esc_attr(trim($excerptStyles)) . '"';
 
                 if (!empty($hoverIn) || !empty($hoverOut)) {
@@ -9377,11 +9342,6 @@ function fancy_post_slider_render_callback($attributes) {
                     $hoverOut .= 'this.style.backgroundColor=\'' . esc_attr($excerptBgColor) . '\';';
                 }
 
-                if (!empty($excerptHoverBorderColor)) {
-                    $hoverIn .= 'this.style.borderColor=\'' . esc_attr($excerptHoverBorderColor) . '\';';
-                    $hoverOut .= 'this.style.borderColor=\'inherit\';';
-                }
-
                 $output .= '<div class="desc' . ' align-' . esc_attr($excerptAlignment) . '" style="' . esc_attr(trim($excerptStyles)) . '"';
 
                 if (!empty($hoverIn) || !empty($hoverOut)) {
@@ -9969,11 +9929,6 @@ function fancy_post_slider_render_callback($attributes) {
                     $hoverOut .= 'this.style.backgroundColor=\'' . esc_attr($excerptBgColor) . '\';';
                 }
 
-                if (!empty($excerptHoverBorderColor)) {
-                    $hoverIn .= 'this.style.borderColor=\'' . esc_attr($excerptHoverBorderColor) . '\';';
-                    $hoverOut .= 'this.style.borderColor=\'inherit\';';
-                }
-
                 // Final output: only <p> with all styling
                 $output .= '<p class="desc align-' . $excerptAlignment . ' " style="' . esc_attr(trim($excerptTextStyles)) . '"';
 
@@ -10055,12 +10010,14 @@ function fancy_post_slider_render_callback($attributes) {
                     }
 
                     // Border Radius
-                    if (!empty($buttonBorderRadius['top']) || !empty($buttonBorderRadius['right']) || !empty($buttonBorderRadius['bottom']) || !empty($buttonBorderRadius['left'])) {
+                                        if (
+                        isset($buttonBorderRadius['top'], $buttonBorderRadius['right'], $buttonBorderRadius['bottom'], $buttonBorderRadius['left'])
+                    ) {
                         $buttonInlineStyles .= 'border-radius: ' .
-                            (isset($buttonBorderRadius['top']) && $buttonBorderRadius['top'] !== '' ? (is_numeric($buttonBorderRadius['top']) ? $buttonBorderRadius['top'] . 'px' : esc_attr($buttonBorderRadius['top'])) : '0px') . ' ' .
-                            (isset($buttonBorderRadius['right']) && $buttonBorderRadius['right'] !== '' ? (is_numeric($buttonBorderRadius['right']) ? $buttonBorderRadius['right'] . 'px' : esc_attr($buttonBorderRadius['right'])) : '0px') . ' ' .
-                            (isset($buttonBorderRadius['bottom']) && $buttonBorderRadius['bottom'] !== '' ? (is_numeric($buttonBorderRadius['bottom']) ? $buttonBorderRadius['bottom'] . 'px' : esc_attr($buttonBorderRadius['bottom'])) : '0px') . ' ' .
-                            (isset($buttonBorderRadius['left']) && $buttonBorderRadius['left'] !== '' ? (is_numeric($buttonBorderRadius['left']) ? $buttonBorderRadius['left'] . 'px' : esc_attr($buttonBorderRadius['left'])) : '0px') . '; ';
+                            ($buttonBorderRadius['top'] !== '' ? (is_numeric($buttonBorderRadius['top']) ? $buttonBorderRadius['top'] . 'px' : esc_attr($buttonBorderRadius['top'])) : '0px') . ' ' .
+                            ($buttonBorderRadius['right'] !== '' ? (is_numeric($buttonBorderRadius['right']) ? $buttonBorderRadius['right'] . 'px' : esc_attr($buttonBorderRadius['right'])) : '0px') . ' ' .
+                            ($buttonBorderRadius['bottom'] !== '' ? (is_numeric($buttonBorderRadius['bottom']) ? $buttonBorderRadius['bottom'] . 'px' : esc_attr($buttonBorderRadius['bottom'])) : '0px') . ' ' .
+                            ($buttonBorderRadius['left'] !== '' ? (is_numeric($buttonBorderRadius['left']) ? $buttonBorderRadius['left'] . 'px' : esc_attr($buttonBorderRadius['left'])) : '0px') . '; ';
                     }
 
                     // Padding
@@ -10299,7 +10256,7 @@ function fancy_post_slider_render_callback($attributes) {
                 if (!empty($categories)) {
                     $category = $categories[0]; // Show the first category only
 
-                    $output .= '<div class="rs-category">';
+                    $output .= '<div class="rs-category align-' . $metaAlignment . '">';
                     // Anchor tag style
                     $style = '';
                     if (!empty($metaTextColor)) {
@@ -10311,6 +10268,23 @@ function fancy_post_slider_render_callback($attributes) {
                     if (!empty($metaFontSize)) {
                         $style .= 'font-size:' . esc_attr($metaFontSize) . 'px; ';
                     }
+                    // Margin
+                    if (!empty($metaMarginNew['top']) || !empty($metaMarginNew['right']) || !empty($metaMarginNew['bottom']) || !empty($metaMarginNew['left'])) {
+                        $style .= 'margin: ' .
+                            (isset($metaMarginNew['top']) && $metaMarginNew['top'] !== '' ? (is_numeric($metaMarginNew['top']) ? $metaMarginNew['top'] . 'px' : esc_attr($metaMarginNew['top'])) : '0px') . ' ' .
+                            (isset($metaMarginNew['right']) && $metaMarginNew['right'] !== '' ? (is_numeric($metaMarginNew['right']) ? $metaMarginNew['right'] . 'px' : esc_attr($metaMarginNew['right'])) : '0px') . ' ' .
+                            (isset($metaMarginNew['bottom']) && $metaMarginNew['bottom'] !== '' ? (is_numeric($metaMarginNew['bottom']) ? $metaMarginNew['bottom'] . 'px' : esc_attr($metaMarginNew['bottom'])) : '0px') . ' ' .
+                            (isset($metaMarginNew['left']) && $metaMarginNew['left'] !== '' ? (is_numeric($metaMarginNew['left']) ? $metaMarginNew['left'] . 'px' : esc_attr($metaMarginNew['left'])) : '0px') . '; ';
+                    }
+
+                    // Padding
+                    if (!empty($metaPadding['top']) || !empty($metaPadding['right']) || !empty($metaPadding['bottom']) || !empty($metaPadding['left'])) {
+                        $style .= 'padding: ' .
+                            (isset($metaPadding['top']) && $metaPadding['top'] !== '' ? (is_numeric($metaPadding['top']) ? $metaPadding['top'] . 'px' : esc_attr($metaPadding['top'])) : '0px') . ' ' .
+                            (isset($metaPadding['right']) && $metaPadding['right'] !== '' ? (is_numeric($metaPadding['right']) ? $metaPadding['right'] . 'px' : esc_attr($metaPadding['right'])) : '0px') . ' ' .
+                            (isset($metaPadding['bottom']) && $metaPadding['bottom'] !== '' ? (is_numeric($metaPadding['bottom']) ? $metaPadding['bottom'] . 'px' : esc_attr($metaPadding['bottom'])) : '0px') . ' ' .
+                            (isset($metaPadding['left']) && $metaPadding['left'] !== '' ? (is_numeric($metaPadding['left']) ? $metaPadding['left'] . 'px' : esc_attr($metaPadding['left'])) : '0px') . '; ';
+                    }  
 
                     $output .= '<a href="' . esc_url(get_category_link($category->term_id)) . '" style="' . esc_attr($style) . '">';
                     $output .= esc_html($category->name);
@@ -10464,11 +10438,6 @@ function fancy_post_slider_render_callback($attributes) {
                     $hoverOut .= 'this.style.backgroundColor=\'' . esc_attr($excerptBgColor) . '\';';
                 }
 
-                if (!empty($excerptHoverBorderColor)) {
-                    $hoverIn .= 'this.style.borderColor=\'' . esc_attr($excerptHoverBorderColor) . '\';';
-                    $hoverOut .= 'this.style.borderColor=\'inherit\';';
-                }
-
                 // Final output: only <p> with all styling
                 $output .= '<p class="desc align-' . $excerptAlignment . ' " style="' . esc_attr(trim($excerptTextStyles)) . '"';
 
@@ -10550,13 +10519,16 @@ function fancy_post_slider_render_callback($attributes) {
                     }
 
                     // Border Radius
-                    if (!empty($buttonBorderRadius['top']) || !empty($buttonBorderRadius['right']) || !empty($buttonBorderRadius['bottom']) || !empty($buttonBorderRadius['left'])) {
+                    if (
+                        isset($buttonBorderRadius['top'], $buttonBorderRadius['right'], $buttonBorderRadius['bottom'], $buttonBorderRadius['left'])
+                    ) {
                         $buttonInlineStyles .= 'border-radius: ' .
-                            (isset($buttonBorderRadius['top']) && $buttonBorderRadius['top'] !== '' ? (is_numeric($buttonBorderRadius['top']) ? $buttonBorderRadius['top'] . 'px' : esc_attr($buttonBorderRadius['top'])) : '0px') . ' ' .
-                            (isset($buttonBorderRadius['right']) && $buttonBorderRadius['right'] !== '' ? (is_numeric($buttonBorderRadius['right']) ? $buttonBorderRadius['right'] . 'px' : esc_attr($buttonBorderRadius['right'])) : '0px') . ' ' .
-                            (isset($buttonBorderRadius['bottom']) && $buttonBorderRadius['bottom'] !== '' ? (is_numeric($buttonBorderRadius['bottom']) ? $buttonBorderRadius['bottom'] . 'px' : esc_attr($buttonBorderRadius['bottom'])) : '0px') . ' ' .
-                            (isset($buttonBorderRadius['left']) && $buttonBorderRadius['left'] !== '' ? (is_numeric($buttonBorderRadius['left']) ? $buttonBorderRadius['left'] . 'px' : esc_attr($buttonBorderRadius['left'])) : '0px') . '; ';
+                            ($buttonBorderRadius['top'] !== '' ? (is_numeric($buttonBorderRadius['top']) ? $buttonBorderRadius['top'] . 'px' : esc_attr($buttonBorderRadius['top'])) : '0px') . ' ' .
+                            ($buttonBorderRadius['right'] !== '' ? (is_numeric($buttonBorderRadius['right']) ? $buttonBorderRadius['right'] . 'px' : esc_attr($buttonBorderRadius['right'])) : '0px') . ' ' .
+                            ($buttonBorderRadius['bottom'] !== '' ? (is_numeric($buttonBorderRadius['bottom']) ? $buttonBorderRadius['bottom'] . 'px' : esc_attr($buttonBorderRadius['bottom'])) : '0px') . ' ' .
+                            ($buttonBorderRadius['left'] !== '' ? (is_numeric($buttonBorderRadius['left']) ? $buttonBorderRadius['left'] . 'px' : esc_attr($buttonBorderRadius['left'])) : '0px') . '; ';
                     }
+
 
                     // Padding
                     if (!empty($buttonPaddingNew['top']) || !empty($buttonPaddingNew['right']) || !empty($buttonPaddingNew['bottom']) || !empty($buttonPaddingNew['left'])) {
@@ -12063,11 +12035,6 @@ function fancy_post_slider_render_callback($attributes) {
                         $hoverOut .= 'this.style.backgroundColor=\'' . esc_attr($excerptBgColor) . '\';';
                     }
 
-                    if (!empty($excerptHoverBorderColor)) {
-                        $hoverIn .= 'this.style.borderColor=\'' . esc_attr($excerptHoverBorderColor) . '\';';
-                        $hoverOut .= 'this.style.borderColor=\'inherit\';';
-                    }
-
                     $output .= '<div class="fpg-excerpt' . ' align-' . esc_attr($excerptAlignment) . '" style="' . esc_attr(trim($excerptStyles)) . '"';
 
                     if (!empty($hoverIn) || !empty($hoverOut)) {
@@ -12135,12 +12102,22 @@ function fancy_post_slider_render_callback($attributes) {
                     }
 
                     // Border Radius
-                    if (!empty($buttonBorderRadius['top']) || !empty($buttonBorderRadius['right']) || !empty($buttonBorderRadius['bottom']) || !empty($buttonBorderRadius['left'])) {
+                    // if (!empty($buttonBorderRadius['top']) || !empty($buttonBorderRadius['right']) || !empty($buttonBorderRadius['bottom']) || !empty($buttonBorderRadius['left'])) {
+                    //     $buttonInlineStyles .= 'border-radius: ' .
+                    //         (isset($buttonBorderRadius['top']) && $buttonBorderRadius['top'] !== '' ? (is_numeric($buttonBorderRadius['top']) ? $buttonBorderRadius['top'] . 'px' : esc_attr($buttonBorderRadius['top'])) : '0px') . ' ' .
+                    //         (isset($buttonBorderRadius['right']) && $buttonBorderRadius['right'] !== '' ? (is_numeric($buttonBorderRadius['right']) ? $buttonBorderRadius['right'] . 'px' : esc_attr($buttonBorderRadius['right'])) : '0px') . ' ' .
+                    //         (isset($buttonBorderRadius['bottom']) && $buttonBorderRadius['bottom'] !== '' ? (is_numeric($buttonBorderRadius['bottom']) ? $buttonBorderRadius['bottom'] . 'px' : esc_attr($buttonBorderRadius['bottom'])) : '0px') . ' ' .
+                    //         (isset($buttonBorderRadius['left']) && $buttonBorderRadius['left'] !== '' ? (is_numeric($buttonBorderRadius['left']) ? $buttonBorderRadius['left'] . 'px' : esc_attr($buttonBorderRadius['left'])) : '0px') . '; ';
+                    // }
+
+                    if (
+                        isset($buttonBorderRadius['top'], $buttonBorderRadius['right'], $buttonBorderRadius['bottom'], $buttonBorderRadius['left'])
+                    ) {
                         $buttonInlineStyles .= 'border-radius: ' .
-                            (isset($buttonBorderRadius['top']) && $buttonBorderRadius['top'] !== '' ? (is_numeric($buttonBorderRadius['top']) ? $buttonBorderRadius['top'] . 'px' : esc_attr($buttonBorderRadius['top'])) : '0px') . ' ' .
-                            (isset($buttonBorderRadius['right']) && $buttonBorderRadius['right'] !== '' ? (is_numeric($buttonBorderRadius['right']) ? $buttonBorderRadius['right'] . 'px' : esc_attr($buttonBorderRadius['right'])) : '0px') . ' ' .
-                            (isset($buttonBorderRadius['bottom']) && $buttonBorderRadius['bottom'] !== '' ? (is_numeric($buttonBorderRadius['bottom']) ? $buttonBorderRadius['bottom'] . 'px' : esc_attr($buttonBorderRadius['bottom'])) : '0px') . ' ' .
-                            (isset($buttonBorderRadius['left']) && $buttonBorderRadius['left'] !== '' ? (is_numeric($buttonBorderRadius['left']) ? $buttonBorderRadius['left'] . 'px' : esc_attr($buttonBorderRadius['left'])) : '0px') . '; ';
+                            ($buttonBorderRadius['top'] !== '' ? (is_numeric($buttonBorderRadius['top']) ? $buttonBorderRadius['top'] . 'px' : esc_attr($buttonBorderRadius['top'])) : '0px') . ' ' .
+                            ($buttonBorderRadius['right'] !== '' ? (is_numeric($buttonBorderRadius['right']) ? $buttonBorderRadius['right'] . 'px' : esc_attr($buttonBorderRadius['right'])) : '0px') . ' ' .
+                            ($buttonBorderRadius['bottom'] !== '' ? (is_numeric($buttonBorderRadius['bottom']) ? $buttonBorderRadius['bottom'] . 'px' : esc_attr($buttonBorderRadius['bottom'])) : '0px') . ' ' .
+                            ($buttonBorderRadius['left'] !== '' ? (is_numeric($buttonBorderRadius['left']) ? $buttonBorderRadius['left'] . 'px' : esc_attr($buttonBorderRadius['left'])) : '0px') . '; ';
                     }
 
                     // Padding
@@ -12446,7 +12423,6 @@ function fancy_post_list_render_callback($attributes) {
     $excerptBorderType = isset($attributes['excerptBorderType']) ? sanitize_text_field($attributes['excerptBorderType']) : '';
     $excerptHoverColor = isset($attributes['excerptHoverColor']) ? sanitize_hex_color($attributes['excerptHoverColor']) : '';
     $excerptHoverBgColor = isset($attributes['excerptHoverBgColor']) ? sanitize_hex_color($attributes['excerptHoverBgColor']) : '';
-    $excerptHoverBorderColor = isset($attributes['excerptHoverBorderColor']) ? sanitize_hex_color($attributes['excerptHoverBorderColor']) : '';
 
     // Meta Data Attributes
     $metaAlignment = isset($attributes['metaAlignment']) ? sanitize_text_field($attributes['metaAlignment']) : '';
@@ -13373,11 +13349,6 @@ function fancy_post_list_render_callback($attributes) {
                                 if (!empty($excerptHoverBgColor)) {
                                     $hoverIn .= 'this.style.backgroundColor=\'' . esc_attr($excerptHoverBgColor) . '\';';
                                     $hoverOut .= 'this.style.backgroundColor=\'' . esc_attr($excerptBgColor) . '\';';
-                                }
-
-                                if (!empty($excerptHoverBorderColor)) {
-                                    $hoverIn .= 'this.style.borderColor=\'' . esc_attr($excerptHoverBorderColor) . '\';';
-                                    $hoverOut .= 'this.style.borderColor=\'inherit\';';
                                 }
 
                                 $output .= '<div class="fpg-excerpt' . ' align-' . esc_attr($excerptAlignment) . '" style="' . esc_attr(trim($excerptStyles)) . '"';
@@ -14569,11 +14540,6 @@ function fancy_post_list_render_callback($attributes) {
                                 if (!empty($excerptHoverBgColor)) {
                                     $hoverIn .= 'this.style.backgroundColor=\'' . esc_attr($excerptHoverBgColor) . '\';';
                                     $hoverOut .= 'this.style.backgroundColor=\'' . esc_attr($excerptBgColor) . '\';';
-                                }
-
-                                if (!empty($excerptHoverBorderColor)) {
-                                    $hoverIn .= 'this.style.borderColor=\'' . esc_attr($excerptHoverBorderColor) . '\';';
-                                    $hoverOut .= 'this.style.borderColor=\'inherit\';';
                                 }
 
                                 $output .= '<div class="desc' . ' align-' . esc_attr($excerptAlignment) . '" style="' . esc_attr(trim($excerptStyles)) . '"';
@@ -16021,11 +15987,6 @@ function fancy_post_list_render_callback($attributes) {
                                     $hoverOut .= 'this.style.backgroundColor=\'' . esc_attr($excerptBgColor) . '\';';
                                 }
 
-                                if (!empty($excerptHoverBorderColor)) {
-                                    $hoverIn .= 'this.style.borderColor=\'' . esc_attr($excerptHoverBorderColor) . '\';';
-                                    $hoverOut .= 'this.style.borderColor=\'inherit\';';
-                                }
-
                                 $output .= '<div class="fpg-excerpt' . ' align-' . esc_attr($excerptAlignment) . '" style="' . esc_attr(trim($excerptStyles)) . '"';
 
                                 if (!empty($hoverIn) || !empty($hoverOut)) {
@@ -17023,11 +16984,6 @@ function fancy_post_list_render_callback($attributes) {
                             if (!empty($excerptHoverBgColor)) {
                                 $hoverIn .= 'this.style.backgroundColor=\'' . esc_attr($excerptHoverBgColor) . '\';';
                                 $hoverOut .= 'this.style.backgroundColor=\'' . esc_attr($excerptBgColor) . '\';';
-                            }
-
-                            if (!empty($excerptHoverBorderColor)) {
-                                $hoverIn .= 'this.style.borderColor=\'' . esc_attr($excerptHoverBorderColor) . '\';';
-                                $hoverOut .= 'this.style.borderColor=\'inherit\';';
                             }
 
                             $output .= '<div class="fpg-excerpt' . ' align-' . esc_attr($excerptAlignment) . '" style="' . esc_attr(trim($excerptStyles)) . '"';
@@ -19114,7 +19070,6 @@ function fancy_post_isotope_render_callback($attributes) {
     $excerptBorderType = isset($attributes['excerptBorderType']) ? sanitize_text_field($attributes['excerptBorderType']) : '';
     $excerptHoverColor = isset($attributes['excerptHoverColor']) ? sanitize_hex_color($attributes['excerptHoverColor']) : '';
     $excerptHoverBgColor = isset($attributes['excerptHoverBgColor']) ? sanitize_hex_color($attributes['excerptHoverBgColor']) : '';
-    $excerptHoverBorderColor = isset($attributes['excerptHoverBorderColor']) ? sanitize_hex_color($attributes['excerptHoverBorderColor']) : '';
 
     // Meta Data Attributes
     $metaAlignment = isset($attributes['metaAlignment']) ? sanitize_text_field($attributes['metaAlignment']) : '';
@@ -20690,11 +20645,6 @@ function fancy_post_isotope_render_callback($attributes) {
                         $hoverOut .= 'this.style.backgroundColor=\'' . esc_attr($excerptBgColor) . '\';';
                     }
 
-                    if (!empty($excerptHoverBorderColor)) {
-                        $hoverIn .= 'this.style.borderColor=\'' . esc_attr($excerptHoverBorderColor) . '\';';
-                        $hoverOut .= 'this.style.borderColor=\'inherit\';';
-                    }
-
                     $output .= '<div class="fpg-excerpt' . ' align-' . esc_attr($excerptAlignment) . '" style="' . esc_attr(trim($excerptStyles)) . '"';
 
                     if (!empty($hoverIn) || !empty($hoverOut)) {
@@ -21384,11 +21334,6 @@ function fancy_post_isotope_render_callback($attributes) {
                     if (!empty($excerptHoverBgColor)) {
                         $hoverIn .= 'this.style.backgroundColor=\'' . esc_attr($excerptHoverBgColor) . '\';';
                         $hoverOut .= 'this.style.backgroundColor=\'' . esc_attr($excerptBgColor) . '\';';
-                    }
-
-                    if (!empty($excerptHoverBorderColor)) {
-                        $hoverIn .= 'this.style.borderColor=\'' . esc_attr($excerptHoverBorderColor) . '\';';
-                        $hoverOut .= 'this.style.borderColor=\'inherit\';';
                     }
 
                     $output .= '<div class="fpg-excerpt' . ' align-' . esc_attr($excerptAlignment) . '" style="' . esc_attr(trim($excerptStyles)) . '"';
@@ -22086,11 +22031,6 @@ function fancy_post_isotope_render_callback($attributes) {
                         $hoverOut .= 'this.style.backgroundColor=\'' . esc_attr($excerptBgColor) . '\';';
                     }
 
-                    if (!empty($excerptHoverBorderColor)) {
-                        $hoverIn .= 'this.style.borderColor=\'' . esc_attr($excerptHoverBorderColor) . '\';';
-                        $hoverOut .= 'this.style.borderColor=\'inherit\';';
-                    }
-
                     $output .= '<div class="fpg-excerpt' . ' align-' . esc_attr($excerptAlignment) . '" style="' . esc_attr(trim($excerptStyles)) . '"';
 
                     if (!empty($hoverIn) || !empty($hoverOut)) {
@@ -22782,11 +22722,6 @@ function fancy_post_isotope_render_callback($attributes) {
                         $hoverOut .= 'this.style.backgroundColor=\'' . esc_attr($excerptBgColor) . '\';';
                     }
 
-                    if (!empty($excerptHoverBorderColor)) {
-                        $hoverIn .= 'this.style.borderColor=\'' . esc_attr($excerptHoverBorderColor) . '\';';
-                        $hoverOut .= 'this.style.borderColor=\'inherit\';';
-                    }
-
                     $output .= '<div class="fpg-excerpt' . ' align-' . esc_attr($excerptAlignment) . '" style="' . esc_attr(trim($excerptStyles)) . '"';
 
                     $output .= '>';
@@ -23295,11 +23230,6 @@ function fancy_post_isotope_render_callback($attributes) {
                     if (!empty($excerptHoverBgColor)) {
                         $hoverIn .= 'this.style.backgroundColor=\'' . esc_attr($excerptHoverBgColor) . '\';';
                         $hoverOut .= 'this.style.backgroundColor=\'' . esc_attr($excerptBgColor) . '\';';
-                    }
-
-                    if (!empty($excerptHoverBorderColor)) {
-                        $hoverIn .= 'this.style.borderColor=\'' . esc_attr($excerptHoverBorderColor) . '\';';
-                        $hoverOut .= 'this.style.borderColor=\'inherit\';';
                     }
 
                     $output .= '<div class="pre-content' . ' align-' . esc_attr($excerptAlignment) . '" style="' . esc_attr(trim($excerptStyles)) . '"';
@@ -24270,11 +24200,6 @@ function fancy_post_isotope_render_callback($attributes) {
                     if (!empty($excerptHoverBgColor)) {
                         $hoverIn .= 'this.style.backgroundColor=\'' . esc_attr($excerptHoverBgColor) . '\';';
                         $hoverOut .= 'this.style.backgroundColor=\'' . esc_attr($excerptBgColor) . '\';';
-                    }
-
-                    if (!empty($excerptHoverBorderColor)) {
-                        $hoverIn .= 'this.style.borderColor=\'' . esc_attr($excerptHoverBorderColor) . '\';';
-                        $hoverOut .= 'this.style.borderColor=\'inherit\';';
                     }
 
                     $output .= '<p class="fpg-excerpt' . ' align-' . esc_attr($excerptAlignment) . '" style="' . esc_attr(trim($excerptStyles)) . '"';

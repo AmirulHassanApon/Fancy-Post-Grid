@@ -131,7 +131,7 @@
             excerptBgColor: { type: 'string', default: '' },
             excerptHoverColor: { type: 'string', default: '' },
             excerptHoverBgColor: { type: 'string', default: '' },
-            excerptHoverBorderColor: { type: 'string', default: '' },
+            
             //meta 
             metaFontSize: { type: 'number' },
             metaAlignment: { type: 'string' },
@@ -211,7 +211,6 @@
                 
                 excerptFontSize,excerptLineHeight,excerptLetterSpacing,excerptFontWeight,excerptAlignment,excerptMargin,
                 excerptPadding,excerptColor,excerptBgColor,excerptHoverColor,excerptHoverBgColor,
-                excerptHoverBorderColor,
 
                 metaAlignment,metaFontSize,metaMarginNew,metaPadding,metaTextColor,metaBgColor,separatorColor,metaIconColor,
 
@@ -1724,11 +1723,10 @@
                                                             
                                                             //Meta                                                      
                                                         wp.element.createElement('div', {
-                                                            className: `rs-category post-meta `, 
+                                                            className: `rs-category post-meta  align-${metaAlignment}`, 
                                                             style: { 
-                                                                ...(attributes.metaMarginNew ? { margin: getSpacingValue(attributes.metaMarginNew) }: { margin: '0px 0px 0px 0px' }), 
-                                                                ...(attributes.metaPadding ? { padding: getSpacingValue(attributes.metaPadding) }: { padding: '0px 0px 0px 0px' }),
-                                                                ...(metaTextColor ? { color: metaTextColor } : {}),
+                                                                
+                                                                
                                                                 ...(typeof metaOrder !== 'undefined' ? { order: metaOrder } : {}),
                                                                 ...(metaFontSize ? { fontSize: `${metaFontSize}px` } : {})
                                                             }
@@ -1740,6 +1738,8 @@
                                                                     href: firstCategory.link,
                                                                     style: {
                                                                         ...(metaTextColor ? { color: metaTextColor } : {}),
+                                                                        ...(attributes.metaMarginNew ? { margin: getSpacingValue(attributes.metaMarginNew) }: { margin: '0px 0px 0px 0px' }), 
+                                                                        ...(attributes.metaPadding ? { padding: getSpacingValue(attributes.metaPadding) }: { padding: '0px 0px 0px 0px' }),
                                                                         ...(metaFontSize ? { fontSize: `${metaFontSize}px` } : {}),
                                                                         ...(metaBgColor ? { backgroundColor: metaBgColor } : {}),
                                                                         textDecoration: 'none'
@@ -3719,16 +3719,7 @@
                                                             onClick: () => setAttributes({ excerptHoverBgColor: '' }),
                                                             style: { marginTop: '10px' },
                                                         }, __('Clear Color', 'fancy-post-grid')),
-                                                        wp.element.createElement('p', {}, __('Hover Border Color', 'fancy-post-grid')),
-                                                        wp.element.createElement(wp.components.ColorPicker, {
-                                                            color: attributes.excerptHoverBorderColor,
-                                                            onChangeComplete: (value) => setAttributes({ excerptHoverBorderColor: value.hex }),
-                                                        }),
-                                                        wp.element.createElement(Button, {
-                                                            isSecondary: true,
-                                                            onClick: () => setAttributes({ excerptHoverBorderColor: '' }),
-                                                            style: { marginTop: '10px' },
-                                                        }, __('Clear Color', 'fancy-post-grid')),
+                                                        
                                                     );
                                             }
                                         }
