@@ -23,6 +23,7 @@
             // Pagination settings
             enablePagination: { type: 'boolean', default: true },
             enableArrow: { type: 'boolean', default: true },
+            enableDynamicBullets: { type: 'boolean', default: true },
             enableKeyboard: { type: 'boolean', default: true },
             enableLoop: { type: 'boolean', default: true },
             enableFreeMode: { type: 'boolean', default: true },
@@ -183,7 +184,7 @@
         edit: function ({ attributes, setAttributes }) {
             const { 
                 gridColumns,sliderLayoutStyle
-                ,selectedCategory, selectedTag,orderBy, postLimit,enablePagination,enableArrow,enableKeyboard,enableLoop,enableFreeMode,paginationClickable,autoPlaySpeed,paginationType,
+                ,selectedCategory, selectedTag,orderBy, postLimit,enablePagination,enableArrow,enableDynamicBullets,enableKeyboard,enableLoop,enableFreeMode,paginationClickable,autoPlaySpeed,paginationType,
                 postLinkTarget,thumbnailLink,postLinkType,
 
                 showPostTitle,showThumbnail,showPostExcerpt,showReadMoreButton,showMetaData,showPostDate
@@ -363,6 +364,7 @@
                 spaceBetween: attributes.itemGap,
                 slidesPerView: parseInt(attributes.gridColumns),
                 freeMode: attributes.enableFreeMode,
+                dynamicBullets: attributes.enableDynamicBullets,
                 loop: attributes.enableLoop,
                 autoplay: {
                     delay: parseInt(attributes.autoPlaySpeed),
@@ -2904,6 +2906,12 @@
                                         label: __('Enable Arrow Control', 'fancy-post-grid'),
                                         checked: enableArrow,
                                         onChange: (value) => setAttributes({ enableArrow: value })
+                                    }),
+                                    // Enable Arrow Control
+                                    wp.element.createElement(ToggleControl, {
+                                        label: __('Enable Dynamic Bullets', 'fancy-post-grid'),
+                                        checked: enableDynamicBullets,
+                                        onChange: (value) => setAttributes({ enableDynamicBullets: value })
                                     }),
 
                                     // Enable Keyboard Control
