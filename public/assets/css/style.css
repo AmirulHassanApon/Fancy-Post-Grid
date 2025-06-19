@@ -5432,8 +5432,6 @@ img {
 
     /* blog layout 23 css */
     .rs-blog-layout-23{
-        padding-top: 90px;
-        padding-bottom: 120px;
     }
     .rs-blog-layout-23-item{
         overflow: hidden;
@@ -5487,7 +5485,7 @@ img {
         text-decoration: none;
     }
     .rs-blog-layout-23-item .rs-blog-layout-23-overlay .title a:hover{
-        color: #488edd;
+        color: #E35E47;
     }
     .rs-blog-layout-23-item .rs-blog-layout-23-overlay a{
         text-decoration: none;
@@ -5579,7 +5577,7 @@ img {
 
 
     .rs-blog-layout-23-item .rs-blog-layout-23-overlay .rs-btn:hover{
-        color: #488edd;
+        color: #E35E47;
     }
     .rs-blog-layout-23-item:hover .rs-blog-layout-23-overlay {
         opacity: 1;

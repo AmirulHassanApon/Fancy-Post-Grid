@@ -5410,8 +5410,6 @@ img {
 
     /* blog layout 23 css */
     .rs-blog-layout-23{
-        padding-top: 90px;
-        padding-bottom: 120px;
     }
     .rs-blog-layout-23-item{
         overflow: hidden;
@@ -5465,7 +5463,7 @@ img {
         text-decoration: none;
     }
     .rs-blog-layout-23-item .rs-blog-layout-23-overlay .title a:hover{
-        color: #488edd;
+        color: #E35E47;
     }
     .rs-blog-layout-23-item .rs-blog-layout-23-overlay a{
         text-decoration: none;
@@ -5522,7 +5520,7 @@ img {
         
     }
     .rs-blog-layout-23-item .rs-blog-layout-23-overlay .rs-btn.fpg-border:hover{
-        color: #488edd;
+        color: #E35E47;
         background: transparent !important;
     }
     
@@ -5533,7 +5531,7 @@ img {
         bottom: 0;
         height: 2px;
         width: 0%;
-        background: #488edd;
+        background: #E35E47;
         transition: all ease 0.3s;
     }
     
@@ -5557,7 +5555,7 @@ img {
 
 
     .rs-blog-layout-23-item .rs-blog-layout-23-overlay .rs-btn:hover{
-        color: #488edd;
+        color: #E35E47;
     }
     .rs-blog-layout-23-item:hover .rs-blog-layout-23-overlay {
         opacity: 1;
@@ -5579,7 +5577,7 @@ img {
         right: -50px;
         height: 40px;
         width: 40px;
-        background: #488edd;
+        background: #E35E47;
         border-radius: 50%;
         transition: all linear 0.3s;
     }
@@ -5592,7 +5590,7 @@ img {
         left: -50px;
         height: 40px;
         width: 40px;
-        background: #488edd;
+        background: #E35E47;
         border-radius: 50%;
         transition: all linear 0.3s;
     }
