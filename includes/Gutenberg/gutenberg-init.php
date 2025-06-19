@@ -10456,16 +10456,28 @@ function fancy_post_slider_render_callback($attributes) {
             $output .= '<div class="rs-blog-footer" style="order: ' . esc_attr($buttonOrder) . ';">';
                 
                 if ($showPostAuthor) {
+                    $meta = '';
+
+                    if (!empty($metaTextColor)) {
+                        $meta .= 'color:' . esc_attr($metaTextColor) . '; ';
+                    }
+
+                    if (!empty($metaFontSize)) {
+                        $meta .= 'font-size:' . esc_attr($metaFontSize) . 'px; ';
+                    }
+
                     $output .= '<div class="user">';
                     $output .= '<a href="' . esc_url(get_author_posts_url(get_the_author_meta('ID'))) . '">';
                     $output .= '<div class="author-thumb">';
                     $output .= get_avatar(get_the_author_meta('ID'), 32);
                     $output .= '</div>';
-                    $output .= '<span>' . esc_html__('by', 'fancy-post-grid') . ' ' . get_the_author() . '</span>';
+                    $output .= '<span style="' . esc_attr(trim($meta)) . '">';
+                    $output .= esc_html__('by', 'fancy-post-grid') . ' ' . get_the_author();
+                    $output .= '</span>';
                     $output .= '</a>';
                     $output .= '</div>';
                 }
-                
+
                 if ($showReadMoreButton) {
                     // Button wrapper styles
                     $buttonWrapperStyle = '';
