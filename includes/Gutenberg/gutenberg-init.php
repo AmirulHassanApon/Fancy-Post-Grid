@@ -10791,7 +10791,7 @@ function fancy_post_slider_render_callback($attributes) {
             // Meta Data
             if ($showMetaData) {
                  
-                $output .= '<div class="rs-meta"';
+                $output .= '<div class="rs-meta post-meta align-' . $metaAlignment . '"';
 
                 $style = '';
                 if (!empty($metaBgColor)) {
@@ -10821,7 +10821,7 @@ function fancy_post_slider_render_callback($attributes) {
                 }
 
                 $output .= '>'; 
-                $output .= '<ul class="blog-meta align-' . $metaAlignment . ' " style="';  
+                $output .= '<ul class="blog-meta" style="';  
                     
                     // Color
                     if (!empty($metaTextColor)) {
