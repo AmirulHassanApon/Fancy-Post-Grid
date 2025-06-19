@@ -822,8 +822,6 @@ img {
 /* blog Slider layout 3 css */
 
 .rs-blog-layout-3 {
-    padding-top: 80px;
-    padding-bottom: 220px;
 }
 
 .rs-blog-layout-3 .swiper_wrap {
@@ -920,9 +918,11 @@ img {
     background: #513DE81A;
     width: 15px;
     height: 15px;
-    line-height: 12.5px;
     border-radius: 50%;
     text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 
@@ -1018,7 +1018,6 @@ img {
     margin-top: 11px;
     margin-bottom: 32px;
     padding: 0 20px;
-    text-align: center;
     color:#454545;
 }
 
@@ -1044,12 +1043,11 @@ img {
 .rs-blog-layout-3 .rs-blog__single .content .rs-blog-author .user a .author-thumb {
     height: 40px;
     width: 40px;
-    border-radius: 50%;
-    overflow: hidden;
     margin-right: 8px;
 }
 .rs-blog-layout-3 .rs-blog__single .content .rs-blog-author .user a .author-thumb img{
     width: 100%;
+    border-radius: 50%;
 }
 
 .rs-blog-layout-3 .rs-blog__single .content .rs-blog-author .user a span {
@@ -1291,13 +1289,10 @@ img {
 
 /* blog layout 4 css */
 .rs-blog-layout-4 {
-    padding-top: 80px;
-    padding-bottom: 200px;
-    background-color: #f3f3f3;
 }
 
 .rs-blog-layout-4 .rs-blog__item {
-    background: #ffffff;
+    background: #f3f3f3;
     border-radius: 10px;
     overflow: hidden;
     margin-top: 30px;
@@ -1317,6 +1312,9 @@ img {
 .rs-blog-layout-4 .rs-blog__item .rs-thumb{
     overflow: hidden;
     position: relative;
+}
+.rs-blog-layout-4 .rs-blog__item .rs-thumb a{
+    display: block;
 }
 .rs-blog-layout-4 .rs-blog__item .rs-thumb a img{
     transition: all linear 0.3s;
@@ -1345,6 +1343,8 @@ img {
 .rs-blog-layout-4 .rs-blog__item .rs-content {
     position: relative;
     padding: 22px 30px 20px;
+    display: flex;
+    flex-direction: column;
 }
 
 @media only screen and (max-width: 767px) {
@@ -1398,8 +1398,8 @@ img {
     line-height: 36px;
     transition: all linear 0.3s;
     text-decoration: none;
-    margin-top: 15px;
-    margin-bottom: 15px;
+    margin-top: 0px;
+    margin-bottom: 0px;
     display: block;
 }
 
