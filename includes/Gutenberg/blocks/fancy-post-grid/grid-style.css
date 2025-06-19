@@ -1313,6 +1313,9 @@ img {
     overflow: hidden;
     position: relative;
 }
+.rs-blog-layout-4 .rs-blog__item .rs-thumb a{
+    display: block;
+}
 .rs-blog-layout-4 .rs-blog__item .rs-thumb a img{
     transition: all linear 0.3s;
 }
@@ -1340,6 +1343,8 @@ img {
 .rs-blog-layout-4 .rs-blog__item .rs-content {
     position: relative;
     padding: 22px 30px 20px;
+    display: flex;
+    flex-direction: column;
 }
 
 @media only screen and (max-width: 767px) {
@@ -1393,8 +1398,8 @@ img {
     line-height: 36px;
     transition: all linear 0.3s;
     text-decoration: none;
-    margin-top: 15px;
-    margin-bottom: 15px;
+    margin-top: 0px;
+    margin-bottom: 0px;
     display: block;
 }
 
