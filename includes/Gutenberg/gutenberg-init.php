@@ -10860,7 +10860,7 @@ function fancy_post_slider_render_callback($attributes) {
                 
                 // Author
                 if ($showPostAuthor) {
-                    $meta = '<li class="meta-author" style="';
+                    $meta = '<li style="';
 
                     if (!empty($metaTextColor)) {
                         $meta .= 'color:' . esc_attr($metaTextColor) . '; ';
@@ -10891,7 +10891,7 @@ function fancy_post_slider_render_callback($attributes) {
                 }
                 // Category
                 if ($showPostCategory) {
-                    $meta = '<li class="meta-categories" style="';
+                    $meta = '<li style="';
 
                     if (!empty($metaTextColor)) {
                         $meta .= 'color:' . esc_attr($metaTextColor) . '; ';

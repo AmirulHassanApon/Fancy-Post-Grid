@@ -2041,7 +2041,7 @@
                                                                       // Post Author
                                                                       showPostAuthor && wp.element.createElement(
                                                                           'li', 
-                                                                          { className: 'meta-author',style: { 
+                                                                          { style: { 
                                                                               ...(metaTextColor ? { color: metaTextColor } : {}),
                                                                               ...(metaFontSize ? { fontSize: `${metaFontSize}px` } : {})
                                                                           } },
@@ -2054,7 +2054,7 @@
                                                                       ),
 
                                                                       // Post Category
-                                                                      showPostCategory && wp.element.createElement('li', { className: 'meta-category',style: { 
+                                                                      showPostCategory && wp.element.createElement('li', { style: { 
                                                                               ...(metaTextColor ? { color: metaTextColor } : {}),
                                                                               ...(metaFontSize ? { fontSize: `${metaFontSize}px` } : {})
                                                                           } },
@@ -2501,7 +2501,7 @@
                                                                             
                                                                             ...(attributes.metaMarginNew ? { margin: getSpacingValue(attributes.metaMarginNew) }: { margin: '0px 0px 0px 0px' }), 
                                                                             ...(attributes.metaPadding ? { padding: getSpacingValue(attributes.metaPadding) }: { padding: '9px 30px 9px 30px' }),
-                                                                            
+                                                                            ...(metaBgColor ? { backgroundColor: metaBgColor } : {}),
                                                                             ...(metaTextColor ? { color: metaTextColor } : {}),
                                                                             ...(typeof metaOrder !== 'undefined' ? { order: metaOrder } : {}),
                                                                             ...(metaFontSize ? { fontSize: `${metaFontSize}px` } : {})
