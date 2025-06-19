@@ -9976,7 +9976,7 @@ function fancy_post_slider_render_callback($attributes) {
                 }
 
                 // Final output: only <p> with all styling
-                $output .= '<p style="' . esc_attr(trim($excerptTextStyles)) . '"';
+                $output .= '<p class="desc align-' . $excerptAlignment . ' " style="' . esc_attr(trim($excerptTextStyles)) . '"';
 
                 if (!empty($hoverIn) || !empty($hoverOut)) {
                     $output .= ' onmouseover="' . esc_attr($hoverIn) . '"';
