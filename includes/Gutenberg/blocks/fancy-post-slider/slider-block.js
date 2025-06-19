@@ -1738,8 +1738,8 @@
                                                                     href: firstCategory.link,
                                                                     style: {
                                                                         ...(metaTextColor ? { color: metaTextColor } : {}),
-                                                                        ...(attributes.metaMarginNew ? { margin: getSpacingValue(attributes.metaMarginNew) }: { margin: '0px 0px 0px 0px' }), 
-                                                                        ...(attributes.metaPadding ? { padding: getSpacingValue(attributes.metaPadding) }: { padding: '0px 0px 0px 0px' }),
+                                                                        ...(attributes.metaMarginNew ? { margin: getSpacingValue(attributes.metaMarginNew) }: { margin: '' }), 
+                                                                        ...(attributes.metaPadding ? { padding: getSpacingValue(attributes.metaPadding) }: { padding: '' }),
                                                                         ...(metaFontSize ? { fontSize: `${metaFontSize}px` } : {}),
                                                                         ...(metaBgColor ? { backgroundColor: metaBgColor } : {}),
                                                                         textDecoration: 'none'
@@ -1835,10 +1835,7 @@
                                                                           'div',
                                                                           {
                                                                             className: 'author-thumb',
-                                                                            style: {
-                                                                              ...(metaTextColor ? { color: metaTextColor } : {}),
-                                                                              ...(metaFontSize ? { fontSize: `${metaFontSize}px` } : {}),
-                                                                            },
+                                                                            
                                                                           },
                                                                           showMetaIcon &&
                                                                             showPostAuthorIcon &&
@@ -1853,7 +1850,13 @@
                                                                             })
                                                                         ),
                                                                         wp.element.createElement(
-                                                                          'span',
+                                                                          'span',{
+                                                                            
+                                                                            style: {
+                                                                              ...(metaTextColor ? { color: metaTextColor } : {}),
+                                                                              ...(metaFontSize ? { fontSize: `${metaFontSize}px` } : {}),
+                                                                            },
+                                                                          },
                                                                           null,
                                                                           ` ${metaAuthorPrefix ? metaAuthorPrefix + ' ' : 'by '}${post._embedded?.author?.[0]?.name || ''}`
                                                                         )
