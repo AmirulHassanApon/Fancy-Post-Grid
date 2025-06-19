@@ -1218,6 +1218,15 @@
             else if (sliderLayoutStyle === 'style3' && posts && posts.length) {
                 
                 content = wp.element.createElement(
+                          wp.element.Fragment,
+                          null,
+                          wp.element.createElement('style', null, `
+                              
+                              .rs-blog-layout-3 .rs-blog__single .content .rs-blog-category a .icon svg path {
+                                  fill: ${attributes.metaTextColor || '#513de8'};
+                              },
+                          `),
+                          wp.element.createElement(
                     'div',
                     { className: 'rs-blog-layout-3 fancy-post-grid'  },
                     wp.element.createElement(
@@ -1599,7 +1608,7 @@
                                 )
                             )
                         )
-                    )
+                    )),
                 );
             }
             else if (sliderLayoutStyle === 'style4' && posts && posts.length) {
