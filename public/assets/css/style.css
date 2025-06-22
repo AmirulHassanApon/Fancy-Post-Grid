@@ -6509,6 +6509,7 @@ img {
         width: 100%;
         padding: 9px 30px 9px 0;
         clip-path: polygon(11% 0, 100% 1%, 100% 100%, 0% 100%);
+        box-sizing: border-box;
     }
 
     .rs-blog-layout-28-item .rs-thumb img{
@@ -6567,7 +6568,7 @@ img {
         right: -50px;
         height: 40px;
         width: 40px;
-        background: #BB0B0B;
+        background: #007aff;
         border-radius: 50%;
         transition: all linear 0.3s;
     }
@@ -6580,7 +6581,7 @@ img {
         left: -50px;
         height: 40px;
         width: 40px;
-        background: #BB0B0B;
+        background: #007aff;
         border-radius: 50%;
         transition: all linear 0.3s;
     }
@@ -6600,11 +6601,11 @@ img {
         height: 8px;
         width: 8px;
         opacity: 1;
-        background: #BB0B0Bad;
+        background: #007affad;
         transition: all ease 0.3s;
     }
     .rs-blog-layout-28 .swiper_wrap .swiper-pagination-bullet.swiper-pagination-bullet-active{
-        background: #BB0B0B;
+        background: #007aff;
         width: 20px;
         border-radius: 10px;
     }
