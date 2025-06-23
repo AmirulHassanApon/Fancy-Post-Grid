@@ -12361,7 +12361,7 @@ function fancy_post_list_render_callback($attributes) {
     $postLimit = isset($attributes['postLimit']) ? absint($attributes['postLimit']) : 3;
       
     // Links
-    $postLinkTarget = isset($attributes['postLinkTarget']) ? sanitize_text_field($attributes['postLinkTarget']) : 'newWindow';
+    $postLinkTarget = isset($attributes['postLinkTarget']) ? sanitize_text_field($attributes['postLinkTarget']) : '';
     $thumbnailLink = isset($attributes['thumbnailLink']) ? filter_var($attributes['thumbnailLink'], FILTER_VALIDATE_BOOLEAN) : true;
     $postLinkType = isset($attributes['postLinkType']) ? sanitize_text_field($attributes['postLinkType']) : 'yeslink';
 
@@ -13543,7 +13543,7 @@ function fancy_post_list_render_callback($attributes) {
                                 }
 
                                 // Button anchor tag
-                                $output .= '<a class="rs-link read-more ' . esc_attr($buttonStyle1) . '" href="' . esc_url(get_permalink()) . '" style="' . esc_attr(trim($buttonInlineStyles)) . '"';
+                                $output .= '<a class="rs-link read-more ' . esc_attr($buttonStyle1) . '" href="' . esc_url(get_permalink()) . '" ' . $targetAttr . ' style="' . esc_attr(trim($buttonInlineStyles)) . '"';
 
                                 if (!empty($buttonHoverInlineStyles)) {
                                     $output .= ' onmouseover="' . $buttonHoverInlineStyles . '"';
@@ -14105,7 +14105,7 @@ function fancy_post_list_render_callback($attributes) {
                                 }
 
                                 // Button anchor tag
-                                $output .= '<a class="rs-link read-more ' . esc_attr($buttonStyle1) . '" href="' . esc_url(get_permalink()) . '" style="' . esc_attr(trim($buttonInlineStyles)) . '"';
+                                $output .= '<a class="rs-link read-more ' . esc_attr($buttonStyle1) . '" href="' . esc_url(get_permalink()) . '" ' . $targetAttr . ' style="' . esc_attr(trim($buttonInlineStyles)) . '"';
 
                                 if (!empty($buttonHoverInlineStyles)) {
                                     $output .= ' onmouseover="' . $buttonHoverInlineStyles . '"';
@@ -14589,7 +14589,7 @@ function fancy_post_list_render_callback($attributes) {
                                     }
                                 }
                                 // Final output
-                                $output .= '<a href="' . esc_url($permalink) . '" 
+                                $output .= '<a href="' . esc_url($permalink) . '" ' . $targetAttr . '
                                     style="' . esc_attr(trim($style)) . '"'
                                     . (!empty($hoverStyle) ? ' onmouseover="' . $hoverStyle . '"' : '')
                                     . (!empty($mouseoutStyle) ? ' onmouseout="' . $mouseoutStyle . '"' : '') . '>'
@@ -14767,7 +14767,7 @@ function fancy_post_list_render_callback($attributes) {
                                 }
 
                                 // Button anchor tag
-                                $output .= '<a class="rs-link read-more ' . esc_attr($buttonStyle2) . '" href="' . esc_url(get_permalink()) . '" style="' . esc_attr(trim($buttonInlineStyles)) . '"';
+                                $output .= '<a class="rs-link read-more ' . esc_attr($buttonStyle2) . '" href="' . esc_url(get_permalink()) . '" ' . $targetAttr . ' style="' . esc_attr(trim($buttonInlineStyles)) . '"';
 
                                 if (!empty($buttonHoverInlineStyles)) {
                                     $output .= ' onmouseover="' . $buttonHoverInlineStyles . '"';
@@ -14907,9 +14907,8 @@ function fancy_post_list_render_callback($attributes) {
                                 $output .= '">';
 
                                 // Anchor with optional border-radius and overflow
-                                $output .= '<a href="' . esc_url($permalink) . '" style="';
-
-                                $output .= '">';
+                                $output .= '<a href="' . esc_url($permalink) . '"' . $targetAttr . '>';
+                                
                                 $output .= $rightThumbnailSize . '</a>';
                                 
                                 $output .= '</div>';
@@ -15161,7 +15160,7 @@ function fancy_post_list_render_callback($attributes) {
                                     }
                                 }
                                 // Final output
-                                $output .= '<a href="' . esc_url($permalink) . '" 
+                                $output .= '<a href="' . esc_url($permalink) . '" ' . $targetAttr . ' 
                                     style="' . esc_attr(trim($style)) . '"'
                                     . (!empty($hoverStyle) ? ' onmouseover="' . $hoverStyle . '"' : '')
                                     . (!empty($mouseoutStyle) ? ' onmouseout="' . $mouseoutStyle . '"' : '') . '>'
@@ -15273,8 +15272,7 @@ function fancy_post_list_render_callback($attributes) {
                                 $output .= '">';
 
                                 // Anchor with optional border-radius and overflow
-                                $output .= '<a href="' . esc_url($permalink) . '" style="';
-                                $output .= '">';
+                                $output .= '<a href="' . esc_url($permalink) . '"' . $targetAttr . '>';
                                 $output .= $leftThumbnailSize . '</a>';
                                 
                                 $output .= '</div>';
@@ -15594,7 +15592,7 @@ function fancy_post_list_render_callback($attributes) {
                                     $hoverStyle = 'this.style.color=\'' . esc_attr($postTitleHoverColor) . '\';';
                                 }
                                 // Final output
-                                $output .= '<a href="' . esc_url($permalink) . '" 
+                                $output .= '<a href="' . esc_url($permalink) . '" ' . $targetAttr . '
                                     style="' . esc_attr(trim($style)) . '"'
                                     . (!empty($hoverStyle) ? ' onmouseover="' . $hoverStyle . '"' : '')
                                     . (!empty($mouseoutStyle) ? ' onmouseout="' . $mouseoutStyle . '"' : '') . '>'
@@ -15688,7 +15686,7 @@ function fancy_post_list_render_callback($attributes) {
                                 }
 
                                 // Button anchor tag
-                                $output .= '<a class="rs-btn read-more ' . esc_attr($buttonStyle3) . '" href="' . esc_url(get_permalink()) . '" style="' . esc_attr(trim($buttonInlineStyles)) . '"';
+                                $output .= '<a class="rs-btn read-more ' . esc_attr($buttonStyle3) . '" href="' . esc_url(get_permalink()) . '" ' . $targetAttr . ' style="' . esc_attr(trim($buttonInlineStyles)) . '"';
 
                                 if (!empty($buttonHoverInlineStyles)) {
                                     $output .= ' onmouseover="' . $buttonHoverInlineStyles . '"';
@@ -15822,8 +15820,7 @@ function fancy_post_list_render_callback($attributes) {
                                 $output .= '">';
 
                                 // Anchor with optional border-radius and overflow
-                                $output .= '<a href="' . esc_url($permalink) . '" style="';
-                                $output .= '">';
+                                $output .= '<a href="' . esc_url($permalink) . '"' . $targetAttr . '>';
                                 $output .= $rightThumbnailSize . '</a>';
                                 
                                 $output .= '</div>';
@@ -16046,7 +16043,7 @@ function fancy_post_list_render_callback($attributes) {
                                     $hoverStyle = 'this.style.color=\'' . esc_attr($postTitleHoverColor) . '\';';
                                 }
                                 // Final output
-                                $output .= '<a href="' . esc_url($permalink) . '" 
+                                $output .= '<a href="' . esc_url($permalink) . '" ' . $targetAttr . '
                                     style="' . esc_attr(trim($style)) . '"'
                                     . (!empty($hoverStyle) ? ' onmouseover="' . $hoverStyle . '"' : '')
                                     . (!empty($mouseoutStyle) ? ' onmouseout="' . $mouseoutStyle . '"' : '') . '>'
@@ -16223,7 +16220,7 @@ function fancy_post_list_render_callback($attributes) {
                                 }
 
                                 // Button anchor tag
-                                $output .= '<a class="rs-btn read-more ' . esc_attr($buttonStyle3) . '" href="' . esc_url(get_permalink()) . '" style="' . esc_attr(trim($buttonInlineStyles)) . '"';
+                                $output .= '<a class="rs-btn read-more ' . esc_attr($buttonStyle3) . '" href="' . esc_url(get_permalink()) . '" ' . $targetAttr . ' style="' . esc_attr(trim($buttonInlineStyles)) . '"';
 
                                 if (!empty($buttonHoverInlineStyles)) {
                                     $output .= ' onmouseover="' . $buttonHoverInlineStyles . '"';
