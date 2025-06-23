@@ -3034,12 +3034,12 @@ img {
     margin-top: 0px;
     display: inline-block;
     position: relative;
-    background: transparent !important;
+    background: transparent;
 }
 
 .rs-blog-layout-8 .rs-blog__content .btn-wrapper .rs-link.fpg-flat:hover{
     color: #FC3737;
-    background: transparent !important;
+    background: transparent;
 }
 
 
