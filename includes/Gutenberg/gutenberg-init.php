@@ -14798,7 +14798,7 @@ function fancy_post_list_render_callback($attributes) {
                     $output .= '<div class="blog-horizontal">';
                 } else {
                     // RIGHT SIDE - All other posts
-                    $output .= '<div class="blog-meta mb-30 align-' . $itemBoxAlignment . ' ' . $hoverAnimation . '" style="';
+                    $output .= '<div class="blog-meta mb-30 align-' . $itemBoxAlignment . ' " style="';
                         // MARGIN    
                         if ( !empty($itemMargin['top']) || !empty($itemMargin['right']) ||  !empty($itemMargin['bottom']) || !empty($itemMargin['left'])) {
                             $output .= 'margin: ' .(isset($itemMargin['top']) && $itemMargin['top'] !== '' ? (is_numeric($itemMargin['top']) ? $itemMargin['top'] . 'px' : esc_attr($itemMargin['top'])) : '0px') . ' ' . (isset($itemMargin['right']) && $itemMargin['right'] !== '' ? (is_numeric($itemMargin['right']) ? $itemMargin['right'] . 'px' : esc_attr($itemMargin['right'])) : '0px') . ' ' . (isset($itemMargin['bottom']) && $itemMargin['bottom'] !== '' ? (is_numeric($itemMargin['bottom']) ? $itemMargin['bottom'] . 'px' : esc_attr($itemMargin['bottom'])) : '0px') . ' ' . (isset($itemMargin['left']) && $itemMargin['left'] !== '' ? (is_numeric($itemMargin['left']) ? $itemMargin['left'] . 'px' : esc_attr($itemMargin['left'])) : '0px') . '; '; 
@@ -14857,7 +14857,7 @@ function fancy_post_list_render_callback($attributes) {
                         }
 
                     $output .= '">';
-                            $output .= '<div class="blog-item-wrap ">';
+                            $output .= '<div class="blog-item-wrap ' . $hoverAnimation . '">';
                             // Thumbnail
                             if ($rightThumbnailSize && $showThumbnail) {
                                 $output .= '<div class="image-wrap" style="';
