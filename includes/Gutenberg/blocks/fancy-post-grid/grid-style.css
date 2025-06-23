@@ -3115,7 +3115,8 @@ img {
 
 .rs-blog-layout-1.rs-blog-layout-9 .blog-horizontal .blog-meta .blog-item-wrap .blog-content {
     padding: 0px 30px 0px 30px;
-    
+    display: flex;
+    flex-direction: column;    
 }
 
 .rs-blog-layout-1.rs-blog-layout-9 .blog-horizontal .blog-meta .blog-item-wrap .blog-content .blog-meta {
