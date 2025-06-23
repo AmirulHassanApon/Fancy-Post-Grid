@@ -2676,8 +2676,6 @@ img {
 
 /* blog layout 8 css */
 .rs-blog-layout-8 {
-    padding-top: 90px;
-    padding-bottom: 120px;
 }
 
 .rs-blog-layout-8 .rs-blog__left-blog {
@@ -2803,6 +2801,9 @@ img {
     position: relative;
     z-index: 10;
 }
+.rs-blog-layout-8 .rs-blog__thumb a{
+    display: block;
+}
 .rs-blog-layout-8 .rs-blog__thumb img{
     transition: all linear 0.3s;
 }
@@ -2873,7 +2874,7 @@ img {
 .rs-blog-layout-8 .rs-blog__content ul li {
     display: inline-block;
     font-family: "Space Grotesk", sans-serif;
-    font-size: 16px;
+    font-size: 15px;
     transition: all linear 0.3s;
 }
 
@@ -2907,7 +2908,7 @@ img {
     font-size: 24px;
     line-height: 36px;
     margin-top: 17px;
-    margin-bottom: 17px;
+    margin-bottom: 0px;
 }
 
 @media only screen and (max-width: 575px) {
@@ -2927,7 +2928,19 @@ img {
 .rs-blog-layout-8 .rs-blog__content .title a:hover {
     color: #FC3737;
 }
-
+.rs-blog-layout-8 .rs-blog__content .title.underline a{
+    display: inline;
+    transition: all 0.5s ease;
+    text-decoration: none;
+    background-image: linear-gradient(to bottom, #FC3737 0%, #FC3737 100%);
+    background-size: 0 2px;
+    background-repeat: no-repeat;
+    background-position: left 100%;
+    transition: all 0.7s !important;
+}
+.rs-blog-layout-8 .rs-blog__content .title.underline a:hover {
+    background-size: 100% 2px;
+}
 .rs-blog-layout-8 .rs-blog__content .title.align-start{
     text-align: left;
 }
@@ -2941,7 +2954,8 @@ img {
 .rs-blog-layout-8 .rs-blog__content p {
     font-size: 16px;
     line-height: 32px;
-    margin-bottom: 0px;
+    margin-bottom: 10px;
+    margin-top: 10px;
 }
 .rs-blog-layout-8 .rs-blog__content .fpg-excerpt.align-start {
     text-align: left;
@@ -6256,8 +6270,6 @@ img {
 
     /* blog layout 28 css */
     .rs-blog-layout-28{
-        padding-top: 90px;
-        padding-bottom: 120px;
     }
 
     .rs-blog-layout-28 .rs-blog-layout-3-filter {
@@ -6358,7 +6370,6 @@ img {
     }
     .rs-blog-layout-28-item .rs-content .fpg-excerpt{
         order: 2;
-        margin: 10px 0 15px;
     }
     .rs-blog-layout-28-item .rs-content .fpg-excerpt.align-start{
         text-align: left;

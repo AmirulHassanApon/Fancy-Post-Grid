@@ -2745,7 +2745,9 @@
                                                                     className: `fpg-excerpt align-${excerptAlignment}`,
                                                                     style: { 
                                                                             ...(excerptOrder ? { order: excerptOrder } : {}),
-                                                                            ...(attributes.excerptMargin ? { margin: getSpacingValue(attributes.excerptMargin) } : {}),
+                                                                            ...(attributes.excerptMargin
+                                                                            ? { margin: getSpacingValue(attributes.excerptMargin) }
+                                                                            : { margin: '10px 0px 15px 0px' }), // your default fallback
                                                                             ...(attributes.excerptPadding ? { padding: getSpacingValue(attributes.excerptPadding) } : {}), 
                                                                         } // Apply order to the div container
                                                                 }, 
