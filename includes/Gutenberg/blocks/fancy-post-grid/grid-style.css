@@ -6358,6 +6358,7 @@ img {
     }
     .rs-blog-layout-28-item .rs-content .fpg-excerpt{
         order: 2;
+        margin: 10px 0 15px;
     }
     .rs-blog-layout-28-item .rs-content .fpg-excerpt.align-start{
         text-align: left;
