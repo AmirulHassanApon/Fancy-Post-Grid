@@ -3109,6 +3109,9 @@ img {
     overflow: hidden;
 }
 
+.rs-blog-layout-1.rs-blog-layout-9 .blog-horizontal .blog-meta .blog-item-wrap .image-wrap a{
+    display: block;
+}
 .rs-blog-layout-1.rs-blog-layout-9 .blog-horizontal .blog-meta .blog-item-wrap .image-wrap a img {
     border-radius: 50px 0px 0px 0px;
     transition: all 0.5s ease 0s;
