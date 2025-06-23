@@ -713,7 +713,7 @@
                                                 className: 'post-thumbnail',
                                                 style: { objectFit: 'cover', width: '100%' },
                                             }),
-                                            showPostCategory && wp.element.createElement('div', { className: 'rs-category', style: { color: metaTextColor, fontSize: `${metaFontSize}px` } },
+                                            showPostCategory && wp.element.createElement('div', { className: 'rs-category', style: { color: metaTextColor, ...(metaBgColor ? { backgroundColor: metaBgColor } : {}), fontSize: `${metaFontSize}px` } },
                                                 showMetaIcon && showPostCategoryIcon &&
                                                 wp.element.createElement('i', { className: 'fas fa-folder', style: { color: metaIconColor, fontSize: `${metaFontSize}px` } }),
                                                 ` ${posts[0]._embedded?.['wp:term']?.[0]?.map(cat => cat.name).join(', ')}`
