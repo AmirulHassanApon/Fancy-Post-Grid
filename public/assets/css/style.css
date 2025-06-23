@@ -3083,6 +3083,7 @@ img {
     padding-right: 0px;
 }
 
+
 .rs-blog-layout-1.rs-blog-layout-9 .blog-item:hover {
     transform: translateY(0);
 }
@@ -3205,7 +3206,15 @@ img {
 .rs-blog-layout-1.rs-blog-layout-9 .blog-horizontal .blog-meta .blog-item-wrap .blog-content .blog-title.underline a:hover {
     background-size: 100% 2px;
 }
-
+.rs-blog-layout-1.rs-blog-layout-9 .blog-horizontal .blog-meta .blog-item-wrap .blog-content .blog-title.align-start{
+    text-align: left;
+}
+.rs-blog-layout-1.rs-blog-layout-9 .blog-horizontal .blog-meta .blog-item-wrap .blog-content .blog-title.align-center{
+    text-align: center;
+}
+.rs-blog-layout-1.rs-blog-layout-9 .blog-horizontal .blog-meta .blog-item-wrap .blog-content .blog-title.align-end{
+    text-align: right;
+}
 /* blog layout 9 css */
 
 /* blog layout 10 css */
