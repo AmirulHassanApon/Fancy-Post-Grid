@@ -13265,19 +13265,21 @@ function fancy_post_list_render_callback($attributes) {
                                 // Margin
                                 if (!empty($postTitleMargin['top']) || !empty($postTitleMargin['right']) || !empty($postTitleMargin['bottom']) || !empty($postTitleMargin['left'])) {
                                     $titleStyles .= 'margin: ' .
-                                        (is_numeric($postTitleMargin['top']) ? $postTitleMargin['top'] . 'px' : esc_attr($postTitleMargin['top'])) . ' ' .
-                                        (is_numeric($postTitleMargin['right']) ? $postTitleMargin['right'] . 'px' : esc_attr($postTitleMargin['right'])) . ' ' .
-                                        (is_numeric($postTitleMargin['bottom']) ? $postTitleMargin['bottom'] . 'px' : esc_attr($postTitleMargin['bottom'])) . ' ' .
-                                        (is_numeric($postTitleMargin['left']) ? $postTitleMargin['left'] . 'px' : esc_attr($postTitleMargin['left'])) . '; ';
+                                        (isset($postTitleMargin['top']) && $postTitleMargin['top'] !== '' ? (is_numeric($postTitleMargin['top']) ? $postTitleMargin['top'] . 'px' : esc_attr($postTitleMargin['top'])) : '0px') . ' ' .
+                                        (isset($postTitleMargin['right']) && $postTitleMargin['right'] !== '' ? (is_numeric($postTitleMargin['right']) ? $postTitleMargin['right'] . 'px' : esc_attr($postTitleMargin['right'])) : '0px') . ' ' .
+                                        (isset($postTitleMargin['bottom']) && $postTitleMargin['bottom'] !== '' ? (is_numeric($postTitleMargin['bottom']) ? $postTitleMargin['bottom'] . 'px' : esc_attr($postTitleMargin['bottom'])) : '0px') . ' ' .
+                                        (isset($postTitleMargin['left']) && $postTitleMargin['left'] !== '' ? (is_numeric($postTitleMargin['left']) ? $postTitleMargin['left'] . 'px' : esc_attr($postTitleMargin['left'])) : '0px') . '; ';
                                 }
+
                                 // Padding
                                 if (!empty($postTitlePadding['top']) || !empty($postTitlePadding['right']) || !empty($postTitlePadding['bottom']) || !empty($postTitlePadding['left'])) {
                                     $titleStyles .= 'padding: ' .
-                                        (is_numeric($postTitlePadding['top']) ? $postTitlePadding['top'] . 'px' : esc_attr($postTitlePadding['top'])) . ' ' .
-                                        (is_numeric($postTitlePadding['right']) ? $postTitlePadding['right'] . 'px' : esc_attr($postTitlePadding['right'])) . ' ' .
-                                        (is_numeric($postTitlePadding['bottom']) ? $postTitlePadding['bottom'] . 'px' : esc_attr($postTitlePadding['bottom'])) . ' ' .
-                                        (is_numeric($postTitlePadding['left']) ? $postTitlePadding['left'] . 'px' : esc_attr($postTitlePadding['left'])) . '; ';
+                                        (isset($postTitlePadding['top']) && $postTitlePadding['top'] !== '' ? (is_numeric($postTitlePadding['top']) ? $postTitlePadding['top'] . 'px' : esc_attr($postTitlePadding['top'])) : '0px') . ' ' .
+                                        (isset($postTitlePadding['right']) && $postTitlePadding['right'] !== '' ? (is_numeric($postTitlePadding['right']) ? $postTitlePadding['right'] . 'px' : esc_attr($postTitlePadding['right'])) : '0px') . ' ' .
+                                        (isset($postTitlePadding['bottom']) && $postTitlePadding['bottom'] !== '' ? (is_numeric($postTitlePadding['bottom']) ? $postTitlePadding['bottom'] . 'px' : esc_attr($postTitlePadding['bottom'])) : '0px') . ' ' .
+                                        (isset($postTitlePadding['left']) && $postTitlePadding['left'] !== '' ? (is_numeric($postTitlePadding['left']) ? $postTitlePadding['left'] . 'px' : esc_attr($postTitlePadding['left'])) : '0px') . '; ';
                                 }
+
                                 // Class name
                                 $classNames = 'title' 
                                     . ($titleHoverUnderLine === 'enable' ? ' underline' : '') 
@@ -13315,10 +13317,20 @@ function fancy_post_list_render_callback($attributes) {
                                 if (!empty($postTitleColor)) {
                                     $style .= 'color: ' . esc_attr($postTitleColor) . '; ';
                                     $mouseoutStyle = 'this.style.color=\'' . esc_attr($postTitleColor) . '\';';
+                                    if ($titleHoverUnderLine === 'enable') {
+                                        $style .= 'background-image: linear-gradient(to bottom, ' . esc_attr($postTitleColor) . ' 0%, ' . esc_attr($postTitleColor) . ' 100%); ';
+                                        $style .= 'background-position: 0 100%; ';
+                                        $mouseoutStyle .= ' this.style.backgroundImage=\'linear-gradient(to bottom, ' . esc_attr($postTitleColor) . ' 0%, ' . esc_attr($postTitleColor) . ' 100%)\';';
+                                        $mouseoutStyle .= ' this.style.backgroundPosition=\'0 100%\';';
+                                    }
                                 }
                                 // Build hover color style if set
                                 if (!empty($postTitleHoverColor)) {
                                     $hoverStyle = 'this.style.color=\'' . esc_attr($postTitleHoverColor) . '\';';
+                                    if ($titleHoverUnderLine === 'enable') {
+                                        $hoverStyle .= ' this.style.backgroundImage=\'linear-gradient(to bottom, ' . esc_attr($postTitleHoverColor) . ' 0%, ' . esc_attr($postTitleHoverColor) . ' 100%)\';';
+                                        $hoverStyle .= ' this.style.backgroundPosition=\'0 100%\';';
+                                    }
                                 }
                                 // Final output
                                 $output .= '<a href="' . esc_url($permalink) . '" 
@@ -13428,7 +13440,6 @@ function fancy_post_list_render_callback($attributes) {
                                 // Close div
                                 $output .= '</div>';
                             }
-
                             // End Excerpt
 
                             // Button Output                
@@ -13917,19 +13928,21 @@ function fancy_post_list_render_callback($attributes) {
                                 // Margin
                                 if (!empty($postTitleMargin['top']) || !empty($postTitleMargin['right']) || !empty($postTitleMargin['bottom']) || !empty($postTitleMargin['left'])) {
                                     $titleStyles .= 'margin: ' .
-                                        (is_numeric($postTitleMargin['top']) ? $postTitleMargin['top'] . 'px' : esc_attr($postTitleMargin['top'])) . ' ' .
-                                        (is_numeric($postTitleMargin['right']) ? $postTitleMargin['right'] . 'px' : esc_attr($postTitleMargin['right'])) . ' ' .
-                                        (is_numeric($postTitleMargin['bottom']) ? $postTitleMargin['bottom'] . 'px' : esc_attr($postTitleMargin['bottom'])) . ' ' .
-                                        (is_numeric($postTitleMargin['left']) ? $postTitleMargin['left'] . 'px' : esc_attr($postTitleMargin['left'])) . '; ';
+                                        (isset($postTitleMargin['top']) && $postTitleMargin['top'] !== '' ? (is_numeric($postTitleMargin['top']) ? $postTitleMargin['top'] . 'px' : esc_attr($postTitleMargin['top'])) : '0px') . ' ' .
+                                        (isset($postTitleMargin['right']) && $postTitleMargin['right'] !== '' ? (is_numeric($postTitleMargin['right']) ? $postTitleMargin['right'] . 'px' : esc_attr($postTitleMargin['right'])) : '0px') . ' ' .
+                                        (isset($postTitleMargin['bottom']) && $postTitleMargin['bottom'] !== '' ? (is_numeric($postTitleMargin['bottom']) ? $postTitleMargin['bottom'] . 'px' : esc_attr($postTitleMargin['bottom'])) : '0px') . ' ' .
+                                        (isset($postTitleMargin['left']) && $postTitleMargin['left'] !== '' ? (is_numeric($postTitleMargin['left']) ? $postTitleMargin['left'] . 'px' : esc_attr($postTitleMargin['left'])) : '0px') . '; ';
                                 }
+
                                 // Padding
                                 if (!empty($postTitlePadding['top']) || !empty($postTitlePadding['right']) || !empty($postTitlePadding['bottom']) || !empty($postTitlePadding['left'])) {
                                     $titleStyles .= 'padding: ' .
-                                        (is_numeric($postTitlePadding['top']) ? $postTitlePadding['top'] . 'px' : esc_attr($postTitlePadding['top'])) . ' ' .
-                                        (is_numeric($postTitlePadding['right']) ? $postTitlePadding['right'] . 'px' : esc_attr($postTitlePadding['right'])) . ' ' .
-                                        (is_numeric($postTitlePadding['bottom']) ? $postTitlePadding['bottom'] . 'px' : esc_attr($postTitlePadding['bottom'])) . ' ' .
-                                        (is_numeric($postTitlePadding['left']) ? $postTitlePadding['left'] . 'px' : esc_attr($postTitlePadding['left'])) . '; ';
+                                        (isset($postTitlePadding['top']) && $postTitlePadding['top'] !== '' ? (is_numeric($postTitlePadding['top']) ? $postTitlePadding['top'] . 'px' : esc_attr($postTitlePadding['top'])) : '0px') . ' ' .
+                                        (isset($postTitlePadding['right']) && $postTitlePadding['right'] !== '' ? (is_numeric($postTitlePadding['right']) ? $postTitlePadding['right'] . 'px' : esc_attr($postTitlePadding['right'])) : '0px') . ' ' .
+                                        (isset($postTitlePadding['bottom']) && $postTitlePadding['bottom'] !== '' ? (is_numeric($postTitlePadding['bottom']) ? $postTitlePadding['bottom'] . 'px' : esc_attr($postTitlePadding['bottom'])) : '0px') . ' ' .
+                                        (isset($postTitlePadding['left']) && $postTitlePadding['left'] !== '' ? (is_numeric($postTitlePadding['left']) ? $postTitlePadding['left'] . 'px' : esc_attr($postTitlePadding['left'])) : '0px') . '; ';
                                 }
+
                                 // Class name
                                 $classNames = 'title' 
                                     . ($titleHoverUnderLine === 'enable' ? ' underline' : '') 
@@ -13967,10 +13980,20 @@ function fancy_post_list_render_callback($attributes) {
                                 if (!empty($postTitleColor)) {
                                     $style .= 'color: ' . esc_attr($postTitleColor) . '; ';
                                     $mouseoutStyle = 'this.style.color=\'' . esc_attr($postTitleColor) . '\';';
+                                    if ($titleHoverUnderLine === 'enable') {
+                                        $style .= 'background-image: linear-gradient(to bottom, ' . esc_attr($postTitleColor) . ' 0%, ' . esc_attr($postTitleColor) . ' 100%); ';
+                                        $style .= 'background-position: 0 100%; ';
+                                        $mouseoutStyle .= ' this.style.backgroundImage=\'linear-gradient(to bottom, ' . esc_attr($postTitleColor) . ' 0%, ' . esc_attr($postTitleColor) . ' 100%)\';';
+                                        $mouseoutStyle .= ' this.style.backgroundPosition=\'0 100%\';';
+                                    }
                                 }
                                 // Build hover color style if set
                                 if (!empty($postTitleHoverColor)) {
                                     $hoverStyle = 'this.style.color=\'' . esc_attr($postTitleHoverColor) . '\';';
+                                    if ($titleHoverUnderLine === 'enable') {
+                                        $hoverStyle .= ' this.style.backgroundImage=\'linear-gradient(to bottom, ' . esc_attr($postTitleHoverColor) . ' 0%, ' . esc_attr($postTitleHoverColor) . ' 100%)\';';
+                                        $hoverStyle .= ' this.style.backgroundPosition=\'0 100%\';';
+                                    }
                                 }
                                 // Final output
                                 $output .= '<a href="' . esc_url($permalink) . '" 
