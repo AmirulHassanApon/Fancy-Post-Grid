@@ -1123,6 +1123,13 @@
                                             ...(titleOrder !== undefined ? { order: titleOrder } : {}),
                                             ...(postLinkType === 'nolink' ? titleTextStyle : {}), // apply if nolink
                                         },
+                                        onMouseEnter: (e) => {
+                                            e.currentTarget.style.backgroundColor = postTitleHoverBgColor;
+                                        },
+                                        onMouseLeave: (e) => {
+                                            e.currentTarget.style.backgroundColor = postTitleBgColor;
+                                            
+                                        },
                                         ...(postLinkType === 'nolink' ? titleTextHoverHandlers : {}), // attach hover if nolink
                                     },
                                     postLinkType === 'yeslink'
@@ -1400,6 +1407,13 @@
                                                         ...(postTitleBgColor ? { backgroundColor: postTitleBgColor } : {}),
                                                         ...(titleOrder !== undefined ? { order: titleOrder } : {}),
                                                         ...(postLinkType === 'nolink' ? titleTextStyle : {}), // apply if nolink
+                                                    },
+                                                    onMouseEnter: (e) => {
+                                                        e.currentTarget.style.backgroundColor = postTitleHoverBgColor;
+                                                    },
+                                                    onMouseLeave: (e) => {
+                                                        e.currentTarget.style.backgroundColor = postTitleBgColor;
+                                                        
                                                     },
                                                     ...(postLinkType === 'nolink' ? titleTextHoverHandlers : {}), // attach hover if nolink
                                                 },
