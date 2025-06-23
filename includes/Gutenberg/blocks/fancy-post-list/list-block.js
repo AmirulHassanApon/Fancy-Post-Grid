@@ -136,6 +136,7 @@
             metaTextColor: { type: 'string', default: '' },
             separatorColor: { type: 'string', default: '' },
             metaIconColor: { type: 'string', default: '' },
+            metaBgColor: { type: 'string', default: '' },
             
             //Button
             buttonAlignment: { type: 'string'},
@@ -189,7 +190,7 @@
                 excerptFontSize,excerptLineHeight,excerptLetterSpacing,excerptFontWeight,excerptAlignment,excerptMargin,
                 excerptPadding,excerptColor,excerptBgColor,excerptHoverColor,excerptHoverBgColor,
 
-                metaAlignment,metaFontSize,metaMarginNew,metaPadding,metaTextColor,separatorColor,metaIconColor,
+                metaAlignment,metaFontSize,metaMarginNew,metaPadding,metaTextColor,metaBgColor,separatorColor,metaIconColor,
 
                 buttonAlignment,buttonMarginNew,buttonPaddingNew,buttonTextColor,buttonBackgroundColor,buttonBorderType,buttonFontWeight,
                 buttonBorderWidth,buttonBorderRadius,buttonFontSize,buttonHoverTextColor,buttonHoverBackgroundColor,
@@ -415,7 +416,7 @@
                                         style: { objectFit: 'cover', width: '100%' },
                                     }),
                                     // Post Category
-                                    showPostCategory && wp.element.createElement('div', { className: 'rs-category', style: { color: metaTextColor, fontSize: `${metaFontSize}px` } },
+                                    showPostCategory && wp.element.createElement('div', { className: 'rs-category', style: { color: metaTextColor, ...(metaBgColor ? { backgroundColor: metaBgColor } : {}), fontSize: `${metaFontSize}px` } },
                                         showMetaIcon && showPostCategoryIcon &&
                                         wp.element.createElement('i', { className: 'fas fa-folder', style: { color: metaIconColor, fontSize: `${metaFontSize}px` } }),
                                         ` ${posts[0]._embedded?.['wp:term']?.[0]?.map(cat => cat.name).join(', ')}`
@@ -4356,6 +4357,17 @@
                                     wp.element.createElement(Button, {
                                         isSecondary: true,
                                         onClick: () => setAttributes({ metaTextColor: '' }),
+                                        style: { marginTop: '10px' },
+                                    }, __('Clear Color', 'fancy-post-grid')),
+
+                                    wp.element.createElement('p', {}, __('Meta Background Color', 'fancy-post-grid')),
+                                    wp.element.createElement(wp.components.ColorPicker, {
+                                        color: attributes.metaBgColor,
+                                        onChangeComplete: (value) => setAttributes({ metaBgColor: value.hex }),
+                                    }),
+                                    wp.element.createElement(Button, {
+                                        isSecondary: true,
+                                        onClick: () => setAttributes({ metaBgColor: '' }),
                                         style: { marginTop: '10px' },
                                     }, __('Clear Color', 'fancy-post-grid')),
 
