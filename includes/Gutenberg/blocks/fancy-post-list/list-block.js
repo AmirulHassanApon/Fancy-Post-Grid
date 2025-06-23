@@ -1299,7 +1299,16 @@
                                     // Content Wrapper
                                     wp.element.createElement(
                                         'div', 
-                                        { className: 'blog-content' },
+                                        { className: 'blog-content',style: {
+                                            ...(attributes.contentitemMarginNew ? { margin: getSpacingValue(attributes.contentitemMarginNew) } : {}),
+                                            ...(attributes.contentitemPaddingNew
+                                              ? { padding: getSpacingValue(attributes.contentitemPaddingNew) }
+                                              : { }), 
+                                            ...(attributes.contentBorderWidth ? { borderWidth: getSpacingValue(attributes.contentBorderWidth) } : {}),
+                                            ...(attributes.contentnormalBorderType ? { borderStyle: attributes.contentnormalBorderType } : {}),
+                                            ...(contentBgColor ? { backgroundColor: contentBgColor } : {}),
+                                            ...(contentBorderColor ? { borderColor: contentBorderColor } : {})
+                                        } },
                                         //Meta
 
                                         showMetaData && 
