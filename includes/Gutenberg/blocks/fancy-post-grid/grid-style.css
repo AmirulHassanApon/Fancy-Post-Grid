@@ -3059,8 +3059,6 @@ img {
 
 /* blog layout 9 css */
 .rs-blog-layout-9 {
-    padding-top: 90px;
-    padding-bottom: 90px;
 }
 
 .rs-blog-layout-1.rs-blog-layout-9 .blog-item {
@@ -3070,11 +3068,12 @@ img {
     background-color: #ffffff;
     box-shadow: 0 6px 25px rgba(12, 89, 219, 0.09);
     border-radius: 70px 0px 0px 0px;
-    margin: 40px 15px;
+    margin: 0;
 }
 .rs-blog-layout-1.rs-blog-layout-9 .blog-item .blog-content .blog-title {
     font-size: 28px;
     line-height: 38px;
+    margin-top: 0;
 }
 
 .rs-blog-layout-1.rs-blog-layout-9 .blog-item .blog-content .blog-title a{
@@ -3086,7 +3085,7 @@ img {
 }
 
 .rs-blog-layout-1.rs-blog-layout-9 .blog-horizontal>.blog-meta {
-    margin-top: 30px;
+    margin-bottom: 30px;
 }
 
 .rs-blog-layout-1.rs-blog-layout-9 .blog-horizontal .blog-meta .blog-item-wrap {
@@ -3105,6 +3104,9 @@ img {
     max-width: 33.5%;
 }
 
+.rs-blog-layout-1.rs-blog-layout-9 .blog-horizontal .blog-meta .blog-item-wrap .image-wrap a {
+    display: block;
+}
 .rs-blog-layout-1.rs-blog-layout-9 .blog-horizontal .blog-meta .blog-item-wrap .image-wrap a img {
     border-radius: 50px 0px 0px 0px;
     transition: all 0.5s ease 0s;
@@ -3160,6 +3162,7 @@ img {
     font-size: 22px;
     line-height: 32px;
     font-weight: 700;
+    margin-top: 0;
 }
 
 .rs-blog-layout-1.rs-blog-layout-9 .blog-horizontal .blog-meta .blog-item-wrap .blog-content .blog-title a {
@@ -3174,6 +3177,19 @@ img {
 
 .rs-blog-layout-1.rs-blog-layout-9 .blog-horizontal .blog-meta .blog-item-wrap:hover .blog-content .blog-title a {
     color: #FF6D00;
+}
+.rs-blog-layout-1.rs-blog-layout-9 .blog-horizontal .blog-meta .blog-item-wrap .blog-content .blog-title.underline a{
+    display: inline;
+    transition: all 0.5s ease;
+    text-decoration: none;
+    background-image: linear-gradient(to bottom, #FF6D00 0%, #FF6D00 100%);
+    background-size: 0 2px;
+    background-repeat: no-repeat;
+    background-position: left 100%;
+    transition: all 0.7s !important;
+}
+.rs-blog-layout-1.rs-blog-layout-9 .blog-horizontal .blog-meta .blog-item-wrap .blog-content .blog-title.underline a:hover {
+    background-size: 100% 2px;
 }
 
 /* blog layout 9 css */
