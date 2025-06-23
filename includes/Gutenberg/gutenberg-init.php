@@ -12560,6 +12560,7 @@ function fancy_post_list_render_callback($attributes) {
     $buttonStyle8 = ($listLayoutStyle === 'style8' && $buttonStyle == null)
               ? 'fpg-flat' : $buttonStyle;  
 
+    $targetAttr = ($postLinkTarget === 'newWindow') ? ' target="_blank"' : ' target="_self"';          
     // Run the query
     $query = new WP_Query($query_args);
 
@@ -12935,7 +12936,7 @@ function fancy_post_list_render_callback($attributes) {
                                     (isset($itemBorderWidth['bottom']) && $itemBorderWidth['bottom'] !== '' ? (is_numeric($itemBorderWidth['bottom']) ? $itemBorderWidth['bottom'] . 'px' : esc_attr($itemBorderWidth['bottom'])) : '0px') . ' ' .
                                     (isset($itemBorderWidth['left']) && $itemBorderWidth['left'] !== '' ? (is_numeric($itemBorderWidth['left']) ? $itemBorderWidth['left'] . 'px' : esc_attr($itemBorderWidth['left'])) : '0px') . '; ';
                             } else {
-                                $output .= 'border-width: ;';
+                                $output .= 'border-width: 0px;';
                             }
 
                             // Border Style & Color
@@ -13002,7 +13003,7 @@ function fancy_post_list_render_callback($attributes) {
                                 $output .= '">';
 
                                 if ($thumbnailLink) {
-                                    $output .= '<a href="' . esc_url($permalink) . '">';
+                                    $output .= '<a href="' . esc_url($permalink) . '"' . $targetAttr . '>';
                                     $output .= $leftThumbnailSize;
                                     $output .= '</a>';
                                 } else {
@@ -13331,7 +13332,8 @@ function fancy_post_list_render_callback($attributes) {
                                     }
                                 }
                                 // Final output
-                                $output .= '<a href="' . esc_url($permalink) . '" 
+
+                                $output .= '<a href="' . esc_url($permalink) . '" ' . $targetAttr . '
                                     style="' . esc_attr(trim($style)) . '"'
                                     . (!empty($hoverStyle) ? ' onmouseover="' . $hoverStyle . '"' : '')
                                     . (!empty($mouseoutStyle) ? ' onmouseout="' . $mouseoutStyle . '"' : '') . '>'
@@ -13620,7 +13622,7 @@ function fancy_post_list_render_callback($attributes) {
                                 (isset($itemBorderWidth['bottom']) && $itemBorderWidth['bottom'] !== '' ? (is_numeric($itemBorderWidth['bottom']) ? $itemBorderWidth['bottom'] . 'px' : esc_attr($itemBorderWidth['bottom'])) : '0px') . ' ' .
                                 (isset($itemBorderWidth['left']) && $itemBorderWidth['left'] !== '' ? (is_numeric($itemBorderWidth['left']) ? $itemBorderWidth['left'] . 'px' : esc_attr($itemBorderWidth['left'])) : '0px') . '; ';
                         } else {
-                            $output .= 'border-width: ;';
+                            $output .= 'border-width: 0px;';
                         }
 
                         // Border Style & Color
@@ -13680,7 +13682,7 @@ function fancy_post_list_render_callback($attributes) {
 
                                 // Anchor with optional border-radius and overflow
                                 if ($thumbnailLink) {
-                                    $output .= '<a href="' . esc_url($permalink) . '">';
+                                    $output .= '<a href="' . esc_url($permalink) . '"' . $targetAttr . '>';
                                     $output .= $rightThumbnailSize;
                                     $output .= '</a>';
                                 } else {
@@ -14008,7 +14010,7 @@ function fancy_post_list_render_callback($attributes) {
                                     }
                                 }
                                 // Final output
-                                $output .= '<a href="' . esc_url($permalink) . '" 
+                                $output .= '<a href="' . esc_url($permalink) . '" ' . $targetAttr . ' 
                                     style="' . esc_attr(trim($style)) . '"'
                                     . (!empty($hoverStyle) ? ' onmouseover="' . $hoverStyle . '"' : '')
                                     . (!empty($mouseoutStyle) ? ' onmouseout="' . $mouseoutStyle . '"' : '') . '>'
@@ -14240,12 +14242,7 @@ function fancy_post_list_render_callback($attributes) {
 
                                 $output .= '">';
 
-                                // Anchor with optional border-radius and overflow
-                                $output .= '<a href="' . esc_url($permalink) . '" style="';
-
-                                    
-
-                                $output .= '">';
+                                $output .= '<a href="' . esc_url($permalink) . '"' . $targetAttr . '>';
                                 $output .= $leftThumbnailSize . '</a>';
                                 
                                 $output .= '</div>';
@@ -14812,7 +14809,7 @@ function fancy_post_list_render_callback($attributes) {
                     $output .= '<div class="blog-horizontal">';
                 } else {
                     // RIGHT SIDE - All other posts
-                    $output .= '<div class="blog-meta mb-30 align-' . $itemBoxAlignment . ' " style="';
+                    $output .= '<div class="blog-meta mb-30" style="';
                         // MARGIN    
                         if ( !empty($itemMargin['top']) || !empty($itemMargin['right']) ||  !empty($itemMargin['bottom']) || !empty($itemMargin['left'])) {
                             $output .= 'margin: ' .(isset($itemMargin['top']) && $itemMargin['top'] !== '' ? (is_numeric($itemMargin['top']) ? $itemMargin['top'] . 'px' : esc_attr($itemMargin['top'])) : '0px') . ' ' . (isset($itemMargin['right']) && $itemMargin['right'] !== '' ? (is_numeric($itemMargin['right']) ? $itemMargin['right'] . 'px' : esc_attr($itemMargin['right'])) : '0px') . ' ' . (isset($itemMargin['bottom']) && $itemMargin['bottom'] !== '' ? (is_numeric($itemMargin['bottom']) ? $itemMargin['bottom'] . 'px' : esc_attr($itemMargin['bottom'])) : '0px') . ' ' . (isset($itemMargin['left']) && $itemMargin['left'] !== '' ? (is_numeric($itemMargin['left']) ? $itemMargin['left'] . 'px' : esc_attr($itemMargin['left'])) : '0px') . '; '; 
@@ -14877,7 +14874,7 @@ function fancy_post_list_render_callback($attributes) {
                         }
 
                     $output .= '">';
-                            $output .= '<div class="blog-item-wrap ' . $hoverAnimation . '">';
+                            $output .= '<div class="blog-item-wrap align-' . $itemBoxAlignment . ' ' . $hoverAnimation . '">';
                             // Thumbnail
                             if ($rightThumbnailSize && $showThumbnail) {
                                 $output .= '<div class="image-wrap" style="';
