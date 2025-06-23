@@ -569,7 +569,14 @@
                                           ...(excerptOrder ? { order: excerptOrder } : {}),
                                           ...(attributes.excerptMargin ? { margin: getSpacingValue(attributes.excerptMargin) } : {}),
                                           ...(attributes.excerptPadding ? { padding: getSpacingValue(attributes.excerptPadding) } : {}),
-                                      } 
+                                          ...(excerptBgColor ? { backgroundColor: excerptBgColor } : {}), 
+                                      },
+                                      onMouseEnter: (e) => {
+                                          e.currentTarget.style.backgroundColor = excerptHoverBgColor;
+                                      },
+                                      onMouseLeave: (e) => {
+                                          e.currentTarget.style.backgroundColor = excerptBgColor;
+                                      },
                                 }, 
                                     wp.element.createElement('p', { 
                                         style: { 
@@ -579,16 +586,13 @@
                                             ...(excerptLineHeight ? { lineHeight: excerptLineHeight } : {}),
                                             ...(excerptLetterSpacing ? { letterSpacing: excerptLetterSpacing } : {}),
                                             ...(excerptColor ? { color: excerptColor } : {}),
-                                            ...(excerptBgColor ? { backgroundColor: excerptBgColor } : {}),                                               
+                                                                                          
                                         },
                                         onMouseEnter: (e) => {
                                             e.currentTarget.style.color = excerptHoverColor;
-                                            e.currentTarget.style.backgroundColor = excerptHoverBgColor;
                                         },
                                         onMouseLeave: (e) => {
                                             e.currentTarget.style.color = excerptColor;
-                                            e.currentTarget.style.backgroundColor = excerptBgColor;
-                                            
                                         }, 
                                     }, 
                                     excerptType === 'full_content' 

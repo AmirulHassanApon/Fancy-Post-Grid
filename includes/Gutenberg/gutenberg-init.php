@@ -13369,15 +13369,38 @@ function fancy_post_list_render_callback($attributes) {
                                         (is_numeric($excerptPadding['left']) ? $excerptPadding['left'] . 'px' : esc_attr($excerptPadding['left'])) . '; ';
                                 }
 
-                                // Start div wrapper
-                                $output .= '<div class="fpg-excerpt align-' . esc_attr($excerptAlignment) . '" style="' . esc_attr(trim($excerptStylesS)) . '">';
+                                // Background color for div
+                                if (!empty($excerptBgColor)) {
+                                    $excerptStylesS .= 'background-color: ' . esc_attr($excerptBgColor) . '; ';
+                                }
 
-                                // Begin paragraph
+                                // Hover for div (background)
+                                $divHoverIn = '';
+                                $divHoverOut = '';
+
+                                if (!empty($excerptHoverBgColor)) {
+                                    $divHoverIn .= 'this.style.backgroundColor=\'' . esc_attr($excerptHoverBgColor) . '\';';
+                                    $divHoverOut .= 'this.style.backgroundColor=\'' . esc_attr($excerptBgColor) . '\';';
+                                }
+
+                                // Start div wrapper with styles and hover
+                                $output .= '<div class="fpg-excerpt align-' . esc_attr($excerptAlignment) . '" style="' . esc_attr(trim($excerptStylesS)) . '"';
+
+                                if (!empty($divHoverIn)) {
+                                    $output .= ' onmouseover="' . esc_attr($divHoverIn) . '"';
+                                }
+
+                                if (!empty($divHoverOut)) {
+                                    $output .= ' onmouseout="' . esc_attr($divHoverOut) . '"';
+                                }
+
+                                $output .= '>';
+
+                                // Begin <p> with text styles
                                 $output .= '<p';
 
                                 $excerptStyles = '';
 
-                                // Typography styles
                                 if (!empty($excerptFontSize)) {
                                     $excerptStyles .= 'font-size: ' . esc_attr($excerptFontSize) . 'px; ';
                                 }
@@ -13398,15 +13421,11 @@ function fancy_post_list_render_callback($attributes) {
                                     $excerptStyles .= 'color: ' . esc_attr($excerptColor) . '; ';
                                 }
 
-                                if (!empty($excerptBgColor)) {
-                                    $excerptStyles .= 'background-color: ' . esc_attr($excerptBgColor) . '; ';
-                                }
-
                                 if (!empty($excerptBorderType)) {
                                     $excerptStyles .= 'border-style: ' . esc_attr($excerptBorderType) . '; ';
                                 }
 
-                                // Hover logic
+                                // Text hover (on <p>)
                                 $hoverIn = '';
                                 $hoverOut = '';
 
@@ -13415,12 +13434,7 @@ function fancy_post_list_render_callback($attributes) {
                                     $hoverOut .= 'this.style.color=\'' . esc_attr($excerptColor) . '\';';
                                 }
 
-                                if (!empty($excerptHoverBgColor)) {
-                                    $hoverIn .= 'this.style.backgroundColor=\'' . esc_attr($excerptHoverBgColor) . '\';';
-                                    $hoverOut .= 'this.style.backgroundColor=\'' . esc_attr($excerptBgColor) . '\';';
-                                }
-
-                                // Add style and hover events to <p>
+                                // Apply styles and hover to <p>
                                 if (!empty($excerptStyles)) {
                                     $output .= ' style="' . esc_attr(trim($excerptStyles)) . '"';
                                 }
@@ -13440,6 +13454,7 @@ function fancy_post_list_render_callback($attributes) {
                                 // Close div
                                 $output .= '</div>';
                             }
+
                             // End Excerpt
 
                             // Button Output                
