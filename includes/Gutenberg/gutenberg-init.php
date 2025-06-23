@@ -12477,6 +12477,7 @@ function fancy_post_list_render_callback($attributes) {
     $separatorColor = isset($attributes['separatorColor']) ? sanitize_hex_color($attributes['separatorColor']) : '';
     $metaFontSize = isset($attributes['metaFontSize']) ? absint($attributes['metaFontSize']) : '15';
     $metaIconColor = isset($attributes['metaIconColor']) ? sanitize_hex_color($attributes['metaIconColor']) : '';
+    $metaBgColor = isset($attributes['metaBgColor']) ? sanitize_hex_color($attributes['metaBgColor']) : '';
     
     // Button Alignment
     $buttonAlignment = isset($attributes['buttonAlignment']) ? sanitize_text_field($attributes['buttonAlignment']) : '';
@@ -13012,7 +13013,8 @@ function fancy_post_list_render_callback($attributes) {
                                 }
                                 if ($showPostCategory) {
                                         
-                                    $output .= '<div class="rs-category" style="color:' . esc_attr($metaTextColor) . ';font-size:' . esc_attr($metaFontSize) . 'px;">';
+                                    $output .= '<div class="rs-category" style="color:' . esc_attr($metaTextColor) . ';background:' . esc_attr($metaBgColor) . ';font-size:' . esc_attr($metaFontSize) . 'px;">';
+                                    
                                         if ($showPostCategoryIcon && $showMetaIcon) {
                                             $output .= '<i class="ri-folder-line" style="color:' . esc_attr($metaIconColor) . '; font-size:' . esc_attr($metaFontSize) . 'px;"></i> ';
                                         }
@@ -13690,7 +13692,7 @@ function fancy_post_list_render_callback($attributes) {
                                 }
                                 if ($showPostCategory) {
                                         
-                                    $output .= '<div class="rs-category" style="color:' . esc_attr($metaTextColor) . ';">';
+                                    $output .= '<div class="rs-category" style="background:' . esc_attr($metaBgColor) . ';color:' . esc_attr($metaTextColor) . ';font-size:' . esc_attr($metaFontSize) . 'px;">';
                                         if ($showPostCategoryIcon && $showMetaIcon) {
                                             $output .= '<i class="ri-folder-line" style="color:' . esc_attr($metaIconColor) . '; font-size:' . esc_attr($metaFontSize) . 'px;"></i> ';
                                         }
