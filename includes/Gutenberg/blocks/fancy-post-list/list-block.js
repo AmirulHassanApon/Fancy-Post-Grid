@@ -1637,6 +1637,13 @@
                                             ...(titleOrder !== undefined ? { order: titleOrder } : {}),
                                             ...(postLinkType === 'nolink' ? titleTextStyle : {}), // apply if nolink
                                         },
+                                        onMouseEnter: (e) => {
+                                            e.currentTarget.style.backgroundColor = postTitleHoverBgColor;
+                                        },
+                                        onMouseLeave: (e) => {
+                                            e.currentTarget.style.backgroundColor = postTitleBgColor;
+                                            
+                                        },
                                         ...(postLinkType === 'nolink' ? titleTextHoverHandlers : {}), // attach hover if nolink
                                     },
                                     postLinkType === 'yeslink'
@@ -1766,7 +1773,16 @@
                                     // Content Wrapper
                                     wp.element.createElement(
                                         'div', 
-                                        { className: 'rs-content' },
+                                        { className: 'rs-content',style: {
+                                            ...(attributes.contentitemMarginNew ? { margin: getSpacingValue(attributes.contentitemMarginNew) } : {}),
+                                            ...(attributes.contentitemPaddingNew
+                                              ? { padding: getSpacingValue(attributes.contentitemPaddingNew) }
+                                              : { }), 
+                                            ...(attributes.contentBorderWidth ? { borderWidth: getSpacingValue(attributes.contentBorderWidth) } : {}),
+                                            ...(attributes.contentnormalBorderType ? { borderStyle: attributes.contentnormalBorderType } : {}),
+                                            ...(contentBgColor ? { backgroundColor: contentBgColor } : {}),
+                                            ...(contentBorderColor ? { borderColor: contentBorderColor } : {})
+                                        } },
                                         //Meta
 
                                         showMetaData && 
@@ -1848,8 +1864,6 @@
                                                     }, []))
                                             ),
 
-
-                                        
                                         // Add Show Post Title Check
                                         showPostTitle &&
                                             wp.element.createElement(
@@ -1863,6 +1877,13 @@
                                                         ...(postTitleBgColor ? { backgroundColor: postTitleBgColor } : {}),
                                                         ...(titleOrder !== undefined ? { order: titleOrder } : {}),
                                                         ...(postLinkType === 'nolink' ? titleTextStyle : {}), // apply if nolink
+                                                    },
+                                                    onMouseEnter: (e) => {
+                                                        e.currentTarget.style.backgroundColor = postTitleHoverBgColor;
+                                                    },
+                                                    onMouseLeave: (e) => {
+                                                        e.currentTarget.style.backgroundColor = postTitleBgColor;
+                                                        
                                                     },
                                                     ...(postLinkType === 'nolink' ? titleTextHoverHandlers : {}), // attach hover if nolink
                                                 },
@@ -1922,8 +1943,6 @@
                                                 )
                                             ),
 
-                   
-
                                         showReadMoreButton && wp.element.createElement('div', { 
                                             className: `blog-btn align-${buttonAlignment} `,
                                             style: { 
@@ -1965,7 +1984,6 @@
                                         )
                                     )
                             );
-
                         })
                     )
                 );
@@ -2058,9 +2076,7 @@
                                     ...(contentBorderColor ? { borderColor: contentBorderColor } : {})
                                 },
                             }, 
-                                
                                 //Meta
-
                                 showMetaData && 
                                     wp.element.createElement('div', { 
                                         className: 'rs-meta', },
@@ -2141,6 +2157,12 @@
                                                 ...(postTitleBgColor ? { backgroundColor: postTitleBgColor } : {}),
                                                 ...(titleOrder !== undefined ? { order: titleOrder } : {}),
                                                 ...(postLinkType === 'nolink' ? titleTextStyle : {}), // apply if nolink
+                                            },
+                                            onMouseEnter: (e) => {
+                                                e.currentTarget.style.backgroundColor = postTitleHoverBgColor;
+                                            },
+                                            onMouseLeave: (e) => {
+                                                e.currentTarget.style.backgroundColor = postTitleBgColor;
                                             },
                                             ...(postLinkType === 'nolink' ? titleTextHoverHandlers : {}), // attach hover if nolink
                                         },
@@ -2378,6 +2400,13 @@
                                                 ...(postTitleBgColor ? { backgroundColor: postTitleBgColor } : {}),
                                                 ...(titleOrder !== undefined ? { order: titleOrder } : {}),
                                                 ...(postLinkType === 'nolink' ? titleTextStyle : {}), // apply if nolink
+                                            },
+                                            onMouseEnter: (e) => {
+                                                e.currentTarget.style.backgroundColor = postTitleHoverBgColor;
+                                            },
+                                            onMouseLeave: (e) => {
+                                                e.currentTarget.style.backgroundColor = postTitleBgColor;
+                                                
                                             },
                                             ...(postLinkType === 'nolink' ? titleTextHoverHandlers : {}), // attach hover if nolink
                                         },
@@ -2652,6 +2681,13 @@
                                               ...(titleOrder !== undefined ? { order: titleOrder } : {}),
                                               ...(postLinkType === 'nolink' ? titleTextStyle : {}), // apply if nolink
                                           },
+                                          onMouseEnter: (e) => {
+                                            e.currentTarget.style.backgroundColor = postTitleHoverBgColor;
+                                          },
+                                          onMouseLeave: (e) => {
+                                              e.currentTarget.style.backgroundColor = postTitleBgColor;
+                                              
+                                          },
                                           ...(postLinkType === 'nolink' ? titleTextHoverHandlers : {}), // attach hover if nolink
                                       },
                                       postLinkType === 'yeslink'
@@ -2779,7 +2815,6 @@
                                     }, 
                                     
                                     //Meta
-
                                     showMetaData && 
                                         wp.element.createElement('div', { 
                                             className: `rs-cat post-meta align-${metaAlignment}`, 
@@ -2810,6 +2845,13 @@
                                                   ...(postTitleBgColor ? { backgroundColor: postTitleBgColor } : {}),
                                                   ...(titleOrder !== undefined ? { order: titleOrder } : {}),
                                                   ...(postLinkType === 'nolink' ? titleTextStyle : {}), // apply if nolink
+                                              },
+                                              onMouseEnter: (e) => {
+                                                  e.currentTarget.style.backgroundColor = postTitleHoverBgColor;
+                                              },
+                                              onMouseLeave: (e) => {
+                                                  e.currentTarget.style.backgroundColor = postTitleBgColor;
+                                                  
                                               },
                                               ...(postLinkType === 'nolink' ? titleTextHoverHandlers : {}), // attach hover if nolink
                                           },
@@ -3208,6 +3250,13 @@
                                                 ...(postTitleBgColor ? { backgroundColor: postTitleBgColor } : {}),
                                                 ...(titleOrder !== undefined ? { order: titleOrder } : {}),
                                                 ...(postLinkType === 'nolink' ? titleTextStyle : {}), // apply if nolink
+                                            },
+                                            onMouseEnter: (e) => {
+                                                e.currentTarget.style.backgroundColor = postTitleHoverBgColor;
+                                            },
+                                            onMouseLeave: (e) => {
+                                                e.currentTarget.style.backgroundColor = postTitleBgColor;
+                                                
                                             },
                                             ...(postLinkType === 'nolink' ? titleTextHoverHandlers : {}), // attach hover if nolink
                                         },
