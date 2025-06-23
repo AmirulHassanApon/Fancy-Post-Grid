@@ -3106,6 +3106,7 @@ img {
 .rs-blog-layout-1.rs-blog-layout-9 .blog-horizontal .blog-meta .blog-item-wrap .image-wrap {
     position: relative;
     max-width: 33.5%;
+    overflow: hidden;
 }
 
 .rs-blog-layout-1.rs-blog-layout-9 .blog-horizontal .blog-meta .blog-item-wrap .image-wrap a img {
@@ -3136,12 +3137,11 @@ img {
     margin: 0;
     list-style-type: none;
     flex-wrap: wrap;
+    gap: 0 10px;
 }
 
 .rs-blog-layout-1.rs-blog-layout-9 .blog-horizontal .blog-meta .blog-item-wrap .blog-content .blog-meta .admin {
     position: relative;
-    margin-right: 12px;
-    padding-right: 8px;
     font-size: 15px;
 }
 
