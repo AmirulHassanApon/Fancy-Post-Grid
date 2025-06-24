@@ -4621,8 +4621,8 @@ img {
         
     }
     .rs-blog-layout-17 .rs-blog-layout-17-item .rs-content .blog-title {
-        
-        margin-top: 15px;
+        margin-top: 0;
+        margin-bottom: 0;
     }
     .rs-blog-layout-17 .rs-blog-layout-17-item.rs-blog-layout-17-item-list .rs-content .btn-wrapper a{
         

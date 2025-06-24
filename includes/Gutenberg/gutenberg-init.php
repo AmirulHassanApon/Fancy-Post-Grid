@@ -16004,7 +16004,7 @@ function fancy_post_list_render_callback($attributes) {
                                         (is_numeric($postTitlePadding['left']) ? $postTitlePadding['left'] . 'px' : esc_attr($postTitlePadding['left'])) . '; ';
                                 }
                                 // Class name
-                                $classNames = 'blog-title' 
+                                $classNames = 'title' 
                                     . ($titleHoverUnderLine === 'enable' ? ' underline' : '') 
                                     . ' align-' . esc_attr($postTitleAlignment);
                                 // Hover JS (conditionally included)
