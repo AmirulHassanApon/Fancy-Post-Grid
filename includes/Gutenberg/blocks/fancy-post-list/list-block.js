@@ -1531,14 +1531,17 @@
 
                             showMetaData && 
                                 wp.element.createElement('div', { 
-                                    className: 'rs-meta', },
+                                    className: 'rs-meta', 
+                                    style: { 
+                                        ...(typeof metaOrder !== 'undefined' ? { order: metaOrder } : {}),
+                                    }                                 
+                                },
                                 wp.element.createElement('ul', { 
                                     className: `blog-meta post-meta align-${metaAlignment} `, 
                                     style: { 
                                         ...(attributes.metaMarginNew ? { margin: getSpacingValue(attributes.metaMarginNew) }: { }), 
                                         ...(attributes.metaPadding ? { padding: getSpacingValue(attributes.metaPadding) }: {  }),
                                         ...(metaTextColor ? { color: metaTextColor } : {}),
-                                        ...(typeof metaOrder !== 'undefined' ? { order: metaOrder } : {}),
                                         ...(metaFontSize ? { fontSize: `${metaFontSize}px` } : {})
                                     } 
                                 },
@@ -1787,7 +1790,11 @@
 
                                         showMetaData && 
                                             wp.element.createElement('div', { 
-                                                className: 'rs-meta', },
+                                                className: 'rs-meta', 
+                                                style: { 
+                                                    ...(typeof metaOrder !== 'undefined' ? { order: metaOrder } : {}),
+                                                }
+                                            },
                                             wp.element.createElement('ul', { 
                                                 
                                                 className: `blog-meta post-meta align-${metaAlignment} `, 
@@ -1795,7 +1802,6 @@
                                                     ...(attributes.metaMarginNew ? { margin: getSpacingValue(attributes.metaMarginNew) }: {}), 
                                                     ...(attributes.metaPadding ? { padding: getSpacingValue(attributes.metaPadding) }: { }),
                                                     ...(metaTextColor ? { color: metaTextColor } : {}),
-                                                    ...(typeof metaOrder !== 'undefined' ? { order: metaOrder } : {}),
                                                     ...(metaFontSize ? { fontSize: `${metaFontSize}px` } : {})
                                                 }
                                             },
