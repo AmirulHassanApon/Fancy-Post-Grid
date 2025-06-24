@@ -12936,7 +12936,7 @@ function fancy_post_list_render_callback($attributes) {
                                     (isset($itemBorderWidth['bottom']) && $itemBorderWidth['bottom'] !== '' ? (is_numeric($itemBorderWidth['bottom']) ? $itemBorderWidth['bottom'] . 'px' : esc_attr($itemBorderWidth['bottom'])) : '0px') . ' ' .
                                     (isset($itemBorderWidth['left']) && $itemBorderWidth['left'] !== '' ? (is_numeric($itemBorderWidth['left']) ? $itemBorderWidth['left'] . 'px' : esc_attr($itemBorderWidth['left'])) : '0px') . '; ';
                             } else {
-                                $output .= 'border-width: 0px;';
+                                $output .= 'border-width: 2px;';
                             }
 
                             // Border Style & Color
@@ -13622,7 +13622,7 @@ function fancy_post_list_render_callback($attributes) {
                                 (isset($itemBorderWidth['bottom']) && $itemBorderWidth['bottom'] !== '' ? (is_numeric($itemBorderWidth['bottom']) ? $itemBorderWidth['bottom'] . 'px' : esc_attr($itemBorderWidth['bottom'])) : '0px') . ' ' .
                                 (isset($itemBorderWidth['left']) && $itemBorderWidth['left'] !== '' ? (is_numeric($itemBorderWidth['left']) ? $itemBorderWidth['left'] . 'px' : esc_attr($itemBorderWidth['left'])) : '0px') . '; ';
                         } else {
-                            $output .= 'border-width: 0px;';
+                            $output .= 'border-width: 2px;';
                         }
 
                         // Border Style & Color
@@ -15319,7 +15319,13 @@ function fancy_post_list_render_callback($attributes) {
 
                             // Meta Data
                             if ($showMetaData) {
-                                $output .= '<div class="rs-meta">';        
+                                $output .= '<div class="rs-meta" style="';  
+                                    // Order
+                                    if (!empty($metaOrder)) {
+                                        $output .= 'order: ' . esc_attr($metaOrder) . '; ';
+                                    }
+                                
+                                $output .= '">';      
                                 $output .= '<ul class="blog-meta align-' . $metaAlignment . ' " style="';  
                                     // Margin
                                     if (!empty($metaMarginNew['top']) || !empty($metaMarginNew['right']) || !empty($metaMarginNew['bottom']) || !empty($metaMarginNew['left'])) {
@@ -15341,10 +15347,6 @@ function fancy_post_list_render_callback($attributes) {
                                     // Color
                                     if (!empty($metaTextColor)) {
                                         $output .= 'color: ' . esc_attr($metaTextColor) . '; ';
-                                    }
-                                    // Order
-                                    if (!empty($metaOrder)) {
-                                        $output .= 'order: ' . esc_attr($metaOrder) . '; ';
                                     }
                                 $output .= '">';
 
@@ -15870,7 +15872,13 @@ function fancy_post_list_render_callback($attributes) {
 
                             // Meta Data
                             if ($showMetaData) {
-                                $output .= '<div class="rs-meta">';        
+                                $output .= '<div class="rs-meta" " style="';    
+                                    // Order
+                                    if (!empty($metaOrder)) {
+                                        $output .= 'order: ' . esc_attr($metaOrder) . '; ';
+                                    } 
+                                
+                                $output .= '">';   
                                 $output .= '<ul class="blog-meta align-' . $metaAlignment . ' " style="';  
                                     // Margin
                                     if (!empty($metaMarginNew['top']) || !empty($metaMarginNew['right']) || !empty($metaMarginNew['bottom']) || !empty($metaMarginNew['left'])) {
@@ -15892,10 +15900,6 @@ function fancy_post_list_render_callback($attributes) {
                                     // Color
                                     if (!empty($metaTextColor)) {
                                         $output .= 'color: ' . esc_attr($metaTextColor) . '; ';
-                                    }
-                                    // Order
-                                    if (!empty($metaOrder)) {
-                                        $output .= 'order: ' . esc_attr($metaOrder) . '; ';
                                     }
                                 $output .= '">';
 
