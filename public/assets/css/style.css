@@ -1854,10 +1854,9 @@ img {
     order: 3;
 }
 .rs-blog-layout-5 .rs-blog__single .rs-content .fpg-excerpt p{
-    margin-bottom: 15px;
+    margin: 10px 0 10px 0;
     color: #454545;
 }
-
 .rs-blog-layout-5 .rs-blog__single .rs-content a {
     text-decoration: none;
 }
@@ -2024,6 +2023,7 @@ img {
 
 .rs-blog-layout-6 .rs-blog__single {
     border-radius: 4px;
+    border-style: none;
     overflow: hidden;
     background-color: #f7f7f7;
     margin: 40px 0px 0;
@@ -6354,7 +6354,7 @@ img {
         line-height: 1.5;
     }
     .rs-blog-layout-27-item .rs-content .title a{
-        color: #111;
+        
         text-decoration: none;
         margin-top: 8px;
         margin-bottom: 10px;
@@ -6489,6 +6489,7 @@ img {
         box-shadow: 0 6px 25px rgba(12,89,219,9%);
         margin-bottom: 30px;
         overflow: hidden;
+        border-style: none;
     }
     .rs-blog-layout-28-item.align-start .rs-content{
         text-align: left;
@@ -6503,6 +6504,7 @@ img {
         padding: 33px 24px 38px 42px;
         display: flex;
         flex-direction: column;
+        border-style: none;
     }
     .rs-blog-layout-28-item .rs-content a{
         text-decoration: none;

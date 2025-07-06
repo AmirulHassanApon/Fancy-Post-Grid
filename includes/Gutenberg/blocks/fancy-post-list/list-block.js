@@ -2927,7 +2927,6 @@
                     
                 );      
             }
-
             else if (listLayoutStyle === 'style8' && posts && posts.length) {
                 const thumbnail = posts[0]._embedded?.['wp:featuredmedia']?.[0]?.media_details?.sizes?.[thumbnailSize8L]?.source_url ||  posts[0]._embedded?.['wp:featuredmedia']?.[0]?.source_url || '';
 
@@ -3081,46 +3080,37 @@
 
                                 // Show Post Title (Conditional)
                                 showPostTitle &&
-                                    wp.element.createElement(
-                                        titleTag,
-                                        {
-                                            className: `title align-${postTitleAlignment} ${titleHoverUnderLine === 'enable' ? ' underline' : ''}`,
-                                            style: {
-                                                
-                                                ...(attributes.postTitleMargin ? { margin: getSpacingValue(attributes.postTitleMargin) }: { margin: '10px 0px 0px 0px' }), 
-                                                ...(attributes.postTitlePadding ? { padding: getSpacingValue(attributes.postTitlePadding) }: { padding: '0px 0px 0px 0px' }), 
-                                                
-                                                ...(postTitleBgColor ? { backgroundColor: postTitleBgColor } : {}),
-                                                ...(titleOrder !== undefined ? { order: titleOrder } : {}),
-                                                ...(postLinkType === 'nolink' ? titleTextStyle : {}), // apply if nolink
-                                            },
-                                            onMouseEnter: (e) => {
-                                                e.currentTarget.style.backgroundColor = postTitleHoverBgColor;
-                                            },
-                                            onMouseLeave: (e) => {
-                                                e.currentTarget.style.backgroundColor = postTitleBgColor;
-                                                
-                                            }, 
-                                            ...(postLinkType === 'nolink' ? titleTextHoverHandlers : {}), // attach hover if nolink
+                                wp.element.createElement(
+                                    titleTag,
+                                    {
+                                        className: `title align-${postTitleAlignment} ${titleHoverUnderLine === 'enable' ? ' underline' : ''}`,
+                                        style: {
+                                            
+                                            ...(attributes.postTitleMargin ? { margin: getSpacingValue(attributes.postTitleMargin) }: { }), 
+                                            ...(attributes.postTitlePadding ? { padding: getSpacingValue(attributes.postTitlePadding) }: { }), 
+                                            ...(postTitleBgColor ? { backgroundColor: postTitleBgColor } : {}),
+                                            ...(titleOrder !== undefined ? { order: titleOrder } : {}),
+                                            ...(postLinkType === 'nolink' ? titleTextStyle : {}), // apply if nolink
                                         },
-                                        postLinkType === 'yeslink'
-                                            ? wp.element.createElement(
-                                                'a',
-                                                {
-                                                    href: post.link,
-                                                    target: postLinkTarget === 'newWindow' ? '_blank' : '_self',
-                                                    style: titleTextStyle,
-                                                    ...titleTextHoverHandlers,
-                                                },
-                                                titleCropBy === 'word'
-                                                    ? post.title.rendered.split(' ').slice(0, titleLength).join(' ')
-                                                    : post.title.rendered.substring(0, titleLength)
-                                            )
-                                            : (titleCropBy === 'word'
-                                                ? post.title.rendered.split(' ').slice(0, titleLength).join(' ')
-                                                : post.title.rendered.substring(0, titleLength))
-                                    ),
-                                  
+                                        ...(postLinkType === 'nolink' ? titleTextHoverHandlers : {}), // attach hover if nolink
+                                    },
+                                    postLinkType === 'yeslink'
+                                        ? wp.element.createElement(
+                                            'a',
+                                            {
+                                                href: posts[0].link,
+                                                target: postLinkTarget === 'newWindow' ? '_blank' : '_self',
+                                                style: titleTextStyle,
+                                                ...titleTextHoverHandlers,
+                                            },
+                                            titleCropBy === 'word'
+                                                ? posts[0].title.rendered.split(' ').slice(0, titleLength).join(' ')
+                                                : posts[0].title.rendered.substring(0, titleLength)
+                                        )
+                                        : (titleCropBy === 'word'
+                                            ? posts[0].title.rendered.split(' ').slice(0, titleLength).join(' ')
+                                            : posts[0].title.rendered.substring(0, titleLength))
+                                ),
                                             
 
                                 showReadMoreButton && wp.element.createElement('div', { 
@@ -3256,13 +3246,6 @@
                                                 ...(postTitleBgColor ? { backgroundColor: postTitleBgColor } : {}),
                                                 ...(titleOrder !== undefined ? { order: titleOrder } : {}),
                                                 ...(postLinkType === 'nolink' ? titleTextStyle : {}), // apply if nolink
-                                            },
-                                            onMouseEnter: (e) => {
-                                                e.currentTarget.style.backgroundColor = postTitleHoverBgColor;
-                                            },
-                                            onMouseLeave: (e) => {
-                                                e.currentTarget.style.backgroundColor = postTitleBgColor;
-                                                
                                             },
                                             ...(postLinkType === 'nolink' ? titleTextHoverHandlers : {}), // attach hover if nolink
                                         },
@@ -3468,7 +3451,6 @@
                     
                 );
             }
-            
             else {
                 content = wp.element.createElement('p', {}, __('Select a style to display posts.', 'fancy-post-grid'));
             }
