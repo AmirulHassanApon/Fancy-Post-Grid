@@ -5305,6 +5305,10 @@ img {
     .rs-blog-layout-20-item .rs-thumb img{
         border-radius: 10px;
     }
+    .rs-blog-layout-20-item .rs-content{
+        display: flex;
+        flex-direction: column;
+    }
     .rs-blog-layout-20-item .rs-content .rs-meta ul{
         display: inline-flex;
         align-items: center;
