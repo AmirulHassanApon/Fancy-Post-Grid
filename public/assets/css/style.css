@@ -5334,12 +5334,24 @@ img {
     .rs-blog-layout-20-item .rs-thumb{
         max-width: 170px;
         margin-right: 30px;
+        overflow: hidden;
+        border-radius: 10px;
     }
     .rs-blog-layout-20-item .rs-thumb a{
         display: block;
     }
     .rs-blog-layout-20-item .rs-thumb img{
-        border-radius: 10px;
+        transition: all ease 0.3s;
+    }
+
+    .rs-blog-layout-20-item.hover-zoom_out .rs-thumb img{
+        transform: scale(1.1);
+    }
+    .rs-blog-layout-20-item.hover-zoom_out:hover .rs-thumb img{
+        transform: scale(1);
+    }
+    .rs-blog-layout-20-item.hover-zoom_in:hover .rs-thumb img{
+        transform: scale(1.1);
     }
     .rs-blog-layout-20-item .rs-content{
         border: 0;
@@ -5354,10 +5366,12 @@ img {
         flex-wrap: wrap;
         list-style-type: none;
         margin: 0 0 10px;
+        gap: 10px;
     }
     .rs-blog-layout-20-item .rs-content .rs-meta ul li,.rs-blog-layout-20 .rs-blog-layout-20-item .rs-content .rs-meta ul li a{
         color: #6d6d6d;
         font-weight: 500;
+        font-size: 15px;
     }
     .rs-blog-layout-20-item .rs-content .rs-meta ul li i{
         color: #AD87FF;
@@ -5366,7 +5380,7 @@ img {
         text-decoration: none ;
     }
     .rs-blog-layout-20-item .rs-content .rs-meta ul li:first-child{
-        margin-right: 40px;
+        margin-right: 0px;
         position: relative;
     }
     
@@ -5393,7 +5407,10 @@ img {
         background-position: left 100%;
         transition: all 0.7s !important;
     }
-    .rs-blog-layout-20-item .rs-content a.rs-btn{
+    .rs-blog-layout-20-item .rs-content .title.underline a:hover {
+        background-size: 100% 2px;
+    }
+    .rs-blog-layout-20-item .rs-content a.fpg-filled{
         background-color: #FF87B2;
         color: #FFFFFF;
         font-size: 14px;
@@ -5406,11 +5423,54 @@ img {
         display: inline-block;
         text-decoration: unset;
     }
-    .rs-blog-layout-20 .rs-blog-layout-20-item .rs-content .btn-wrapper a:hover{
+    .rs-blog-layout-20-item .rs-content a.fpg-filled:hover{
         background: transparent;
         color: #FF87B2;
         border: 2px solid #FF87B2;
     }
+
+    .rs-blog-layout-20-item .rs-content a.rs-btn.fpg-border{
+        font-size: 16px;
+        font-weight: 600;
+        color: #454545;
+        margin-top: 0px;
+        display: inline-block;
+        position: relative;
+        background: transparent !important;
+        border: 0;
+    }
+    .rs-blog-layout-20-item .rs-content a.rs-btn.fpg-border:hover{
+        color: #FF87B2;
+        background: transparent !important;
+    }
+    
+    .rs-blog-layout-20-item .rs-content a.rs-btn.fpg-border::before{
+        position: absolute;
+        content: '';
+        left: 0;
+        bottom: 0;
+        height: 2px;
+        width: 0%;
+        background: #FF87B2;
+        transition: all ease 0.3s;
+    }
+    
+    .rs-blog-layout-20-item .rs-content a.rs-btn.fpg-border:hover::before{
+        width: 100%;
+    }
+
+    .rs-blog-layout-20-item .rs-content a.rs-btn.fpg-flat{
+        color: #3e3e3e;
+        font-size: 16px;
+        font-weight: 600;
+        margin-top: 0px;
+        display: block;
+        border: 0;
+    }
+    .rs-blog-layout-20-item .rs-content a.rs-btn.fpg-flat:hover{
+        color: #FF87B2;
+    }
+    
 
     /* blog layout 20 css */
 
