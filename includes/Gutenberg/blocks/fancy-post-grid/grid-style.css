@@ -4659,6 +4659,24 @@ img {
         margin-top: 10px;
         text-decoration: unset;
     }
+    .rs-blog-layout-17-item .rs-content .blog-btn.align-start{
+        width: 100%;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+    }
+    .rs-blog-layout-17-item .rs-content .blog-btn.align-center{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .rs-blog-layout-17-item .rs-content .blog-btn.align-end{
+        width: 100%;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+    }
     .rs-blog-layout-17-item .rs-content .rs-btn:hover{
         color: #1a73e9;
     }
