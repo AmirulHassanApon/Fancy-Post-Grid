@@ -4572,6 +4572,9 @@ img {
         text-align: right;
         align-items: flex-end;
     }
+    .rs-blog-layout-17-item .rs-content .rs-meta {
+        width: 100%;
+    }
     .rs-blog-layout-17-item .rs-content .rs-meta ul{
         margin: 0;
         padding: 0;
@@ -4585,6 +4588,16 @@ img {
         justify-content: center;
     }
     .rs-blog-layout-17-item.align-end .rs-content .rs-meta ul{
+        justify-content: flex-end;
+    }
+
+    .rs-blog-layout-17-item .rs-content .rs-meta ul.align-start{
+        justify-content: flex-start;
+    }
+    .rs-blog-layout-17-item .rs-content .rs-meta ul.align-center{
+        justify-content: center;
+    }
+    .rs-blog-layout-17-item .rs-content .rs-meta ul.align-end{
         justify-content: flex-end;
     }
     .rs-blog-layout-17-item .rs-content .rs-meta ul li{        
@@ -4604,6 +4617,16 @@ img {
     .rs-blog-layout-17-item .rs-content .title{
         font-size: 30px;
         line-height: 40px;
+    }
+
+    .rs-blog-layout-17-item .rs-content .title.align-start{
+        text-align: left;
+    }
+    .rs-blog-layout-17-item .rs-content .title.align-center{
+        text-align: center;
+    }
+    .rs-blog-layout-17-item .rs-content .title.align-end{
+        text-align: right;
     }
     
     .rs-blog-layout-17-item .rs-content .title a{
@@ -4721,6 +4744,15 @@ img {
         margin-bottom: 0;
         margin-top: 5px;
     }
+    .rs-blog-layout-17 .rs-blog-layout-17-item .rs-content .blog-title.align-start{
+        text-align: left;
+    }
+    .rs-blog-layout-17 .rs-blog-layout-17-item .rs-content .blog-title.align-center{
+        text-align: center;
+    }
+    .rs-blog-layout-17 .rs-blog-layout-17-item .rs-content .blog-title.align-end{
+        text-align: right;
+    }
     .rs-blog-layout-17 .rs-blog-layout-17-item.rs-blog-layout-17-item-list .rs-content .btn-wrapper a{
         
         text-decoration: none;
@@ -4739,6 +4771,15 @@ img {
         margin-bottom: 0;
         font-size: 18px;
         line-height: 28px;
+    }
+    .rs-blog-layout-17-item.rs-blog-layout-17-item-list .rs-content .fpg-excerpt.align-start p{
+        text-align: left;
+    }
+    .rs-blog-layout-17-item.rs-blog-layout-17-item-list .rs-content .fpg-excerpt.align-center p{
+        text-align: center;
+    }
+    .rs-blog-layout-17-item.rs-blog-layout-17-item-list .rs-content .fpg-excerpt.align-end p{
+        text-align: right;
     }
     /* blog layout 17 css */
 
