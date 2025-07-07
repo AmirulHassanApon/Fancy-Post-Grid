@@ -7035,6 +7035,7 @@ img {
         padding: 20px 0px 20px 0px;
         display: flex;
         flex-direction: column;
+        border-style: none;
     }
     .rs-blog-layout-30-item .rs-content .title{
         font-size: 20px;
