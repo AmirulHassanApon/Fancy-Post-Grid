@@ -4655,23 +4655,23 @@ img {
     .rs-blog-layout-17-item .rs-content .rs-btn{
         color: #3a3a3a;
         font-weight: 600;
-        display: block;
+        display: inline-block;
         margin-top: 10px;
         text-decoration: unset;
     }
-    .rs-blog-layout-17-item .rs-content .blog-btn.align-start{
+    .rs-blog-layout-17-item .rs-content .fpg-blog-btn.align-start{
         width: 100%;
         display: flex;
         justify-content: flex-start;
         align-items: center;
     }
-    .rs-blog-layout-17-item .rs-content .blog-btn.align-center{
+    .rs-blog-layout-17-item .rs-content .fpg-blog-btn.align-center{
         width: 100%;
         display: flex;
         justify-content: center;
         align-items: center;
     }
-    .rs-blog-layout-17-item .rs-content .blog-btn.align-end{
+    .rs-blog-layout-17-item .rs-content .fpg-blog-btn.align-end{
         width: 100%;
         display: flex;
         justify-content: flex-end;
@@ -4733,7 +4733,7 @@ img {
         font-size: 16px;
         font-weight: 600;
         margin-top: 15px;
-        display: block;
+        display: inline-block;
     }
     .rs-blog-layout-17-item .rs-content a.rs-btn.fpg-flat:hover{
         color: #1a73e9;
@@ -5286,9 +5286,6 @@ img {
 
     /* blog layout 20 css */
     .rs-blog-layout-20{
-        background: #FBF9FF;
-        padding-top: 90px;
-        padding-bottom: 120px;
     }
     .rs-blog-layout-20-item{
         display: flex;
@@ -5297,11 +5294,13 @@ img {
         padding: 35px;
         box-shadow: 0px -20px 60px 15px rgb(1 1 1 / 5%);
         border-radius: 20px;
-        margin-top: 30px;
     }
     .rs-blog-layout-20-item .rs-thumb{
         max-width: 170px;
         margin-right: 30px;
+    }
+    .rs-blog-layout-20-item .rs-thumb a{
+        display: block;
     }
     .rs-blog-layout-20-item .rs-thumb img{
         border-radius: 10px;
@@ -5312,6 +5311,8 @@ img {
         border-bottom: 1px solid #AD87FF47;
         padding: 0 0 10px 0;
         flex-wrap: wrap;
+        margin: 0 0 10px;
+        list-style-type: none;
     }
     .rs-blog-layout-20-item .rs-content .rs-meta ul li,.rs-blog-layout-20 .rs-blog-layout-20-item .rs-content .rs-meta ul li a{
         color: #6d6d6d;
