@@ -6451,7 +6451,7 @@ img {
         font-size: 16px;
         font-weight: 600;
         margin-top: 0px;
-        display: block;
+        display: inline-block;
         border: 0;
     }
     .rs-blog-layout-25-item .rs-content a.rs-btn.fpg-flat:hover{
