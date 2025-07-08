@@ -6315,50 +6315,27 @@ img {
 
 
     .rs-blog-layout-25{
-        padding-top: 120px;
-        padding-bottom: 120px;
-    }
-    .rs-blog-25-topbar{
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        margin-bottom: 60px;
-    }
-    .rs-blog-25-topbar .title{
-        font-size: 50px;
-        line-height: 60px;
-        font-weight: 500;
-        color: #19082d;
-    }
-    .rs-blog-25-topbar > a:hover{
-        background: #8873ef;
-        border-color: #8873ef;
-        color: #fff;
-    }
-    .rs-blog-25-topbar > a{
-        border: 2px solid #3E3E3E;
-        padding: 16px 30px;
-        color: #3E3E3E;
-        text-decoration: none !important;
     }
     .rs-blog-layout-25-item{
         display: flex;
         align-items: center;
         padding-bottom: 50px;
         margin-bottom: 50px;
+        border: 0;
         border-bottom: 1px solid #3e3e3e1f;
-    }
-    .rs-blog-layout-25-item:last-child{
-        border-bottom: 0;
-        padding-bottom: 0;
-        margin-bottom: 0;
     }
     .rs-blog-layout-25-item .rs-thumb{
         max-width: 420px;
         min-width: 420px;
     }
+    .rs-blog-layout-25-item .rs-thumb a{
+        display: block;
+    }
     .rs-blog-layout-25-item .rs-content{
         margin-left: 45px;
+        border: 0;
+        display: flex;
+        flex-direction: column;
     }
 
     .rs-blog-layout-25-item .rs-content .rs-cat a{
