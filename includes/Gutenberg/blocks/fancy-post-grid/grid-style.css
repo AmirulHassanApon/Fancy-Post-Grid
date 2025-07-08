@@ -5413,6 +5413,15 @@ img {
     .rs-blog-layout-20-item .rs-content .title.underline a:hover {
         background-size: 100% 2px;
     }
+    .rs-blog-layout-20-item .rs-content .btn-wrapper.align-start{
+        text-align: left;
+    }
+    .rs-blog-layout-20-item .rs-content .btn-wrapper.align-center{
+        text-align: center;
+    }
+    .rs-blog-layout-20-item .rs-content .btn-wrapper.align-end{
+        text-align: right;
+    }
     .rs-blog-layout-20-item .rs-content a.fpg-filled{
         background-color: #FF87B2;
         color: #FFFFFF;
@@ -5676,8 +5685,6 @@ img {
 
     /* blog layout 22 css */
     .rs-blog-layout-22{
-        padding-top: 90px;
-        padding-bottom: 120px;
     }
     .rs-blog-layout-22-item{
         margin-top: 30px;
@@ -5695,18 +5702,25 @@ img {
         border-radius: 10px;
         overflow: hidden;
     }
+    .rs-blog-layout-22-item .rs-thumb a{
+        display: block;
+    }
     .rs-blog-layout-22-item .rs-thumb img{
         transition: all ease 0.3s;
+    }
+    .rs-blog-layout-22-item .rs-content {
+        display: flex;
+        flex-direction: column;
     }
     .rs-blog-layout-22-item .rs-content .rs-meta ul{
         display: flex;
         align-items: center;
         flex-wrap: wrap;
+        gap: 10px;
     }
     .rs-blog-layout-22-item .rs-content .rs-meta ul li{
         color: #6d6d6d;
         font-size: 15px;
-        margin-right: 20px;
     }
     .rs-blog-layout-22-item .rs-content .rs-meta ul li:last-child{
         margin-right: 0;
@@ -5729,6 +5743,7 @@ img {
         font-size: 24px;
         line-height: 34px;
         letter-spacing: -1px;
+        margin: 15px 0 10px;
     }
     .rs-blog-layout-22-item .rs-content .title a{
         color: #080d41;
@@ -5744,6 +5759,21 @@ img {
     }
     .rs-blog-layout-22-item .rs-content .title a:hover{
         color: #CB003B;
+    }
+    .rs-blog-layout-22-item .rs-content .title.underline a{
+        display: inline;
+        transition: all 0.5s ease;
+        text-decoration: none;
+        background-image: linear-gradient(to bottom, #CB003B 0%, #CB003B 100%);
+        background-size: 0 2px;
+        background-repeat: no-repeat;
+        background-position: left 100%;
+        transition: all 0.7s !important;
+    }
+
+
+    .rs-blog-layout-22-item .rs-content .title.underline a:hover {
+        background-size: 100% 2px;
     }
     .rs-blog-layout-22-item .rs-content .rs-btn{
         background-color: #CB003B;
@@ -5767,8 +5797,17 @@ img {
     .rs-blog-layout-22 .rs-blog-layout-22-item .rs-content .rs-meta ul {
         padding: 0;
     }
-    .rs-blog-layout-22-item:hover .rs-thumb img{
+    .rs-blog-layout-22-item.hover-zoom_in:hover .rs-thumb img{
         transform: scale(1.1);
+    }
+    .rs-blog-layout-22-item.hover-zoom_out .rs-thumb img{
+        transform: scale(1.1);
+    }
+    .rs-blog-layout-22-item.hover-zoom_out:hover .rs-thumb img{
+        transform: scale(1);
+    }
+    .rs-blog-layout-22-item .rs-content p{
+        margin-top: 0;
     }
     
     /* blog layout 22 css */
