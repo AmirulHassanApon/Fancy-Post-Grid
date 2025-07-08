@@ -99,6 +99,7 @@
             //Content Box
             contentitemMarginNew: { type: 'object' },
             contentitemPaddingNew: { type: 'object' },
+            contentitemRadius: { type: 'object', default: 'none' },
             contentBorderWidth: { type: 'object' },
             contentnormalBorderType: { type: 'string', default: '' },     
             contentBgColor: { type: 'string', default: '' },       
@@ -203,7 +204,7 @@
                 itemPadding,itemMargin,itemBorderRadius,itemBoxAlignment,itemBoxShadow,itemBoxShadowColor,
                 itemBorderColor,itemBackgroundColor,itemBorderWidth,itemBorderType,itemGap, 
 
-                contentitemMarginNew,contentitemPaddingNew,contentnormalBorderType,contentBorderWidth,contentBgColor,contentBorderColor,
+                contentitemMarginNew,contentitemPaddingNew,contentnormalBorderType,contentitemRadius,contentBorderWidth,contentBgColor,contentBorderColor,
 
                 thumbnailMargin,thumbnailPadding,thumbnailBorderRadius,
 
@@ -634,6 +635,7 @@
                                                                   ? { padding: getSpacingValue(attributes.contentitemPaddingNew) }
                                                                   : { padding: '27px 30px 34px 30px' }), // your default fallback
                                                                 ...(attributes.contentBorderWidth ? { borderWidth: getSpacingValue(attributes.contentBorderWidth) } : {}),
+                                                                ...(attributes.contentitemRadius ? { borderRadius: getSpacingValue(attributes.contentitemRadius) } : {}),
                                                                 ...(attributes.contentnormalBorderType ? { borderStyle: attributes.contentnormalBorderType } : {}),
                                                                 ...(contentBgColor ? { backgroundColor: contentBgColor } : {}),
                                                                 ...(contentBorderColor ? { borderColor: contentBorderColor } : {})
@@ -1002,6 +1004,7 @@
                                                                 ? { padding: getSpacingValue(attributes.contentitemPaddingNew) }
                                                                 : { padding: '20px 20px 20px 20px' }), // your default fallback
                                                               ...(attributes.contentBorderWidth ? { borderWidth: getSpacingValue(attributes.contentBorderWidth) } : {}),
+                                                              ...(attributes.contentitemRadius ? { borderRadius: getSpacingValue(attributes.contentitemRadius) } : {}),
                                                               ...(attributes.contentnormalBorderType ? { borderStyle: attributes.contentnormalBorderType } : {}),
                                                               ...(contentBgColor ? { backgroundColor: contentBgColor } : {}),
                                                               ...(contentBorderColor ? { borderColor: contentBorderColor } : {})
@@ -1377,6 +1380,7 @@
                                                                 ? { padding: getSpacingValue(attributes.contentitemPaddingNew) }
                                                                 : { padding: '0px 20px 40px 20px' }), // your default fallback
                                                               ...(attributes.contentBorderWidth ? { borderWidth: getSpacingValue(attributes.contentBorderWidth) } : {}),
+                                                              ...(attributes.contentitemRadius ? { borderRadius: getSpacingValue(attributes.contentitemRadius) } : {}),
                                                               ...(attributes.contentnormalBorderType ? { borderStyle: attributes.contentnormalBorderType } : {}),
                                                               ...(contentBgColor ? { backgroundColor: contentBgColor } : {}),
                                                               ...(contentBorderColor ? { borderColor: contentBorderColor } : {})
@@ -1755,6 +1759,7 @@
                                                                   ? { padding: getSpacingValue(attributes.contentitemPaddingNew) }
                                                                   : { padding: '22px 30px 20px 30px' }), // your default fallback
                                                                 ...(attributes.contentBorderWidth ? { borderWidth: getSpacingValue(attributes.contentBorderWidth) } : {}),
+                                                                ...(attributes.contentitemRadius ? { borderRadius: getSpacingValue(attributes.contentitemRadius) } : {}),
                                                                 ...(attributes.contentnormalBorderType ? { borderStyle: attributes.contentnormalBorderType } : {}),
                                                                 ...(contentBgColor ? { backgroundColor: contentBgColor } : {}),
                                                                 ...(contentBorderColor ? { borderColor: contentBorderColor } : {})
@@ -2072,6 +2077,7 @@
                                                                 ? { padding: getSpacingValue(attributes.contentitemPaddingNew) }
                                                                 : { padding: '60px 25px 25px 25px' }), 
                                                               ...(attributes.contentBorderWidth ? { borderWidth: getSpacingValue(attributes.contentBorderWidth) } : {}),
+                                                              ...(attributes.contentitemRadius ? { borderRadius: getSpacingValue(attributes.contentitemRadius) } : {}),
                                                               ...(attributes.contentnormalBorderType ? { borderStyle: attributes.contentnormalBorderType } : {}),
                                                               ...(contentBgColor ? { backgroundColor: contentBgColor } : {}),
                                                               ...(contentBorderColor ? { borderColor: contentBorderColor } : {})
@@ -2355,6 +2361,7 @@
                                                                 ? { padding: getSpacingValue(attributes.contentitemPaddingNew) }
                                                                 : { padding: '20px 20px 20px 20px' }), // your default fallback
                                                               ...(attributes.contentBorderWidth ? { borderWidth: getSpacingValue(attributes.contentBorderWidth) } : {}),
+                                                              ...(attributes.contentitemRadius ? { borderRadius: getSpacingValue(attributes.contentitemRadius) } : {}),
                                                               ...(attributes.contentnormalBorderType ? { borderStyle: attributes.contentnormalBorderType } : {}),
                                                               ...(contentBgColor ? { backgroundColor: contentBgColor } : {}),
                                                               ...(contentBorderColor ? { borderColor: contentBorderColor } : {})
@@ -2691,6 +2698,7 @@
                                                               ? { padding: getSpacingValue(attributes.contentitemPaddingNew) }
                                                               : { padding: '20px 30px 30px 30px' }), // your default fallback
                                                                 ...(attributes.contentBorderWidth ? { borderWidth: getSpacingValue(attributes.contentBorderWidth) } : {}),
+                                                                ...(attributes.contentitemRadius ? { borderRadius: getSpacingValue(attributes.contentitemRadius) } : {}),
                                                                 ...(attributes.contentnormalBorderType ? { borderStyle: attributes.contentnormalBorderType } : {}),
                                                                 ...(contentBgColor ? { backgroundColor: contentBgColor } : {}),
                                                                 ...(contentBorderColor ? { borderColor: contentBorderColor } : {})
@@ -3353,6 +3361,12 @@
                                         values: attributes.itemBorderRadius,
                                         onChange: (value) => setAttributes({ itemBorderRadius: value }),
                                     }),
+                                    // Border Width
+                                    wp.element.createElement(__experimentalBoxControl, {
+                                      label: __('Border Width', 'fancy-post-grid'),
+                                      values: attributes.itemBorderWidth,
+                                      onChange: (value) => setAttributes({ itemBorderWidth: value }),
+                                    }),
                                     // Font Size
                                     wp.element.createElement(RangeControl, {
                                         label: __('Item Gap', 'fancy-post-grid'),
@@ -3399,12 +3413,7 @@
                                         ],
                                         onChange: (value) => setAttributes({ itemBorderType: value }),
                                     }),
-                                      // Border Width
-                                      wp.element.createElement(__experimentalBoxControl, {
-                                        label: __('Border Width', 'fancy-post-grid'),
-                                        values: attributes.itemBorderWidth,
-                                        onChange: (value) => setAttributes({ itemBorderWidth: value }),
-                                      }),
+                                      
                                       // Border Color
                                       wp.element.createElement('p', {}, __('Item Border Color', 'fancy-post-grid')),                                                                                                          
                                       wp.element.createElement(wp.components.ColorPicker, {
@@ -3436,10 +3445,8 @@
                                         values: attributes.itemBoxShadow,
                                         onChange: (value) => setAttributes({ itemBoxShadow: value }),
                                     }),
-                                    
                                 ),
                                     
-                                
                                 // Content Box
                                 wp.element.createElement(PanelBody, { title: __('Content Box', 'fancy-post-grid'), initialOpen: false },
                                     // Margin Control
@@ -3454,6 +3461,18 @@
                                         label: __('Padding', 'fancy-post-grid'),
                                         values: attributes.contentitemPaddingNew,
                                         onChange: (value) => setAttributes({ contentitemPaddingNew: value }),
+                                    }),
+                                    // Border Radius
+                                    wp.element.createElement(__experimentalBoxControl, {
+                                        label: __('Border Radius (e.g., 5px)', 'fancy-post-grid'),
+                                        values: attributes.contentitemRadius,
+                                        onChange: (value) => setAttributes({ contentitemRadius: value }),
+                                    }),
+                                    // Border Width
+                                    wp.element.createElement(__experimentalBoxControl, {
+                                        label: __('Border Width', 'fancy-post-grid'),
+                                        values: attributes.contentBorderWidth,
+                                        onChange: (value) => setAttributes({ contentBorderWidth: value }),
                                     }),
 
                                     // Border Style Control
@@ -3470,12 +3489,7 @@
                                         ],
                                         onChange: (value) => setAttributes({ contentnormalBorderType: value }),
                                     }),
-                                    // Border Width
-                                    wp.element.createElement(__experimentalBoxControl, {
-                                        label: __('Border Width', 'fancy-post-grid'),
-                                        values: attributes.contentBorderWidth,
-                                        onChange: (value) => setAttributes({ contentBorderWidth: value }),
-                                    }),
+                                    
                                     wp.element.createElement('p', {}, __('Box Background Color', 'fancy-post-grid')),
                                                         
                                     wp.element.createElement(wp.components.ColorPicker, {
