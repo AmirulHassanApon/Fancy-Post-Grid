@@ -2741,7 +2741,7 @@
                 content = wp.element.createElement(
                     'div',
                     { 
-                        className: 'rs-blog-layout-25 grey fancy-post-grid', 
+                        className: 'rs-blog-layout-25 fancy-post-grid', 
                         style: { 
                             display: 'grid', 
                             gridTemplateColumns: `1fr`, 
@@ -2751,18 +2751,7 @@
                             ...(attributes.sectionMargin ? { margin: getSpacingValue(attributes.sectionMargin) } : {}),
                         } 
                     },
-                    wp.element.createElement(
-                        'div',
-                        { className: 'rs-blog-25-topbar' },
-                        wp.element.createElement('h3', { className: 'title' }, wp.i18n.__('Blog & article', 'fancy-post-grid')),
-                        wp.element.createElement(
-                            'a',
-                            { href: '#' }, 
-                            wp.i18n.__('See All Posts', 'fancy-post-grid'),
-                            wp.element.createElement('i', { className: 'ri-arrow-right-up-line' })
-                        )
-                        
-                    ),
+                    
                     posts.map((post) => {
                         
                         const thumbnail = post._embedded?.['wp:featuredmedia']?.[0]?.media_details?.sizes?.[thumbnailSize7]?.source_url ||  post._embedded?.['wp:featuredmedia']?.[0]?.source_url || '';
