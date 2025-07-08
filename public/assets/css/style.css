@@ -168,6 +168,7 @@ img {
     border-radius: 70px 0px 0px 0px;
     margin: 40px 0px;
     overflow: hidden;
+    border-style: none;
 }
 .rs-blog-layout-1 .blog-item.align-start {
     text-align: left;
@@ -354,6 +355,7 @@ img {
     display: inline-block;
     position: relative;
     background: transparent !important;
+    border-style: none;
 }
 .rs-blog-layout-1 .blog-item .blog-content .blog-btn .read-more.fpg-border:hover{
     color: #FF6D00;
@@ -479,6 +481,7 @@ img {
     margin: 40px 0px;
     overflow: hidden;
     box-shadow: 0 6px 25px rgb(12 89 219 / 11%);
+    border-style: none;
 }
 .rs-blog-layout-2 .blog-item.align-start {
     text-align: left;
@@ -565,6 +568,7 @@ img {
     border-radius: 0 0 5px 5px;
     display: flex;
     flex-direction: column;
+    border-style: none;
 }
 
 .rs-blog-layout-2 .blog-item .blog-content .blog-meta {
@@ -739,6 +743,7 @@ img {
     display: inline-block;
     position: relative;
     background: transparent !important;
+    border-style: none;
 }
 
 .rs-blog-layout-2 .blog-item .blog-content .blog-btn .read-more.fpg-flat:hover{
@@ -845,6 +850,7 @@ img {
     position: relative;
     z-index: 10;
     margin-top: 55px;
+    border-style: none;
 }
 
 
@@ -886,6 +892,7 @@ img {
     z-index: 5;
     display: flex;
     flex-direction: column;
+    border-style: none;
 }
 
 @media only screen and (min-width: 992px) and (max-width: 1199px) {
@@ -1306,6 +1313,7 @@ img {
     border-radius: 10px;
     overflow: hidden;
     margin-top: 30px;
+    border-style: none;
 }
 
 .rs-blog-layout-4 .rs-blog__item.align-start .rs-content{
@@ -1357,6 +1365,7 @@ img {
     padding: 22px 30px 20px;
     display: flex;
     flex-direction: column;
+    border-style: none;
 }
 
 @media only screen and (max-width: 767px) {
@@ -1483,6 +1492,7 @@ img {
     display: inline-flex;
     align-items: center;
     gap: 6px;
+    text-decoration: none;
 }
 
 .rs-blog-layout-4 .rs-blog__item .rs-content .rs-blog-footer .user a .author-thumb{
@@ -1558,6 +1568,7 @@ img {
     display: inline-block;
     position: relative;
     background: transparent !important;
+    border-style: none;
 }
 
 .rs-blog-layout-4 .rs-blog__item .rs-content .rs-blog-footer .btn-link.fpg-flat:hover{
@@ -4827,6 +4838,7 @@ img {
     .rs-blog-layout-18-item{
         position: relative;
         margin: 30px 15px 30px;
+        border-style: none;
     }
     .rs-blog-layout-18-item .rs-thumb{
         border-radius: 30px;
@@ -4859,6 +4871,7 @@ img {
         flex-direction: column;
         align-items: flex-start;
         overflow: hidden;
+        border-style: none;
     }
     .rs-blog-layout-18-item.align-center .rs-content{
         text-align: center;
@@ -5030,6 +5043,7 @@ img {
         margin-top: 15px;
         display: block;
         text-decoration: none;
+        border-style: none;
     }
     .rs-blog-layout-18-item .rs-content a.rs-btn.fpg-flat:hover{
         color: #3a15fb;
@@ -5783,6 +5797,7 @@ img {
         position: relative;
         margin-top: 30px;
         box-sizing: border-box;
+        border-style: none;
     }
     .rs-blog-layout-23-item.align-start{
         text-align: left;
