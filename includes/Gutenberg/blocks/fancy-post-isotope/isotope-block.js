@@ -94,6 +94,7 @@
             contentitemMarginNew: { type: 'object' },
             contentitemPaddingNew: { type: 'object' },
             contentBorderWidth: { type: 'object',  },
+            contentitemRadius: { type: 'object',  },
             contentnormalBorderType: { type: 'string', default: '' },     
             contentBgColor: { type: 'string', default: '' },       
             contentBorderColor: { type: 'string', default: '' },       
@@ -195,7 +196,7 @@
                 itemPadding,itemMargin,itemBorderRadius,itemBoxAlignment,itemBoxShadow,itemBoxShadowColor,
                 itemBorderColor,itemBackgroundColor,itemBorderWidth,itemBorderType,itemGap, 
 
-                contentitemMarginNew,contentitemPaddingNew,contentnormalBorderType,contentBorderWidth,contentBgColor,contentBorderColor,
+                contentitemMarginNew,contentitemPaddingNew,contentnormalBorderType,contentitemRadius,contentBorderWidth,contentBgColor,contentBorderColor,
 
                 thumbnailMargin,thumbnailPadding,thumbnailBorderRadius,
 
@@ -1339,6 +1340,7 @@
                                                   ? { padding: getSpacingValue(attributes.contentitemPaddingNew) }
                                                   : { padding: '22px 30px 20px 30px' }), // your default fallback
                                                 ...(attributes.contentBorderWidth ? { borderWidth: getSpacingValue(attributes.contentBorderWidth) } : {}),
+                                                ...(attributes.contentitemRadius ? { borderRadius: getSpacingValue(attributes.contentitemRadius) } : {}),
                                                 ...(attributes.contentnormalBorderType ? { borderStyle: attributes.contentnormalBorderType } : {}),
                                                 ...(contentBgColor ? { backgroundColor: contentBgColor } : {}),
                                                 ...(contentBorderColor ? { borderColor: contentBorderColor } : {})
@@ -1630,6 +1632,7 @@
                                                   ? { padding: getSpacingValue(attributes.contentitemPaddingNew) }
                                                   : { padding: '20px 0px 0px 0px' }), // your default fallback
                                                 ...(attributes.contentBorderWidth ? { borderWidth: getSpacingValue(attributes.contentBorderWidth) } : {}),
+                                                ...(attributes.contentitemRadius ? { borderRadius: getSpacingValue(attributes.contentitemRadius) } : {}),
                                                 ...(attributes.contentnormalBorderType ? { borderStyle: attributes.contentnormalBorderType } : {}),
                                                 ...(contentBgColor ? { backgroundColor: contentBgColor } : {}),
                                                 ...(contentBorderColor ? { borderColor: contentBorderColor } : {})

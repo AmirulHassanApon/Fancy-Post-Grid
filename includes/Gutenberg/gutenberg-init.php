@@ -220,6 +220,7 @@ function fancy_post_grid_render_callback($attributes) {
     $contentitemPaddingNew = isset($attributes['contentitemPaddingNew']) ? $attributes['contentitemPaddingNew'] : ['top' => '', 'right' => '', 'bottom' => '', 'left' => ''];
     $contentitemMarginNew = isset($attributes['contentitemMarginNew']) ? $attributes['contentitemMarginNew'] : ['top' => '', 'right' => '', 'bottom' => '', 'left' => ''];
     $contentBorderWidth = isset($attributes['contentBorderWidth']) ? $attributes['contentBorderWidth'] : ['top' => '', 'right' => '', 'bottom' => '', 'left' => ''];
+    $contentitemRadius = isset($attributes['contentitemRadius']) ? $attributes['contentitemRadius'] : ['top' => '', 'right' => '', 'bottom' => '', 'left' => ''];
     $contentNormalBorderType = isset($attributes['contentnormalBorderType']) ? sanitize_text_field($attributes['contentnormalBorderType']) : '';
     $contentBgColor    = isset($attributes['contentBgColor']) ? sanitize_hex_color($attributes['contentBgColor']) : '';   
     $contentBorderColor = isset($attributes['contentBorderColor']) ? sanitize_hex_color($attributes['contentBorderColor']) : '';
@@ -1136,6 +1137,19 @@ function fancy_post_grid_render_callback($attributes) {
                             (isset($contentBorderWidth['bottom']) ? (is_numeric($contentBorderWidth['bottom']) ? $contentBorderWidth['bottom'] . 'px' : esc_attr($contentBorderWidth['bottom'])) : '0px') . ' ' .
                             (isset($contentBorderWidth['left']) ? (is_numeric($contentBorderWidth['left']) ? $contentBorderWidth['left'] . 'px' : esc_attr($contentBorderWidth['left'])) : '0px') . '; ';
                     }
+                    // BORDER radius
+                    if (
+                        isset($contentitemRadius['top']) ||
+                        isset($contentitemRadius['right']) ||
+                        isset($contentitemRadius['bottom']) ||
+                        isset($contentitemRadius['left'])
+                    ) {
+                        $output .= 'border-radius: ' .
+                            (isset($contentitemRadius['top']) ? (is_numeric($contentitemRadius['top']) ? $contentitemRadius['top'] . 'px' : esc_attr($contentitemRadius['top'])) : '0px') . ' ' .
+                            (isset($contentitemRadius['right']) ? (is_numeric($contentitemRadius['right']) ? $contentitemRadius['right'] . 'px' : esc_attr($contentitemRadius['right'])) : '0px') . ' ' .
+                            (isset($contentitemRadius['bottom']) ? (is_numeric($contentitemRadius['bottom']) ? $contentitemRadius['bottom'] . 'px' : esc_attr($contentitemRadius['bottom'])) : '0px') . ' ' .
+                            (isset($contentitemRadius['left']) ? (is_numeric($contentitemRadius['left']) ? $contentitemRadius['left'] . 'px' : esc_attr($contentitemRadius['left'])) : '0px') . '; ';
+                    }
 
                     // Border Style
                     if (!empty($contentNormalBorderType)) {
@@ -1822,6 +1836,19 @@ function fancy_post_grid_render_callback($attributes) {
                             (isset($contentBorderWidth['right']) ? (is_numeric($contentBorderWidth['right']) ? $contentBorderWidth['right'] . 'px' : esc_attr($contentBorderWidth['right'])) : '0px') . ' ' .
                             (isset($contentBorderWidth['bottom']) ? (is_numeric($contentBorderWidth['bottom']) ? $contentBorderWidth['bottom'] . 'px' : esc_attr($contentBorderWidth['bottom'])) : '0px') . ' ' .
                             (isset($contentBorderWidth['left']) ? (is_numeric($contentBorderWidth['left']) ? $contentBorderWidth['left'] . 'px' : esc_attr($contentBorderWidth['left'])) : '0px') . '; ';
+                    }
+                    // BORDER radius
+                    if (
+                        isset($contentitemRadius['top']) ||
+                        isset($contentitemRadius['right']) ||
+                        isset($contentitemRadius['bottom']) ||
+                        isset($contentitemRadius['left'])
+                    ) {
+                        $output .= 'border-radius: ' .
+                            (isset($contentitemRadius['top']) ? (is_numeric($contentitemRadius['top']) ? $contentitemRadius['top'] . 'px' : esc_attr($contentitemRadius['top'])) : '0px') . ' ' .
+                            (isset($contentitemRadius['right']) ? (is_numeric($contentitemRadius['right']) ? $contentitemRadius['right'] . 'px' : esc_attr($contentitemRadius['right'])) : '0px') . ' ' .
+                            (isset($contentitemRadius['bottom']) ? (is_numeric($contentitemRadius['bottom']) ? $contentitemRadius['bottom'] . 'px' : esc_attr($contentitemRadius['bottom'])) : '0px') . ' ' .
+                            (isset($contentitemRadius['left']) ? (is_numeric($contentitemRadius['left']) ? $contentitemRadius['left'] . 'px' : esc_attr($contentitemRadius['left'])) : '0px') . '; ';
                     }
                     // Border Style
                     if (!empty($contentNormalBorderType)) {
@@ -2866,6 +2893,19 @@ function fancy_post_grid_render_callback($attributes) {
                             (isset($contentBorderWidth['bottom']) ? (is_numeric($contentBorderWidth['bottom']) ? $contentBorderWidth['bottom'] . 'px' : esc_attr($contentBorderWidth['bottom'])) : '0px') . ' ' .
                             (isset($contentBorderWidth['left']) ? (is_numeric($contentBorderWidth['left']) ? $contentBorderWidth['left'] . 'px' : esc_attr($contentBorderWidth['left'])) : '0px') . '; ';
                     }
+                    // BORDER radius
+                    if (
+                        isset($contentitemRadius['top']) ||
+                        isset($contentitemRadius['right']) ||
+                        isset($contentitemRadius['bottom']) ||
+                        isset($contentitemRadius['left'])
+                    ) {
+                        $output .= 'border-radius: ' .
+                            (isset($contentitemRadius['top']) ? (is_numeric($contentitemRadius['top']) ? $contentitemRadius['top'] . 'px' : esc_attr($contentitemRadius['top'])) : '0px') . ' ' .
+                            (isset($contentitemRadius['right']) ? (is_numeric($contentitemRadius['right']) ? $contentitemRadius['right'] . 'px' : esc_attr($contentitemRadius['right'])) : '0px') . ' ' .
+                            (isset($contentitemRadius['bottom']) ? (is_numeric($contentitemRadius['bottom']) ? $contentitemRadius['bottom'] . 'px' : esc_attr($contentitemRadius['bottom'])) : '0px') . ' ' .
+                            (isset($contentitemRadius['left']) ? (is_numeric($contentitemRadius['left']) ? $contentitemRadius['left'] . 'px' : esc_attr($contentitemRadius['left'])) : '0px') . '; ';
+                    }
                     // Border Style
                     if (!empty($contentNormalBorderType)) {
                         $output .= 'border-style: ' . esc_attr($contentNormalBorderType) . '; ';
@@ -3404,6 +3444,19 @@ function fancy_post_grid_render_callback($attributes) {
                             (isset($contentBorderWidth['right']) ? (is_numeric($contentBorderWidth['right']) ? $contentBorderWidth['right'] . 'px' : esc_attr($contentBorderWidth['right'])) : '0px') . ' ' .
                             (isset($contentBorderWidth['bottom']) ? (is_numeric($contentBorderWidth['bottom']) ? $contentBorderWidth['bottom'] . 'px' : esc_attr($contentBorderWidth['bottom'])) : '0px') . ' ' .
                             (isset($contentBorderWidth['left']) ? (is_numeric($contentBorderWidth['left']) ? $contentBorderWidth['left'] . 'px' : esc_attr($contentBorderWidth['left'])) : '0px') . '; ';
+                    }
+                    // BORDER radius
+                    if (
+                        isset($contentitemRadius['top']) ||
+                        isset($contentitemRadius['right']) ||
+                        isset($contentitemRadius['bottom']) ||
+                        isset($contentitemRadius['left'])
+                    ) {
+                        $output .= 'border-radius: ' .
+                            (isset($contentitemRadius['top']) ? (is_numeric($contentitemRadius['top']) ? $contentitemRadius['top'] . 'px' : esc_attr($contentitemRadius['top'])) : '0px') . ' ' .
+                            (isset($contentitemRadius['right']) ? (is_numeric($contentitemRadius['right']) ? $contentitemRadius['right'] . 'px' : esc_attr($contentitemRadius['right'])) : '0px') . ' ' .
+                            (isset($contentitemRadius['bottom']) ? (is_numeric($contentitemRadius['bottom']) ? $contentitemRadius['bottom'] . 'px' : esc_attr($contentitemRadius['bottom'])) : '0px') . ' ' .
+                            (isset($contentitemRadius['left']) ? (is_numeric($contentitemRadius['left']) ? $contentitemRadius['left'] . 'px' : esc_attr($contentitemRadius['left'])) : '0px') . '; ';
                     }
                     // Border Style
                     if (!empty($contentNormalBorderType)) {
@@ -3986,6 +4039,19 @@ function fancy_post_grid_render_callback($attributes) {
                             (isset($contentBorderWidth['right']) ? (is_numeric($contentBorderWidth['right']) ? $contentBorderWidth['right'] . 'px' : esc_attr($contentBorderWidth['right'])) : '0px') . ' ' .
                             (isset($contentBorderWidth['bottom']) ? (is_numeric($contentBorderWidth['bottom']) ? $contentBorderWidth['bottom'] . 'px' : esc_attr($contentBorderWidth['bottom'])) : '0px') . ' ' .
                             (isset($contentBorderWidth['left']) ? (is_numeric($contentBorderWidth['left']) ? $contentBorderWidth['left'] . 'px' : esc_attr($contentBorderWidth['left'])) : '0px') . '; ';
+                    }
+                    // BORDER radius
+                    if (
+                        isset($contentitemRadius['top']) ||
+                        isset($contentitemRadius['right']) ||
+                        isset($contentitemRadius['bottom']) ||
+                        isset($contentitemRadius['left'])
+                    ) {
+                        $output .= 'border-radius: ' .
+                            (isset($contentitemRadius['top']) ? (is_numeric($contentitemRadius['top']) ? $contentitemRadius['top'] . 'px' : esc_attr($contentitemRadius['top'])) : '0px') . ' ' .
+                            (isset($contentitemRadius['right']) ? (is_numeric($contentitemRadius['right']) ? $contentitemRadius['right'] . 'px' : esc_attr($contentitemRadius['right'])) : '0px') . ' ' .
+                            (isset($contentitemRadius['bottom']) ? (is_numeric($contentitemRadius['bottom']) ? $contentitemRadius['bottom'] . 'px' : esc_attr($contentitemRadius['bottom'])) : '0px') . ' ' .
+                            (isset($contentitemRadius['left']) ? (is_numeric($contentitemRadius['left']) ? $contentitemRadius['left'] . 'px' : esc_attr($contentitemRadius['left'])) : '0px') . '; ';
                     }
                     // Border Style
                     if (!empty($contentNormalBorderType)) {
@@ -4698,6 +4764,19 @@ function fancy_post_grid_render_callback($attributes) {
                             (isset($contentBorderWidth['bottom']) ? (is_numeric($contentBorderWidth['bottom']) ? $contentBorderWidth['bottom'] . 'px' : esc_attr($contentBorderWidth['bottom'])) : '0px') . ' ' .
                             (isset($contentBorderWidth['left']) ? (is_numeric($contentBorderWidth['left']) ? $contentBorderWidth['left'] . 'px' : esc_attr($contentBorderWidth['left'])) : '0px') . '; ';
                     }
+                    // BORDER radius
+                    if (
+                        isset($contentitemRadius['top']) ||
+                        isset($contentitemRadius['right']) ||
+                        isset($contentitemRadius['bottom']) ||
+                        isset($contentitemRadius['left'])
+                    ) {
+                        $output .= 'border-radius: ' .
+                            (isset($contentitemRadius['top']) ? (is_numeric($contentitemRadius['top']) ? $contentitemRadius['top'] . 'px' : esc_attr($contentitemRadius['top'])) : '0px') . ' ' .
+                            (isset($contentitemRadius['right']) ? (is_numeric($contentitemRadius['right']) ? $contentitemRadius['right'] . 'px' : esc_attr($contentitemRadius['right'])) : '0px') . ' ' .
+                            (isset($contentitemRadius['bottom']) ? (is_numeric($contentitemRadius['bottom']) ? $contentitemRadius['bottom'] . 'px' : esc_attr($contentitemRadius['bottom'])) : '0px') . ' ' .
+                            (isset($contentitemRadius['left']) ? (is_numeric($contentitemRadius['left']) ? $contentitemRadius['left'] . 'px' : esc_attr($contentitemRadius['left'])) : '0px') . '; ';
+                    }
                     // Border Style
                     if (!empty($contentNormalBorderType)) {
                         $output .= 'border-style: ' . esc_attr($contentNormalBorderType) . '; ';
@@ -5249,6 +5328,19 @@ function fancy_post_grid_render_callback($attributes) {
                             (isset($contentBorderWidth['bottom']) ? (is_numeric($contentBorderWidth['bottom']) ? $contentBorderWidth['bottom'] . 'px' : esc_attr($contentBorderWidth['bottom'])) : '0px') . ' ' .
                             (isset($contentBorderWidth['left']) ? (is_numeric($contentBorderWidth['left']) ? $contentBorderWidth['left'] . 'px' : esc_attr($contentBorderWidth['left'])) : '0px') . '; ';
                     }
+                    // BORDER radius
+                    if (
+                        isset($contentitemRadius['top']) ||
+                        isset($contentitemRadius['right']) ||
+                        isset($contentitemRadius['bottom']) ||
+                        isset($contentitemRadius['left'])
+                    ) {
+                        $output .= 'border-radius: ' .
+                            (isset($contentitemRadius['top']) ? (is_numeric($contentitemRadius['top']) ? $contentitemRadius['top'] . 'px' : esc_attr($contentitemRadius['top'])) : '0px') . ' ' .
+                            (isset($contentitemRadius['right']) ? (is_numeric($contentitemRadius['right']) ? $contentitemRadius['right'] . 'px' : esc_attr($contentitemRadius['right'])) : '0px') . ' ' .
+                            (isset($contentitemRadius['bottom']) ? (is_numeric($contentitemRadius['bottom']) ? $contentitemRadius['bottom'] . 'px' : esc_attr($contentitemRadius['bottom'])) : '0px') . ' ' .
+                            (isset($contentitemRadius['left']) ? (is_numeric($contentitemRadius['left']) ? $contentitemRadius['left'] . 'px' : esc_attr($contentitemRadius['left'])) : '0px') . '; ';
+                    }
                     // Border Style
                     if (!empty($contentNormalBorderType)) {
                         $output .= 'border-style: ' . esc_attr($contentNormalBorderType) . '; ';
@@ -5616,6 +5708,19 @@ function fancy_post_grid_render_callback($attributes) {
                             (isset($contentBorderWidth['right']) ? (is_numeric($contentBorderWidth['right']) ? $contentBorderWidth['right'] . 'px' : esc_attr($contentBorderWidth['right'])) : '0px') . ' ' .
                             (isset($contentBorderWidth['bottom']) ? (is_numeric($contentBorderWidth['bottom']) ? $contentBorderWidth['bottom'] . 'px' : esc_attr($contentBorderWidth['bottom'])) : '0px') . ' ' .
                             (isset($contentBorderWidth['left']) ? (is_numeric($contentBorderWidth['left']) ? $contentBorderWidth['left'] . 'px' : esc_attr($contentBorderWidth['left'])) : '0px') . '; ';
+                    }
+                    // BORDER radius
+                    if (
+                        isset($contentitemRadius['top']) ||
+                        isset($contentitemRadius['right']) ||
+                        isset($contentitemRadius['bottom']) ||
+                        isset($contentitemRadius['left'])
+                    ) {
+                        $output .= 'border-radius: ' .
+                            (isset($contentitemRadius['top']) ? (is_numeric($contentitemRadius['top']) ? $contentitemRadius['top'] . 'px' : esc_attr($contentitemRadius['top'])) : '0px') . ' ' .
+                            (isset($contentitemRadius['right']) ? (is_numeric($contentitemRadius['right']) ? $contentitemRadius['right'] . 'px' : esc_attr($contentitemRadius['right'])) : '0px') . ' ' .
+                            (isset($contentitemRadius['bottom']) ? (is_numeric($contentitemRadius['bottom']) ? $contentitemRadius['bottom'] . 'px' : esc_attr($contentitemRadius['bottom'])) : '0px') . ' ' .
+                            (isset($contentitemRadius['left']) ? (is_numeric($contentitemRadius['left']) ? $contentitemRadius['left'] . 'px' : esc_attr($contentitemRadius['left'])) : '0px') . '; ';
                     }
                     // Border Style
                     if (!empty($contentNormalBorderType)) {
@@ -6146,6 +6251,19 @@ function fancy_post_grid_render_callback($attributes) {
                             (isset($contentBorderWidth['bottom']) ? (is_numeric($contentBorderWidth['bottom']) ? $contentBorderWidth['bottom'] . 'px' : esc_attr($contentBorderWidth['bottom'])) : '0px') . ' ' .
                             (isset($contentBorderWidth['left']) ? (is_numeric($contentBorderWidth['left']) ? $contentBorderWidth['left'] . 'px' : esc_attr($contentBorderWidth['left'])) : '0px') . '; ';
                     }
+                    // BORDER radius
+                    if (
+                        isset($contentitemRadius['top']) ||
+                        isset($contentitemRadius['right']) ||
+                        isset($contentitemRadius['bottom']) ||
+                        isset($contentitemRadius['left'])
+                    ) {
+                        $output .= 'border-radius: ' .
+                            (isset($contentitemRadius['top']) ? (is_numeric($contentitemRadius['top']) ? $contentitemRadius['top'] . 'px' : esc_attr($contentitemRadius['top'])) : '0px') . ' ' .
+                            (isset($contentitemRadius['right']) ? (is_numeric($contentitemRadius['right']) ? $contentitemRadius['right'] . 'px' : esc_attr($contentitemRadius['right'])) : '0px') . ' ' .
+                            (isset($contentitemRadius['bottom']) ? (is_numeric($contentitemRadius['bottom']) ? $contentitemRadius['bottom'] . 'px' : esc_attr($contentitemRadius['bottom'])) : '0px') . ' ' .
+                            (isset($contentitemRadius['left']) ? (is_numeric($contentitemRadius['left']) ? $contentitemRadius['left'] . 'px' : esc_attr($contentitemRadius['left'])) : '0px') . '; ';
+                    }
                     // Border Style
                     if (!empty($contentNormalBorderType)) {
                         $output .= 'border-style: ' . esc_attr($contentNormalBorderType) . '; ';
@@ -6554,6 +6672,19 @@ function fancy_post_grid_render_callback($attributes) {
                             (isset($contentBorderWidth['right']) ? (is_numeric($contentBorderWidth['right']) ? $contentBorderWidth['right'] . 'px' : esc_attr($contentBorderWidth['right'])) : '0px') . ' ' .
                             (isset($contentBorderWidth['bottom']) ? (is_numeric($contentBorderWidth['bottom']) ? $contentBorderWidth['bottom'] . 'px' : esc_attr($contentBorderWidth['bottom'])) : '0px') . ' ' .
                             (isset($contentBorderWidth['left']) ? (is_numeric($contentBorderWidth['left']) ? $contentBorderWidth['left'] . 'px' : esc_attr($contentBorderWidth['left'])) : '0px') . '; ';
+                    }
+                    // BORDER radius
+                    if (
+                        isset($contentitemRadius['top']) ||
+                        isset($contentitemRadius['right']) ||
+                        isset($contentitemRadius['bottom']) ||
+                        isset($contentitemRadius['left'])
+                    ) {
+                        $output .= 'border-radius: ' .
+                            (isset($contentitemRadius['top']) ? (is_numeric($contentitemRadius['top']) ? $contentitemRadius['top'] . 'px' : esc_attr($contentitemRadius['top'])) : '0px') . ' ' .
+                            (isset($contentitemRadius['right']) ? (is_numeric($contentitemRadius['right']) ? $contentitemRadius['right'] . 'px' : esc_attr($contentitemRadius['right'])) : '0px') . ' ' .
+                            (isset($contentitemRadius['bottom']) ? (is_numeric($contentitemRadius['bottom']) ? $contentitemRadius['bottom'] . 'px' : esc_attr($contentitemRadius['bottom'])) : '0px') . ' ' .
+                            (isset($contentitemRadius['left']) ? (is_numeric($contentitemRadius['left']) ? $contentitemRadius['left'] . 'px' : esc_attr($contentitemRadius['left'])) : '0px') . '; ';
                     }
                     // Border Style
                     if (!empty($contentNormalBorderType)) {
@@ -7213,6 +7344,19 @@ function fancy_post_grid_render_callback($attributes) {
                             (isset($contentBorderWidth['bottom']) ? (is_numeric($contentBorderWidth['bottom']) ? $contentBorderWidth['bottom'] . 'px' : esc_attr($contentBorderWidth['bottom'])) : '0px') . ' ' .
                             (isset($contentBorderWidth['left']) ? (is_numeric($contentBorderWidth['left']) ? $contentBorderWidth['left'] . 'px' : esc_attr($contentBorderWidth['left'])) : '0px') . '; ';
                     }
+                    // BORDER radius
+                    if (
+                        isset($contentitemRadius['top']) ||
+                        isset($contentitemRadius['right']) ||
+                        isset($contentitemRadius['bottom']) ||
+                        isset($contentitemRadius['left'])
+                    ) {
+                        $output .= 'border-radius: ' .
+                            (isset($contentitemRadius['top']) ? (is_numeric($contentitemRadius['top']) ? $contentitemRadius['top'] . 'px' : esc_attr($contentitemRadius['top'])) : '0px') . ' ' .
+                            (isset($contentitemRadius['right']) ? (is_numeric($contentitemRadius['right']) ? $contentitemRadius['right'] . 'px' : esc_attr($contentitemRadius['right'])) : '0px') . ' ' .
+                            (isset($contentitemRadius['bottom']) ? (is_numeric($contentitemRadius['bottom']) ? $contentitemRadius['bottom'] . 'px' : esc_attr($contentitemRadius['bottom'])) : '0px') . ' ' .
+                            (isset($contentitemRadius['left']) ? (is_numeric($contentitemRadius['left']) ? $contentitemRadius['left'] . 'px' : esc_attr($contentitemRadius['left'])) : '0px') . '; ';
+                    }
                     // Border Style
                     if (!empty($contentNormalBorderType)) {
                         $output .= 'border-style: ' . esc_attr($contentNormalBorderType) . '; ';
@@ -7867,6 +8011,19 @@ function fancy_post_grid_render_callback($attributes) {
                             (isset($contentBorderWidth['bottom']) ? (is_numeric($contentBorderWidth['bottom']) ? $contentBorderWidth['bottom'] . 'px' : esc_attr($contentBorderWidth['bottom'])) : '0px') . ' ' .
                             (isset($contentBorderWidth['left']) ? (is_numeric($contentBorderWidth['left']) ? $contentBorderWidth['left'] . 'px' : esc_attr($contentBorderWidth['left'])) : '0px') . '; ';
                     }
+                    // BORDER radius
+                    if (
+                        isset($contentitemRadius['top']) ||
+                        isset($contentitemRadius['right']) ||
+                        isset($contentitemRadius['bottom']) ||
+                        isset($contentitemRadius['left'])
+                    ) {
+                        $output .= 'border-radius: ' .
+                            (isset($contentitemRadius['top']) ? (is_numeric($contentitemRadius['top']) ? $contentitemRadius['top'] . 'px' : esc_attr($contentitemRadius['top'])) : '0px') . ' ' .
+                            (isset($contentitemRadius['right']) ? (is_numeric($contentitemRadius['right']) ? $contentitemRadius['right'] . 'px' : esc_attr($contentitemRadius['right'])) : '0px') . ' ' .
+                            (isset($contentitemRadius['bottom']) ? (is_numeric($contentitemRadius['bottom']) ? $contentitemRadius['bottom'] . 'px' : esc_attr($contentitemRadius['bottom'])) : '0px') . ' ' .
+                            (isset($contentitemRadius['left']) ? (is_numeric($contentitemRadius['left']) ? $contentitemRadius['left'] . 'px' : esc_attr($contentitemRadius['left'])) : '0px') . '; ';
+                    }
                     // Border Style
                     if (!empty($contentNormalBorderType)) {
                         $output .= 'border-style: ' . esc_attr($contentNormalBorderType) . '; ';
@@ -8503,6 +8660,7 @@ function fancy_post_slider_render_callback($attributes) {
     $contentitemPaddingNew = isset($attributes['contentitemPaddingNew']) ? $attributes['contentitemPaddingNew'] : ['top' => '', 'right' => '', 'bottom' => '', 'left' => ''];
     $contentitemMarginNew = isset($attributes['contentitemMarginNew']) ? $attributes['contentitemMarginNew'] : ['top' => '', 'right' => '', 'bottom' => '', 'left' => ''];
     $contentBorderWidth = isset($attributes['contentBorderWidth']) ? $attributes['contentBorderWidth'] : ['top' => '', 'right' => '', 'bottom' => '', 'left' => ''];
+    $contentitemRadius = isset($attributes['contentitemRadius']) ? $attributes['contentitemRadius'] : ['top' => '', 'right' => '', 'bottom' => '', 'left' => ''];
     $contentNormalBorderType = isset($attributes['contentnormalBorderType']) ? sanitize_text_field($attributes['contentnormalBorderType']) : '';
     $contentBgColor    = isset($attributes['contentBgColor']) ? sanitize_hex_color($attributes['contentBgColor']) : '';   
     $contentBorderColor = isset($attributes['contentBorderColor']) ? sanitize_hex_color($attributes['contentBorderColor']) : '';
@@ -8957,6 +9115,19 @@ function fancy_post_slider_render_callback($attributes) {
                         (isset($contentBorderWidth['right']) ? (is_numeric($contentBorderWidth['right']) ? $contentBorderWidth['right'] . 'px' : esc_attr($contentBorderWidth['right'])) : '0px') . ' ' .
                         (isset($contentBorderWidth['bottom']) ? (is_numeric($contentBorderWidth['bottom']) ? $contentBorderWidth['bottom'] . 'px' : esc_attr($contentBorderWidth['bottom'])) : '0px') . ' ' .
                         (isset($contentBorderWidth['left']) ? (is_numeric($contentBorderWidth['left']) ? $contentBorderWidth['left'] . 'px' : esc_attr($contentBorderWidth['left'])) : '0px') . '; ';
+                }
+                // BORDER radius
+                if (
+                    isset($contentitemRadius['top']) ||
+                    isset($contentitemRadius['right']) ||
+                    isset($contentitemRadius['bottom']) ||
+                    isset($contentitemRadius['left'])
+                ) {
+                    $output .= 'border-radius: ' .
+                        (isset($contentitemRadius['top']) ? (is_numeric($contentitemRadius['top']) ? $contentitemRadius['top'] . 'px' : esc_attr($contentitemRadius['top'])) : '0px') . ' ' .
+                        (isset($contentitemRadius['right']) ? (is_numeric($contentitemRadius['right']) ? $contentitemRadius['right'] . 'px' : esc_attr($contentitemRadius['right'])) : '0px') . ' ' .
+                        (isset($contentitemRadius['bottom']) ? (is_numeric($contentitemRadius['bottom']) ? $contentitemRadius['bottom'] . 'px' : esc_attr($contentitemRadius['bottom'])) : '0px') . ' ' .
+                        (isset($contentitemRadius['left']) ? (is_numeric($contentitemRadius['left']) ? $contentitemRadius['left'] . 'px' : esc_attr($contentitemRadius['left'])) : '0px') . '; ';
                 }
                 // Border Style
                 if (!empty($contentNormalBorderType)) {
@@ -9694,6 +9865,19 @@ function fancy_post_slider_render_callback($attributes) {
                         (isset($contentBorderWidth['right']) ? (is_numeric($contentBorderWidth['right']) ? $contentBorderWidth['right'] . 'px' : esc_attr($contentBorderWidth['right'])) : '0px') . ' ' .
                         (isset($contentBorderWidth['bottom']) ? (is_numeric($contentBorderWidth['bottom']) ? $contentBorderWidth['bottom'] . 'px' : esc_attr($contentBorderWidth['bottom'])) : '0px') . ' ' .
                         (isset($contentBorderWidth['left']) ? (is_numeric($contentBorderWidth['left']) ? $contentBorderWidth['left'] . 'px' : esc_attr($contentBorderWidth['left'])) : '0px') . '; ';
+                }
+                // BORDER radius
+                if (
+                    isset($contentitemRadius['top']) ||
+                    isset($contentitemRadius['right']) ||
+                    isset($contentitemRadius['bottom']) ||
+                    isset($contentitemRadius['left'])
+                ) {
+                    $output .= 'border-radius: ' .
+                        (isset($contentitemRadius['top']) ? (is_numeric($contentitemRadius['top']) ? $contentitemRadius['top'] . 'px' : esc_attr($contentitemRadius['top'])) : '0px') . ' ' .
+                        (isset($contentitemRadius['right']) ? (is_numeric($contentitemRadius['right']) ? $contentitemRadius['right'] . 'px' : esc_attr($contentitemRadius['right'])) : '0px') . ' ' .
+                        (isset($contentitemRadius['bottom']) ? (is_numeric($contentitemRadius['bottom']) ? $contentitemRadius['bottom'] . 'px' : esc_attr($contentitemRadius['bottom'])) : '0px') . ' ' .
+                        (isset($contentitemRadius['left']) ? (is_numeric($contentitemRadius['left']) ? $contentitemRadius['left'] . 'px' : esc_attr($contentitemRadius['left'])) : '0px') . '; ';
                 }
                 // Border Style
                 if (!empty($contentNormalBorderType)) {
@@ -10436,6 +10620,19 @@ function fancy_post_slider_render_callback($attributes) {
                         (isset($contentBorderWidth['bottom']) ? (is_numeric($contentBorderWidth['bottom']) ? $contentBorderWidth['bottom'] . 'px' : esc_attr($contentBorderWidth['bottom'])) : '0px') . ' ' .
                         (isset($contentBorderWidth['left']) ? (is_numeric($contentBorderWidth['left']) ? $contentBorderWidth['left'] . 'px' : esc_attr($contentBorderWidth['left'])) : '0px') . '; ';
                 }
+                // BORDER radius
+                if (
+                    isset($contentitemRadius['top']) ||
+                    isset($contentitemRadius['right']) ||
+                    isset($contentitemRadius['bottom']) ||
+                    isset($contentitemRadius['left'])
+                ) {
+                    $output .= 'border-radius: ' .
+                        (isset($contentitemRadius['top']) ? (is_numeric($contentitemRadius['top']) ? $contentitemRadius['top'] . 'px' : esc_attr($contentitemRadius['top'])) : '0px') . ' ' .
+                        (isset($contentitemRadius['right']) ? (is_numeric($contentitemRadius['right']) ? $contentitemRadius['right'] . 'px' : esc_attr($contentitemRadius['right'])) : '0px') . ' ' .
+                        (isset($contentitemRadius['bottom']) ? (is_numeric($contentitemRadius['bottom']) ? $contentitemRadius['bottom'] . 'px' : esc_attr($contentitemRadius['bottom'])) : '0px') . ' ' .
+                        (isset($contentitemRadius['left']) ? (is_numeric($contentitemRadius['left']) ? $contentitemRadius['left'] . 'px' : esc_attr($contentitemRadius['left'])) : '0px') . '; ';
+                }
                     // Border Style
                     if (!empty($contentNormalBorderType)) {
                         $output .= 'border-style: ' . esc_attr($contentNormalBorderType) . '; ';
@@ -11097,6 +11294,19 @@ function fancy_post_slider_render_callback($attributes) {
                         (isset($contentBorderWidth['bottom']) ? (is_numeric($contentBorderWidth['bottom']) ? $contentBorderWidth['bottom'] . 'px' : esc_attr($contentBorderWidth['bottom'])) : '0px') . ' ' .
                         (isset($contentBorderWidth['left']) ? (is_numeric($contentBorderWidth['left']) ? $contentBorderWidth['left'] . 'px' : esc_attr($contentBorderWidth['left'])) : '0px') . '; ';
                 }
+                // BORDER radius
+                if (
+                    isset($contentitemRadius['top']) ||
+                    isset($contentitemRadius['right']) ||
+                    isset($contentitemRadius['bottom']) ||
+                    isset($contentitemRadius['left'])
+                ) {
+                    $output .= 'border-radius: ' .
+                        (isset($contentitemRadius['top']) ? (is_numeric($contentitemRadius['top']) ? $contentitemRadius['top'] . 'px' : esc_attr($contentitemRadius['top'])) : '0px') . ' ' .
+                        (isset($contentitemRadius['right']) ? (is_numeric($contentitemRadius['right']) ? $contentitemRadius['right'] . 'px' : esc_attr($contentitemRadius['right'])) : '0px') . ' ' .
+                        (isset($contentitemRadius['bottom']) ? (is_numeric($contentitemRadius['bottom']) ? $contentitemRadius['bottom'] . 'px' : esc_attr($contentitemRadius['bottom'])) : '0px') . ' ' .
+                        (isset($contentitemRadius['left']) ? (is_numeric($contentitemRadius['left']) ? $contentitemRadius['left'] . 'px' : esc_attr($contentitemRadius['left'])) : '0px') . '; ';
+                }
                 // Border Style
                 if (!empty($contentNormalBorderType)) {
                     $output .= 'border-style: ' . esc_attr($contentNormalBorderType) . '; ';
@@ -11656,6 +11866,19 @@ function fancy_post_slider_render_callback($attributes) {
                         (isset($contentBorderWidth['right']) ? (is_numeric($contentBorderWidth['right']) ? $contentBorderWidth['right'] . 'px' : esc_attr($contentBorderWidth['right'])) : '0px') . ' ' .
                         (isset($contentBorderWidth['bottom']) ? (is_numeric($contentBorderWidth['bottom']) ? $contentBorderWidth['bottom'] . 'px' : esc_attr($contentBorderWidth['bottom'])) : '0px') . ' ' .
                         (isset($contentBorderWidth['left']) ? (is_numeric($contentBorderWidth['left']) ? $contentBorderWidth['left'] . 'px' : esc_attr($contentBorderWidth['left'])) : '0px') . '; ';
+                }
+                // BORDER radius
+                if (
+                    isset($contentitemRadius['top']) ||
+                    isset($contentitemRadius['right']) ||
+                    isset($contentitemRadius['bottom']) ||
+                    isset($contentitemRadius['left'])
+                ) {
+                    $output .= 'border-radius: ' .
+                        (isset($contentitemRadius['top']) ? (is_numeric($contentitemRadius['top']) ? $contentitemRadius['top'] . 'px' : esc_attr($contentitemRadius['top'])) : '0px') . ' ' .
+                        (isset($contentitemRadius['right']) ? (is_numeric($contentitemRadius['right']) ? $contentitemRadius['right'] . 'px' : esc_attr($contentitemRadius['right'])) : '0px') . ' ' .
+                        (isset($contentitemRadius['bottom']) ? (is_numeric($contentitemRadius['bottom']) ? $contentitemRadius['bottom'] . 'px' : esc_attr($contentitemRadius['bottom'])) : '0px') . ' ' .
+                        (isset($contentitemRadius['left']) ? (is_numeric($contentitemRadius['left']) ? $contentitemRadius['left'] . 'px' : esc_attr($contentitemRadius['left'])) : '0px') . '; ';
                 }
                 // Border Style
                 if (!empty($contentNormalBorderType)) {
@@ -12225,6 +12448,19 @@ function fancy_post_slider_render_callback($attributes) {
                         (isset($contentBorderWidth['right']) ? (is_numeric($contentBorderWidth['right']) ? $contentBorderWidth['right'] . 'px' : esc_attr($contentBorderWidth['right'])) : '0px') . ' ' .
                         (isset($contentBorderWidth['bottom']) ? (is_numeric($contentBorderWidth['bottom']) ? $contentBorderWidth['bottom'] . 'px' : esc_attr($contentBorderWidth['bottom'])) : '0px') . ' ' .
                         (isset($contentBorderWidth['left']) ? (is_numeric($contentBorderWidth['left']) ? $contentBorderWidth['left'] . 'px' : esc_attr($contentBorderWidth['left'])) : '0px') . '; ';
+                }
+                // BORDER radius
+                if (
+                    isset($contentitemRadius['top']) ||
+                    isset($contentitemRadius['right']) ||
+                    isset($contentitemRadius['bottom']) ||
+                    isset($contentitemRadius['left'])
+                ) {
+                    $output .= 'border-radius: ' .
+                        (isset($contentitemRadius['top']) ? (is_numeric($contentitemRadius['top']) ? $contentitemRadius['top'] . 'px' : esc_attr($contentitemRadius['top'])) : '0px') . ' ' .
+                        (isset($contentitemRadius['right']) ? (is_numeric($contentitemRadius['right']) ? $contentitemRadius['right'] . 'px' : esc_attr($contentitemRadius['right'])) : '0px') . ' ' .
+                        (isset($contentitemRadius['bottom']) ? (is_numeric($contentitemRadius['bottom']) ? $contentitemRadius['bottom'] . 'px' : esc_attr($contentitemRadius['bottom'])) : '0px') . ' ' .
+                        (isset($contentitemRadius['left']) ? (is_numeric($contentitemRadius['left']) ? $contentitemRadius['left'] . 'px' : esc_attr($contentitemRadius['left'])) : '0px') . '; ';
                 }
                 // Border Style
                 if (!empty($contentNormalBorderType)) {
@@ -12840,6 +13076,19 @@ function fancy_post_slider_render_callback($attributes) {
                         (isset($contentBorderWidth['right']) ? (is_numeric($contentBorderWidth['right']) ? $contentBorderWidth['right'] . 'px' : esc_attr($contentBorderWidth['right'])) : '0px') . ' ' .
                         (isset($contentBorderWidth['bottom']) ? (is_numeric($contentBorderWidth['bottom']) ? $contentBorderWidth['bottom'] . 'px' : esc_attr($contentBorderWidth['bottom'])) : '0px') . ' ' .
                         (isset($contentBorderWidth['left']) ? (is_numeric($contentBorderWidth['left']) ? $contentBorderWidth['left'] . 'px' : esc_attr($contentBorderWidth['left'])) : '0px') . '; ';
+                }
+                // BORDER radius
+                if (
+                    isset($contentitemRadius['top']) ||
+                    isset($contentitemRadius['right']) ||
+                    isset($contentitemRadius['bottom']) ||
+                    isset($contentitemRadius['left'])
+                ) {
+                    $output .= 'border-radius: ' .
+                        (isset($contentitemRadius['top']) ? (is_numeric($contentitemRadius['top']) ? $contentitemRadius['top'] . 'px' : esc_attr($contentitemRadius['top'])) : '0px') . ' ' .
+                        (isset($contentitemRadius['right']) ? (is_numeric($contentitemRadius['right']) ? $contentitemRadius['right'] . 'px' : esc_attr($contentitemRadius['right'])) : '0px') . ' ' .
+                        (isset($contentitemRadius['bottom']) ? (is_numeric($contentitemRadius['bottom']) ? $contentitemRadius['bottom'] . 'px' : esc_attr($contentitemRadius['bottom'])) : '0px') . ' ' .
+                        (isset($contentitemRadius['left']) ? (is_numeric($contentitemRadius['left']) ? $contentitemRadius['left'] . 'px' : esc_attr($contentitemRadius['left'])) : '0px') . '; ';
                 }
                 // Border Style
                 if (!empty($contentNormalBorderType)) {
@@ -18209,7 +18458,7 @@ function fancy_post_list_render_callback($attributes) {
                             }
 
                             // Button anchor tag
-                            $output .= '<a class="rs-btn read-more ' . esc_attr($buttonStyle1) . '" href="' . esc_url(get_permalink()) . '" ' . $targetAttr . ' style="' . esc_attr(trim($buttonInlineStyles)) . '"';
+                            $output .= '<a class="rs-btn read-more ' . esc_attr($buttonStyle4) . '" href="' . esc_url(get_permalink()) . '" ' . $targetAttr . ' style="' . esc_attr(trim($buttonInlineStyles)) . '"';
 
                             if (!empty($buttonHoverInlineStyles)) {
                                 $output .= ' onmouseover="' . $buttonHoverInlineStyles . '"';
