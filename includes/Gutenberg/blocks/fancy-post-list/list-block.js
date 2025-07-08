@@ -2831,15 +2831,19 @@
                                         wp.element.createElement('div', { 
                                             className: `rs-cat post-meta align-${metaAlignment}`, 
                                             style: { 
-                                                ...(attributes.metaMarginNew ? { margin: getSpacingValue(attributes.metaMarginNew) } : {}), 
-                                                ...(attributes.metaPadding ? { padding: getSpacingValue(attributes.metaPadding) } : {}),
-                                                ...(metaTextColor ? { color: metaTextColor } : {}),
-                                                ...(typeof metaOrder !== 'undefined' ? { order: metaOrder } : {}),
-                                                ...(metaFontSize ? { fontSize: `${metaFontSize}px` } : {})
+                                                
+                                                ...(typeof metaOrder !== 'undefined' ? { order: metaOrder } : {})
                                             } 
                                         },
                                             
-                                            wp.element.createElement('a', { className: 'category-names' }, 
+                                            wp.element.createElement('a', { className: 'category-names',
+                                              style: { 
+                                                  ...(attributes.metaMarginNew ? { margin: getSpacingValue(attributes.metaMarginNew) } : {}), 
+                                                  ...(attributes.metaPadding ? { padding: getSpacingValue(attributes.metaPadding) } : {}),
+                                                  ...(metaTextColor ? { color: metaTextColor } : {}),
+                                                  
+                                                  ...(metaFontSize ? { fontSize: `${metaFontSize}px` } : {})
+                                              }  }, 
                                                 post._embedded?.['wp:term']?.[0]?.map(cat => cat.name).join(', ')
                                             )
                                         ),
