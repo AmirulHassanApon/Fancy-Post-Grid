@@ -242,7 +242,9 @@
             const buttonStyle7 = (listLayoutStyle === 'style7' && attributes.buttonStyle == null)
               ? 'fpg-flat' : attributes.buttonStyle;  
             const buttonStyle8 = (listLayoutStyle === 'style8' && attributes.buttonStyle == null)
-              ? 'fpg-flat' : attributes.buttonStyle;  
+              ? 'fpg-flat' : attributes.buttonStyle; 
+
+            
                       
             const authors = useSelect((select) => {
                 const users = select('core').getUsers({ per_page: -1 });
@@ -281,6 +283,7 @@
             const [currentPage, setCurrentPage] = useState(1);
             const [totalPages, setTotalPages] = useState(1);
 
+
             // Fetch posts dynamically based on the current page
             const { posts, totalPagesFromAPI } = useSelect((select) => {
                 const query = {
@@ -303,7 +306,7 @@
                 return {
                     posts: postsData,
                     totalPagesFromAPI,
-                };
+                }
             }, [postType, postLimit, currentPage, selectedCategory, selectedTag, orderBy]);
 
             // Update total pages when API response changes
@@ -3446,60 +3449,45 @@
                                 
                             ),
 
-                            // Post Title Section
                             showPostTitle &&
-                                wp.element.createElement(
-                                    'titleTag',
-                                    {
-                                        key: index,
-                                        className: `title align-${postTitleAlignment} ${titleHoverUnderLine === 'enable' ? ' underline' : ''}`,
-                                        style: {
-                                            margin: getSpacingValue(attributes.postTitleMargin),
-                                            padding: getSpacingValue(attributes.postTitlePadding),
-                                            textAlign: postTitleAlignment,
-                                            transition: 'all 0.3s ease',
-                                            order: titleOrder,
-                                            backgroundColor: postTitleBgColor,
-                                        },
-                                        onMouseEnter: (e) => {
-                                            e.currentTarget.style.backgroundColor = postTitleHoverBgColor;
-                                        },
-                                        onMouseLeave: (e) => {
-                                            e.currentTarget.style.backgroundColor = postTitleBgColor;
-                                        },
-                                    },
-                                    postLinkType === 'yeslink'
-                                        ? wp.element.createElement(
-                                            'a',
-                                            {
-                                                href: post.link,
-                                                target: postLinkTarget === 'newWindow' ? '_blank' : '_self',
-                                                style: {
-                                                    color: postTitleColor,
-                                                    fontSize: `${postTitleFontSize}px`,
-                                                    fontWeight: postTitleFontWeight,
-                                                    lineHeight: postTitleLineHeight,
-                                                    letterSpacing: postTitleLetterSpacing,
-                                                    transition: 'all 0.3s ease',
-                                                },
-                                                onMouseEnter: (e) => {
-                                                    e.currentTarget.style.color = postTitleHoverColor;
-                                                },
-                                                onMouseLeave: (e) => {
-                                                    e.currentTarget.style.color = postTitleColor;
-                                                },
-                                            },
-                                            titleCropBy === 'word'
-                                                ? post.title.rendered.split(' ').slice(0, titleLength).join(' ')
-                                                : post.title.rendered.substring(0, titleLength)
-                                        )
-                                        : (
-                                            titleCropBy === 'word'
-                                                ? post.title.rendered.split(' ').slice(0, titleLength).join(' ')
-                                                : post.title.rendered.substring(0, titleLength)
-                                        )
-                                )
-
+                                      wp.element.createElement(
+                                          titleTag,
+                                          {
+                                              className: `blog-title align-${postTitleAlignment} ${titleHoverUnderLine === 'enable' ? ' underline' : ''}`,
+                                              style: {
+                                                  
+                                                  ...(attributes.postTitleMargin ? { margin: getSpacingValue(attributes.postTitleMargin) }: {  }), 
+                                                  ...(attributes.postTitlePadding ? { padding: getSpacingValue(attributes.postTitlePadding) }: { }), 
+                                                  ...(postTitleBgColor ? { backgroundColor: postTitleBgColor } : {}),
+                                                  ...(titleOrder !== undefined ? { order: titleOrder } : {}),
+                                                  ...(postLinkType === 'nolink' ? titleTextStyle : {}), // apply if nolink
+                                              },
+                                              onMouseEnter: (e) => {
+                                                  e.currentTarget.style.backgroundColor = postTitleHoverBgColor;
+                                              },
+                                              onMouseLeave: (e) => {
+                                                  e.currentTarget.style.backgroundColor = postTitleBgColor;
+                                                  
+                                              },
+                                              ...(postLinkType === 'nolink' ? titleTextHoverHandlers : {}), // attach hover if nolink
+                                          },
+                                          postLinkType === 'yeslink'
+                                              ? wp.element.createElement(
+                                                  'a',
+                                                  {
+                                                      href: post.link,
+                                                      target: postLinkTarget === 'newWindow' ? '_blank' : '_self',
+                                                      style: titleTextStyle,
+                                                      ...titleTextHoverHandlers,
+                                                  },
+                                                  titleCropBy === 'word'
+                                                      ? post.title.rendered.split(' ').slice(0, titleLength).join(' ')
+                                                      : post.title.rendered.substring(0, titleLength)
+                                              )
+                                              : (titleCropBy === 'word'
+                                                  ? post.title.rendered.split(' ').slice(0, titleLength).join(' ')
+                                                  : post.title.rendered.substring(0, titleLength))
+                                      ),
                         )
                     )
                 })
