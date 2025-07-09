@@ -420,7 +420,7 @@ function fancy_post_grid_render_callback($attributes) {
               ? 'fpg-border' : $buttonStyle; 
     $buttonStyle12 = ($gridLayoutStyle === 'style12' && $buttonStyle == null)
               ? 'fpg-filled' : $buttonStyle;  
-
+    $targetAttr = ($postLinkTarget === 'newWindow') ? ' target="_blank"' : ' target="_self"';           
     // Run the query
     $query = new WP_Query($query_args);
     
@@ -1082,7 +1082,7 @@ function fancy_post_grid_render_callback($attributes) {
 
                     // Anchor with optional border-radius and overflow
                     if ($thumbnailLink) {
-                        $output .= '<a href="' . esc_url($permalink) . '">';
+                        $output .= '<a href="' . esc_url($permalink) . '" ' . $targetAttr . '>';
                         $output .= $thumbnail;
                         $output .= '</a>';
                     } else {
@@ -1477,7 +1477,7 @@ function fancy_post_grid_render_callback($attributes) {
                         }
                     }
                     // Final output
-                    $output .= '<a href="' . esc_url($permalink) . '" 
+                    $output .= '<a href="' . esc_url($permalink) . '" ' . $targetAttr . '
                         style="' . esc_attr(trim($style)) . '"'
                         . (!empty($hoverStyle) ? ' onmouseover="' . $hoverStyle . '"' : '')
                         . (!empty($mouseoutStyle) ? ' onmouseout="' . $mouseoutStyle . '"' : '') . '>'
@@ -1683,7 +1683,7 @@ function fancy_post_grid_render_callback($attributes) {
                     }
 
                     // Button anchor tag
-                    $output .= '<a class="rs-link read-more ' . esc_attr($buttonStyle1) . '" href="' . esc_url(get_permalink()) . '" style="' . esc_attr(trim($buttonInlineStyles)) . '"';
+                    $output .= '<a class="rs-link read-more ' . esc_attr($buttonStyle1) . '" href="' . esc_url(get_permalink()) . '" ' . $targetAttr . ' style="' . esc_attr(trim($buttonInlineStyles)) . '"';
 
                     if (!empty($buttonHoverInlineStyles)) {
                         $output .= ' onmouseover="' . $buttonHoverInlineStyles . '"';
@@ -2175,7 +2175,7 @@ function fancy_post_grid_render_callback($attributes) {
 
                     }
                     // Final output
-                    $output .= '<a href="' . esc_url($permalink) . '" 
+                    $output .= '<a href="' . esc_url($permalink) . '" ' . $targetAttr . '
                         style="' . esc_attr(trim($style)) . '"'
                         . (!empty($hoverStyle) ? ' onmouseover="' . $hoverStyle . '"' : '')
                         . (!empty($mouseoutStyle) ? ' onmouseout="' . $mouseoutStyle . '"' : '') . '>'
@@ -2374,7 +2374,7 @@ function fancy_post_grid_render_callback($attributes) {
                     }
 
                     // Button anchor tag
-                    $output .= '<a class="rs-link read-more ' . esc_attr($buttonStyle2) . '" href="' . esc_url(get_permalink()) . '" style="' . esc_attr(trim($buttonInlineStyles)) . '"';
+                    $output .= '<a class="rs-link read-more ' . esc_attr($buttonStyle2) . '" href="' . esc_url(get_permalink()) . '" ' . $targetAttr . ' style="' . esc_attr(trim($buttonInlineStyles)) . '"';
 
                     if (!empty($buttonHoverInlineStyles)) {
                         $output .= ' onmouseover="' . $buttonHoverInlineStyles . '"';
@@ -2457,7 +2457,7 @@ function fancy_post_grid_render_callback($attributes) {
 
                     // Anchor with optional border-radius and overflow
                     if ($thumbnailLink) {
-                        $output .= '<a href="' . esc_url($permalink) . '">';
+                        $output .= '<a href="' . esc_url($permalink) . '" ' . $targetAttr . '>';
                         $output .= $thumbnail;
                         $output .= '</a>';
                     } else {
@@ -2592,7 +2592,7 @@ function fancy_post_grid_render_callback($attributes) {
 
                         // Anchor with optional border-radius and overflow
                         if ($thumbnailLink) {
-                            $output .= '<a href="' . esc_url($permalink) . '">';
+                            $output .= '<a href="' . esc_url($permalink) . '" ' . $targetAttr . '>';
                             $output .= $thumbnail;
                             $output .= '</a>';
                         } else {
@@ -2998,7 +2998,7 @@ function fancy_post_grid_render_callback($attributes) {
                         }
                     }
                     // Final output
-                    $output .= '<a href="' . esc_url($permalink) . '" 
+                    $output .= '<a href="' . esc_url($permalink) . '" ' . $targetAttr . '
                         style="' . esc_attr(trim($style)) . '"'
                         . (!empty($hoverStyle) ? ' onmouseover="' . $hoverStyle . '"' : '')
                         . (!empty($mouseoutStyle) ? ' onmouseout="' . $mouseoutStyle . '"' : '') . '>'
@@ -3198,7 +3198,7 @@ function fancy_post_grid_render_callback($attributes) {
                     }
 
                     // Button anchor tag
-                    $output .= '<a class="rs-btn read-more ' . esc_attr($buttonStyle3) . '" href="' . esc_url(get_permalink()) . '" style="' . esc_attr(trim($buttonInlineStyles)) . '"';
+                    $output .= '<a class="rs-btn read-more ' . esc_attr($buttonStyle3) . '" href="' . esc_url(get_permalink()) . '" ' . $targetAttr . ' style="' . esc_attr(trim($buttonInlineStyles)) . '"';
 
                     if (!empty($buttonHoverInlineStyles)) {
                         $output .= ' onmouseover="' . $buttonHoverInlineStyles . '"';
@@ -3354,7 +3354,7 @@ function fancy_post_grid_render_callback($attributes) {
 
                         // Anchor with optional border-radius and overflow
                         if ($thumbnailLink) {
-                            $output .= '<a href="' . esc_url($permalink) . '">';
+                            $output .= '<a href="' . esc_url($permalink) . '" ' . $targetAttr . '>';
                             $output .= $thumbnail;
                             $output .= '</a>';
                         } else {
@@ -3551,7 +3551,7 @@ function fancy_post_grid_render_callback($attributes) {
                         }
                     }
                     // Final output
-                    $output .= '<a href="' . esc_url($permalink) . '" 
+                    $output .= '<a href="' . esc_url($permalink) . '" ' . $targetAttr . '
                         style="' . esc_attr(trim($style)) . '"'
                         . (!empty($hoverStyle) ? ' onmouseover="' . $hoverStyle . '"' : '')
                         . (!empty($mouseoutStyle) ? ' onmouseout="' . $mouseoutStyle . '"' : '') . '>'
@@ -3977,7 +3977,7 @@ function fancy_post_grid_render_callback($attributes) {
 
                     // Anchor with optional border-radius and overflow
                     if ($thumbnailLink) {
-                        $output .= '<a href="' . esc_url($permalink) . '">';
+                        $output .= '<a href="' . esc_url($permalink) . '" ' . $targetAttr . '>';
                         $output .= $thumbnail;
                         $output .= '</a>';
                     } else {
@@ -4338,7 +4338,7 @@ function fancy_post_grid_render_callback($attributes) {
                         }
                     }
                     // Final output
-                    $output .= '<a href="' . esc_url($permalink) . '" 
+                    $output .= '<a href="' . esc_url($permalink) . '" ' . $targetAttr . '
                         style="' . esc_attr(trim($style)) . '"'
                         . (!empty($hoverStyle) ? ' onmouseover="' . $hoverStyle . '"' : '')
                         . (!empty($mouseoutStyle) ? ' onmouseout="' . $mouseoutStyle . '"' : '') . '>'
@@ -4536,7 +4536,7 @@ function fancy_post_grid_render_callback($attributes) {
                     }
 
                     // Button anchor tag
-                    $output .= '<a class="blog-btn icon-after read-more ' . esc_attr($buttonStyle5) . '" href="' . esc_url(get_permalink()) . '" style="' . esc_attr(trim($buttonInlineStyles)) . '"';
+                    $output .= '<a class="blog-btn icon-after read-more ' . esc_attr($buttonStyle5) . '" href="' . esc_url(get_permalink()) . '" ' . $targetAttr . ' style="' . esc_attr(trim($buttonInlineStyles)) . '"';
 
                     if (!empty($buttonHoverInlineStyles)) {
                         $output .= ' onmouseover="' . $buttonHoverInlineStyles . '"';
@@ -4701,7 +4701,7 @@ function fancy_post_grid_render_callback($attributes) {
 
                     // Anchor with optional border-radius and overflow
                     if ($thumbnailLink) {
-                        $output .= '<a href="' . esc_url($permalink) . '">';
+                        $output .= '<a href="' . esc_url($permalink) . '" ' . $targetAttr . '>';
                         $output .= $thumbnail;
                         $output .= '</a>';
                     } else {
@@ -5000,7 +5000,7 @@ function fancy_post_grid_render_callback($attributes) {
                         }
                     }
                     // Final output
-                    $output .= '<a href="' . esc_url($permalink) . '" 
+                    $output .= '<a href="' . esc_url($permalink) . '" ' . $targetAttr . '
                         style="' . esc_attr(trim($style)) . '"'
                         . (!empty($hoverStyle) ? ' onmouseover="' . $hoverStyle . '"' : '')
                         . (!empty($mouseoutStyle) ? ' onmouseout="' . $mouseoutStyle . '"' : '') . '>'
@@ -5115,7 +5115,7 @@ function fancy_post_grid_render_callback($attributes) {
                     }
 
                     // Button anchor tag
-                    $output .= '<a class="blog-btn icon-after read-more ' . esc_attr($buttonStyle6) . '" href="' . esc_url(get_permalink()) . '" style="' . esc_attr(trim($buttonInlineStyles)) . '"';
+                    $output .= '<a class="blog-btn icon-after read-more ' . esc_attr($buttonStyle6) . '" href="' . esc_url(get_permalink()) . '" ' . $targetAttr . ' style="' . esc_attr(trim($buttonInlineStyles)) . '"';
 
                     if (!empty($buttonHoverInlineStyles)) {
                         $output .= ' onmouseover="' . $buttonHoverInlineStyles . '"';
@@ -5272,7 +5272,7 @@ function fancy_post_grid_render_callback($attributes) {
 
                     // Anchor with optional border-radius and overflow
                     if ($thumbnailLink) {
-                        $output .= '<a href="' . esc_url($permalink) . '">';
+                        $output .= '<a href="' . esc_url($permalink) . '" ' . $targetAttr . '>';
                         $output .= $thumbnail;
                         $output .= '</a>';
                     } else {
@@ -5434,7 +5434,7 @@ function fancy_post_grid_render_callback($attributes) {
                         }
                     }
                     // Final output
-                    $output .= '<a href="' . esc_url($permalink) . '" 
+                    $output .= '<a href="' . esc_url($permalink) . '" ' . $targetAttr . '
                         style="' . esc_attr(trim($style)) . '"'
                         . (!empty($hoverStyle) ? ' onmouseover="' . $hoverStyle . '"' : '')
                         . (!empty($mouseoutStyle) ? ' onmouseout="' . $mouseoutStyle . '"' : '') . '>'
@@ -5815,7 +5815,7 @@ function fancy_post_grid_render_callback($attributes) {
                         }
                     }
                     // Final output
-                    $output .= '<a href="' . esc_url($permalink) . '" 
+                    $output .= '<a href="' . esc_url($permalink) . '" ' . $targetAttr . '
                         style="' . esc_attr(trim($style)) . '"'
                         . (!empty($hoverStyle) ? ' onmouseover="' . $hoverStyle . '"' : '')
                         . (!empty($mouseoutStyle) ? ' onmouseout="' . $mouseoutStyle . '"' : '') . '>'
@@ -6014,7 +6014,7 @@ function fancy_post_grid_render_callback($attributes) {
 
                     // Anchor with optional border-radius and overflow
                     if ($thumbnailLink) {
-                        $output .= '<a href="' . esc_url($permalink) . '">';
+                        $output .= '<a href="' . esc_url($permalink) . '" ' . $targetAttr . '>';
                         $output .= $thumbnail;
                         $output .= '</a>';
                     } else {
@@ -6194,7 +6194,7 @@ function fancy_post_grid_render_callback($attributes) {
 
                     // Anchor with optional border-radius and overflow
                     if ($thumbnailLink) {
-                        $output .= '<a href="' . esc_url($permalink) . '">';
+                        $output .= '<a href="' . esc_url($permalink) . '" ' . $targetAttr . '>';
                         $output .= $thumbnail;
                         $output .= '</a>';
                     } else {
@@ -6357,7 +6357,7 @@ function fancy_post_grid_render_callback($attributes) {
                         }
                     }
                     // Final output
-                    $output .= '<a href="' . esc_url($permalink) . '" 
+                    $output .= '<a href="' . esc_url($permalink) . '" ' . $targetAttr . '
                         style="' . esc_attr(trim($style)) . '"'
                         . (!empty($hoverStyle) ? ' onmouseover="' . $hoverStyle . '"' : '')
                         . (!empty($mouseoutStyle) ? ' onmouseout="' . $mouseoutStyle . '"' : '') . '>'
@@ -6617,7 +6617,7 @@ function fancy_post_grid_render_callback($attributes) {
 
                     // Anchor with optional border-radius and overflow
                     if ($thumbnailLink) {
-                        $output .= '<a href="' . esc_url($permalink) . '">';
+                        $output .= '<a href="' . esc_url($permalink) . '" ' . $targetAttr . '>';
                         $output .= $thumbnail;
                         $output .= '</a>';
                     } else {
