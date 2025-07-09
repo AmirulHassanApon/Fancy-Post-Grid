@@ -3927,7 +3927,6 @@
                                     },
                                 }, 
                                 
-
                                 // Meta
                                 showMetaData && 
                                     wp.element.createElement('div', {  
