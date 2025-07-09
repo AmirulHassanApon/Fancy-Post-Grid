@@ -3223,9 +3223,7 @@
                                             } 
                                         },
                                     [
-                                        // Post Date
-                                        
-
+                                       
                                         // Post Author
                                         showPostAuthor && wp.element.createElement('li', { className: 'meta-author', style: { color: metaTextColor, fontSize: `${metaFontSize}px` } },
                                             showMetaIcon && showPostAuthorIcon &&

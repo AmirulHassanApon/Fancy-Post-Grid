@@ -21200,7 +21200,7 @@ function fancy_post_list_render_callback($attributes) {
                                 if ($showPostCategory) {
                                     $meta = '<style="color:' . esc_attr($metaTextColor) . ';">';
                                     if ($showPostCategoryIcon && $showMetaIcon) {
-                                        $meta .= '<i class="ri-folder-line" style="color:' . esc_attr($metaIconColor) . ';font-size:' . esc_attr($metaFontSize) . 'px;"></i> ';
+                                        $meta .= '<i class="fas fa-folder" style="color:' . esc_attr($metaIconColor) . ';font-size:' . esc_attr($metaFontSize) . 'px;"></i> ';
                                     }
 
                                     // Get category names without links
