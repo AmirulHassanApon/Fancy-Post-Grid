@@ -3235,7 +3235,11 @@
                                         showPostDate && wp.element.createElement('li', { className: 'meta-date', style: { color: metaTextColor, fontSize: `${metaFontSize}px` } },
                                             showMetaIcon && showPostDateIcon &&
                                             wp.element.createElement('i', { className: 'fas fa-calendar-alt', style: { color: metaIconColor, fontSize: `${metaFontSize}px` } }),
-                                            ` ${new Date(posts[1].date).toLocaleDateString()}`
+                                            ` ${new Date(posts[1].date).toLocaleDateString('en-US', {
+                                                year: 'numeric',
+                                                month: 'short',
+                                                day: 'numeric',
+                                            })}`
                                         ),
                                         
                                     ]
