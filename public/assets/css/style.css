@@ -7018,6 +7018,7 @@ img {
     }
     .rs-blog-layout-27-list-item .rs-content {
         padding-right: 80px;
+        border: 0;
     }
     .rs-blog-layout-27-list-item .rs-content .rs-meta-category a{
         font-size: 15px;
