@@ -3415,7 +3415,7 @@
                                     'h4',
                                     {
                                         key: index,
-                                        className: 'title',
+                                        className: `title align-${postTitleAlignment} ${titleHoverUnderLine === 'enable' ? ' underline' : ''}`,
                                         style: {
                                             margin: getSpacingValue(attributes.postTitleMargin),
                                             padding: getSpacingValue(attributes.postTitlePadding),
