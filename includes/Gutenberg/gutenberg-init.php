@@ -21213,7 +21213,6 @@ function fancy_post_list_render_callback($attributes) {
                                         $meta .= implode(', ', $category_names); // comma-separated plain text categories
                                     }
 
-                                    
                                     $meta_items[] = $meta;
                                 }
 
@@ -21221,7 +21220,6 @@ function fancy_post_list_render_callback($attributes) {
                                 $output .= implode('<span class="meta-separator" style="color:' . esc_attr($separatorColor) . '; font-size:' . esc_attr($metaFontSize) . 'px;">' . esc_html($metaSeperator) . '</span>', $meta_items);
 
                                 $output .= '</div>'; // Close meta-data-list
-                                
                             }
                             // End Meta Data
 
