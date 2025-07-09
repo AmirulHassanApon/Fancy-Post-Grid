@@ -6899,7 +6899,57 @@ img {
     .rs-blog-layout-27-item .rs-content .title.underline a:hover {
         background-size: 100% 2px;
     }
-    .rs-blog-layout-27-item .rs-content .rs-btn{
+    .rs-blog-layout-27-item .rs-content a.rs-btn.fpg-filled{
+        background-color: #21a7d0;
+        color: #FFFFFF;
+        font-size: 14px;
+        font-weight: 700;
+        padding: 9px 18px 9px 18px;
+        border-radius: 35px 35px 35px 35px;
+        border-style: solid;
+        border-width: 2px 2px 2px 2px;
+        border-color: #21a7d0;
+        display: inline-block;
+        transition: all linear 0.3s;
+        text-decoration: none;
+        line-height: 24px;
+    }
+    .rs-blog-layout-27-item .rs-content a.rs-btn.fpg-filled:hover{
+        background: transparent;
+        color: #21a7d0;
+        border: 2px solid #21a7d0;
+    }
+    .rs-blog-layout-27-item .rs-content a.rs-btn.fpg-border{
+        font-size: 16px;
+        font-weight: 600;
+        color: #454545;
+        margin-top: 0px;
+        display: inline-block;
+        position: relative;
+        background: transparent;
+        border: 0;
+    }
+    .rs-blog-layout-27-item .rs-content a.rs-btn.fpg-border:hover{
+        color: #21a7d0;
+        background: transparent;
+    }
+    
+    .rs-blog-layout-27-item .rs-content a.rs-btn.fpg-border::before{
+        position: absolute;
+        content: '';
+        left: 0;
+        bottom: 0;
+        height: 2px;
+        width: 0%;
+        background: #21a7d0;
+        transition: all ease 0.3s;
+    }
+    
+    .rs-blog-layout-27-item .rs-content a.rs-btn.fpg-border:hover::before{
+        width: 100%;
+    }
+
+    .rs-blog-layout-27-item .rs-content a.rs-btn.fpg-flat{
         display: flex;
         align-items: center;
         font-size: 16px;
@@ -6907,19 +6957,17 @@ img {
         font-weight: 500;
         color: #111;
         text-decoration: none;
-        border-style: none;
+        border: 0;
+    }
+    .rs-blog-layout-27-item .rs-content a.rs-btn.fpg-flat:hover{
+        color: #21a7d0;
     }
     .rs-blog-layout-27-item .rs-content .rs-btn i{
         display: inline-block;
         margin-left: 5px;
         font-size: 20px;
         transition: all linear 0.3s;
-    }
-    .rs-blog-layout-27-item .rs-content .rs-btn i{
         display: inline-block;
-    }
-    .rs-blog-layout-27-item .rs-content .title a:hover{
-        color: #21a7d0;
     }
     .rs-blog-layout-27-item .rs-content .rs-btn:hover {
         color: #21a7d0;
@@ -6927,7 +6975,9 @@ img {
     .rs-blog-layout-27-item .rs-content .rs-btn:hover i{
         margin-left: 10px;
     }
-
+    .rs-blog-layout-27-item .rs-content .title a:hover{
+        color: #21a7d0;
+    }
     .rs-blog-layout-27-list-item{
         display: flex;
         align-items: center;
