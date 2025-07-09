@@ -6772,8 +6772,6 @@ img {
 
     /* blog layout 27 css */
     .rs-blog-layout-27{
-        padding-top: 90px;
-        padding-bottom: 120px;
     }
 
     .rs-blog-layout-27-item{
@@ -6798,9 +6796,11 @@ img {
     }
     .rs-blog-layout-27 .rs-blog-layout-27-item .rs-content .rs-meta ul{
         padding: 0px;
+        display: flex;
+        gap: 10px;
     }
     .rs-blog-layout-27-item .rs-content .rs-meta ul li:first-child{
-        margin-right: 15px;
+        margin-right: 0px;
     }
     .rs-blog-layout-27-item .rs-content .rs-meta ul li,.rs-blog-layout-27-item .rs-content .rs-meta ul li a{
         display: inline-block;
@@ -6817,7 +6817,7 @@ img {
         line-height: 1.5;
     }
     .rs-blog-layout-27-item .rs-content .title a{
-        
+        color: #000;
         text-decoration: none;
         margin-top: 8px;
         margin-bottom: 10px;
