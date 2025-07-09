@@ -155,11 +155,11 @@
             buttonHoverBorderColor: { type: 'string', default: '' },          
             
             //filter
-            filterMargin: { type: 'object', default: { top: '', right: '', bottom: '', left: '' }, },
-            filterPadding: { type: 'object', default: { top: '', right: '', bottom: '', left: '' }, },             
+            filterMargin: { type: 'object' },
+            filterPadding: { type: 'object' },             
             filterBorderStyle: { type: 'string', default: '' },
-            filterBorderWidth: { type: 'number' },
-            filterBorderRadius: { type: 'number' },            
+            filterBorderWidth: { type: 'object'  },
+            filterBorderRadius: { type: 'object'  },            
             filterGap: { type: 'number', default: '' },
             filterFontSize: { type: 'number', default: '' },
             filterTextColor: { type: 'string', default: '' },
@@ -410,18 +410,20 @@
                                             backgroundColor: attributes.filterBackgroundColor,
                                             borderColor: attributes.filterBorderColor,
                                             borderStyle: attributes.filterBorderStyle,
-                                            ...(attributes.filterMargin
-                                              ? { margin: getSpacingValue(attributes.filterMargin) }
-                                              : {}), 
                                             ...(attributes.filterPadding
                                               ? { padding: getSpacingValue(attributes.filterPadding) }
                                               : { }), 
+                                            ...(attributes.filterMargin
+                                              ? { margin: getSpacingValue(attributes.filterMargin) }
+                                              : { }), 
+
                                             ...(attributes.filterBorderWidth
                                               ? { borderWidth: getSpacingValue(attributes.filterBorderWidth) }
-                                              : { borderWidth: '1px 1px 1px 1px' }), 
+                                              : {}), 
                                             ...(attributes.filterBorderRadius
                                               ? { borderRadius: getSpacingValue(attributes.filterBorderRadius) }
-                                              : { borderRadius: '30px 30px 30px 30px' }), 
+                                              : {}),
+
                                         },
                                         onMouseOver: (e) => {
                                             e.target.style.color = attributes.filterHoverTextColor;
@@ -457,12 +459,12 @@
                                                 backgroundColor: attributes.filterBackgroundColor,
                                                 borderColor: attributes.filterBorderColor,
                                                 borderStyle: attributes.filterBorderStyle,
-                                                ...(attributes.filterMargin
-                                                  ? { margin: getSpacingValue(attributes.filterMargin) }
-                                                  : {}), 
                                                 ...(attributes.filterPadding
                                                   ? { padding: getSpacingValue(attributes.filterPadding) }
-                                                  : { }),
+                                                  : { }), 
+                                                ...(attributes.filterMargin
+                                                  ? { margin: getSpacingValue(attributes.filterMargin) }
+                                                  : { }),  
                                                 ...(attributes.filterBorderWidth
                                                   ? { borderWidth: getSpacingValue(attributes.filterBorderWidth) }
                                                   : { }), 
@@ -520,9 +522,6 @@
                             style: {
                                 
                                 justifyContent: fancyPostFilterAlignment2,
-                                margin: getSpacingValue(attributes.filterMargin),
-                                padding: getSpacingValue(attributes.filterPadding),
-                                
                             },
                         },
                         wp.element.createElement(
@@ -531,7 +530,6 @@
                                 style: {
                                     display: 'flex',
                                     gap: attributes.filterGap,
-                                    
                                 }, 
                             },
                             [
@@ -547,12 +545,18 @@
                                             backgroundColor: attributes.filterBackgroundColor,
                                             borderColor: attributes.filterBorderColor,
                                             borderStyle: attributes.filterBorderStyle,
+                                            ...(attributes.filterMargin
+                                              ? { margin: getSpacingValue(attributes.filterMargin) }
+                                              : {}), 
+                                            ...(attributes.filterPadding
+                                              ? { padding: getSpacingValue(attributes.filterPadding) }
+                                              : { }),
                                             ...(attributes.filterBorderWidth
                                               ? { borderWidth: getSpacingValue(attributes.filterBorderWidth) }
-                                              : { borderWidth: '0px 0px 1px 0px' }), 
+                                              : {}), 
                                             ...(attributes.filterBorderRadius
                                               ? { borderRadius: getSpacingValue(attributes.filterBorderRadius) }
-                                              : { borderRadius: '0px 0px 0px 0px' }), 
+                                              : {}), 
 
                                         },
                                         onMouseOver: (e) => {
@@ -589,12 +593,18 @@
                                                 backgroundColor: attributes.filterBackgroundColor,
                                                 borderColor: attributes.filterBorderColor,
                                                 borderStyle: attributes.filterBorderStyle,
+                                                ...(attributes.filterMargin
+                                                  ? { margin: getSpacingValue(attributes.filterMargin) }
+                                                  : {}), 
+                                                ...(attributes.filterPadding
+                                                  ? { padding: getSpacingValue(attributes.filterPadding) }
+                                                  : { }),
                                                 ...(attributes.filterBorderWidth
                                                   ? { borderWidth: getSpacingValue(attributes.filterBorderWidth) }
-                                                  : { borderWidth: '0px 0px 1px 0px' }), 
+                                                  : {}), 
                                                 ...(attributes.filterBorderRadius
                                                   ? { borderRadius: getSpacingValue(attributes.filterBorderRadius) }
-                                                  : { borderRadius: '0px 0px 0px 0px' }),
+                                                  : {}),
 
                                             },
                                             onMouseOver: (e) => {
@@ -646,9 +656,6 @@
                             style: {
                                 
                                 justifyContent: fancyPostFilterAlignment3,
-                                margin: getSpacingValue(attributes.filterMargin),
-                                padding: getSpacingValue(attributes.filterPadding),
-                                
                             },
                         },
                         wp.element.createElement(
@@ -673,12 +680,18 @@
                                             backgroundColor: attributes.filterBackgroundColor,
                                             borderColor: attributes.filterBorderColor,
                                             borderStyle: attributes.filterBorderStyle,
+                                            ...(attributes.filterMargin
+                                              ? { margin: getSpacingValue(attributes.filterMargin) }
+                                              : {}), 
+                                            ...(attributes.filterPadding
+                                              ? { padding: getSpacingValue(attributes.filterPadding) }
+                                              : { }),
                                             ...(attributes.filterBorderWidth
                                                   ? { borderWidth: getSpacingValue(attributes.filterBorderWidth) }
-                                                  : { borderWidth: '1px 1px 1px 1px' }), 
+                                                  : {}), 
                                             ...(attributes.filterBorderRadius
                                               ? { borderRadius: getSpacingValue(attributes.filterBorderRadius) }
-                                              : { borderRadius: '10px 10px 10px 10px' }),
+                                              : {}),
 
                                         },
                                         onMouseOver: (e) => {
@@ -715,12 +728,18 @@
                                                 backgroundColor: attributes.filterBackgroundColor,
                                                 borderColor: attributes.filterBorderColor,
                                                 borderStyle: attributes.filterBorderStyle,
+                                                ...(attributes.filterPadding
+                                                  ? { padding: getSpacingValue(attributes.filterPadding) }
+                                                  : { }), 
+                                                ...(attributes.filterMargin
+                                                  ? { margin: getSpacingValue(attributes.filterMargin) }
+                                                  : { }), 
                                                 ...(attributes.filterBorderWidth
                                                   ? { borderWidth: getSpacingValue(attributes.filterBorderWidth) }
-                                                  : { borderWidth: '1px 1px 1px 1px' }), 
+                                                  : {}), 
                                                 ...(attributes.filterBorderRadius
                                                     ? { borderRadius: getSpacingValue(attributes.filterBorderRadius) }
-                                                    : { borderRadius: '10px 10px 10px 10px' }),
+                                                    : { }),
 
                                             },
                                             onMouseOver: (e) => {
@@ -772,8 +791,6 @@
                             style: {
                                 
                                 justifyContent: fancyPostFilterAlignment4,
-                                margin: getSpacingValue(attributes.filterMargin),
-                                padding: getSpacingValue(attributes.filterPadding),
                                 
                             },
                         },
@@ -799,12 +816,18 @@
                                             backgroundColor: attributes.filterBackgroundColor,
                                             borderColor: attributes.filterBorderColor,
                                             borderStyle: attributes.filterBorderStyle,
+                                            ...(attributes.filterPadding
+                                              ? { padding: getSpacingValue(attributes.filterPadding) }
+                                              : { }), 
+                                            ...(attributes.filterMargin
+                                              ? { margin: getSpacingValue(attributes.filterMargin) }
+                                              : { }), 
                                             ...(attributes.filterBorderWidth
                                                   ? { borderWidth: getSpacingValue(attributes.filterBorderWidth) }
-                                                  : { borderWidth: '1px 0px 1px 0px' }), 
+                                                  : {  }), 
                                             ...(attributes.filterBorderRadius
                                                     ? { borderRadius: getSpacingValue(attributes.filterBorderRadius) }
-                                                    : { borderRadius: '0px 0px 0px 0px' }),
+                                                    : { }),
 
                                         },
                                         onMouseOver: (e) => {
@@ -841,12 +864,18 @@
                                                 backgroundColor: attributes.filterBackgroundColor,
                                                 borderColor: attributes.filterBorderColor,
                                                 borderStyle: attributes.filterBorderStyle,
+                                                ...(attributes.filterPadding
+                                              ? { padding: getSpacingValue(attributes.filterPadding) }
+                                              : { }), 
+                                            ...(attributes.filterMargin
+                                              ? { margin: getSpacingValue(attributes.filterMargin) }
+                                              : { }), 
                                                 ...(attributes.filterBorderWidth
                                                   ? { borderWidth: getSpacingValue(attributes.filterBorderWidth) }
-                                                  : { borderWidth: '1px 0px 1px 0px' }), 
+                                                  : { }), 
                                                 ...(attributes.filterBorderRadius
                                                     ? { borderRadius: getSpacingValue(attributes.filterBorderRadius) }
-                                                    : { borderRadius: '0px 0px 0px 0px' }),
+                                                    : { }),
 
                                             },
                                             onMouseOver: (e) => {
@@ -898,8 +927,6 @@
                             style: {
                                 
                                 justifyContent: fancyPostFilterAlignment5,
-                                margin: getSpacingValue(attributes.filterMargin),
-                                padding: getSpacingValue(attributes.filterPadding),
                                 
                             },
                         },
@@ -925,12 +952,18 @@
                                             backgroundColor: attributes.filterBackgroundColor,
                                             borderColor: attributes.filterBorderColor,
                                             borderStyle: attributes.filterBorderStyle,
+                                            ...(attributes.filterPadding
+                                              ? { padding: getSpacingValue(attributes.filterPadding) }
+                                              : { }), 
+                                            ...(attributes.filterMargin
+                                              ? { margin: getSpacingValue(attributes.filterMargin) }
+                                              : { }), 
                                             ...(attributes.filterBorderWidth
                                                   ? { borderWidth: getSpacingValue(attributes.filterBorderWidth) }
-                                                  : { borderWidth: '1px 1px 1px 1px' }), 
+                                                  : {}), 
                                             ...(attributes.filterBorderRadius
                                                     ? { borderRadius: getSpacingValue(attributes.filterBorderRadius) }
-                                                    : { borderRadius: '0px 0px 0px 0px' }),
+                                                    : {}),
 
                                         },
                                         onMouseOver: (e) => {
@@ -967,12 +1000,18 @@
                                                 backgroundColor: attributes.filterBackgroundColor,
                                                 borderColor: attributes.filterBorderColor,
                                                 borderStyle: attributes.filterBorderStyle,
+                                                ...(attributes.filterPadding
+                                              ? { padding: getSpacingValue(attributes.filterPadding) }
+                                              : { }), 
+                                            ...(attributes.filterMargin
+                                              ? { margin: getSpacingValue(attributes.filterMargin) }
+                                              : { }), 
                                                 ...(attributes.filterBorderWidth
                                                   ? { borderWidth: getSpacingValue(attributes.filterBorderWidth) }
-                                                  : { borderWidth: '1px 1px 1px 1px' }), 
+                                                  : {  }), 
                                                 ...(attributes.filterBorderRadius
                                                     ? { borderRadius: getSpacingValue(attributes.filterBorderRadius) }
-                                                    : { borderRadius: '0px 0px 0px 0px' }),
+                                                    : { }),
 
                                             },
                                             onMouseOver: (e) => {
@@ -1024,8 +1063,6 @@
                             style: {
                                 
                                 justifyContent: fancyPostFilterAlignment6,
-                                margin: getSpacingValue(attributes.filterMargin),
-                                padding: getSpacingValue(attributes.filterPadding),
                                 
                             },
                         },
@@ -1051,12 +1088,18 @@
                                             backgroundColor: attributes.filterBackgroundColor,
                                             borderColor: attributes.filterBorderColor,
                                             borderStyle: attributes.filterBorderStyle,
+                                            ...(attributes.filterPadding
+                                              ? { padding: getSpacingValue(attributes.filterPadding) }
+                                              : { }), 
+                                            ...(attributes.filterMargin
+                                              ? { margin: getSpacingValue(attributes.filterMargin) }
+                                              : { }), 
                                             ...(attributes.filterBorderWidth
                                                   ? { borderWidth: getSpacingValue(attributes.filterBorderWidth) }
-                                                  : { borderWidth: '1px 1px 1px 1px' }), 
+                                                  : {}), 
                                             ...(attributes.filterBorderRadius
                                                     ? { borderRadius: getSpacingValue(attributes.filterBorderRadius) }
-                                                    : { borderRadius: '0px 0px 0px 0px' }),
+                                                    : { }),
 
                                         },
                                         onMouseOver: (e) => {
@@ -1093,12 +1136,18 @@
                                                 backgroundColor: attributes.filterBackgroundColor,
                                                 borderColor: attributes.filterBorderColor,
                                                 borderStyle: attributes.filterBorderStyle,
+                                                ...(attributes.filterPadding
+                                              ? { padding: getSpacingValue(attributes.filterPadding) }
+                                              : { }), 
+                                            ...(attributes.filterMargin
+                                              ? { margin: getSpacingValue(attributes.filterMargin) }
+                                              : { }), 
                                                 ...(attributes.filterBorderWidth
                                                   ? { borderWidth: getSpacingValue(attributes.filterBorderWidth) }
-                                                  : { borderWidth: '1px 1px 1px 1px' }), 
+                                                  : {}), 
                                                 ...(attributes.filterBorderRadius
                                                     ? { borderRadius: getSpacingValue(attributes.filterBorderRadius) }
-                                                    : { borderRadius: '0px 0px 0px 0px' }),
+                                                    : {}),
 
                                             },
                                             onMouseOver: (e) => {
@@ -1150,8 +1199,6 @@
                             style: {
                                 
                                 justifyContent: fancyPostFilterAlignment7,
-                                margin: getSpacingValue(attributes.filterMargin),
-                                padding: getSpacingValue(attributes.filterPadding),
                                 
                             },
                         },
@@ -1177,12 +1224,18 @@
                                             backgroundColor: attributes.filterBackgroundColor,
                                             borderColor: attributes.filterBorderColor,
                                             borderStyle: attributes.filterBorderStyle,
+                                            ...(attributes.filterPadding
+                                              ? { padding: getSpacingValue(attributes.filterPadding) }
+                                              : { }), 
+                                            ...(attributes.filterMargin
+                                              ? { margin: getSpacingValue(attributes.filterMargin) }
+                                              : { }), 
                                             ...(attributes.filterBorderWidth
                                                   ? { borderWidth: getSpacingValue(attributes.filterBorderWidth) }
-                                                  : { borderWidth: '0px 0px 0px 3px' }), 
+                                                  : { }), 
                                             ...(attributes.filterBorderRadius
                                                     ? { borderRadius: getSpacingValue(attributes.filterBorderRadius) }
-                                                    : { borderRadius: '0px 0px 0px 0px' }),
+                                                    : { }),
 
                                         },
                                         onMouseOver: (e) => {
@@ -1219,12 +1272,18 @@
                                                 backgroundColor: attributes.filterBackgroundColor,
                                                 borderColor: attributes.filterBorderColor,
                                                 borderStyle: attributes.filterBorderStyle,
+                                                ...(attributes.filterPadding
+                                              ? { padding: getSpacingValue(attributes.filterPadding) }
+                                              : { }), 
+                                            ...(attributes.filterMargin
+                                              ? { margin: getSpacingValue(attributes.filterMargin) }
+                                              : { }), 
                                                 ...(attributes.filterBorderWidth
                                                   ? { borderWidth: getSpacingValue(attributes.filterBorderWidth) }
-                                                  : { borderWidth: '0px 0px 0px 3px' }), 
+                                                  : { }), 
                                                 ...(attributes.filterBorderRadius
                                                     ? { borderRadius: getSpacingValue(attributes.filterBorderRadius) }
-                                                    : { borderRadius: '0px 0px 0px 0px' }),
+                                                    : { }),
 
                                             },
                                             onMouseOver: (e) => {
