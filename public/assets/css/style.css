@@ -7111,6 +7111,15 @@ img {
     .rs-blog-layout-27-list-item .rs-content .title.underline a:hover {
         background-size: 100% 2px;
     }
+    .rs-blog-layout-27-list-item .rs-content .rs-meta-category.align-start{
+        text-align: left;
+    }
+    .rs-blog-layout-27-list-item .rs-content .rs-meta-category.align-center{
+        text-align: center;
+    }
+    .rs-blog-layout-27-list-item .rs-content .rs-meta-category.align-end{
+        text-align: right;
+    }
     /* blog layout 27 css */
 
     /* blog layout 28 css */
