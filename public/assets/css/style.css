@@ -1924,6 +1924,7 @@ img {
     display: inline-block;
     position: relative;
     background: transparent;
+    border-style: none;
 }
 
 .rs-blog-layout-5 .rs-blog__single .rs-content .rs-link.fpg-flat:hover{
@@ -2243,6 +2244,7 @@ img {
     display: inline-block;
     position: relative;
     background: transparent !important;
+    border-style: none;
 }
 .rs-blog-layout-6 .rs-blog__single .rs-content .rs-link.fpg-border:hover{
     color: #007aff;
@@ -6453,6 +6455,7 @@ img {
         margin-top: 0px;
         display: inline-block;
         border: 0;
+        text-decoration: none;
     }
     .rs-blog-layout-25-item .rs-content a.rs-btn.fpg-flat:hover{
         color: #6722b5;
@@ -6809,6 +6812,7 @@ img {
     }
     .rs-blog-layout-27-item .rs-content{
         padding: 33px 30px 34px;
+        border-style: none;
     }
     .rs-blog-layout-27 .rs-blog-layout-27-item .rs-content .rs-meta ul{
         padding: 0px;
@@ -6844,6 +6848,7 @@ img {
         font-weight: 500;
         color: #111;
         text-decoration: none;
+        border-style: none;
     }
     .rs-blog-layout-27-item .rs-content .rs-btn i{
         display: inline-block;
@@ -6868,6 +6873,7 @@ img {
         display: flex;
         align-items: center;
         margin-top: 30px;
+        border-style: none;
     }
     .rs-blog-layout-27-list-item .rs-date{
         background: #dcf1fd;
