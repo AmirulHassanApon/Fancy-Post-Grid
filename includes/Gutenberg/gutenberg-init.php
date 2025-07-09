@@ -21421,7 +21421,7 @@ function fancy_post_list_render_callback($attributes) {
                                     $hoverStyle = 'this.style.color=\'' . esc_attr($postTitleHoverColor) . '\';';
                                 }
                                 // Final output
-                                $output .= '<a href="' . esc_url($permalink) . '" 
+                                $output .= '<a href="' . esc_url($permalink) . '" ' . $targetAttr . '
                                     style="' . esc_attr(trim($style)) . '"'
                                     . (!empty($hoverStyle) ? ' onmouseover="' . $hoverStyle . '"' : '')
                                     . (!empty($mouseoutStyle) ? ' onmouseout="' . $mouseoutStyle . '"' : '') . '>'
@@ -21696,7 +21696,8 @@ function fancy_post_isotope_render_callback($attributes) {
               ? 'fpg-flat' : $buttonStyle; 
     $buttonStyle7 = ($isotopeLayoutStyle === 'style7' && $buttonStyle == null)
               ? 'fpg-filled' : $buttonStyle; 
-     
+
+    $targetAttr = ($postLinkTarget === 'newWindow') ? ' target="_blank"' : ' target="_self"';  
     // Run the query
     $query = new WP_Query($query_args);
 
@@ -23000,9 +23001,14 @@ function fancy_post_isotope_render_callback($attributes) {
                     $output .= '">';
 
                     // Anchor with optional border-radius and overflow
-                    $output .= '<a href="' . esc_url($permalink) . '" style="';
-                    $output .= '">';
-                    $output .= $thumbnail . '</a></div>';
+                    if ($thumbnailLink) {
+                        $output .= '<a href="' . esc_url($permalink) . '" ' . $targetAttr . '>';
+                        $output .= $thumbnail;
+                        $output .= '</a>';
+                    } else {
+                        $output .= $thumbnail;
+                    }
+                    $output .= '</div>';
                 }
                 // END Thumbnail
                 
@@ -23162,7 +23168,7 @@ function fancy_post_isotope_render_callback($attributes) {
                         $hoverStyle = 'this.style.color=\'' . esc_attr($postTitleHoverColor) . '\';';
                     }
                     // Final output
-                    $output .= '<a href="' . esc_url($permalink) . '" 
+                    $output .= '<a href="' . esc_url($permalink) . '" ' . $targetAttr . '
                         style="' . esc_attr(trim($style)) . '"'
                         . (!empty($hoverStyle) ? ' onmouseover="' . $hoverStyle . '"' : '')
                         . (!empty($mouseoutStyle) ? ' onmouseout="' . $mouseoutStyle . '"' : '') . '>'
@@ -23369,7 +23375,7 @@ function fancy_post_isotope_render_callback($attributes) {
                         }
 
                         // Button anchor tag
-                        $output .= '<a class="rs-btn read-more ' . esc_attr($buttonStyle1) . '" href="' . esc_url(get_permalink()) . '" style="' . esc_attr(trim($buttonInlineStyles)) . '"';
+                        $output .= '<a class="rs-btn read-more ' . esc_attr($buttonStyle1) . '" href="' . esc_url(get_permalink()) . ' " ' . $targetAttr . ' style="' . esc_attr(trim($buttonInlineStyles)) . '"';
 
                         if (!empty($buttonHoverInlineStyles)) {
                             $output .= ' onmouseover="' . $buttonHoverInlineStyles . '"';
@@ -23529,9 +23535,14 @@ function fancy_post_isotope_render_callback($attributes) {
                     $output .= '">';
 
                     // Anchor with optional border-radius and overflow
-                    $output .= '<a href="' . esc_url($permalink) . '" style="';
-                    $output .= '">';
-                    $output .= $thumbnail . '</a></div>';
+                    if ($thumbnailLink) {
+                        $output .= '<a href="' . esc_url($permalink) . '" ' . $targetAttr . '>';
+                        $output .= $thumbnail;
+                        $output .= '</a>';
+                    } else {
+                        $output .= $thumbnail;
+                    }
+                    $output .= '</div>';
                 }
                 // END Thumbnail
                 
@@ -23908,7 +23919,7 @@ function fancy_post_isotope_render_callback($attributes) {
                         $hoverStyle = 'this.style.color=\'' . esc_attr($postTitleHoverColor) . '\';';
                     }
                     // Final output
-                    $output .= '<a href="' . esc_url($permalink) . '" 
+                    $output .= '<a href="' . esc_url($permalink) . '" ' . $targetAttr . '
                         style="' . esc_attr(trim($style)) . '"'
                         . (!empty($hoverStyle) ? ' onmouseover="' . $hoverStyle . '"' : '')
                         . (!empty($mouseoutStyle) ? ' onmouseout="' . $mouseoutStyle . '"' : '') . '>'
@@ -24108,7 +24119,7 @@ function fancy_post_isotope_render_callback($attributes) {
                     }
 
                     // Button anchor tag
-                    $output .= '<a class="rs-link read-more ' . esc_attr($buttonStyle2) . '" href="' . esc_url(get_permalink()) . '" style="' . esc_attr(trim($buttonInlineStyles)) . '"';
+                    $output .= '<a class="rs-link read-more ' . esc_attr($buttonStyle2) . '" href="' . esc_url(get_permalink()) . '" ' . $targetAttr . ' style="' . esc_attr(trim($buttonInlineStyles)) . '"';
 
                     if (!empty($buttonHoverInlineStyles)) {
                         $output .= ' onmouseover="' . $buttonHoverInlineStyles . '"';
@@ -24268,7 +24279,7 @@ function fancy_post_isotope_render_callback($attributes) {
 
                         // Anchor with optional border-radius and overflow
                         if ($thumbnailLink) {
-                            $output .= '<a href="' . esc_url($permalink) . '">';
+                            $output .= '<a href="' . esc_url($permalink) . '" ' . $targetAttr . '>';
                             $output .= $thumbnail;
                             $output .= '</a>';
                         } else {
@@ -24664,7 +24675,7 @@ function fancy_post_isotope_render_callback($attributes) {
                         $hoverStyle = 'this.style.color=\'' . esc_attr($postTitleHoverColor) . '\';';
                     }
                     // Final output
-                    $output .= '<a href="' . esc_url($permalink) . '" 
+                    $output .= '<a href="' . esc_url($permalink) . '" ' . $targetAttr . '
                         style="' . esc_attr(trim($style)) . '"'
                         . (!empty($hoverStyle) ? ' onmouseover="' . $hoverStyle . '"' : '')
                         . (!empty($mouseoutStyle) ? ' onmouseout="' . $mouseoutStyle . '"' : '') . '>'
@@ -24864,7 +24875,7 @@ function fancy_post_isotope_render_callback($attributes) {
                     }
 
                     // Button anchor tag
-                    $output .= '<a class="rs-btn read-more ' . esc_attr($buttonStyle3) . '" href="' . esc_url(get_permalink()) . '" style="' . esc_attr(trim($buttonInlineStyles)) . '"';
+                    $output .= '<a class="rs-btn read-more ' . esc_attr($buttonStyle3) . '" href="' . esc_url(get_permalink()) . '" ' . $targetAttr . ' style="' . esc_attr(trim($buttonInlineStyles)) . '"';
 
                     if (!empty($buttonHoverInlineStyles)) {
                         $output .= ' onmouseover="' . $buttonHoverInlineStyles . '"';
@@ -25025,13 +25036,13 @@ function fancy_post_isotope_render_callback($attributes) {
 
                         // Anchor with optional border-radius and overflow
                         if ($thumbnailLink) {
-                            $output .= '<a href="' . esc_url($permalink) . '">';
+                            $output .= '<a href="' . esc_url($permalink) . '" ' . $targetAttr . '>';
                             $output .= $thumbnail;
                             $output .= '</a>';
                         } else {
                             $output .= $thumbnail;
                         }
-                    
+
                         // Date
                         if ($showPostDate) {
                             // Build dynamic style for the container
@@ -25222,7 +25233,7 @@ function fancy_post_isotope_render_callback($attributes) {
                         }
                     }
                     // Final output
-                    $output .= '<a href="' . esc_url($permalink) . '" 
+                    $output .= '<a href="' . esc_url($permalink) . '" ' . $targetAttr . '
                         style="' . esc_attr(trim($style)) . '"'
                         . (!empty($hoverStyle) ? ' onmouseover="' . $hoverStyle . '"' : '')
                         . (!empty($mouseoutStyle) ? ' onmouseout="' . $mouseoutStyle . '"' : '') . '>'
@@ -25638,7 +25649,7 @@ function fancy_post_isotope_render_callback($attributes) {
 
                     // Anchor with optional border-radius and overflow
                     if ($thumbnailLink) {
-                        $output .= '<a href="' . esc_url($permalink) . '">';
+                        $output .= '<a href="' . esc_url($permalink) . '" ' . $targetAttr . '>';
                         $output .= $thumbnail;
                         $output .= '</a>';
                     } else {
@@ -25999,7 +26010,7 @@ function fancy_post_isotope_render_callback($attributes) {
                         }
                     }
                     // Final output
-                    $output .= '<a href="' . esc_url($permalink) . '" 
+                    $output .= '<a href="' . esc_url($permalink) . '" ' . $targetAttr . '
                         style="' . esc_attr(trim($style)) . '"'
                         . (!empty($hoverStyle) ? ' onmouseover="' . $hoverStyle . '"' : '')
                         . (!empty($mouseoutStyle) ? ' onmouseout="' . $mouseoutStyle . '"' : '') . '>'
@@ -26198,7 +26209,7 @@ function fancy_post_isotope_render_callback($attributes) {
                     }
 
                     // Button anchor tag
-                    $output .= '<a class="blog-btn icon-after read-more ' . esc_attr($buttonStyle5) . '" href="' . esc_url(get_permalink()) . '" style="' . esc_attr(trim($buttonInlineStyles)) . '"';
+                    $output .= '<a class="blog-btn icon-after read-more ' . esc_attr($buttonStyle5) . '" href="' . esc_url(get_permalink()) . '" ' . $targetAttr . ' style="' . esc_attr(trim($buttonInlineStyles)) . '"';
 
                     if (!empty($buttonHoverInlineStyles)) {
                         $output .= ' onmouseover="' . $buttonHoverInlineStyles . '"';
@@ -26450,7 +26461,7 @@ function fancy_post_isotope_render_callback($attributes) {
                         $hoverStyle = 'this.style.color=\'' . esc_attr($postTitleHoverColor) . '\';';
                     }
                     // Final output
-                    $output .= '<a href="' . esc_url($permalink) . '" 
+                    $output .= '<a href="' . esc_url($permalink) . '" ' . $targetAttr . '
                         style="' . esc_attr(trim($style)) . '"'
                         . (!empty($hoverStyle) ? ' onmouseover="' . $hoverStyle . '"' : '')
                         . (!empty($mouseoutStyle) ? ' onmouseout="' . $mouseoutStyle . '"' : '') . '>'
@@ -26648,9 +26659,13 @@ function fancy_post_isotope_render_callback($attributes) {
                     $output .= '">';
 
                     // Anchor with optional border-radius and overflow
-                    $output .= '<a href="' . esc_url($permalink) . '" style="';
-                    $output .= '">';
-                    $output .= $thumbnail . '</a>';
+                    if ($thumbnailLink) {
+                        $output .= '<a href="' . esc_url($permalink) . '" ' . $targetAttr . '>';
+                        $output .= $thumbnail;
+                        $output .= '</a>';
+                    } else {
+                        $output .= $thumbnail;
+                    }
                     // Category
                     if ($showPostCategory) {
                         $meta = '<div class="rs-category" style="';
@@ -26707,6 +26722,7 @@ function fancy_post_isotope_render_callback($attributes) {
             else if ($isotopeLayoutStyle === 'style7') {
                 // Full post layout
                 $output .= '<div class="' . esc_attr($column_class) . ' rs-grid-item' . esc_attr($category_classes) . '">';
+                // Full post layout
                 $output .= '<div class="rs-blog-layout-26-item align-' . $itemBoxAlignment . ' ' . $hoverAnimation . '" style="';
                     // MARGIN    
                     if (isset($itemMargin['top']) || isset($itemMargin['right']) || isset($itemMargin['bottom']) || isset($itemMargin['left'])) {
@@ -26824,9 +26840,14 @@ function fancy_post_isotope_render_callback($attributes) {
                     $output .= '">';
 
                     // Anchor with optional border-radius and overflow
-                    $output .= '<a href="' . esc_url($permalink) . '" style="';
-                    $output .= '">';
-                    $output .= $thumbnail . '</a></div>';
+                    if ($thumbnailLink) {
+                        $output .= '<a href="' . esc_url($permalink) . '">';
+                        $output .= $thumbnail;
+                        $output .= '</a>';
+                    } else {
+                        $output .= $thumbnail;
+                    }
+                    $output .= '</div>';
                 }
                 // END Thumbnail
 
@@ -26903,7 +26924,7 @@ function fancy_post_isotope_render_callback($attributes) {
                 // Meta Data
                 if ($showMetaData) {
                             
-                    $output .= '<div class="rs-meta align-' . $metaAlignment7 . ' " style="';  
+                    $output .= '<div class="rs-meta align-' . $metaAlignment . ' " style="';  
                         // MARGIN
                         if (
                             isset($metaMarginNew['top']) ||
@@ -26930,7 +26951,7 @@ function fancy_post_isotope_render_callback($attributes) {
                                 (isset($metaPadding['right']) ? (is_numeric($metaPadding['right']) ? $metaPadding['right'] . 'px' : esc_attr($metaPadding['right'])) : '0px') . ' ' .
                                 (isset($metaPadding['bottom']) ? (is_numeric($metaPadding['bottom']) ? $metaPadding['bottom'] . 'px' : esc_attr($metaPadding['bottom'])) : '0px') . ' ' .
                                 (isset($metaPadding['left']) ? (is_numeric($metaPadding['left']) ? $metaPadding['left'] . 'px' : esc_attr($metaPadding['left'])) : '0px') . '; ';
-                        }  
+                        } 
                         
                         // Color
                         if (!empty($metaTextColor)) {
@@ -27070,10 +27091,20 @@ function fancy_post_isotope_render_callback($attributes) {
                     if (!empty($postTitleColor)) {
                         $style .= 'color: ' . esc_attr($postTitleColor) . '; ';
                         $mouseoutStyle = 'this.style.color=\'' . esc_attr($postTitleColor) . '\';';
+                        if ($titleHoverUnderLine === 'enable') {
+                            $style .= 'background-image: linear-gradient(to bottom, ' . esc_attr($postTitleColor) . ' 0%, ' . esc_attr($postTitleColor) . ' 100%); ';
+                            $style .= 'background-position: 0 100%; ';
+                            $mouseoutStyle .= ' this.style.backgroundImage=\'linear-gradient(to bottom, ' . esc_attr($postTitleColor) . ' 0%, ' . esc_attr($postTitleColor) . ' 100%)\';';
+                            $mouseoutStyle .= ' this.style.backgroundPosition=\'0 100%\';';
+                        }
                     }
                     // Build hover color style if set
                     if (!empty($postTitleHoverColor)) {
                         $hoverStyle = 'this.style.color=\'' . esc_attr($postTitleHoverColor) . '\';';
+                        if ($titleHoverUnderLine === 'enable') {
+                            $hoverStyle .= ' this.style.backgroundImage=\'linear-gradient(to bottom, ' . esc_attr($postTitleHoverColor) . ' 0%, ' . esc_attr($postTitleHoverColor) . ' 100%)\';';
+                            $hoverStyle .= ' this.style.backgroundPosition=\'0 100%\';';
+                        }
                     }
                     // Final output
                     $output .= '<a href="' . esc_url($permalink) . '" 
@@ -27083,7 +27114,6 @@ function fancy_post_isotope_render_callback($attributes) {
                         . esc_html($croppedTitle) . '</a>';    
                     $output .= '</' . esc_attr($titleTag) . '>';
                 }
-
                 if ($showPostExcerpt) {
                     $excerptStyles = '';
 
@@ -27169,7 +27199,6 @@ function fancy_post_isotope_render_callback($attributes) {
                     // Button wrapper styles
                     $buttonWrapperStyle = '';
 
-                    // Margin
                     if (
                         isset($buttonMarginNew['top']) || 
                         isset($buttonMarginNew['right']) || 
@@ -27252,7 +27281,7 @@ function fancy_post_isotope_render_callback($attributes) {
                             (isset($buttonPaddingNew['right']) ? (is_numeric($buttonPaddingNew['right']) ? $buttonPaddingNew['right'] . 'px' : esc_attr($buttonPaddingNew['right'])) : '0px') . ' ' .
                             (isset($buttonPaddingNew['bottom']) ? (is_numeric($buttonPaddingNew['bottom']) ? $buttonPaddingNew['bottom'] . 'px' : esc_attr($buttonPaddingNew['bottom'])) : '0px') . ' ' .
                             (isset($buttonPaddingNew['left']) ? (is_numeric($buttonPaddingNew['left']) ? $buttonPaddingNew['left'] . 'px' : esc_attr($buttonPaddingNew['left'])) : '0px') . '; ';
-                    }
+                    } 
 
                     // Hover styles
                     $buttonHoverInlineStyles = '';
@@ -27307,6 +27336,7 @@ function fancy_post_isotope_render_callback($attributes) {
                 $output .= '</div>';
                 // End MAIN Content
                 $output .= '</div>';
+                // End Full post layout
                 $output .= '</div>';
                 // End Full post layout
             }
