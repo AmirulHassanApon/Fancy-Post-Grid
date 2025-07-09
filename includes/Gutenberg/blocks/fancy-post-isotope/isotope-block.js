@@ -261,6 +261,22 @@
             const fancyPostFilterAlignment7 = (isotopeLayoutStyle === 'style7' && attributes.fancyPostFilterAlignment == null)
               ? 'flex-start' : attributes.fancyPostFilterAlignment;  
 
+            // itemBoxAlignment
+            const itemBoxAlignment1 = (isotopeLayoutStyle === 'style1' && attributes.itemBoxAlignment == null)
+              ? 'start' : attributes.itemBoxAlignment; 
+            const itemBoxAlignment2 = (isotopeLayoutStyle === 'style2' && attributes.itemBoxAlignment == null)
+              ? 'start' : attributes.itemBoxAlignment;  
+            const itemBoxAlignment3 = (isotopeLayoutStyle === 'style3' && attributes.itemBoxAlignment == null)
+              ? 'start' : attributes.itemBoxAlignment;
+            const itemBoxAlignment4 = (isotopeLayoutStyle === 'style4' && attributes.itemBoxAlignment == null)
+              ? 'center' : attributes.itemBoxAlignment; 
+            const itemBoxAlignment5 = (isotopeLayoutStyle === 'style5' && attributes.itemBoxAlignment == null)
+              ? 'start' : attributes.itemBoxAlignment;  
+            const itemBoxAlignment6 = (isotopeLayoutStyle === 'style6' && attributes.itemBoxAlignment == null)
+              ? 'start' : attributes.itemBoxAlignment; 
+            const itemBoxAlignment7 = (isotopeLayoutStyle === 'style7' && attributes.itemBoxAlignment == null)
+              ? 'start' : attributes.itemBoxAlignment;   
+
             const authors = useSelect((select) => {
                 const users = select('core').getUsers({ per_page: -1 });
                 if (!users) return [];
@@ -1278,7 +1294,7 @@
                                     return wp.element.createElement(
                                         'div',
                                         {   key: post.id, 
-                                            className: `fancy-post-item rs-blog__item align-${itemBoxAlignment} ${hoverAnimation}`,
+                                            className: `fancy-post-item rs-blog__item align-${itemBoxAlignment1} ${hoverAnimation}`,
                                                 style: {
                                                     
                                                     ...(attributes.itemMargin
@@ -1338,7 +1354,7 @@
                                                 ...(attributes.contentitemMarginNew ? { margin: getSpacingValue(attributes.contentitemMarginNew) } : {}),
                                                 ...(attributes.contentitemPaddingNew
                                                   ? { padding: getSpacingValue(attributes.contentitemPaddingNew) }
-                                                  : { padding: '22px 30px 20px 30px' }), // your default fallback
+                                                  : {}), // your default fallback
                                                 ...(attributes.contentBorderWidth ? { borderWidth: getSpacingValue(attributes.contentBorderWidth) } : {}),
                                                 ...(attributes.contentitemRadius ? { borderRadius: getSpacingValue(attributes.contentitemRadius) } : {}),
                                                 ...(attributes.contentnormalBorderType ? { borderStyle: attributes.contentnormalBorderType } : {}),
@@ -1589,7 +1605,7 @@
                                     return wp.element.createElement(
                                         'div',
                                         {   
-                                            className: `fancy-post-item rs-blog__single align-${itemBoxAlignment} ${hoverAnimation}`,
+                                            className: `fancy-post-item rs-blog__single align-${itemBoxAlignment2} ${hoverAnimation}`,
                                             style: {
                                                 
                                                 ...(attributes.itemMargin
@@ -1939,7 +1955,7 @@
                                         'div',
                                         {   
                                             key: post.id, 
-                                            className: `fancy-post-item rs-blog-layout-28-item align-${itemBoxAlignment} ${hoverAnimation}`,
+                                            className: `fancy-post-item rs-blog-layout-28-item align-${itemBoxAlignment3} ${hoverAnimation}`,
                                             style: {
                                                 ...(attributes.itemMargin
                                                   ? { margin: getSpacingValue(attributes.itemMargin) }
@@ -2284,7 +2300,7 @@
                                         'div',
                                         {   
                                             key: post.id, 
-                                            className: `fancy-post-item rs-blog-layout-30-item align-${itemBoxAlignment} ${hoverAnimation}`,
+                                            className: `fancy-post-item rs-blog-layout-30-item align-${itemBoxAlignment4} ${hoverAnimation}`,
                                             style: {
                                                 
                                                 ...(attributes.itemMargin
@@ -2601,7 +2617,7 @@
                                     
                                     return wp.element.createElement('div', { 
                                         key: post.id, 
-                                            className: `fancy-post-item pre-blog-item style_12 pre-blog-meta-style2 default align-${itemBoxAlignment}`,
+                                            className: `fancy-post-item pre-blog-item style_12 pre-blog-meta-style2 default align-${itemBoxAlignment5}`,
                                             style: { 
                                                 ...(attributes.itemMargin
                                                   ? { margin: getSpacingValue(attributes.itemMargin) }
@@ -2929,7 +2945,7 @@
                         
                         return wp.element.createElement('div', { 
                             key: post.id, 
-                                className: `fancy-post-item rs-blog-layout-15-item align-${itemBoxAlignment} ${hoverAnimation}`,
+                                className: `fancy-post-item rs-blog-layout-15-item align-${itemBoxAlignment6} ${hoverAnimation}`,
                                 style: {
                                     ...(attributes.itemMargin
                                       ? { margin: getSpacingValue(attributes.itemMargin) }
@@ -3186,7 +3202,7 @@
                         
                         return wp.element.createElement('div', { 
                             key: post.id, 
-                                className: `fancy-post-item rs-blog-layout-26-item align-${itemBoxAlignment} ${hoverAnimation}`,
+                                className: `fancy-post-item rs-blog-layout-26-item align-${itemBoxAlignment7} ${hoverAnimation}`,
                                 style: {
                                     ...(attributes.itemMargin
                                       ? { margin: getSpacingValue(attributes.itemMargin) }
@@ -3556,9 +3572,9 @@
                                         label: __('Alignment ', 'fancy-post-grid'),
                                         value: fancyPostFilterAlignment,
                                         options: [
-                                            { label: 'Right', value: 'flex-start' },
+                                            { label: 'Left', value: 'flex-start' },
                                             { label: 'Center', value: 'center' },
-                                            { label: 'Left', value: 'flex-end' },
+                                            { label: 'Right', value: 'flex-end' },
                                         ],
                                         onChange: (value) => setAttributes({ fancyPostFilterAlignment: value })
                                     }),
