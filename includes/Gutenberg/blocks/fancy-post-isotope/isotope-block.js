@@ -1469,54 +1469,50 @@
                                                         order: buttonOrder}, },
 
                                                 showPostAuthor &&
-                                                                    wp.element.createElement(
-                                                                      'div',
-                                                                      { className: 'user' },
-                                                                      wp.element.createElement(
-                                                                        'a',
-                                                                        {
-                                                                          href: post._embedded?.author?.[0]?.link || '#',
-                                                                          style: { textDecoration: 'none' },
-                                                                        },
-                                                                        wp.element.createElement(
-                                                                          'div',
-                                                                          {
-                                                                            className: 'author-thumb',
-                                                                            
-                                                                          },
-                                                                          showMetaIcon &&
-                                                                            showPostAuthorIcon &&
-                                                                            post._embedded?.author?.[0]?.avatar_urls?.['48'] &&
-                                                                            wp.element.createElement('img', {
-                                                                              src: post._embedded.author[0].avatar_urls['48'],
-                                                                              srcSet: post._embedded.author[0].avatar_urls['96'] + ' 2x',
-                                                                              alt: post._embedded.author[0].name || '',
-                                                                              className: 'avatar avatar-32 photo',
-                                                                              width: '32',
-                                                                              height: '32',
-                                                                            })
-                                                                        ),
-                                                                        wp.element.createElement(
-                                                                          'span',{
-                                                                            
-                                                                            style: {
-                                                                              ...(metaTextColor ? { color: metaTextColor } : {}),
-                                                                              ...(metaFontSize ? { fontSize: `${metaFontSize}px` } : {}),
-                                                                            },
-                                                                          },
-                                                                          null,
-                                                                          ` ${metaAuthorPrefix ? metaAuthorPrefix + ' ' : 'by '}${post._embedded?.author?.[0]?.name || ''}`
-                                                                        )
-                                                                      )
-                                                                    ),
-              
-                                                      
-        
-                                                
+                                                  wp.element.createElement(
+                                                    'div',
+                                                    { className: 'user' },
+                                                    wp.element.createElement(
+                                                      'a',
+                                                      {
+                                                        href: post._embedded?.author?.[0]?.link || '#',
+                                                        style: { textDecoration: 'none' },
+                                                      },
+                                                      wp.element.createElement(
+                                                        'div',
+                                                        {
+                                                          className: 'author-thumb',
+                                                          
+                                                        },
+                                                        showMetaIcon &&
+                                                          showPostAuthorIcon &&
+                                                          post._embedded?.author?.[0]?.avatar_urls?.['48'] &&
+                                                          wp.element.createElement('img', {
+                                                            src: post._embedded.author[0].avatar_urls['48'],
+                                                            srcSet: post._embedded.author[0].avatar_urls['96'] + ' 2x',
+                                                            alt: post._embedded.author[0].name || '',
+                                                            className: 'avatar avatar-32 photo',
+                                                            width: '32',
+                                                            height: '32',
+                                                          })
+                                                      ),
+                                                      wp.element.createElement(
+                                                        'span',{
+                                                          
+                                                          style: {
+                                                            ...(metaTextColor ? { color: metaTextColor } : {}),
+                                                            ...(metaFontSize ? { fontSize: `${metaFontSize}px` } : {}),
+                                                          },
+                                                        },
+                                                        null,
+                                                        ` ${metaAuthorPrefix ? metaAuthorPrefix + ' ' : 'by '}${post._embedded?.author?.[0]?.name || ''}`
+                                                      )
+                                                    )
+                                                  ),
+
                                                 showReadMoreButton && wp.element.createElement('div', { 
                                                     className: `btn-wrapper align-${buttonAlignment} `,
                                                     style: { 
-                                                        order: buttonOrder,
                                                         margin: getSpacingValue(attributes.buttonMarginNew) }, 
                                                     }, 
                                                     wp.element.createElement('a', { 
@@ -1531,7 +1527,7 @@
                                                             ...(buttonBorderType ? { borderStyle: buttonBorderType } : {}),
                                                             ...(buttonFontWeight ? { fontWeight: buttonFontWeight } : {}),
                                                             ...(attributes.buttonBorderWidth ? { borderWidth: getSpacingValue(attributes.buttonBorderWidth) } : {}),
-                                                            ...(attributes.buttonPaddingNew ? { padding: getSpacingValue(attributes.buttonPaddingNew) }: { padding: '0px 0px 0px 0px' }),
+                                                            ...(attributes.buttonPaddingNew ? { padding: getSpacingValue(attributes.buttonPaddingNew) }: {}),
                                                             ...(attributes.buttonBorderRadius ? { borderRadius: getSpacingValue(attributes.buttonBorderRadius) } : {}),
                                                             ...(buttonFontSize ? { fontSize: `${buttonFontSize}px` } : {}),
                                                             ...(buttonStyle === 'fpg-flat' ? { textDecoration: 'none' } : { textDecoration: 'inherit' }),
@@ -2305,10 +2301,10 @@
                                                 
                                                 ...(attributes.itemMargin
                                                   ? { margin: getSpacingValue(attributes.itemMargin) }
-                                                  : { margin: '40px 0px 0px 0px' }), // your default fallback
+                                                  : {}), // your default fallback
                                                 ...(attributes.itemPadding
                                                   ? { padding: getSpacingValue(attributes.itemPadding) }
-                                                  : { padding: '20px 20px 15px 20px' }), // your default fallback
+                                                  : {}), // your default fallback
                                                 ...(attributes.itemBorderRadius ? { borderRadius: getSpacingValue(attributes.itemBorderRadius) } : {}),
                                                 ...(attributes.itemBorderWidth ? { borderWidth: getSpacingValue(attributes.itemBorderWidth) } : {}),
                                                 ...(attributes.itemBackgroundColor ? { backgroundColor: attributes.itemBackgroundColor } : {}),
