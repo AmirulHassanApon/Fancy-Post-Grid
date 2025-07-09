@@ -21184,23 +21184,145 @@ function fancy_post_list_render_callback($attributes) {
                         }
 
                     $output .= '">';
-                        $output .= '<div class="rs-date">';
-                        $output .= '<span>' . get_the_date('M') . '</span>'; // Month
-                        $output .= '<h3 class="title">' . get_the_date('d') . '</h3>'; // Day
-                        $output .= '</div>';
-                            
+                        
+                        $output .= '<div class="rs-date" style="';
+
+                            // MARGIN
+                            if (
+                                isset($metaMarginNew['top']) || isset($metaMarginNew['right']) ||
+                                isset($metaMarginNew['bottom']) || isset($metaMarginNew['left'])
+                            ) {
+                                $output .= 'margin: ' .
+                                    (isset($metaMarginNew['top']) ? (is_numeric($metaMarginNew['top']) ? $metaMarginNew['top'] . 'px' : esc_attr($metaMarginNew['top'])) : '0px') . ' ' .
+                                    (isset($metaMarginNew['right']) ? (is_numeric($metaMarginNew['right']) ? $metaMarginNew['right'] . 'px' : esc_attr($metaMarginNew['right'])) : '0px') . ' ' .
+                                    (isset($metaMarginNew['bottom']) ? (is_numeric($metaMarginNew['bottom']) ? $metaMarginNew['bottom'] . 'px' : esc_attr($metaMarginNew['bottom'])) : '0px') . ' ' .
+                                    (isset($metaMarginNew['left']) ? (is_numeric($metaMarginNew['left']) ? $metaMarginNew['left'] . 'px' : esc_attr($metaMarginNew['left'])) : '0px') . '; ';
+                            }
+
+                            // PADDING
+                            if (
+                                isset($metaPadding['top']) || isset($metaPadding['right']) ||
+                                isset($metaPadding['bottom']) || isset($metaPadding['left'])
+                            ) {
+                                $output .= 'padding: ' .
+                                    (isset($metaPadding['top']) ? (is_numeric($metaPadding['top']) ? $metaPadding['top'] . 'px' : esc_attr($metaPadding['top'])) : '0px') . ' ' .
+                                    (isset($metaPadding['right']) ? (is_numeric($metaPadding['right']) ? $metaPadding['right'] . 'px' : esc_attr($metaPadding['right'])) : '0px') . ' ' .
+                                    (isset($metaPadding['bottom']) ? (is_numeric($metaPadding['bottom']) ? $metaPadding['bottom'] . 'px' : esc_attr($metaPadding['bottom'])) : '0px') . ' ' .
+                                    (isset($metaPadding['left']) ? (is_numeric($metaPadding['left']) ? $metaPadding['left'] . 'px' : esc_attr($metaPadding['left'])) : '0px') . '; ';
+                            }
+
+                            // Background
+                            if (!empty($metaBgColor)) {
+                                $output .= 'background-color: ' . esc_attr($metaBgColor) . '; ';
+                            }
+
+                            $output .= '">';
+
+                            // Prepare inline styles for .date and .title
+                            $innerStyle = '';
+                            if (!empty($metaTextColor)) {
+                                $innerStyle .= 'color: ' . esc_attr($metaTextColor) . '; ';
+                            }
+                            if (!empty($metaFontSize)) {
+                                $innerStyle .= 'font-size: ' . esc_attr($metaFontSize) . 'px; ';
+                            }
+
+                            $output .= '<span class="date" style="' . esc_attr($innerStyle) . '">' . get_the_date('M') . '</span>'; // Month
+                            $output .= '<h3 class="title" style="' . esc_attr($innerStyle) . '">' . get_the_date('d') . '</h3>';     // Day
+
+                            $output .= '</div>';
+
                         // MAIN Content
-                        $output .= '<div class="rs-content">';
+                        $output .= '<div class="rs-content" style="';
+                            // MARGIN
+                            if (
+                                isset($contentitemMarginNew['top']) ||
+                                isset($contentitemMarginNew['right']) ||
+                                isset($contentitemMarginNew['bottom']) ||
+                                isset($contentitemMarginNew['left'])
+                            ) {
+                                $output .= 'margin: ' .
+                                    (isset($contentitemMarginNew['top']) ? (is_numeric($contentitemMarginNew['top']) ? $contentitemMarginNew['top'] . 'px' : esc_attr($contentitemMarginNew['top'])) : '0px') . ' ' .
+                                    (isset($contentitemMarginNew['right']) ? (is_numeric($contentitemMarginNew['right']) ? $contentitemMarginNew['right'] . 'px' : esc_attr($contentitemMarginNew['right'])) : '0px') . ' ' .
+                                    (isset($contentitemMarginNew['bottom']) ? (is_numeric($contentitemMarginNew['bottom']) ? $contentitemMarginNew['bottom'] . 'px' : esc_attr($contentitemMarginNew['bottom'])) : '0px') . ' ' .
+                                    (isset($contentitemMarginNew['left']) ? (is_numeric($contentitemMarginNew['left']) ? $contentitemMarginNew['left'] . 'px' : esc_attr($contentitemMarginNew['left'])) : '0px') . '; ';
+                            }
+
+                            // PADDING
+                            if (
+                                isset($contentitemPaddingNew['top']) ||
+                                isset($contentitemPaddingNew['right']) ||
+                                isset($contentitemPaddingNew['bottom']) ||
+                                isset($contentitemPaddingNew['left'])
+                            ) {
+                                $output .= 'padding: ' .
+                                    (isset($contentitemPaddingNew['top']) ? (is_numeric($contentitemPaddingNew['top']) ? $contentitemPaddingNew['top'] . 'px' : esc_attr($contentitemPaddingNew['top'])) : '0px') . ' ' .
+                                    (isset($contentitemPaddingNew['right']) ? (is_numeric($contentitemPaddingNew['right']) ? $contentitemPaddingNew['right'] . 'px' : esc_attr($contentitemPaddingNew['right'])) : '0px') . ' ' .
+                                    (isset($contentitemPaddingNew['bottom']) ? (is_numeric($contentitemPaddingNew['bottom']) ? $contentitemPaddingNew['bottom'] . 'px' : esc_attr($contentitemPaddingNew['bottom'])) : '0px') . ' ' .
+                                    (isset($contentitemPaddingNew['left']) ? (is_numeric($contentitemPaddingNew['left']) ? $contentitemPaddingNew['left'] . 'px' : esc_attr($contentitemPaddingNew['left'])) : '0px') . '; ';
+                            }
+
+                            // BORDER WIDTH
+                            if (
+                                isset($contentBorderWidth['top']) ||
+                                isset($contentBorderWidth['right']) ||
+                                isset($contentBorderWidth['bottom']) ||
+                                isset($contentBorderWidth['left'])
+                            ) {
+                                $output .= 'border-width: ' .
+                                    (isset($contentBorderWidth['top']) ? (is_numeric($contentBorderWidth['top']) ? $contentBorderWidth['top'] . 'px' : esc_attr($contentBorderWidth['top'])) : '0px') . ' ' .
+                                    (isset($contentBorderWidth['right']) ? (is_numeric($contentBorderWidth['right']) ? $contentBorderWidth['right'] . 'px' : esc_attr($contentBorderWidth['right'])) : '0px') . ' ' .
+                                    (isset($contentBorderWidth['bottom']) ? (is_numeric($contentBorderWidth['bottom']) ? $contentBorderWidth['bottom'] . 'px' : esc_attr($contentBorderWidth['bottom'])) : '0px') . ' ' .
+                                    (isset($contentBorderWidth['left']) ? (is_numeric($contentBorderWidth['left']) ? $contentBorderWidth['left'] . 'px' : esc_attr($contentBorderWidth['left'])) : '0px') . '; ';
+                            }
+                            // BORDER radius
+                                if (
+                                    isset($contentitemRadius['top']) ||
+                                    isset($contentitemRadius['right']) ||
+                                    isset($contentitemRadius['bottom']) ||
+                                    isset($contentitemRadius['left'])
+                                ) {
+                                    $output .= 'border-radius: ' .
+                                        (isset($contentitemRadius['top']) ? (is_numeric($contentitemRadius['top']) ? $contentitemRadius['top'] . 'px' : esc_attr($contentitemRadius['top'])) : '0px') . ' ' .
+                                        (isset($contentitemRadius['right']) ? (is_numeric($contentitemRadius['right']) ? $contentitemRadius['right'] . 'px' : esc_attr($contentitemRadius['right'])) : '0px') . ' ' .
+                                        (isset($contentitemRadius['bottom']) ? (is_numeric($contentitemRadius['bottom']) ? $contentitemRadius['bottom'] . 'px' : esc_attr($contentitemRadius['bottom'])) : '0px') . ' ' .
+                                        (isset($contentitemRadius['left']) ? (is_numeric($contentitemRadius['left']) ? $contentitemRadius['left'] . 'px' : esc_attr($contentitemRadius['left'])) : '0px') . '; ';
+                                }
+                            // Border Style
+                            if (!empty($contentNormalBorderType)) {
+                                $output .= 'border-style: ' . esc_attr($contentNormalBorderType) . '; ';
+                            }
+                            // Background Color
+                            if (!empty($contentBgColor)) {
+                                $output .= 'background-color: ' . esc_attr($contentBgColor) . '; ';
+                            }
+                            // Border Color
+                            if (!empty($contentBorderColor)) {
+                                $output .= 'border-color: ' . esc_attr($contentBorderColor) . '; ';
+                            }
+                        $output .= '">';
 
                             // Meta Data
                             if ($showMetaData) {
-                                $output .= '<div class="rs-meta-category" >';        
+                                $output .= '<div class="rs-meta-category" style="';
+
+                                // Add text color and font size
+                                if (!empty($metaTextColor)) {
+                                    $output .= 'color:' . esc_attr($metaTextColor) . '; ';
+                                }
+                                if (!empty($metaFontSize)) {
+                                    $output .= 'font-size:' . esc_attr($metaFontSize) . 'px; ';
+                                }
+
+                                $output .= '">'; // close opening div
+
                                 $meta_items = [];
-                               
+
                                 if ($showPostCategory) {
-                                    $meta = '<style="color:' . esc_attr($metaTextColor) . ';">';
+                                    $meta = ''; // reset meta for category output
+
                                     if ($showPostCategoryIcon && $showMetaIcon) {
-                                        $meta .= '<i class="fas fa-folder" style="color:' . esc_attr($metaIconColor) . ';font-size:' . esc_attr($metaFontSize) . 'px;"></i> ';
+                                        $meta .= '<i class="fas fa-folder" style="color:' . esc_attr($metaIconColor) . '; font-size:' . esc_attr($metaFontSize) . 'px;"></i> ';
                                     }
 
                                     // Get category names without links
@@ -21210,17 +21332,21 @@ function fancy_post_list_render_callback($attributes) {
                                         foreach ($categories_list as $category) {
                                             $category_names[] = esc_html($category->name);
                                         }
-                                        $meta .= implode(', ', $category_names); // comma-separated plain text categories
+                                        $meta .= implode(', ', $category_names);
                                     }
 
                                     $meta_items[] = $meta;
                                 }
 
-                                // Now join meta items with the separator
-                                $output .= implode('<span class="meta-separator" style="color:' . esc_attr($separatorColor) . '; font-size:' . esc_attr($metaFontSize) . 'px;">' . esc_html($metaSeperator) . '</span>', $meta_items);
+                                // Join meta items with separator
+                                $output .= implode(
+                                    '<span class="meta-separator" style="color:' . esc_attr($separatorColor) . '; font-size:' . esc_attr($metaFontSize) . 'px;">' . esc_html($metaSeperator) . '</span>',
+                                    $meta_items
+                                );
 
-                                $output .= '</div>'; // Close meta-data-list
+                                $output .= '</div>'; // Close rs-meta-category
                             }
+
                             // End Meta Data
 
                             // title
