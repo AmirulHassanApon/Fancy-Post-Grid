@@ -23187,6 +23187,7 @@ function fancy_post_isotope_render_callback($attributes) {
 
        
                 // title
+                // title
                 if ($showPostTitle) {
                     $titleStyles = '';
 
@@ -23215,6 +23216,7 @@ function fancy_post_isotope_render_callback($attributes) {
                             (isset($postTitlePadding['bottom']) ? (is_numeric($postTitlePadding['bottom']) ? $postTitlePadding['bottom'] . 'px' : esc_attr($postTitlePadding['bottom'])) : '0px') . ' ' .
                             (isset($postTitlePadding['left']) ? (is_numeric($postTitlePadding['left']) ? $postTitlePadding['left'] . 'px' : esc_attr($postTitlePadding['left'])) : '0px') . '; ';
                     }
+
                     // Class name
                     $classNames = 'title' 
                         . ($titleHoverUnderLine === 'enable' ? ' underline' : '') 
@@ -23252,10 +23254,20 @@ function fancy_post_isotope_render_callback($attributes) {
                     if (!empty($postTitleColor)) {
                         $style .= 'color: ' . esc_attr($postTitleColor) . '; ';
                         $mouseoutStyle = 'this.style.color=\'' . esc_attr($postTitleColor) . '\';';
+                        if ($titleHoverUnderLine === 'enable') {
+                            $style .= 'background-image: linear-gradient(to bottom, ' . esc_attr($postTitleColor) . ' 0%, ' . esc_attr($postTitleColor) . ' 100%); ';
+                            $style .= 'background-position: 0 100%; ';
+                            $mouseoutStyle .= ' this.style.backgroundImage=\'linear-gradient(to bottom, ' . esc_attr($postTitleColor) . ' 0%, ' . esc_attr($postTitleColor) . ' 100%)\';';
+                            $mouseoutStyle .= ' this.style.backgroundPosition=\'0 100%\';';
+                        }
                     }
                     // Build hover color style if set
                     if (!empty($postTitleHoverColor)) {
                         $hoverStyle = 'this.style.color=\'' . esc_attr($postTitleHoverColor) . '\';';
+                        if ($titleHoverUnderLine === 'enable') {
+                            $hoverStyle .= ' this.style.backgroundImage=\'linear-gradient(to bottom, ' . esc_attr($postTitleHoverColor) . ' 0%, ' . esc_attr($postTitleHoverColor) . ' 100%)\';';
+                            $hoverStyle .= ' this.style.backgroundPosition=\'0 100%\';';
+                        }
                     }
                     // Final output
                     $output .= '<a href="' . esc_url($permalink) . '" ' . $targetAttr . '
@@ -23390,11 +23402,6 @@ function fancy_post_isotope_render_callback($attributes) {
                                 (isset($buttonMarginNew['right']) ? (is_numeric($buttonMarginNew['right']) ? $buttonMarginNew['right'] . 'px' : esc_attr($buttonMarginNew['right'])) : '0px') . ' ' .
                                 (isset($buttonMarginNew['bottom']) ? (is_numeric($buttonMarginNew['bottom']) ? $buttonMarginNew['bottom'] . 'px' : esc_attr($buttonMarginNew['bottom'])) : '0px') . ' ' .
                                 (isset($buttonMarginNew['left']) ? (is_numeric($buttonMarginNew['left']) ? $buttonMarginNew['left'] . 'px' : esc_attr($buttonMarginNew['left'])) : '0px') . '; ';
-                        }
-
-                        // Order
-                        if (!empty($buttonOrder)) {
-                            $buttonWrapperStyle .= 'order: ' . esc_attr($buttonOrder) . ';';
                         }
 
                         $output .= '<div class="btn-wrapper align-' . esc_attr($buttonAlignment) . '" style="' . esc_attr(trim($buttonWrapperStyle)) . '">';
@@ -25369,7 +25376,13 @@ function fancy_post_isotope_render_callback($attributes) {
                 }
                 // Now Insert Meta Data inside the Thumbnail
                 if ($showMetaData) {
-                    $output .= '<div class="rs-meta align-' . $metaAlignment . '">';
+                    // Outer div style (for rs-category)
+                    $divStyle = '';
+                    if (!empty($metaOrder)) {
+                        $divStyle .= 'order: ' . esc_attr($metaOrder) . '; ';
+                    }
+
+                    $output .= '<div class="rs-meta align-' . $metaAlignment . '" style="' . esc_attr($divStyle) . '">';
                     $output .= '<ul class="meta-data-list" style="';  
                         // MARGIN
                         if (
@@ -25403,10 +25416,7 @@ function fancy_post_isotope_render_callback($attributes) {
                         if (!empty($metaTextColor)) {
                             $output .= 'color: ' . esc_attr($metaTextColor) . '; ';
                         }
-                        // Order
-                        if (!empty($metaOrder)) {
-                            $output .= 'order: ' . esc_attr($metaOrder) . '; ';
-                        }
+                        
                     $output .= '">';
 
                     $meta_items = [];
