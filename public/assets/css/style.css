@@ -6855,6 +6855,15 @@ img {
         display: flex;
         flex-direction: column;
     }
+    .rs-blog-layout-27-item.align-start .rs-content{
+        text-align: left;
+    }
+    .rs-blog-layout-27-item.align-center .rs-content{
+        text-align: center;
+    }
+    .rs-blog-layout-27-item.align-end .rs-content{
+        text-align: right;
+    }
     .rs-blog-layout-27 .rs-blog-layout-27-item .rs-content .rs-meta ul{
         padding: 0px;
         margin: 0;
