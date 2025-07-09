@@ -23134,7 +23134,14 @@ function fancy_post_isotope_render_callback($attributes) {
                     if (!empty($categories)) {
                         $category = $categories[0]; // Show the first category only
 
-                        $output .= '<div class="rs-category align-' . $metaAlignment . '">';
+                        // Outer div style (for rs-category)
+                        $divStyle = '';
+                        if (!empty($metaOrder)) {
+                            $divStyle .= 'order: ' . esc_attr($metaOrder) . '; ';
+                        }
+
+                        $output .= '<div class="rs-category align-' . $metaAlignment . '" style="' . esc_attr($divStyle) . '">';
+
                         // Anchor tag style
                         $style = '';
                         if (!empty($metaTextColor)) {
@@ -23146,8 +23153,12 @@ function fancy_post_isotope_render_callback($attributes) {
                         if (!empty($metaFontSize)) {
                             $style .= 'font-size:' . esc_attr($metaFontSize) . 'px; ';
                         }
+
                         // Margin
-                        if (isset($excerptMargin['top']) || isset($excerptMargin['right']) || isset($excerptMargin['bottom']) || isset($excerptMargin['left'])) {
+                        if (
+                            isset($excerptMargin['top']) || isset($excerptMargin['right']) ||
+                            isset($excerptMargin['bottom']) || isset($excerptMargin['left'])
+                        ) {
                             $style .= 'margin: ' .
                                 (isset($excerptMargin['top']) ? (is_numeric($excerptMargin['top']) ? $excerptMargin['top'] . 'px' : esc_attr($excerptMargin['top'])) : '0px') . ' ' .
                                 (isset($excerptMargin['right']) ? (is_numeric($excerptMargin['right']) ? $excerptMargin['right'] . 'px' : esc_attr($excerptMargin['right'])) : '0px') . ' ' .
@@ -23156,13 +23167,16 @@ function fancy_post_isotope_render_callback($attributes) {
                         }
 
                         // Padding
-                        if (isset($excerptPadding['top']) || isset($excerptPadding['right']) || isset($excerptPadding['bottom']) || isset($excerptPadding['left'])) {
+                        if (
+                            isset($excerptPadding['top']) || isset($excerptPadding['right']) ||
+                            isset($excerptPadding['bottom']) || isset($excerptPadding['left'])
+                        ) {
                             $style .= 'padding: ' .
                                 (isset($excerptPadding['top']) ? (is_numeric($excerptPadding['top']) ? $excerptPadding['top'] . 'px' : esc_attr($excerptPadding['top'])) : '0px') . ' ' .
                                 (isset($excerptPadding['right']) ? (is_numeric($excerptPadding['right']) ? $excerptPadding['right'] . 'px' : esc_attr($excerptPadding['right'])) : '0px') . ' ' .
                                 (isset($excerptPadding['bottom']) ? (is_numeric($excerptPadding['bottom']) ? $excerptPadding['bottom'] . 'px' : esc_attr($excerptPadding['bottom'])) : '0px') . ' ' .
                                 (isset($excerptPadding['left']) ? (is_numeric($excerptPadding['left']) ? $excerptPadding['left'] . 'px' : esc_attr($excerptPadding['left'])) : '0px') . '; ';
-                        } 
+                        }
 
                         $output .= '<a href="' . esc_url(get_category_link($category->term_id)) . '" style="' . esc_attr($style) . '">';
                         $output .= esc_html($category->name);
@@ -23170,6 +23184,7 @@ function fancy_post_isotope_render_callback($attributes) {
                         $output .= '</div>';
                     }
                 }
+
        
                 // title
                 if ($showPostTitle) {
@@ -23258,6 +23273,10 @@ function fancy_post_isotope_render_callback($attributes) {
                     // Typography
                     if (!empty($excerptFontSize)) {
                         $excerptTextStyles .= 'font-size: ' . esc_attr($excerptFontSize) . 'px; ';
+                    }
+                    // Order
+                    if (!empty($excerptOrder)) {
+                        $excerptTextStyles .= 'order: ' . esc_attr($excerptOrder) . '; ';
                     }
 
                     if (!empty($excerptLineHeight)) {
