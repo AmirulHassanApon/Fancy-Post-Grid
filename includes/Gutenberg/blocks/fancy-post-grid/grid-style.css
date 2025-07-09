@@ -6785,6 +6785,7 @@ img {
     .rs-blog-layout-27-item .rs-thumb{
         min-width: 313px;
         max-width: 313px;
+        overflow: hidden;
     }
     .rs-blog-layout-27-item .rs-thumb a{
         display: block;
@@ -6793,7 +6794,18 @@ img {
         height: 100%;
         width: 100%;
         max-width: inherit;
+        transition: all linear 0.3s;
     }
+    .rs-blog-layout-27-item.hover-zoom_in:hover img{
+        transform: scale(1.1);
+    }
+    .rs-blog-layout-27-item.hover-zoom_out img{
+        transform: scale(1.1);
+    }
+    .rs-blog-layout-27-item.hover-zoom_out:hover img{
+        transform: scale(1);
+    }
+
     .rs-blog-layout-27-item .rs-content{
         padding: 33px 30px 34px;
         display: flex;
