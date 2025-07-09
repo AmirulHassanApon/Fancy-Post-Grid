@@ -6296,11 +6296,30 @@ img {
     .rs-blog-layout-25-item.hover-zoom_out:hover img{
         transform: scale(1);
     }
+    .rs-blog-layout-25-item.align-start .rs-content{
+        text-align: left;
+    }
+    .rs-blog-layout-25-item.align-center .rs-content{
+        text-align: center;
+    }
+    .rs-blog-layout-25-item.align-end .rs-content{
+        text-align: right;
+    }
     .rs-blog-layout-25-item .rs-content{
         margin-left: 45px;
         display: flex;
         flex-direction: column;
     }
+    .rs-blog-layout-25-item .rs-content .rs-cat.align-start{
+        text-align: left;
+    }
+    .rs-blog-layout-25-item .rs-content .rs-cat.align-center{
+        text-align: center;
+    }
+    .rs-blog-layout-25-item .rs-content .rs-cat.align-end{
+        text-align: right;
+    }
+
     .rs-blog-layout-25-item .rs-content .rs-cat a{
         font-size: 26px;
         font-weight: 400;
@@ -6309,6 +6328,15 @@ img {
         border-bottom: 1px solid #3E3E3E;
         padding-bottom: 15px;
         text-decoration: none;
+    }
+    .rs-blog-layout-25-item .rs-content .blog-title.align-start{
+        text-align: left;
+    }
+    .rs-blog-layout-25-item .rs-content .blog-title.align-center{
+        text-align: center;
+    }
+    .rs-blog-layout-25-item .rs-content .blog-title.align-end{
+        text-align: right;
     }
     .rs-blog-layout-25 .rs-blog-layout-25-item .rs-content .blog-title a{
         font-size: 48px;
@@ -6338,13 +6366,13 @@ img {
     .rs-blog-layout-25 .rs-blog-layout-25-item .rs-content .blog-title.underline a:hover {
         background-size: 100% 2px;
     }
-    .rs-blog-layout-25-item .rs-content .btn-wrapper.align-start{
+    .rs-blog-layout-25-item .rs-content .blog-btn.align-start{
         text-align: left;
     }
-    .rs-blog-layout-25-item .rs-content .btn-wrapper.align-center{
+    .rs-blog-layout-25-item .rs-content .blog-btn.align-center{
         text-align: center;
     }
-    .rs-blog-layout-25-item .rs-content .btn-wrapper.align-end{
+    .rs-blog-layout-25-item .rs-content .blog-btn.align-end{
         text-align: right;
     }
     .rs-blog-layout-25-item .rs-content a.rs-btn.fpg-filled{
@@ -6857,6 +6885,7 @@ img {
         font-size: 50px;
         font-weight: 700;
         line-height: 30px;
+        margin: 5px 0 8px;
     }
     .rs-blog-layout-27-list-item .rs-content {
         padding-right: 80px;
