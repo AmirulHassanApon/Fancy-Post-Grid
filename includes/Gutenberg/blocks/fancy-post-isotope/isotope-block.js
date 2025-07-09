@@ -235,7 +235,7 @@
 
             // Button Style
             const buttonStyle1 = (isotopeLayoutStyle === 'style1' && attributes.buttonStyle == null)
-              ? 'fpg-filled' : attributes.buttonStyle; 
+              ? 'fpg-flat' : attributes.buttonStyle; 
             const buttonStyle2 = (isotopeLayoutStyle === 'style2' && attributes.buttonStyle == null)
               ? 'fpg-filled' : attributes.buttonStyle;  
             const buttonStyle3 = (isotopeLayoutStyle === 'style3' && attributes.buttonStyle == null)
@@ -1452,33 +1452,53 @@
                                                     className: 'rs-blog-footer',style: { 
                                                         order: buttonOrder}, },
 
-                                                wp.element.createElement(
-                                                    'span',
-                                                    null,
-                                                    wp.element.createElement(
-                                                        'div',
-                                                        {
-                                                            className: 'meta-comment-count',
-                                                            style: {
-                                                                ...(metaTextColor ? { color: metaTextColor } : {}),
-                                                                ...(metaFontSize ? { fontSize: `${metaFontSize}px` } : {})
-                                                            }
-                                                        },
-                                                        
-                                                        wp.element.createElement('i', {
-                                                            className: 'fas fa-comments',
-                                                            style: {
-                                                                ...(metaIconColor ? { color: metaIconColor } : {}),
-                                                                ...(metaFontSize ? { fontSize: `${metaFontSize}px` } : {})
-                                                            }
-                                                        }),
-                                                        ` ${post.comment_count ? post.comment_count : 0} Comments`
-                                                    )
-                                                ),
+                                                showPostAuthor &&
+                                                                    wp.element.createElement(
+                                                                      'div',
+                                                                      { className: 'user' },
+                                                                      wp.element.createElement(
+                                                                        'a',
+                                                                        {
+                                                                          href: post._embedded?.author?.[0]?.link || '#',
+                                                                          style: { textDecoration: 'none' },
+                                                                        },
+                                                                        wp.element.createElement(
+                                                                          'div',
+                                                                          {
+                                                                            className: 'author-thumb',
+                                                                            
+                                                                          },
+                                                                          showMetaIcon &&
+                                                                            showPostAuthorIcon &&
+                                                                            post._embedded?.author?.[0]?.avatar_urls?.['48'] &&
+                                                                            wp.element.createElement('img', {
+                                                                              src: post._embedded.author[0].avatar_urls['48'],
+                                                                              srcSet: post._embedded.author[0].avatar_urls['96'] + ' 2x',
+                                                                              alt: post._embedded.author[0].name || '',
+                                                                              className: 'avatar avatar-32 photo',
+                                                                              width: '32',
+                                                                              height: '32',
+                                                                            })
+                                                                        ),
+                                                                        wp.element.createElement(
+                                                                          'span',{
+                                                                            
+                                                                            style: {
+                                                                              ...(metaTextColor ? { color: metaTextColor } : {}),
+                                                                              ...(metaFontSize ? { fontSize: `${metaFontSize}px` } : {}),
+                                                                            },
+                                                                          },
+                                                                          null,
+                                                                          ` ${metaAuthorPrefix ? metaAuthorPrefix + ' ' : 'by '}${post._embedded?.author?.[0]?.name || ''}`
+                                                                        )
+                                                                      )
+                                                                    ),
+              
+                                                      
         
                                                 
                                                 showReadMoreButton && wp.element.createElement('div', { 
-                                                    className: `blog-btn align-${buttonAlignment} `,
+                                                    className: `btn-wrapper align-${buttonAlignment} `,
                                                     style: { 
                                                         order: buttonOrder,
                                                         margin: getSpacingValue(attributes.buttonMarginNew) }, 
@@ -1486,7 +1506,7 @@
                                                     wp.element.createElement('a', { 
                                                         href: post.link, 
                                                         target: postLinkTarget === 'newWindow' ? '_blank' : '_self', 
-                                                        className: `rs-btn read-more ${buttonStyle1}`,  // Dynamic class based on buttonStyle
+                                                        className: `btn-link read-more ${buttonStyle1}`,  // Dynamic class based on buttonStyle
                                                         style: { 
                                                             
                                                             ...(buttonBackgroundColor ? { background: buttonBackgroundColor } : {}),
