@@ -1451,7 +1451,8 @@ img {
 .rs-blog-layout-4 .rs-blog__item .rs-content .desc {
     font-size: 16px;
     line-height: 28px;
-    margin-bottom: 30px;
+    margin-bottom: 15x;
+    margin-top: 10px;
 }
 .rs-blog-layout-4 .rs-blog__item .rs-content .desc.align-start{
     text-align: left;
@@ -1521,6 +1522,7 @@ img {
     padding: 10px 20px;
     border-radius: 30px;
     background: #F79C53;
+    border: 0;
 }
 
 
@@ -1539,6 +1541,7 @@ img {
     display: inline-block;
     position: relative;
     background: transparent !important;
+    border: 0;
 }
 .rs-blog-layout-4 .rs-blog__item .rs-content .rs-blog-footer .btn-link.fpg-border:hover{
     color: #F79C53;
