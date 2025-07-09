@@ -3366,20 +3366,57 @@
                     posts.slice(2).map((post, index) => {
                     return wp.element.createElement(
                         'div',
-                        { className: 'rs-blog-layout-27-list-item' },
+                        { className: `rs-blog-layout-27-list-item fancy-post-item align-${itemBoxAlignment} ${hoverAnimation}`,
+                                style: {             
+                                    ...(attributes.itemMargin
+                                      ? { margin: getSpacingValue(attributes.itemMargin) }
+                                      : { }), // your default fallback
+                                    ...(attributes.itemPadding
+                                      ? { padding: getSpacingValue(attributes.itemPadding) }
+                                      : { }), 
+                                    ...(attributes.itemBorderRadius ? { borderRadius: getSpacingValue(attributes.itemBorderRadius) } : {}),
+                                    ...(attributes.itemBorderWidth ? { borderWidth: getSpacingValue(attributes.itemBorderWidth) } : {}),
+                                    ...(attributes.itemBackgroundColor ? { backgroundColor: attributes.itemBackgroundColor } : {}),
+                                    ...(attributes.itemBorderType ? { borderStyle: attributes.itemBorderType } : {}),
+                                    ...(attributes.itemBorderColor ? { borderColor: attributes.itemBorderColor } : {}),
+                                    ...((getSpacingValue(attributes.itemBoxShadow) || attributes.itemBoxShadowColor) ? {
+                                        boxShadow: `${getSpacingValue(attributes.itemBoxShadow) || '10px'} ${attributes.itemBoxShadowColor || 'rgba(0,0,0,0.1)'}`
+                                    } : {})
+                                }, },
 
                         // Date Block - as a separate sibling
                         wp.element.createElement(
                             'div',
-                            { className: 'rs-date' },
-                            wp.element.createElement('span', null, wp.date.dateI18n('M', post.date)), 
-                            wp.element.createElement('h3', { className: 'title' }, wp.date.dateI18n('d', post.date)) // Day
+                            { className: 'rs-date',style: {
+                                  ...(attributes.metaMarginNew ? { margin: getSpacingValue(attributes.metaMarginNew) }: { }), 
+                                  ...(attributes.metaPadding ? { padding: getSpacingValue(attributes.metaPadding) }: {  }),
+                                  ...(metaBgColor ? { backgroundColor: metaBgColor } : {}),
+                              }, },
+                            wp.element.createElement('span', { className: 'date',style: {
+                                  
+                                  ...(metaTextColor ? { color: metaTextColor } : {}),
+                                  ...(metaFontSize ? { fontSize: `${metaFontSize}px` } : {})
+                              }, }, wp.date.dateI18n('M', post.date)), 
+                            wp.element.createElement('h3', { className: 'title',style: {
+                                  ...(metaTextColor ? { color: metaTextColor } : {}),
+                                  ...(metaFontSize ? { fontSize: `${metaFontSize}px` } : {})
+                              }, }, wp.date.dateI18n('d', post.date)) // Day
                         ),
 
                         // Content Block - as another sibling
                         wp.element.createElement(
                             'div',
-                            { className: 'rs-content' },
+                            { className: 'rs-content',style: {
+                                    ...(attributes.contentitemMarginNew ? { margin: getSpacingValue(attributes.contentitemMarginNew) } : {}),
+                                    ...(attributes.contentitemPaddingNew
+                                      ? { padding: getSpacingValue(attributes.contentitemPaddingNew) }
+                                      : { }), 
+                                    ...(attributes.contentitemRadius ? { borderRadius: getSpacingValue(attributes.contentitemRadius) } : {}),
+                                    ...(attributes.contentBorderWidth ? { borderWidth: getSpacingValue(attributes.contentBorderWidth) } : {}),
+                                    ...(attributes.contentnormalBorderType ? { borderStyle: attributes.contentnormalBorderType } : {}),
+                                    ...(contentBgColor ? { backgroundColor: contentBgColor } : {}),
+                                    ...(contentBorderColor ? { borderColor: contentBorderColor } : {})
+                                }, },
 
                             // Meta Data Section
                             showMetaData &&
@@ -3412,7 +3449,7 @@
                             // Post Title Section
                             showPostTitle &&
                                 wp.element.createElement(
-                                    'h4',
+                                    'titleTag',
                                     {
                                         key: index,
                                         className: `title align-${postTitleAlignment} ${titleHoverUnderLine === 'enable' ? ' underline' : ''}`,
