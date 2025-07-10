@@ -3073,7 +3073,10 @@
             else if (isotopeLayoutStyle === 'style6' && posts && posts.length) {
                 content = wp.element.createElement(
                     'div',
-                    { className: 'rs-blog-layout-15 fancy-post-grid'  },
+                    { className: 'rs-blog-layout-15 fancy-post-grid',
+                      style: {                 
+                            ...(sectionBgColor ? { backgroundColor: sectionBgColor } : {}),
+                        }  },
                     wp.element.createElement(
                         'div',
                         { className: 'container' },
