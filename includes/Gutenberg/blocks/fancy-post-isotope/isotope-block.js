@@ -155,14 +155,18 @@
             buttonHoverBorderColor: { type: 'string', default: '' },          
             
             //filter
+            filterWrapperMargin: { type: 'object' },
+            filterWrapperPadding: { type: 'object' }, 
             filterMargin: { type: 'object' },
             filterPadding: { type: 'object' },             
             filterBorderStyle: { type: 'string', default: '' },
             filterBorderWidth: { type: 'object'  },
             filterBorderRadius: { type: 'object'  },            
+            filterWrapperBorderRadius: { type: 'object'  },            
             filterGap: { type: 'number', default: '' },
             filterFontSize: { type: 'number', default: '' },
             filterTextColor: { type: 'string', default: '' },
+            filterWrapperBackgroundColor: { type: 'string', default: '' },
             filterBackgroundColor: { type: 'string', default: '' },
             filterBorderColor: { type: 'string', default: '' },
             filterHoverTextColor: { type: 'string', default: '' },
@@ -172,7 +176,6 @@
             filterActiveBackgroundColor: { type: 'string', default: '' },
             filterActiveBorderColor: { type: 'string', default: '' },
             postType: { type: 'string', default: 'post' },
-            
         },
 
         edit: function ({ attributes, setAttributes }) {
@@ -213,7 +216,7 @@
                 buttonBorderWidth,buttonBorderRadius,buttonFontSize,buttonHoverTextColor,buttonHoverBackgroundColor,
                 buttonBorderColor,buttonHoverBorderColor,
 
-                filterMargin,filterPadding,filterGap,filterFontSize,filterTextColor,
+                filterWrapperMargin,filterWrapperPadding,filterMargin,filterPadding,filterGap,filterFontSize,filterTextColor,filterWrapperBackgroundColor,filterWrapperBorderRadius,
                 filterBackgroundColor,filterBorderColor,filterHoverTextColor,filterHoverBackgroundColor,
                 filterHoverBorderColor,filterActiveTextColor,filterActiveBackgroundColor,filterBorderStyle,filterBorderWidth,filterBorderRadius,
                 filterActiveBorderColor,postType  } = attributes;
@@ -4750,6 +4753,38 @@
 
                                     // Margin
                                     wp.element.createElement(__experimentalBoxControl, {
+                                        label: __('Filter Wrapper Margin', 'fancy-post-grid'),
+                                        values: attributes.filterWrapperMargin,
+                                        onChange: (value) => setAttributes({ filterWrapperMargin: value }),
+                                    }),
+
+                                    // Padding
+                                    wp.element.createElement(__experimentalBoxControl, {
+                                        label: __('Filter Wrapper Padding', 'fancy-post-grid'),
+                                        values: attributes.filterWrapperPadding,
+                                        onChange: (value) => setAttributes({ filterWrapperPadding: value }),
+                                    }),
+
+                                    // Filter Border Radius
+                                    wp.element.createElement(__experimentalBoxControl, {
+                                        label: __('Filter Wrapper Border Radius', 'fancy-post-grid'),
+                                        values: attributes.filterWrapperBorderRadius,
+                                        onChange: (value) => setAttributes({ filterWrapperBorderRadius: value }),
+                                    }),
+
+                                    wp.element.createElement('p', {}, __('Filter Wrapper Background Color', 'fancy-post-grid')),
+                                    wp.element.createElement(wp.components.ColorPicker, {
+                                        color: attributes.filterWrapperBackgroundColor,
+                                        onChangeComplete: (value) => setAttributes({ filterWrapperBackgroundColor: value.hex }),
+                                    }),
+                                    wp.element.createElement(Button, {
+                                        isSecondary: true,
+                                        onClick: () => setAttributes({ filterWrapperBackgroundColor: '' }),
+                                        style: { marginTop: '10px' },
+                                    }, __('Clear Color', 'fancy-post-grid')),
+
+                                    // Margin
+                                    wp.element.createElement(__experimentalBoxControl, {
                                         label: __('Margin', 'fancy-post-grid'),
                                         values: attributes.filterMargin,
                                         onChange: (value) => setAttributes({ filterMargin: value }),
@@ -4795,16 +4830,13 @@
                                     }),
 
                                     // Filter Border Width
-                                    
                                     wp.element.createElement(__experimentalBoxControl, {
                                         label: __('Filter Border Width', 'fancy-post-grid'),
                                         values: attributes.filterBorderWidth,
                                         onChange: (value) => setAttributes({ filterBorderWidth: value }),
                                     }),
 
-
                                     // Filter Border Radius
-                                    
                                     wp.element.createElement(__experimentalBoxControl, {
                                         label: __('Filter Border Radius', 'fancy-post-grid'),
                                         values: attributes.filterBorderRadius,
