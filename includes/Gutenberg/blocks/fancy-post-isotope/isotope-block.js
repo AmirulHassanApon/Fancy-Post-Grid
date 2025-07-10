@@ -397,7 +397,16 @@
                                 style: {
                                     display: 'flex',
                                     gap: attributes.filterGap,
-                                    
+                                    backgroundColor: attributes.filterWrapperBackgroundColor,
+                                    ...(attributes.filterWrapperPadding
+                                        ? { padding: getSpacingValue(attributes.filterWrapperPadding) }
+                                        : { }), 
+                                    ...(attributes.filterWrapperMargin
+                                        ? { margin: getSpacingValue(attributes.filterWrapperMargin) }
+                                        : { }), 
+                                    ...(attributes.filterWrapperBorderRadius
+                                        ? { borderRadius: getSpacingValue(attributes.filterWrapperBorderRadius) }
+                                        : {}),
                                 }, 
                             },
                             [
@@ -533,6 +542,16 @@
                                 style: {
                                     display: 'flex',
                                     gap: attributes.filterGap,
+                                    backgroundColor: attributes.filterWrapperBackgroundColor,
+                                    ...(attributes.filterWrapperPadding
+                                        ? { padding: getSpacingValue(attributes.filterWrapperPadding) }
+                                        : { }), 
+                                    ...(attributes.filterWrapperMargin
+                                        ? { margin: getSpacingValue(attributes.filterWrapperMargin) }
+                                        : { }), 
+                                    ...(attributes.filterWrapperBorderRadius
+                                        ? { borderRadius: getSpacingValue(attributes.filterWrapperBorderRadius) }
+                                        : {}),
                                 }, 
                             },
                             [
@@ -667,6 +686,16 @@
                                 style: {
                                     display: 'flex',
                                     gap: attributes.filterGap,
+                                    backgroundColor: attributes.filterWrapperBackgroundColor,
+                                    ...(attributes.filterWrapperPadding
+                                        ? { padding: getSpacingValue(attributes.filterWrapperPadding) }
+                                        : { }), 
+                                    ...(attributes.filterWrapperMargin
+                                        ? { margin: getSpacingValue(attributes.filterWrapperMargin) }
+                                        : { }), 
+                                    ...(attributes.filterWrapperBorderRadius
+                                        ? { borderRadius: getSpacingValue(attributes.filterWrapperBorderRadius) }
+                                        : {}),
                                     
                                 }, 
                             },
@@ -803,6 +832,16 @@
                                 style: {
                                     display: 'flex',
                                     gap: attributes.filterGap,
+                                    backgroundColor: attributes.filterWrapperBackgroundColor,
+                                    ...(attributes.filterWrapperPadding
+                                        ? { padding: getSpacingValue(attributes.filterWrapperPadding) }
+                                        : { }), 
+                                    ...(attributes.filterWrapperMargin
+                                        ? { margin: getSpacingValue(attributes.filterWrapperMargin) }
+                                        : { }), 
+                                    ...(attributes.filterWrapperBorderRadius
+                                        ? { borderRadius: getSpacingValue(attributes.filterWrapperBorderRadius) }
+                                        : {}),
                                     
                                 }, 
                             },
@@ -939,6 +978,16 @@
                                 style: {
                                     display: 'flex',
                                     gap: attributes.filterGap,
+                                    backgroundColor: attributes.filterWrapperBackgroundColor,
+                                    ...(attributes.filterWrapperPadding
+                                        ? { padding: getSpacingValue(attributes.filterWrapperPadding) }
+                                        : { }), 
+                                    ...(attributes.filterWrapperMargin
+                                        ? { margin: getSpacingValue(attributes.filterWrapperMargin) }
+                                        : { }), 
+                                    ...(attributes.filterWrapperBorderRadius
+                                        ? { borderRadius: getSpacingValue(attributes.filterWrapperBorderRadius) }
+                                        : {}),
                                     
                                 }, 
                             },
@@ -1075,6 +1124,16 @@
                                 style: {
                                     display: 'flex',
                                     gap: attributes.filterGap,
+                                    backgroundColor: attributes.filterWrapperBackgroundColor,
+                                    ...(attributes.filterWrapperPadding
+                                        ? { padding: getSpacingValue(attributes.filterWrapperPadding) }
+                                        : { }), 
+                                    ...(attributes.filterWrapperMargin
+                                        ? { margin: getSpacingValue(attributes.filterWrapperMargin) }
+                                        : { }), 
+                                    ...(attributes.filterWrapperBorderRadius
+                                        ? { borderRadius: getSpacingValue(attributes.filterWrapperBorderRadius) }
+                                        : {}),
                                     
                                 }, 
                             },
@@ -1211,7 +1270,16 @@
                                 style: {
                                     display: 'flex',
                                     gap: attributes.filterGap,
-                                    
+                                    backgroundColor: attributes.filterWrapperBackgroundColor,
+                                    ...(attributes.filterWrapperPadding
+                                        ? { padding: getSpacingValue(attributes.filterWrapperPadding) }
+                                        : { }), 
+                                    ...(attributes.filterWrapperMargin
+                                        ? { margin: getSpacingValue(attributes.filterWrapperMargin) }
+                                        : { }), 
+                                    ...(attributes.filterWrapperBorderRadius
+                                        ? { borderRadius: getSpacingValue(attributes.filterWrapperBorderRadius) }
+                                        : {}),
                                 }, 
                             },
                             [
@@ -2720,7 +2788,7 @@
                                                 ...(attributes.itemBorderRadius ? { borderRadius: getSpacingValue(attributes.itemBorderRadius) } : {}),
                                                 ...(attributes.itemBorderWidth ? { borderWidth: getSpacingValue(attributes.itemBorderWidth) } : {}),
                                                 ...(attributes.itemBackgroundColor ? { backgroundColor: attributes.itemBackgroundColor } : {}),
-                                                ...(attributes.itemBorderType ? { borderStyle: attributes.itemBorderType } : {}),
+                                                
                                                 ...(attributes.itemBorderColor ? { borderColor: attributes.itemBorderColor } : {}),
                                                 ...((getSpacingValue(attributes.itemBoxShadow) || attributes.itemBoxShadowColor) ? {
                                                     boxShadow: `${getSpacingValue(attributes.itemBoxShadow) } ${attributes.itemBoxShadowColor }`
