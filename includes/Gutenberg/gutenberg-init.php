@@ -21624,6 +21624,11 @@ function fancy_post_isotope_render_callback($attributes) {
     $fancyPostFilterAlignment = isset($attributes['fancyPostFilterAlignment']) ? sanitize_text_field($attributes['fancyPostFilterAlignment']) : '';
     $fancyPostFilterText = isset($attributes['fancyPostFilterText']) ? sanitize_text_field($attributes['fancyPostFilterText']) : 'ALL';
 
+    $filterWrapperMargin = isset($attributes['filterWrapperMargin']) ? array_map('sanitize_text_field', $attributes['filterWrapperMargin']) : ['top' => '', 'right' => '', 'bottom' => '', 'left' => ''];
+    $filterWrapperPadding = isset($attributes['filterWrapperPadding']) ? array_map('sanitize_text_field', $attributes['filterWrapperPadding']) : ['top' => '', 'right' => '', 'bottom' => '', 'left' => ''];
+    $filterWrapperBorderRadius = isset($attributes['filterWrapperBorderRadius']) ? array_map('sanitize_text_field', $attributes['filterWrapperBorderRadius']) : ['top' => '', 'right' => '', 'bottom' => '', 'left' => ''];
+    $filterWrapperBackgroundColor = isset($attributes['filterWrapperBackgroundColor']) ? sanitize_hex_color($attributes['filterWrapperBackgroundColor']) : '';
+
     $filterMargin = isset($attributes['filterMargin']) ? array_map('sanitize_text_field', $attributes['filterMargin']) : ['top' => '', 'right' => '', 'bottom' => '', 'left' => ''];
     $filterPadding = isset($attributes['filterPadding']) ? array_map('sanitize_text_field', $attributes['filterPadding']) : ['top' => '', 'right' => '', 'bottom' => '', 'left' => ''];
 
@@ -22137,7 +22142,61 @@ function fancy_post_isotope_render_callback($attributes) {
             $output .= '<div class="row" id="' . esc_attr($unique_id) . '">';
             $output .= '<div class="col-lg-12">';
             $output .= '<div class="rs-blog-layout-1-filter" style="justify-content:' . esc_attr($fancyPostFilterAlignment1) . ';">';
-            $output .= '<div class="filter-button-group" style="gap:' . esc_attr($filterGap) . 'px;">';
+
+            // Build style for .filter-button-group
+            $filterButtonGroupStyle = '';
+
+            // Gap (already exists)
+            if (!empty($filterGap)) {
+                $filterButtonGroupStyle .= 'gap:' . esc_attr($filterGap) . 'px; ';
+            }
+
+            // Border Color
+            if (!empty($filterWrapperBackgroundColor)) {
+                $filterButtonGroupStyle .= 'background-color:' . esc_attr($filterWrapperBackgroundColor) . '; ';
+            }
+
+            // Margin
+            if (isset($filterWrapperMargin['top']) || isset($filterWrapperMargin['right']) || isset($filterWrapperMargin['bottom']) || isset($filterWrapperMargin['left'])) {
+                $filterButtonGroupStyle .= 'margin: ' .
+                    (isset($filterWrapperMargin['top']) ? (is_numeric($filterWrapperMargin['top']) ? $filterWrapperMargin['top'] . 'px' : esc_attr($filterWrapperMargin['top'])) : '0px') . ' ' .
+                    (isset($filterWrapperMargin['right']) ? (is_numeric($filterWrapperMargin['right']) ? $filterWrapperMargin['right'] . 'px' : esc_attr($filterWrapperMargin['right'])) : '0px') . ' ' .
+                    (isset($filterWrapperMargin['bottom']) ? (is_numeric($filterWrapperMargin['bottom']) ? $filterWrapperMargin['bottom'] . 'px' : esc_attr($filterWrapperMargin['bottom'])) : '0px') . ' ' .
+                    (isset($filterWrapperMargin['left']) ? (is_numeric($filterWrapperMargin['left']) ? $filterWrapperMargin['left'] . 'px' : esc_attr($filterWrapperMargin['left'])) : '0px') . '; ';
+            }
+            // Padding
+            if (isset($filterWrapperPadding['top']) || isset($filterWrapperPadding['right']) || isset($filterWrapperPadding['bottom']) || isset($filterWrapperPadding['left'])) {
+                $filterButtonGroupStyle .= 'padding: ' .
+                    (isset($filterWrapperPadding['top']) ? (is_numeric($filterWrapperPadding['top']) ? $filterWrapperPadding['top'] . 'px' : esc_attr($filterWrapperPadding['top'])) : '0px') . ' ' .
+                    (isset($filterWrapperPadding['right']) ? (is_numeric($filterWrapperPadding['right']) ? $filterWrapperPadding['right'] . 'px' : esc_attr($filterWrapperPadding['right'])) : '0px') . ' ' .
+                    (isset($filterWrapperPadding['bottom']) ? (is_numeric($filterWrapperPadding['bottom']) ? $filterWrapperPadding['bottom'] . 'px' : esc_attr($filterWrapperPadding['bottom'])) : '0px') . ' ' .
+                    (isset($filterWrapperPadding['left']) ? (is_numeric($filterWrapperPadding['left']) ? $filterWrapperPadding['left'] . 'px' : esc_attr($filterWrapperPadding['left'])) : '0px') . '; ';
+            }
+            // Padding
+            if (isset($filterWrapperBorderRadius['top']) || isset($filterWrapperBorderRadius['right']) || isset($filterWrapperBorderRadius['bottom']) || isset($filterWrapperBorderRadius['left'])) {
+                $filterButtonGroupStyle .= 'border-radius: ' .
+                    (isset($filterWrapperBorderRadius['top']) ? (is_numeric($filterWrapperBorderRadius['top']) ? $filterWrapperBorderRadius['top'] . 'px' : esc_attr($filterWrapperBorderRadius['top'])) : '0px') . ' ' .
+                    (isset($filterWrapperBorderRadius['right']) ? (is_numeric($filterWrapperBorderRadius['right']) ? $filterWrapperBorderRadius['right'] . 'px' : esc_attr($filterWrapperBorderRadius['right'])) : '0px') . ' ' .
+                    (isset($filterWrapperBorderRadius['bottom']) ? (is_numeric($filterWrapperBorderRadius['bottom']) ? $filterWrapperBorderRadius['bottom'] . 'px' : esc_attr($filterWrapperBorderRadius['bottom'])) : '0px') . ' ' .
+                    (isset($filterWrapperBorderRadius['left']) ? (is_numeric($filterWrapperBorderRadius['left']) ? $filterWrapperBorderRadius['left'] . 'px' : esc_attr($filterWrapperBorderRadius['left'])) : '0px') . '; ';
+            }
+
+            // Padding
+            if (!empty($filterPadding['top']) || !empty($filterPadding['right']) || !empty($filterPadding['bottom']) || !empty($filterPadding['left'])) {
+                $filterButtonGroupStyle .= 'padding: ' .
+                    (isset($filterPadding['top']) && $filterPadding['top'] !== '' ? (is_numeric($filterPadding['top']) ? $filterPadding['top'] . 'px' : esc_attr($filterPadding['top'])) : '0px') . ' ' .
+                    (isset($filterPadding['right']) && $filterPadding['right'] !== '' ? (is_numeric($filterPadding['right']) ? $filterPadding['right'] . 'px' : esc_attr($filterPadding['right'])) : '0px') . ' ' .
+                    (isset($filterPadding['bottom']) && $filterPadding['bottom'] !== '' ? (is_numeric($filterPadding['bottom']) ? $filterPadding['bottom'] . 'px' : esc_attr($filterPadding['bottom'])) : '0px') . ' ' .
+                    (isset($filterPadding['left']) && $filterPadding['left'] !== '' ? (is_numeric($filterPadding['left']) ? $filterPadding['left'] . 'px' : esc_attr($filterPadding['left'])) : '0px') . '; ';
+            }
+
+            
+
+            // Final output with full style applied
+            $output .= '<div class="filter-button-group" style="' . esc_attr($filterButtonGroupStyle) . '">';
+
+
+            // $output .= '<div class="filter-button-group" style="gap:' . esc_attr($filterGap) . 'px;">';
 
             // "All" button
             $output .= '<button class="active" data-filter="*" style="' . esc_attr($buttonBaseStyle) . '" onmouseover="' . esc_attr($hoverStyleOn) . '" onmouseout="' . esc_attr($hoverStyleOff) . '">' . esc_html($fancyPostFilterText) . '</button>';
