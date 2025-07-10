@@ -1741,7 +1741,7 @@ img {
 }
 .rs-blog-layout-5 .rs-blog__single .rs-content ul {
     display: flex;
-    gap: 8px 20px;
+    gap: 8px 10px;
     flex-wrap: wrap;
     padding: 0px;
     margin: 0px;
@@ -1865,6 +1865,7 @@ img {
     padding: 13px 30px;
     border-radius: 5px;
     background: #007aff;
+    border: 0;
 }
 .rs-blog-layout-5 .rs-blog__single .rs-content .fpg-excerpt  {
     order: 3;
@@ -1898,6 +1899,7 @@ img {
     display: inline-block;
     position: relative;
     background: transparent !important;
+    border: 0;
 }
 .rs-blog-layout-5 .rs-blog__single .rs-content .rs-link.fpg-border:hover{
     color: #007aff;
