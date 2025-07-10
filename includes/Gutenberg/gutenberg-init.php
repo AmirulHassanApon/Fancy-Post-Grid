@@ -22098,13 +22098,13 @@ function fancy_post_isotope_render_callback($attributes) {
             $output .= '<style>';
             $output .= '#' . $unique_id . ' .filter-button-group button.active {';
             if (!empty($filterActiveTextColor)) {
-                $output .= 'color:' . esc_attr($filterActiveTextColor) . ';';
+                $output .= 'color:' . esc_attr($filterActiveTextColor) . ' !important;';
             }
             if (!empty($filterActiveBackgroundColor)) {
-                $output .= 'background-color:' . esc_attr($filterActiveBackgroundColor) . ';';
+                $output .= 'background-color:' . esc_attr($filterActiveBackgroundColor) . '!important;';
             }
             if (!empty($filterActiveBorderColor)) {
-                $output .= 'border-color:' . esc_attr($filterActiveBorderColor) . ';';
+                $output .= 'border-color:' . esc_attr($filterActiveBorderColor) . '!important;';
             }
             $output .= '}';
             $output .= '</style>';
