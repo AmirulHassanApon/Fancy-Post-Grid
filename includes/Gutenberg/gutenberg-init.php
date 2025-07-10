@@ -26161,15 +26161,16 @@ function fancy_post_isotope_render_callback($attributes) {
                     if ($showPostDate) {
                         $output .= '<div class="pre-blog-meta" style="background:' . esc_attr($metaBgColor) . '; ">';
                         
-                        $output .= '<span class="pre-date" style="color:' . esc_attr($metaTextColor) . '; " >' . esc_html(get_the_date('d')) . '</span>';
-                        $output .= '<span class="pre-month" style="color:' . esc_attr($metaTextColor) . '; " > ' . esc_html(get_the_date('F')) . '</span>'; 
+                        $output .= '<span class="pre-date" style="color:' . esc_attr($metaTextColor) . '; font-size:' . esc_attr($metaFontSize) . 'px;">' . esc_html(get_the_date('d')) . '</span>';
+
+                        $output .= '<span class="pre-month" style="font-size:' . esc_attr($metaFontSize) . 'px;color:' . esc_attr($metaTextColor) . '; " > ' . esc_html(get_the_date('F')) . '</span>'; 
                         $output .= '</div>';
                     }
                     $output .= '</div>';
                 }
                 
                 // MAIN Content
-                $output .= '<div class="pre-blog-content" style="';
+                $output .= '<div class="pre-blog-content align-' . $itemBoxAlignment5 . '" style="';
                     // MARGIN
                     if (
                         isset($contentitemMarginNew['top']) ||
