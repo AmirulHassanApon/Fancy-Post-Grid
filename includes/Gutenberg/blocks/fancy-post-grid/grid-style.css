@@ -8355,6 +8355,10 @@ img {
     padding: 0 20px;
 }
 
+.rs-blog-layout-4.rs-blog-layout-10{
+    padding-top: 0;
+    padding-bottom: 0;
+}
 .rs-blog-layout-4.rs-blog-layout-10 .rs-grid .rs-grid-item .rs-blog__item .rs-content .rs-blog-footer .blog-btn .rs-btn{
     color: #424040;
 }
