@@ -27379,12 +27379,12 @@ function fancy_post_isotope_render_callback($attributes) {
                     $output .= '</' . esc_attr($titleTag) . '>';
                 }
                 if ($showPostExcerpt) {
-                    $excerptStyles = '';
+                    
                     $excerptColorStyles = '';
 
                     // Order
                     if (!empty($excerptOrder)) {
-                        $excerptStyles .= 'order: ' . esc_attr($excerptOrder) . '; ';
+                        $excerptColorStyles .= 'order: ' . esc_attr($excerptOrder) . '; ';
                     }
 
                     // Typography
@@ -27448,10 +27448,8 @@ function fancy_post_isotope_render_callback($attributes) {
                         $hoverOut .= 'this.style.backgroundColor=\'' . esc_attr($excerptBgColor) . '\';';
                     }
 
-                    $output .= '<div class="fpg-excerpt' . ' align-' . esc_attr($excerptAlignment) . '" style="' . esc_attr(trim($excerptStyles)) . '"';
-
-                    $output .= '>';
-                    $output .= '<p style="' . esc_attr(trim($excerptColorStyles)) . '"';
+                    
+                    $output .= '<p class="fpg-excerpt' . ' align-' . esc_attr($excerptAlignment) . '" style="' . esc_attr(trim($excerptColorStyles)) . '"';
 
                         if (!empty($hoverIn) || !empty($hoverOut)) {
                             if (!empty($hoverIn)) {
@@ -27463,7 +27461,7 @@ function fancy_post_isotope_render_callback($attributes) {
                         }
 
                         $output .= '>' . esc_html($excerpt) . '</p>';
-                    $output .= '</div>';
+                    
                 }
                 // Button Output                
                 if ($showReadMoreButton) {

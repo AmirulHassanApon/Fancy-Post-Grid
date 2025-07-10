@@ -123,7 +123,7 @@
             excerptFontWeight: { type: 'string', default: '' },
             excerptAlignment: { type: 'string' },
             excerptMargin: { type: 'object' },
-            excerptPadding: { type: 'object', default: { top: '', right: '', bottom: '', left: '' }, },           
+            excerptPadding: { type: 'object' },           
             excerptColor: { type: 'string', default: '' },
             excerptBgColor: { type: 'string', default: '' },
             excerptHoverColor: { type: 'string', default: '' },
@@ -2033,7 +2033,7 @@
                                                   ? { margin: getSpacingValue(attributes.itemMargin) }
                                                   : {}), // your default fallback
                                                 ...(attributes.itemPadding
-                                                  ? { margin: getSpacingValue(attributes.itemPadding) }
+                                                  ? { padding: getSpacingValue(attributes.itemPadding) }
                                                   : {}), // your default fallback
                                                 ...(attributes.itemBorderRadius ? { borderRadius: getSpacingValue(attributes.itemBorderRadius) } : {}),
                                                 ...(attributes.itemBorderWidth ? { borderWidth: getSpacingValue(attributes.itemBorderWidth) } : {}),
