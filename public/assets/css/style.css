@@ -7287,6 +7287,7 @@ img {
         position: relative;
         overflow: hidden;
         z-index: 5;
+        border: 0;
     }
     .rs-blog-layout-28-item .rs-content .rs-btn.fpg-filled::after{
         position: absolute;
@@ -7321,11 +7322,12 @@ img {
         margin-top: 0px;
         display: inline-block;
         position: relative;
-        background: transparent !important;
+        background: transparent;
+        border: 0;
     }
     .rs-blog-layout-28-item .rs-content .rs-btn.fpg-border:hover{
         color: #007aff;
-        background: transparent !important;
+        background: transparent;
     }
     
     .rs-blog-layout-28-item .rs-content .rs-btn.fpg-border::before{
@@ -7349,12 +7351,13 @@ img {
         margin-top: 0px;
         display: inline-block;
         position: relative;
-        background: transparent !important;
+        background: transparent;
+        border: 0;
     }
     
     .rs-blog-layout-28-item .rs-content .rs-btn.fpg-flat:hover{
         color: #007aff;
-        background: transparent !important;
+        background: transparent;
     }
     .rs-blog-layout-28-item .rs-thumb{
         position: relative;
