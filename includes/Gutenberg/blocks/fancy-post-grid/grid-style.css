@@ -3618,11 +3618,11 @@ img {
     margin-top: 10px;
     display: inline-block;
     position: relative;
-    background: transparent !important;
+    background: transparent;
 }
 .pre-blog-item.style_12 .blog-inner-wrap .pre-blog-content .blog-btn-part .blog-btn.fpg-border:hover{
     color: #ffffff;
-    background: transparent !important;
+    background: transparent;
 }
 
 .pre-blog-item.style_12 .blog-inner-wrap .pre-blog-content .blog-btn-part .blog-btn.fpg-border::before{
@@ -3647,12 +3647,12 @@ img {
     margin-top: 0px;
     display: inline-block;
     position: relative;
-    background: transparent !important;
+    background: transparent;
 }
 
 .pre-blog-item.style_12 .blog-inner-wrap .pre-blog-content .blog-btn-part .blog-btn.fpg-flat:hover{
     color: #fff;
-    background: transparent !important;
+    background: transparent;
 }
 
 .pre-blog-item.style_12 .blog-inner-wrap .pre-blog-content .blog-btn-part.align-start{
