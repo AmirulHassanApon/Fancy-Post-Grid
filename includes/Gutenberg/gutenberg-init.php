@@ -22929,7 +22929,18 @@ function fancy_post_isotope_render_callback($attributes) {
             // Style-based output
             if ($isotopeLayoutStyle === 'style1') {
                 // Full post layout
-                $output .= '<div class="' . esc_attr($column_class) . ' rs-grid-item' . esc_attr($category_classes) . '">';
+                $itemGapStyle = '';
+                    if (!empty($itemGap)) {
+                        $halfGap = is_numeric($itemGap) ? ($itemGap / 2) . 'px' : esc_attr($itemGap);
+                        $itemGapStyle = 'padding-left: ' . $halfGap . '; padding-right: ' . $halfGap . ';';
+                    }
+
+                    // Output the div with dynamic styles
+                    $output .= '<div class="' . esc_attr($column_class) . ' rs-grid-item' . esc_attr($category_classes) . '"';
+                    if (!empty($itemGapStyle)) {
+                        $output .= ' style="' . esc_attr($itemGapStyle) . '"';
+                    }
+                    $output .= '>';
                 $output .= '<div class="rs-blog__item align-' . $itemBoxAlignment . ' ' . $hoverAnimation . '" style="';
                     // MARGIN    
                     if (isset($itemMargin['top']) || isset($itemMargin['right']) || isset($itemMargin['bottom']) || isset($itemMargin['left'])) {
@@ -23531,7 +23542,18 @@ function fancy_post_isotope_render_callback($attributes) {
             else if ($isotopeLayoutStyle === 'style2') {
                 // Full post layout
                 
-                $output .= '<div class="' . esc_attr($column_class) . ' rs-grid-item' . esc_attr($category_classes) . '">';
+                $itemGapStyle = '';
+                if (!empty($itemGap)) {
+                    $halfGap = is_numeric($itemGap) ? ($itemGap / 2) . 'px' : esc_attr($itemGap);
+                    $itemGapStyle = 'padding-left: ' . $halfGap . '; padding-right: ' . $halfGap . ';';
+                }
+
+                // Output the div with dynamic styles
+                $output .= '<div class="' . esc_attr($column_class) . ' rs-grid-item' . esc_attr($category_classes) . '"';
+                if (!empty($itemGapStyle)) {
+                    $output .= ' style="' . esc_attr($itemGapStyle) . '"';
+                }
+                $output .= '>';
 
                 $output .= '<div class="rs-blog__single align-' . $itemBoxAlignment . ' ' . $hoverAnimation . '" style="';
                     // MARGIN    
@@ -24293,7 +24315,18 @@ function fancy_post_isotope_render_callback($attributes) {
             }
             else if ($isotopeLayoutStyle === 'style3') {
                 
-                $output .= '<div class="' . esc_attr($column_class) . ' rs-grid-item' . esc_attr($category_classes) . '">'; 
+                $itemGapStyle = '';
+                if (!empty($itemGap)) {
+                    $halfGap = is_numeric($itemGap) ? ($itemGap / 2) . 'px' : esc_attr($itemGap);
+                    $itemGapStyle = 'padding-left: ' . $halfGap . '; padding-right: ' . $halfGap . ';';
+                }
+
+                // Output the div with dynamic styles
+                $output .= '<div class="' . esc_attr($column_class) . ' rs-grid-item' . esc_attr($category_classes) . '"';
+                if (!empty($itemGapStyle)) {
+                    $output .= ' style="' . esc_attr($itemGapStyle) . '"';
+                }
+                $output .= '>';
                 // Full post layout
                 $output .= '<div class="rs-blog-layout-28-item align-' . $itemBoxAlignment . ' ' . $hoverAnimation . '" style="';
                     // MARGIN    
@@ -25063,7 +25096,18 @@ function fancy_post_isotope_render_callback($attributes) {
             }
             else if ($isotopeLayoutStyle === 'style4') {
                 // Full post layout
-                $output .= '<div class="' . esc_attr($column_class) . ' rs-grid-item' . esc_attr($category_classes) . '">'; 
+                $itemGapStyle = '';
+                if (!empty($itemGap)) {
+                    $halfGap = is_numeric($itemGap) ? ($itemGap / 2) . 'px' : esc_attr($itemGap);
+                    $itemGapStyle = 'padding-left: ' . $halfGap . '; padding-right: ' . $halfGap . ';';
+                }
+
+                // Output the div with dynamic styles
+                $output .= '<div class="' . esc_attr($column_class) . ' rs-grid-item' . esc_attr($category_classes) . '"';
+                if (!empty($itemGapStyle)) {
+                    $output .= ' style="' . esc_attr($itemGapStyle) . '"';
+                }
+                $output .= '>';
                 // Full post layout
                 $output .= '<div class="rs-blog-layout-30-item align-' . $itemBoxAlignment4 . ' ' . $hoverAnimation . '" style="';
                     // MARGIN    
@@ -25686,7 +25730,18 @@ function fancy_post_isotope_render_callback($attributes) {
             }
             elseif ($isotopeLayoutStyle === 'style5') {
                 // Full post layout
-                $output .= '<div class="' . esc_attr($column_class) . ' rs-grid-item' . esc_attr($category_classes) . '">';
+                $itemGapStyle = '';
+                if (!empty($itemGap)) {
+                    $halfGap = is_numeric($itemGap) ? ($itemGap / 2) . 'px' : esc_attr($itemGap);
+                    $itemGapStyle = 'padding-left: ' . $halfGap . '; padding-right: ' . $halfGap . ';';
+                }
+
+                // Output the div with dynamic styles
+                $output .= '<div class="' . esc_attr($column_class) . ' rs-grid-item' . esc_attr($category_classes) . '"';
+                if (!empty($itemGapStyle)) {
+                    $output .= ' style="' . esc_attr($itemGapStyle) . '"';
+                }
+                $output .= '>';
                 $afterStyles = '.pre-blog-item.style_12:after {';
                 $afterStyles .= 'content: "";';
                 $afterStyles .= 'display: block;';
@@ -26413,7 +26468,18 @@ function fancy_post_isotope_render_callback($attributes) {
             } 
             else if ($isotopeLayoutStyle === 'style6') {
                 // Full post layout
-                $output .= '<div class="' . esc_attr($column_class) . ' rs-grid-item' . esc_attr($category_classes) . '">';
+                $itemGapStyle = '';
+                if (!empty($itemGap)) {
+                    $halfGap = is_numeric($itemGap) ? ($itemGap / 2) . 'px' : esc_attr($itemGap);
+                    $itemGapStyle = 'padding-left: ' . $halfGap . '; padding-right: ' . $halfGap . ';';
+                }
+
+                // Output the div with dynamic styles
+                $output .= '<div class="' . esc_attr($column_class) . ' rs-grid-item' . esc_attr($category_classes) . '"';
+                if (!empty($itemGapStyle)) {
+                    $output .= ' style="' . esc_attr($itemGapStyle) . '"';
+                }
+                $output .= '>';
                 $output .= '<div class="rs-blog-layout-15-item align-' . $itemBoxAlignment6 . ' ' . $hoverAnimation . '" style="';
                     // MARGIN    
                     if (isset($itemMargin['top']) || isset($itemMargin['right']) || isset($itemMargin['bottom']) || isset($itemMargin['left'])) {
@@ -26898,7 +26964,18 @@ function fancy_post_isotope_render_callback($attributes) {
             }
             else if ($isotopeLayoutStyle === 'style7') {
                 // Full post layout
-                $output .= '<div class="' . esc_attr($column_class) . ' rs-grid-item' . esc_attr($category_classes) . '">';
+                $itemGapStyle = '';
+                if (!empty($itemGap)) {
+                    $halfGap = is_numeric($itemGap) ? ($itemGap / 2) . 'px' : esc_attr($itemGap);
+                    $itemGapStyle = 'padding-left: ' . $halfGap . '; padding-right: ' . $halfGap . ';';
+                }
+
+                // Output the div with dynamic styles
+                $output .= '<div class="' . esc_attr($column_class) . ' rs-grid-item' . esc_attr($category_classes) . '"';
+                if (!empty($itemGapStyle)) {
+                    $output .= ' style="' . esc_attr($itemGapStyle) . '"';
+                }
+                $output .= '>';
                 // Full post layout
                 $output .= '<div class="rs-blog-layout-26-item align-' . $itemBoxAlignment . ' ' . $hoverAnimation . '" style="';
                     // MARGIN    
