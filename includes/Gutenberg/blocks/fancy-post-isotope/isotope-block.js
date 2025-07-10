@@ -2784,10 +2784,8 @@
                                                   : { }), // your default fallback
                                                 ...(attributes.itemPadding
                                                   ? { padding: getSpacingValue(attributes.itemPadding) }
-                                                  : { }), // your default fallback                                   
-                                                
+                                                  : { }), // your default fallback     
                                                 ...(attributes.itemBackgroundColor ? { backgroundColor: attributes.itemBackgroundColor } : {}),
-                                                
                                                 ...((getSpacingValue(attributes.itemBoxShadow) || attributes.itemBoxShadowColor) ? {
                                                     boxShadow: `${getSpacingValue(attributes.itemBoxShadow) } ${attributes.itemBoxShadowColor }`
                                                 } : {})
