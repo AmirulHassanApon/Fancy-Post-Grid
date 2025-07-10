@@ -7109,10 +7109,10 @@ img {
     }
 
     .rs-blog-layout-28-item{
-        margin-top: 30px;
+        margin-top: 0px;
         background: #fff;
         box-shadow: 0 6px 25px rgba(12,89,219,9%);
-        margin-bottom: 30px;
+        margin-bottom: 0px;
         overflow: hidden;
     }
     .rs-blog-layout-28-item.align-start .rs-content{
@@ -7125,7 +7125,7 @@ img {
         text-align: right;
     }
     .rs-blog-layout-28-item .rs-content{
-        padding: 33px 24px 38px 42px;
+        padding: 25px 30px 30px 30px;
         display: flex;
         flex-direction: column;
     }
@@ -7136,6 +7136,7 @@ img {
         font-size: 24px;
         line-height: 1.4;
         margin-bottom: 0;
+        margin: 0;
     }
     .rs-blog-layout-28-item .rs-content .title a{
         color: #0a0a0a;
