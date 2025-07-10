@@ -23167,26 +23167,26 @@ function fancy_post_isotope_render_callback($attributes) {
 
                         // Margin
                         if (
-                            isset($excerptMargin['top']) || isset($excerptMargin['right']) ||
-                            isset($excerptMargin['bottom']) || isset($excerptMargin['left'])
+                            isset($metaMarginNew['top']) || isset($metaMarginNew['right']) ||
+                            isset($metaMarginNew['bottom']) || isset($metaMarginNew['left'])
                         ) {
                             $style .= 'margin: ' .
-                                (isset($excerptMargin['top']) ? (is_numeric($excerptMargin['top']) ? $excerptMargin['top'] . 'px' : esc_attr($excerptMargin['top'])) : '0px') . ' ' .
-                                (isset($excerptMargin['right']) ? (is_numeric($excerptMargin['right']) ? $excerptMargin['right'] . 'px' : esc_attr($excerptMargin['right'])) : '0px') . ' ' .
-                                (isset($excerptMargin['bottom']) ? (is_numeric($excerptMargin['bottom']) ? $excerptMargin['bottom'] . 'px' : esc_attr($excerptMargin['bottom'])) : '0px') . ' ' .
-                                (isset($excerptMargin['left']) ? (is_numeric($excerptMargin['left']) ? $excerptMargin['left'] . 'px' : esc_attr($excerptMargin['left'])) : '0px') . '; ';
+                                (isset($metaMarginNew['top']) ? (is_numeric($metaMarginNew['top']) ? $metaMarginNew['top'] . 'px' : esc_attr($metaMarginNew['top'])) : '0px') . ' ' .
+                                (isset($metaMarginNew['right']) ? (is_numeric($metaMarginNew['right']) ? $metaMarginNew['right'] . 'px' : esc_attr($metaMarginNew['right'])) : '0px') . ' ' .
+                                (isset($metaMarginNew['bottom']) ? (is_numeric($metaMarginNew['bottom']) ? $metaMarginNew['bottom'] . 'px' : esc_attr($metaMarginNew['bottom'])) : '0px') . ' ' .
+                                (isset($metaMarginNew['left']) ? (is_numeric($metaMarginNew['left']) ? $metaMarginNew['left'] . 'px' : esc_attr($metaMarginNew['left'])) : '0px') . '; ';
                         }
 
                         // Padding
                         if (
-                            isset($excerptPadding['top']) || isset($excerptPadding['right']) ||
+                            isset($metaPadding['top']) || isset($metaPadding['right']) ||
                             isset($excerptPadding['bottom']) || isset($excerptPadding['left'])
                         ) {
                             $style .= 'padding: ' .
-                                (isset($excerptPadding['top']) ? (is_numeric($excerptPadding['top']) ? $excerptPadding['top'] . 'px' : esc_attr($excerptPadding['top'])) : '0px') . ' ' .
-                                (isset($excerptPadding['right']) ? (is_numeric($excerptPadding['right']) ? $excerptPadding['right'] . 'px' : esc_attr($excerptPadding['right'])) : '0px') . ' ' .
-                                (isset($excerptPadding['bottom']) ? (is_numeric($excerptPadding['bottom']) ? $excerptPadding['bottom'] . 'px' : esc_attr($excerptPadding['bottom'])) : '0px') . ' ' .
-                                (isset($excerptPadding['left']) ? (is_numeric($excerptPadding['left']) ? $excerptPadding['left'] . 'px' : esc_attr($excerptPadding['left'])) : '0px') . '; ';
+                                (isset($metaPadding['top']) ? (is_numeric($metaPadding['top']) ? $metaPadding['top'] . 'px' : esc_attr($metaPadding['top'])) : '0px') . ' ' .
+                                (isset($metaPadding['right']) ? (is_numeric($metaPadding['right']) ? $metaPadding['right'] . 'px' : esc_attr($metaPadding['right'])) : '0px') . ' ' .
+                                (isset($metaPadding['bottom']) ? (is_numeric($metaPadding['bottom']) ? $metaPadding['bottom'] . 'px' : esc_attr($metaPadding['bottom'])) : '0px') . ' ' .
+                                (isset($metaPadding['left']) ? (is_numeric($metaPadding['left']) ? $metaPadding['left'] . 'px' : esc_attr($metaPadding['left'])) : '0px') . '; ';
                         }
 
                         $output .= '<a href="' . esc_url(get_category_link($category->term_id)) . '" style="' . esc_attr($style) . '">';
@@ -23196,7 +23196,6 @@ function fancy_post_isotope_render_callback($attributes) {
                     }
                 }
 
-       
                 // title
                 // title
                 if ($showPostTitle) {

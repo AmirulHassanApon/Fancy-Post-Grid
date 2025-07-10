@@ -3373,7 +3373,7 @@
                                         value: attributes.itemGap,
                                         onChange: (value) => setAttributes({ itemGap: value }),
                                         min: 1,
-                                        max: 50
+                                        max: 200
                                     }),
                                     
                                     // Box Alignment
