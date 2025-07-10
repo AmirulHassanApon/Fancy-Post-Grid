@@ -1901,38 +1901,42 @@
                                               ),
                                 
                                             showPostExcerpt &&
-                                              wp.element.createElement('p', { 
-                                                  className: `fpg-excerpt align-${excerptAlignment}`,
-                                                  style: { 
-                                                      
-                                                      ...(excerptFontSize ? { fontSize: `${excerptFontSize}px` } : {}),
-                                                      ...(excerptFontWeight ? { fontWeight: excerptFontWeight } : {}),
-                                                      ...(excerptLineHeight ? { lineHeight: excerptLineHeight } : {}),
-                                                      ...(excerptLetterSpacing ? { letterSpacing: excerptLetterSpacing } : {}),
-                                                      ...(excerptColor ? { color: excerptColor } : {}),
-                                                      ...(excerptBgColor ? { backgroundColor: excerptBgColor } : {}), 
-                                                      ...(excerptOrder ? { order: excerptOrder } : {}),
-                                                      ...(attributes.excerptMargin ? { margin: getSpacingValue(attributes.excerptMargin) } : {}),
-                                                      ...(attributes.excerptPadding ? { padding: getSpacingValue(attributes.excerptPadding) } : {}),                                               
-                                                  },
-                                                  onMouseEnter: (e) => {
-                                                      e.currentTarget.style.color = excerptHoverColor;
-                                                      e.currentTarget.style.backgroundColor = excerptHoverBgColor;
-                                                  },
-                                                  onMouseLeave: (e) => {
-                                                      e.currentTarget.style.color = excerptColor;
-                                                      e.currentTarget.style.backgroundColor = excerptBgColor;
-                                                      
-                                                  }, 
-                                              }, 
-                                              excerptType === 'full_content' 
-                                                  ? excerpt 
-                                                  : excerptType === 'word'
-                                                      ? excerpt.split(' ').slice(0, excerptLimit).join(' ') + (excerpt.split(' ').length > excerptLimit ? excerptIndicator : '')
-                                                      : excerpt.substring(0, excerptLimit) + (excerpt.length > excerptLimit ? excerptIndicator : '')
-                                            ),
+                                                wp.element.createElement('div', { 
+                                                    className: `fpg-excerpt align-${excerptAlignment}`,
+                                                    style: { 
+                                                            ...(excerptOrder ? { order: excerptOrder } : {}),
+                                                            ...(attributes.excerptMargin ? { margin: getSpacingValue(attributes.excerptMargin) } : {}),
+                                                            ...(attributes.excerptPadding ? { padding: getSpacingValue(attributes.excerptPadding) } : {}), 
+                                                        } // Apply order to the div container
+                                                }, 
+                                                    wp.element.createElement('p', { 
+                                                        style: { 
+                                                            
+                                                            ...(excerptFontSize ? { fontSize: `${excerptFontSize}px` } : {}),
+                                                            ...(excerptFontWeight ? { fontWeight: excerptFontWeight } : {}),
+                                                            ...(excerptLineHeight ? { lineHeight: excerptLineHeight } : {}),
+                                                            ...(excerptLetterSpacing ? { letterSpacing: excerptLetterSpacing } : {}),
+                                                            ...(excerptColor ? { color: excerptColor } : {}),
+                                                            ...(excerptBgColor ? { backgroundColor: excerptBgColor } : {}),                                               
+                                                        },
+                                                        onMouseEnter: (e) => {
+                                                            e.currentTarget.style.color = excerptHoverColor;
+                                                            e.currentTarget.style.backgroundColor = excerptHoverBgColor;
+                                                        },
+                                                        onMouseLeave: (e) => {
+                                                            e.currentTarget.style.color = excerptColor;
+                                                            e.currentTarget.style.backgroundColor = excerptBgColor;
+                                                            
+                                                        }, 
+                                                    }, 
+                                                    excerptType === 'full_content' 
+                                                        ? excerpt 
+                                                        : excerptType === 'word'
+                                                            ? excerpt.split(' ').slice(0, excerptLimit).join(' ') + (excerpt.split(' ').length > excerptLimit ? excerptIndicator : '')
+                                                            : excerpt.substring(0, excerptLimit) + (excerpt.length > excerptLimit ? excerptIndicator : '')
+                                                    )
+                                                ),
 
-                                  
                                             showReadMoreButton && wp.element.createElement('div', { 
                                                 className: `btn-wrapper align-${buttonAlignment} `,
                                                 style: { 
@@ -2240,7 +2244,7 @@
                                                             : post.title.rendered.substring(0, titleLength))
                                                 ),
                                             
-                                            //Meta
+                                            //EXCERPT
                                             showPostExcerpt &&
                                                 wp.element.createElement('div', { 
                                                     className: `fpg-excerpt align-${excerptAlignment}`,
