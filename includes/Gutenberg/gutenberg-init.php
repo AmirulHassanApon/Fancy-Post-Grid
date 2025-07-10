@@ -22214,13 +22214,13 @@ function fancy_post_isotope_render_callback($attributes) {
             $output .= '<style>';
             $output .= '#' . $unique_id . ' .filter-button-group button.active {';
             if (!empty($filterActiveTextColor)) {
-                $output .= 'color:' . esc_attr($filterActiveTextColor) . ';';
+                $output .= 'color:' . esc_attr($filterActiveTextColor) . '!important;';
             }
             if (!empty($filterActiveBackgroundColor)) {
-                $output .= 'background-color:' . esc_attr($filterActiveBackgroundColor) . ';';
+                $output .= 'background-color:' . esc_attr($filterActiveBackgroundColor) . '!important;';
             }
             if (!empty($filterActiveBorderColor)) {
-                $output .= 'border-color:' . esc_attr($filterActiveBorderColor) . ';';
+                $output .= 'border-color:' . esc_attr($filterActiveBorderColor) . '!important;';
             }
             $output .= '}';
             $output .= '</style>';
@@ -22330,13 +22330,13 @@ function fancy_post_isotope_render_callback($attributes) {
             $output .= '<style>';
             $output .= '#' . $unique_id . ' .filter-button-group button.active {';
             if (!empty($filterActiveTextColor)) {
-                $output .= 'color:' . esc_attr($filterActiveTextColor) . ';';
+                $output .= 'color:' . esc_attr($filterActiveTextColor) . '!important;';
             }
             if (!empty($filterActiveBackgroundColor)) {
-                $output .= 'background-color:' . esc_attr($filterActiveBackgroundColor) . ';';
+                $output .= 'background-color:' . esc_attr($filterActiveBackgroundColor) . '!important;';
             }
             if (!empty($filterActiveBorderColor)) {
-                $output .= 'border-color:' . esc_attr($filterActiveBorderColor) . ';';
+                $output .= 'border-color:' . esc_attr($filterActiveBorderColor) . '!important;';
             }
             $output .= '}';
             $output .= '</style>';
@@ -22446,13 +22446,13 @@ function fancy_post_isotope_render_callback($attributes) {
             $output .= '<style>';
             $output .= '#' . $unique_id . ' .filter-button-group button.active {';
             if (!empty($filterActiveTextColor)) {
-                $output .= 'color:' . esc_attr($filterActiveTextColor) . ';';
+                $output .= 'color:' . esc_attr($filterActiveTextColor) . '!important;';
             }
             if (!empty($filterActiveBackgroundColor)) {
-                $output .= 'background-color:' . esc_attr($filterActiveBackgroundColor) . ';';
+                $output .= 'background-color:' . esc_attr($filterActiveBackgroundColor) . '!important;';
             }
             if (!empty($filterActiveBorderColor)) {
-                $output .= 'border-color:' . esc_attr($filterActiveBorderColor) . ';';
+                $output .= 'border-color:' . esc_attr($filterActiveBorderColor) . '!important;';
             }
             $output .= '}';
             $output .= '</style>';
@@ -22562,13 +22562,13 @@ function fancy_post_isotope_render_callback($attributes) {
             $output .= '<style>';
             $output .= '#' . $unique_id . ' .filter-button-group button.active {';
             if (!empty($filterActiveTextColor)) {
-                $output .= 'color:' . esc_attr($filterActiveTextColor) . ';';
+                $output .= 'color:' . esc_attr($filterActiveTextColor) . '!important;';
             }
             if (!empty($filterActiveBackgroundColor)) {
-                $output .= 'background-color:' . esc_attr($filterActiveBackgroundColor) . ';';
+                $output .= 'background-color:' . esc_attr($filterActiveBackgroundColor) . '!important;';
             }
             if (!empty($filterActiveBorderColor)) {
-                $output .= 'border-color:' . esc_attr($filterActiveBorderColor) . ';';
+                $output .= 'border-color:' . esc_attr($filterActiveBorderColor) . '!important;';
             }
             $output .= '}';
             $output .= '</style>';
@@ -22677,13 +22677,13 @@ function fancy_post_isotope_render_callback($attributes) {
             $output .= '<style>';
             $output .= '#' . $unique_id . ' .filter-button-group button.active {';
             if (!empty($filterActiveTextColor)) {
-                $output .= 'color:' . esc_attr($filterActiveTextColor) . ';';
+                $output .= 'color:' . esc_attr($filterActiveTextColor) . '!important;';
             }
             if (!empty($filterActiveBackgroundColor)) {
-                $output .= 'background-color:' . esc_attr($filterActiveBackgroundColor) . ';';
+                $output .= 'background-color:' . esc_attr($filterActiveBackgroundColor) . '!important;';
             }
             if (!empty($filterActiveBorderColor)) {
-                $output .= 'border-color:' . esc_attr($filterActiveBorderColor) . ';';
+                $output .= 'border-color:' . esc_attr($filterActiveBorderColor) . '!important;';
             }
             $output .= '}';
             $output .= '</style>';
@@ -22793,13 +22793,13 @@ function fancy_post_isotope_render_callback($attributes) {
             $output .= '<style>';
             $output .= '#' . $unique_id . ' .filter-button-group button.active {';
             if (!empty($filterActiveTextColor)) {
-                $output .= 'color:' . esc_attr($filterActiveTextColor) . ';';
+                $output .= 'color:' . esc_attr($filterActiveTextColor) . '!important;';
             }
             if (!empty($filterActiveBackgroundColor)) {
-                $output .= 'background-color:' . esc_attr($filterActiveBackgroundColor) . ';';
+                $output .= 'background-color:' . esc_attr($filterActiveBackgroundColor) . '!important;';
             }
             if (!empty($filterActiveBorderColor)) {
-                $output .= 'border-color:' . esc_attr($filterActiveBorderColor) . ';';
+                $output .= 'border-color:' . esc_attr($filterActiveBorderColor) . '!important;';
             }
             $output .= '}';
             $output .= '</style>';
@@ -24087,19 +24087,19 @@ function fancy_post_isotope_render_callback($attributes) {
 
                     // Typography
                     if (!empty($excerptFontSize)) {
-                        $excerptStyles .= 'font-size: ' . esc_attr($excerptFontSize) . 'px; ';
+                        $excerptColorStyles .= 'font-size: ' . esc_attr($excerptFontSize) . 'px; ';
                     }
 
                     if (!empty($excerptLineHeight)) {
-                        $excerptStyles .= 'line-height: ' . esc_attr($excerptLineHeight) . '; ';
+                        $excerptColorStyles .= 'line-height: ' . esc_attr($excerptLineHeight) . '; ';
                     }
 
                     if (!empty($excerptLetterSpacing)) {
-                        $excerptStyles .= 'letter-spacing: ' . esc_attr($excerptLetterSpacing) . 'px; ';
+                        $excerptColorStyles .= 'letter-spacing: ' . esc_attr($excerptLetterSpacing) . 'px; ';
                     }
 
                     if (!empty($excerptFontWeight)) {
-                        $excerptStyles .= 'font-weight: ' . esc_attr($excerptFontWeight) . '; ';
+                        $excerptColorStyles .= 'font-weight: ' . esc_attr($excerptFontWeight) . '; ';
                     }
 
                     if (!empty($excerptColor)) {
@@ -24111,12 +24111,12 @@ function fancy_post_isotope_render_callback($attributes) {
                     }
 
                     if (!empty($excerptBorderType)) {
-                        $excerptStyles .= 'border-style: ' . esc_attr($excerptBorderType) . '; ';
+                        $excerptColorStyles .= 'border-style: ' . esc_attr($excerptBorderType) . '; ';
                     }
 
                     // Margin
                     if (isset($excerptMargin['top']) || isset($excerptMargin['right']) || isset($excerptMargin['bottom']) || isset($excerptMargin['left'])) {
-                        $excerptStyles .= 'margin: ' .
+                        $excerptColorStyles .= 'margin: ' .
                             (isset($excerptMargin['top']) ? (is_numeric($excerptMargin['top']) ? $excerptMargin['top'] . 'px' : esc_attr($excerptMargin['top'])) : '0px') . ' ' .
                             (isset($excerptMargin['right']) ? (is_numeric($excerptMargin['right']) ? $excerptMargin['right'] . 'px' : esc_attr($excerptMargin['right'])) : '0px') . ' ' .
                             (isset($excerptMargin['bottom']) ? (is_numeric($excerptMargin['bottom']) ? $excerptMargin['bottom'] . 'px' : esc_attr($excerptMargin['bottom'])) : '0px') . ' ' .
@@ -24125,7 +24125,7 @@ function fancy_post_isotope_render_callback($attributes) {
 
                     // Padding
                     if (isset($excerptPadding['top']) || isset($excerptPadding['right']) || isset($excerptPadding['bottom']) || isset($excerptPadding['left'])) {
-                        $excerptStyles .= 'padding: ' .
+                        $excerptColorStyles .= 'padding: ' .
                             (isset($excerptPadding['top']) ? (is_numeric($excerptPadding['top']) ? $excerptPadding['top'] . 'px' : esc_attr($excerptPadding['top'])) : '0px') . ' ' .
                             (isset($excerptPadding['right']) ? (is_numeric($excerptPadding['right']) ? $excerptPadding['right'] . 'px' : esc_attr($excerptPadding['right'])) : '0px') . ' ' .
                             (isset($excerptPadding['bottom']) ? (is_numeric($excerptPadding['bottom']) ? $excerptPadding['bottom'] . 'px' : esc_attr($excerptPadding['bottom'])) : '0px') . ' ' .
