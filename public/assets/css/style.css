@@ -1540,12 +1540,12 @@ img {
     color: #454545;
     display: inline-block;
     position: relative;
-    background: transparent !important;
+    background: transparent;
     border: 0;
 }
 .rs-blog-layout-4 .rs-blog__item .rs-content .rs-blog-footer .btn-link.fpg-border:hover{
     color: #F79C53;
-    background: transparent !important;
+    background: transparent;
 }
 
 .rs-blog-layout-4 .rs-blog__item .rs-content .rs-blog-footer .btn-link.fpg-border::before{
@@ -1570,13 +1570,13 @@ img {
     margin-top: 0px;
     display: inline-block;
     position: relative;
-    background: transparent !important;
+    background: transparent;
     border-style: none;
 }
 
 .rs-blog-layout-4 .rs-blog__item .rs-content .rs-blog-footer .btn-link.fpg-flat:hover{
     color: #F79C53;
-    background: transparent !important;
+    background: transparent;
 }
 
 
