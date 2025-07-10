@@ -3625,18 +3625,18 @@ img {
   .pre-blog-item.style_12 .blog-inner-wrap .pre-blog-content .blog-btn-part .blog-btn.fpg-filled {
     font-size: 16px;
     font-weight: 600;
-    color: #ffffff;
+    color: #007aff;
     margin-top: 10px;
     display: inline-block;
     padding: 16px 40px;
     border-radius: 5px;
-    background: #25826A;
+    background: #ffffff;
 }
 
 
 .pre-blog-item.style_12 .blog-inner-wrap .pre-blog-content .blog-btn-part .blog-btn.fpg-filled:hover {
     color: #ffffff;
-    background: #25826bda;
+    background: #ffffffda;
 }
 
 .pre-blog-item.style_12 .blog-inner-wrap .pre-blog-content .blog-btn-part .blog-btn.fpg-filled i {
@@ -3646,15 +3646,16 @@ img {
 .pre-blog-item.style_12 .blog-inner-wrap .pre-blog-content .blog-btn-part .blog-btn.fpg-border{
     font-size: 16px;
     font-weight: 600;
-    color: #454545;
+    color: #ffffff;
     margin-top: 10px;
     display: inline-block;
     position: relative;
-    background: transparent !important;
+    background: transparent;
+    border: 0;
 }
 .pre-blog-item.style_12 .blog-inner-wrap .pre-blog-content .blog-btn-part .blog-btn.fpg-border:hover{
-    color: #25826A;
-    background: transparent !important;
+    color: #ffffff;
+    background: transparent;
 }
 
 .pre-blog-item.style_12 .blog-inner-wrap .pre-blog-content .blog-btn-part .blog-btn.fpg-border::before{
@@ -3664,7 +3665,7 @@ img {
     bottom: 0;
     height: 2px;
     width: 0%;
-    background: #25826A;
+    background: #ffffff;
     transition: all ease 0.3s;
 }
 
@@ -3679,13 +3680,14 @@ img {
     margin-top: 0px;
     display: inline-block;
     position: relative;
-    background: transparent !important;
+    background: transparent;
     border-style: none;
+    border: 0;
 }
 
 .pre-blog-item.style_12 .blog-inner-wrap .pre-blog-content .blog-btn-part .blog-btn.fpg-flat:hover{
     color: #fff;
-    background: transparent !important;
+    background: transparent;
 }
 
 .pre-blog-item.style_12 .blog-inner-wrap .pre-blog-content .blog-btn-part.align-start{
