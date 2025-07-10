@@ -3076,6 +3076,8 @@
                     { className: 'rs-blog-layout-15 fancy-post-grid',
                       style: {                 
                             ...(sectionBgColor ? { backgroundColor: sectionBgColor } : {}),
+                            ...(attributes.sectionPadding ? { padding: getSpacingValue(attributes.sectionPadding) } : {}),
+                            ...(attributes.sectionMargin ? { margin: getSpacingValue(attributes.sectionMargin) } : {}),
                         }  },
                     wp.element.createElement(
                         'div',
@@ -3096,10 +3098,6 @@
                                         display: 'grid', 
                                         gridTemplateColumns: `repeat(${gridColumns}, 1fr)`, 
                                         ...(attributes.itemGap ? { gap: `${itemGap}px` } : {}),
-                                        ...(sectionBgColor ? { backgroundColor: sectionBgColor } : {}),
-                                        ...(attributes.sectionPadding ? { padding: getSpacingValue(attributes.sectionPadding) } : {}),
-                                        ...(attributes.sectionMargin ? { margin: getSpacingValue(attributes.sectionMargin) } : {}),
-                                        
                                     } 
                                 },
                     posts.map((post) => {
