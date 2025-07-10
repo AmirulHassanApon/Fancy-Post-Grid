@@ -2777,7 +2777,7 @@
                                     
                                     return wp.element.createElement('div', { 
                                         key: post.id, 
-                                            className: `fancy-post-item pre-blog-item style_12 pre-blog-meta-style2 default align-${itemBoxAlignment5}`,
+                                            className: `fancy-post-item pre-blog-item style_12 pre-blog-meta-style2 default `,
                                             style: { 
                                                 ...(attributes.itemMargin
                                                   ? { margin: getSpacingValue(attributes.itemMargin) }
@@ -2832,21 +2832,23 @@
                                                   
                                                   wp.element.createElement('span', { className: 'pre-date', style: { 
                                                       color: metaTextColor, 
+                                                      ...(metaFontSize ? { fontSize: `${metaFontSize}px` } : {})
                                                   } }, 
                                                       new Date(post.date).toLocaleDateString(undefined, { day: 'numeric' })
                                                   ),
                                                   '',
                                                   wp.element.createElement('span', { className: 'pre-month', style: { 
                                                       color: metaTextColor, 
+                                                      ...(metaFontSize ? { fontSize: `${metaFontSize}px` } : {})
                                                   } }, 
-                                                      new Date(post.date).toLocaleDateString(undefined, { month: 'short' })
+                                                      new Date(post.date).toLocaleDateString(undefined, { month: 'long' })
                                                   ),
                                                   ' ',
                                               ),
                                           ),
                            
                                         // Wrap the entire content in a new div (e.g., rs-content)
-                                        wp.element.createElement('div', { className: 'pre-blog-content',style: {
+                                        wp.element.createElement('div', { className: `pre-blog-content align-${itemBoxAlignment5}`,style: {
                                                 ...(attributes.contentitemMarginNew ? { margin: getSpacingValue(attributes.contentitemMarginNew) } : {}),
                                                 ...(attributes.contentitemPaddingNew
                                                   ? { padding: getSpacingValue(attributes.contentitemPaddingNew) }
