@@ -2785,11 +2785,9 @@
                                                 ...(attributes.itemPadding
                                                   ? { padding: getSpacingValue(attributes.itemPadding) }
                                                   : { }), // your default fallback                                   
-                                                ...(attributes.itemBorderRadius ? { borderRadius: getSpacingValue(attributes.itemBorderRadius) } : {}),
-                                                ...(attributes.itemBorderWidth ? { borderWidth: getSpacingValue(attributes.itemBorderWidth) } : {}),
+                                                
                                                 ...(attributes.itemBackgroundColor ? { backgroundColor: attributes.itemBackgroundColor } : {}),
                                                 
-                                                ...(attributes.itemBorderColor ? { borderColor: attributes.itemBorderColor } : {}),
                                                 ...((getSpacingValue(attributes.itemBoxShadow) || attributes.itemBoxShadowColor) ? {
                                                     boxShadow: `${getSpacingValue(attributes.itemBoxShadow) } ${attributes.itemBoxShadowColor }`
                                                 } : {})
