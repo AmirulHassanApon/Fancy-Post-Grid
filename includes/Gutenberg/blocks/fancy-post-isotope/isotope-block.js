@@ -1505,7 +1505,7 @@
                                                                                      
                                             showPostExcerpt &&
                                                 wp.element.createElement('p', { 
-                                                    className: `fpg-excerpt align-${excerptAlignment}`,
+                                                    className: `desc align-${excerptAlignment}`,
                                                     style: { 
                                                         
                                                         ...(excerptFontSize ? { fontSize: `${excerptFontSize}px` } : {}),
