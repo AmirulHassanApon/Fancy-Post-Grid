@@ -24772,7 +24772,6 @@ function fancy_post_isotope_render_callback($attributes) {
                 $output .= '">';
 
                 // title
-                // title
                 if ($showPostTitle) {
                     $titleStyles = '';
 
@@ -24866,6 +24865,7 @@ function fancy_post_isotope_render_callback($attributes) {
                 // Excerpt
                 if ($showPostExcerpt) {
                     $excerptStyles = '';
+                    $excerptColorStyles = '';
 
                     // Order
                     if (!empty($excerptOrder)) {
@@ -24874,36 +24874,36 @@ function fancy_post_isotope_render_callback($attributes) {
 
                     // Typography
                     if (!empty($excerptFontSize)) {
-                        $excerptStyles .= 'font-size: ' . esc_attr($excerptFontSize) . 'px; ';
+                        $excerptColorStyles .= 'font-size: ' . esc_attr($excerptFontSize) . 'px; ';
                     }
 
                     if (!empty($excerptLineHeight)) {
-                        $excerptStyles .= 'line-height: ' . esc_attr($excerptLineHeight) . '; ';
+                        $excerptColorStyles .= 'line-height: ' . esc_attr($excerptLineHeight) . '; ';
                     }
 
                     if (!empty($excerptLetterSpacing)) {
-                        $excerptStyles .= 'letter-spacing: ' . esc_attr($excerptLetterSpacing) . 'px; ';
+                        $excerptColorStyles .= 'letter-spacing: ' . esc_attr($excerptLetterSpacing) . 'px; ';
                     }
 
                     if (!empty($excerptFontWeight)) {
-                        $excerptStyles .= 'font-weight: ' . esc_attr($excerptFontWeight) . '; ';
+                        $excerptColorStyles .= 'font-weight: ' . esc_attr($excerptFontWeight) . '; ';
                     }
 
                     if (!empty($excerptColor)) {
-                        $excerptStyles .= 'color: ' . esc_attr($excerptColor) . '; ';
+                        $excerptColorStyles .= 'color: ' . esc_attr($excerptColor) . '; ';
                     }
 
                     if (!empty($excerptBgColor)) {
-                        $excerptStyles .= 'background-color: ' . esc_attr($excerptBgColor) . '; ';
+                        $excerptColorStyles .= 'background-color: ' . esc_attr($excerptBgColor) . '; ';
                     }
 
                     if (!empty($excerptBorderType)) {
-                        $excerptStyles .= 'border-style: ' . esc_attr($excerptBorderType) . '; ';
+                        $excerptColorStyles .= 'border-style: ' . esc_attr($excerptBorderType) . '; ';
                     }
 
                     // Margin
                     if (isset($excerptMargin['top']) || isset($excerptMargin['right']) || isset($excerptMargin['bottom']) || isset($excerptMargin['left'])) {
-                        $excerptStyles .= 'margin: ' .
+                        $excerptColorStyles .= 'margin: ' .
                             (isset($excerptMargin['top']) ? (is_numeric($excerptMargin['top']) ? $excerptMargin['top'] . 'px' : esc_attr($excerptMargin['top'])) : '0px') . ' ' .
                             (isset($excerptMargin['right']) ? (is_numeric($excerptMargin['right']) ? $excerptMargin['right'] . 'px' : esc_attr($excerptMargin['right'])) : '0px') . ' ' .
                             (isset($excerptMargin['bottom']) ? (is_numeric($excerptMargin['bottom']) ? $excerptMargin['bottom'] . 'px' : esc_attr($excerptMargin['bottom'])) : '0px') . ' ' .
@@ -24912,7 +24912,7 @@ function fancy_post_isotope_render_callback($attributes) {
 
                     // Padding
                     if (isset($excerptPadding['top']) || isset($excerptPadding['right']) || isset($excerptPadding['bottom']) || isset($excerptPadding['left'])) {
-                        $excerptStyles .= 'padding: ' .
+                        $excerptColorStyles .= 'padding: ' .
                             (isset($excerptPadding['top']) ? (is_numeric($excerptPadding['top']) ? $excerptPadding['top'] . 'px' : esc_attr($excerptPadding['top'])) : '0px') . ' ' .
                             (isset($excerptPadding['right']) ? (is_numeric($excerptPadding['right']) ? $excerptPadding['right'] . 'px' : esc_attr($excerptPadding['right'])) : '0px') . ' ' .
                             (isset($excerptPadding['bottom']) ? (is_numeric($excerptPadding['bottom']) ? $excerptPadding['bottom'] . 'px' : esc_attr($excerptPadding['bottom'])) : '0px') . ' ' .
@@ -24935,13 +24935,19 @@ function fancy_post_isotope_render_callback($attributes) {
 
                     $output .= '<div class="fpg-excerpt' . ' align-' . esc_attr($excerptAlignment) . '" style="' . esc_attr(trim($excerptStyles)) . '"';
 
-                    if (!empty($hoverIn) || !empty($hoverOut)) {
-                        $output .= ' onmouseover="' . esc_attr($hoverIn) . '"';
-                        $output .= ' onmouseout="' . esc_attr($hoverOut) . '"';
-                    }
-
                     $output .= '>';
-                    $output .= '<p>' . esc_html($excerpt) . '</p>';
+                    $output .= '<p style="' . esc_attr(trim($excerptColorStyles)) . '"';
+
+                        if (!empty($hoverIn) || !empty($hoverOut)) {
+                            if (!empty($hoverIn)) {
+                                $output .= ' onmouseover="' . esc_attr($hoverIn) . '"';
+                            }
+                            if (!empty($hoverOut)) {
+                                $output .= ' onmouseout="' . esc_attr($hoverOut) . '"';
+                            }
+                        }
+
+                        $output .= '>' . esc_html($excerpt) . '</p>';
                     $output .= '</div>';
                 }
                 // End Excerpt
@@ -25642,19 +25648,19 @@ function fancy_post_isotope_render_callback($attributes) {
 
                     // Typography
                     if (!empty($excerptFontSize)) {
-                        $excerptStyles .= 'font-size: ' . esc_attr($excerptFontSize) . 'px; ';
+                        $excerptColorStyles .= 'font-size: ' . esc_attr($excerptFontSize) . 'px; ';
                     }
 
                     if (!empty($excerptLineHeight)) {
-                        $excerptStyles .= 'line-height: ' . esc_attr($excerptLineHeight) . '; ';
+                        $excerptColorStyles .= 'line-height: ' . esc_attr($excerptLineHeight) . '; ';
                     }
 
                     if (!empty($excerptLetterSpacing)) {
-                        $excerptStyles .= 'letter-spacing: ' . esc_attr($excerptLetterSpacing) . 'px; ';
+                        $excerptColorStyles .= 'letter-spacing: ' . esc_attr($excerptLetterSpacing) . 'px; ';
                     }
 
                     if (!empty($excerptFontWeight)) {
-                        $excerptStyles .= 'font-weight: ' . esc_attr($excerptFontWeight) . '; ';
+                        $excerptColorStyles .= 'font-weight: ' . esc_attr($excerptFontWeight) . '; ';
                     }
 
                     if (!empty($excerptColor)) {
@@ -25666,12 +25672,12 @@ function fancy_post_isotope_render_callback($attributes) {
                     }
 
                     if (!empty($excerptBorderType)) {
-                        $excerptStyles .= 'border-style: ' . esc_attr($excerptBorderType) . '; ';
+                        $excerptColorStyles .= 'border-style: ' . esc_attr($excerptBorderType) . '; ';
                     }
 
                     // Margin
                     if (isset($excerptMargin['top']) || isset($excerptMargin['right']) || isset($excerptMargin['bottom']) || isset($excerptMargin['left'])) {
-                        $excerptStyles .= 'margin: ' .
+                        $excerptColorStyles .= 'margin: ' .
                             (isset($excerptMargin['top']) ? (is_numeric($excerptMargin['top']) ? $excerptMargin['top'] . 'px' : esc_attr($excerptMargin['top'])) : '0px') . ' ' .
                             (isset($excerptMargin['right']) ? (is_numeric($excerptMargin['right']) ? $excerptMargin['right'] . 'px' : esc_attr($excerptMargin['right'])) : '0px') . ' ' .
                             (isset($excerptMargin['bottom']) ? (is_numeric($excerptMargin['bottom']) ? $excerptMargin['bottom'] . 'px' : esc_attr($excerptMargin['bottom'])) : '0px') . ' ' .
@@ -25680,7 +25686,7 @@ function fancy_post_isotope_render_callback($attributes) {
 
                     // Padding
                     if (isset($excerptPadding['top']) || isset($excerptPadding['right']) || isset($excerptPadding['bottom']) || isset($excerptPadding['left'])) {
-                        $excerptStyles .= 'padding: ' .
+                        $excerptColorStyles .= 'padding: ' .
                             (isset($excerptPadding['top']) ? (is_numeric($excerptPadding['top']) ? $excerptPadding['top'] . 'px' : esc_attr($excerptPadding['top'])) : '0px') . ' ' .
                             (isset($excerptPadding['right']) ? (is_numeric($excerptPadding['right']) ? $excerptPadding['right'] . 'px' : esc_attr($excerptPadding['right'])) : '0px') . ' ' .
                             (isset($excerptPadding['bottom']) ? (is_numeric($excerptPadding['bottom']) ? $excerptPadding['bottom'] . 'px' : esc_attr($excerptPadding['bottom'])) : '0px') . ' ' .
@@ -26238,45 +26244,46 @@ function fancy_post_isotope_render_callback($attributes) {
 
                 // Excerpt
                 if ($showPostExcerpt) {
-                    $excerptStyles = '';
+                    
+                    $excerptColorStyles = '';
 
                     // Order
                     if (!empty($excerptOrder)) {
-                        $excerptStyles .= 'order: ' . esc_attr($excerptOrder) . '; ';
+                        $excerptColorStyles .= 'order: ' . esc_attr($excerptOrder) . '; ';
                     }
 
                     // Typography
                     if (!empty($excerptFontSize)) {
-                        $excerptStyles .= 'font-size: ' . esc_attr($excerptFontSize) . 'px; ';
+                        $excerptColorStyles .= 'font-size: ' . esc_attr($excerptFontSize) . 'px; ';
                     }
 
                     if (!empty($excerptLineHeight)) {
-                        $excerptStyles .= 'line-height: ' . esc_attr($excerptLineHeight) . '; ';
+                        $excerptColorStyles .= 'line-height: ' . esc_attr($excerptLineHeight) . '; ';
                     }
 
                     if (!empty($excerptLetterSpacing)) {
-                        $excerptStyles .= 'letter-spacing: ' . esc_attr($excerptLetterSpacing) . 'px; ';
+                        $excerptColorStyles .= 'letter-spacing: ' . esc_attr($excerptLetterSpacing) . 'px; ';
                     }
 
                     if (!empty($excerptFontWeight)) {
-                        $excerptStyles .= 'font-weight: ' . esc_attr($excerptFontWeight) . '; ';
+                        $excerptColorStyles .= 'font-weight: ' . esc_attr($excerptFontWeight) . '; ';
                     }
 
                     if (!empty($excerptColor)) {
-                        $excerptStyles .= 'color: ' . esc_attr($excerptColor) . '; ';
+                        $excerptColorStyles .= 'color: ' . esc_attr($excerptColor) . '; ';
                     }
 
                     if (!empty($excerptBgColor)) {
-                        $excerptStyles .= 'background-color: ' . esc_attr($excerptBgColor) . '; ';
+                        $excerptColorStyles .= 'background-color: ' . esc_attr($excerptBgColor) . '; ';
                     }
 
                     if (!empty($excerptBorderType)) {
-                        $excerptStyles .= 'border-style: ' . esc_attr($excerptBorderType) . '; ';
+                        $excerptColorStyles .= 'border-style: ' . esc_attr($excerptBorderType) . '; ';
                     }
 
                     // Margin
                     if (isset($excerptMargin['top']) || isset($excerptMargin['right']) || isset($excerptMargin['bottom']) || isset($excerptMargin['left'])) {
-                        $excerptStyles .= 'margin: ' .
+                        $excerptColorStyles .= 'margin: ' .
                             (isset($excerptMargin['top']) ? (is_numeric($excerptMargin['top']) ? $excerptMargin['top'] . 'px' : esc_attr($excerptMargin['top'])) : '0px') . ' ' .
                             (isset($excerptMargin['right']) ? (is_numeric($excerptMargin['right']) ? $excerptMargin['right'] . 'px' : esc_attr($excerptMargin['right'])) : '0px') . ' ' .
                             (isset($excerptMargin['bottom']) ? (is_numeric($excerptMargin['bottom']) ? $excerptMargin['bottom'] . 'px' : esc_attr($excerptMargin['bottom'])) : '0px') . ' ' .
@@ -26285,7 +26292,7 @@ function fancy_post_isotope_render_callback($attributes) {
 
                     // Padding
                     if (isset($excerptPadding['top']) || isset($excerptPadding['right']) || isset($excerptPadding['bottom']) || isset($excerptPadding['left'])) {
-                        $excerptStyles .= 'padding: ' .
+                        $excerptColorStyles .= 'padding: ' .
                             (isset($excerptPadding['top']) ? (is_numeric($excerptPadding['top']) ? $excerptPadding['top'] . 'px' : esc_attr($excerptPadding['top'])) : '0px') . ' ' .
                             (isset($excerptPadding['right']) ? (is_numeric($excerptPadding['right']) ? $excerptPadding['right'] . 'px' : esc_attr($excerptPadding['right'])) : '0px') . ' ' .
                             (isset($excerptPadding['bottom']) ? (is_numeric($excerptPadding['bottom']) ? $excerptPadding['bottom'] . 'px' : esc_attr($excerptPadding['bottom'])) : '0px') . ' ' .
@@ -26306,16 +26313,20 @@ function fancy_post_isotope_render_callback($attributes) {
                         $hoverOut .= 'this.style.backgroundColor=\'' . esc_attr($excerptBgColor) . '\';';
                     }
 
-                    $output .= '<div class="pre-content' . ' align-' . esc_attr($excerptAlignment) . '" style="' . esc_attr(trim($excerptStyles)) . '"';
+                    
+                    $output .= '<p class="fpg-excerpt' . ' align-' . esc_attr($excerptAlignment) . '" style="' . esc_attr(trim($excerptColorStyles)) . '"';
 
-                    if (!empty($hoverIn) || !empty($hoverOut)) {
-                        $output .= ' onmouseover="' . esc_attr($hoverIn) . '"';
-                        $output .= ' onmouseout="' . esc_attr($hoverOut) . '"';
-                    }
+                        if (!empty($hoverIn) || !empty($hoverOut)) {
+                            if (!empty($hoverIn)) {
+                                $output .= ' onmouseover="' . esc_attr($hoverIn) . '"';
+                            }
+                            if (!empty($hoverOut)) {
+                                $output .= ' onmouseout="' . esc_attr($hoverOut) . '"';
+                            }
+                        }
 
-                    $output .= '>';
-                    $output .= '<p>' . esc_html($excerpt) . '</p>';
-                    $output .= '</div>';
+                        $output .= '>' . esc_html($excerpt) . '</p>';
+                    
                 }
                 // End Excerpt
                
@@ -27369,6 +27380,7 @@ function fancy_post_isotope_render_callback($attributes) {
                 }
                 if ($showPostExcerpt) {
                     $excerptStyles = '';
+                    $excerptColorStyles = '';
 
                     // Order
                     if (!empty($excerptOrder)) {
@@ -27377,36 +27389,36 @@ function fancy_post_isotope_render_callback($attributes) {
 
                     // Typography
                     if (!empty($excerptFontSize)) {
-                        $excerptStyles .= 'font-size: ' . esc_attr($excerptFontSize) . 'px; ';
+                        $excerptColorStyles .= 'font-size: ' . esc_attr($excerptFontSize) . 'px; ';
                     }
 
                     if (!empty($excerptLineHeight)) {
-                        $excerptStyles .= 'line-height: ' . esc_attr($excerptLineHeight) . '; ';
+                        $excerptColorStyles .= 'line-height: ' . esc_attr($excerptLineHeight) . '; ';
                     }
 
                     if (!empty($excerptLetterSpacing)) {
-                        $excerptStyles .= 'letter-spacing: ' . esc_attr($excerptLetterSpacing) . 'px; ';
+                        $excerptColorStyles .= 'letter-spacing: ' . esc_attr($excerptLetterSpacing) . 'px; ';
                     }
 
                     if (!empty($excerptFontWeight)) {
-                        $excerptStyles .= 'font-weight: ' . esc_attr($excerptFontWeight) . '; ';
+                        $excerptColorStyles .= 'font-weight: ' . esc_attr($excerptFontWeight) . '; ';
                     }
 
                     if (!empty($excerptColor)) {
-                        $excerptStyles .= 'color: ' . esc_attr($excerptColor) . '; ';
+                        $excerptColorStyles .= 'color: ' . esc_attr($excerptColor) . '; ';
                     }
 
                     if (!empty($excerptBgColor)) {
-                        $excerptStyles .= 'background-color: ' . esc_attr($excerptBgColor) . '; ';
+                        $excerptColorStyles .= 'background-color: ' . esc_attr($excerptBgColor) . '; ';
                     }
 
                     if (!empty($excerptBorderType)) {
-                        $excerptStyles .= 'border-style: ' . esc_attr($excerptBorderType) . '; ';
+                        $excerptColorStyles .= 'border-style: ' . esc_attr($excerptBorderType) . '; ';
                     }
 
                     // Margin
                     if (isset($excerptMargin['top']) || isset($excerptMargin['right']) || isset($excerptMargin['bottom']) || isset($excerptMargin['left'])) {
-                        $excerptStyles .= 'margin: ' .
+                        $excerptColorStyles .= 'margin: ' .
                             (isset($excerptMargin['top']) ? (is_numeric($excerptMargin['top']) ? $excerptMargin['top'] . 'px' : esc_attr($excerptMargin['top'])) : '0px') . ' ' .
                             (isset($excerptMargin['right']) ? (is_numeric($excerptMargin['right']) ? $excerptMargin['right'] . 'px' : esc_attr($excerptMargin['right'])) : '0px') . ' ' .
                             (isset($excerptMargin['bottom']) ? (is_numeric($excerptMargin['bottom']) ? $excerptMargin['bottom'] . 'px' : esc_attr($excerptMargin['bottom'])) : '0px') . ' ' .
@@ -27415,7 +27427,7 @@ function fancy_post_isotope_render_callback($attributes) {
 
                     // Padding
                     if (isset($excerptPadding['top']) || isset($excerptPadding['right']) || isset($excerptPadding['bottom']) || isset($excerptPadding['left'])) {
-                        $excerptStyles .= 'padding: ' .
+                        $excerptColorStyles .= 'padding: ' .
                             (isset($excerptPadding['top']) ? (is_numeric($excerptPadding['top']) ? $excerptPadding['top'] . 'px' : esc_attr($excerptPadding['top'])) : '0px') . ' ' .
                             (isset($excerptPadding['right']) ? (is_numeric($excerptPadding['right']) ? $excerptPadding['right'] . 'px' : esc_attr($excerptPadding['right'])) : '0px') . ' ' .
                             (isset($excerptPadding['bottom']) ? (is_numeric($excerptPadding['bottom']) ? $excerptPadding['bottom'] . 'px' : esc_attr($excerptPadding['bottom'])) : '0px') . ' ' .
@@ -27436,16 +27448,22 @@ function fancy_post_isotope_render_callback($attributes) {
                         $hoverOut .= 'this.style.backgroundColor=\'' . esc_attr($excerptBgColor) . '\';';
                     }
 
-                    $output .= '<p class="fpg-excerpt' . ' align-' . esc_attr($excerptAlignment) . '" style="' . esc_attr(trim($excerptStyles)) . '"';
-
-                    if (!empty($hoverIn) || !empty($hoverOut)) {
-                        $output .= ' onmouseover="' . esc_attr($hoverIn) . '"';
-                        $output .= ' onmouseout="' . esc_attr($hoverOut) . '"';
-                    }
+                    $output .= '<div class="fpg-excerpt' . ' align-' . esc_attr($excerptAlignment) . '" style="' . esc_attr(trim($excerptStyles)) . '"';
 
                     $output .= '>';
-                    $output .= '' . esc_html($excerpt) . '</p>';
-                    
+                    $output .= '<p style="' . esc_attr(trim($excerptColorStyles)) . '"';
+
+                        if (!empty($hoverIn) || !empty($hoverOut)) {
+                            if (!empty($hoverIn)) {
+                                $output .= ' onmouseover="' . esc_attr($hoverIn) . '"';
+                            }
+                            if (!empty($hoverOut)) {
+                                $output .= ' onmouseout="' . esc_attr($hoverOut) . '"';
+                            }
+                        }
+
+                        $output .= '>' . esc_html($excerpt) . '</p>';
+                    $output .= '</div>';
                 }
                 // Button Output                
                 if ($showReadMoreButton) {

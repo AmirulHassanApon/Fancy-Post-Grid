@@ -85,10 +85,10 @@
             itemGap: { type: 'number', default: 30 },
             itemBoxAlignment: { type: 'string' },
             itemBorderType: { type: 'string', default: '' },
-            itemBoxShadow: { type: 'object', default: { top: '0', right: '0', bottom: '0', left: '0' }, },
-            itemBoxShadowColor: { type: 'string', default: '' },  
-            itemBackgroundColor: { type: 'string', default: '' },
-            itemBorderColor: { type: 'string', default: '' },
+            itemBoxShadow: { type: 'object' },
+            itemBoxShadowColor: { type: 'string' },  
+            itemBackgroundColor: { type: 'string' },
+            itemBorderColor: { type: 'string'},
             itemBorderWidth: { type: 'object',  },            
             //Content Box
             contentitemMarginNew: { type: 'object' },
@@ -1379,7 +1379,7 @@
                                                     ...(attributes.itemBorderType ? { borderStyle: attributes.itemBorderType } : {}),
                                                     ...(attributes.itemBorderColor ? { borderColor: attributes.itemBorderColor } : {}),
                                                     ...((getSpacingValue(attributes.itemBoxShadow) || attributes.itemBoxShadowColor) ? {
-                                                        boxShadow: `${getSpacingValue(attributes.itemBoxShadow) || '10px'} ${attributes.itemBoxShadowColor || 'rgba(0,0,0,0.1)'}`
+                                                        boxShadow: `${getSpacingValue(attributes.itemBoxShadow) } ${attributes.itemBoxShadowColor }`
                                                     } : {})
                                                 }, 
                                         },
@@ -1688,7 +1688,7 @@
                                                 ...(attributes.itemBorderType ? { borderStyle: attributes.itemBorderType } : {}),
                                                 ...(attributes.itemBorderColor ? { borderColor: attributes.itemBorderColor } : {}),
                                                 ...((getSpacingValue(attributes.itemBoxShadow) || attributes.itemBoxShadowColor) ? {
-                                                    boxShadow: `${getSpacingValue(attributes.itemBoxShadow) || '10px'} ${attributes.itemBoxShadowColor || 'rgba(0,0,0,0.1)'}`
+                                                    boxShadow: `${getSpacingValue(attributes.itemBoxShadow) } ${attributes.itemBoxShadowColor }`
                                                 } : {})
                                             }, 
                                         },
@@ -2041,7 +2041,7 @@
                                                 ...(attributes.itemBorderType ? { borderStyle: attributes.itemBorderType } : {}),
                                                 ...(attributes.itemBorderColor ? { borderColor: attributes.itemBorderColor } : {}),
                                                 ...((getSpacingValue(attributes.itemBoxShadow) || attributes.itemBoxShadowColor) ? {
-                                                    boxShadow: `${getSpacingValue(attributes.itemBoxShadow) || '10px'} ${attributes.itemBoxShadowColor || 'rgba(0,0,0,0.1)'}`
+                                                    boxShadow: `${getSpacingValue(attributes.itemBoxShadow) } ${attributes.itemBoxShadowColor}`
                                                 } : {})
                                             }, 
                                         },
@@ -2257,13 +2257,13 @@
                                                     className: `fpg-excerpt align-${excerptAlignment}`,
                                                     style: { 
                                                             ...(excerptOrder ? { order: excerptOrder } : {}),
-                                                            ...(attributes.excerptMargin ? { margin: getSpacingValue(attributes.excerptMargin) } : {}),
-                                                            ...(attributes.excerptPadding ? { padding: getSpacingValue(attributes.excerptPadding) } : {}), 
+                                                            
                                                         } // Apply order to the div container
                                                 }, 
                                                     wp.element.createElement('p', { 
                                                         style: { 
-                                                            
+                                                            ...(attributes.excerptMargin ? { margin: getSpacingValue(attributes.excerptMargin) } : {}),
+                                                            ...(attributes.excerptPadding ? { padding: getSpacingValue(attributes.excerptPadding) } : {}), 
                                                             ...(excerptFontSize ? { fontSize: `${excerptFontSize}px` } : {}),
                                                             ...(excerptFontWeight ? { fontWeight: excerptFontWeight } : {}),
                                                             ...(excerptLineHeight ? { lineHeight: excerptLineHeight } : {}),
@@ -2342,7 +2342,6 @@
                         )
                     )
                 );
-                
             }
             else if (isotopeLayoutStyle === 'style4' && posts && posts.length) {
                 content = wp.element.createElement(
@@ -2397,7 +2396,7 @@
                                                 ...(attributes.itemBorderType ? { borderStyle: attributes.itemBorderType } : {}),
                                                 ...(attributes.itemBorderColor ? { borderColor: attributes.itemBorderColor } : {}),
                                                 ...((getSpacingValue(attributes.itemBoxShadow) || attributes.itemBoxShadowColor) ? {
-                                                    boxShadow: `${getSpacingValue(attributes.itemBoxShadow) || '10px'} ${attributes.itemBoxShadowColor || 'rgba(0,0,0,0.1)'}`
+                                                    boxShadow: `${getSpacingValue(attributes.itemBoxShadow) } ${attributes.itemBoxShadowColor }`
                                                 } : {})
                                             },
                                         },
@@ -2483,8 +2482,8 @@
                                                       className: `title align-${postTitleAlignment} ${titleHoverUnderLine === 'enable' ? ' underline' : ''}`,
                                                       style: {
                                                           
-                                                          ...(attributes.postTitleMargin ? { margin: getSpacingValue(attributes.postTitleMargin) }: { margin: '10px 0px 0px 0px' }), 
-                                                          ...(attributes.postTitlePadding ? { padding: getSpacingValue(attributes.postTitlePadding) }: { padding: '0px 0px 0px 0px' }), 
+                                                          ...(attributes.postTitleMargin ? { margin: getSpacingValue(attributes.postTitleMargin) }: { }), 
+                                                          ...(attributes.postTitlePadding ? { padding: getSpacingValue(attributes.postTitlePadding) }: { }), 
                                                           
                                                           ...(postTitleBgColor ? { backgroundColor: postTitleBgColor } : {}),
                                                           ...(titleOrder !== undefined ? { order: titleOrder } : {}),
@@ -2604,13 +2603,13 @@
                                                     className: `fpg-excerpt align-${excerptAlignment}`, 
                                                     style: { 
                                                             ...(excerptOrder ? { order: excerptOrder } : {}),
-                                                            ...(attributes.excerptMargin ? { margin: getSpacingValue(attributes.excerptMargin) } : {}),
-                                                            ...(attributes.excerptPadding ? { padding: getSpacingValue(attributes.excerptPadding) } : {}), 
+                                                            
                                                         } // Apply order to the div container
                                                 }, 
                                                     wp.element.createElement('p', { 
                                                         style: { 
-                                                            
+                                                            ...(attributes.excerptMargin ? { margin: getSpacingValue(attributes.excerptMargin) } : {}),
+                                                            ...(attributes.excerptPadding ? { padding: getSpacingValue(attributes.excerptPadding) } : {}), 
                                                             ...(excerptFontSize ? { fontSize: `${excerptFontSize}px` } : {}),
                                                             ...(excerptFontWeight ? { fontWeight: excerptFontWeight } : {}),
                                                             ...(excerptLineHeight ? { lineHeight: excerptLineHeight } : {}),
@@ -2721,7 +2720,7 @@
                                                 ...(attributes.itemBorderType ? { borderStyle: attributes.itemBorderType } : {}),
                                                 ...(attributes.itemBorderColor ? { borderColor: attributes.itemBorderColor } : {}),
                                                 ...((getSpacingValue(attributes.itemBoxShadow) || attributes.itemBoxShadowColor) ? {
-                                                    boxShadow: `${getSpacingValue(attributes.itemBoxShadow) || '10px'} ${attributes.itemBoxShadowColor || 'rgba(0,0,0,0.1)'}`
+                                                    boxShadow: `${getSpacingValue(attributes.itemBoxShadow) } ${attributes.itemBoxShadowColor }`
                                                 } : {})
                                             },
                                         },
@@ -3052,7 +3051,7 @@
                                     ...(attributes.itemBorderType ? { borderStyle: attributes.itemBorderType } : {}),
                                     ...(attributes.itemBorderColor ? { borderColor: attributes.itemBorderColor } : {}),
                                     ...((getSpacingValue(attributes.itemBoxShadow) || attributes.itemBoxShadowColor) ? {
-                                        boxShadow: `${getSpacingValue(attributes.itemBoxShadow) || '10px'} ${attributes.itemBoxShadowColor || 'rgba(0,0,0,0.1)'}`
+                                        boxShadow: `${getSpacingValue(attributes.itemBoxShadow) } ${attributes.itemBoxShadowColor}`
                                     } : {})
                                 },
                             },
@@ -3317,7 +3316,7 @@
                                     ...(attributes.itemBorderType ? { borderStyle: attributes.itemBorderType } : {}),
                                     ...(attributes.itemBorderColor ? { borderColor: attributes.itemBorderColor } : {}),
                                     ...((getSpacingValue(attributes.itemBoxShadow) || attributes.itemBoxShadowColor) ? {
-                                        boxShadow: `${getSpacingValue(attributes.itemBoxShadow) || '10px'} ${attributes.itemBoxShadowColor || 'rgba(0,0,0,0.1)'}`
+                                        boxShadow: `${getSpacingValue(attributes.itemBoxShadow)} ${attributes.itemBoxShadowColor }`
                                     } : {})
                                 },
                             },
