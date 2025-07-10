@@ -1436,11 +1436,8 @@
                                             wp.element.createElement('div', {
                                                 className: `rs-category post-meta align-${metaAlignment} `, 
                                                 style: { 
-                                                    ...(attributes.metaMarginNew ? { margin: getSpacingValue(attributes.metaMarginNew) }: { margin: '0px 0px 0px 0px' }), 
-                                                    ...(attributes.metaPadding ? { padding: getSpacingValue(attributes.metaPadding) }: { padding: '0px 0px 0px 0px' }),
-                                                    ...(metaTextColor ? { color: metaTextColor } : {}),
+                                                    
                                                     ...(typeof metaOrder !== 'undefined' ? { order: metaOrder } : {}),
-                                                    ...(metaFontSize ? { fontSize: `${metaFontSize}px` } : {})
                                                 }
                                             },
                                                 showPostCategory && post._embedded?.['wp:term']?.[0]?.length > 0 &&
@@ -1449,8 +1446,11 @@
                                                     return wp.element.createElement('a', {
                                                         href: firstCategory.link,
                                                         style: {
+                                                          ...(attributes.metaPadding ? { padding: getSpacingValue(attributes.metaPadding) }: { }),
                                                             ...(metaTextColor ? { color: metaTextColor } : {}),
+                                                            ...(metaBgColor ? { backgroundColor: metaBgColor } : {}),
                                                             ...(metaFontSize ? { fontSize: `${metaFontSize}px` } : {}),
+                                                            ...(attributes.metaMarginNew ? { margin: getSpacingValue(attributes.metaMarginNew) }: { }), 
                                                             textDecoration: 'none'
                                                         }
                                                     },
@@ -1462,77 +1462,80 @@
                                             //TITLE
                                             // Title with Link
                                             showPostTitle &&
-                                                wp.element.createElement(
-                                                    titleTag,
-                                                    {
-                                                        className: `title align-${postTitleAlignment} ${titleHoverUnderLine === 'enable' ? ' underline' : ''}`,
-                                                        style: {
-                                                            
-                                                            ...(attributes.postTitleMargin ? { margin: getSpacingValue(attributes.postTitleMargin) }: { margin: '10px 0px 0px 0px' }), 
-                                                            ...(attributes.postTitlePadding ? { padding: getSpacingValue(attributes.postTitlePadding) }: { padding: '0px 0px 0px 0px' }), 
-                                                            
-                                                            ...(postTitleBgColor ? { backgroundColor: postTitleBgColor } : {}),
-                                                            ...(titleOrder !== undefined ? { order: titleOrder } : {}),
-                                                            ...(postLinkType === 'nolink' ? titleTextStyle : {}), // apply if nolink
-                                                        },
-                                                        ...(postLinkType === 'nolink' ? titleTextHoverHandlers : {}), // attach hover if nolink
-                                                    },
-                                                    postLinkType === 'yeslink'
-                                                        ? wp.element.createElement(
-                                                            'a',
-                                                            {
-                                                                href: post.link,
-                                                                target: postLinkTarget === 'newWindow' ? '_blank' : '_self',
-                                                                style: titleTextStyle,
-                                                                ...titleTextHoverHandlers,
-                                                            },
-                                                            titleCropBy === 'word'
-                                                                ? post.title.rendered.split(' ').slice(0, titleLength).join(' ')
-                                                                : post.title.rendered.substring(0, titleLength)
-                                                        )
-                                                        : (titleCropBy === 'word'
-                                                            ? post.title.rendered.split(' ').slice(0, titleLength).join(' ')
-                                                            : post.title.rendered.substring(0, titleLength))
-                                                ),
+                                              wp.element.createElement(
+                                                  titleTag,
+                                                  {
+                                                      className: `title align-${postTitleAlignment} ${titleHoverUnderLine === 'enable' ? ' underline' : ''}`,
+                                                      style: {
+                                                          
+                                                          ...(attributes.postTitleMargin ? { margin: getSpacingValue(attributes.postTitleMargin) }: { }), 
+                                                          ...(attributes.postTitlePadding ? { padding: getSpacingValue(attributes.postTitlePadding) }: {  }), 
+                                                          
+                                                          ...(postTitleBgColor ? { backgroundColor: postTitleBgColor } : {}),
+                                                          ...(titleOrder !== undefined ? { order: titleOrder } : {}),
+                                                          ...(postLinkType === 'nolink' ? titleTextStyle : {}), // apply if nolink
+                                                      },
+                                                      onMouseEnter: (e) => {
+                                                          e.currentTarget.style.backgroundColor = postTitleHoverBgColor;
+                                                      },
+                                                      onMouseLeave: (e) => {
+                                                          e.currentTarget.style.backgroundColor = postTitleBgColor;
+                                                          
+                                                      }, 
+                                                      ...(postLinkType === 'nolink' ? titleTextHoverHandlers : {}), // attach hover if nolink
+                                                  },
+                                                  postLinkType === 'yeslink'
+                                                      ? wp.element.createElement(
+                                                          'a',
+                                                          {
+                                                              href: post.link,
+                                                              target: postLinkTarget === 'newWindow' ? '_blank' : '_self',
+                                                              style: titleTextStyle,
+                                                              ...titleTextHoverHandlers,
+                                                          },
+                                                          titleCropBy === 'word'
+                                                              ? post.title.rendered.split(' ').slice(0, titleLength).join(' ')
+                                                              : post.title.rendered.substring(0, titleLength)
+                                                      )
+                                                      : (titleCropBy === 'word'
+                                                          ? post.title.rendered.split(' ').slice(0, titleLength).join(' ')
+                                                          : post.title.rendered.substring(0, titleLength))
+                                              ),
+
                                                                                      
                                             showPostExcerpt &&
-                                                wp.element.createElement('div', { 
-                                                    className: `fpg-excerpt align-${excerptAlignment}`, 
+                                                wp.element.createElement('p', { 
+                                                    className: `fpg-excerpt align-${excerptAlignment}`,
                                                     style: { 
-                                                          ...(excerptOrder ? { order: excerptOrder } : {}),
-                                                          ...(attributes.excerptMargin ? { margin: getSpacingValue(attributes.excerptMargin) } : {}),
-                                                          ...(attributes.excerptPadding ? { padding: getSpacingValue(attributes.excerptPadding) } : {}), 
-                                                      } 
-                                                }, 
-                                                    wp.element.createElement('p', { 
-                                                        style: { 
-                                                            
-                                                            ...(excerptFontSize ? { fontSize: `${excerptFontSize}px` } : {}),
-                                                            ...(excerptFontWeight ? { fontWeight: excerptFontWeight } : {}),
-                                                            ...(excerptLineHeight ? { lineHeight: excerptLineHeight } : {}),
-                                                            ...(excerptLetterSpacing ? { letterSpacing: excerptLetterSpacing } : {}),
-                                                            ...(excerptColor ? { color: excerptColor } : {}),
-                                                            ...(excerptBgColor ? { backgroundColor: excerptBgColor } : {}),                                               
-                                                        },
-                                                        onMouseEnter: (e) => {
-                                                            e.currentTarget.style.color = excerptHoverColor;
-                                                            e.currentTarget.style.backgroundColor = excerptHoverBgColor;
-                                                        },
-                                                        onMouseLeave: (e) => {
-                                                            e.currentTarget.style.color = excerptColor;
-                                                            e.currentTarget.style.backgroundColor = excerptBgColor;
-                                                            
-                                                        }, 
+                                                        
+                                                        ...(excerptFontSize ? { fontSize: `${excerptFontSize}px` } : {}),
+                                                        ...(excerptFontWeight ? { fontWeight: excerptFontWeight } : {}),
+                                                        ...(excerptLineHeight ? { lineHeight: excerptLineHeight } : {}),
+                                                        ...(excerptLetterSpacing ? { letterSpacing: excerptLetterSpacing } : {}),
+                                                        ...(excerptColor ? { color: excerptColor } : {}),
+                                                        ...(excerptBgColor ? { backgroundColor: excerptBgColor } : {}), 
+                                                        ...(excerptOrder ? { order: excerptOrder } : {}),
+                                                        ...(attributes.excerptMargin ? { margin: getSpacingValue(attributes.excerptMargin) } : {}),
+                                                        ...(attributes.excerptPadding ? { padding: getSpacingValue(attributes.excerptPadding) } : {}),                                               
+                                                    },
+                                                    onMouseEnter: (e) => {
+                                                        e.currentTarget.style.color = excerptHoverColor;
+                                                        e.currentTarget.style.backgroundColor = excerptHoverBgColor;
+                                                    },
+                                                    onMouseLeave: (e) => {
+                                                        e.currentTarget.style.color = excerptColor;
+                                                        e.currentTarget.style.backgroundColor = excerptBgColor;
+                                                        
                                                     }, 
-                                                    excerptType === 'full_content' 
-                                                        ? excerpt 
-                                                        : excerptType === 'word'
-                                                            ? excerpt.split(' ').slice(0, excerptLimit).join(' ') + (excerpt.split(' ').length > excerptLimit ? excerptIndicator : '')
-                                                            : excerpt.substring(0, excerptLimit) + (excerpt.length > excerptLimit ? excerptIndicator : '')
-                                                    )
-                                                ),
+                                                }, 
+                                                excerptType === 'full_content' 
+                                                    ? excerpt 
+                                                    : excerptType === 'word'
+                                                        ? excerpt.split(' ').slice(0, excerptLimit).join(' ') + (excerpt.split(' ').length > excerptLimit ? excerptIndicator : '')
+                                                        : excerpt.substring(0, excerptLimit) + (excerpt.length > excerptLimit ? excerptIndicator : '')
+                                              ),
 
-                                
+                                  
                                             wp.element.createElement('div', { 
                                                     className: 'rs-blog-footer',style: { 
                                                         order: buttonOrder}, },
@@ -1857,77 +1860,79 @@
 
                                             //TITLE
                                             showPostTitle &&
-                                                wp.element.createElement(
-                                                    titleTag,
-                                                    {
-                                                        className: `title align-${postTitleAlignment} ${titleHoverUnderLine === 'enable' ? ' underline' : ''}`,
-                                                        style: {
-                                                            
-                                                            ...(attributes.postTitleMargin ? { margin: getSpacingValue(attributes.postTitleMargin) }: { margin: '10px 0px 0px 0px' }), 
-                                                            ...(attributes.postTitlePadding ? { padding: getSpacingValue(attributes.postTitlePadding) }: { padding: '0px 0px 0px 0px' }), 
-                                                            
-                                                            ...(postTitleBgColor ? { backgroundColor: postTitleBgColor } : {}),
-                                                            ...(titleOrder !== undefined ? { order: titleOrder } : {}),
-                                                            ...(postLinkType === 'nolink' ? titleTextStyle : {}), // apply if nolink
-                                                        },
-                                                        ...(postLinkType === 'nolink' ? titleTextHoverHandlers : {}), // attach hover if nolink
-                                                    },
-                                                    postLinkType === 'yeslink'
-                                                        ? wp.element.createElement(
-                                                            'a',
-                                                            {
-                                                                href: post.link,
-                                                                target: postLinkTarget === 'newWindow' ? '_blank' : '_self',
-                                                                style: titleTextStyle,
-                                                                ...titleTextHoverHandlers,
-                                                            },
-                                                            titleCropBy === 'word'
-                                                                ? post.title.rendered.split(' ').slice(0, titleLength).join(' ')
-                                                                : post.title.rendered.substring(0, titleLength)
-                                                        )
-                                                        : (titleCropBy === 'word'
-                                                            ? post.title.rendered.split(' ').slice(0, titleLength).join(' ')
-                                                            : post.title.rendered.substring(0, titleLength))
-                                                ),
-                                            
+                                              wp.element.createElement(
+                                                  titleTag,
+                                                  {
+                                                      className: `title align-${postTitleAlignment} ${titleHoverUnderLine === 'enable' ? ' underline' : ''}`,
+                                                      style: {
+                                                          
+                                                          ...(attributes.postTitleMargin ? { margin: getSpacingValue(attributes.postTitleMargin) }: { margin: '10px 0px 0px 0px' }), 
+                                                          ...(attributes.postTitlePadding ? { padding: getSpacingValue(attributes.postTitlePadding) }: { padding: '0px 0px 0px 0px' }), 
+                                                          
+                                                          ...(postTitleBgColor ? { backgroundColor: postTitleBgColor } : {}),
+                                                          ...(titleOrder !== undefined ? { order: titleOrder } : {}),
+                                                          ...(postLinkType === 'nolink' ? titleTextStyle : {}), // apply if nolink
+                                                      },
+                                                      onMouseEnter: (e) => {
+                                                          e.currentTarget.style.backgroundColor = postTitleHoverBgColor;
+                                                      },
+                                                      onMouseLeave: (e) => {
+                                                          e.currentTarget.style.backgroundColor = postTitleBgColor;
+                                                          
+                                                      }, 
+                                                      ...(postLinkType === 'nolink' ? titleTextHoverHandlers : {}), // attach hover if nolink
+                                                  },
+                                                  postLinkType === 'yeslink'
+                                                      ? wp.element.createElement(
+                                                          'a',
+                                                          {
+                                                              href: post.link,
+                                                              target: postLinkTarget === 'newWindow' ? '_blank' : '_self',
+                                                              style: titleTextStyle,
+                                                              ...titleTextHoverHandlers,
+                                                          },
+                                                          titleCropBy === 'word'
+                                                              ? post.title.rendered.split(' ').slice(0, titleLength).join(' ')
+                                                              : post.title.rendered.substring(0, titleLength)
+                                                      )
+                                                      : (titleCropBy === 'word'
+                                                          ? post.title.rendered.split(' ').slice(0, titleLength).join(' ')
+                                                          : post.title.rendered.substring(0, titleLength))
+                                              ),
+                                
                                             showPostExcerpt &&
-                                                wp.element.createElement('div', { 
-                                                    className: `fpg-excerpt align-${excerptAlignment}`, 
-                                                    style: { 
-                                                          ...(excerptOrder ? { order: excerptOrder } : {}),
-                                                          ...(attributes.excerptMargin ? { margin: getSpacingValue(attributes.excerptMargin) } : {}),
-                                                          ...(attributes.excerptPadding ? { padding: getSpacingValue(attributes.excerptPadding) } : {}), 
-                                                      } 
-                                                }, 
-                                                    wp.element.createElement('p', { 
-                                                        style: { 
-                                                            
-                                                            ...(excerptFontSize ? { fontSize: `${excerptFontSize}px` } : {}),
-                                                            ...(excerptFontWeight ? { fontWeight: excerptFontWeight } : {}),
-                                                            ...(excerptLineHeight ? { lineHeight: excerptLineHeight } : {}),
-                                                            ...(excerptLetterSpacing ? { letterSpacing: excerptLetterSpacing } : {}),
-                                                            ...(excerptColor ? { color: excerptColor } : {}),
-                                                            ...(excerptBgColor ? { backgroundColor: excerptBgColor } : {}),                                               
-                                                        },
-                                                        onMouseEnter: (e) => {
-                                                            e.currentTarget.style.color = excerptHoverColor;
-                                                            e.currentTarget.style.backgroundColor = excerptHoverBgColor;
-                                                        },
-                                                        onMouseLeave: (e) => {
-                                                            e.currentTarget.style.color = excerptColor;
-                                                            e.currentTarget.style.backgroundColor = excerptBgColor;
-                                                            
-                                                        }, 
-                                                    }, 
-                                                    excerptType === 'full_content' 
-                                                        ? excerpt 
-                                                        : excerptType === 'word'
-                                                            ? excerpt.split(' ').slice(0, excerptLimit).join(' ') + (excerpt.split(' ').length > excerptLimit ? excerptIndicator : '')
-                                                            : excerpt.substring(0, excerptLimit) + (excerpt.length > excerptLimit ? excerptIndicator : '')
-                                                    )
-                                                ),
+                                              wp.element.createElement('p', { 
+                                                  className: `fpg-excerpt align-${excerptAlignment}`,
+                                                  style: { 
+                                                      
+                                                      ...(excerptFontSize ? { fontSize: `${excerptFontSize}px` } : {}),
+                                                      ...(excerptFontWeight ? { fontWeight: excerptFontWeight } : {}),
+                                                      ...(excerptLineHeight ? { lineHeight: excerptLineHeight } : {}),
+                                                      ...(excerptLetterSpacing ? { letterSpacing: excerptLetterSpacing } : {}),
+                                                      ...(excerptColor ? { color: excerptColor } : {}),
+                                                      ...(excerptBgColor ? { backgroundColor: excerptBgColor } : {}), 
+                                                      ...(excerptOrder ? { order: excerptOrder } : {}),
+                                                      ...(attributes.excerptMargin ? { margin: getSpacingValue(attributes.excerptMargin) } : {}),
+                                                      ...(attributes.excerptPadding ? { padding: getSpacingValue(attributes.excerptPadding) } : {}),                                               
+                                                  },
+                                                  onMouseEnter: (e) => {
+                                                      e.currentTarget.style.color = excerptHoverColor;
+                                                      e.currentTarget.style.backgroundColor = excerptHoverBgColor;
+                                                  },
+                                                  onMouseLeave: (e) => {
+                                                      e.currentTarget.style.color = excerptColor;
+                                                      e.currentTarget.style.backgroundColor = excerptBgColor;
+                                                      
+                                                  }, 
+                                              }, 
+                                              excerptType === 'full_content' 
+                                                  ? excerpt 
+                                                  : excerptType === 'word'
+                                                      ? excerpt.split(' ').slice(0, excerptLimit).join(' ') + (excerpt.split(' ').length > excerptLimit ? excerptIndicator : '')
+                                                      : excerpt.substring(0, excerptLimit) + (excerpt.length > excerptLimit ? excerptIndicator : '')
+                                            ),
 
-                                            
+                                  
                                             showReadMoreButton && wp.element.createElement('div', { 
                                                 className: `btn-wrapper align-${buttonAlignment} `,
                                                 style: { 
@@ -3989,7 +3994,7 @@
                                         value: attributes.itemGap,
                                         onChange: (value) => setAttributes({ itemGap: value }),
                                         min: 1,
-                                        max: 50
+                                        max: 200
                                     }),
                                     
                                     // Box Alignment
