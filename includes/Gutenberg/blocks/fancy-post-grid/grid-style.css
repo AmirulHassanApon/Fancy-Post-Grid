@@ -28,6 +28,11 @@ body {
     line-height: 1.6;
 }
 
+.nolink a{
+    pointer-events: none;
+}
+
+
 .fancy-post-thumbnail .overlay {
     position: absolute;
     top: 0;
