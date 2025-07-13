@@ -964,7 +964,7 @@ function fancy_post_grid_render_callback($attributes) {
             if ($gridLayoutStyle === 'style1') {
                 // Full post layout
                 
-                $output .= '<div class="rs-blog__single align-' . $itemBoxAlignment1 . ' ' . $hoverAnimation . '" style="';
+                $output .= '<div class="rs-blog__single align-' . $itemBoxAlignment1 . ' ' . $hoverAnimation . '' . $postLinkType . '" style="';
                     // MARGIN    
                     if (isset($itemMargin['top']) || isset($itemMargin['right']) || isset($itemMargin['bottom']) || isset($itemMargin['left'])) {
                         $output .= 'margin: ' .
@@ -1723,7 +1723,7 @@ function fancy_post_grid_render_callback($attributes) {
             else if ($gridLayoutStyle === 'style2') {
                 // Full post layout
                 
-                $output .= '<div class="rs-blog__single align-' . $itemBoxAlignment2 . ' ' . $hoverAnimation . '" style="';
+                $output .= '<div class="rs-blog__single align-' . $itemBoxAlignment2 . ' ' . $hoverAnimation . '' . $postLinkType . '" style="';
                     // MARGIN    
                     if (isset($itemMargin['top']) || isset($itemMargin['right']) || isset($itemMargin['bottom']) || isset($itemMargin['left'])) {
                         $output .= 'margin: ' .
@@ -2473,7 +2473,7 @@ function fancy_post_grid_render_callback($attributes) {
             else if ($gridLayoutStyle === 'style3') {
                 // Full post layout
             
-                $output .= '<div class="rs-blog-layout-28-item align-' . $itemBoxAlignment3 . ' ' . $hoverAnimation . '" style="';
+                $output .= '<div class="rs-blog-layout-28-item align-' . $itemBoxAlignment3 . ' ' . $hoverAnimation . '' . $postLinkType . '" style="';
                     // MARGIN    
                     if (isset($itemMargin['top']) || isset($itemMargin['right']) || isset($itemMargin['bottom']) || isset($itemMargin['left'])) {
                         $output .= 'margin: ' .
@@ -3236,7 +3236,7 @@ function fancy_post_grid_render_callback($attributes) {
             }
             else if ($gridLayoutStyle === 'style4') {
                 // Full post layout
-                $output .= '<div class="rs-blog-layout-30-item align-' . $itemBoxAlignment4 . ' ' . $hoverAnimation . '" style="';
+                $output .= '<div class="rs-blog-layout-30-item align-' . $itemBoxAlignment4 . ' ' . $hoverAnimation . '' . $postLinkType . '" style="';
                     // MARGIN    
                     if (isset($itemMargin['top']) || isset($itemMargin['right']) || isset($itemMargin['bottom']) || isset($itemMargin['left'])) {
                         $output .= 'margin: ' .
@@ -3886,7 +3886,7 @@ function fancy_post_grid_render_callback($attributes) {
                 // Full post layout
                 $output .= '<div class="pre-blog-item style_12 pre-blog-meta-style2 default">';
                 
-                $output .= '<div class="blog-inner-wrap pre-thum-default pre-meta-blocks top align-' . $itemBoxAlignment5 . ' ' . $hoverAnimation . '" style="';
+                $output .= '<div class="blog-inner-wrap pre-thum-default pre-meta-blocks top align-' . $itemBoxAlignment5 . ' ' . $hoverAnimation . '' . $postLinkType . '" style="';
                     // MARGIN    
                     if (isset($itemMargin['top']) || isset($itemMargin['right']) || isset($itemMargin['bottom']) || isset($itemMargin['left'])) {
                         $output .= 'margin: ' .
@@ -4584,7 +4584,7 @@ function fancy_post_grid_render_callback($attributes) {
                 $afterMetaStyles .= '}';
                 $output .= '<style>' . $afterMetaStyles . '</style>';
 
-                $output .= '<div class="rs-blog-layout-13-item align-' . $itemBoxAlignment6 . ' ' . $hoverAnimation . '" style="';
+                $output .= '<div class="rs-blog-layout-13-item align-' . $itemBoxAlignment6 . ' ' . $hoverAnimation . '' . $postLinkType . '" style="';
                     // MARGIN    
                     if (isset($itemMargin['top']) || isset($itemMargin['right']) || isset($itemMargin['bottom']) || isset($itemMargin['left'])) {
                         $output .= 'margin: ' .
@@ -5155,7 +5155,7 @@ function fancy_post_grid_render_callback($attributes) {
             }
             else if ($gridLayoutStyle === 'style7') {
                 // Full post layout
-                $output .= '<div class="rs-blog-layout-14-item grey align-' . $itemBoxAlignment7 . ' ' . $hoverAnimation . '" style="';
+                $output .= '<div class="rs-blog-layout-14-item grey align-' . $itemBoxAlignment7 . ' ' . $hoverAnimation . '' . $postLinkType . '" style="';
                     // MARGIN    
                     if (isset($itemMargin['top']) || isset($itemMargin['right']) || isset($itemMargin['bottom']) || isset($itemMargin['left'])) {
                         $output .= 'margin: ' .
@@ -5595,7 +5595,7 @@ function fancy_post_grid_render_callback($attributes) {
             }
             else if ($gridLayoutStyle === 'style8') {
                 // Full post layout
-                $output .= '<div class="rs-blog-layout-15-item align-' . $itemBoxAlignment8 . ' ' . $hoverAnimation . '" style="';
+                $output .= '<div class="rs-blog-layout-15-item align-' . $itemBoxAlignment8 . ' ' . $hoverAnimation . '' . $postLinkType . '" style="';
                     // MARGIN    
                     if (isset($itemMargin['top']) || isset($itemMargin['right']) || isset($itemMargin['bottom']) || isset($itemMargin['left'])) {
                         $output .= 'margin: ' .
@@ -6077,7 +6077,7 @@ function fancy_post_grid_render_callback($attributes) {
             }
             else if ($gridLayoutStyle === 'style9') {
                 // Full post layout
-                $output .= '<div class="rs-blog-layout-16-item align-' . $itemBoxAlignment9 . ' ' . $hoverAnimation . '" style="';
+                $output .= '<div class="rs-blog-layout-16-item align-' . $itemBoxAlignment9 . ' ' . $hoverAnimation . '' . $postLinkType . '" style="';
                     // MARGIN    
                     if (isset($itemMargin['top']) || isset($itemMargin['right']) || isset($itemMargin['bottom']) || isset($itemMargin['left'])) {
                         $output .= 'margin: ' .
@@ -6500,7 +6500,7 @@ function fancy_post_grid_render_callback($attributes) {
             }
             else if ($gridLayoutStyle === 'style10') {
                 // Full post layout
-                $output .= '<div class="rs-blog-layout-19-item align-' . $itemBoxAlignment10 . ' ' . $hoverAnimation . '" style="';
+                $output .= '<div class="rs-blog-layout-19-item align-' . $itemBoxAlignment10 . ' ' . $hoverAnimation . '' . $postLinkType . '" style="';
                     // MARGIN    
                     if (isset($itemMargin['top']) || isset($itemMargin['right']) || isset($itemMargin['bottom']) || isset($itemMargin['left'])) {
                         $output .= 'margin: ' .
@@ -7167,7 +7167,7 @@ function fancy_post_grid_render_callback($attributes) {
             }
             else if ($gridLayoutStyle === 'style11') {
                 // Full post layout
-                $output .= '<div class="rs-blog-layout-21-item align-' . $itemBoxAlignment11 . ' ' . $hoverAnimation . '" style="';
+                $output .= '<div class="rs-blog-layout-21-item align-' . $itemBoxAlignment11 . ' ' . $hoverAnimation . '' . $postLinkType . '" style="';
                     // MARGIN    
                     if (isset($itemMargin['top']) || isset($itemMargin['right']) || isset($itemMargin['bottom']) || isset($itemMargin['left'])) {
                         $output .= 'margin: ' .
@@ -7837,7 +7837,7 @@ function fancy_post_grid_render_callback($attributes) {
             }
             else if ($gridLayoutStyle === 'style12') {
                 // Full post layout
-                $output .= '<div class="rs-blog-layout-26-item align-' . $itemBoxAlignment12 . ' ' . $hoverAnimation . '" style="';
+                $output .= '<div class="rs-blog-layout-26-item align-' . $itemBoxAlignment12 . ' ' . $hoverAnimation . '' . $postLinkType . '" style="';
                     // MARGIN    
                     if (isset($itemMargin['top']) || isset($itemMargin['right']) || isset($itemMargin['bottom']) || isset($itemMargin['left'])) {
                         $output .= 'margin: ' .
@@ -8943,7 +8943,7 @@ function fancy_post_slider_render_callback($attributes) {
         if ($sliderLayoutStyle === 'style1') {
             $output .= '<div class="swiper-slide">';
             // Full post layout
-            $output .= '<div class="blog-item align-' . $itemBoxAlignment1 . ' ' . $hoverAnimation . '" style="';
+            $output .= '<div class="blog-item align-' . $itemBoxAlignment1 . ' ' . $hoverAnimation . '' . $postLinkType . '" style="';
                 // MARGIN    
                 if (isset($itemMargin['top']) || isset($itemMargin['right']) || isset($itemMargin['bottom']) || isset($itemMargin['left'])) {
                     $output .= 'margin: ' .
@@ -9693,7 +9693,7 @@ function fancy_post_slider_render_callback($attributes) {
         elseif ($sliderLayoutStyle === 'style2') {
             $output .= '<div class="swiper-slide">';
             // Full post layout
-            $output .= '<div class="blog-item align-' . $itemBoxAlignment2 . ' ' . $hoverAnimation . '" style="';
+            $output .= '<div class="blog-item align-' . $itemBoxAlignment2 . ' ' . $hoverAnimation . '' . $postLinkType . '" style="';
                 // MARGIN    
                 if (isset($itemMargin['top']) || isset($itemMargin['right']) || isset($itemMargin['bottom']) || isset($itemMargin['left'])) {
                     $output .= 'margin: ' .
@@ -10447,7 +10447,7 @@ function fancy_post_slider_render_callback($attributes) {
             $output .= '<style>' . $afterMetaStyles . '</style>';
             $output .= '<div class="swiper-slide">';
             // Full post layout
-            $output .= '<div class="rs-blog__single align-' . $itemBoxAlignment3 . ' ' . $hoverAnimation . '" style="';
+            $output .= '<div class="rs-blog__single align-' . $itemBoxAlignment3 . ' ' . $hoverAnimation . '' . $postLinkType . '" style="';
                 // MARGIN    
                 if (isset($itemMargin['top']) || isset($itemMargin['right']) || isset($itemMargin['bottom']) || isset($itemMargin['left'])) {
                     $output .= 'margin: ' .
@@ -11120,7 +11120,7 @@ function fancy_post_slider_render_callback($attributes) {
         elseif ($sliderLayoutStyle === 'style4') {
             $output .= '<div class="swiper-slide">';
             // Full post layout
-            $output .= '<div class="rs-blog__item align-' . $itemBoxAlignment4 . ' ' . $hoverAnimation . '" style="';
+            $output .= '<div class="rs-blog__item align-' . $itemBoxAlignment4 . ' ' . $hoverAnimation . '' . $postLinkType . '" style="';
                 // MARGIN    
                 if (isset($itemMargin['top']) || isset($itemMargin['right']) || isset($itemMargin['bottom']) || isset($itemMargin['left'])) {
                     $output .= 'margin: ' .
@@ -11694,7 +11694,7 @@ function fancy_post_slider_render_callback($attributes) {
         elseif ($sliderLayoutStyle === 'style5') {
             $output .= '<div class="swiper-slide">';
             // Full post layout
-            $output .= '<div class="rs-blog-layout-18-item align-' . $itemBoxAlignment5 . ' ' . $hoverAnimation . '" style="';
+            $output .= '<div class="rs-blog-layout-18-item align-' . $itemBoxAlignment5 . ' ' . $hoverAnimation . '' . $postLinkType . '" style="';
                 // MARGIN    
                 if (isset($itemMargin['top']) || isset($itemMargin['right']) || isset($itemMargin['bottom']) || isset($itemMargin['left'])) {
                     $output .= 'margin: ' .
@@ -12276,7 +12276,7 @@ function fancy_post_slider_render_callback($attributes) {
         elseif ($sliderLayoutStyle === 'style6') {
             $output .= '<div class="swiper-slide">';
             // Full post layout
-            $output .= '<div class="rs-blog-layout-23-item align-' . $itemBoxAlignment6 . ' ' . $hoverAnimation . '" style="';
+            $output .= '<div class="rs-blog-layout-23-item align-' . $itemBoxAlignment6 . ' ' . $hoverAnimation . '' . $postLinkType . '" style="';
                 // MARGIN    
                 if (isset($itemMargin['top']) || isset($itemMargin['right']) || isset($itemMargin['bottom']) || isset($itemMargin['left'])) {
                     $output .= 'margin: ' .
@@ -12659,7 +12659,7 @@ function fancy_post_slider_render_callback($attributes) {
             // Swiper Slide
             $output .= '<div class="swiper-slide">';
             // Full post layout
-            $output .= '<div class="rs-blog-layout-28-item align-' . $itemBoxAlignment7 . ' ' . $hoverAnimation . '" style="';
+            $output .= '<div class="rs-blog-layout-28-item align-' . $itemBoxAlignment7 . ' ' . $hoverAnimation . '' . $postLinkType . '" style="';
                 // MARGIN    
                 if (isset($itemMargin['top']) || isset($itemMargin['right']) || isset($itemMargin['bottom']) || isset($itemMargin['left'])) {
                     $output .= 'margin: ' .
@@ -14053,7 +14053,7 @@ function fancy_post_list_render_callback($attributes) {
                                     $output .= 'padding-left: ' . $halfGap . '; padding-right: ' . $halfGap . '; ';
                                 }
                                 $output .= '">';
-                        $output .= '<div class="rs-blog__left-blog align-' . $itemBoxAlignment . ' ' . $hoverAnimation . '" style="';
+                        $output .= '<div class="rs-blog__left-blog align-' . $itemBoxAlignment . ' ' . $hoverAnimation . '' . $postLinkType . '" style="';
                             // MARGIN    
                             if (isset($itemMargin['top']) || isset($itemMargin['right']) || isset($itemMargin['bottom']) || isset($itemMargin['left'])) {
                                 $output .= 'margin: ' .
@@ -14819,7 +14819,7 @@ function fancy_post_list_render_callback($attributes) {
                     $output .= '">';
                 } else {
                     // RIGHT SIDE - All other posts
-                    $output .= '<div class="rs-blog__left-blog right-blog fancy-post-item align-' . $itemBoxAlignment . ' ' . $hoverAnimation . '" style="';
+                    $output .= '<div class="rs-blog__left-blog right-blog fancy-post-item align-' . $itemBoxAlignment . ' ' . $hoverAnimation . '' . $postLinkType . '" style="';
                         // MARGIN    
                         if (isset($itemMargin['top']) || isset($itemMargin['right']) || isset($itemMargin['bottom']) || isset($itemMargin['left'])) {
                             $output .= 'margin: ' .
@@ -15470,7 +15470,7 @@ function fancy_post_list_render_callback($attributes) {
                             $output .= 'padding-left: ' . $halfGap . '; padding-right: ' . $halfGap . '; ';
                         }
                         $output .= '">';
-                        $output .= '<div class="blog-item align-' . $itemBoxAlignment . ' ' . $hoverAnimation . '" style="';
+                        $output .= '<div class="blog-item align-' . $itemBoxAlignment . ' ' . $hoverAnimation . '' . $postLinkType . '" style="';
                             // MARGIN    
                             if (isset($itemMargin['top']) || isset($itemMargin['right']) || isset($itemMargin['bottom']) || isset($itemMargin['left'])) {
                                 $output .= 'margin: ' .
@@ -16650,7 +16650,7 @@ function fancy_post_list_render_callback($attributes) {
                             $output .= 'padding-left: ' . $halfGap . '; padding-right: ' . $halfGap . '; ';
                         }
                     $output .= '">';
-                        $output .= '<div class="rs-blog-layout-17-item align-' . $itemBoxAlignment . ' ' . $hoverAnimation . '" style="';
+                        $output .= '<div class="rs-blog-layout-17-item align-' . $itemBoxAlignment . ' ' . $hoverAnimation . '' . $postLinkType . '" style="';
 
                             // MARGIN    
                             if (isset($itemMargin['top']) || isset($itemMargin['right']) || isset($itemMargin['bottom']) || isset($itemMargin['left'])) {
@@ -17303,7 +17303,7 @@ function fancy_post_list_render_callback($attributes) {
                 } else {
 
                     // RIGHT SIDE - All other posts
-                    $output .= '<div class="rs-blog-layout-17-item rs-blog-layout-17-item-list align-' . $itemBoxAlignment . ' ' . $hoverAnimation . '" style="';
+                    $output .= '<div class="rs-blog-layout-17-item rs-blog-layout-17-item-list align-' . $itemBoxAlignment . ' ' . $hoverAnimation . '' . $postLinkType . '" style="';
                         // MARGIN    
                         if (isset($itemMargin['top']) || isset($itemMargin['right']) || isset($itemMargin['bottom']) || isset($itemMargin['left'])) {
                             $output .= 'margin: ' .
@@ -17938,7 +17938,7 @@ function fancy_post_list_render_callback($attributes) {
                         $output .= 'padding-left: ' . $halfGap . '; padding-right: ' . $halfGap . '; ';
                     }
                     $output .= '">';
-                    $output .= '<div class="rs-blog-layout-20-item align-' . $itemBoxAlignment . ' ' . $hoverAnimation . '" style="';
+                    $output .= '<div class="rs-blog-layout-20-item align-' . $itemBoxAlignment . ' ' . $hoverAnimation . '' . $postLinkType . '" style="';
                         // MARGIN    
                         if (isset($itemMargin['top']) || isset($itemMargin['right']) || isset($itemMargin['bottom']) || isset($itemMargin['left'])) {
                             $output .= 'margin: ' .
@@ -18490,7 +18490,7 @@ function fancy_post_list_render_callback($attributes) {
                         $output .= 'padding-left: ' . $halfGap . '; padding-right: ' . $halfGap . '; ';
                     }
                     $output .= '">';
-                    $output .= '<div class="rs-blog-layout-22-item align-' . $itemBoxAlignment . ' ' . $hoverAnimation . '" style="';
+                    $output .= '<div class="rs-blog-layout-22-item align-' . $itemBoxAlignment . ' ' . $hoverAnimation . '' . $postLinkType . '" style="';
                         // MARGIN    
                         if (isset($itemMargin['top']) || isset($itemMargin['right']) || isset($itemMargin['bottom']) || isset($itemMargin['left'])) {
                             $output .= 'margin: ' .
@@ -19139,7 +19139,7 @@ function fancy_post_list_render_callback($attributes) {
                         $output .= 'padding-left: ' . $halfGap . '; padding-right: ' . $halfGap . '; ';
                     }
                 $output .= '">';
-                    $output .= '<div class="rs-blog-layout-24-item align-' . $itemBoxAlignment . ' ' . $hoverAnimation . '" style="';
+                    $output .= '<div class="rs-blog-layout-24-item align-' . $itemBoxAlignment . ' ' . $hoverAnimation . '' . $postLinkType . '" style="';
                         // MARGIN    
                         if (isset($itemMargin['top']) || isset($itemMargin['right']) || isset($itemMargin['bottom']) || isset($itemMargin['left'])) {
                             $output .= 'margin: ' .
@@ -19540,7 +19540,7 @@ function fancy_post_list_render_callback($attributes) {
                                
                 // LEFT SIDE - Only the first post
                 $output .= '<div class="col-lg-12">';
-                    $output .= '<div class="rs-blog-layout-25-item align-' . $itemBoxAlignment . ' ' . $hoverAnimation . '" style="';
+                    $output .= '<div class="rs-blog-layout-25-item align-' . $itemBoxAlignment . ' ' . $hoverAnimation . '' . $postLinkType . '" style="';
                         // MARGIN    
                         if (isset($itemMargin['top']) || isset($itemMargin['right']) || isset($itemMargin['bottom']) || isset($itemMargin['left'])) {
                             $output .= 'margin: ' .
@@ -20032,7 +20032,7 @@ function fancy_post_list_render_callback($attributes) {
 
                 // Post 1 – Large layout
                 if ($post_count === 1) {
-                    $output .= '<div class="rs-blog-layout-27-item align-' . $itemBoxAlignment . ' ' . $hoverAnimation . '" style="';
+                    $output .= '<div class="rs-blog-layout-27-item align-' . $itemBoxAlignment . ' ' . $hoverAnimation . '' . $postLinkType . '" style="';
                         // MARGIN    
                         if (isset($itemMargin['top']) || isset($itemMargin['right']) || isset($itemMargin['bottom']) || isset($itemMargin['left'])) {
                             $output .= 'margin: ' .
@@ -20583,7 +20583,7 @@ function fancy_post_list_render_callback($attributes) {
 
                 // Post 2 – Medium layout
                 elseif ($post_count === 2) {
-                    $output .= '<div class="rs-blog-layout-27-item align-' . $itemBoxAlignment . ' ' . $hoverAnimation . '" style="';
+                    $output .= '<div class="rs-blog-layout-27-item align-' . $itemBoxAlignment . ' ' . $hoverAnimation . '' . $postLinkType . '" style="';
                         // MARGIN    
                         if (isset($itemMargin['top']) || isset($itemMargin['right']) || isset($itemMargin['bottom']) || isset($itemMargin['left'])) {
                             $output .= 'margin: ' .
@@ -21137,7 +21137,7 @@ function fancy_post_list_render_callback($attributes) {
                 // Post 3+ – Right side uniform layout
                 elseif ($post_count > 2) {
                     
-                    $output .= '<div class="rs-blog-layout-27-list-item align-' . $itemBoxAlignment . ' ' . $hoverAnimation . '" style="';
+                    $output .= '<div class="rs-blog-layout-27-list-item align-' . $itemBoxAlignment . ' ' . $hoverAnimation . '' . $postLinkType . '" style="';
                         // MARGIN    
                         if (isset($itemMargin['top']) || isset($itemMargin['right']) || isset($itemMargin['bottom']) || isset($itemMargin['left'])) {
                             $output .= 'margin: ' .
@@ -23219,7 +23219,7 @@ function fancy_post_isotope_render_callback($attributes) {
                         $output .= ' style="' . esc_attr($itemGapStyle) . '"';
                     }
                     $output .= '>';
-                $output .= '<div class="rs-blog__item align-' . $itemBoxAlignment . ' ' . $hoverAnimation . '" style="';
+                $output .= '<div class="rs-blog__item align-' . $itemBoxAlignment . ' ' . $hoverAnimation . '' . $postLinkType . '" style="';
                     // MARGIN    
                     if (isset($itemMargin['top']) || isset($itemMargin['right']) || isset($itemMargin['bottom']) || isset($itemMargin['left'])) {
                         $output .= 'margin: ' .
@@ -23832,7 +23832,7 @@ function fancy_post_isotope_render_callback($attributes) {
                 }
                 $output .= '>';
 
-                $output .= '<div class="rs-blog__single align-' . $itemBoxAlignment . ' ' . $hoverAnimation . '" style="';
+                $output .= '<div class="rs-blog__single align-' . $itemBoxAlignment . ' ' . $hoverAnimation . '' . $postLinkType . '" style="';
                     // MARGIN    
                     if (isset($itemMargin['top']) || isset($itemMargin['right']) || isset($itemMargin['bottom']) || isset($itemMargin['left'])) {
                         $output .= 'margin: ' .
@@ -24605,7 +24605,7 @@ function fancy_post_isotope_render_callback($attributes) {
                 }
                 $output .= '>';
                 // Full post layout
-                $output .= '<div class="rs-blog-layout-28-item align-' . $itemBoxAlignment . ' ' . $hoverAnimation . '" style="';
+                $output .= '<div class="rs-blog-layout-28-item align-' . $itemBoxAlignment . ' ' . $hoverAnimation . '' . $postLinkType . '" style="';
                     // MARGIN    
                     if (isset($itemMargin['top']) || isset($itemMargin['right']) || isset($itemMargin['bottom']) || isset($itemMargin['left'])) {
                         $output .= 'margin: ' .
@@ -25392,7 +25392,7 @@ function fancy_post_isotope_render_callback($attributes) {
                 }
                 $output .= '>';
                 // Full post layout
-                $output .= '<div class="rs-blog-layout-30-item align-' . $itemBoxAlignment4 . ' ' . $hoverAnimation . '" style="';
+                $output .= '<div class="rs-blog-layout-30-item align-' . $itemBoxAlignment4 . ' ' . $hoverAnimation . '' . $postLinkType . '" style="';
                     // MARGIN    
                     if (isset($itemMargin['top']) || isset($itemMargin['right']) || isset($itemMargin['bottom']) || isset($itemMargin['left'])) {
                         $output .= 'margin: ' .
@@ -26060,7 +26060,7 @@ function fancy_post_isotope_render_callback($attributes) {
                 // Full post layout
                 $output .= '<div class="pre-blog-item style_12 pre-blog-meta-style2 default">';
                 
-                $output .= '<div class="blog-inner-wrap pre-thum-default pre-meta-blocks top align-' . $itemBoxAlignment5 . ' ' . $hoverAnimation . '" style="';
+                $output .= '<div class="blog-inner-wrap pre-thum-default pre-meta-blocks top align-' . $itemBoxAlignment5 . ' ' . $hoverAnimation . '' . $postLinkType . '" style="';
                     // MARGIN    
                     if (isset($itemMargin['top']) || isset($itemMargin['right']) || isset($itemMargin['bottom']) || isset($itemMargin['left'])) {
                         $output .= 'margin: ' .
@@ -27265,7 +27265,7 @@ function fancy_post_isotope_render_callback($attributes) {
                 }
                 $output .= '>';
                 // Full post layout
-                $output .= '<div class="rs-blog-layout-26-item align-' . $itemBoxAlignment . ' ' . $hoverAnimation . '" style="';
+                $output .= '<div class="rs-blog-layout-26-item align-' . $itemBoxAlignment . ' ' . $hoverAnimation . ' ' . $postLinkType . '" style="';
                     // MARGIN    
                     if (isset($itemMargin['top']) || isset($itemMargin['right']) || isset($itemMargin['bottom']) || isset($itemMargin['left'])) {
                         $output .= 'margin: ' .
