@@ -6535,7 +6535,7 @@ img {
         position: relative;
         overflow: hidden;
         margin: 30px 0px 40px 0px;
-        padding: 0px 0px 40px 0px;
+        padding: 0px 0px 0px 0px;
         border-style: none;
     }
     .rs-blog-layout-26-item .rs-thumb {
@@ -6691,6 +6691,7 @@ img {
         line-height: 30px;
         font-weight:700;
         order: 2;
+        margin-bottom: 0;
     }
 
     .rs-blog-layout-26-item .rs-content .title.align-start{
