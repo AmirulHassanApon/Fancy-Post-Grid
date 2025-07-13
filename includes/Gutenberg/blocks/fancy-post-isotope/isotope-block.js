@@ -97,6 +97,7 @@
             contentitemRadius: { type: 'object',  },
             contentnormalBorderType: { type: 'string', default: '' },     
             contentBgColor: { type: 'string', default: '' },       
+            contentHoverBgColor: { type: 'string', default: '' },       
             contentBorderColor: { type: 'string', default: '' },       
             //ThumbNail            
             thumbnailMargin: { type: 'object'  },
@@ -199,7 +200,7 @@
                 itemPadding,itemMargin,itemBorderRadius,itemBoxAlignment,itemBoxShadow,itemBoxShadowColor,
                 itemBorderColor,itemBackgroundColor,itemBorderWidth,itemBorderType,itemGap, 
 
-                contentitemMarginNew,contentitemPaddingNew,contentnormalBorderType,contentitemRadius,contentBorderWidth,contentBgColor,contentBorderColor,
+                contentitemMarginNew,contentitemPaddingNew,contentnormalBorderType,contentitemRadius,contentBorderWidth,contentBgColor,contentHoverBgColor,contentBorderColor,
 
                 thumbnailMargin,thumbnailPadding,thumbnailBorderRadius,
 
@@ -1434,7 +1435,7 @@
                                     return wp.element.createElement(
                                         'div',
                                         {   key: post.id, 
-                                            className: `fancy-post-item rs-blog__item align-${itemBoxAlignment1} ${hoverAnimation}`,
+                                            className: `fancy-post-item rs-blog__item align-${itemBoxAlignment1} ${hoverAnimation} ${postLinkType}`,
                                                 style: {
                                                     
                                                     ...(attributes.itemMargin
@@ -1743,7 +1744,7 @@
                                     return wp.element.createElement(
                                         'div',
                                         {   
-                                            className: `fancy-post-item rs-blog__single align-${itemBoxAlignment2} ${hoverAnimation}`,
+                                            className: `fancy-post-item rs-blog__single align-${itemBoxAlignment2} ${hoverAnimation} ${postLinkType}`,
                                             style: {
                                                 
                                                 ...(attributes.itemMargin
@@ -2098,7 +2099,7 @@
                                         'div',
                                         {   
                                             key: post.id, 
-                                            className: `fancy-post-item rs-blog-layout-28-item align-${itemBoxAlignment3} ${hoverAnimation}`,
+                                            className: `fancy-post-item rs-blog-layout-28-item align-${itemBoxAlignment3} ${hoverAnimation} ${postLinkType}`,
                                             style: {
                                                 ...(attributes.itemMargin
                                                   ? { margin: getSpacingValue(attributes.itemMargin) }
@@ -2452,7 +2453,7 @@
                                         'div',
                                         {   
                                             key: post.id, 
-                                            className: `fancy-post-item rs-blog-layout-30-item align-${itemBoxAlignment4} ${hoverAnimation}`,
+                                            className: `fancy-post-item rs-blog-layout-30-item align-${itemBoxAlignment4} ${hoverAnimation} ${postLinkType}`,
                                             style: {
                                                 
                                                 ...(attributes.itemMargin
@@ -2720,7 +2721,6 @@
                 );
                 
             }
-            
             else if (isotopeLayoutStyle === 'style5' && posts && posts.length) {
                 content = wp.element.createElement(
                           wp.element.Fragment,
@@ -2848,7 +2848,7 @@
                                           ),
                            
                                         // Wrap the entire content in a new div (e.g., rs-content)
-                                        wp.element.createElement('div', { className: `pre-blog-content align-${itemBoxAlignment5}`,style: {
+                                        wp.element.createElement('div', { className: `pre-blog-content align-${itemBoxAlignment5} ${postLinkType}`,style: {
                                                 ...(attributes.contentitemMarginNew ? { margin: getSpacingValue(attributes.contentitemMarginNew) } : {}),
                                                 ...(attributes.contentitemPaddingNew
                                                   ? { padding: getSpacingValue(attributes.contentitemPaddingNew) }
@@ -3371,7 +3371,7 @@
                         
                         return wp.element.createElement('div', { 
                             key: post.id, 
-                                className: `fancy-post-item rs-blog-layout-26-item align-${itemBoxAlignment7} ${hoverAnimation}`,
+                                className: `fancy-post-item rs-blog-layout-26-item align-${itemBoxAlignment7} ${hoverAnimation} ${postLinkType}`,
                                 style: {
                                     ...(attributes.itemMargin
                                       ? { margin: getSpacingValue(attributes.itemMargin) }
@@ -3438,7 +3438,14 @@
                                     ...(contentBgColor ? { backgroundColor: contentBgColor } : {}),
                                     ...(contentBorderColor ? { borderColor: contentBorderColor } : {})
                                     },
-                                }, 
+                                    onMouseEnter: (e) => {
+                                        e.currentTarget.style.backgroundColor = contentHoverBgColor;
+                                    },
+                                    onMouseLeave: (e) => {
+                                        e.currentTarget.style.backgroundColor = contentBgColor;
+                                        
+                                    },
+                              }, 
                                 
                                 // Meta
                                 showMetaData && 
@@ -3628,7 +3635,6 @@
                     )))),
                 );          
             }
-            
             else {
                 content = wp.element.createElement('p', {}, __('Select a style to display posts.', 'fancy-post-grid'));
             }
@@ -4225,6 +4231,19 @@
                                         onClick: () => setAttributes({ contentBgColor: '' }),
                                         style: { marginTop: '10px' },
                                     }, __('Clear Color', 'fancy-post-grid')),
+                                    
+                                    wp.element.createElement('p', {}, __('Hover Box Background Color', 'fancy-post-grid')),
+                                                        
+                                    wp.element.createElement(wp.components.ColorPicker, {
+                                        color: attributes.contentHoverBgColor,
+                                        onChangeComplete: (value) => setAttributes({ contentHoverBgColor: value.hex }),
+                                    }),
+                                    wp.element.createElement(Button, {
+                                        isSecondary: true,
+                                        onClick: () => setAttributes({ contentHoverBgColor: '' }),
+                                        style: { marginTop: '10px' },
+                                    }, __('Clear Color', 'fancy-post-grid')),
+
                                     wp.element.createElement('p', {}, __('Box Border Color', 'fancy-post-grid')),
                                                         
                                     wp.element.createElement(wp.components.ColorPicker, {
