@@ -28,11 +28,40 @@ body {
     line-height: 1.6;
 }
 
-
-
 .nolink a{
     pointer-events: none;
 }
+
+
+/* Gutenberg Dashboard Css Start */
+button.components-button:hover:not(:disabled,[aria-disabled=true]), button.components-button[aria-expanded=true]{
+    color: #fff;
+}
+
+.components-button:hover:not(:disabled,[aria-disabled=true]) span svg, .components-button[aria-expanded=true] span svg{
+    fill: #ffffff;
+}
+
+.components-panel__body.is-opened .components-panel__body-title button{
+    background: #005f8c;
+}
+.components-panel__body.is-opened .components-panel__body-title button span svg{
+    fill: #ffffff !important;
+}
+.components-panel__body .components-color-picker .react-colorful__saturation{
+    height: 100px;
+}
+.components-panel__body .components-color-picker .components-flex[data-wp-component="Flex"] {
+    padding: 0 0 10px 0;
+}
+
+.components-panel__body > button.components-button{
+    margin-bottom: 30px;
+}
+.components-panel__body.is-opened>.components-panel__body-title{
+    margin-bottom: 20px;
+}
+/* Gutenberg Dashboard Css End */
 
 
 .fancy-post-thumbnail .overlay {
@@ -43,23 +72,6 @@ body {
     bottom: 0;
     pointer-events: none;
 }
-
-.components-button:hover:not(:disabled,[aria-disabled=true]), .components-button[aria-expanded=true]{
-    color: #fff;
-}
-
-.components-button:hover:not(:disabled,[aria-disabled=true]) span svg, .components-button[aria-expanded=true] span svg{
-    fill: #ffffff;
-}
-
-.components-panel__body.is-opened button{
-    background: #005f8c;
-}
-.components-panel__body.is-opened button span svg{
-    fill: #ffffff !important;
-}
-
-
 .fancy-title-one-line {
     display: -webkit-box;
     -webkit-line-clamp: 1;
