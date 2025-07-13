@@ -6729,9 +6729,24 @@ img {
         text-decoration: none;
         display: block;
     }
+    .rs-blog-layout-26-item .rs-content .title.underline{
+        margin-bottom: 15px;
+    }
+    .rs-blog-layout-26-item .rs-content .title.underline a{
+        display: inline;
+        transition: all 0.5s ease;
+        text-decoration: none;
+        background-image: linear-gradient(to bottom, #ffffff 0%, #ffffff 100%);
+        background-size: 0 2px;
+        background-repeat: no-repeat;
+        background-position: left 100%;
+        transition: all 0.7s !important;
+    }
+    .rs-blog-layout-26-item .rs-content .title.underline a:hover {
+        background-size: 100% 2px;
+    }
     .rs-blog-layout-26-item .rs-content .btn-wrapper{
         order: 4;
-
     }
     .rs-blog-layout-26-item .rs-content .btn-wrapper.align-start{
         text-align: left;
@@ -6767,7 +6782,8 @@ img {
         margin-top: 10px;
         display: inline-block;
         position: relative;
-        background: transparent !important;
+        background: transparent;
+        border: 0;
     }
     .rs-blog-layout-26-item:hover .rs-content .rs-btn.fpg-border{
         color: #ffffff;
@@ -6794,6 +6810,7 @@ img {
         color: #003b40;
         font-weight: 600;
         transition: all linear 0.3s;
+        border: 0;
     }
     .rs-blog-layout-26-item .rs-content .rs-btn i{
         display: inline-block;
