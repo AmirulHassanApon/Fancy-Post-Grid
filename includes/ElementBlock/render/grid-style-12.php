@@ -35,19 +35,6 @@ if ($query->have_posts()) {
     echo '<div class="row">';
     while ($query->have_posts()) {
         $query->the_post();
-        $layout = $settings['fancy_post_grid_layout'] ?? 'gridstyle12';
-        $button_type = $settings['button_type'] ?? '';
-        $thumbnail_size = $settings['thumbnail_size'] ?? '';
-
-        if (empty($button_type)) {
-            switch ($layout) {
-                case 'gridstyle12':
-                    $button_type = 'fpg-filled';
-                    $thumbnail_size = 'fancy_post_square';
-                    break;
-            }
-        }
-        
     ?>
         <div class="col-xl-<?php echo esc_attr($settings['col_desktop']); ?> 
             col-lg-<?php echo esc_attr($settings['col_lg']); ?> 
@@ -62,6 +49,18 @@ if ($query->have_posts()) {
                     <div class="rs-thumb">
                         
                         <?php 
+                        // Map the custom sizes to their actual dimensions
+                        $layout = $settings['fancy_post_grid_layout'] ?? 'gridstyle12';
+                        $thumbnail_size = $settings['thumbnail_size'] ?? '';
+
+                        if (empty($thumbnail_size)) {
+                            switch ($layout) {
+                                
+                                case 'gridstyle12':
+                                    $thumbnail_size = 'fancy_post_square';
+                                    break;
+                            }
+                        }
                         
                         if ('yes' === $settings['thumbnail_link']) { ?>
                             <a href="<?php the_permalink(); ?>" target="<?php echo ('new_window' === $settings['link_target']) ? '_blank' : '_self'; ?>">
@@ -77,7 +76,7 @@ if ($query->have_posts()) {
                     <!-- Post Meta: Date, Author, Category, Tags, Comments -->
                     
                     <?php if ('yes' === $settings['show_meta_data']) { ?>
-                        <div class="rs-meta ">
+                        <div class="rs-meta meta-data-list">
                             <?php
                                 $meta_items = array(
                                     'post_date' => array(
@@ -121,7 +120,6 @@ if ($query->have_posts()) {
                                     echo '</div>';
                                 }
                             ?>
-
   
                         </div>
                     <?php } ?>
@@ -187,7 +185,19 @@ if ($query->have_posts()) {
                     <?php } ?>
 
                     <!-- Read More Button -->
-                    <?php if (!empty($settings['show_post_readmore']) && 'yes' === $settings['show_post_readmore']) { ?>
+                    <?php if (!empty($settings['show_post_readmore']) && 'yes' === $settings['show_post_readmore']) { 
+                        $layout = $settings['fancy_post_grid_layout'] ?? 'gridstyle12';
+                            $button_type = $settings['button_type'] ?? '';
+
+                            if (empty($button_type)) {
+                                switch ($layout) {
+                                    
+                                    case 'gridstyle12':
+                                        $button_type = 'fpg-filled';
+                                        break;
+                                }
+                            } 
+                        ?>
                         <div class="btn-wrapper">
                             <a href="<?php echo esc_url(get_permalink()); ?>" 
                                class="rs-btn read-more <?php echo esc_attr($button_type); ?>"

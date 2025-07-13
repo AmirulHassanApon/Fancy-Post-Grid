@@ -93,19 +93,21 @@ if ($query->have_posts()) {
                                         <?php
                                         // Array of meta items with their respective conditions, content, and class names.
                                         $meta_items = array(
-                                            
                                             'post_date' => array(
                                                 'condition' => 'yes' === $settings['show_post_date'],
                                                 'class'     => 'meta-date',
                                                 'icon'      => ('yes' === $settings['show_meta_data_icon'] && 'yes' === $settings['show_post_date_icon']) ? '<i class="fa fa-calendar"></i>' : '',
                                                 'content'   => esc_html(get_the_date('M j, Y')),
                                             ),
-                                            'post_categories' => array(
-                                                'condition' => 'yes' === $settings['show_post_categories'],
-                                                'class'     => 'meta-categories',
-                                                'icon'      => ('yes' === $settings['show_meta_data_icon'] && 'yes' === $settings['show_post_categories_icon']) ? '<i class="fa fa-folder"></i>' : '',
-                                                'content'   => get_the_category_list(', '),
+                                            'post_author' => array(
+                                                'condition' => 'yes' === $settings['show_post_author'],
+                                                'class'     => 'meta-author',
+                                                'icon'      => ('yes' === $settings['show_meta_data_icon'] && 'yes' === $settings['author_icon_visibility']) ? ('icon' === $settings['author_image_icon'] ? '<i class="fa fa-user"></i>' : '<img src="' . esc_url(get_avatar_url(get_the_author_meta('ID'))) . '" alt="' . esc_attr__('Author', 'fancy-post-grid') . '" class="author-avatar" />')
+                                                                : '',
+                                                'content'   => esc_html($settings['author_prefix']) . ' ' . esc_html(get_the_author()),
                                             ),
+                                            
+                                            
                                         );
 
                                         $meta_items_output = []; // Array to store individual meta item outputs.

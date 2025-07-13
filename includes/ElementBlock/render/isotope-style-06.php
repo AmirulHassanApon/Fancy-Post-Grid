@@ -66,9 +66,8 @@ if ($query->have_posts()) {
                     <div class="rs-content">
                         <!-- Post Meta: Date, Author, Category, Tags, Comments -->
                         <?php if ('yes' === $settings['show_meta_data']) { ?>
-                            <div class="rs-meta meta-data-list">
-                                
-                                    <?php
+                            <div class="rs-meta meta-data-list"> 
+                                <?php
                                     // Array of meta items with their respective conditions, content, and class names.
                                     $meta_items = array(
                                         'post_date' => array(
@@ -123,8 +122,7 @@ if ($query->have_posts()) {
 
                                     // Join the meta items with the selected separator.
                                     echo wp_kses_post(implode(wp_kses_post($separator), $meta_items_output));
-                                    ?>
-                                
+                                ?>
                             </div>
 
                         <?php } ?>
@@ -192,30 +190,29 @@ if ($query->have_posts()) {
                                 <?php the_post_thumbnail($thumbnail_size); ?>
                             <?php } ?>
                             <?php if ('yes' === $settings['show_post_categories']) { ?>
-                            <div class="rs-category">
+                            <div class="rs-category meta-data-list">
                                 <?php
-                                    // Array of meta items with their respective conditions, content, and class names.
-                                    $meta_items = array( 
-                                        
-                                        'post_categories' => array(
-                                            'condition' => 'yes' === $settings['show_post_categories'],
-                                            'class'     => 'meta-categories',
-                                            'icon'      => ('yes' === $settings['show_meta_data_icon'] && 'yes' === $settings['show_post_categories_icon']) ? '<i class="fa fa-folder"></i>' : '',
-                                            'content'   => get_the_category_list(', '),
-                                        ),
-                                    );
+                                if ('yes' === $settings['show_post_categories']) {
+                                    $categories = get_the_category();
+                                    if (!empty($categories)) {
+                                        $output = [];
 
-                                    // Output each meta item as a list item with the respective class.
-                                    foreach ($meta_items as $meta) {
-                                        if ($meta['condition']) {
-                                            echo '<span>';
-                                            echo wp_kses_post($meta['icon']) . ' ' . wp_kses_post($meta['content']);
-                                            echo '</span>';
+                                        foreach ($categories as $category) {
+                                            $link = esc_url(get_category_link($category->term_id));
+                                            $name = esc_html($category->name);
+
+                                            // If icon display is enabled
+                                            $icon_html = ('yes' === $settings['show_meta_data_icon'] && 'yes' === $settings['show_post_categories_icon']) ? '<i class="fa fa-folder"></i> ' : '';
+
+                                            $output[] = '<a href="' . $link . '">' . $icon_html . $name . '</a>';
                                         }
+
+                                        echo implode(', ', $output);
                                     }
-                                    ?>                       
+                                }
+                                ?>
                             </div>
-                            <?php } ?>
+                        <?php } ?>
                         </div>
                     <?php } ?>                 
                 </div> 
