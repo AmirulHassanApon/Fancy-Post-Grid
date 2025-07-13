@@ -199,7 +199,6 @@
 
                 postType  } = attributes;
 
-
             const thumbnailSize1L = (listLayoutStyle === 'style1' && attributes.leftThumbnailSize == null)
               ? 'fancy_post_custom_size' : attributes.leftThumbnailSize;
             const thumbnailSize1R = (listLayoutStyle === 'style1' && attributes.rightThumbnailSize == null)
@@ -244,8 +243,6 @@
             const buttonStyle8 = (listLayoutStyle === 'style8' && attributes.buttonStyle == null)
               ? 'fpg-flat' : attributes.buttonStyle; 
 
-            
-                      
             const authors = useSelect((select) => {
                 const users = select('core').getUsers({ per_page: -1 });
                 if (!users) return [];
@@ -369,7 +366,7 @@
                         {
                             key: posts[0].id,
                             
-                            className: `rs-blog__left-blog fancy-post-item align-${itemBoxAlignment} ${hoverAnimation}`,
+                            className: `rs-blog__left-blog fancy-post-item align-${itemBoxAlignment} ${hoverAnimation} ${postLinkType}`,
                             style: {
                                                     
                                 ...(attributes.itemMargin
@@ -668,7 +665,7 @@
                                 'div',
                                 {
                                     key: post.id,
-                                    className: `rs-blog__left-blog right-blog fancy-post-item align-${itemBoxAlignment} ${hoverAnimation}`,
+                                    className: `rs-blog__left-blog right-blog fancy-post-item align-${itemBoxAlignment} ${hoverAnimation} ${postLinkType}`,
                                     style: {
                                                 
                                         ...(attributes.itemMargin
@@ -956,7 +953,7 @@
                         'div',
                         {
                             key: posts[0].id,
-                            className: `blog-item fancy-post-item align-${itemBoxAlignment} ${hoverAnimation}`,
+                            className: `blog-item fancy-post-item align-${itemBoxAlignment} ${hoverAnimation} ${postLinkType}`,
                             style: {
                                                     
                                 ...(attributes.itemMargin
@@ -1258,7 +1255,7 @@
                                     {
                                         key: post.id,
                                         
-                                        className: `blog-item-wrap fancy-post-item align-${itemBoxAlignment} ${hoverAnimation}`,
+                                        className: `blog-item-wrap fancy-post-item align-${itemBoxAlignment} ${hoverAnimation} ${postLinkType}`,
                                         style: {
                                                     
                                             ...(attributes.itemMargin
@@ -1474,7 +1471,7 @@
                         'div',
                         {
                             key: posts[0].id,
-                            className: `rs-blog-layout-17-item fancy-post-item align-${itemBoxAlignment} ${hoverAnimation}`,
+                            className: `rs-blog-layout-17-item fancy-post-item align-${itemBoxAlignment} ${hoverAnimation} ${postLinkType}`,
                             style: {
                                                     
                                 ...(attributes.itemMargin
@@ -1732,7 +1729,7 @@
                                     'div',
                                     {
                                         key: post.id,
-                                        className: `rs-blog-layout-17-item rs-blog-layout-17-item-list fancy-post-item align-${itemBoxAlignment} ${hoverAnimation}`,
+                                        className: `rs-blog-layout-17-item rs-blog-layout-17-item-list fancy-post-item align-${itemBoxAlignment} ${hoverAnimation} ${postLinkType}`,
                                         style: {
                                             ...(attributes.itemMargin
                                               ? { margin: getSpacingValue(attributes.itemMargin) }
@@ -2028,7 +2025,7 @@
                         
                         return wp.element.createElement('div', { 
                             key: post.id, 
-                                className: `fancy-post-item rs-blog-layout-20-item align-${itemBoxAlignment} ${hoverAnimation}`,
+                                className: `fancy-post-item rs-blog-layout-20-item align-${itemBoxAlignment} ${hoverAnimation} ${postLinkType}`,
                                 style: {                 
                                     ...(attributes.itemMargin
                                       ? { margin: getSpacingValue(attributes.itemMargin) }
@@ -2274,7 +2271,7 @@
                         return wp.element.createElement('div', { 
                             key: post.id, 
                                 
-                                className: `fancy-post-item rs-blog-layout-22-item align-${itemBoxAlignment} ${hoverAnimation}`,
+                                className: `fancy-post-item rs-blog-layout-22-item align-${itemBoxAlignment} ${hoverAnimation} ${postLinkType}`,
                                 style: {                 
                                     ...(attributes.itemMargin
                                       ? { margin: getSpacingValue(attributes.itemMargin) }
@@ -2557,7 +2554,7 @@
                         
                         return wp.element.createElement('div', { 
                             key: post.id, 
-                                className: `fancy-post-item rs-blog-layout-24-item align-${itemBoxAlignment} ${hoverAnimation}`,
+                                className: `fancy-post-item rs-blog-layout-24-item align-${itemBoxAlignment} ${hoverAnimation} ${postLinkType}`,
                                   style: {                 
                                       ...(attributes.itemMargin
                                         ? { margin: getSpacingValue(attributes.itemMargin) }
@@ -2763,7 +2760,7 @@
                         
                         return wp.element.createElement('div', { 
                                 key: post.id, 
-                                    className: `fancy-post-item rs-blog-layout-25-item align-${itemBoxAlignment} ${hoverAnimation}`,
+                                    className: `fancy-post-item rs-blog-layout-25-item align-${itemBoxAlignment} ${hoverAnimation} ${postLinkType}`,
                                   style: {                 
                                       ...(attributes.itemMargin
                                         ? { margin: getSpacingValue(attributes.itemMargin) }
@@ -2971,7 +2968,7 @@
                             'div',
                             {
                                 key: posts[0].id,
-                                className: `rs-blog-layout-27-item fancy-post-item align-${itemBoxAlignment} ${hoverAnimation}`,
+                                className: `rs-blog-layout-27-item fancy-post-item align-${itemBoxAlignment} ${hoverAnimation} ${postLinkType}`,
                                 style: {
                                                     
                                     ...(attributes.itemMargin
@@ -3175,7 +3172,7 @@
                             'div',
                             {
                                 key: posts[1].id,
-                                className: `rs-blog-layout-27-item fancy-post-item align-${itemBoxAlignment} ${hoverAnimation}`,
+                                className: `rs-blog-layout-27-item fancy-post-item align-${itemBoxAlignment} ${hoverAnimation} ${postLinkType}`,
                                 style: {
                                                     
                                     ...(attributes.itemMargin
@@ -3369,7 +3366,7 @@
                     posts.slice(2).map((post, index) => {
                     return wp.element.createElement(
                         'div',
-                        { className: `rs-blog-layout-27-list-item fancy-post-item align-${itemBoxAlignment} ${hoverAnimation}`,
+                        { className: `rs-blog-layout-27-list-item fancy-post-item align-${itemBoxAlignment} ${hoverAnimation} ${postLinkType}`,
                                 style: {             
                                     ...(attributes.itemMargin
                                       ? { margin: getSpacingValue(attributes.itemMargin) }
