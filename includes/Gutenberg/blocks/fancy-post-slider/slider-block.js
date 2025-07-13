@@ -568,7 +568,7 @@
                                                             className: 'swiper-slide' },
                                                         wp.element.createElement(
                                                         'div',
-                                                        { className: `fancy-post-item blog-item align-${itemBoxAlignment1} ${hoverAnimation}`,
+                                                        { className: `fancy-post-item blog-item align-${itemBoxAlignment1} ${hoverAnimation} ${postLinkType}`,
                                                             style: {
                                                                 
                                                                 ...(attributes.itemMargin
@@ -937,7 +937,7 @@
                                                             className: 'swiper-slide', },
                                                         wp.element.createElement(
                                                         'div',
-                                                        { className: `fancy-post-item blog-item align-${itemBoxAlignment2} ${hoverAnimation}`,
+                                                        { className: `fancy-post-item blog-item align-${itemBoxAlignment2} ${hoverAnimation} ${postLinkType}`,
                                                             style: {
                                                                 
                                                                 ...(attributes.itemMargin
@@ -1315,7 +1315,7 @@
                                                             className: 'swiper-slide',},
                                                         wp.element.createElement(
                                                         'div',
-                                                        { className: `fancy-post-item rs-blog__single align-${itemBoxAlignment3} ${hoverAnimation}`,
+                                                        { className: `fancy-post-item rs-blog__single align-${itemBoxAlignment3} ${hoverAnimation} ${postLinkType}`,
                                                           style: {
                                                               
                                                               ...(attributes.itemMargin
@@ -1698,7 +1698,7 @@
                                                             className: 'swiper-slide' },
                                                         wp.element.createElement(
                                                         'div',
-                                                        { className: `fancy-post-item rs-blog__item align-${itemBoxAlignment4} ${hoverAnimation}`,
+                                                        { className: `fancy-post-item rs-blog__item align-${itemBoxAlignment4} ${hoverAnimation} ${postLinkType}`,
                                                             style: {
                                                                 
                                                                 ...(attributes.itemMargin
@@ -2010,7 +2010,7 @@
                                                             className: 'swiper-slide' },
                                                         wp.element.createElement(
                                                         'div',
-                                                        { className: `fancy-post-item rs-blog-layout-18-item align-${itemBoxAlignment5} ${hoverAnimation}`,
+                                                        { className: `fancy-post-item rs-blog-layout-18-item align-${itemBoxAlignment5} ${hoverAnimation} ${postLinkType}`,
                                                             style: {
                                                                 
                                                                 ...(attributes.itemMargin
@@ -2297,7 +2297,7 @@
                                                             className: 'swiper-slide' },
                                                         wp.element.createElement(
                                                         'div',
-                                                        { className: `fancy-post-item rs-blog-layout-23-item align-${itemBoxAlignment6} ${hoverAnimation}`,
+                                                        { className: `fancy-post-item rs-blog-layout-23-item align-${itemBoxAlignment6} ${hoverAnimation} ${postLinkType}`,
                                                             style: {
                                                                 
                                                                 ...(attributes.itemMargin
@@ -2523,7 +2523,7 @@
                                                         },
                                                         wp.element.createElement(
                                                         'div',
-                                                        { className: `fancy-post-item rs-blog-layout-28-item align-${itemBoxAlignment7} ${hoverAnimation}`,
+                                                        { className: `fancy-post-item rs-blog-layout-28-item align-${itemBoxAlignment7} ${hoverAnimation} ${postLinkType}`,
                                                             style: {
                                                                 ...(attributes.itemMargin
                                                                   ? { margin: getSpacingValue(attributes.itemMargin) }
