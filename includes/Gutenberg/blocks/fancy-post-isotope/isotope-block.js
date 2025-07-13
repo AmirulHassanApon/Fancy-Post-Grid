@@ -3107,7 +3107,7 @@
                         
                         return wp.element.createElement('div', { 
                             key: post.id, 
-                                className: `fancy-post-item rs-blog-layout-15-item align-${itemBoxAlignment6} ${hoverAnimation}`,
+                                className: `fancy-post-item rs-blog-layout-15-item align-${itemBoxAlignment6} ${hoverAnimation} ${postLinkType}`,
                                 style: {
                                     ...(attributes.itemMargin
                                       ? { margin: getSpacingValue(attributes.itemMargin) }
