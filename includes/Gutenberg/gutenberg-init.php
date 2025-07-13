@@ -26767,7 +26767,7 @@ function fancy_post_isotope_render_callback($attributes) {
                     $output .= ' style="' . esc_attr($itemGapStyle) . '"';
                 }
                 $output .= '>';
-                $output .= '<div class="rs-blog-layout-15-item align-' . $itemBoxAlignment6 . ' ' . $hoverAnimation . '" style="';
+                $output .= '<div class="rs-blog-layout-15-item align-' . $itemBoxAlignment6 . ' ' . $hoverAnimation . ' ' . $postLinkType . '" style="';
                     // MARGIN    
                     if (isset($itemMargin['top']) || isset($itemMargin['right']) || isset($itemMargin['bottom']) || isset($itemMargin['left'])) {
                         $output .= 'margin: ' .
@@ -26991,7 +26991,8 @@ function fancy_post_isotope_render_callback($attributes) {
                         style="' . esc_attr(trim($style)) . '"'
                         . (!empty($hoverStyle) ? ' onmouseover="' . $hoverStyle . '"' : '')
                         . (!empty($mouseoutStyle) ? ' onmouseout="' . $mouseoutStyle . '"' : '') . '>'
-                        . esc_html($croppedTitle) . '</a>';    
+                        . esc_html($croppedTitle) . '</a>'; 
+
                     $output .= '</' . esc_attr($titleTag) . '>';
                 }
                 // Meta Data
