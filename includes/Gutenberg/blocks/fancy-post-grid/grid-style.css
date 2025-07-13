@@ -28,6 +28,8 @@ body {
     line-height: 1.6;
 }
 
+
+
 .nolink a{
     pointer-events: none;
 }
@@ -42,6 +44,20 @@ body {
     pointer-events: none;
 }
 
+.components-button:hover:not(:disabled,[aria-disabled=true]), .components-button[aria-expanded=true]{
+    color: #fff;
+}
+
+.components-button:hover:not(:disabled,[aria-disabled=true]) span svg, .components-button[aria-expanded=true] span svg{
+    fill: #ffffff;
+}
+
+.components-panel__body.is-opened button{
+    background: #005f8c;
+}
+.components-panel__body.is-opened button span svg{
+    fill: #ffffff !important;
+}
 
 
 .fancy-title-one-line {
