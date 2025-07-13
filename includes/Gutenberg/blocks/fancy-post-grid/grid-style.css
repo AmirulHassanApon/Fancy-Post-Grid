@@ -6482,7 +6482,7 @@ img {
     .rs-blog-layout-26-item{
         position: relative;
         overflow: hidden;
-        margin-top: 30px;
+        margin-top: 0px;
     }
     .rs-blog-layout-26-item .rs-thumb {
         overflow: hidden;
@@ -6671,6 +6671,19 @@ img {
         transition: all linear 0.3s;
         text-decoration: none;
         display: block;
+    }
+    .rs-blog-layout-26-item .rs-content .title.underline a{
+        display: inline;
+        transition: all 0.5s ease;
+        text-decoration: none;
+        background-image: linear-gradient(to bottom, #ffffff 0%, #ffffff 100%);
+        background-size: 0 2px;
+        background-repeat: no-repeat;
+        background-position: left 100%;
+        transition: all 0.7s !important;
+    }
+    .rs-blog-layout-26-item .rs-content .title.underline a:hover {
+        background-size: 100% 2px;
     }
     .rs-blog-layout-26-item .rs-content .btn-wrapper{
         order: 4;

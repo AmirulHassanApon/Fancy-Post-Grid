@@ -6538,7 +6538,7 @@ img {
     .rs-blog-layout-26-item{
         position: relative;
         overflow: hidden;
-        margin: 30px 0px 40px 0px;
+        margin: 30px 0px 0px 0px;
         padding: 0px 0px 0px 0px;
         border-style: none;
     }
@@ -6601,11 +6601,20 @@ img {
     .rs-blog-layout-26-item .rs-content .rs-meta.align-end{
         text-align: right;
     }
+    .rs-blog-layout-26 .rs-blog-layout-26-item .rs-content .rs-meta.align-start .meta-date{
+        justify-content: flex-start;
+    }
+    .rs-blog-layout-26 .rs-blog-layout-26-item .rs-content .rs-meta.align-center .meta-date{
+        justify-content: center;
+    }
+    .rs-blog-layout-26 .rs-blog-layout-26-item .rs-content .rs-meta.align-end .meta-date{
+        justify-content: flex-end;
+    }
     .rs-blog-layout-26-item .rs-content .rs-meta .meta-date {
         display: flex;
         align-items: center;
         gap: 15px;
-        margin-bottom: 15px;
+        margin-bottom: 0px;
     }
     .rs-blog-layout-26-item.align-start .rs-content .rs-meta .meta-date {
         justify-content: flex-start;
@@ -6729,9 +6738,25 @@ img {
         text-decoration: none;
         display: block;
     }
+    .rs-blog-layout-26-item .rs-content .title.underline{
+        margin-top: 15px;
+        margin-bottom: 15px;
+    }
+    .rs-blog-layout-26-item .rs-content .title.underline a{
+        display: inline;
+        transition: all 0.5s ease;
+        text-decoration: none;
+        background-image: linear-gradient(to bottom, #ffffff 0%, #ffffff 100%);
+        background-size: 0 2px;
+        background-repeat: no-repeat;
+        background-position: left 100%;
+        transition: all 0.7s !important;
+    }
+    .rs-blog-layout-26-item .rs-content .title.underline a:hover {
+        background-size: 100% 2px;
+    }
     .rs-blog-layout-26-item .rs-content .btn-wrapper{
         order: 4;
-
     }
     .rs-blog-layout-26-item .rs-content .btn-wrapper.align-start{
         text-align: left;
@@ -6767,7 +6792,8 @@ img {
         margin-top: 10px;
         display: inline-block;
         position: relative;
-        background: transparent !important;
+        background: transparent;
+        border: 0;
     }
     .rs-blog-layout-26-item:hover .rs-content .rs-btn.fpg-border{
         color: #ffffff;
@@ -6794,6 +6820,7 @@ img {
         color: #003b40;
         font-weight: 600;
         transition: all linear 0.3s;
+        border: 0;
     }
     .rs-blog-layout-26-item .rs-content .rs-btn i{
         display: inline-block;
