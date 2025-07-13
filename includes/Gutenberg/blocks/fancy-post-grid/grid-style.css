@@ -61,6 +61,10 @@ button.components-button:hover:not(:disabled,[aria-disabled=true]), button.compo
 .components-panel__body.is-opened>.components-panel__body-title{
     margin-bottom: 20px;
 }
+.fancy-post-tabs .components-tab-panel__tabs > button.active-tab{
+    background: #005f8c;
+    color: #ffffff;
+}
 /* Gutenberg Dashboard Css End */
 
 
