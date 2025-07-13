@@ -6514,6 +6514,7 @@ img {
         padding: 40px 35px 50px 35px;
         display: flex;
         flex-direction: column;
+        justify-content: center;
     }
     .rs-blog-layout-26-item.align-start .rs-content{
         text-align: left;
