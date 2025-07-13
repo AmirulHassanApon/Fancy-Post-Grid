@@ -3600,7 +3600,7 @@
                                             ...(buttonBorderType ? { borderStyle: buttonBorderType } : {}),
                                             ...(buttonFontWeight ? { fontWeight: buttonFontWeight } : {}),
                                             ...(attributes.buttonBorderWidth ? { borderWidth: getSpacingValue(attributes.buttonBorderWidth) } : {}),
-                                            ...(attributes.buttonPaddingNew ? { padding: getSpacingValue(attributes.buttonPaddingNew) }: { padding: '10px 17px 11px 15px' }),
+                                            ...(attributes.buttonPaddingNew ? { padding: getSpacingValue(attributes.buttonPaddingNew) }: { }),
                                             ...(attributes.buttonBorderRadius ? { borderRadius: getSpacingValue(attributes.buttonBorderRadius) } : {}),
                                             ...(buttonFontSize ? { fontSize: `${buttonFontSize}px` } : {}),
                                             ...(buttonStyle === 'fpg-flat' ? { textDecoration: 'none' } : { textDecoration: 'inherit' }),
