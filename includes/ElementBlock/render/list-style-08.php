@@ -26,6 +26,7 @@ $separator_map = [
 ];
 $separator_value = isset($separator_map[$settings['meta_separator']]) ? $separator_map[$settings['meta_separator']] : '';
 $hover_animation = $settings['hover_animation'];
+$link_type = $settings['link_type'];
 // Query the posts
 $query = new \WP_Query($args);
 
@@ -40,7 +41,7 @@ if ($query->have_posts()) {
                 $query->the_post(); 
             ?>
             <?php if ($query->current_post === 0) : ?>
-            <div class="rs-blog-layout-27-item <?php echo esc_attr($hover_animation); ?>">
+            <div class="rs-blog-layout-27-item <?php echo esc_attr($hover_animation); ?> <?php echo esc_attr($link_type); ?>">
                 <!-- Featured Image -->
                 <?php if ('yes' === $settings['show_post_thumbnail'] && has_post_thumbnail()) { ?>
                     <div class="rs-thumb">
@@ -196,7 +197,7 @@ if ($query->have_posts()) {
                 </div>                    
             </div>
             <?php elseif ($query->current_post === 1) : ?>
-            <div class="rs-blog-layout-27-item <?php echo esc_attr($hover_animation); ?>">
+            <div class="rs-blog-layout-27-item <?php echo esc_attr($hover_animation); ?> <?php echo esc_attr($link_type); ?>">
                 <div class="rs-content">
                     <!-- Post Meta: Date, Author, Category, Tags, Comments -->
                     <?php if ('yes' === $settings['show_meta_data']) { ?>

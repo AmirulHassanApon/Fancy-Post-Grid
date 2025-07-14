@@ -31,6 +31,9 @@ body {
 .nolink a{
     pointer-events: none;
 }
+.no_link a{
+    pointer-events: none;
+}
 
 .fancy-post-thumbnail .overlay {
     position: absolute;
@@ -1266,8 +1269,6 @@ img {
     color: #fff;
     transition: all linear 0.3s;
 }
-
-
 
 .rs-blog-layout-3 .swiper_wrap .swiper-pagination-3 {
     bottom: -98px !important;
@@ -2844,6 +2845,9 @@ img {
     padding: 10px;
     color: #ffffff;
     transition: all linear 0.3s;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .rs-blog-layout-8 .rs-blog__thumb .rs-category i {
@@ -2854,6 +2858,7 @@ img {
     align-items: center;
     justify-content: center;
     background: #FFFFFF1A;
+    margin-right: 10px;
 }
 
 .rs-blog-layout-8 .rs-blog__thumb .rs-category a {
@@ -8418,7 +8423,7 @@ img {
 
 .fpg-pagination ul.fpg-pagination-elementor li .page-numbers:hover,
 .fpg-pagination ul.page-numbers li .page-numbers:hover{
-    background: #007aff !important;
+    background: #007aff;
     border-color: #007aff;
     color: #ffffff;
 }

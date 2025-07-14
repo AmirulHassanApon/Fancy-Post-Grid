@@ -29,6 +29,7 @@ $separator_map = [
 ];
 $separator_value = isset($separator_map[$settings['meta_separator']]) ? $separator_map[$settings['meta_separator']] : '';
 $hover_animation = $settings['hover_animation'];
+$link_type = $settings['link_type'];
 // Query the posts
 $query = new \WP_Query($args);
 
@@ -64,7 +65,7 @@ if ($query->have_posts()) {
                         ?>
 
                         <div class="swiper-slide fancy-post-item col-xl-<?php echo esc_attr($settings['col_desktop_slider']); ?> col-lg-<?php echo esc_attr($settings['col_lg_slider']); ?> col-md-<?php echo esc_attr($settings['col_md_slider']); ?> col-sm-<?php echo esc_attr($settings['col_sm_slider']); ?> col-xs-<?php echo esc_attr($settings['col_xs_slider']); ?>">
-                            <div class="blog__single rs-blog-layout-28-item fancy-post-item mt-30 <?php echo esc_attr($hover_animation); ?>">
+                            <div class="blog__single rs-blog-layout-28-item fancy-post-item mt-30 <?php echo esc_attr($hover_animation); ?> <?php echo esc_attr($link_type); ?>">
                                 <!-- Featured Image -->
                                 <?php if ('yes' === $settings['show_post_thumbnail'] && has_post_thumbnail()) { ?>
                                     <div class="rs-thumb">

@@ -27,6 +27,7 @@ $separator_map = [
 ];
 $separator_value = isset($separator_map[$settings['meta_separator']]) ? $separator_map[$settings['meta_separator']] : '';
 $hover_animation = $settings['hover_animation'];
+$link_type = $settings['link_type'];
 // Query the posts
 $query = new \WP_Query($args);
 ?>
@@ -34,22 +35,12 @@ $query = new \WP_Query($args);
 <?php if ($query->have_posts()) : ?>
     <section class="rs-blog-layout-25 fpg-section-area">
     <div class="container">
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="rs-blog-25-topbar">
-                    <h3 class="title"><?php esc_html_e('Blog & article', 'fancy-post-grid'); ?></h3>
-                    <a href="<?php echo esc_url(get_post_type_archive_link('post')); ?>">
-                        <?php esc_html_e('See All Posts', 'fancy-post-grid'); ?> <i class="ri-arrow-right-up-line"></i>
-                    </a>
-                </div>
-            </div>
-        </div>
-
+        
         <div class="row fancy-post-grid">
             <div class="col-lg-12">
                 <?php while ($query->have_posts()) : $query->the_post(); ?> 
                 
-                <div class="rs-blog-layout-25-item <?php echo esc_attr($hover_animation); ?>">
+                <div class="rs-blog-layout-25-item <?php echo esc_attr($hover_animation); ?> <?php echo esc_attr($link_type); ?>">
                     <!-- Featured Image -->
                     <?php if ('yes' === $settings['show_post_thumbnail'] && has_post_thumbnail()) { ?>
                         <div class="rs-thumb">

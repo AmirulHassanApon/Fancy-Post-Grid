@@ -27,6 +27,7 @@ $separator_map = [
 ];
 $separator_value = isset($separator_map[$settings['meta_separator']]) ? $separator_map[$settings['meta_separator']] : '';
 $hover_animation = $settings['hover_animation'];
+$link_type = $settings['link_type'];
 // Query the posts
 $query = new \WP_Query($args);
 ?>
@@ -39,7 +40,7 @@ $query = new \WP_Query($args);
                 <?php if ($query->current_post === 0) : ?>
                     <!-- First post on the left (col-5) -->
                     <div class="col-lg-5">
-                        <div class="rs-blog__left-blog <?php echo esc_attr($hover_animation); ?>">
+                        <div class="rs-blog__left-blog <?php echo esc_attr($hover_animation); ?> <?php echo esc_attr($link_type); ?>">
                             <!-- Featured Image -->
                             <?php if ('yes' === $settings['show_post_thumbnail'] && has_post_thumbnail()) { ?>
                                 <div class="rs-blog__thumb">
@@ -81,9 +82,9 @@ $query = new \WP_Query($args);
                                                 // Output each meta item as a list item with the respective class.
                                                 foreach ($meta_items as $meta) {
                                                     if ($meta['condition']) {
-                                                        echo '<span>';
+                                                        
                                                         echo wp_kses_post($meta['icon']) . ' ' . wp_kses_post($meta['content']);
-                                                        echo '</span>';
+                                                        
                                                     }
                                                 }
                                                 ?>                       
@@ -153,7 +154,7 @@ $query = new \WP_Query($args);
                                         // Title Classes
                                         $title_classes = ['fancy-post-title'];
                                         if ('enable' === $settings['title_hover_underline']) {
-                                            $title_classes[] = 'hover-underline';
+                                            $title_classes[] = 'underline';
                                         }                            
 
                                         // Rendering the Title
@@ -249,7 +250,7 @@ $query = new \WP_Query($args);
                         <?php else : ?>
                             <!-- Second and Third posts on the right (col-7, inside a row) -->
                             
-                            <div class="rs-blog__left-blog right-blog <?php echo esc_attr($hover_animation); ?>">
+                            <div class="rs-blog__left-blog right-blog <?php echo esc_attr($hover_animation); ?> <?php echo esc_attr($link_type); ?>">
                                 <!-- Featured Image -->
                                 <?php if ('yes' === $settings['show_post_thumbnail'] && has_post_thumbnail()) { ?>
                                     <div class="rs-blog__thumb">
@@ -292,9 +293,9 @@ $query = new \WP_Query($args);
                                                     // Output each meta item as a list item with the respective class.
                                                     foreach ($meta_items as $meta) {
                                                         if ($meta['condition']) {
-                                                            echo '<span>';
+                                                            
                                                             echo wp_kses_post($meta['icon']) . ' ' . wp_kses_post($meta['content']);
-                                                            echo '</span>';
+                                                            
                                                         }
                                                     }
                                                     ?>                       
