@@ -31,6 +31,9 @@ body {
 .nolink a{
     pointer-events: none;
 }
+.no_link a{
+    pointer-events: none;
+}
 
 .fancy-post-thumbnail .overlay {
     position: absolute;
@@ -1267,8 +1270,6 @@ img {
     transition: all linear 0.3s;
 }
 
-
-
 .rs-blog-layout-3 .swiper_wrap .swiper-pagination-3 {
     bottom: -98px !important;
     width: auto;
@@ -1802,10 +1803,10 @@ img {
     text-decoration: none;
     padding-bottom: 0px;
     display: block;
-    font-size: 20px;
+    font-size: 24px;
     line-height: 30px;
-    font-weight: 700;
-    margin: 0;
+    font-weight: 600;
+    margin: 10px 0px 0px;
 }
 
 .rs-blog-layout-5 .rs-blog__single .rs-content .title.underline a{
@@ -2254,6 +2255,7 @@ img {
     position: relative;
     background: transparent !important;
     border-style: none;
+    color: #454545;
 }
 .rs-blog-layout-6 .rs-blog__single .rs-content .rs-link.fpg-border:hover{
     color: #007aff;
@@ -2843,6 +2845,9 @@ img {
     padding: 10px;
     color: #ffffff;
     transition: all linear 0.3s;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .rs-blog-layout-8 .rs-blog__thumb .rs-category i {
@@ -2853,6 +2858,7 @@ img {
     align-items: center;
     justify-content: center;
     background: #FFFFFF1A;
+    margin-right: 10px;
 }
 
 .rs-blog-layout-8 .rs-blog__thumb .rs-category a {
@@ -7425,7 +7431,7 @@ img {
         transform: scale(1)
     }
     .rs-blog-layout-28-item .rs-thumb .rs-meta ul {
-        text-align: left;
+        text-align: right;
         margin: 0;
         padding: 0;
         list-style-type: none;
@@ -7791,7 +7797,6 @@ img {
         background-position: left 100%;
         transition: all 0.7s !important;
     }
-
 
     .rs-blog-layout-30-item .rs-content .title.underline a:hover {
         background-size: 100% 2px;
@@ -8418,7 +8423,7 @@ img {
 
 .fpg-pagination ul.fpg-pagination-elementor li .page-numbers:hover,
 .fpg-pagination ul.page-numbers li .page-numbers:hover{
-    background: #007aff !important;
+    background: #007aff;
     border-color: #007aff;
     color: #ffffff;
 }

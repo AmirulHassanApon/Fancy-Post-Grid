@@ -29,6 +29,7 @@ $separator_map = [
 ];
 $separator_value = isset($separator_map[$settings['meta_separator']]) ? $separator_map[$settings['meta_separator']] : '';
 $hover_animation = $settings['hover_animation'];
+$link_type = $settings['link_type'];
 // Query the posts
 $query = new \WP_Query($args);
 
@@ -62,7 +63,7 @@ if ($query->have_posts()) {
                             ?>
 
                             <div class="swiper-slide fancy-post-item col-xl-<?php echo esc_attr($settings['col_desktop_slider']); ?> col-lg-<?php echo esc_attr($settings['col_lg_slider']); ?> col-md-<?php echo esc_attr($settings['col_md_slider']); ?> col-sm-<?php echo esc_attr($settings['col_sm_slider']); ?> col-xs-<?php echo esc_attr($settings['col_xs_slider']); ?>">
-                                <div class="blog-item <?php echo esc_attr($hover_animation); ?>">
+                                <div class="blog-item <?php echo esc_attr($hover_animation); ?> <?php echo esc_attr($link_type); ?>">
                                    <?php if ('yes' === $settings['show_post_thumbnail'] && has_post_thumbnail()) { 
                                         $layout = $settings['fancy_post_slider_layout'] ?? 'sliderstyle01';
                                         $thumbnail_size = $settings['thumbnail_size'] ?? '';

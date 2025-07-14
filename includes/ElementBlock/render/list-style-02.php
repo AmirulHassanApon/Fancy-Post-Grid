@@ -27,6 +27,7 @@ $separator_map = [
 ];
 $separator_value = isset($separator_map[$settings['meta_separator']]) ? $separator_map[$settings['meta_separator']] : '';
 $hover_animation = $settings['hover_animation'];
+$link_type = $settings['link_type'];
 // Query the posts
 $query = new \WP_Query($args);
 ?>
@@ -38,7 +39,7 @@ $query = new \WP_Query($args);
             <?php while ($query->have_posts()) : $query->the_post(); ?>
                 <?php if ($query->current_post === 0) : ?>
                     <!-- First post on the left (col-5) -->
-                    <div class="col-lg-6 md-mb-50 <?php echo esc_attr($hover_animation); ?>">
+                    <div class="col-lg-6 md-mb-50 <?php echo esc_attr($hover_animation); ?> <?php echo esc_attr($link_type); ?>">
                         <div class="blog-item">
                             <!-- Featured Image -->
                             <?php if ('yes' === $settings['show_post_thumbnail'] && has_post_thumbnail()) { ?>
@@ -246,7 +247,7 @@ $query = new \WP_Query($args);
                         <?php else : ?>
                             <!-- Second and Third posts on the right (col-7, inside a row) -->
                             <div class="blog-horizontal">
-                                <div class="blog-meta mb-30 <?php echo esc_attr($hover_animation); ?>">
+                                <div class="blog-meta mb-30 <?php echo esc_attr($hover_animation); ?> <?php echo esc_attr($link_type); ?>">
                                     <div class="blog-item-wrap">
                                         <!-- Featured Image -->
                                         <?php if ('yes' === $settings['show_post_thumbnail'] && has_post_thumbnail()) { ?>

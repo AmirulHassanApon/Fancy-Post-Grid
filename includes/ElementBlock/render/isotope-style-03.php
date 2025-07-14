@@ -25,6 +25,8 @@ $separator_map = [
 ];
 $separator_value = isset($separator_map[$settings['meta_separator']]) ? $separator_map[$settings['meta_separator']] : '';
 $hover_animation = $settings['hover_animation'];
+$link_type = $settings['link_type'];
+
 $query = new \WP_Query($args);
 
 $fancy_post_filter_text = $settings['filter_all_text'] ?? 'All';
@@ -62,7 +64,7 @@ if ($query->have_posts()) {
 
             ?>
             <div class="col-xl-<?php echo esc_attr($settings['col_desktop']); ?> col-lg-<?php echo esc_attr($settings['col_lg']); ?> col-md-<?php echo esc_attr($settings['col_md']); ?> col-sm-<?php echo esc_attr($settings['col_sm']); ?> col-xs-<?php echo esc_attr($settings['col_xs']); ?>  rs-grid-item <?php echo esc_attr($category_classes); ?>" >
-                <div class="rs-blog-layout-28-item <?php echo esc_attr($hover_animation); ?>">
+                <div class="rs-blog-layout-28-item <?php echo esc_attr($hover_animation); ?> <?php echo esc_attr($link_type); ?>">
                     <!-- Featured Image -->
                     <?php if ('yes' === $settings['show_post_thumbnail'] && has_post_thumbnail()) { ?>
                         <div class="rs-thumb">
@@ -93,19 +95,21 @@ if ($query->have_posts()) {
                                         <?php
                                         // Array of meta items with their respective conditions, content, and class names.
                                         $meta_items = array(
-                                            
                                             'post_date' => array(
                                                 'condition' => 'yes' === $settings['show_post_date'],
                                                 'class'     => 'meta-date',
                                                 'icon'      => ('yes' === $settings['show_meta_data_icon'] && 'yes' === $settings['show_post_date_icon']) ? '<i class="fa fa-calendar"></i>' : '',
                                                 'content'   => esc_html(get_the_date('M j, Y')),
                                             ),
-                                            'post_categories' => array(
-                                                'condition' => 'yes' === $settings['show_post_categories'],
-                                                'class'     => 'meta-categories',
-                                                'icon'      => ('yes' === $settings['show_meta_data_icon'] && 'yes' === $settings['show_post_categories_icon']) ? '<i class="fa fa-folder"></i>' : '',
-                                                'content'   => get_the_category_list(', '),
+                                            'post_author' => array(
+                                                'condition' => 'yes' === $settings['show_post_author'],
+                                                'class'     => 'meta-author',
+                                                'icon'      => ('yes' === $settings['show_meta_data_icon'] && 'yes' === $settings['author_icon_visibility']) ? ('icon' === $settings['author_image_icon'] ? '<i class="fa fa-user"></i>' : '<img src="' . esc_url(get_avatar_url(get_the_author_meta('ID'))) . '" alt="' . esc_attr__('Author', 'fancy-post-grid') . '" class="author-avatar" />')
+                                                                : '',
+                                                'content'   => esc_html($settings['author_prefix']) . ' ' . esc_html(get_the_author()),
                                             ),
+                                            
+                                            
                                         );
 
                                         $meta_items_output = []; // Array to store individual meta item outputs.

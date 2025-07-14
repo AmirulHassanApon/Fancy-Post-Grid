@@ -26,6 +26,7 @@ $separator_map = [
 ];
 $separator_value = isset($separator_map[$settings['meta_separator']]) ? $separator_map[$settings['meta_separator']] : '';
 $hover_animation = $settings['hover_animation'];
+$link_type = $settings['link_type'];
 // Query the posts
 $query = new \WP_Query($args);
 
@@ -41,7 +42,7 @@ if ($query->have_posts()) {
     ?>
         <div class="col-xl-<?php echo esc_attr($settings['col_desktop']); ?> col-lg-<?php echo esc_attr($settings['col_lg']); ?> col-md-<?php echo esc_attr($settings['col_md']); ?> col-sm-<?php echo esc_attr($settings['col_sm']); ?> col-xs-<?php echo esc_attr($settings['col_xs']); ?> " >
             
-            <div class="rs-blog-layout-15-item rs-blog__single fancy-post-item mt-30 <?php echo esc_attr($hover_animation); ?>">
+            <div class="rs-blog-layout-15-item rs-blog__single fancy-post-item mt-30 <?php echo esc_attr($hover_animation); ?> <?php echo esc_attr($link_type); ?>">
                 
                 <div class="rs-content">
                     <!-- Post Meta: Date, Author, Category, Tags, Comments -->
@@ -174,36 +175,34 @@ if ($query->have_posts()) {
                             <?php the_post_thumbnail($thumbnail_size); ?>
                         <?php } ?>
                         <?php if ('yes' === $settings['show_post_categories']) { ?>
-                        <div class="rs-category">
-                            <?php
-                                // Array of meta items with their respective conditions, content, and class names.
-                                $meta_items = array( 
-                                    
-                                    'post_categories' => array(
-                                        'condition' => 'yes' === $settings['show_post_categories'],
-                                        'class'     => 'meta-categories',
-                                        'icon'      => ('yes' === $settings['show_meta_data_icon'] && 'yes' === $settings['show_post_categories_icon']) ? '<i class="fa fa-folder"></i>' : '',
-                                        'content'   => get_the_category_list(', '),
-                                    ),
-                                );
+                            <div class="rs-category meta-data-list">
+                                <?php
+                                if ('yes' === $settings['show_post_categories']) {
+                                    $categories = get_the_category();
+                                    if (!empty($categories)) {
+                                        $output = [];
 
-                                // Output each meta item as a list item with the respective class.
-                                foreach ($meta_items as $meta) {
-                                    if ($meta['condition']) {
-                                        echo '<span>';
-                                        echo wp_kses_post($meta['icon']) . ' ' . wp_kses_post($meta['content']);
-                                        echo '</span>';
+                                        foreach ($categories as $category) {
+                                            $link = esc_url(get_category_link($category->term_id));
+                                            $name = esc_html($category->name);
+
+                                            // If icon display is enabled
+                                            $icon_html = ('yes' === $settings['show_meta_data_icon'] && 'yes' === $settings['show_post_categories_icon']) ? '<i class="fa fa-folder"></i> ' : '';
+
+                                            $output[] = '<a href="' . $link . '">' . $icon_html . $name . '</a>';
+                                        }
+
+                                        echo implode(', ', $output);
                                     }
                                 }
-                                ?>                       
-                        </div>
+                                ?>
+                            </div>
                         <?php } ?>
                     </div>
                 <?php } ?>                 
             </div>                    
         </div>
         <?php
-
     }
     echo '</div>';
     // Pagination

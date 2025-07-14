@@ -25,6 +25,7 @@ $separator_map = [
     'pipe'        => ' | ',
 ];
 $separator_value = isset($separator_map[$settings['meta_separator']]) ? $separator_map[$settings['meta_separator']] : '';
+$link_type = $settings['link_type'];
 // Query the posts
 $query = new \WP_Query($args);
 
@@ -39,7 +40,7 @@ if ($query->have_posts()) {
     ?>
         <div class="col-xl-<?php echo esc_attr($settings['col_desktop']); ?> col-lg-<?php echo esc_attr($settings['col_lg']); ?> col-md-<?php echo esc_attr($settings['col_md']); ?> col-sm-<?php echo esc_attr($settings['col_sm']); ?> col-xs-<?php echo esc_attr($settings['col_xs']); ?> " >
             
-            <div class="pre-blog-item style_12 pre-blog-meta-style2 default rs-blog__single fancy-post-item mt-30">
+            <div class="pre-blog-item style_12 pre-blog-meta-style2 default rs-blog__single fancy-post-item mt-30 <?php echo esc_attr($link_type); ?>">
                 <div class="blog-inner-wrap pre-thum-default pre-meta-blocks top">
                     <!-- Featured Image -->
                     <?php if ('yes' === $settings['show_post_thumbnail'] && has_post_thumbnail()) { ?>
