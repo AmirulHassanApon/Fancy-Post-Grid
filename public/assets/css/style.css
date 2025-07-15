@@ -3224,7 +3224,7 @@ img {
 }
 
 .rs-blog-layout-1.rs-blog-layout-9 .blog-horizontal .blog-meta .blog-item-wrap .blog-content .blog-meta .meta-date {
-    font-size: 15px;
+/*    font-size: 15px;*/
 }
 
 .rs-blog-layout-1.rs-blog-layout-9 .blog-horizontal .blog-meta .blog-item-wrap .blog-content .blog-meta .meta-date i {
@@ -4446,7 +4446,7 @@ img {
         color: #267ece;
         border-color: #ffffff;
     }
-    .rs-blog-layout-15 .fpg-pagination ul.page-numbers li .page-numbers.current{
+     .fpg-pagination ul.page-numbers li .page-numbers.current{
         background: #ffffff;
         color: #267ece;
         border-color: #ffffff;
