@@ -1063,7 +1063,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                     'label'      => esc_html__( 'Meta', 'fancy-post-grid' ),
                     'type'       => \Elementor\Controls_Manager::SLIDER,
                     'selectors'  => [
-                        '{{WRAPPER}} .fpg-section-area .meta-data-list' => 'order: {{SIZE}};',
+                        '{{WRAPPER}} .fpg-section-area .meta-data-list,{{WRAPPER}} .rs-blog-layout-4 .rs-blog__item .rs-content .rs-category' => 'order: {{SIZE}};',
                     ],
                 ]
             );
@@ -1099,7 +1099,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                     'label'      => esc_html__( 'Button', 'fancy-post-grid' ),
                     'type'       => \Elementor\Controls_Manager::SLIDER,
                     'selectors'  => [
-                        '{{WRAPPER}} .fpg-section-area .btn-wrapper' => 'order: {{SIZE}};',
+                        '{{WRAPPER}} .fpg-section-area .btn-wrapper,{{WRAPPER}} .rs-blog-layout-4 .rs-blog__item .rs-content .rs-blog-footer' => 'order: {{SIZE}};',
                     ],
                 ]
             );
@@ -1516,7 +1516,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                     'type'       => \Elementor\Controls_Manager::DIMENSIONS,
                     'size_units' => array( 'px', 'em', '%' ),
                     'selectors'  => array(
-                        '{{WRAPPER}} .fpg-section-area .rs-blog__single, {{WRAPPER}} .rs-blog-layout-1 .blog-item, {{WRAPPER}} .rs-blog-layout-30-item' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                        '{{WRAPPER}} .fpg-section-area .rs-blog__single, {{WRAPPER}} .rs-blog-layout-1 .blog-item, {{WRAPPER}} .rs-blog-layout-30-item, {{WRAPPER}} .rs-blog-layout-28-item,{{WRAPPER}} .rs-blog-layout-4 .rs-blog__item' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                     ),
                 ]
             );
@@ -1528,7 +1528,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                     'type'       => \Elementor\Controls_Manager::DIMENSIONS,
                     'size_units' => array( 'px', 'em', '%' ),
                     'selectors'  => array(
-                        '{{WRAPPER}} .fpg-section-area .rs-blog__single, {{WRAPPER}} .rs-blog-layout-1 .blog-item, {{WRAPPER}} .rs-blog-layout-30-item' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                        '{{WRAPPER}} .fpg-section-area .rs-blog__single, {{WRAPPER}} .rs-blog-layout-1 .blog-item, {{WRAPPER}} .rs-blog-layout-30-item, {{WRAPPER}} .rs-blog-layout-28-item,{{WRAPPER}} .rs-blog-layout-4 .rs-blog__item' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                     ),
                 ]
             );
@@ -1541,7 +1541,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                     'type'       => \Elementor\Controls_Manager::DIMENSIONS,
                     'size_units' => array( 'px', 'em', '%' ),
                     'selectors'  => array(
-                        '{{WRAPPER}} .fpg-section-area .rs-blog__single, {{WRAPPER}} .rs-blog-layout-1 .blog-item, {{WRAPPER}} .rs-blog-layout-30-item' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                        '{{WRAPPER}} .fpg-section-area .rs-blog__single, {{WRAPPER}} .rs-blog-layout-1 .blog-item, {{WRAPPER}} .rs-blog-layout-30-item, {{WRAPPER}} .rs-blog-layout-28-item,{{WRAPPER}} .rs-blog-layout-4 .rs-blog__item' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                     ),
                 ]
             );
@@ -1586,7 +1586,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                 [
                     'name' => 'card_background',
                     'types' => [ 'classic', 'gradient' ],
-                    'selector' => '{{WRAPPER}} .fpg-section-area .rs-blog__single,{{WRAPPER}} .rs-blog-layout-26 .rs-blog-layout-26-item .rs-content, {{WRAPPER}} .rs-blog-layout-1 .blog-item, {{WRAPPER}} .rs-blog-layout-30-item',
+                    'selector' => '{{WRAPPER}} .fpg-section-area .rs-blog__single,{{WRAPPER}} .rs-blog-layout-26 .rs-blog-layout-26-item .rs-content, {{WRAPPER}} .rs-blog-layout-1 .blog-item, {{WRAPPER}} .rs-blog-layout-30-item, {{WRAPPER}} .rs-blog-layout-28-item,{{WRAPPER}} .rs-blog-layout-4 .rs-blog__item',
                     '{{WRAPPER}} .pre-blog-item.style_12:after' => 'border-color: {{VALUE}};',
                 ]
             );
@@ -1594,7 +1594,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                 \Elementor\Group_Control_Border::get_type(),
                 [
                     'name' => 'item_border_color',
-                    'selector' => '{{WRAPPER}} .fpg-section-area .rs-blog__single, {{WRAPPER}} .rs-blog-layout-1 .blog-item, {{WRAPPER}} .rs-blog-layout-30-item',
+                    'selector' => '{{WRAPPER}} .fpg-section-area .rs-blog__single, {{WRAPPER}} .rs-blog-layout-1 .blog-item, {{WRAPPER}} .rs-blog-layout-30-item,{{WRAPPER}} .rs-blog-layout-4 .rs-blog__item',
                 ]
             );
 
@@ -1603,7 +1603,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                 [
                     'name'      => 'box_shadow',
                     'label'     => esc_html__( 'Box Shadow', 'fancy-post-grid' ),
-                    'selector'  => '{{WRAPPER}} .fpg-section-area .rs-blog__single, {{WRAPPER}} .rs-blog-layout-1 .blog-item, {{WRAPPER}} .rs-blog-layout-30-item',
+                    'selector'  => '{{WRAPPER}} .fpg-section-area .rs-blog__single, {{WRAPPER}} .rs-blog-layout-1 .blog-item, {{WRAPPER}} .rs-blog-layout-30-item,{{WRAPPER}} .rs-blog-layout-4 .rs-blog__item',
                     'render_type' => 'template'
                 ]
             );
@@ -1623,7 +1623,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                 [
                     'name' => 'card_background_hover',
                     'types' => [ 'classic', 'gradient' ],
-                    'selector' => '{{WRAPPER}} .fpg-section-area .rs-blog__single:hover,{{WRAPPER}} .rs-blog-layout-26 .rs-blog-layout-26-item:hover .rs-content, {{WRAPPER}} .rs-blog-layout-1 .blog-item:hover, {{WRAPPER}} .rs-blog-layout-30-item:hover',
+                    'selector' => '{{WRAPPER}} .fpg-section-area .rs-blog__single:hover,{{WRAPPER}} .rs-blog-layout-26 .rs-blog-layout-26-item:hover .rs-content, {{WRAPPER}} .rs-blog-layout-1 .blog-item:hover, {{WRAPPER}} .rs-blog-layout-30-item:hover, {{WRAPPER}} .rs-blog-layout-28-item:hover,{{WRAPPER}} .rs-blog-layout-4 .rs-blog__item:hover',
                 ]
             );
             // Background Color
@@ -1633,7 +1633,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                     'label'     => esc_html__( 'Border Color', 'fancy-post-grid' ),
                     'type'      => \Elementor\Controls_Manager::COLOR,
                     'selectors' => [
-                        '{{WRAPPER}} .fpg-section-area .rs-blog__single:hover, {{WRAPPER}} .rs-blog-layout-1 .blog-item:hover,{{WRAPPER}} .rs-blog-layout-30-item:hover' => 'border-color: {{VALUE}};',
+                        '{{WRAPPER}} .fpg-section-area .rs-blog__single:hover, {{WRAPPER}} .rs-blog-layout-1 .blog-item:hover,{{WRAPPER}} .rs-blog-layout-30-item:hover,{{WRAPPER}} .rs-blog-layout-28-item:hover,{{WRAPPER}} .rs-blog-layout-4 .rs-blog__item:hover' => 'border-color: {{VALUE}};',
                     ],
                 ]
             );
@@ -1642,7 +1642,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                 [
                     'name'      => 'item_box_shadow_hover',
                     'label'     => esc_html__( 'Box Shadow', 'fancy-post-grid' ),
-                    'selector'  => '{{WRAPPER}} .fpg-section-area .rs-blog__single:hover, {{WRAPPER}} .rs-blog-layout-1 .blog-item:hover,{{WRAPPER}} .rs-blog-layout-30-item:hover',
+                    'selector'  => '{{WRAPPER}} .fpg-section-area .rs-blog__single:hover, {{WRAPPER}} .rs-blog-layout-1 .blog-item:hover,{{WRAPPER}} .rs-blog-layout-30-item:hover,{{WRAPPER}} .rs-blog-layout-28-item:hover,{{WRAPPER}} .rs-blog-layout-4 .rs-blog__item:hover',
                     'render_type' => 'template'
                 ]
             );
@@ -1668,7 +1668,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                 [
                     'name' => 'card_background_content',
                     'types' => [ 'classic', 'gradient' ],
-                    'selector' => '{{WRAPPER}} .fpg-section-area .rs-blog__single .rs-content,{{WRAPPER}} .rs-blog-layout-1 .blog-item .blog-content,{{WRAPPER}} .rs-blog-layout-30-item .rs-content',
+                    'selector' => '{{WRAPPER}} .fpg-section-area .rs-blog__single .rs-content,{{WRAPPER}} .rs-blog-layout-1 .blog-item .blog-content,{{WRAPPER}} .rs-blog-layout-30-item .rs-content,{{WRAPPER}} .rs-content,{{WRAPPER}} .rs-blog__single .content,{{WRAPPER}} .rs-blog-layout-4 .rs-blog__item .rs-content',
                 ]
             );
 
@@ -1680,7 +1680,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                     'type'       => \Elementor\Controls_Manager::DIMENSIONS,
                     'size_units' => array( 'px', 'em', '%' ),
                     'selectors'  => array(
-                        '{{WRAPPER}} .fpg-section-area .rs-blog__single .rs-content,{{WRAPPER}} .rs-blog-layout-1 .blog-item .blog-content,{{WRAPPER}} .rs-blog-layout-30-item .rs-content' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                        '{{WRAPPER}} .fpg-section-area .rs-blog__single .rs-content,{{WRAPPER}} .rs-blog-layout-1 .blog-item .blog-content,{{WRAPPER}} .rs-blog-layout-30-item .rs-content,{{WRAPPER}} .rs-content,{{WRAPPER}} .rs-blog__single .content,{{WRAPPER}} .rs-blog-layout-4 .rs-blog__item .rs-content' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                     ),
                     'render_type' => 'template'
                 ]
@@ -1693,7 +1693,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                     'type'       => \Elementor\Controls_Manager::DIMENSIONS,
                     'size_units' => array( 'px', '%' ),
                     'selectors'  => array(
-                        '{{WRAPPER}} .fpg-section-area .rs-blog__single .rs-content,{{WRAPPER}} .rs-blog-layout-1 .blog-item .blog-content,{{WRAPPER}} .rs-blog-layout-30-item .rs-content' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                        '{{WRAPPER}} .fpg-section-area .rs-blog__single .rs-content,{{WRAPPER}} .rs-blog-layout-1 .blog-item .blog-content,{{WRAPPER}} .rs-blog-layout-30-item .rs-content,{{WRAPPER}} .rs-content,{{WRAPPER}} .rs-blog__single .content,{{WRAPPER}} .rs-blog-layout-4 .rs-blog__item .rs-content' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                     ),
                     'render_type' => 'template'
                 ]
@@ -1702,7 +1702,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                 \Elementor\Group_Control_Border::get_type(),
                 [
                     'name' => 'content_border_color',
-                    'selector' => '{{WRAPPER}} .fpg-section-area .rs-blog__single .rs-content,{{WRAPPER}} .rs-blog-layout-1 .blog-item .blog-content,{{WRAPPER}} .rs-blog-layout-30-item .rs-content',
+                    'selector' => '{{WRAPPER}} .fpg-section-area .rs-blog__single .rs-content,{{WRAPPER}} .rs-blog-layout-1 .blog-item .blog-content,{{WRAPPER}} .rs-blog-layout-30-item .rs-content,{{WRAPPER}} .rs-content,{{WRAPPER}} .rs-blog__single .content,{{WRAPPER}} .rs-blog-layout-4 .rs-blog__item .rs-content',
                 ]
             );
 
@@ -1967,7 +1967,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                     'label'     => esc_html__( 'Background Color', 'fancy-post-grid' ),
                     'type'      => \Elementor\Controls_Manager::COLOR,
                     'selectors' => array(
-                        '{{WRAPPER}} .fancy-post-title' => 'background-color: {{VALUE}};',
+                        '{{WRAPPER}} .fancy-post-title,{{WRAPPER}} .rs-blog-layout-3 .rs-blog__single .content .title a' => 'background-color: {{VALUE}};',
                     ),
                 ]
             );
@@ -2002,7 +2002,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                     'label'     => esc_html__( 'Hover Background Color', 'fancy-post-grid' ),
                     'type'      => \Elementor\Controls_Manager::COLOR,
                     'selectors' => array(
-                        '{{WRAPPER}} .fancy-post-title:hover' => 'background-color: {{VALUE}};',
+                        '{{WRAPPER}} .fancy-post-title:hover,{{WRAPPER}} .rs-blog-layout-3 .rs-blog__single .content .title a:hover' => 'background-color: {{VALUE}};',
                     ),
                     'render_type' => 'template'
                 ]
@@ -2059,8 +2059,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                 ]
             );
 
-            // Excerpt Alignment Control
-            
+            // Excerpt Alignment Control  
             $this->add_responsive_control(
                 'excerpt_alignment',
                 [
@@ -2178,7 +2177,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                 [
                     'name'     => 'meta_typography',
                     'label'    => esc_html__( 'Typography', 'fancy-post-grid' ),
-                    'selector' => '{{WRAPPER}} .meta-data-list li,{{WRAPPER}} .pre-blog-item.style_12 .blog-inner-wrap .pre-blog-content ul li, {{WRAPPER}} .meta-date span, {{WRAPPER}} .rs-blog-layout-14-item .rs-content .rs-meta div, {{WRAPPER}} .rs-blog-layout-15-item .rs-content .rs-meta, {{WRAPPER}} .rs-blog-layout-16-item .rs-content .rs-meta, {{WRAPPER}} .rs-blog-layout-26-item .rs-content .rs-meta .rs-meta-all, {{WRAPPER}} .rs-blog-layout-26-item .rs-content .rs-meta .rs-meta-all .meta-categories a, {{WRAPPER}} .rs-blog-layout-1 .blog-item .blog-content .blog-meta li a, .rs-blog-layout-1 .blog-item .blog-content .blog-meta li, .rs-blog-layout-1 .blog-item-wrap .blog-content .blog-meta li a,{{WRAPPER}} .rs-blog-layout-26-item .rs-content .rs-meta .meta-category a,{{WRAPPER}} .rs-blog-layout-13-item .rs-thumb .pre-blog-meta .pre-date, {{WRAPPER}} .rs-blog-layout-13-item .rs-thumb .pre-blog-meta .pre-month, {{WRAPPER}} .rs-blog-layout-8 .rs-blog__thumb .rs-category a, {{WRAPPER}} .rs-blog-layout-8 .rs-blog__thumb .rs-category i, {{WRAPPER}} .rs-blog-layout-1.rs-blog-layout-9 .blog-horizontal .blog-meta .blog-item-wrap .blog-content .blog-meta .meta-date,{{WRAPPER}} .rs-blog-layout-1.rs-blog-layout-9 .blog-horizontal .blog-meta .blog-item-wrap .blog-content .blog-meta .admin,{{WRAPPER}} .rs-blog-layout-15-item .rs-thumb .rs-category,{{WRAPPER}} .pre-blog-item.style_12 .blog-inner-wrap .pre-image-wrap .pre-blog-meta .pre-month,{{WRAPPER}} .pre-blog-item.style_12 .blog-inner-wrap .pre-image-wrap .pre-blog-meta .pre-date,{{WRAPPER}} .rs-blog-layout-14-item .rs-content .rs-meta a,{{WRAPPER}} .rs-blog-layout-14-item .rs-content .rs-meta .meta-date',
+                    'selector' => '{{WRAPPER}} .meta-data-list li,{{WRAPPER}} .pre-blog-item.style_12 .blog-inner-wrap .pre-blog-content ul li, {{WRAPPER}} .meta-date span, {{WRAPPER}} .rs-blog-layout-14-item .rs-content .rs-meta div, {{WRAPPER}} .rs-blog-layout-15-item .rs-content .rs-meta, {{WRAPPER}} .rs-blog-layout-16-item .rs-content .rs-meta, {{WRAPPER}} .rs-blog-layout-26-item .rs-content .rs-meta .rs-meta-all, {{WRAPPER}} .rs-blog-layout-26-item .rs-content .rs-meta .rs-meta-all .meta-categories a, {{WRAPPER}} .rs-blog-layout-1 .blog-item .blog-content .blog-meta li a, .rs-blog-layout-1 .blog-item .blog-content .blog-meta li, .rs-blog-layout-1 .blog-item-wrap .blog-content .blog-meta li a,{{WRAPPER}} .rs-blog-layout-26-item .rs-content .rs-meta .meta-category a,{{WRAPPER}} .rs-blog-layout-13-item .rs-thumb .pre-blog-meta .pre-date, {{WRAPPER}} .rs-blog-layout-13-item .rs-thumb .pre-blog-meta .pre-month, {{WRAPPER}} .rs-blog-layout-8 .rs-blog__thumb .rs-category a, {{WRAPPER}} .rs-blog-layout-8 .rs-blog__thumb .rs-category i, {{WRAPPER}} .rs-blog-layout-1.rs-blog-layout-9 .blog-horizontal .blog-meta .blog-item-wrap .blog-content .blog-meta .meta-date,{{WRAPPER}} .rs-blog-layout-1.rs-blog-layout-9 .blog-horizontal .blog-meta .blog-item-wrap .blog-content .blog-meta .admin,{{WRAPPER}} .rs-blog-layout-15-item .rs-thumb .rs-category,{{WRAPPER}} .pre-blog-item.style_12 .blog-inner-wrap .pre-image-wrap .pre-blog-meta .pre-month,{{WRAPPER}} .pre-blog-item.style_12 .blog-inner-wrap .pre-image-wrap .pre-blog-meta .pre-date,{{WRAPPER}} .rs-blog-layout-14-item .rs-content .rs-meta a,{{WRAPPER}} .rs-blog-layout-14-item .rs-content .rs-meta .meta-date,{{WRAPPER}} .blog-item .blog-content .blog-meta li a,{{WRAPPER}} .rs-blog-layout-3 .rs-blog__single .content .rs-blog-category a,{{WRAPPER}} .rs-blog-layout-3 .rs-blog__single .content ul li,{{WRAPPER}} .rs-blog-layout-3 .rs-blog__single .content .rs-blog-author .user a span,{{WRAPPER}} .rs-blog-layout-4 .rs-blog__item .rs-content .rs-category a',
 
                 ]
             );
@@ -2213,7 +2212,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                         ),
                     ),
                     'selectors' => array(
-                        '{{WRAPPER}} .meta-data-list' => 'justify-content: {{VALUE}};',
+                        '{{WRAPPER}} .meta-data-list,{{WRAPPER}} .rs-blog-layout-4 .rs-blog__item .rs-content .rs-category' => 'justify-content: {{VALUE}};',
                     ),
                 ]
             );
@@ -2248,7 +2247,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                     'label'     => esc_html__( 'Meta Color', 'fancy-post-grid' ),
                     'type'      => \Elementor\Controls_Manager::COLOR,
                     'selectors' => array(
-                        '{{WRAPPER}} .meta-data-list li,{{WRAPPER}} .meta-data-list li a,{{WRAPPER}} .meta-data-list,{{WRAPPER}} .rs-blog-layout-26-item .rs-content .rs-meta .meta-date span,{{WRAPPER}} .rs-blog-layout-26-item .rs-content .rs-meta .meta-category a,{{WRAPPER}} .rs-blog-layout-13-item .rs-thumb .pre-blog-meta .pre-date, {{WRAPPER}} .rs-blog-layout-13-item .rs-thumb .pre-blog-meta .pre-month,{{WRAPPER}} .rs-blog-layout-8 .rs-blog__thumb .rs-category a,{{WRAPPER}} .rs-blog-layout-1.rs-blog-layout-9 .blog-horizontal .blog-meta .blog-item-wrap .blog-content .blog-meta .admin,{{WRAPPER}} .rs-blog-layout-1.rs-blog-layout-9 .blog-horizontal .blog-meta .blog-item-wrap .blog-content .blog-meta .meta-date,{{WRAPPER}} .rs-blog-layout-14-item .rs-content .rs-meta a,{{WRAPPER}} .rs-blog-layout-15-item .rs-thumb .rs-category a,{{WRAPPER}} .pre-blog-item.style_12 .blog-inner-wrap .pre-image-wrap .pre-blog-meta .pre-month,{{WRAPPER}} .pre-blog-item.style_12 .blog-inner-wrap .pre-image-wrap .pre-blog-meta .pre-date,{{WRAPPER}} .rs-blog-layout-14-item .rs-content .rs-meta .meta-date' => 'color: {{VALUE}};',
+                        '{{WRAPPER}} .meta-data-list li,{{WRAPPER}} .meta-data-list li a,{{WRAPPER}} .meta-data-list,{{WRAPPER}} .rs-blog-layout-26-item .rs-content .rs-meta .meta-date span,{{WRAPPER}} .rs-blog-layout-26-item .rs-content .rs-meta .meta-category a,{{WRAPPER}} .rs-blog-layout-13-item .rs-thumb .pre-blog-meta .pre-date, {{WRAPPER}} .rs-blog-layout-13-item .rs-thumb .pre-blog-meta .pre-month,{{WRAPPER}} .rs-blog-layout-8 .rs-blog__thumb .rs-category a,{{WRAPPER}} .rs-blog-layout-1.rs-blog-layout-9 .blog-horizontal .blog-meta .blog-item-wrap .blog-content .blog-meta .admin,{{WRAPPER}} .rs-blog-layout-1.rs-blog-layout-9 .blog-horizontal .blog-meta .blog-item-wrap .blog-content .blog-meta .meta-date,{{WRAPPER}} .rs-blog-layout-14-item .rs-content .rs-meta a,{{WRAPPER}} .rs-blog-layout-15-item .rs-thumb .rs-category a,{{WRAPPER}} .pre-blog-item.style_12 .blog-inner-wrap .pre-image-wrap .pre-blog-meta .pre-month,{{WRAPPER}} .pre-blog-item.style_12 .blog-inner-wrap .pre-image-wrap .pre-blog-meta .pre-date,{{WRAPPER}} .rs-blog-layout-14-item .rs-content .rs-meta .meta-date,{{WRAPPER}} .rs-blog-layout-3 .rs-blog__single .content .rs-blog-category a,{{WRAPPER}} .rs-blog-layout-3 .rs-blog__single .content ul li,{{WRAPPER}} .rs-blog-layout-3 .rs-blog__single .content .rs-blog-author .user a span,{{WRAPPER}} .rs-blog-layout-4 .rs-blog__item .rs-content .rs-category a' => 'color: {{VALUE}};',
                     ),
                 ]
             );
@@ -2258,7 +2257,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                     'label'     => esc_html__( 'Meta Background Color', 'fancy-post-grid' ),
                     'type'      => \Elementor\Controls_Manager::COLOR,
                     'selectors' => array(
-                        '{{WRAPPER}} .rs-blog-layout-13-item .rs-thumb .pre-blog-meta,{{WRAPPER}} .rs-blog-layout-8 .rs-blog__thumb .rs-category,{{WRAPPER}} .rs-blog-layout-28-item .rs-thumb .rs-meta,{{WRAPPER}} .rs-blog-layout-30-item .rs-thumb .meta-date span,{{WRAPPER}} .pre-blog-item.style_12 .blog-inner-wrap .pre-image-wrap .pre-blog-meta,{{WRAPPER}} .rs-blog-layout-14-item .rs-content .rs-meta a,{{WRAPPER}} .rs-blog-layout-15-item .rs-thumb .rs-category' => 'background: {{VALUE}};',
+                        '{{WRAPPER}} .rs-blog-layout-13-item .rs-thumb .pre-blog-meta,{{WRAPPER}} .rs-blog-layout-8 .rs-blog__thumb .rs-category,{{WRAPPER}} .rs-blog-layout-28-item .rs-thumb .rs-meta,{{WRAPPER}} .rs-blog-layout-30-item .rs-thumb .meta-date span,{{WRAPPER}} .pre-blog-item.style_12 .blog-inner-wrap .pre-image-wrap .pre-blog-meta,{{WRAPPER}} .rs-blog-layout-14-item .rs-content .rs-meta a,{{WRAPPER}} .rs-blog-layout-15-item .rs-thumb .rs-category,{{WRAPPER}} .rs-blog-layout-3 .rs-blog__single .content .rs-blog-category a,{{WRAPPER}} .rs-blog-layout-4 .rs-blog__item .rs-content .rs-category a' => 'background: {{VALUE}};',
                         '{{WRAPPER}} .rs-blog-layout-13-item .rs-thumb .pre-blog-meta::after,{{WRAPPER}} .pre-blog-item.style_12 .blog-inner-wrap .pre-image-wrap .pre-blog-meta::after' => 'border-color: {{VALUE}};',
                     ),
                 ]
@@ -2280,7 +2279,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                     'label'     => esc_html__( 'Icon Color', 'fancy-post-grid' ),
                     'type'      => \Elementor\Controls_Manager::COLOR,
                     'selectors' => array(
-                        '{{WRAPPER}} .meta-data-list i,{{WRAPPER}} .rs-blog-layout-8 .rs-blog__thumb .rs-category i,{{WRAPPER}} .rs-blog-layout-1.rs-blog-layout-9 .blog-horizontal .blog-meta .blog-item-wrap .blog-content .blog-meta .admin i,{{WRAPPER}} .rs-blog-layout-1.rs-blog-layout-9 .blog-horizontal .blog-meta .blog-item-wrap .blog-content .blog-meta .meta-date i' => 'color: {{VALUE}};',
+                        '{{WRAPPER}} .meta-data-list i,{{WRAPPER}} .rs-blog-layout-8 .rs-blog__thumb .rs-category i,{{WRAPPER}} .rs-blog-layout-1.rs-blog-layout-9 .blog-horizontal .blog-meta .blog-item-wrap .blog-content .blog-meta .admin i,{{WRAPPER}} .rs-blog-layout-1.rs-blog-layout-9 .blog-horizontal .blog-meta .blog-item-wrap .blog-content .blog-meta .meta-date i,{{WRAPPER}} .rs-blog-layout-3 .rs-blog__single .content .rs-blog-category i,{{WRAPPER}} .rs-blog-layout-3 .rs-blog__single .content ul li i' => 'color: {{VALUE}};',
                     ),
                 ]
             );
@@ -2301,7 +2300,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                     'label'     => esc_html__( 'Link Hover Color', 'fancy-post-grid' ),
                     'type'      => \Elementor\Controls_Manager::COLOR,
                     'selectors' => array(
-                        '{{WRAPPER}} .meta-data-list a:hover' => 'color: {{VALUE}};',
+                        '{{WRAPPER}} .meta-data-list a:hover,{{WRAPPER}} .blog-item .blog-content .blog-meta li a:hover,{{WRAPPER}} .rs-blog-layout-3 .rs-blog__single .content .rs-blog-category a:hover' => 'color: {{VALUE}};',
                     ),
                 ]
             );
@@ -2328,7 +2327,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                 [
                     'name'     => 'readmore_typography',
                     'label'    => esc_html__( 'Typography', 'fancy-post-grid' ),
-                    'selector' => '{{WRAPPER}} .fpg-section-area a.read-more, {{WRAPPER}} .pre-blog-item.style_12 .blog-inner-wrap .pre-blog-content .blog-btn-part .blog-btn, {{WRAPPER}} .rs-blog-layout-1 .blog-item .blog-content .blog-btn .read-more',
+                    'selector' => '{{WRAPPER}} .fpg-section-area a.read-more, {{WRAPPER}} .pre-blog-item.style_12 .blog-inner-wrap .pre-blog-content .blog-btn-part .blog-btn, {{WRAPPER}} .blog-item .blog-content .blog-btn .read-more, {{WRAPPER}} .rs-blog__single .content .rs-blog-author .rs-link a, {{WRAPPER}} .rs-blog-layout-4 .rs-blog__item .rs-content .rs-blog-footer .btn-link',
                 ]
             );
 
@@ -2340,7 +2339,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                     'type'      => \Elementor\Controls_Manager::DIMENSIONS,
                     'size_units' => array( 'px', 'em', '%' ),
                     'selectors' => array(
-                        '{{WRAPPER}} .fpg-section-area a.read-more, {{WRAPPER}} .pre-blog-item.style_12 .blog-inner-wrap .pre-blog-content .blog-btn-part .blog-btn, {{WRAPPER}} .rs-blog-layout-1 .blog-item .blog-content .blog-btn .read-more' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                        '{{WRAPPER}} .fpg-section-area a.read-more, {{WRAPPER}} .pre-blog-item.style_12 .blog-inner-wrap .pre-blog-content .blog-btn-part .blog-btn, {{WRAPPER}} .blog-item .blog-content .blog-btn .read-more, {{WRAPPER}} .rs-blog__single .content .rs-blog-author .rs-link a, {{WRAPPER}} .rs-blog-layout-4 .rs-blog__item .rs-content .rs-blog-footer .btn-link' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                     ),
                 ]
             );
@@ -2353,7 +2352,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                     'type'      => \Elementor\Controls_Manager::DIMENSIONS,
                     'size_units' => array( 'px', 'em', '%' ),
                     'selectors' => array(
-                        '{{WRAPPER}} .fpg-section-area a.read-more, {{WRAPPER}} .pre-blog-item.style_12 .blog-inner-wrap .pre-blog-content .blog-btn-part .blog-btn, {{WRAPPER}} .rs-blog-layout-1 .blog-item .blog-content .blog-btn .read-more' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                        '{{WRAPPER}} .fpg-section-area a.read-more, {{WRAPPER}} .pre-blog-item.style_12 .blog-inner-wrap .pre-blog-content .blog-btn-part .blog-btn, {{WRAPPER}} .blog-item .blog-content .blog-btn .read-more, {{WRAPPER}} .rs-blog__single .content .rs-blog-author .rs-link a, {{WRAPPER}} .rs-blog-layout-4 .rs-blog__item .rs-content .rs-blog-footer .btn-link' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                     ),
                 ]
             );
@@ -2379,7 +2378,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                         ),
                     ),
                     'selectors'    => array(
-                        '{{WRAPPER}} .fpg-section-area .btn-wrapper' => 'text-align: {{VALUE}};',
+                        '{{WRAPPER}} .fpg-section-area .btn-wrapper,{{WRAPPER}} .rs-blog-layout-18-item .rs-content .blgo-btn-box' => 'text-align: {{VALUE}};',
                     ),
                 ]
             );
@@ -2402,7 +2401,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                     'type'      => \Elementor\Controls_Manager::COLOR,
                     
                     'selectors' => array(
-                        '{{WRAPPER}} .fpg-section-area a.read-more,{{WRAPPER}} .pre-blog-item.style_12 .blog-inner-wrap .pre-blog-content .blog-btn-part .blog-btn, {{WRAPPER}} .rs-blog-layout-1 .blog-item .blog-content .blog-btn .read-more' => 'color: {{VALUE}};',
+                        '{{WRAPPER}} .fpg-section-area a.read-more,{{WRAPPER}} .pre-blog-item.style_12 .blog-inner-wrap .pre-blog-content .blog-btn-part .blog-btn, {{WRAPPER}}  .blog-item .blog-content .blog-btn .read-more, {{WRAPPER}} .rs-blog__single .content .rs-blog-author .rs-link a, {{WRAPPER}} .rs-blog-layout-4 .rs-blog__item .rs-content .rs-blog-footer .btn-link' => 'color: {{VALUE}};',
                     ),
                 ]
             );
@@ -2413,7 +2412,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                     'label'     => esc_html__( 'Background Color', 'fancy-post-grid' ),
                     'type'      => \Elementor\Controls_Manager::COLOR,
                     'selectors' => array(
-                        '{{WRAPPER}} .fpg-section-area a.read-more,{{WRAPPER}} .pre-blog-item.style_12 .blog-inner-wrap .pre-blog-content .blog-btn-part .blog-btn, {{WRAPPER}} .rs-blog-layout-1 .blog-item .blog-content .blog-btn .read-more' => 'background-color: {{VALUE}};',
+                        '{{WRAPPER}} .fpg-section-area a.read-more,{{WRAPPER}} .pre-blog-item.style_12 .blog-inner-wrap .pre-blog-content .blog-btn-part .blog-btn, {{WRAPPER}}  .blog-item .blog-content .blog-btn .read-more, {{WRAPPER}} .rs-blog__single .content .rs-blog-author .rs-link a, {{WRAPPER}} .rs-blog-layout-4 .rs-blog__item .rs-content .rs-blog-footer .btn-link, {{WRAPPER}} .rs-blog-layout-4 .rs-blog__item .rs-content .rs-blog-footer .btn-link, {{WRAPPER}} .rs-blog-layout-18-item .rs-content .rs-meta' => 'background: {{VALUE}};',
                     ),
                 ]
             );
@@ -2423,7 +2422,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                 [
                     'name'     => 'readmore_normal_border',
                     'label'    => esc_html__( 'Border', 'fancy-post-grid' ),
-                    'selector' => '{{WRAPPER}} .fpg-section-area a.read-more, {{WRAPPER}} .pre-blog-item.style_12 .blog-inner-wrap .pre-blog-content .blog-btn-part .blog-btn, {{WRAPPER}} .rs-blog-layout-1 .blog-item .blog-content .blog-btn .read-more',
+                    'selector' => '{{WRAPPER}} .fpg-section-area a.read-more, {{WRAPPER}} .pre-blog-item.style_12 .blog-inner-wrap .pre-blog-content .blog-btn-part .blog-btn, {{WRAPPER}} .blog-item .blog-content .blog-btn .read-more, {{WRAPPER}} .rs-blog__single .content .rs-blog-author .rs-link a, {{WRAPPER}} .rs-blog-layout-4 .rs-blog__item .rs-content .rs-blog-footer .btn-link',
                 ]
             );
 
@@ -2434,7 +2433,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                     'type'       => \Elementor\Controls_Manager::DIMENSIONS,
                     'size_units' => array( 'px', '%' ),
                     'selectors'  => array(
-                        '{{WRAPPER}} .fpg-section-area a.read-more, {{WRAPPER}} .pre-blog-item.style_12 .blog-inner-wrap .pre-blog-content .blog-btn-part .blog-btn, {{WRAPPER}} .rs-blog-layout-1 .blog-item .blog-content .blog-btn .read-more' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                        '{{WRAPPER}} .fpg-section-area a.read-more, {{WRAPPER}} .pre-blog-item.style_12 .blog-inner-wrap .pre-blog-content .blog-btn-part .blog-btn, {{WRAPPER}} .blog-item .blog-content .blog-btn .read-more, {{WRAPPER}} .rs-blog__single .content .rs-blog-author .rs-link a, {{WRAPPER}} .rs-blog-layout-4 .rs-blog__item .rs-content .rs-blog-footer .btn-link' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                     ),
                 ]
             );
@@ -2455,7 +2454,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                     'label'     => esc_html__( 'Text Color on Hover', 'fancy-post-grid' ),
                     'type'      => \Elementor\Controls_Manager::COLOR,
                     'selectors' => array(
-                        '{{WRAPPER}} .fpg-section-area a.read-more:hover, {{WRAPPER}} .pre-blog-item.style_12 .blog-inner-wrap .pre-blog-content .blog-btn-part .blog-btn:hover, {{WRAPPER}} .rs-blog-layout-1 .blog-item .blog-content .blog-btn .read-more:hover' => 'color: {{VALUE}};',
+                        '{{WRAPPER}} .fpg-section-area a.read-more:hover, {{WRAPPER}} .pre-blog-item.style_12 .blog-inner-wrap .pre-blog-content .blog-btn-part .blog-btn:hover, {{WRAPPER}} .blog-item .blog-content .blog-btn .read-more:hover, {{WRAPPER}} .rs-blog__single .content .rs-blog-author .rs-link a:hover, {{WRAPPER}} .rs-blog-layout-4 .rs-blog__item .rs-content .rs-blog-footer .btn-link:hover' => 'color: {{VALUE}};',
                         '{{WRAPPER}} .fpg-border::before' => 'background: {{VALUE}};',
                     ),
                 ]
@@ -2467,7 +2466,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                     'label'     => esc_html__( 'Background Color on Hover', 'fancy-post-grid' ),
                     'type'      => \Elementor\Controls_Manager::COLOR,
                     'selectors' => array(
-                        '{{WRAPPER}} .fpg-section-area a.read-more:hover,{{WRAPPER}} .pre-blog-item.style_12 .blog-inner-wrap .pre-blog-content .blog-btn-part .blog-btn:hover, {{WRAPPER}} .rs-blog-layout-1 .blog-item .blog-content .blog-btn .read-more:hover' => 'background-color: {{VALUE}};',
+                        '{{WRAPPER}} .fpg-section-area a.read-more:hover,{{WRAPPER}} .pre-blog-item.style_12 .blog-inner-wrap .pre-blog-content .blog-btn-part .blog-btn:hover, {{WRAPPER}} .blog-item .blog-content .blog-btn .read-more:hover, {{WRAPPER}} .rs-blog__single .content .rs-blog-author .rs-link a:hover, {{WRAPPER}} .rs-blog-layout-4 .rs-blog__item .rs-content .rs-blog-footer .btn-link:hover' => 'background-color: {{VALUE}};',
                     ),
                 ]
             );
@@ -2477,7 +2476,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                 [
                     'name'     => 'readmore_hover_border',
                     'label'    => esc_html__( 'Border', 'fancy-post-grid' ),
-                    'selector' => '{{WRAPPER}} .fpg-section-area a.read-more:hover,{{WRAPPER}} .pre-blog-item.style_12 .blog-inner-wrap .pre-blog-content .blog-btn-part .blog-btn:hover, {{WRAPPER}} .rs-blog-layout-1 .blog-item .blog-content .blog-btn .read-more:hover',
+                    'selector' => '{{WRAPPER}} .fpg-section-area a.read-more:hover,{{WRAPPER}} .pre-blog-item.style_12 .blog-inner-wrap .pre-blog-content .blog-btn-part .blog-btn:hover, {{WRAPPER}} .blog-item .blog-content .blog-btn .read-more:hover, {{WRAPPER}} .rs-blog__single .content .rs-blog-author .rs-link a:hover, {{WRAPPER}} .rs-blog-layout-4 .rs-blog__item .rs-content .rs-blog-footer .btn-link:hover',
                 ]
             );
 
@@ -2488,7 +2487,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                     'type'       => \Elementor\Controls_Manager::DIMENSIONS,
                     'size_units' => array( 'px', '%' ),
                     'selectors'  => array(
-                        '{{WRAPPER}} .fpg-section-area a.read-more:hover,{{WRAPPER}} .pre-blog-item.style_12 .blog-inner-wrap .pre-blog-content .blog-btn-part .blog-btn:hover, {{WRAPPER}} .rs-blog-layout-1 .blog-item .blog-content .blog-btn .read-more:hover' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                        '{{WRAPPER}} .fpg-section-area a.read-more:hover,{{WRAPPER}} .pre-blog-item.style_12 .blog-inner-wrap .pre-blog-content .blog-btn-part .blog-btn:hover, {{WRAPPER}} .blog-item .blog-content .blog-btn .read-more:hover, {{WRAPPER}} .rs-blog__single .content .rs-blog-author .rs-link a:hover, {{WRAPPER}} .rs-blog-layout-4 .rs-blog__item .rs-content .rs-blog-footer .btn-link:hover' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                     ),
                 ]
             );
