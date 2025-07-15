@@ -36,7 +36,7 @@ $query = new \WP_Query($args);
 // Check if there are posts
 if ($query->have_posts()) {
     ?>
-    <div class="rs-blog-layout-3 grey fpg-section-area">   
+    <div class="rs-blog-layout-3 fpg-section-area">   
         <div class="container">
         <div class="row fancy-post-grid">
             <div class="col-lg-12">
@@ -64,7 +64,7 @@ if ($query->have_posts()) {
 
                         <div class="swiper-slide fancy-post-item col-xl-<?php echo esc_attr($settings['col_desktop_slider']); ?> col-lg-<?php echo esc_attr($settings['col_lg_slider']); ?> col-md-<?php echo esc_attr($settings['col_md_slider']); ?> col-sm-<?php echo esc_attr($settings['col_sm_slider']); ?> col-xs-<?php echo esc_attr($settings['col_xs_slider']); ?>">
                             <div class="rs-blog__single <?php echo esc_attr($hover_animation); ?> <?php echo esc_attr($link_type); ?>">
-                               <?php if ('yes' === $settings['show_post_thumbnail'] && has_post_thumbnail()) { 
+                                <?php if ('yes' === $settings['show_post_thumbnail'] && has_post_thumbnail()) { 
                                         $layout = $settings['fancy_post_slider_layout'] ?? 'sliderstyle03';
                                         $thumbnail_size = $settings['thumbnail_size'] ?? '';
 
@@ -76,7 +76,7 @@ if ($query->have_posts()) {
                                                     break;
                                             }
                                         }
-                                    ?>
+                                ?>
                                     <div class="thumb shape-show">
                                         <?php if ('thumbnail_on' === $settings['thumbnail_link']) { ?>
                                             <a href="<?php the_permalink(); ?>" target="<?php echo ('new_window' === $settings['link_target']) ? '_blank' : '_self'; ?>">
@@ -85,12 +85,7 @@ if ($query->have_posts()) {
                                         <?php } else { ?>
                                             <?php the_post_thumbnail($thumbnail_size); ?>
                                         <?php } ?>
-                                        <div class="rs-contact-icon">
-                                            <a href="<?php the_permalink(); ?>"><svg width="14" height="16" viewBox="0 0 14 14" xmlns="http://www.w3.org/2000/svg">
-                                                    <path d="M3.70371 13.1768L7.90054e-06 14L0.823208 10.2963C0.28108 9.28226 -0.00172329 8.14985 7.90054e-06 7C7.90054e-06 3.1339 3.13391 0 7 0C10.8661 0 14 3.1339 14 7C14 10.8661 10.8661 14 7 14C5.85015 14.0017 4.71774 13.7189 3.70371 13.1768Z" fill="white"></path>
-                                                </svg>
-                                            </a>
-                                        </div>
+                                        
                                     </div>
                                 <?php } ?>
                 
@@ -104,8 +99,6 @@ if ($query->have_posts()) {
                                                 
                                                 'post_categories' => array(
                                                     'condition' => 'yes' === $settings['show_post_categories'],
-                                                    'class'     => 'meta-categories',
-                                                    'icon'      => ('yes' === $settings['show_meta_data_icon'] && 'yes' === $settings['show_post_categories_icon']) ? '<i class="fa fa-folder"></i>' : '',
                                                     'content'   => get_the_category_list(', '),
                                                 ),
                                             );
@@ -113,9 +106,9 @@ if ($query->have_posts()) {
                                             // Output each meta item as a list item with the respective class.
                                             foreach ($meta_items as $meta) {
                                                 if ($meta['condition']) {
-                                                    echo '<li class="' . esc_attr($meta['class']) . '">';
-                                                    echo wp_kses_post($meta['icon']) . ' ' . wp_kses_post($meta['content']);
-                                                    echo '</li>';
+
+                                                    echo wp_kses_post($meta['content']);
+                                                    
                                                 }
                                             }
                                             ?>
@@ -123,7 +116,6 @@ if ($query->have_posts()) {
 
                                     <?php } ?>
 
-                                    
                                     <!-- Post Title -->
                                     <?php if (!empty($settings['show_post_title']) && 'yes' === $settings['show_post_title']) {
                                             // Title Tag
@@ -145,7 +137,7 @@ if ($query->have_posts()) {
                                             // Rendering the Title
                                             ?>
                                             <<?php echo esc_attr($title_tag); ?>
-                                                class="title blog-title <?php echo esc_attr(implode(' ', $title_classes)); ?>"
+                                                class="title <?php echo esc_attr(implode(' ', $title_classes)); ?>"
                                                 >
                                                 <?php if ('link_details' === $settings['link_type']) { ?>
                                                     <a href="<?php the_permalink(); ?>"
@@ -189,47 +181,33 @@ if ($query->have_posts()) {
                                             // Join the meta items with the selected separator.
                                             echo wp_kses_post(implode(wp_kses_post($separator), $meta_items_output));
                                             ?>
-                                            <li>
-                                                <div class="rs-icon">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="4" height="4" viewBox="0 0 6 6" fill="none">
-                                                        <path d="M3 0L5.59808 1.5V4.5L3 6L0.401924 4.5V1.5L3 0Z" fill="#513DE8"></path>
-                                                        <defs>
-                                                            <linearGradient x1="-3.93273e-08" y1="0.803572" x2="6.33755" y2="1.30989" gradientUnits="userSpaceOnUse">
-                                                                <stop stop-color="#513DE8" offset="1"></stop>
-                                                                <stop offset="1" stop-color="#8366E3"></stop>
-                                                            </linearGradient>
-                                                        </defs>
-                                                    </svg>
-                                                </div>    
-                                                <?php esc_html_e('8 min read', 'fancy-post-grid'); ?>
-                                            </li>
+                                            
                                         </ul>
 
                                     <?php } ?>
                                     <!-- Post Excerpt -->
                                     <?php if ( 'yes' === $settings['show_post_excerpt'] ) { ?>
-                                        <div class="fpg-excerpt ">
-                                            <p class="fancy-post-excerpt desc" >
-                                                <?php
-                                                $excerpt_type = $settings['excerpt_type'];
-                                                $excerpt_length = $settings['excerpt_length'];
-                                                $expansion_indicator = $settings['expansion_indicator'];
-
-                                                if ( 'full_content' === $excerpt_type ) {
-                                                    $content = get_the_content();
-                                                    echo esc_html( $content );
-                                                } elseif ( 'character' === $excerpt_type ) {
-                                                    $excerpt = get_the_excerpt();
-                                                    $trimmed_excerpt = mb_substr( $excerpt, 0, $excerpt_length ) . esc_html( $expansion_indicator );
-                                                    echo esc_html( $trimmed_excerpt );
-                                                } else { // Word-based excerpt
-                                                    $excerpt = wp_trim_words( get_the_excerpt(), $excerpt_length, esc_html( $expansion_indicator ) );
-                                                    echo esc_html( $excerpt );
-                                                }
-                                                ?>
-                                            </p>
-                                        </div>
                                         
+                                        <p class="fancy-post-excerpt desc" >
+                                            <?php
+                                            $excerpt_type = $settings['excerpt_type'];
+                                            $excerpt_length = $settings['excerpt_length'];
+                                            $expansion_indicator = $settings['expansion_indicator'];
+
+                                            if ( 'full_content' === $excerpt_type ) {
+                                                $content = get_the_content();
+                                                echo esc_html( $content );
+                                            } elseif ( 'character' === $excerpt_type ) {
+                                                $excerpt = get_the_excerpt();
+                                                $trimmed_excerpt = mb_substr( $excerpt, 0, $excerpt_length ) . esc_html( $expansion_indicator );
+                                                echo esc_html( $trimmed_excerpt );
+                                            } else { // Word-based excerpt
+                                                $excerpt = wp_trim_words( get_the_excerpt(), $excerpt_length, esc_html( $expansion_indicator ) );
+                                                echo esc_html( $excerpt );
+                                            }
+                                            ?>
+                                        </p>
+
                                     <?php } ?>
                                     <div class="rs-blog-author">
                                         <div class="user">                 
