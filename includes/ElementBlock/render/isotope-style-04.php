@@ -33,7 +33,7 @@ $fancy_post_filter_text = $settings['filter_all_text'] ?? 'All';
 
 if ($query->have_posts()) { 
     ?>
-    <section class="rs-blog-layout-30 rs-blog-layout-10 fpg-section-area">
+    <section class="rs-blog-layout-30 rs-blog-layout-10 fpg-section-area ">
         
         <div class="row">
             <div class="col-lg-12">
@@ -64,7 +64,7 @@ if ($query->have_posts()) {
 
             ?>
             <div class="col-xl-<?php echo esc_attr($settings['col_desktop']); ?> col-lg-<?php echo esc_attr($settings['col_lg']); ?> col-md-<?php echo esc_attr($settings['col_md']); ?> col-sm-<?php echo esc_attr($settings['col_sm']); ?> col-xs-<?php echo esc_attr($settings['col_xs']); ?>  rs-grid-item <?php echo esc_attr($category_classes); ?>" >
-                <div class="rs-blog-layout-30-item <?php echo esc_attr($hover_animation); ?> <?php echo esc_attr($link_type); ?>">
+                <div class="rs-blog-layout-30-item  align-center <?php echo esc_attr($hover_animation); ?> <?php echo esc_attr($link_type); ?>">
                     <!-- Featured Image -->
                     <?php if ('yes' === $settings['show_post_thumbnail'] && has_post_thumbnail()) { ?>
                         <div class="rs-thumb">

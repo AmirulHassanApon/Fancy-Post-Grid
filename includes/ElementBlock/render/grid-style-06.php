@@ -84,48 +84,42 @@ if ($query->have_posts()) {
                         <div class="rs-meta">
                             <ul class="meta-data-list">
                                 <?php
+                                // Array of meta items with their respective conditions, content, and class names.
                                 $meta_items = array(
                                     'post_author' => array(
-                                        'condition' => 'yes' === $settings['show_post_author'],
-                                        'class'     => 'meta-author',
-                                        'icon'      => ('yes' === $settings['show_meta_data_icon'] && 'yes' === $settings['author_icon_visibility']) 
-                                                ? ('icon' === $settings['author_image_icon'] 
-                                                ? '<img src="' . esc_url(get_avatar_url(get_the_author_meta('ID'))) . '" alt="' . esc_attr__('Author', 'fancy-post-grid') . '" class="author-avatar" />' 
-                                                : '<i class="fa fa-user"></i>')
-                                                : '',
-                                        'content'   => esc_html($settings['author_prefix']) . ' ' . esc_html(get_the_author()),
-                                    ),
+                                            'condition' => 'yes' === $settings['show_post_author'],
+                                            'class'     => 'meta-author',
+                                            'icon'      => ('yes' === $settings['show_meta_data_icon'] && 'yes' === $settings['author_icon_visibility']) 
+                                                    ? ('icon' === $settings['author_image_icon'] 
+                                                    ? '<img src="' . esc_url(get_avatar_url(get_the_author_meta('ID'))) . '" alt="' . esc_attr__('Author', 'fancy-post-grid') . '" class="author-avatar" />' 
+                                                    : '<i class="fa fa-user"></i>')
+                                                    : '',
+                                            'content'   => esc_html($settings['author_prefix']) . ' ' . esc_html(get_the_author()),
+                                        ),
 
-                                    'post_date' => array(
-                                        'condition' => 'yes' === $settings['show_post_date'],
-                                        'class'     => 'meta-date',
-                                        'icon'      => '', // No icon for date
-                                        'content'   => esc_html__('News in', 'fancy-post-grid') . ' ' . esc_html(get_the_date('Y')),
-                                    ),
+                                        'post_date' => array(
+                                            'condition' => 'yes' === $settings['show_post_date'],
+                                            'class'     => 'meta-date',
+                                            'icon'      => '', // No icon for date
+                                            'content'   => esc_html__('News in', 'fancy-post-grid') . ' ' . esc_html(get_the_date('Y')),
+                                        ),
+                                    
                                 );
-
+                                $meta_items_output = []; // Array to store individual meta item outputs.
                                 foreach ($meta_items as $meta) {
                                     if ($meta['condition']) {
-                                        echo '<li class="' . esc_attr($meta['class']) . '">';
-                                        
-                                        if (!empty($meta['icon'])) {
-                                            echo wp_kses(
-                                                $meta['icon'],
-                                                array(
-                                                    'i' => array('class' => array()),
-                                                    'img' => array(
-                                                        'src' => array(),
-                                                        'alt' => array(),
-                                                        'class' => array(),
-                                                    )
-                                                )
-                                            );
-                                        }
-
-                                        echo ' ' . wp_kses_post($meta['content']);
-                                        echo '</li>';
+                                        // Build the meta item output with its icon and content.
+                                        $meta_items_output[] = '<li class="' . esc_attr($meta['class']) . '">' 
+                                            . $meta['icon'] . ' ' . $meta['content'] 
+                                            . '</li>';
                                     }
                                 }
+                                // Only wrap the separator in a <span> if it's not empty.
+                                $separator = $separator_value !== '' ? '<span>' . esc_html($separator_value) . '</span>' : '';
+
+                                // Join the meta items with the selected separator.
+                                
+                                echo wp_kses_post(implode(wp_kses_post($separator), $meta_items_output));
                                 ?>
                             </ul>
                         </div>

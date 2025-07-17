@@ -3767,7 +3767,10 @@ img {
     top: 0;
     bottom: 0;
     overflow: hidden;
-    border: 1.5px solid #007aff;
+/*    border: 1.5px solid #007aff;*/
+    border-color: #007aff;
+    border-width: 1.5px;
+    border-style: solid;
     transition: 0.5s;
     z-index: 0;
     border-radius: 5px;
@@ -4544,6 +4547,9 @@ img {
         gap: 8px 0;
         text-align: left;
     }
+    .rs-blog-layout-16-item .rs-content .rs-meta span{
+        margin-left: 10px;
+    }
     .rs-blog-layout-16-item .rs-content .rs-meta .meta-author span,.rs-blog-layout-16-item .rs-content .rs-meta .meta-author span a{
         font-weight: 600;
         font-size: 14px;
@@ -5014,6 +5020,7 @@ img {
         padding: 16px 40px;
         border-radius: 5px;
         background: #3a15fb;
+        text-decoration: none;
     }
     .rs-blog-layout-18-item .rs-content a.rs-btn.fpg-filled:hover {
         color: #ffffff;
@@ -5032,6 +5039,7 @@ img {
         display: inline-block;
         position: relative;
         background: transparent !important;
+        text-decoration: none;
     }
     .rs-blog-layout-18-item .rs-content a.rs-btn.fpg-border:hover{
         color: #3a15fb;
@@ -5061,11 +5069,11 @@ img {
         display: block;
         text-decoration: none;
         border-style: none;
+        text-decoration: none;
     }
     .rs-blog-layout-18-item .rs-content a.rs-btn.fpg-flat:hover{
         color: #3a15fb;
     }
-
 
     .rs-blog-layout-18 .swiper_wrap .swiper-button-next{
         right: -50px;
@@ -7120,6 +7128,9 @@ img {
         font-size: 15px;
         color: #505050;
         text-decoration: none;
+    }
+    .rs-blog-layout-27-list-item .rs-content .rs-meta-category a:hover{
+        color: #505030;
     }
     .rs-blog-layout-27-list-item .rs-content .title{
         font-size: 20px;

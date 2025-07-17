@@ -180,34 +180,26 @@ if ($query->have_posts()) {
                         
                     <?php } ?>
                     <div class="rs-blog-footer">
-                        <span>
-                            <!-- Post Meta: Date, Author, Category, Tags, Comments -->
-                            <?php if ('yes' === $settings['show_meta_data']) { ?>
-                                <?php
-                                $meta_items = array(
-                                    'comments_count' => array(
-                                        // 'condition' => 'yes' === $settings['show_comments_count'],
-                                        'class'     => 'meta-comment-count',
-                                        'icon'      => '<i class="fa fa-comments"></i>',
-                                        'content'   => esc_html(
-                                            get_comments_number_text(
-                                                __('0 Comments', 'fancy-post-grid'),
-                                                __('1 Comment', 'fancy-post-grid'),
-                                                __('% Comments', 'fancy-post-grid')
-                                            )
-                                        ),
-                                    ),
-                                );
-
-                                foreach ($meta_items as $meta) {
-                                    echo '<div class="' . esc_attr($meta['class']) . '">';
-                                    echo wp_kses_post($meta['icon']) . ' ' . wp_kses_post($meta['content']);
-                                    echo '</div>';
-                                }
+                        <?php if ('yes' === $settings['show_meta_data']) { ?>
+                            <div class="user">
+                                <?php if ('yes' === $settings['show_post_author']) : 
+                                    $author_id = get_the_author_meta('ID');
+                                    $author_url = get_author_posts_url($author_id);
+                                    $author_name = esc_html(get_the_author());
+                                    $author_prefix = esc_html($settings['author_prefix']); // Example: 'By'
+                                    $avatar_url = get_avatar_url($author_id);
                                 ?>
-                            <?php } ?>
+                                    <a href="<?php echo esc_url($author_url); ?>">
+                                        <div class="author-thumb">
+                                            <img decoding="async" src="<?php echo esc_url($avatar_url); ?>" alt="<?php esc_attr_e('Author', 'fancy-post-grid'); ?>" class="author-avatar" />
+                                            
+                                        </div>
+                                        <span><?php echo $author_prefix . ' ' . $author_name; ?></span>
+                                    </a>
+                                <?php endif; ?>
+                            </div>
+                        <?php } ?>
 
-                        </span>
                         <!-- Read More Button -->
                         <?php if (!empty($settings['show_post_readmore']) && 'yes' === $settings['show_post_readmore']) { 
                             $layout = $settings['fancy_post_isotope_layout'] ?? 'isotopestyle01';

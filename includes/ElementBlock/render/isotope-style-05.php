@@ -102,7 +102,7 @@ if ($query->have_posts()) {
                         </div>
                         <?php } ?>
 
-                        <div class="pre-blog-content rs-content">
+                        <div class="pre-blog-content rs-contents">
                             <!-- Post Meta: Date, Author, Category, Tags, Comments -->
                             <?php if ('yes' === $settings['show_meta_data']) { ?>
                                 

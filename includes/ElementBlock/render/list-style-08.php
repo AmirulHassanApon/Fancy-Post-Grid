@@ -377,9 +377,44 @@ if ($query->have_posts()) {
                             </div>
                             <div class="rs-content">
                                 <div class="rs-meta-category">
-                                    <i class="ri-price-tag-3-line"></i> <a href="#"><?php echo wp_kses_post(get_the_category_list(', ')); ?></a>
+                                    <i class="ri-price-tag-3-line"></i><?php echo wp_kses_post(get_the_category_list(', ')); ?>
                                 </div>
-                                <h4 class="title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h4> <!-- Post Title -->
+                                <?php if (!empty($settings['show_post_title']) && 'yes' === $settings['show_post_title']) {
+                                    // Title Tag
+                                    $title_tag = !empty($settings['title_tag']) ? esc_attr($settings['title_tag']) : 'h4';
+
+                                    // Title Content
+                                    $title = get_the_title();
+                                    if (!empty($settings['title_crop_by']) && !empty($settings['title_length'])) {
+                                        $title = ('character' === $settings['title_crop_by'])
+                                            ? mb_substr($title, 0, (int)$settings['title_length'])
+                                            : implode(' ', array_slice(explode(' ', $title), 0, (int)$settings['title_length']));
+                                    }
+                                    // Title Classes
+                                    $title_classes = ['fancy-post-title'];
+                                    if ('enable' === $settings['title_hover_underline']) {
+                                        $title_classes[] = 'underline';
+                                    }                            
+
+                                    // Rendering the Title
+                                    ?>
+                                        <<?php echo esc_attr($title_tag); ?>
+                                            class="title <?php echo esc_attr(implode(' ', $title_classes)); ?>"
+                                            >
+                                            <?php if ('link_details' === $settings['link_type']) { ?>
+                                                <a href="<?php the_permalink(); ?>"
+                                                   target="<?php echo ('new_window' === $settings['link_target']) ? '_blank' : '_self'; ?>"
+                                                   >
+                                                   <?php echo esc_html($title); ?>
+                                                </a>
+                                            <?php } else { ?>
+                                                <?php echo esc_html($title); ?>
+                                            <?php } ?>
+                                        </<?php echo esc_attr($title_tag); ?>>
+                                        <?php
+                                    }
+                                ?>
+                                
                             </div>
                         </div>
                     <?php endwhile;
