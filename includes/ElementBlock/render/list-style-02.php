@@ -40,7 +40,20 @@ $query = new \WP_Query($args);
                 <?php if ($query->current_post === 0) : ?>
                     <!-- First post on the left (col-5) -->
                     <div class="col-lg-6 md-mb-50 <?php echo esc_attr($hover_animation); ?> <?php echo esc_attr($link_type); ?>">
-                        <div class="blog-item">
+                        <?php 
+                            $layout = $settings['fancy_post_list_layout'] ?? 'liststyle02';
+                            $box_alignment = $settings['box_alignment'] ?? '';
+
+                            if (empty($box_alignment)) {
+                                switch ($layout) {
+                                    
+                                    case 'liststyle02':
+                                        $box_alignment = 'start';
+                                        break;
+                                }
+                            }
+                        ?>
+                        <div class="blog-item align-<?php echo esc_attr($box_alignment); ?>">
                             <!-- Featured Image -->
                             <?php if ('yes' === $settings['show_post_thumbnail'] && has_post_thumbnail()) { ?>
                                 <div class="image-wrap">
@@ -248,7 +261,7 @@ $query = new \WP_Query($args);
                             <!-- Second and Third posts on the right (col-7, inside a row) -->
                             <div class="blog-horizontal">
                                 <div class="blog-meta mb-30 <?php echo esc_attr($hover_animation); ?> <?php echo esc_attr($link_type); ?>">
-                                    <div class="blog-item-wrap">
+                                    <div class="blog-item-wrap align-<?php echo esc_attr($box_alignment); ?>">
                                         <!-- Featured Image -->
                                         <?php if ('yes' === $settings['show_post_thumbnail'] && has_post_thumbnail()) { ?>
                                             <div class="image-wrap">

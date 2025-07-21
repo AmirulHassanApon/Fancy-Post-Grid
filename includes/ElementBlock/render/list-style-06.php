@@ -39,8 +39,20 @@ if ($query->have_posts()) {
         $query->the_post(); 
     ?>
         <div class="col-md-4">
-            
-            <div class="rs-blog-layout-24-item <?php echo esc_attr($hover_animation); ?> <?php echo esc_attr($link_type); ?>">
+            <?php 
+                $layout = $settings['fancy_post_list_layout'] ?? 'liststyle06';
+                $box_alignment = $settings['box_alignment'] ?? '';
+
+                if (empty($box_alignment)) {
+                    switch ($layout) {
+                        
+                        case 'liststyle06':
+                            $box_alignment = 'start';
+                            break;
+                    }
+                }
+            ?>
+            <div class="rs-blog-layout-24-item align-<?php echo esc_attr($box_alignment); ?> <?php echo esc_attr($hover_animation); ?> <?php echo esc_attr($link_type); ?>">
                 <!-- Featured Image -->
                 <?php if ('yes' === $settings['show_post_thumbnail'] && has_post_thumbnail()) { ?>
                     <div class="rs-thumb">
