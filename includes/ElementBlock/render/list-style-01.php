@@ -40,7 +40,20 @@ $query = new \WP_Query($args);
                 <?php if ($query->current_post === 0) : ?>
                     <!-- First post on the left (col-5) -->
                     <div class="col-lg-5">
-                        <div class="rs-blog__left-blog <?php echo esc_attr($hover_animation); ?> <?php echo esc_attr($link_type); ?>">
+                        <?php 
+                            $layout = $settings['fancy_post_list_layout'] ?? 'liststyle01';
+                            $box_alignment = $settings['box_alignment'] ?? '';
+
+                            if (empty($box_alignment)) {
+                                switch ($layout) {
+                                    
+                                    case 'liststyle01':
+                                        $box_alignment = 'start';
+                                        break;
+                                }
+                            }
+                        ?>
+                        <div class="rs-blog__left-blog align-<?php echo esc_attr($box_alignment); ?> <?php echo esc_attr($hover_animation); ?> <?php echo esc_attr($link_type); ?>">
                             <!-- Featured Image -->
                             <?php if ('yes' === $settings['show_post_thumbnail'] && has_post_thumbnail()) { ?>
                                 <div class="rs-blog__thumb">
@@ -249,8 +262,20 @@ $query = new \WP_Query($args);
                         <div class="row">
                         <?php else : ?>
                             <!-- Second and Third posts on the right (col-7, inside a row) -->
-                            
-                            <div class="rs-blog__left-blog right-blog <?php echo esc_attr($hover_animation); ?> <?php echo esc_attr($link_type); ?>">
+                            <?php 
+                                $layout = $settings['fancy_post_list_layout'] ?? 'liststyle01';
+                                $box_alignment = $settings['box_alignment'] ?? '';
+
+                                if (empty($box_alignment)) {
+                                    switch ($layout) {
+                                        
+                                        case 'liststyle01':
+                                            $box_alignment = 'start';
+                                            break;
+                                    }
+                                }
+                            ?>
+                            <div class="rs-blog__left-blog align-<?php echo esc_attr($box_alignment); ?> right-blog <?php echo esc_attr($hover_animation); ?> <?php echo esc_attr($link_type); ?>">
                                 <!-- Featured Image -->
                                 <?php if ('yes' === $settings['show_post_thumbnail'] && has_post_thumbnail()) { ?>
                                     <div class="rs-blog__thumb">

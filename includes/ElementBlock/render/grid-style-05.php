@@ -39,7 +39,19 @@ if ($query->have_posts()) {
         
     ?>
         <div class="col-xl-<?php echo esc_attr($settings['col_desktop']); ?> col-lg-<?php echo esc_attr($settings['col_lg']); ?> col-md-<?php echo esc_attr($settings['col_md']); ?> col-sm-<?php echo esc_attr($settings['col_sm']); ?> col-xs-<?php echo esc_attr($settings['col_xs']); ?> " >
-            
+            <?php 
+                $layout = $settings['fancy_post_grid_layout'] ?? 'gridstyle05';
+                $box_alignment = $settings['box_alignment'] ?? '';
+
+                if (empty($box_alignment)) {
+                    switch ($layout) {
+                        
+                        case 'gridstyle05':
+                            $box_alignment = 'start';
+                            break;
+                    }
+                }
+            ?>
             <div class="pre-blog-item style_12 pre-blog-meta-style2 default rs-blog__single fancy-post-item mt-30 <?php echo esc_attr($link_type); ?>">
                 <div class="blog-inner-wrap pre-thum-default pre-meta-blocks top">
                     <!-- Featured Image -->
@@ -80,7 +92,7 @@ if ($query->have_posts()) {
                     </div>
                     <?php } ?>
 
-                    <div class="pre-blog-content rs-content">
+                    <div class="pre-blog-content align-<?php echo esc_attr($box_alignment); ?> rs-content">
                         <!-- Post Meta: Date, Author, Category, Tags, Comments -->
                         <?php if ('yes' === $settings['show_meta_data']) { ?>
                             

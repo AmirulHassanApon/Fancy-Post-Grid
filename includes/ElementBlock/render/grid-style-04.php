@@ -26,6 +26,7 @@ $separator_map = [
 ];
 $separator_value = isset($separator_map[$settings['meta_separator']]) ? $separator_map[$settings['meta_separator']] : '';
 $hover_animation = $settings['hover_animation'];
+
 $link_type = $settings['link_type'];
 // Query the posts
 $query = new \WP_Query($args);
@@ -40,8 +41,21 @@ if ($query->have_posts()) {
         
     ?>
         <div class="col-xl-<?php echo esc_attr($settings['col_desktop']); ?> col-lg-<?php echo esc_attr($settings['col_lg']); ?> col-md-<?php echo esc_attr($settings['col_md']); ?> col-sm-<?php echo esc_attr($settings['col_sm']); ?> col-xs-<?php echo esc_attr($settings['col_xs']); ?> " >
+            <?php 
+                $layout = $settings['fancy_post_grid_layout'] ?? 'gridstyle04';
+                $box_alignment = $settings['box_alignment'] ?? '';
+
+                if (empty($box_alignment)) {
+                    switch ($layout) {
+                        
+                        case 'gridstyle04':
+                            $box_alignment = 'center';
+                            break;
+                    }
+                }
+            ?>
             
-            <div class="rs-blog-layout-30-item align-center fancy-post-item mt-30 <?php echo esc_attr($hover_animation); ?> <?php echo esc_attr($link_type); ?>">
+            <div class="rs-blog-layout-30-item align-<?php echo esc_attr($box_alignment); ?> fancy-post-item mt-30 <?php echo esc_attr($hover_animation); ?> <?php echo esc_attr($link_type); ?>">
                 <!-- Featured Image -->
                 <?php if ('yes' === $settings['show_post_thumbnail'] && has_post_thumbnail()) { ?>
                     <div class="rs-thumb">

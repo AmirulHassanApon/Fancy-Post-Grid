@@ -45,8 +45,21 @@ if ($query->have_posts()) {
             col-md-<?php echo esc_attr($settings['col_md']); ?> 
             col-sm-<?php echo esc_attr($settings['col_sm']); ?> 
             col-xs-<?php echo esc_attr($settings['col_xs']); ?> " >
+            <?php 
+                $layout = $settings['fancy_post_grid_layout'] ?? 'gridstyle02';
+                $box_alignment = $settings['box_alignment'] ?? '';
+
+                if (empty($box_alignment)) {
+                    switch ($layout) {
+                        
+                        case 'gridstyle02':
+                            $box_alignment = 'start';
+                            break;
+                    }
+                }
+            ?>
             
-            <div class="rs-blog__single fancy-post-item mt-30 <?php echo esc_attr($hover_animation); ?> <?php echo esc_attr($link_type); ?>">
+            <div class="rs-blog__single fancy-post-item align-<?php echo esc_attr($box_alignment); ?>  mt-30 <?php echo esc_attr($hover_animation); ?> <?php echo esc_attr($link_type); ?>">
                 <div class="rs-content">
 
                     <!-- Post Title -->

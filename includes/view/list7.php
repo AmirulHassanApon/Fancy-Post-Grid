@@ -6,16 +6,6 @@ ob_start();
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
-                <div class="rs-blog-25-topbar">
-                    <h3 class="title"><?php esc_html_e('Blog & article', 'fancy-post-grid'); ?></h3>
-                    <a href="<?php echo esc_url(get_post_type_archive_link('post')); ?>">
-                        <?php esc_html_e('See All Posts', 'fancy-post-grid'); ?> <i class="ri-arrow-right-up-line"></i>
-                    </a>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-lg-12">
                 <?php
 
                     // Check if pagination is on or off

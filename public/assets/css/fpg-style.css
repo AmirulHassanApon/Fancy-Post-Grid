@@ -4411,9 +4411,9 @@ img {
         position: relative;
         overflow: hidden;
     }
-    .rs-blog-layout-15-item .rs-thumb a{
+    /*.rs-blog-layout-15-item .rs-thumb a{
         display: block;
-    }
+    }*/
     .rs-blog-layout-15-item .rs-thumb img{
         transition: all linear 0.3s;
     }

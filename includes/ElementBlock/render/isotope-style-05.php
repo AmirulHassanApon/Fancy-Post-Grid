@@ -101,8 +101,20 @@ if ($query->have_posts()) {
                             </div>
                         </div>
                         <?php } ?>
+                        <?php 
+                            $layout = $settings['fancy_post_isotope_layout'] ?? 'isotopestyle05';
+                            $box_alignment = $settings['box_alignment'] ?? '';
 
-                        <div class="pre-blog-content rs-contents">
+                            if (empty($box_alignment)) {
+                                switch ($layout) {
+                                    
+                                    case 'isotopestyle05':
+                                        $box_alignment = 'start';
+                                        break;
+                                }
+                            }
+                        ?>
+                        <div class="pre-blog-content align-<?php echo esc_attr($box_alignment); ?> rs-contents">
                             <!-- Post Meta: Date, Author, Category, Tags, Comments -->
                             <?php if ('yes' === $settings['show_meta_data']) { ?>
                                 

@@ -40,7 +40,20 @@ $query = new \WP_Query($args);
                 <?php if ($query->current_post === 0) : ?>
                     <!-- First post on the left (col-5) -->
                     <div class="col-lg-6 md-mb-50">
-                        <div class="rs-blog-layout-17-item <?php echo esc_attr($hover_animation); ?> <?php echo esc_attr($link_type); ?>">
+                        <?php 
+                            $layout = $settings['fancy_post_list_layout'] ?? 'liststyle03';
+                            $box_alignment = $settings['box_alignment'] ?? '';
+
+                            if (empty($box_alignment)) {
+                                switch ($layout) {
+                                    
+                                    case 'liststyle03':
+                                        $box_alignment = 'start';
+                                        break;
+                                }
+                            }
+                        ?>
+                        <div class="rs-blog-layout-17-item align-<?php echo esc_attr($box_alignment); ?> <?php echo esc_attr($hover_animation); ?> <?php echo esc_attr($link_type); ?>">
                             <!-- Featured Image -->
                             <?php if ('yes' === $settings['show_post_thumbnail'] && has_post_thumbnail()) { ?>
                                 <div class="rs-thumb">
@@ -220,7 +233,7 @@ $query = new \WP_Query($args);
                         <div class="row">
                         <?php else : ?>
                             <!-- Second and Third posts on the right (col-6, inside a row) -->
-                            <div class="rs-blog-layout-17-item rs-blog-layout-17-item-list <?php echo esc_attr($hover_animation); ?> <?php echo esc_attr($link_type); ?>">
+                            <div class="rs-blog-layout-17-item rs-blog-layout-17-item-list align-<?php echo esc_attr($box_alignment); ?> <?php echo esc_attr($hover_animation); ?> <?php echo esc_attr($link_type); ?>">
                                 <!-- Featured Image -->
                             <?php if ('yes' === $settings['show_post_thumbnail'] && has_post_thumbnail()) { ?>
                                 <div class="rs-thumb">

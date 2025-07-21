@@ -1553,7 +1553,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                     'label'   => esc_html__( 'Box Alignment', 'fancy-post-grid' ),
                     'type'    => \Elementor\Controls_Manager::CHOOSE,
                     'options' => array(
-                        'left'   => array(
+                        'start'   => array(
                             'title' => esc_html__( 'Left', 'fancy-post-grid' ),
                             'icon'  => 'eicon-text-align-left', // Elementor's built-in icon
                         ),
@@ -1561,14 +1561,15 @@ add_action('elementor/widgets/widgets_registered', function () {
                             'title' => esc_html__( 'Center', 'fancy-post-grid' ),
                             'icon'  => 'eicon-text-align-center', // Elementor's built-in icon
                         ),
-                        'right'  => array(
+                        'end'  => array(
                             'title' => esc_html__( 'Right', 'fancy-post-grid' ),
                             'icon'  => 'eicon-text-align-right', // Elementor's built-in icon
                         ),
                     ),
-                    'selectors' => array(
-                        '{{WRAPPER}} .fpg-section-area .rs-blog__single, {{WRAPPER}} .rs-blog-layout-1 .blog-item, {{WRAPPER}} .rs-blog__left-blog ' => 'text-align: {{VALUE}};',
-                    ),
+                    'render_type' => 'template'
+                    // 'selectors' => array(
+                    //     '{{WRAPPER}} .fpg-section-area .rs-blog__single, {{WRAPPER}} .rs-blog-layout-1 .blog-item, {{WRAPPER}} .rs-blog__left-blog ' => 'text-align: {{VALUE}};',
+                    // ),
                 ]
             );
 

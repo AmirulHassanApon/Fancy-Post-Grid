@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       Fancy Post Grid Pro - Ultimate Post Grid Builder
  * Description:       Fancy Post Grid plugin provides an elegant solution for displaying posts in a Grid and Slider layout. It is designed to be user and developer friendly, offering easy customization and usage. The plugin is fully responsive and mobile-friendly, ensuring a seamless browsing experience across all devices.
- * Version:           1.0.2
+ * Version:           1.0.1
  * License:           GPLv2 or later
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain:       fancy-post-grid
@@ -14,7 +14,7 @@
 /**
  * Defines constants
  */
-define( 'FANCY_POST_GRID_VERSION_PRO', '1.0.2' );
+define( 'FANCY_POST_GRID_VERSION_PRO', '1.0.1' );
 define( 'FANCY_POST_GRID_PATH_PRO', plugin_dir_path( __FILE__ ) );
 
 $dir = plugin_dir_path( __FILE__ );
