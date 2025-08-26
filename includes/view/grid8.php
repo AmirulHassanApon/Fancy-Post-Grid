@@ -282,19 +282,38 @@ ob_start();
         <?php if ($fancy_post_pagination === 'on') : ?>
             <div class="fpg-pagination">
                 <?php
-                echo wp_kses_post(
-                    paginate_links(array(
-                        'total'     => $query->max_num_pages,
-                        'current'   => max(1, get_query_var('paged')),
-                        'format'    => '?paged=%#%',
-                        'show_all'  => false,
-                        'type'      => 'list',
-                        'prev_text' => __('« Prev', 'fancy-post-grid'),
-                        'next_text' => __('Next »', 'fancy-post-grid'),
-                    ))
+                $pagination_html = paginate_links(array(
+                    'total'     => $query->max_num_pages,
+                    'current'   => max(1, get_query_var('paged')),
+                    'format'    => '?paged=%#%',
+                    'show_all'  => false,
+                    'type'      => 'list',
+                    'prev_text' => __('« Prev', 'fancy-post-grid'),
+                    'next_text' => __('Next »', 'fancy-post-grid'),
+                ));
+
+                $pagination_html = str_replace(
+                    [
+                        'class="page-numbers',                     // Basic
+                        'class=\'page-numbers',                    // Single quotes
+                        'class="next page-numbers',                // Next link
+                        'class="prev page-numbers',                // Prev link
+                        'class="page-numbers current',             // Current page
+                    ],
+                    [
+                        'class="fpg-page-numbers',                 // Basic
+                        'class=\'fancy-page-numbers',                // Single quotes
+                        'class="fpg-page-numbers next',            // Next
+                        'class="fpg-page-numbers prev',            // Prev
+                        'class="fpg-page-numbers current',         // Current
+                    ],
+                    $pagination_html
                 );
+
+                echo wp_kses_post($pagination_html);
                 ?>
             </div>
+
         <?php endif; ?>
     </div>
 </section>
@@ -437,12 +456,13 @@ ob_start();
             color: <?php echo esc_attr(!empty($fpg_primary_color) ? $fpg_primary_color : $fpg_meta_hover_color); ?>;
         <?php endif; ?>
     }
-    .fpg-pagination ul.page-numbers{
+    /*Pagination*/
+    .fpg-pagination ul.fancy-page-numbers{
         <?php if (!empty($fpg_pagination_gap)) : ?>
             gap: <?php echo esc_attr($fpg_pagination_gap); ?>;
         <?php endif; ?> 
     }
-    .rs-blog-layout-15 .fpg-pagination ul.page-numbers li .page-numbers {
+    .rs-blog-layout-15 .fpg-pagination ul.fancy-page-numbers li .fpg-page-numbers {
 
         <?php if (!empty($fpg_pagination_background)) : ?>
             background-color: <?php echo esc_attr($fpg_pagination_background); ?>;
@@ -453,6 +473,8 @@ ob_start();
         <?php if (!empty($fpg_pagination_border_color)) : ?>
             border-color: <?php echo esc_attr($fpg_pagination_border_color); ?>;
         <?php endif; ?>
+        
+
         <?php if (!empty($fpg_pagination_border_width)) : ?>
             border-width: <?php echo esc_attr($fpg_pagination_border_width); ?>;
         <?php endif; ?>
@@ -479,7 +501,7 @@ ob_start();
             margin: <?php echo esc_attr($fpg_pagination_margin); ?>;
         <?php endif; ?> 
     }
-    .rs-blog-layout-15 .fpg-pagination ul.page-numbers li .page-numbers:hover{
+    .rs-blog-layout-15 .fpg-pagination ul.fancy-page-numbers li .fpg-page-numbers:hover{
         <?php if (!empty($fpg_pagination_hover_background)) : ?>
             background-color: <?php echo esc_attr($fpg_pagination_hover_background); ?>;
         <?php endif; ?>
@@ -490,7 +512,7 @@ ob_start();
             border-color: <?php echo esc_attr($fpg_pagination_hover_border_color); ?>;
         <?php endif; ?>
     }
-    .rs-blog-layout-15 .fpg-pagination ul.page-numbers li .page-numbers.current{
+    .rs-blog-layout-15 .fpg-pagination ul.fancy-page-numbers li .fpg-page-numbers.current{
         <?php if (!empty($fpg_pagination_active_background)) : ?>
             background-color: <?php echo esc_attr($fpg_pagination_active_background); ?>;
         <?php endif; ?>

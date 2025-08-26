@@ -268,28 +268,28 @@ ob_start();
                         <?php endif; ?>
                     </div>
                     <?php if (!$hide_feature_image && $fpg_field_group_image) : ?>
-                            <div class="rs-thumb">
-                                <?php if ($feature_image_url) : ?>
+                        <div class="rs-thumb">
+                            <?php if ($feature_image_url) : ?>
 
-                                    <?php
+                                <?php
 
-                                        $post_id = get_the_ID();
-                                        // Get the thumbnail ID
-                                        $thumbnail_id = get_post_thumbnail_id($post_id);
-                                        
-                                        // Get the image alt text and title text
-                                        $image_alt = get_post_meta($thumbnail_id, '_wp_attachment_image_alt', true);
-                                        $image_title = get_the_title($thumbnail_id);
-                                        // Use alt text if available; otherwise, use title text
-                                        $alt_text = !empty($image_alt) ? esc_attr($image_alt) : esc_attr($image_title);
+                                    $post_id = get_the_ID();
+                                    // Get the thumbnail ID
+                                    $thumbnail_id = get_post_thumbnail_id($post_id);
+                                    
+                                    // Get the image alt text and title text
+                                    $image_alt = get_post_meta($thumbnail_id, '_wp_attachment_image_alt', true);
+                                    $image_title = get_the_title($thumbnail_id);
+                                    // Use alt text if available; otherwise, use title text
+                                    $alt_text = !empty($image_alt) ? esc_attr($image_alt) : esc_attr($image_title);
 
-                                    ?>
-                                    <a href="<?php the_permalink(); ?>" <?php echo esc_attr($target_blank); ?>>
-                                        <img src="<?php echo esc_url($feature_image_url); ?>" alt="<?php echo esc_attr($alt_text); ?>">
-                                    </a>
-                                <?php endif; ?>
-                            </div>
-                        <?php endif; ?>
+                                ?>
+                                <a href="<?php the_permalink(); ?>" <?php echo esc_attr($target_blank); ?>>
+                                    <img src="<?php echo esc_url($feature_image_url); ?>" alt="<?php echo esc_attr($alt_text); ?>">
+                                </a>
+                            <?php endif; ?>
+                        </div>
+                    <?php endif; ?>
                         
                     </div>
                 </div>
@@ -302,19 +302,38 @@ ob_start();
         <?php if ($fancy_post_pagination === 'on') : ?>
             <div class="fpg-pagination">
                 <?php
-                echo wp_kses_post(
-                    paginate_links(array(
-                        'total'     => $query->max_num_pages,
-                        'current'   => max(1, get_query_var('paged')),
-                        'format'    => '?paged=%#%',
-                        'show_all'  => false,
-                        'type'      => 'list',
-                        'prev_text' => __('« Prev', 'fancy-post-grid'),
-                        'next_text' => __('Next »', 'fancy-post-grid'),
-                    ))
+                $pagination_html = paginate_links(array(
+                    'total'     => $query->max_num_pages,
+                    'current'   => max(1, get_query_var('paged')),
+                    'format'    => '?paged=%#%',
+                    'show_all'  => false,
+                    'type'      => 'list',
+                    'prev_text' => __('« Prev', 'fancy-post-grid'),
+                    'next_text' => __('Next »', 'fancy-post-grid'),
+                ));
+
+                $pagination_html = str_replace(
+                    [
+                        'class="page-numbers',                     // Basic
+                        'class=\'page-numbers',                    // Single quotes
+                        'class="next page-numbers',                // Next link
+                        'class="prev page-numbers',                // Prev link
+                        'class="page-numbers current',             // Current page
+                    ],
+                    [
+                        'class="fpg-page-numbers',                 // Basic
+                        'class=\'fancy-page-numbers',                // Single quotes
+                        'class="fpg-page-numbers next',            // Next
+                        'class="fpg-page-numbers prev',            // Prev
+                        'class="fpg-page-numbers current',         // Current
+                    ],
+                    $pagination_html
                 );
+
+                echo wp_kses_post($pagination_html);
                 ?>
             </div>
+
         <?php endif; ?>
     </div>
 </section>
@@ -580,12 +599,13 @@ ob_start();
             background: <?php echo esc_attr($fpg_button_border_color); ?>;
         <?php endif; ?>
     }
-    .fpg-pagination ul.page-numbers{
+    /*Pagination*/
+    .fpg-pagination ul.fancy-page-numbers{
         <?php if (!empty($fpg_pagination_gap)) : ?>
             gap: <?php echo esc_attr($fpg_pagination_gap); ?>;
         <?php endif; ?> 
     }
-    .fpg-pagination ul.page-numbers li .page-numbers {
+    .fpg-pagination ul.fancy-page-numbers li .fpg-page-numbers {
 
         <?php if (!empty($fpg_pagination_background)) : ?>
             background-color: <?php echo esc_attr($fpg_pagination_background); ?>;
@@ -624,7 +644,7 @@ ob_start();
             margin: <?php echo esc_attr($fpg_pagination_margin); ?>;
         <?php endif; ?> 
     }
-    .fpg-pagination ul.page-numbers li .page-numbers:hover{
+    .fpg-pagination ul.fancy-page-numbers li .fpg-page-numbers:hover{
         <?php if (!empty($fpg_pagination_hover_background)) : ?>
             background-color: <?php echo esc_attr($fpg_pagination_hover_background); ?>;
         <?php endif; ?>
@@ -635,7 +655,7 @@ ob_start();
             border-color: <?php echo esc_attr($fpg_pagination_hover_border_color); ?>;
         <?php endif; ?>
     }
-    .fpg-pagination ul.page-numbers li .page-numbers.current{
+    .fpg-pagination ul.fancy-page-numbers li .fpg-page-numbers.current{
         <?php if (!empty($fpg_pagination_active_background)) : ?>
             background-color: <?php echo esc_attr($fpg_pagination_active_background); ?>;
         <?php endif; ?>

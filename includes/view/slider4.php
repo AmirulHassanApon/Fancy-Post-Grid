@@ -7,36 +7,46 @@ ob_start();
     <div class="container">
         <div class="row">
             <?php 
-                $pagination_config = '';
-                // Check if the clickable setting is true or false
-                $clickable = ($fancy_pagination_clickable === 'true') ? 'true' : 'false';
-                if ($fpg_pagination_slider === 'normal') {
-                    $pagination_config = '"pagination": {"el": ".swiper-pagination", "clickable": ' . $clickable . '}';
-                } elseif ($fpg_pagination_slider === 'dynamic') {
-                    $pagination_config = '"pagination": {"el": ".swiper-pagination", "dynamicBullets": true, "clickable": ' . $clickable . '}';
-                } elseif ($fpg_pagination_slider === 'progress') {
-                    $pagination_config = '"pagination": {"el": ".swiper-pagination", "type": "progressbar", "clickable": ' . $clickable . '}';
-                } elseif ($fpg_pagination_slider === 'fraction') {
-                    $pagination_config = '"pagination": {"el": ".swiper-pagination", "type": "fraction", "clickable": ' . $clickable . '}';
-                }
+               $pagination_config = '';
+                $unique_id = 'swiper_' . uniqid(); // Unique ID per Swiper instance
 
+                // Unique class names for this instance
+                $pagination_class = $unique_id . '-pagination';
+                $next_btn_class = $unique_id . '-next';
+                $prev_btn_class = $unique_id . '-prev';
+
+                // Determine pagination config
+                $clickable = ($fancy_pagination_clickable === 'true') ? 'true' : 'false';
+
+                if ($fpg_pagination_slider === 'normal') {
+                    $pagination_config = '"pagination": {"el": ".' . $pagination_class . '", "clickable": ' . $clickable . '}';
+                } elseif ($fpg_pagination_slider === 'dynamic') {
+                    $pagination_config = '"pagination": {"el": ".' . $pagination_class . '", "dynamicBullets": true, "clickable": ' . $clickable . '}';
+                } elseif ($fpg_pagination_slider === 'progress') {
+                    $pagination_config = '"pagination": {"el": ".' . $pagination_class . '", "type": "progressbar", "clickable": ' . $clickable . '}';
+                } elseif ($fpg_pagination_slider === 'fraction') {
+                    $pagination_config = '"pagination": {"el": ".' . $pagination_class . '", "type": "fraction", "clickable": ' . $clickable . '}';
+                }
             ?>
             <div class="col-lg-12">
                 <div class="swiper_wrap">
-                    <div class="swiper mySwiper" data-swiper='{
+                     <div class="swiper mySwiper <?php echo esc_attr($unique_id); ?>" data-swiper='{
                         "spaceBetween":<?php echo esc_attr($fancy_spacebetween); ?>,
                         "slidesPerView":<?php echo esc_attr($fancy_post_cl_lg_slider); ?>,
                         "freeMode":<?php echo esc_attr($fancy_free_mode); ?>, 
                         "loop": <?php echo esc_attr($fancy_loop); ?>, 
                         <?php echo esc_js($pagination_config); ?>,
-
-                        "autoplay":{"delay":<?php echo esc_attr($fancy_autoplay); ?>},
-                        "keyboard": {"enabled":<?php echo esc_attr($fancy_keyboard); ?>},                        
-                        "breakpoints":{                                                       
-                            "10":{"slidesPerView":<?php echo esc_attr($fancy_post_cl_mobile_slider ); ?>,"spaceBetween":<?php echo esc_attr($fancy_spacebetween); ?>},
-                            "576":{"slidesPerView":<?php echo esc_attr($fancy_post_cl_sm_slider ); ?>,"spaceBetween":<?php echo esc_attr($fancy_spacebetween); ?>},
-                            "768":{"slidesPerView":<?php echo esc_attr($fancy_post_cl_md_silder); ?>,"spaceBetween":<?php echo esc_attr($fancy_spacebetween); ?>},
-                            "992":{"slidesPerView":<?php echo esc_attr($fancy_post_cl_lg_slider); ?>,"spaceBetween":<?php echo esc_attr($fancy_spacebetween); ?>}
+                        "navigation": {
+                            "nextEl": ".<?php echo esc_attr($next_btn_class); ?>",
+                            "prevEl": ".<?php echo esc_attr($prev_btn_class); ?>"
+                        },
+                        "autoplay": {"delay":<?php echo esc_attr($fancy_autoplay); ?>},
+                        "keyboard": {"enabled":<?php echo esc_attr($fancy_keyboard); ?>},
+                        "breakpoints": {
+                            "10":  {"slidesPerView":<?php echo esc_attr($fancy_post_cl_mobile_slider); ?>,"spaceBetween":<?php echo esc_attr($fancy_spacebetween); ?>},
+                            "576": {"slidesPerView":<?php echo esc_attr($fancy_post_cl_sm_slider); ?>,"spaceBetween":<?php echo esc_attr($fancy_spacebetween); ?>},
+                            "768": {"slidesPerView":<?php echo esc_attr($fancy_post_cl_md_silder); ?>,"spaceBetween":<?php echo esc_attr($fancy_spacebetween); ?>},
+                            "992": {"slidesPerView":<?php echo esc_attr($fancy_post_cl_lg_slider); ?>,"spaceBetween":<?php echo esc_attr($fancy_spacebetween); ?>}
                         }
                     }'>
                         <div class="swiper-wrapper">
@@ -239,28 +249,50 @@ ob_start();
                                         <?php endif; ?>
 
                                         <?php if ($fpg_field_group_title) : ?>
-                                            <<?php echo esc_attr($title_tag); ?> class="title <?php echo esc_attr($title_alignment_class); ?>">
+                                            <<?php echo esc_attr($title_tag); ?> class="title <?php echo esc_attr($title_alignment_class); ?>" >
                                                 <?php if ($fancy_link_details === 'on') : ?>
                                                     <a href="<?php the_permalink(); ?>"
                                                        <?php echo esc_attr($target_blank); ?>
                                                        class="title-link">
-                                                        <?php echo esc_html(
-                                                            wp_trim_words(get_the_title(), $fancy_post_title_limit, esc_html($title_more_text))
-                                                        ); ?>
+                                                        <?php
+                                                        if ($fancy_post_title_limit_type === 'words') {
+                                                            echo esc_html(
+                                                                wp_trim_words(get_the_title(), $fancy_post_title_limit, esc_html($title_more_text))
+                                                            );
+                                                        } elseif ($fancy_post_title_limit_type === 'characters') {
+                                                            echo esc_html(mb_strimwidth(get_the_title(), 0, $fancy_post_title_limit, $title_more_text));
+                                                        }
+                                                        ?>
                                                     </a>
                                                 <?php else : ?>
-                                                    <?php echo esc_html(
-                                                        wp_trim_words(get_the_title(), $fancy_post_title_limit, esc_html($title_more_text))
-                                                    ); ?>
+                                                    <?php
+                                                    if ($fancy_post_title_limit_type === 'words') {
+                                                        echo esc_html(
+                                                            wp_trim_words(get_the_title(), $fancy_post_title_limit, esc_html($title_more_text))
+                                                        );
+                                                    } elseif ($fancy_post_title_limit_type === 'characters') {
+                                                        echo esc_html(mb_strimwidth(get_the_title(), 0, $fancy_post_title_limit, $title_more_text));
+                                                    }
+                                                    ?>
                                                 <?php endif; ?>
                                             </<?php echo esc_attr($title_tag); ?>>
                                         <?php endif; ?>
 
                                         <?php if ($fpg_field_group_excerpt) : ?>
-                                        <p class="desc <?php echo esc_attr($excerpt_alignment_class); ?>">
-                                            <?php echo esc_html(wp_trim_words($excerpt, $fancy_post_excerpt_limit, $excerpt_more_text)); ?>
-                                        </p>
-                                    <?php endif; ?>
+                                            <p class="desc <?php echo esc_attr($excerpt_alignment_class); ?>">
+                                              <?php
+                                                $excerpt = get_the_content();
+
+                                                if ($fancy_post_excerpt_limit_type === 'words') {
+                                                    echo esc_html(wp_trim_words($excerpt, $fancy_post_excerpt_limit, $excerpt_more_text));
+                                                } else {
+                                                    // Strip tags to avoid breaking HTML, then apply character limit
+                                                    $excerpt = wp_strip_all_tags($excerpt);
+                                                    echo esc_html(mb_strimwidth($excerpt, 0, $fancy_post_excerpt_limit, $excerpt_more_text));
+                                                }
+                                                ?>
+                                            </p>
+                                        <?php endif; ?>
                                         <div class="rs-blog-footer">
                                             <?php if ($fpg_field_group_comment_count && get_comments_number() > 0) : ?>
                                             <span>
@@ -290,17 +322,12 @@ ob_start();
                         </div>
                     </div>
                     <?php if ($fancy_pagination === 'true') : ?>
-                    <div class="swiper-pagination swiper-pagination-4"></div>
+                        <div class="swiper-pagination swiper-pagination-4 <?php echo esc_attr($pagination_class); ?>"></div>
                     <?php endif; ?>
-                    <!-- Pagination and Navigation Controls -->
-                    <?php if ($fancy_arrow === 'true') : ?>
-                        
-                        
-                        <!-- Navigation buttons, if applicable -->
-                        <?php if (in_array($fpg_pagination_slider, ['progress', 'fraction', 'dynamic', 'normal'])) : ?>
-                            <div class="swiper-button-next"></div>
-                            <div class="swiper-button-prev"></div>
-                        <?php endif; ?>
+
+                    <?php if ($fancy_arrow === 'true' && in_array($fpg_pagination_slider, ['progress', 'fraction', 'dynamic', 'normal'])) : ?>
+                        <div class="swiper-button-next <?php echo esc_attr($next_btn_class); ?>"></div>
+                        <div class="swiper-button-prev <?php echo esc_attr($prev_btn_class); ?>"></div>
                     <?php endif; ?>
                 </div>
             </div>
@@ -480,9 +507,21 @@ ob_start();
             fill: <?php echo esc_attr(!empty($fpg_primary_color) ? $fpg_primary_color : $fpg_meta_icon_color); ?>;
         <?php endif; ?>
     }
-    .rs-blog-layout-4 .rs-blog__item .rs-content .rs-category {
+    .rs-blog-layout-4 .rs-blog__item .rs-content .rs-category a {
         <?php if (!empty($fpg_primary_color) || !empty($fpg_meta_bgcolor)) : ?>
             background: <?php echo esc_attr(!empty($fpg_primary_color) ? $fpg_primary_color : $fpg_meta_bgcolor); ?>;
+        <?php endif; ?>
+        <?php if (!empty($fpg_meta_padding)) : ?>
+            padding: <?php echo esc_attr($fpg_meta_padding); ?>;
+        <?php endif; ?>
+        <?php if (!empty($fpg_meta_color)) : ?>
+            color: <?php echo esc_attr($fpg_meta_color); ?>;
+        <?php endif; ?>
+        <?php if (!empty($fpg_meta_size)) : ?>
+            font-size: <?php echo esc_attr($fpg_meta_size); ?>px;
+        <?php endif; ?>
+        <?php if (!empty($fpg_meta_font_weight)) : ?>
+            font-weight: <?php echo esc_attr($fpg_meta_font_weight); ?>;
         <?php endif; ?>
     }
     .rs-blog-layout-4 .rs-blog__item .rs-content .rs-blog-footer span:hover,.rs-blog-layout-4 .rs-blog__item .rs-content .rs-category a:hover{

@@ -3,7 +3,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 ob_start();
 ?>
 <!-- isotope 5 -->
-<section class="rs-blog-layout-12">
+<section class="rs-blog-layout-12 fpg-section-area">
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
@@ -212,32 +212,6 @@ ob_start();
                                         </a> 
                                     </li>
                                 <?php endif; ?>
-
-                                <?php if ($fpg_field_group_categories) : ?>
-                                    <li class="meta-categories">
-                                        <?php if (!empty($fpg_field_group_category_icon) && empty($disabled_meta_icons['category_icon'])) {?>
-                                        <i class="ri-folder-line"></i>
-                                        <?php } ?>
-                                        <?php the_category(', '); ?>
-                                    </li>
-                                <?php endif; ?>
-                                     
-                                <?php if ($fpg_field_group_comment_count && get_comments_number() > 0) : ?>
-                                    <li class="meta-comment-count">
-                                        <?php if (empty($disabled_meta_icons['comment_count_icon'])) {?>
-                                        <i class="ri-chat-3-line"></i>
-                                        <?php } ?>
-                                        <?php comments_number('0 Comments', '1 Comment', '% Comments'); ?>
-                                    </li>
-                                <?php endif; ?>
-                                <?php if ($fpg_field_group_tag && has_tag()) : ?>
-                                    <li class="meta-tags">
-                                        <?php if (empty($disabled_meta_icons['tags_icon'])) {?>
-                                        <i class="ri-price-tag-3-line"></i>
-                                        <?php } ?>
-                                        <?php the_tags('', ', ', ''); ?>
-                                    </li>
-                                <?php endif; ?>
                             </ul>
                             
                             <?php if ($fpg_field_group_title) : ?>
@@ -428,6 +402,15 @@ ob_start();
         <?php if (!empty($fpg_primary_color) || !empty($fpg_date_color)) : ?>
             color: <?php echo esc_attr(!empty($fpg_primary_color) ? $fpg_primary_color : $fpg_date_color); ?>;
         <?php endif; ?>
+        <?php if (!empty($fpg_meta_size)) : ?>
+            font-size: <?php echo esc_attr($fpg_meta_size); ?>px;
+        <?php endif; ?>
+        <?php if (!empty($fpg_meta_font_weight)) : ?>
+            font-weight: <?php echo esc_attr($fpg_meta_font_weight); ?>;
+        <?php endif; ?>      
+        <?php if (!empty($fpg_meta_line_height)) : ?>
+            line-height: <?php echo esc_attr($fpg_meta_line_height); ?>;
+        <?php endif; ?> 
     }
 
     .rs-blog-layout-12 .rs-grid .rs-grid-item .pre-blog-item.style_12 .blog-inner-wrap .pre-image-wrap .pre-blog-meta::after{
@@ -538,18 +521,22 @@ ob_start();
     }
     /* Meta Data Styles */
     .rs-blog-layout-12 .rs-grid .rs-grid-item .rs-blog-layout-12 .rs-blog__single .rs-content ul li ,
-    .rs-blog-layout-12 .rs-grid .rs-grid-item .rs-blog-layout-12 .rs-blog__single .rs-content ul li i,
     .rs-blog-layout-12 .rs-grid .rs-grid-item .rs-blog-layout-12 .rs-blog__single .rs-content ul li a,
-    .rs-blog-layout-12 .rs-grid .rs-grid-item .rs-blog-layout-12 .meta-data-list .meta-date i,
-    .rs-blog-layout-12 .rs-grid .rs-grid-item .rs-blog-layout-12 .meta-data-list .meta-author i,
-    .rs-blog-layout-12 .rs-grid .rs-grid-item .rs-blog-layout-12 .meta-data-list .meta-categories i,
-    .rs-blog-layout-12 .rs-grid .rs-grid-item .rs-blog-layout-12 .meta-data-list .meta-comment-count i,
-    .rs-blog-layout-12 .rs-grid .rs-grid-item .rs-blog-layout-12 .meta-data-list .meta-tags i ,
-    .rs-blog-layout-12 .rs-grid .rs-grid-item .pre-blog-item.style_12 .blog-inner-wrap .pre-blog-content ul li a,.rs-blog-layout-12 .rs-grid .rs-grid-item .pre-blog-item.style_12 .blog-inner-wrap .pre-blog-content ul li i
-    {
+    .rs-blog-layout-12 .rs-grid .rs-grid-item .pre-blog-item.style_12 .blog-inner-wrap .pre-blog-content ul li a{
         
         <?php if (!empty($fpg_secondary_color) || !empty($fpg_meta_color)) : ?>
             color: <?php echo esc_attr(!empty($fpg_secondary_color) ? $fpg_secondary_color : $fpg_meta_color); ?>;
+        <?php endif; ?>
+        <?php if (!empty($fpg_meta_size)) : ?>
+            font-size: <?php echo esc_attr($fpg_meta_size); ?>px;
+        <?php endif; ?>
+        <?php if (!empty($fpg_meta_font_weight)) : ?>
+            font-weight: <?php echo esc_attr($fpg_meta_font_weight); ?>;
+        <?php endif; ?>
+    }
+    .pre-blog-item.style_12 .blog-inner-wrap .pre-blog-content ul li i{
+        <?php if (!empty($fpg_meta_icon_color)) : ?>
+            color: <?php echo esc_attr($fpg_meta_icon_color); ?>;
         <?php endif; ?>
         <?php if (!empty($fpg_meta_size)) : ?>
             font-size: <?php echo esc_attr($fpg_meta_size); ?>px;

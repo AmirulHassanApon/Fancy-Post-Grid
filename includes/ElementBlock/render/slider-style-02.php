@@ -41,11 +41,15 @@ if ($query->have_posts()) {
         <div class="row fancy-post-grid">
             <div class="col-lg-12">
                 <div class="swiper_wrap">
-                <div class="swiper mySwiper" data-swiper='<?php echo wp_json_encode([
+                <?php
+                    $unique_id = 'swiper_' . uniqid(); // Generate unique ID per Swiper
+                ?>
+
+                    <div class="swiper <?php echo esc_attr($unique_id); ?>" data-swiper='<?php echo wp_json_encode([
                         'loop' => $settings['enable_looping'] === 'yes',
                         'autoplay' => $settings['auto_play_speed'] > 0 ? ['delay' => intval($settings['auto_play_speed']), 'disableOnInteraction' => false] : false,
                         'pagination' => [
-                            'el' => '.swiper-pagination',
+                            'el' => ".{$unique_id}-pagination",
                             'type' => $settings['slider_pagination_type'],
                             'clickable' => $settings['pagination_clickable_mode'] === 'yes',
                         ],
@@ -55,6 +59,10 @@ if ($query->have_posts()) {
                         'freeMode' => $settings['enable_free_mode'] === 'yes',
                         'slidesPerView' => !empty($settings['slider_columns']) ? intval($settings['slider_columns']) : 3,
                         'spaceBetween' => !empty($settings['slider_item_gap']) ? intval($settings['slider_item_gap']) : 10,
+                        'navigation' => [
+                            'nextEl' => ".{$unique_id}-next",
+                            'prevEl' => ".{$unique_id}-prev",
+                        ],
                     ]); ?>'>
                     <div class="swiper-wrapper">
                         <?php
@@ -278,13 +286,14 @@ if ($query->have_posts()) {
                     </div>
                     <!-- Add Swiper Navigation -->
                     <?php if ('yes' === $settings['show_arrow_control']) { ?>
-                    <div class="swiper-button-next"></div>
-                    <div class="swiper-button-prev"></div>
+                        <div class="swiper-button-next <?php echo esc_attr($unique_id); ?>-next"></div>
+                        <div class="swiper-button-prev <?php echo esc_attr($unique_id); ?>-prev"></div>
                     <?php } ?>
-                    <!-- Add Swiper Pagination -->
+
                     <?php if ('yes' === $settings['show_pagination_control']) { ?>
-                    <div class="swiper-pagination swiper-pagination-1"></div>
+                        <div class="swiper-pagination <?php echo esc_attr($unique_id); ?>-pagination swiper-pagination-1"></div>
                     <?php } ?>
+
                 
                 </div>
             </div>

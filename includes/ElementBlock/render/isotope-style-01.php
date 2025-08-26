@@ -114,7 +114,7 @@ if ($query->have_posts()) {
                             'post_categories' => array(
                                 'condition' => 'yes' === $settings['show_post_categories'],
                                 'class'     => 'rs-category',
-                                'content'   => get_the_category_list(', '),
+                                'content'   => get_the_category_list(' '),
                             ),
                         );
 
@@ -258,8 +258,9 @@ if ($query->have_posts()) {
         </div>
         <?php
     }
-    echo '</div>';
+    
     ?>
+    </div>
     </section>
     <?php
     wp_reset_postdata();

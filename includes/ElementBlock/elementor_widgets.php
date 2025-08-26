@@ -121,6 +121,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                         ],
                         'default' => 'gridstyle01',
                         'toggle' => true,
+                        
                     ]
                 );
             }
@@ -254,6 +255,10 @@ add_action('elementor/widgets/widgets_registered', function () {
                                 'title' => esc_html__( 'List Style 08', 'fancy-post-grid' ),
                                 'icon' => 'eicon-text-align-right',
                             ],
+                            'liststyle09' => [
+                                'title' => esc_html__( 'List Style 09', 'fancy-post-grid' ),
+                                'icon' => 'eicon-text-align-right',
+                            ],
                         ],
                         
                         'default' => 'liststyle01',
@@ -279,7 +284,9 @@ add_action('elementor/widgets/widgets_registered', function () {
                             '2' => esc_html__('6 Columns', 'fancy-post-grid'),
                             'auto' => esc_html__('Auto', 'fancy-post-grid'),
                         ],
+                        'classes' => 'fpg-el-control-post-chooser-thumb fpg-el-pro',
                         'separator' => 'before',
+                        
                     ]
                 );
             }
@@ -1089,6 +1096,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                     'selectors'  => [
                         '{{WRAPPER}} .fpg-section-area .fpg-excerpt' => 'order: {{SIZE}};',
                     ],
+                    
                 ]
             );
 
@@ -1272,6 +1280,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                 [
                     'label' => esc_html__( ' Excerpt / Content', 'fancy-post-grid' ),
                     'tab'   => \Elementor\Controls_Manager::TAB_SETTINGS,
+                    
                 ]
             );
             // Excerpt Type
@@ -1676,6 +1685,23 @@ add_action('elementor/widgets/widgets_registered', function () {
                     'selector' => '{{WRAPPER}} .fpg-section-area .rs-blog__single .rs-content,{{WRAPPER}} .rs-blog-layout-1 .blog-item .blog-content,{{WRAPPER}} .rs-blog-layout-30-item .rs-content,{{WRAPPER}} .rs-content,{{WRAPPER}} .rs-blog__single .content,{{WRAPPER}} .rs-blog-layout-4 .rs-blog__item .rs-content,{{WRAPPER}} .pre-blog-item.style_12:hover .blog-inner-wrap .pre-blog-content,{{WRAPPER}} .rs-blog__content,{{WRAPPER}} .blog-horizontal .blog-meta .blog-item-wrap .blog-content',
                 ]
             );
+            // Content Styling: Background Hover
+            $this->add_control(
+                'Hover_content_options',
+                [
+                    'label' => esc_html__( 'Hover Background', 'fancy-post-grid' ),
+                    'type' => \Elementor\Controls_Manager::HEADING,
+                    'separator' => 'before',
+                ]
+            );
+            $this->add_group_control(
+                \Elementor\Group_Control_Background::get_type(),
+                [
+                    'name' => 'card_background_content_hover',
+                    'types' => [ 'classic', 'gradient' ],
+                    'selector' => '{{WRAPPER}} .fpg-section-area .rs-blog__single:hover .rs-content',
+                ]
+            );
 
             // Title Styling: margin
             $this->add_responsive_control(
@@ -2032,13 +2058,16 @@ add_action('elementor/widgets/widgets_registered', function () {
             $this->end_controls_section(); // End Post Title Style Section
 
             // Excerpt/Content Style
+
             $this->start_controls_section(
                 'excerpt_content_style',
                 [
                     'label' => esc_html__( 'Excerpt', 'fancy-post-grid' ),
                     'tab'   => \Elementor\Controls_Manager::TAB_STYLE,
+                    
                 ]
             );
+
 
             // Typography Control
             $this->add_group_control(
@@ -2047,6 +2076,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                     'name'     => 'excerpt_typography',
                     'label'    => esc_html__( 'Typography', 'fancy-post-grid' ),
                     'selector' => '{{WRAPPER}} .fancy-post-excerpt',
+
                 ]
             );
 
@@ -2060,6 +2090,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                     'selectors'  => array(
                         '{{WRAPPER}} .fancy-post-excerpt' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                     ),
+                    
                 ]
             );
 
@@ -2313,6 +2344,22 @@ add_action('elementor/widgets/widgets_registered', function () {
                     ),
                 ]
             );
+            if (!in_array('meta_date_color', $this->exclude_controls)) {
+                $this->add_control(
+                    'meta_date_color',
+                    [
+                        'label'     => esc_html__( 'Date Color', 'fancy-post-grid' ),
+                        'type'      => \Elementor\Controls_Manager::COLOR,
+                        'selectors' => [
+                            '{{WRAPPER}} .rs-blog-layout-27-list-item .rs-date .title' => 'color: {{VALUE}};',
+                        ],
+                        'condition' => [
+                            'fancy_post_list_layout' => 'liststyle08',
+                        ],
+                    ]
+                );
+            }
+
 
             $this->end_controls_tab();
 
@@ -2481,11 +2528,11 @@ add_action('elementor/widgets/widgets_registered', function () {
             $this->add_control(
                 'readmore_hover_text_color',
                 [
-                    'label'     => esc_html__( 'Text Color on Hover', 'fancy-post-grid' ),
+                    'label'     => esc_html__( 'Text Color', 'fancy-post-grid' ),
                     'type'      => \Elementor\Controls_Manager::COLOR,
                     'selectors' => array(
                         '{{WRAPPER}} .fpg-section-area a.read-more:hover, {{WRAPPER}} .pre-blog-item.style_12 .blog-inner-wrap .pre-blog-content .blog-btn-part .blog-btn:hover, {{WRAPPER}} .blog-item .blog-content .blog-btn .read-more:hover, {{WRAPPER}} .rs-blog__single .content .rs-blog-author .rs-link a:hover, {{WRAPPER}} .rs-blog-layout-4 .rs-blog__item .rs-content .rs-blog-footer .btn-link:hover, {{WRAPPER}} .rs-blog-layout-4.rs-blog-layout-10 .rs-grid .rs-grid-item .rs-blog__item .rs-content .rs-blog-footer .blog-btn .rs-btn:hover' => 'color: {{VALUE}};',
-                        '{{WRAPPER}} .fpg-border::before' => 'background: {{VALUE}};',
+                        '{{WRAPPER}} .fpg-section-area .fpg-border::before' => 'background: {{VALUE}} !important;',
                     ),
                 ]
             );
@@ -2493,7 +2540,7 @@ add_action('elementor/widgets/widgets_registered', function () {
             $this->add_control(
                 'readmore_hover_background_color',
                 [
-                    'label'     => esc_html__( 'Background Color on Hover', 'fancy-post-grid' ),
+                    'label'     => esc_html__( 'Background Color', 'fancy-post-grid' ),
                     'type'      => \Elementor\Controls_Manager::COLOR,
                     'selectors' => array(
                         '{{WRAPPER}} .fpg-section-area a.read-more:hover,{{WRAPPER}} .pre-blog-item.style_12 .blog-inner-wrap .pre-blog-content .blog-btn-part .blog-btn:hover, {{WRAPPER}} .blog-item .blog-content .blog-btn .read-more:hover, {{WRAPPER}} .rs-blog__single .content .rs-blog-author .rs-link a:hover, {{WRAPPER}} .rs-blog-layout-4 .rs-blog__item .rs-content .rs-blog-footer .btn-link:hover, {{WRAPPER}} .rs-blog__item .rs-content .rs-blog-footer .blog-btn .rs-btn:hover' => 'background-color: {{VALUE}};',
@@ -2836,6 +2883,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                         'type'      => \Elementor\Controls_Manager::COLOR,
                         'selectors' => [
                             '{{WRAPPER}} .swiper-pagination-bullet' => 'background-color: {{VALUE}};',
+                            '{{WRAPPER}} .swiper-pagination-bullet' => 'background-image: linear-gradient(94.57deg, {{VALUE}} 0.99%, {{VALUE}} 99.43%); ',
                         ],
                     ]
                 );
@@ -2901,6 +2949,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                         'type'      => \Elementor\Controls_Manager::COLOR,
                         'selectors' => [
                             '{{WRAPPER}} .swiper-pagination-bullet:hover' => 'background-color: {{VALUE}};',
+                            '{{WRAPPER}} .swiper-pagination-bullet:hover' => 'background-image: linear-gradient(94.57deg, {{VALUE}} 0.99%, {{VALUE}} 99.43%); ',
                         ],
                     ]
                 );
@@ -2911,7 +2960,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                         'label'     => esc_html__( 'Arrow Hover Color', 'fancy-post-grid' ),
                         'type'      => \Elementor\Controls_Manager::COLOR,
                         'selectors' => [
-                            '{{WRAPPER}} .swiper-button-prev:hover::after, {{WRAPPER}} .swiper-button-prev:hover::after' => 'color: {{VALUE}};',
+                            '{{WRAPPER}} .swiper-button-prev:hover::after, {{WRAPPER}} .swiper-button-next:hover::after' => 'color: {{VALUE}};',
 
                         ],
                     ]
@@ -2944,7 +2993,8 @@ add_action('elementor/widgets/widgets_registered', function () {
                         'label'     => esc_html__( 'Slider Dots Active Color', 'fancy-post-grid' ),
                         'type'      => \Elementor\Controls_Manager::COLOR,
                         'selectors' => [
-                            '{{WRAPPER}} .swiper-pagination-bullet-active' => 'background-color: {{VALUE}};',
+                            '{{WRAPPER}} .swiper-pagination-bullet-active' => 'background-color: {{VALUE}} !important;',
+                            '{{WRAPPER}} .swiper-pagination-bullet-active' => 'background-image: linear-gradient(94.57deg, {{VALUE}} 0.99%, {{VALUE}} 99.43%) !important;',
                         ],
                     ]
                 );
@@ -3101,7 +3151,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                     'label'     => esc_html__('Text Color', 'fancy-post-grid'),
                     'type'      => \Elementor\Controls_Manager::COLOR,
                     'selectors' => [
-                        '{{WRAPPER}} .fpg-pagination a' => 'color: {{VALUE}};',
+                        '{{WRAPPER}} .fpg-pagination a,{{WRAPPER}} .rs-blog-layout-15 .fpg-pagination ul.fancy-page-numbers li .fpg-page-numbers' => 'color: {{VALUE}};',
                     ],
                 ]
             );
@@ -3112,7 +3162,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                     'label'     => esc_html__('Background Color', 'fancy-post-grid'),
                     'type'      => \Elementor\Controls_Manager::COLOR,
                     'selectors' => [
-                        '{{WRAPPER}} .fpg-pagination a' => 'background-color: {{VALUE}};',
+                        '{{WRAPPER}} .fpg-pagination a,{{WRAPPER}} .rs-blog-layout-15 .fpg-pagination ul.fancy-page-numbers li .fpg-page-numbers' => 'background-color: {{VALUE}};',
                     ],
                 ]
             );
@@ -3123,7 +3173,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                     'label'     => esc_html__('Border Color', 'fancy-post-grid'),
                     'type'      => \Elementor\Controls_Manager::COLOR,
                     'selectors' => [
-                        '{{WRAPPER}} .fpg-pagination a' => 'border-color: {{VALUE}};',
+                        '{{WRAPPER}} .fpg-pagination a,{{WRAPPER}} .rs-blog-layout-15 .fpg-pagination ul.fancy-page-numbers li .fpg-page-numbers' => 'border-color: {{VALUE}};',
                     ],
                 ]
             );
@@ -3146,7 +3196,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                     'label'     => esc_html__('Text Color', 'fancy-post-grid'),
                     'type'      => \Elementor\Controls_Manager::COLOR,
                     'selectors' => [
-                        '{{WRAPPER}} .fpg-pagination a:hover' => 'color: {{VALUE}};',
+                        '{{WRAPPER}} .fpg-pagination a:hover,{{WRAPPER}} .rs-blog-layout-15 .fpg-pagination ul.fancy-page-numbers li .fpg-page-numbers:hover' => 'color: {{VALUE}};',
                     ],
                 ]
             );
@@ -3157,7 +3207,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                     'label'     => esc_html__('Background Color', 'fancy-post-grid'),
                     'type'      => \Elementor\Controls_Manager::COLOR,
                     'selectors' => [
-                        '{{WRAPPER}} .fpg-pagination ul.page-numbers li .page-numbers:hover' => 'background: {{VALUE}};',
+                        '{{WRAPPER}} .fpg-pagination ul.fancy-page-numbers li .fpg-page-numbers:hover,{{WRAPPER}} .rs-blog-layout-15 .fpg-pagination ul.fancy-page-numbers li .fpg-page-numbers:hover' => 'background: {{VALUE}};',
                     ],
                 ]
             );
@@ -3168,7 +3218,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                     'label'     => esc_html__('Border Color', 'fancy-post-grid'),
                     'type'      => \Elementor\Controls_Manager::COLOR,
                     'selectors' => [
-                        '{{WRAPPER}} .fpg-pagination a:hover' => 'border-color: {{VALUE}};',
+                        '{{WRAPPER}} .fpg-pagination a:hover,{{WRAPPER}} .rs-blog-layout-15 .fpg-pagination ul.fancy-page-numbers li .fpg-page-numbers:hover' => 'border-color: {{VALUE}};',
                     ],
                 ]
             );
@@ -3189,7 +3239,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                     'label'     => esc_html__('Text Color', 'fancy-post-grid'),
                     'type'      => \Elementor\Controls_Manager::COLOR,
                     'selectors' => [
-                        '{{WRAPPER}} .fpg-pagination .current,{{WRAPPER}} .rs-blog-layout-15 .fpg-pagination ul.page-numbers li .page-numbers.current' => 'color: {{VALUE}} !important;',
+                        '{{WRAPPER}} .fpg-pagination .current,{{WRAPPER}} .rs-blog-layout-15 .fpg-pagination ul.fancy-page-numbers li .fpg-page-numbers.current' => 'color: {{VALUE}} !important;',
                     ],
                 ]
             );
@@ -3200,7 +3250,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                     'label'     => esc_html__('Background Color', 'fancy-post-grid'),
                     'type'      => \Elementor\Controls_Manager::COLOR,
                     'selectors' => [
-                        '{{WRAPPER}} .fpg-pagination .current,{{WRAPPER}} .rs-blog-layout-15 .fpg-pagination ul.page-numbers li .page-numbers.current' => 'background-color: {{VALUE}} !important;',
+                        '{{WRAPPER}} .fpg-pagination .current,{{WRAPPER}} .rs-blog-layout-15 .fpg-pagination ul.fancy-page-numbers li .fpg-page-numbers.current' => 'background-color: {{VALUE}} !important;',
                     ],
                 ]
             );
@@ -3211,7 +3261,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                     'label'     => esc_html__('Border Color', 'fancy-post-grid'),
                     'type'      => \Elementor\Controls_Manager::COLOR,
                     'selectors' => [
-                        '{{WRAPPER}} .fpg-pagination .current,{{WRAPPER}} .rs-blog-layout-15 .fpg-pagination ul.page-numbers li .page-numbers.current' => 'border-color: {{VALUE}} !important;',
+                        '{{WRAPPER}} .fpg-pagination .current,{{WRAPPER}} .rs-blog-layout-15 .fpg-pagination ul.fancy-page-numbers li .fpg-page-numbers.current' => 'border-color: {{VALUE}} !important;',
                     ],
                 ]
             );
@@ -3268,7 +3318,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                     'label'      => esc_html__('Padding', 'fancy-post-grid'),
                     'type'       => \Elementor\Controls_Manager::DIMENSIONS,
                     'selectors'  => [
-                        '{{WRAPPER}} .fpg-pagination a,{{WRAPPER}} .fpg-pagination .current,{{WRAPPER}} .fpg-pagination ul.page-numbers li .page-numbers.next,{{WRAPPER}} .fpg-pagination ul.page-numbers li .page-numbers.prev' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                        '{{WRAPPER}} .fpg-pagination a,{{WRAPPER}} .fpg-pagination .current,{{WRAPPER}} .fpg-pagination ul.fancy-page-numbers li .fpg-page-numbers.next,{{WRAPPER}} .fpg-pagination ul.fancy-page-numbers li .fpg-page-numbers.prev' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                     ],
                 ]
             );
@@ -3408,6 +3458,8 @@ add_action('elementor/widgets/widgets_registered', function () {
                 $this->render_list_style_07();
             } elseif ($list_layout === 'liststyle08') {
                 $this->render_list_style_08();
+            } elseif ($list_layout === 'liststyle09') {
+                $this->render_list_style_09();
             } 
         }
 
@@ -3703,12 +3755,20 @@ add_action('elementor/widgets/widgets_registered', function () {
             } else {
                 echo '<div class="error">' . esc_html__('List Style 08 template not found.', 'fancy-post-grid') . '</div>';
             }
+        } protected function render_list_style_09() {
+            $file_path = plugin_dir_path( __FILE__ ) . 'render/list-style-09.php'; // Adjust the path as needed.
+            
+            if ( file_exists( $file_path ) ) {
+                include $file_path;
+            } else {
+                echo '<div class="error">' . esc_html__('List Style 09 template not found.', 'fancy-post-grid') . '</div>';
+            }
         }  
     }
 
     // FPG-Grid Layout Widget
     class Fancy_Post_Grid_Layout_Widget extends Fancy_Post_Grid_Base_Widget {
-        protected $exclude_controls = ['fancy_post_slider_layout','fancy_post_list_layout','fancy_post_isotope_layout','slider_pagination_type','slider_section','slider_style','col_desktop_slider','col_lg_slider','col_md_slider','col_sm_slider','col_xs_slider','isotope_section','isotope_style','thumbnail_left_size','thumbnail_right_size'];
+        protected $exclude_controls = ['fancy_post_slider_layout','fancy_post_list_layout','fancy_post_isotope_layout','slider_pagination_type','slider_section','slider_style','col_desktop_slider','col_lg_slider','col_md_slider','col_sm_slider','col_xs_slider','isotope_section','isotope_style','thumbnail_left_size','thumbnail_right_size','meta_date_color'];
         public function get_name() {
             return 'fpg_grid_layout';
         }
@@ -3730,7 +3790,7 @@ add_action('elementor/widgets/widgets_registered', function () {
     class Fancy_Post_Slider_Layout_Widget extends Fancy_Post_Grid_Base_Widget {
         
         // Specify which controls to exclude
-        protected $exclude_controls = ['fancy_post_grid_layout', 'fancy_post_list_layout','fancy_post_isotope_layout','columns','show_pagination','col_desktop','col_lg','col_md','col_sm','col_xs','isotope_section','isotope_style','thumbnail_left_size','thumbnail_right_size'];
+        protected $exclude_controls = ['fancy_post_grid_layout', 'fancy_post_list_layout','fancy_post_isotope_layout','columns','show_pagination','col_desktop','col_lg','col_md','col_sm','col_xs','isotope_section','isotope_style','thumbnail_left_size','thumbnail_right_size','meta_date_color'];
         public function get_name() {
             return 'fpg_slider_layout';
         }
@@ -3753,7 +3813,7 @@ add_action('elementor/widgets/widgets_registered', function () {
     class Fancy_Post_Isotope_Layout_Widget extends Fancy_Post_Grid_Base_Widget {
         
         // Specify which controls to exclude
-        protected $exclude_controls = ['fancy_post_grid_layout','show_pagination_on', 'fancy_post_slider_layout','fancy_post_list_layout','slider_columns','slider_pagination_type','slider_section','slider_style','col_desktop_slider','col_lg_slider','col_md_slider','col_sm_slider','col_xs_slider','thumbnail_left_size','thumbnail_right_size'];
+        protected $exclude_controls = ['fancy_post_grid_layout','show_pagination_on', 'fancy_post_slider_layout','fancy_post_list_layout','slider_columns','slider_pagination_type','slider_section','slider_style','col_desktop_slider','col_lg_slider','col_md_slider','col_sm_slider','col_xs_slider','thumbnail_left_size','thumbnail_right_size','meta_date_color'];
         public function get_name() {
             return 'fpg_isotope_layout';
         }

@@ -18,8 +18,9 @@ function fancy_post_grid_render_additional_settings_main(){
     // Add settings section
     add_settings_section(
         'fancy_post_grid_additional_section',
-        __('Additional Options', 'fancy-post-grid'),
+        '',
         function() {
+            echo '<h2 class="fpg-primary-title">' . esc_html__('Additional Options', 'fancy-post-grid') . '</h2>';
             echo '<p>' . esc_html__('Configure additional settings for Fancy Post Grid.', 'fancy-post-grid') . '</p>';
         },
         'fancy_post_grid_additional_settings'

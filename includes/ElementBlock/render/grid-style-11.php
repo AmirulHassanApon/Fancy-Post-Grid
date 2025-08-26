@@ -32,8 +32,12 @@ $query = new \WP_Query($args);
 
 // Check if there are posts
 if ($query->have_posts()) {
-    echo '<div class="fpg-section-area rs-blog-layout-21">';
-    echo '<div class="row">';
+    
+    ?>
+    <div class="fpg-section-area rs-blog-layout-21">
+        <div class="container">
+            <div class="row">
+    <?php
     while ($query->have_posts()) {
         $query->the_post();
         
@@ -52,7 +56,8 @@ if ($query->have_posts()) {
                     }
                 }
             ?>
-            <div class="rs-blog__single rs-blog-layout-21-item align-<?php echo esc_attr($box_alignment); ?> fancy-post-item mt-30 <?php echo esc_attr($hover_animation); ?> <?php echo esc_attr($link_type); ?>">
+            <div class="rs-blog__single rs-blog-layout-21-item align-<?php echo esc_attr($box_alignment); ?> fancy-post-item mt-30 <?php echo esc_attr($hover_animation); ?> 
+                <?php echo esc_attr($link_type); ?>">
                 <!-- Featured Image -->
                 <?php if ('yes' === $settings['show_post_thumbnail'] && has_post_thumbnail()) { ?>
                     <div class="rs-thumb">
@@ -210,7 +215,9 @@ if ($query->have_posts()) {
         <?php
 
     }
-    echo '</div>';
+    ?>
+    </div>
+    <?php
     // Pagination
     if ('yes' === $settings['show_pagination']) {
         echo '<div class="fpg-pagination">';
@@ -228,27 +235,38 @@ if ($query->have_posts()) {
         ));
 
         if (!empty($pagination_links)) {
-            echo '<ul class="page-numbers">';
-            foreach ($pagination_links as $link) {
-                // Replace only the current page <span> with an <a> tag
-                if (strpos($link, '<span class="page-numbers current">') !== false) {
-                    $link = preg_replace(
-                        '/<span class="page-numbers current">(.*?)<\/span>/i',
-                        '<a href="#" class="page-numbers current">$1</a>',
-                        $link
-                    );
-                }
+            echo '<ul class="fancy-page-numbers">';
 
+            foreach ($pagination_links as $link) {
+                // Step 1: Replace all "page-numbers" classes with "fpg-page-numbers"
+                $link = str_replace(
+                    [
+                        'class="next page-numbers',
+                        'class="prev page-numbers',
+                        'class="page-numbers current',
+                        'class="page-numbers',
+                    ],
+                    [
+                        'class="fpg-page-numbers next',
+                        'class="fpg-page-numbers prev',
+                        'class="fpg-page-numbers current',
+                        'class="fpg-page-numbers',
+                    ],
+                    $link
+                );
                 echo '<li>' . wp_kses_post($link) . '</li>';
             }
+
             echo '</ul>';
         }
 
         echo '</div>';
     }
+    ?>
 
-    echo '</div>';
-    echo '</div>';
+    </div> </div>
+    <?php
+    
 } else {
 }
 

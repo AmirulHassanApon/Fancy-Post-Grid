@@ -200,7 +200,7 @@ ob_start();
                                 
                                 <?php if ($fpg_field_group_categories) : ?>
                                     <li class="meta-categories">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="5" height="9" viewBox="0 0 5 9" fill="none"><line x1="4.44721" y1="0.223607" x2="0.447214" y2="8.22361" stroke="#E25A42"></line></svg> 
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="5" height="9" viewBox="0 0 5 9" fill="none"><line x1="4.44721" y1="0.223607" x2="0.447214" y2="8.22361" stroke="#332FFF"></line></svg> 
                                         <?php if (!empty($fpg_field_group_category_icon) && empty($disabled_meta_icons['category_icon'])) {?>
                                         <i class="ri-price-tag-fill"></i>
                                         <?php } ?>
@@ -210,7 +210,7 @@ ob_start();
 
                                 <?php if ($fpg_field_group_author) : ?>
                                     <li class="meta-author">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="5" height="9" viewBox="0 0 5 9" fill="none"><line x1="4.44721" y1="0.223607" x2="0.447214" y2="8.22361" stroke="#E25A42"></line></svg> 
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="5" height="9" viewBox="0 0 5 9" fill="none"><line x1="4.44721" y1="0.223607" x2="0.447214" y2="8.22361" stroke="#332FFF"></line></svg> 
                                         <?php if (!empty($fpg_field_group_author_icon) && empty($disabled_meta_icons['author_icon'])) { ?>
                                         <i class="ri-user-line"></i>
                                         <?php } ?>
@@ -223,7 +223,7 @@ ob_start();
                                 
                                 <?php if ($fpg_field_group_comment_count && get_comments_number() > 0) : ?>
                                     <li class="meta-comment-count">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="5" height="9" viewBox="0 0 5 9" fill="none"><line x1="4.44721" y1="0.223607" x2="0.447214" y2="8.22361" stroke="#E25A42"></line></svg> 
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="5" height="9" viewBox="0 0 5 9" fill="none"><line x1="4.44721" y1="0.223607" x2="0.447214" y2="8.22361" stroke="#332FFF"></line></svg> 
                                         <?php if (!empty($fpg_field_group_comment_count_icon) && empty($disabled_meta_icons['comment_count_icon'])) {?>
                                         <i class="ri-chat-3-line"></i>
                                         <?php } ?>
@@ -232,7 +232,7 @@ ob_start();
                                 <?php endif; ?>
                                 <?php if ($fpg_field_group_tag && has_tag()) : ?>
                                     <li class="meta-tags">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="5" height="9" viewBox="0 0 5 9" fill="none"><line x1="4.44721" y1="0.223607" x2="0.447214" y2="8.22361" stroke="#E25A42"></line></svg> 
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="5" height="9" viewBox="0 0 5 9" fill="none"><line x1="4.44721" y1="0.223607" x2="0.447214" y2="8.22361" stroke="#332FFF"></line></svg> 
                                         <?php if (!empty($fpg_field_group_tags_icon) && empty($disabled_meta_icons['tags_icon'])) {?>
                                         <i class="ri-price-tag-3-line"></i>
                                         <?php } ?>
@@ -295,19 +295,38 @@ ob_start();
         <?php if ($fancy_post_pagination === 'on') : ?>
             <div class="fpg-pagination">
                 <?php
-                echo wp_kses_post(
-                    paginate_links(array(
-                        'total'     => $query->max_num_pages,
-                        'current'   => max(1, get_query_var('paged')),
-                        'format'    => '?paged=%#%',
-                        'show_all'  => false,
-                        'type'      => 'list',
-                        'prev_text' => __('« Prev', 'fancy-post-grid'),
-                        'next_text' => __('Next »', 'fancy-post-grid'),
-                    ))
+                $pagination_html = paginate_links(array(
+                    'total'     => $query->max_num_pages,
+                    'current'   => max(1, get_query_var('paged')),
+                    'format'    => '?paged=%#%',
+                    'show_all'  => false,
+                    'type'      => 'list',
+                    'prev_text' => __('« Prev', 'fancy-post-grid'),
+                    'next_text' => __('Next »', 'fancy-post-grid'),
+                ));
+
+                $pagination_html = str_replace(
+                    [
+                        'class="page-numbers',                     // Basic
+                        'class=\'page-numbers',                    // Single quotes
+                        'class="next page-numbers',                // Next link
+                        'class="prev page-numbers',                // Prev link
+                        'class="page-numbers current',             // Current page
+                    ],
+                    [
+                        'class="fpg-page-numbers',                 // Basic
+                        'class=\'fancy-page-numbers',                // Single quotes
+                        'class="fpg-page-numbers next',            // Next
+                        'class="fpg-page-numbers prev',            // Prev
+                        'class="fpg-page-numbers current',         // Current
+                    ],
+                    $pagination_html
                 );
+
+                echo wp_kses_post($pagination_html);
                 ?>
             </div>
+
         <?php endif; ?>
     </div>
 </section>
@@ -533,12 +552,12 @@ ob_start();
     }
 
     /*Pagination*/
-    .fpg-pagination ul.page-numbers{
+    .fpg-pagination ul.fancy-page-numbers{
         <?php if (!empty($fpg_pagination_gap)) : ?>
             gap: <?php echo esc_attr($fpg_pagination_gap); ?>;
         <?php endif; ?> 
     }
-    .fpg-pagination ul.page-numbers li .page-numbers {
+    .fpg-pagination ul.fancy-page-numbers li .fpg-page-numbers {
 
         <?php if (!empty($fpg_pagination_background)) : ?>
             background-color: <?php echo esc_attr($fpg_pagination_background); ?>;
@@ -577,7 +596,7 @@ ob_start();
             margin: <?php echo esc_attr($fpg_pagination_margin); ?>;
         <?php endif; ?> 
     }
-    .fpg-pagination ul.page-numbers li .page-numbers:hover{
+    .fpg-pagination ul.fancy-page-numbers li .fpg-page-numbers:hover{
         <?php if (!empty($fpg_pagination_hover_background)) : ?>
             background-color: <?php echo esc_attr($fpg_pagination_hover_background); ?>;
         <?php endif; ?>
@@ -588,7 +607,7 @@ ob_start();
             border-color: <?php echo esc_attr($fpg_pagination_hover_border_color); ?>;
         <?php endif; ?>
     }
-    .fpg-pagination ul.page-numbers li .page-numbers.current{
+    .fpg-pagination ul.fancy-page-numbers li .fpg-page-numbers.current{
         <?php if (!empty($fpg_pagination_active_background)) : ?>
             background-color: <?php echo esc_attr($fpg_pagination_active_background); ?>;
         <?php endif; ?>

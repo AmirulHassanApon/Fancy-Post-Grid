@@ -273,7 +273,6 @@ ob_start();
                             <!-- Excerpt -->
                             <?php if ($fpg_field_group_excerpt) : ?>
                                 <div class="fpg-excerpt <?php echo esc_attr($excerpt_alignment_class); ?> ">
-
                                     <p>
                                     <?php
                                         $excerpt = get_the_content();
@@ -474,7 +473,7 @@ ob_start();
             border-width: <?php echo esc_attr($fancy_post_border_width); ?>;
         <?php endif; ?>
     }
-    .rs-blog-layout-22 .rs-blog-layout-22-item .rs-content .rs-btn:hover{
+    .rs-blog-layout-22-item .rs-content a.rs-btn.fpg-filled:hover{
         <?php if (!empty($fpg_button_hover_background_color)) : ?>
             background-color: <?php echo esc_attr($fpg_button_hover_background_color); ?>;
         <?php endif; ?>

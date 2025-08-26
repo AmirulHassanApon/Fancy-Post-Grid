@@ -32,10 +32,11 @@ $query = new \WP_Query($args);
 
 // Check if there are posts
 if ($query->have_posts()) {
-    echo '<div class="fpg-section-area rs-blog-layout-6">';
-    
-    echo '<div class="container">';
-    echo '<div class="row">';
+    ?>
+    <div class="fpg-section-area rs-blog-layout-6">
+        <div class="container">
+            <div class="row">
+    <?php
     while ($query->have_posts()) {
         $query->the_post();
 
@@ -104,6 +105,13 @@ if ($query->have_posts()) {
                             <?php
                             // Array of meta items with their respective conditions, content, and class names.
                             $meta_items = array(
+                                
+                                'post_date' => array(
+                                    'condition' => 'yes' === $settings['show_post_date'],
+                                    'class'     => 'meta-date',
+                                    'icon'      => ('yes' === $settings['show_meta_data_icon'] && 'yes' === $settings['show_post_date_icon']) ? '<i class="fa fa-calendar"></i>' : '',
+                                    'content'   => esc_html(get_the_date('M j, Y')),
+                                ),
                                 'post_author' => array(
                                     'condition' => 'yes' === $settings['show_post_author'],
                                     'class'     => 'meta-author',
@@ -113,12 +121,6 @@ if ($query->have_posts()) {
                                                         : '<img src="' . esc_url(get_avatar_url(get_the_author_meta('ID'))) . '" alt="' . esc_attr__('Author', 'fancy-post-grid') . '" class="author-avatar" />')
                                                     : '',
                                     'content'   => esc_html($settings['author_prefix']) . ' ' . esc_html(get_the_author()),
-                                ),
-                                'post_date' => array(
-                                    'condition' => 'yes' === $settings['show_post_date'],
-                                    'class'     => 'meta-date',
-                                    'icon'      => ('yes' === $settings['show_meta_data_icon'] && 'yes' === $settings['show_post_date_icon']) ? '<i class="fa fa-calendar"></i>' : '',
-                                    'content'   => esc_html(get_the_date('M j, Y')),
                                 ),
                                 'post_categories' => array(
                                     'condition' => 'yes' === $settings['show_post_categories'],
@@ -260,7 +262,11 @@ if ($query->have_posts()) {
         </div>
         <?php
     }
-    echo '</div>';
+
+    ?>
+    </div>
+    <?php
+    
     // Pagination
     if ('yes' === $settings['show_pagination']) {
         echo '<div class="fpg-pagination">';
@@ -278,28 +284,38 @@ if ($query->have_posts()) {
         ));
 
         if (!empty($pagination_links)) {
-            echo '<ul class="page-numbers">';
-            foreach ($pagination_links as $link) {
-                // Replace only the current page <span> with an <a> tag
-                if (strpos($link, '<span class="page-numbers current">') !== false) {
-                    $link = preg_replace(
-                        '/<span class="page-numbers current">(.*?)<\/span>/i',
-                        '<a href="#" class="page-numbers current">$1</a>',
-                        $link
-                    );
-                }
+            echo '<ul class="fancy-page-numbers">';
 
+            foreach ($pagination_links as $link) {
+                // Step 1: Replace all "page-numbers" classes with "fpg-page-numbers"
+                $link = str_replace(
+                    [
+                        'class="next page-numbers',
+                        'class="prev page-numbers',
+                        'class="page-numbers current',
+                        'class="page-numbers',
+                    ],
+                    [
+                        'class="fpg-page-numbers next',
+                        'class="fpg-page-numbers prev',
+                        'class="fpg-page-numbers current',
+                        'class="fpg-page-numbers',
+                    ],
+                    $link
+                );
                 echo '<li>' . wp_kses_post($link) . '</li>';
             }
+
             echo '</ul>';
         }
 
         echo '</div>';
     }
-
-    echo '</div>';
-    echo '</div>';
-    echo '</div>';
+    ?>
+    </div>
+    </div>
+    <?php
+    
 } else {
 }
 

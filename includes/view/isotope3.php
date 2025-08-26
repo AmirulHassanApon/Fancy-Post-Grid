@@ -3,7 +3,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 ob_start();
 ?>
 <!-- isotope 3 -->
-<section class="rs-blog-layout-28 rs-blog-layout-10">
+<section class="rs-blog-layout-28 rs-blog-layout-10 fpg-section-area">
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
@@ -561,11 +561,30 @@ ob_start();
         <?php endif; ?>
         
     }
+    .rs-blog-layout-28 .rs-grid .rs-grid-item .rs-blog-layout-28-item .rs-thumb .rs-meta ul li a:hover,
+    .rs-blog-layout-28 .rs-grid .rs-grid-item .rs-blog-layout-28-item .rs-thumb .rs-meta ul li:hover {
+        <?php if (!empty($fpg_meta_hover_color)) : ?>
+            color: <?php echo esc_attr($fpg_meta_hover_color); ?>;
+        <?php endif; ?>
+        
+    }
     .rs-blog-layout-28 .rs-grid .rs-grid-item .rs-blog-layout-28-item .rs-thumb .rs-meta ul li::after{
         <?php if (!empty($fpg_meta_color)) : ?>
             color: <?php echo esc_attr($fpg_meta_color); ?>;
         <?php endif; ?>
     }
+    .rs-blog-layout-28 .rs-grid .rs-grid-item .rs-blog-layout-28-item .rs-thumb .rs-meta ul li i{
+        <?php if (!empty($fpg_meta_icon_color)) : ?>
+            color: <?php echo esc_attr($fpg_meta_icon_color); ?>;
+        <?php endif; ?>
+        <?php if (!empty($fpg_meta_size)) : ?>
+            font-size: <?php echo esc_attr($fpg_meta_size); ?>px;
+        <?php endif; ?>
+        <?php if (!empty($fpg_meta_font_weight)) : ?>
+            font-weight: <?php echo esc_attr($fpg_meta_font_weight); ?>;
+        <?php endif; ?>
+    }
+
     
     /* Button Styles */
     .rs-blog-layout-28 .rs-grid .rs-grid-item .rs-blog-layout-28-item .rs-content .rs-btn.<?php echo esc_attr($button_class); ?>{

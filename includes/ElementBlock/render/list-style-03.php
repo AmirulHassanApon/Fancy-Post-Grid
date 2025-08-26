@@ -39,7 +39,7 @@ $query = new \WP_Query($args);
             <?php while ($query->have_posts()) : $query->the_post(); ?>
                 <?php if ($query->current_post === 0) : ?>
                     <!-- First post on the left (col-5) -->
-                    <div class="col-lg-6 md-mb-50">
+                    <div class="col-lg-6">
                         <?php 
                             $layout = $settings['fancy_post_list_layout'] ?? 'liststyle03';
                             $box_alignment = $settings['box_alignment'] ?? '';
@@ -90,6 +90,12 @@ $query = new \WP_Query($args);
                                             <?php
                                             // Array of meta items with their respective conditions, content, and class names.
                                             $meta_items = array(
+                                                'post_date' => array(
+                                                    'condition' => 'yes' === $settings['show_post_date'],
+                                                    'class'     => 'meta-date',
+                                                    'icon'      => ('yes' === $settings['show_meta_data_icon'] && 'yes' === $settings['show_post_date_icon']) ? '<i class="fa fa-calendar"></i>' : '',
+                                                    'content'   => esc_html(get_the_date('M j, Y')),
+                                                ),
                                                 'post_author' => array(
                                                     'condition' => 'yes' === $settings['show_post_author'],
                                                     'class'     => 'meta-author',
@@ -100,12 +106,7 @@ $query = new \WP_Query($args);
                                                                     : '',
                                                     'content'   => esc_html($settings['author_prefix']) . ' ' . esc_html(get_the_author()),
                                                 ),
-                                                'post_date' => array(
-                                                    'condition' => 'yes' === $settings['show_post_date'],
-                                                    'class'     => 'meta-date',
-                                                    'icon'      => ('yes' === $settings['show_meta_data_icon'] && 'yes' === $settings['show_post_date_icon']) ? '<i class="fa fa-calendar"></i>' : '',
-                                                    'content'   => esc_html(get_the_date('M j, Y')),
-                                                ),
+                                                
                                                 'post_categories' => array(
                                                     'condition' => 'yes' === $settings['show_post_categories'],
                                                     'class'     => 'meta-categories',
@@ -270,6 +271,12 @@ $query = new \WP_Query($args);
                                             <?php
                                             // Array of meta items with their respective conditions, content, and class names.
                                             $meta_items = array(
+                                                'post_date' => array(
+                                                    'condition' => 'yes' === $settings['show_post_date'],
+                                                    'class'     => 'meta-date',
+                                                    'icon'      => ('yes' === $settings['show_meta_data_icon'] && 'yes' === $settings['show_post_date_icon']) ? '<i class="fa fa-calendar"></i>' : '',
+                                                    'content'   => esc_html(get_the_date('M j, Y')),
+                                                ),
                                                 'post_author' => array(
                                                     'condition' => 'yes' === $settings['show_post_author'],
                                                     'class'     => 'meta-author',
@@ -280,13 +287,6 @@ $query = new \WP_Query($args);
                                                                     : '',
                                                     'content'   => esc_html($settings['author_prefix']) . ' ' . esc_html(get_the_author()),
                                                 ),
-                                                'post_date' => array(
-                                                    'condition' => 'yes' === $settings['show_post_date'],
-                                                    'class'     => 'meta-date',
-                                                    'icon'      => ('yes' === $settings['show_meta_data_icon'] && 'yes' === $settings['show_post_date_icon']) ? '<i class="fa fa-calendar"></i>' : '',
-                                                    'content'   => esc_html(get_the_date('M j, Y')),
-                                                ),
-                                                
                                             );
 
                                             $meta_items_output = []; // Array to store individual meta item outputs.

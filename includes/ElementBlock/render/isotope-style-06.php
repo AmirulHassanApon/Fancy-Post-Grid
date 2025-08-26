@@ -233,9 +233,9 @@ if ($query->have_posts()) {
             </div>
         <?php
     }
-    echo '</div>';
-
+    
     ?>
+    </div>
     </section>
     <?php
     wp_reset_postdata();

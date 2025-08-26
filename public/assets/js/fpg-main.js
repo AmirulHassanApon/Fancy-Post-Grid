@@ -1,73 +1,72 @@
-jQuery(document).ready(function($) {
-    // Project Filter - jQuery
-    if ($('.filter-button-group button').length) {
-        var projectfiler = $('.filter-button-group button');
-        if (projectfiler.length) {
-            $('.filter-button-group button').on('click', function(event) {
-                $(this).siblings('.active').removeClass('active');
-                $(this).addClass('active');
-                event.preventDefault();
-            });
-        }
-    }
+jQuery(document).ready(function ($) {
 
-    // Swiper Initialization - Vanilla JS
-    let defaults = {
-        spaceBetween: 5,
-        slidesPerView: 1
-    };
+    // --- Swiper Initialization with Unique ID Support ---
+    document.querySelectorAll('.swiper').forEach(function (swiperEl) {
+        let options = swiperEl.dataset.swiper ? JSON.parse(swiperEl.dataset.swiper) : {};
 
-    initSwipers(defaults);
+        // If navigation elements are defined, make sure to select the right DOM nodes
+        let finalOptions = {
+            ...options,
+            navigation: options.navigation ? {
+                nextEl: options.navigation.nextEl,
+                prevEl: options.navigation.prevEl,
+            } : false,
+            pagination: options.pagination ? {
+                el: options.pagination.el,
+                clickable: options.pagination.clickable || false,
+                type: options.pagination.type || 'bullets',
+            } : false,
+        };
 
-    function initSwipers(defaults = {}, selector = ".swiper") {
-        let swipers = document.querySelectorAll(selector);
-        swipers.forEach((swiper) => {
-            // get options
-            let optionsData = swiper.dataset.swiper
-                ? JSON.parse(swiper.dataset.swiper)
-                : {};
+        new Swiper(swiperEl, finalOptions);
+    });
 
-            let options = {
-                ...defaults,
-                ...optionsData
-            };
+    document.addEventListener('DOMContentLoaded', function () {
+        document.querySelectorAll('.swiper-container').forEach(function (swiperEl) {
+            const config = swiperEl.getAttribute('data-swiper');
+            if (!config) return;
 
-            // init Swiper
-            new Swiper(swiper, options);
+            let swiperOptions = JSON.parse(config);
+
+            // Resolve pagination element
+            if (swiperOptions.pagination && typeof swiperOptions.pagination.el === 'string') {
+                swiperOptions.pagination.el = swiperEl.querySelector(swiperOptions.pagination.el);
+            }
+
+            // Resolve navigation elements
+            if (swiperOptions.navigation) {
+                if (swiperOptions.navigation.nextEl)
+                    swiperOptions.navigation.nextEl = swiperEl.querySelector(swiperOptions.navigation.nextEl);
+                if (swiperOptions.navigation.prevEl)
+                    swiperOptions.navigation.prevEl = swiperEl.querySelector(swiperOptions.navigation.prevEl);
+            }
+
+            new Swiper(swiperEl, swiperOptions);
         });
-    }
-
-    // Initialize additional Swiper instance with navigation
-    // Get the swiper container
-    const swiperContainer = document.querySelector(".mySwiper");
-
-    // Parse the data-swiper attribute as JSON
-    const swiperOptions = JSON.parse(swiperContainer.getAttribute("data-swiper"));
-
-    // Initialize Swiper with parsed options
-    var swiper = new Swiper(".mySwiper", {
-        ...swiperOptions,  // Spread all options from data-swiper
-        navigation: {
-            nextEl: ".swiper-button-next",
-            prevEl: ".swiper-button-prev",
-        },
     });
+    $('.fpg-section-area').each(function () {
+        var $section = $(this);
+        var $grid = $section.find('.rs-grid');
+        var $filters = $section.find('.filter-button-group');
+
+        // Wait until images are loaded
+        $grid.imagesLoaded(function () {
+            $grid.isotope({
+                itemSelector: '.rs-grid-item',
+                layoutMode: 'fitRows'
+            });
+
+            $filters.on('click', 'button', function (e) {
+                e.preventDefault();
+
+                var filterValue = $(this).attr('data-filter');
+                $grid.isotope({ filter: filterValue });
+
+                $(this).siblings().removeClass('active');
+                $(this).addClass('active');
+            });
+        });
+    });
+
 });
 
-jQuery(document).ready(function($) {
-    // Initialize Isotope after all images are loaded
-    var $grid = $('.rs-grid').isotope({
-        itemSelector: '.rs-grid-item',
-        layoutMode: 'fitRows'
-    });
-
-    // Filter items on button click
-    $('.filter-button-group').on('click', 'button', function() {
-        var filterValue = $(this).attr('data-filter');
-        $grid.isotope({ filter: filterValue });
-        
-        // Add 'active' class to the clicked button
-        $('.filter-button-group button').removeClass('active');
-        $(this).addClass('active');
-    });
-});

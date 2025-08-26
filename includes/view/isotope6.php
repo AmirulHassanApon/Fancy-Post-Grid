@@ -3,7 +3,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 ob_start();
 ?>
 <!-- isotope 6 -->
-<section class="rs-blog-layout-15">
+<section class="rs-blog-layout-15 fpg-section-area">
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
@@ -470,6 +470,17 @@ ob_start();
             color: <?php echo esc_attr(!empty($fpg_primary_color) ? $fpg_primary_color : $fpg_meta_hover_color); ?>;
         <?php endif; ?>
     }
+    .rs-blog-layout-15 .rs-grid .rs-grid-item .rs-blog-layout-15-item .rs-content .rs-meta .meta-author i,.rs-blog-layout-15 .rs-grid .rs-grid-item .rs-blog-layout-15-item .rs-content .rs-meta .meta-date span i{
+        <?php if (!empty($fpg_meta_icon_color)) : ?>
+            color: <?php echo esc_attr($fpg_meta_icon_color); ?>;
+        <?php endif; ?>
+        <?php if (!empty($fpg_meta_size)) : ?>
+            font-size: <?php echo esc_attr($fpg_meta_size); ?>px;
+        <?php endif; ?>
+        <?php if (!empty($fpg_meta_font_weight)) : ?>
+            font-weight: <?php echo esc_attr($fpg_meta_font_weight); ?>;
+        <?php endif; ?>
+    }
     .rs-blog-layout-15 .rs-grid .rs-grid-item .rs-blog-layout-15-item .rs-content .rs-meta{
         <?php if (!empty($fpg_meta_order)) : ?>
             order: <?php echo esc_attr($fpg_meta_order); ?>;
@@ -493,9 +504,27 @@ ob_start();
         <?php if (!empty($fpg_primary_color) || !empty($fpg_category_bg_color)) : ?>
             background: <?php echo esc_attr(!empty($fpg_primary_color) ? $fpg_primary_color : $fpg_category_bg_color); ?>;
         <?php endif; ?>
+        <?php if (!empty($fpg_secondary_color) || !empty($fpg_category_color)) : ?>
+            color: <?php echo esc_attr(!empty($fpg_secondary_color) ? $fpg_secondary_color : $fpg_category_color); ?>;
+        <?php endif; ?>  
+        <?php if (!empty($fpg_meta_size)) : ?>
+            font-size: <?php echo esc_attr($fpg_meta_size); ?>px;
+        <?php endif; ?>
+        <?php if (!empty($fpg_meta_font_weight)) : ?>
+            font-weight: <?php echo esc_attr($fpg_meta_font_weight); ?>;
+        <?php endif; ?>
     }
-    .rs-blog-layout-15 .rs-grid .rs-grid-item .rs-blog-layout-15-item .rs-thumb .rs-category a,{     
-    .rs-blog-layout-15 .rs-grid .rs-grid-item .rs-blog-layout-15-item .rs-thumb .rs-category i{     
+    .rs-blog-layout-15 .rs-grid .rs-grid-item .rs-blog-layout-15-item .rs-thumb .rs-category i{
+        
+        <?php if (!empty($fpg_secondary_color) || !empty($fpg_meta_icon_color)) : ?>
+            color: <?php echo esc_attr(!empty($fpg_secondary_color) ? $fpg_secondary_color : $fpg_meta_icon_color); ?>;
+        <?php endif; ?>  
+        <?php if (!empty($fpg_meta_size)) : ?>
+            font-size: <?php echo esc_attr($fpg_meta_size); ?>px;
+        <?php endif; ?>
+        
+    }
+    .rs-blog-layout-15-item .rs-thumb .rs-category a{     
         <?php if (!empty($fpg_secondary_color) || !empty($fpg_category_color)) : ?>
             color: <?php echo esc_attr(!empty($fpg_secondary_color) ? $fpg_secondary_color : $fpg_category_color); ?>;
         <?php endif; ?>   

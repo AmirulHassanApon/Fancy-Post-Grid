@@ -32,9 +32,11 @@ $query = new \WP_Query($args);
 
 // Check if there are posts
 if ($query->have_posts()) {
-    echo '<div class="fpg-section-area rs-blog-layout-20">';
-    echo '<div class="container">';
-    echo '<div class="row">';
+    ?>
+    <div class="fpg-section-area rs-blog-layout-20">
+        <div class="container">
+            <div class="row">
+    <?php
     while ($query->have_posts()) {
         $query->the_post(); 
     ?>
@@ -90,6 +92,12 @@ if ($query->have_posts()) {
                                 <?php
                                 // Array of meta items with their respective conditions, content, and class names.
                                 $meta_items = array(
+                                    'post_date' => array(
+                                        'condition' => 'yes' === $settings['show_post_date'],
+                                        'class'     => 'meta-date',
+                                        'icon'      => ('yes' === $settings['show_meta_data_icon'] && 'yes' === $settings['show_post_date_icon']) ? '<i class="fa fa-calendar"></i>' : '',
+                                        'content'   => esc_html(get_the_date('M j, Y')),
+                                    ),
                                     'post_author' => array(
                                         'condition' => 'yes' === $settings['show_post_author'],
                                         'class'     => 'meta-author',
@@ -100,13 +108,6 @@ if ($query->have_posts()) {
                                                         : '',
                                         'content'   => esc_html($settings['author_prefix']) . ' ' . esc_html(get_the_author()),
                                     ),
-                                    'post_date' => array(
-                                        'condition' => 'yes' === $settings['show_post_date'],
-                                        'class'     => 'meta-date',
-                                        'icon'      => ('yes' === $settings['show_meta_data_icon'] && 'yes' === $settings['show_post_date_icon']) ? '<i class="fa fa-calendar"></i>' : '',
-                                        'content'   => esc_html(get_the_date('M j, Y')),
-                                    ),
-                                    
                                 );
 
                                 $meta_items_output = []; // Array to store individual meta item outputs.
@@ -210,10 +211,9 @@ if ($query->have_posts()) {
         </div>
         <?php
     }
-    echo '</div>';
-    echo '</div>';
-    echo '</div>';
-    echo '</div>';
+    ?>
+    </div></div></div>
+    <?
 } else {
 }
 

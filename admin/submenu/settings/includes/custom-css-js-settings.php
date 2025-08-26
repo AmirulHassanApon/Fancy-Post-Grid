@@ -17,8 +17,9 @@ function fancy_post_grid_render_custom_css_js_settings_main() {
     register_setting('fancy_post_grid_custom_css_js_settings_group', 'fpg_custom_js');
     add_settings_section(
         'fancy_post_grid_custom_css_js_section',
-        __('Custom CSS/JavaScript', 'fancy-post-grid'),
+        '',
         function() {
+            echo '<h2 class="fpg-primary-title">' . esc_html__('Custom CSS/JavaScript', 'fancy-post-grid') . '</h2>';
             echo '<p>' . esc_html__('Add custom CSS and JavaScript.', 'fancy-post-grid') . '</p>';
         },
         'fancy_post_grid_custom_css_js_settings'

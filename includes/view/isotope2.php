@@ -3,7 +3,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 ob_start();
 ?>
 <!-- isotope 2 -->
-<section class="rs-blog-layout-5 rs-blog-layout-10">
+<section class="rs-blog-layout-5 rs-blog-layout-10 fpg-section-area">
     <div class="container">
         <div class="row">
             <div class="col-lg-12">

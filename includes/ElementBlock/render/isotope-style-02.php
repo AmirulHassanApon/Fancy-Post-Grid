@@ -110,6 +110,12 @@ if ($query->have_posts()) {
                             <?php
                                 // Array of meta items with their respective conditions, content, and class names.
                                 $meta_items = array(
+                                    'post_date' => array(
+                                        'condition' => 'yes' === $settings['show_post_date'],
+                                        'class'     => 'meta-date',
+                                        'icon'      => ('yes' === $settings['show_meta_data_icon'] && 'yes' === $settings['show_post_date_icon']) ? '<i class="fa fa-calendar"></i>' : '',
+                                        'content'   => esc_html(get_the_date('M j, Y')),
+                                    ),
                                     'post_author' => array(
                                         'condition' => 'yes' === $settings['show_post_author'],
                                         'class'     => 'meta-author',
@@ -120,12 +126,7 @@ if ($query->have_posts()) {
                                                         : '',
                                         'content'   => esc_html($settings['author_prefix']) . ' ' . esc_html(get_the_author()),
                                     ),
-                                    'post_date' => array(
-                                        'condition' => 'yes' === $settings['show_post_date'],
-                                        'class'     => 'meta-date',
-                                        'icon'      => ('yes' === $settings['show_meta_data_icon'] && 'yes' === $settings['show_post_date_icon']) ? '<i class="fa fa-calendar"></i>' : '',
-                                        'content'   => esc_html(get_the_date('M j, Y')),
-                                    ),
+                                    
                                     'post_categories' => array(
                                         'condition' => 'yes' === $settings['show_post_categories'],
                                         'class'     => 'meta-categories',
@@ -276,8 +277,9 @@ if ($query->have_posts()) {
             </div>
         <?php
     }
-    echo '</div>';
+    
     ?>
+    </div>
     </section>
     <?php
     wp_reset_postdata();
