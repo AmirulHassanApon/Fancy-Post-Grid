@@ -5,7 +5,7 @@
 **Author:** RSTheme 
 **Author URI:** http://rstheme.com 
 **Contributors:** rstheme2017, rubrash
-**Tags:** WordPress Post Grid Plugin, Blog Grid Plugin, Grid Shortcode, Post Grid Builder, Blog Showcase    
+**Tags:**post filter,post carousel,post grid,gutenberg,post grid
 **Version:** 1.0.1
 **License:** GPLv2 or later
 **License URI:** http://www.gnu.org/licenses/gpl-2.0.html 
@@ -14,104 +14,117 @@
 **Requires PHP:** 7.0.0
 **Requires at least:** 5.5
 
-The Fancy Post Grid Plugin showcases posts in 34+ modern styles, offering a versatile, stylish solution for WordPress blogs.
+Display your posts in 100+ stunning layouts with Fancy Post Grid — a stylish, versatile plugin for modern WordPress blogs.
 
 ## Description ##
 
-[__Live Demo__](https://plugins.rstheme.com/fancy-post-grid/) | [__Documentation__](https://plugins.rstheme.com/fancy-post-grid/) | [__Support__](https://rstheme.com/support) | [__Go Pro__](https://rstheme.com/product/fancy-post-grid/)
+The Fancy Post Grid Plugin is a complete solution for WordPress users who want to create beautiful, customizable post grids. Perfect for personal blogs, online magazines, portfolios, or e-commerce sites, it offers the flexibility and tools you need to display content in a clean and stylish way. You can choose from over 34 unique styles—9 available for free and 25 as premium options. Plus, new styles are added with every update, so your design possibilities keep growing. Showcase your posts in grids, sliders, lists, or isotope layouts. Easily adjust colors, typography, and layout to match your brand.
+Make your content stand out and keep visitors engaged longer.
 
-The Fancy Post Grid Plugin is a comprehensive tool designed for WordPress users who wish to create visually engaging and highly customizable post grids. Whether you're running a personal blog, an online magazine, a portfolio site, or an e-commerce platform, this plugin provides the flexibility and functionality needed to showcase your content in an organized and aesthetically pleasing manner. You can customize your content showcase page with over 34+ styles. 12 of them are completely free and the remaining 22 are premium. More styles will be listed for each update.
+👉 [Plugin Demo](https://plugins.rstheme.com/fancy-post-grid/) | [Elementor Demo](https://plugins.rstheme.com/fancy-post-grid/elementor/) | [Gutenberg Demo](https://plugins.rstheme.com/fancy-post-grid/gutenberg/) | [Documentation](https://plugins.rstheme.com/fancy-post-grid/) | [Get Pro](https://rstheme.com/product/fancy-post-grid/#priceplan) | [Support](https://rstheme.com/support) 👈
 
-## Gutenberg & Elementor Integration
-Fancy Post Grid is fully integrated with the WordPress Gutenberg Editor and Elementor Page Builder:
+== Fancy Post Grid – Shortcode, Gutenberg Blocks, and Elementor Addons for Fancy Post Grid ==
 
-✔️ Gutenberg Block: Quickly insert, configure, and preview your grid layouts directly in the block editor.
+[Fancy Post Grid](https://rstheme.com/product/fancy-post-grid/#priceplan) is a powerful and popular plugin for creating beautiful, responsive post grids on any WordPress website. Whether you prefer using shortcodes, Gutenberg blocks, or Elementor addons, this plugin makes it effortless to showcase your content — from blog posts to portfolios, menus, and more.
 
-✔️ Elementor Widget: Drag & drop Fancy Post Grid into any Elementor section and control every setting visually.
-[youtube https://www.youtube.com/watch?v=l5rL26ZDZiQ&ab_channel=RSTheme ]
+With Fancy Post Grid, you can display posts in grid, list, slider or isotope layouts without writing a single line of code. It includes ready-made templates that you can customize to match your site’s style. From the admin panel, you can quickly create grids and insert them into any page or post, ensuring a perfect fit on all devices.
 
+== 🔥 Fancy Post Grid Unlimited Shortcode Generator ==
 
-## 🔥🔥Features ## 
+The Fancy Post Grid plugin offers a powerful shortcode feature that allows you to display posts in beautiful grid layouts anywhere on your WordPress site. With just a simple shortcode, you can customize the post query, select specific categories, tags, or post types, and arrange them in an elegant grid design. This flexibility makes it easy to integrate post grids into pages, posts, or widgets without needing coding knowledge. The shortcode supports advanced options such as pagination, filters, and sorting, giving you full control over how your content appears.
 
-### Grid Layout ###
+👉 [Shortcode Demo](https://plugins.rstheme.com/fancy-post-grid/shrotcode/)
 
-✔ **12 Unique Grid Styles:**
-The Fancy Post Grid Plugin offers a variety of unique grid styles to suit different types of content. With twelve distinct grid layouts, you can display your posts in a format that best fits your site's design and your content's needs. These layouts include options like masonry grids for a dynamic, Pinterest-like appearance, uniform grids for a clean and consistent look, and mixed grids for a more eclectic presentation.
+[youtube https://www.youtube.com/watch?v=SclxnsTzWcc&ab_channel=RSTheme]
 
-### Grid Layout ###
+== 🔥 Gutenberg Fancy Post Grid Blocks ==
 
-✔ **12 Unique Grid Styles:**
-The Fancy Post Grid Plugin offers a variety of unique grid styles to suit different types of content. With twelve distinct grid layouts, you can display your posts in a format that best fits your site's design and your content's needs. These layouts include options like masonry grids for a dynamic, Pinterest-like appearance, uniform grids for a clean and consistent look, and mixed grids for a more eclectic presentation.
+For WordPress users who prefer the block editor, Fancy Post Grid comes with dedicated Gutenberg blocks, enabling you to build and customize post grids visually. These blocks provide a live preview directly in the editor, so you can adjust layout styles, colors, typography, and spacing in real-time. With drag-and-drop simplicity, you can arrange your post grids exactly as you want, without switching between the editor and the front end. This integration ensures a smooth and modern editing experience, making it perfect for content creators and bloggers who want complete design control inside the native WordPress environment.
 
-### Slider Layout ###
+👉 [Gutenberg Demo](https://plugins.rstheme.com/fancy-post-grid/gutenberg/)
 
-✔ **7 Beautiful Slider Styles:**
-In addition to grid layouts, the plugin offers a slider layout option, providing dynamic ways to showcase your content. These sliders add motion and visual appeal to your posts. The plugin includes seven beautiful slider styles. These sliders add a dynamic element to your posts, allowing you to feature selected content prominently and keep your visitors engaged. Sliders' motion and transition effects can draw attention to important posts and improve user interaction.
+[youtube https://www.youtube.com/watch?v=RwMDdesJvJY&ab_channel=RSTheme]
 
-### List Layout ###
+== 🔥 Fancy Post Grid Elementor Addon == 
 
-✔ **8 Different List Styles:**
-For those who prefer a more straightforward approach, the plugin offers eight different list styles. These list layouts present your posts in a clean and organized manner, making it easy for visitors to browse through your content. Whether you're displaying blog posts, news articles, or product listings, the list view provides a structured and user-friendly presentation.
+If you are an Elementor user, Fancy Post Grid offers dedicated widgets that seamlessly integrate into the page builder. These Elementor addons allow you to design and style post grids with the builder’s powerful customization tools, including responsive settings, animation effects, and custom layouts. You can select from multiple grid styles, apply filters, and even create interactive post showcases without writing a single line of code. The Elementor integration makes it effortless to match your post grids with the rest of your site’s design, ensuring a consistent and professional look across all pages.
 
-### Filter Layout ###
+👉 [Elementor Demo](https://plugins.rstheme.com/fancy-post-grid/elementor/)
 
-✔ **7 Unique Filter Styles:**
-The Fancy Post Grid Plugin also includes advanced filtering capabilities with dynamic isotope functionality. This feature allows you to create creative, filterable post grids, giving your visitors the ability to sort and find content based on categories, tags, or custom taxonomies. With 7 unique filter styles, you can offer an interactive post-grid experience that enhances user engagement and navigation.
+[youtube https://www.youtube.com/watch?v=vjX_c0yOcYI&ab_channel=RSTheme]
 
-## Installation ##
+### Let’s dive into the features that make this plugin stand out: ###
 
-### Install via WordPress Dashboard: ###
-1.Go to your WordPress dashboard.
-2.Navigate to "Plugins" > "Add New".
-3.Search for "Fancy Post Grid".
-4.Click "Install Now" and then "Activate".
+== Grid Layout ==
 
-## Usage ##
+✔ 12 Unique Grid Styles (Shortcodes, Gutenberg blocks & Elementor Addons):
+Fancy Post Grid offers twelve beautifully crafted layouts to suit any type of content. You can choose from masonry grids for a lively, Pinterest-style look, uniform grids for a clean and balanced design, or mixed grids for a creative, eye-catching display. No matter your site’s style, there’s a grid that will make your posts shine. Switching between layouts is quick and easy, and the designs are perfect for blogs, magazines, portfolios, and more. 
 
-### Creating a Post Grid with a Shortcode ###
+With Fancy Post Grid, you can choose from 12 unique grid styles — 3 available in the free version and the rest unlocked in the Pro version — giving you plenty of options to create the perfect look for your website.
 
-After customizing your grid settings in the plugin, you can easily add it to any page using a shortcode. Here's how to do it:
+== Slider Layout ==
 
-✔ **Create and Customize Your Grid:**
+✔ 7 Beautiful Slider Styles (Shortcodes, Gutenberg blocks & Elementor Addons):
+Beyond grid layouts, Fancy Post Grid also offers seven stunning slider styles that bring motion and life to your content. These sliders let you highlight selected posts prominently, making your site more dynamic and visually appealing. With smooth transition effects, they grab visitors’ attention and encourage deeper engagement, helping your important content stand out effortlessly.
 
-Go to the plugin settings and choose your desired layout (Grid, Slider, List, or Filter).
-Customize the layout, style, and content filters to match your needs (e.g., select categories, tags, or post types).
+With Fancy Post Grid, you can choose from 7 unique Slider styles — 3 available in the free version and the rest unlocked in the Pro version — giving you plenty of options to create the perfect look for your website.
 
-✔ **Generate the Shortcode:**
+== List Layout ==
 
-Once your settings is configured, the plugin will generate a unique shortcode.
-Example shortcode: [fancy_gird_post_shortcode id="xxxx"]
+✔ 8 Different List Styles (Shortcodes, Gutenberg blocks & Elementor Addons):
+ If you prefer a simple and organized look, Fancy Post Grid includes eight distinct list styles. These layouts display your posts clearly and neatly, making it easy for visitors to browse through your content. Whether you’re showcasing blog posts, news articles, or product listings, the list view offers a clean and user-friendly way to present your information.
 
-✔ **Add the Shortcode to Your Page:**
-Go to the page  where you want to display the grid.
-Paste the generated shortcode into the content editor or widget area where you want the grid to appear.
+ With Fancy Post Grid, you can choose from 8 unique List styles — 3 available in the free version and the rest unlocked in the Pro version — giving you plenty of options to create the perfect look for your website.
 
+== Isotope Layout ==
+✔ 7 Unique Isotope Styles (Shortcodes, Gutenberg blocks & Elementor Addons):
+Fancy Post Grid also features advanced filtering with dynamic isotope functionality, allowing your visitors to easily sort and find posts by categories, tags, or custom taxonomies. With seven unique filter styles to choose from, you can create an interactive and user-friendly post grid that boosts engagement and makes navigation a breeze.
 
-## 🔥Highlight ##
-1.Responsive Design
-2.Customization Options
-3.Developer Friendly
-4.Regular Updates
-5.User-Friendly Interface
-6.Optimized Performance
+With Fancy Post Grid, you can choose from 7 unique Isotope styles — 0 available in the free version and the rest unlocked in the Pro version — giving you plenty of options to create the perfect look for your website.
 
-### Support and Documentation ##
-For detailed documentation, and support, and to upgrade to the pro version, visit the following links:
+### 🔥 Usage Creating a Post Grid with a Shortcode
 
-[__Live Demo__](https://plugins.rstheme.com/fancy-post-grid/) | [__Documentation__](https://plugins.rstheme.com/fancy-post-grid/) | [__Support__](https://rstheme.com/support) | [__Go Pro__](https://rstheme.com/product/fancy-post-grid/)
+Once you’ve customized your grid settings in the plugin, adding your post grid to any page is quick and easy. Just use the shortcode provided — here’s how:
+== ✔ Create and Customize Your Grid: ==
+Head over to the plugin settings and pick your preferred layout—Grid, Slider, List, or Filter. Then customize the style, content filters, and other options to perfectly fit your needs, like selecting categories, tags, or post types.
+
+== ✔ Generate the Shortcode: ==
+ After configuring your settings, the plugin will create a unique shortcode for your grid.
+ Example: [fancy_grid_post_shortcode id="xxxx"]
+
+== ✔ Add the Shortcode to Your Page: ==
+Go to the page where you want your grid to appear.
+Simply paste the shortcode into the content editor or widget area, and your post grid will display there.
+
+### 🔥 Highlights
+
+1. Fully Responsive Design – Adapts to all screen sizes and devices
+2. Extensive Customization Options – Easily tailor layouts, styles, filters
+3. Developer Friendly – Clean, documented code with hooks for customization
+4. Regular Updates – Continuous improvements and new features added
+5. User-Friendly Interface – Intuitive setup with no coding required
+6. Optimized Performance – Fast-loading grids for smooth experience
+7. SEO Optimized – Built to help content rank better in search engines
+8. Multi-Language Support – Compatible with WPML and translation plugins
+9. Cross-Browser Compatible – Works seamlessly across major browsers
+10. Flexible Integration – Easily fits into any WordPress theme or builder
 
 
 ### 🔥 You may like other plugins from RSTheme:
 
-**[Ultimate Coming Soon & Maintenance](https://wordpress.org/plugins/ultimate-coming-soon/)** - Best Coming soon, Maintenance mode, Countdown Timer, and Landing Page for your website get with advanced features for free.
-
 **[RSElements Addon For Elementor](https://wordpress.org/plugins/rselements-lite/)** - RSElements Addon is a collection of powerful widgets that works perfectly with Elementor page builder.
 
-**[RS Logo Showcase](https://wordpress.org/plugins/rs-logo-showcase/)** - Logo Showcase is a lightweight & Responsive plugin to Display a list of clients, supporters, partners or sponsors logos in your WordPress website. 
+**[RS Logo Showcase](https://wordpress.org/plugins/rs-logo-showcase/)** - Logo Showcase is a lightweight & Responsive plugin to Display a list of clients, supporters, partners or sponsors logos in your WordPress website . 
 
 **[Shortcodes for Elementor](https://wordpress.org/plugins/shortcode-elementor/)** - Insert your elementor pages and sections templates anywhere using shortcodes fro elementor. Using this plugin you can make global elements with shortcodes. This shortcode you can use anywhere inside Elementor builder.
 
 **[Ultimate Team Showcase – Advanced WordPress Team Members Plugin](https://wordpress.org/plugins/ultimate-team-showcase/)** - The ultimate team member WordPress plugin for showing team members profile in grid, slider, Isotope, and lightbox layouts easily using by shortcodes.
+
+**[Ultimate Coming Soon & Maintenance](https://wordpress.org/plugins/ultimate-coming-soon/advanced/)** - Best Coming Soon, Under Construction, Maintenance Mode, and Landing Page for your website get advanced features for free. 
+
+**[Ultimate Tag Cloud Elementor Addon](https://wordpress.org/plugins/ultimate-tag-cloud/)** - Ultimate Tag Cloud enhances tag display with dynamic loading, custom addons, Elementor integration, and stylish layouts for better taxonomy organization.
+
+**[Ultimate Redirect Manager](https://wordpress.org/plugins/ultimate-redirect-manager/)** - Redirect users based on 404 errors, manage 301 & 302 redirects, track 404 errors, and optimize your website.
 
 = Author =
 
@@ -120,41 +133,91 @@ Designed and Developed with ♥ by [__RSTheme__](https://rstheme.com/)
 
 == Requirements ==
 
-`WordPress version at least: 4.5` 
-`PHP version at least: 7.0`
+`WordPress version at least: 6.8` 
+`PHP version at least: 7.4`
+
+== Installation ==
+
+= 👉 Using The WordPress Dashboard =
+
+1. Navigate to the **'Add New'** in the plugins dashboard
+2. Search for **'Fancy Post Grid'**
+3. Click **'Install Now'**
+4. **Activate** the plugin on the Plugin dashboard
+
+= 👉 Uploading in WordPress Dashboard =
+
+1. Navigate to the **'Add New'** in the plugins dashboard
+2. Navigate to the **'Upload'** area
+3. Select `fancy-post-grid-pro.x.x.x.zip` from your computer
+4. Click **'Install Now'**
+5. Activate the plugin in the Plugin dashboard
+
+= 👉 Using FTP =
+
+1. Download `fancy-post-grid-pro.x.x.x.zip`
+2. Extract the `fancy-post-grid-pro` directory to your computer
+3. Upload the `fancy-post-grid-pro` directory to the `/wp-content/plugins/` directory
+4. Activate the plugin in the Plugin dashboard
+
+== Frequently Asked Questions ==
+
+= 🔰 What is the Fancy Post Grid WordPress Plugin? = 
+
+* Fancy Post Grid is a versatile and powerful plugin that lets you create stunning, fully customizable grid and post layouts for your WordPress site. Whether you want to showcase blog posts, portfolios, or any other content, this plugin offers a wide range of blocks like Post Block, Post Group, Post Trisec, Grid Hover, Post Slider, and Post Carousel. Designed with flexibility and ease of use in mind, it helps you build beautiful layouts that perfectly match your style and keep your visitors engaged.
+
+= 🔰 Can I customize the appearance of the Post Grid? =
+
+* Absolutely! With Fancy Post Grid, you have plenty of options to tailor the look and feel of your grids. From layouts and colors to fonts and spacing, you can easily create a style that perfectly fits your website’s vibe.
+
+= 🔰 Is the Fancy Post Grid Plugin compatible with other WordPress themes and builders? =
+
+* Yes! Fancy Post Grid works smoothly with most WordPress themes and popular page builders like Gutenberg and Elementor. It’s designed to fit right into your existing setup without any hassle.
+
+= 🔰 What are the differences between the free and pro versions of the plugin? =
+
+* The free version of Fancy Post Grid gives you all the basics to create beautiful post grids with essential customization options. The pro version takes it further with advanced grid features, more layout styles, and deeper customization tools to help you build truly unique and professional-looking pages.
+
+= 🔰 Can I use the Fancy Post Grid Plugin for different types of content? =
+
+* Absolutely! Whether you want to showcase a blog post grid, display a portfolio, or organize news articles, the Fancy Post Grid plugin is incredibly versatile. It offers flexible content grid and post display options, including post sliders, post lists, and post carousels. Plus, with powerful post filter and category filter features, you can easily organize and highlight any type of content with clean, structured layouts.
+
+= 🔰 How can I troubleshoot issues with the Fancy Post Grid Plugin? =
+
+* If you run into any problems with your post grid, post slider, or content grid setups, start by checking the plugin’s documentation and support resources. Common fixes include looking for conflicts with other plugins or themes, making sure the plugin is properly installed, and keeping it updated to the latest version. Also, verify that your post display and post carousel features are configured correctly to avoid any glitches.
+
+= 🔰 Will this plugin slow down my site? =
+
+* No, the Fancy Post Grid plugin is built with clean, optimized code and modern standards to ensure fast loading times. Whether you’re using post grids, post sliders, or post carousels, everything is designed to work smoothly without slowing down your site, providing visitors with a seamless browsing experience. 
+
+= 🔰 Is support included with every license or purchase? =
+
+* Definitely! With a valid PRO license, you get full access to our dedicated support team ready to assist you with anything related to your post grid, post slider, post carousel, or any other Fancy Post Grid features.
 
 
-## Screenshots ##
+== Screenshots ==
 
-1. All Shortcodes
-2. Settings
-3. Grid Style 01
-4. Grid Style 02
-5. Slider Style 01
-6. List Style 01
-7. List Style 02
-8. Isotope Style 01
-9. Isotope Style 02
-10. Isotope Style 02
+01. Elementor Addon- Grid Layout
+02. Elementor Addon- Slider Layout
+03. Elementor Addon- Isotope Layout
+04. Elementor Addon- List Layout
+05. Gutenberg Blocks- Grid Layout
+06. Gutenberg Blocks- Slider Layout
+07. Gutenberg Blocks- Isotope Layout
+08. Gutenberg Blocks- List Layout
+09. Shortcode Generator- Field Selector
+10. Shortcode Generator- Layout Settings
+11. Shortcode Generator- Styles
 
-## Changelog ##
+== Changelog ==
 
-= 1.0.2 17-07-2025 =
+= 1.0.1 (18 Aug, 2025) =
 
-* Add New One Premium Isotope Style
-* Compatible with your version of WordPress
-* Bug Fixes
-* Security Update
-* Updated Style
+Added: Gutenberg Blocks, and Elementor Addons 
+Added: 68 Layouts 
+Modified : Layout Styles
+Fixed: Bug fixes and security updates
 
-= 1.0.1 18-12-2024 =
+= 1.0.0 (25 November 2024) =
 
-* Add New One Premium Isotope Style
-* Compatible with your version of WordPress
-* Bug Fixes
-* Security Update
-* Updated Style
-
-= 1.0.0 25-11-2024 =
-
-* Initial release
+Initial release

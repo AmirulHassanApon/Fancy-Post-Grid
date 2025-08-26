@@ -12,6 +12,15 @@ function fancy_post_grid_add_submenus_pro() {
         'fancy_post_grid_advanced_settings', // Menu slug
         'fancy_post_grid_render_advanced_settings_page' // Callback function
     );
+    // Get Help submenu
+    add_submenu_page(
+        'edit.php?post_type=fancy-post-grid-fpg', // Parent slug 
+        __('Get Help', 'fancy-post-grid'), // Page title
+        __('Get Help', 'fancy-post-grid'), // Menu title
+        'manage_options', // Capability
+        'fancy_post_grid_get_help', // Menu slug
+        'fancy_post_grid_render_get_help_page' // Callback function
+    );
 
     // License Activation submenu
     add_submenu_page(
@@ -27,3 +36,4 @@ add_action('admin_menu', 'fancy_post_grid_add_submenus_pro');
 
 require_once FANCY_POST_GRID_PATH_PRO . 'admin/submenu/settings/advanced-settings.php';
 require_once FANCY_POST_GRID_PATH_PRO . 'admin/submenu/ini/license-activation.php';
+require_once FANCY_POST_GRID_PATH_PRO . 'admin/submenu/settings/get-help.php';

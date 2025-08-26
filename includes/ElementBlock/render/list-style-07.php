@@ -144,7 +144,30 @@ $query = new \WP_Query($args);
                                 <?php
                             }
                         ?>
-                        
+                        <!-- Post Excerpt -->
+                        <?php if ( 'yes' === $settings['show_post_excerpt'] ) { ?>
+                            <div class="fpg-excerpt">
+                                <p class="fancy-post-excerpt" >
+                                    <?php
+                                    $excerpt_type = $settings['excerpt_type'];
+                                    $excerpt_length = $settings['excerpt_length'];
+                                    $expansion_indicator = $settings['expansion_indicator'];
+
+                                    if ( 'full_content' === $excerpt_type ) {
+                                        $content = get_the_content();
+                                        echo esc_html( $content );
+                                    } elseif ( 'character' === $excerpt_type ) {
+                                        $excerpt = get_the_excerpt();
+                                        $trimmed_excerpt = mb_substr( $excerpt, 0, $excerpt_length ) . esc_html( $expansion_indicator );
+                                        echo esc_html( $trimmed_excerpt );
+                                    } else { // Word-based excerpt
+                                        $excerpt = wp_trim_words( get_the_excerpt(), $excerpt_length, esc_html( $expansion_indicator ) );
+                                        echo esc_html( $excerpt );
+                                    }
+                                    ?>
+                                </p>
+                            </div>
+                        <?php } ?>
                         <!-- Read More Button -->
                         <?php if (!empty($settings['show_post_readmore']) && 'yes' === $settings['show_post_readmore']) { 
                                 $layout = $settings['fancy_post_list_layout'] ?? 'liststyle07';

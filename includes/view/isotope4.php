@@ -3,7 +3,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 ob_start();
 ?>
 <!-- isotope 3 -->
-<section class="rs-blog-layout-30 rs-blog-layout-10">
+<section class="rs-blog-layout-30 rs-blog-layout-10 fpg-section-area">
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
@@ -551,7 +551,16 @@ ob_start();
         <?php endif; ?>
         <?php if (!empty($fpg_date_padding)) : ?>
             padding: <?php echo esc_attr($fpg_date_padding); ?>;
-        <?php endif; ?>    
+        <?php endif; ?>  
+        <?php if (!empty($fpg_meta_size)) : ?>
+            font-size: <?php echo esc_attr($fpg_meta_size); ?>px;
+        <?php endif; ?>
+        <?php if (!empty($fpg_meta_font_weight)) : ?>
+            font-weight: <?php echo esc_attr($fpg_meta_font_weight); ?>;
+        <?php endif; ?>      
+        <?php if (!empty($fpg_meta_line_height)) : ?>
+            line-height: <?php echo esc_attr($fpg_meta_line_height); ?>;
+        <?php endif; ?>   
     }
 
 </style>

@@ -142,7 +142,8 @@ ob_start();
                     $feature_image_left_size = isset($fancy_post_feature_image_left) ? (string) $fancy_post_feature_image_left : '';  
 
                     $feature_image_right_size = isset($fancy_post_feature_image_right) ? (string) $fancy_post_feature_image_right : ''; 
-                    
+                    // Determine the media source
+                    $media_source = isset($fancy_post_media_source) ? $fancy_post_media_source : 'feature_image';
                     // Determine the hover animation
                     $hover_animation = !empty($fancy_post_hover_animation) ? $fancy_post_hover_animation : 'none';
                     

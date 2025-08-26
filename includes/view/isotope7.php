@@ -3,7 +3,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 ob_start();
 ?>
 <!-- isotope 7 -->
-<section class="rs-blog-layout-26">
+<section class="rs-blog-layout-26 fpg-section-area">
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
@@ -211,55 +211,51 @@ ob_start();
                                 <?php the_category(', '); ?>
                             </div>
                             <?php endif; ?> 
-                            <?php if ($fpg_field_group_author) : ?>
-                                <div class="meta-author">
-                                    <?php if (!empty($fpg_field_group_author_icon) && empty($disabled_meta_icons['author_icon'])) { ?>
-                                    <i class="ri-user-line"></i>
-                                    <?php } ?>
-                                    <a href="<?php echo esc_url(get_author_posts_url(get_the_author_meta('ID'))); ?>"
-                                        <?php echo esc_attr($target_blank); ?>>
-                                        <?php the_author(); ?>
-                                    </a> 
-                                </div>
-                            <?php endif; ?>
-                            
-                            <?php if ($fpg_field_group_comment_count && get_comments_number() > 0) : ?>
-                                <div class="meta-comment-count">
-                                    <?php if (!empty($fpg_field_group_comment_count_icon) && empty($disabled_meta_icons['comment_count_icon'])) {?>
-                                    <i class="ri-chat-3-line"></i>
-                                    <?php } ?>
-                                    <?php comments_number('0 Comments', '1 Comment', '% Comments'); ?>
-                                </div>
-                            <?php endif; ?>
-                            <?php if ($fpg_field_group_tag && has_tag()) : ?>
-                                <div class="meta-tags">
-                                    <?php if (empty($disabled_meta_icons['tags_icon'])) {?>
-                                    <i class="ri-price-tag-3-line"></i>
-                                    <?php } ?>
-                                    <?php the_tags('', ', ', ''); ?>
-                                </div>
-                            <?php endif; ?>                             
+                                                        
                         </div>
                         <?php if ($fpg_field_group_title) : ?>
-                            <<?php echo esc_attr($title_tag); ?> class="title <?php echo esc_attr($title_alignment_class); ?>">
+                            <<?php echo esc_attr($title_tag); ?> class="title <?php echo esc_attr($title_alignment_class); ?>" >
                                 <?php if ($fancy_link_details === 'on') : ?>
                                     <a href="<?php the_permalink(); ?>"
                                        <?php echo esc_attr($target_blank); ?>
                                        class="title-link">
-                                        <?php echo esc_html(
-                                            wp_trim_words(get_the_title(), $fancy_post_title_limit, esc_html($title_more_text))
-                                        ); ?>
+                                        <?php
+                                        if ($fancy_post_title_limit_type === 'words') {
+                                            echo esc_html(
+                                                wp_trim_words(get_the_title(), $fancy_post_title_limit, esc_html($title_more_text))
+                                            );
+                                        } elseif ($fancy_post_title_limit_type === 'characters') {
+                                            echo esc_html(mb_strimwidth(get_the_title(), 0, $fancy_post_title_limit, $title_more_text));
+                                        }
+                                        ?>
                                     </a>
                                 <?php else : ?>
-                                    <?php echo esc_html(
+                                    <?php
+                                    if ($fancy_post_title_limit_type === 'words') {
+                                        echo esc_html(
                                             wp_trim_words(get_the_title(), $fancy_post_title_limit, esc_html($title_more_text))
-                                        ); ?>
+                                        );
+                                    } elseif ($fancy_post_title_limit_type === 'characters') {
+                                        echo esc_html(mb_strimwidth(get_the_title(), 0, $fancy_post_title_limit, $title_more_text));
+                                    }
+                                    ?>
                                 <?php endif; ?>
                             </<?php echo esc_attr($title_tag); ?>>
                         <?php endif; ?>
+                        
                         <?php if ($fpg_field_group_excerpt) : ?>
                             <p class="<?php echo esc_attr($excerpt_alignment_class); ?>">
-                                <?php echo esc_html(wp_trim_words($excerpt, $fancy_post_excerpt_limit, $excerpt_more_text)); ?>
+                                <?php
+                                $excerpt = get_the_content();
+
+                                if ($fancy_post_excerpt_limit_type === 'words') {
+                                    echo esc_html(wp_trim_words($excerpt, $fancy_post_excerpt_limit, $excerpt_more_text));
+                                } else {
+                                    // Strip tags to avoid breaking HTML, then apply character limit
+                                    $excerpt = wp_strip_all_tags($excerpt);
+                                    echo esc_html(mb_strimwidth($excerpt, 0, $fancy_post_excerpt_limit, $excerpt_more_text));
+                                }
+                                ?>
                             </p>
                         <?php endif; ?>
                         <?php if ($fancy_link_details === 'on' && $fpg_field_group_read_more) : ?>
@@ -415,7 +411,7 @@ ob_start();
             line-height: <?php echo esc_attr($fpg_meta_line_height); ?>;
         <?php endif; ?>
     }
-    .rs-blog-layout-26 .rs-grid .rs-grid-item .rs-blog-layout-26-item .rs-content .rs-meta .meta-date span{
+    .rs-blog-layout-26 .rs-grid .rs-grid-item .rs-blog-layout-26-item .rs-content .rs-meta .meta-date span,.rs-blog-layout-26-item .rs-content .rs-meta .meta-category a{
         <?php if (!empty($fpg_meta_color)) : ?>
             color: <?php echo esc_attr($fpg_meta_color); ?>;
         <?php endif; ?>
@@ -426,14 +422,13 @@ ob_start();
             font-weight: <?php echo esc_attr($fpg_meta_font_weight); ?>;
         <?php endif; ?>
     }
-    .rs-blog-layout-26 .rs-grid .rs-grid-item .rs-blog-layout-26-item .rs-content .rs-meta .meta-category a{
-        <?php if (!empty($fpg_author_color)) : ?>
-            color: <?php echo esc_attr($fpg_author_color); ?>;
+    .rs-blog-layout-26 .rs-grid .rs-grid-item .rs-blog-layout-26-item .rs-content .rs-meta .meta-date span:hover,.rs-blog-layout-26-item:hover .rs-content .rs-meta .meta-category a{
+        <?php if (!empty($fpg_meta_hover_color)) : ?>
+            color: <?php echo esc_attr($fpg_meta_hover_color); ?>;
         <?php endif; ?>
-        <?php if (!empty($fpg_author_padding)) : ?>
-            padding: <?php echo esc_attr($fpg_author_padding); ?>;
-        <?php endif; ?>
+        
     }
+
     .rs-blog-layout-26 .rs-grid .rs-grid-item .rs-blog-layout-26-item .rs-content .title{
         <?php if (!empty($fpg_title_order)) : ?>
             order: <?php echo esc_attr($fpg_title_order); ?>;

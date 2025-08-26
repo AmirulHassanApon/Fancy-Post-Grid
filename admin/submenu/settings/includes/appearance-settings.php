@@ -19,8 +19,9 @@ function fancy_post_grid_render_appearance_settings_main() {
 
     add_settings_section(
         'fancy_post_grid_appearance_section',
-        __('Appearance Options', 'fancy-post-grid'),
+        '',
         function() {
+            echo '<h2 class="fpg-primary-title">' . esc_html__('Appearance Options', 'fancy-post-grid') . '</h2>';
             echo '<p>' . esc_html__('Customize the appearance settings for Fancy Post Grid.', 'fancy-post-grid') . '</p>';
         },
         'fancy_post_grid_appearance_settings'

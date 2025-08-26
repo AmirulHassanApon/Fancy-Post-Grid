@@ -392,7 +392,6 @@ function fancy_post_grid_metabox_shortcode_callback_pro( $post ) {
         $fpg_button_font_weight = '400'; 
     }
     
-
     // Pagination Style
     $fpg_pagination_color               = get_post_meta( $post->ID, 'fpg_pagination_color', true );
     $fpg_pagination_background          = get_post_meta( $post->ID, 'fpg_pagination_background', true );
@@ -1795,37 +1794,7 @@ function fancy_post_grid_metabox_shortcode_callback_pro( $post ) {
                         </select>
                     </div>
 
-                    <div class="fpg-post-select-main" id="fpg_post_select_button">
-                        <!-- Border Radius -->
-                        <div class="fpg-read-more-border-radius fpg-common">
-                            <label for="fancy_post_read_more_border_radius"><?php esc_html_e( 'Border Radius:', 'fancy-post-grid' ); ?></label>
-                            <input type="text" id="fancy_post_read_more_border_radius" name="fancy_post_read_more_border_radius" value="<?php echo esc_attr( $fancy_post_read_more_border_radius ); ?>" placeholder="e.g., 2px 3px 4px 5px" />
-                        </div>
-
-                        
-                        <!-- Background Color -->
-                        <div class="fpg-color-box">
-                            <label for="fpg_border_color"><?php esc_html_e( 'Border Color:', 'fancy-post-grid' ); ?></label>
-                            <input type="text" class="color-field" id="fpg_border_color" name="fpg_border_color" value="<?php echo esc_attr( $fpg_border_color ); ?>" />
-                        </div> 
-                        <!-- Border width -->
-                        <div class="fpg-read-more-button-width fpg-common">
-                            <label for="fancy_post_button_border_width"><?php esc_html_e( 'Border Width:', 'fancy-post-grid' ); ?></label>
-                            <input type="text" id="fancy_post_button_border_width" name="fancy_post_button_border_width" value="<?php echo esc_attr( $fancy_post_button_border_width ); ?>"placeholder="e.g., 2px 3px 4px 5px"  />
-                        </div>
-
-                        <div class="fpg-button-border-style fpg-common" id="fpg-button-border-style">
-                            <label for="fancy_button_border_style"><?php esc_html_e( 'Border Style:', 'fancy-post-grid' ); ?></label>
-                            <select id="fancy_button_border_style" name="fancy_button_border_style">
-                                <option value="unset" <?php selected( $fancy_button_border_style, 'unset' ); ?>><?php esc_html_e( 'Unset', 'fancy-post-grid' ); ?></option>
-                                <option value="dotted" <?php selected( $fancy_button_border_style, 'dotted' ); ?>><?php esc_html_e( 'Dotted', 'fancy-post-grid' ); ?></option>
-                                <option value="dashed" <?php selected( $fancy_button_border_style, 'dashed' ); ?>><?php esc_html_e( 'Dashed', 'fancy-post-grid' ); ?></option>
-                                <option value="solid" <?php selected( $fancy_button_border_style, 'solid' ); ?>><?php esc_html_e( 'Solid', 'fancy-post-grid' ); ?></option>
-                                <option value="double" <?php selected( $fancy_button_border_style, 'double' ); ?>><?php esc_html_e( 'Double', 'fancy-post-grid' ); ?></option>
-                                <option value="groove" <?php selected( $fancy_button_border_style, 'groove' ); ?>><?php esc_html_e( 'Groove', 'fancy-post-grid' ); ?></option>      
-                            </select>
-                        </div>
-                    </div>  
+                     
                     <div class="fpg-post-select-main">
                         <!-- Alignment -->
                         <div class="fpg-read-more-alignment fpg-common" id="fpg-read-more-alignment">
@@ -1925,7 +1894,10 @@ function fancy_post_grid_metabox_shortcode_callback_pro( $post ) {
                                     printf(esc_html__('%s:', 'fancy-post-grid'), esc_html($label));  
                                 ?>
                                 </label>
-                                <input type="text" class="color-field" id="<?php echo esc_attr($field_name); ?>" name="<?php echo esc_attr($field_name); ?>" value="<?php echo esc_attr($field_name); ?>" />
+                                <?php
+                                    $value = get_post_meta($post->ID, $field_name, true);
+                                ?>
+                                <input type="text" class="color-field" id="<?php echo esc_attr($field_name); ?>" name="<?php echo esc_attr($field_name); ?>" value="<?php echo esc_attr($value); ?>" />
                             </div>
                         <?php } ?>
 
@@ -1939,8 +1911,19 @@ function fancy_post_grid_metabox_shortcode_callback_pro( $post ) {
                             'fancy_post_filter_border_width' => 'Border Width (px)',
                             'fancy_post_filter_box_padding' => 'Box Padding (px)',
                             'fancy_post_filter_box_margin' => 'Box Margin (px)',
-                            'fancy_post_filter_box_border_radius' => 'Box Border Radius (px)',                           
+                            'fancy_post_filter_box_border_radius' => 'Box Border Radius (px)',
                             'fancy_post_filter_item_gap' => 'Item Gap (px)',
+                        ];
+                        $numeric_placeholders = [
+                            'fancy_post_filter_padding' => 'e.g., 10px 15px 20px 25px',
+                            'fancy_post_filter_margin' => 'e.g., 10px 15px 20px 25px',
+                            'fancy_post_filter_font_size' => 'e.g. 14px',
+                            'fancy_post_filter_border_radius' => 'e.g., 1px 1px 2px 2px',
+                            'fancy_post_filter_border_width' => 'e.g., 1px 1px 2px 2px',
+                            'fancy_post_filter_box_padding' => 'e.g., 10px 15px 20px 25px',
+                            'fancy_post_filter_box_margin' => 'e.g., 10px 15px 20px 25px',
+                            'fancy_post_filter_box_border_radius' => 'e.g. 5px',
+                            'fancy_post_filter_item_gap' => 'e.g. 8px',
                         ];
                         foreach ($numeric_fields as $field_name => $label) { ?>
                         <div class="fpg-numeric-box">
@@ -1950,7 +1933,17 @@ function fancy_post_grid_metabox_shortcode_callback_pro( $post ) {
                                 printf(esc_html__('%s:', 'fancy-post-grid'), esc_html($label));  
                                 ?>
                             </label>
-                            <input type="text" id="<?php echo esc_attr($field_name); ?>" name="<?php echo esc_attr($field_name); ?>" value="<?php echo esc_attr($field_name); ?>" />
+                            <?php
+                                $value = get_post_meta($post->ID, $field_name, true);
+                                $placeholder = isset($numeric_placeholders[$field_name]) ? $numeric_placeholders[$field_name] : '';
+                            ?>
+                            <input
+                                type="text"
+                                id="<?php echo esc_attr($field_name); ?>"
+                                name="<?php echo esc_attr($field_name); ?>"
+                                value="<?php echo esc_attr($value); ?>"
+                                placeholder="<?php echo esc_attr($placeholder); ?>"
+                            />
                         </div>
 
                         <?php
@@ -2337,7 +2330,36 @@ function fancy_post_grid_metabox_shortcode_callback_pro( $post ) {
                             <input type="text" id="fpg_button_font_weight" name="fpg_button_font_weight" value="<?php echo esc_attr( $fpg_button_font_weight ); ?>" placeholder="e.g., 400" />
                         </div>
                     </div>
-                                         
+                    <div class="fpg-post-select-main" id="fpg_post_select_button">
+                        <!-- Border Radius -->
+                        <div class="fpg-read-more-border-radius fpg-common">
+                            <label for="fancy_post_read_more_border_radius"><?php esc_html_e( 'Border Radius:', 'fancy-post-grid' ); ?></label>
+                            <input type="text" id="fancy_post_read_more_border_radius" name="fancy_post_read_more_border_radius" value="<?php echo esc_attr( $fancy_post_read_more_border_radius ); ?>" placeholder="e.g., 2px 3px 4px 5px" />
+                        </div>
+                        
+                        <!-- Background Color -->
+                        <div class="fpg-color-box">
+                            <label for="fpg_border_color"><?php esc_html_e( 'Border Color:', 'fancy-post-grid' ); ?></label>
+                            <input type="text" class="color-field" id="fpg_border_color" name="fpg_border_color" value="<?php echo esc_attr( $fpg_border_color ); ?>" />
+                        </div> 
+                        <!-- Border width -->
+                        <div class="fpg-read-more-button-width fpg-common">
+                            <label for="fancy_post_button_border_width"><?php esc_html_e( 'Border Width:', 'fancy-post-grid' ); ?></label>
+                            <input type="text" id="fancy_post_button_border_width" name="fancy_post_button_border_width" value="<?php echo esc_attr( $fancy_post_button_border_width ); ?>"placeholder="e.g., 2px 3px 4px 5px"  />
+                        </div>
+
+                        <div class="fpg-button-border-style fpg-common" id="fpg-button-border-style">
+                            <label for="fancy_button_border_style"><?php esc_html_e( 'Border Style:', 'fancy-post-grid' ); ?></label>
+                            <select id="fancy_button_border_style" name="fancy_button_border_style">
+                                <option value="unset" <?php selected( $fancy_button_border_style, 'unset' ); ?>><?php esc_html_e( 'Unset', 'fancy-post-grid' ); ?></option>
+                                <option value="dotted" <?php selected( $fancy_button_border_style, 'dotted' ); ?>><?php esc_html_e( 'Dotted', 'fancy-post-grid' ); ?></option>
+                                <option value="dashed" <?php selected( $fancy_button_border_style, 'dashed' ); ?>><?php esc_html_e( 'Dashed', 'fancy-post-grid' ); ?></option>
+                                <option value="solid" <?php selected( $fancy_button_border_style, 'solid' ); ?>><?php esc_html_e( 'Solid', 'fancy-post-grid' ); ?></option>
+                                <option value="double" <?php selected( $fancy_button_border_style, 'double' ); ?>><?php esc_html_e( 'Double', 'fancy-post-grid' ); ?></option>
+                                <option value="groove" <?php selected( $fancy_button_border_style, 'groove' ); ?>><?php esc_html_e( 'Groove', 'fancy-post-grid' ); ?></option>      
+                            </select>
+                        </div>
+                    </div>                      
                 </fieldset>
             </div>    
             <div class="fancy-post-slider-arrow fpg-common" id="fpg_slider_arrow_dots">
@@ -3071,6 +3093,7 @@ function fancy_post_grid_save_metabox_data_pro( $post_id ) {
         update_post_meta( $post_id, 'fpg_pagination_active_color', sanitize_text_field( wp_unslash($_POST['fpg_pagination_active_color'] ) ));
     }
 
+
     if ( isset( $_POST['fpg_pagination_height'] ) ) {
         update_post_meta( $post_id, 'fpg_pagination_height', sanitize_text_field( wp_unslash($_POST['fpg_pagination_height'] ) ));
     }
@@ -3091,6 +3114,7 @@ function fancy_post_grid_save_metabox_data_pro( $post_id ) {
     if (isset($_POST['fancy_post_filter_text_color'])) {
         update_post_meta($post_id, 'fancy_post_filter_text_color', sanitize_hex_color(wp_unslash($_POST['fancy_post_filter_text_color'])));
     }
+
     if (isset($_POST['fancy_post_filter_hover_color'])) {
         update_post_meta($post_id, 'fancy_post_filter_hover_color', sanitize_hex_color(wp_unslash($_POST['fancy_post_filter_hover_color'])));
     }

@@ -259,7 +259,7 @@ $query = new \WP_Query($args);
                     </div>
 
                     <div class="col-lg-7">
-                        <div class="row">
+                        
                         <?php else : ?>
                             <!-- Second and Third posts on the right (col-7, inside a row) -->
                             <?php 
@@ -453,7 +453,7 @@ $query = new \WP_Query($args);
                             
                         <?php endif; ?>
                     <?php endwhile; ?>
-                        </div> <!-- End of inner row -->
+                        
                     </div> <!-- End of col-lg-7 -->
         </div> 
     </div> 

@@ -32,10 +32,12 @@ $query = new \WP_Query($args);
 
 // Check if there are posts
 if ($query->have_posts()) {
-    echo '<div class="fpg-section-area rs-blog-layout-5">';
     
-    echo '<div class="container">';
-    echo '<div class="row">';
+    ?>
+    <div class="fpg-section-area rs-blog-layout-5">
+        <div class="container">
+            <div class="row">
+    <?php
     while ($query->have_posts()) {
         $query->the_post();
         
@@ -58,27 +60,26 @@ if ($query->have_posts()) {
                 <!-- Featured Image -->
                 <?php if ('yes' === $settings['show_post_thumbnail'] && has_post_thumbnail()) { ?>
                 <div class="rs-thumb">
+                    <?php 
+                        $layout = $settings['fancy_post_grid_layout'] ?? 'gridstyle01';
+                            $thumbnail_size = $settings['thumbnail_size'] ?? '';
 
-                <?php 
-                    $layout = $settings['fancy_post_grid_layout'] ?? 'gridstyle01';
-                        $thumbnail_size = $settings['thumbnail_size'] ?? '';
-
-                        if (empty($thumbnail_size)) {
-                            switch ($layout) {
-                                
-                                case 'gridstyle01':
-                                    $thumbnail_size = 'fancy_post_custom_size';
-                                    break;
+                            if (empty($thumbnail_size)) {
+                                switch ($layout) {
+                                    
+                                    case 'gridstyle01':
+                                        $thumbnail_size = 'fancy_post_custom_size';
+                                        break;
+                                }
                             }
-                        }
-                    if ('yes' === $settings['thumbnail_link']) { ?>
-                        <a href="<?php the_permalink(); ?>" target="<?php echo ('new_window' === $settings['link_target']) ? '_blank' : '_self'; ?>">
+                        if ('yes' === $settings['thumbnail_link']) { ?>
+                            <a href="<?php the_permalink(); ?>" target="<?php echo ('new_window' === $settings['link_target']) ? '_blank' : '_self'; ?>">
+                                <?php the_post_thumbnail($thumbnail_size); ?>
+                            </a>
+                        <?php } else { ?>
                             <?php the_post_thumbnail($thumbnail_size); ?>
-                        </a>
-                    <?php } else { ?>
-                        <?php the_post_thumbnail($thumbnail_size); ?>
-                    <?php } ?>
-
+                        <?php } 
+                    ?>
                 </div>
                 <?php } ?>
 
@@ -89,6 +90,12 @@ if ($query->have_posts()) {
                             <?php
                             // Array of meta items with their respective conditions, content, and class names.
                             $meta_items = array(
+                                'post_date' => array(
+                                    'condition' => 'yes' === $settings['show_post_date'],
+                                    'class'     => 'meta-date',
+                                    'icon'      => ('yes' === $settings['show_meta_data_icon'] && 'yes' === $settings['show_post_date_icon']) ? '<i class="fa fa-calendar"></i>' : '',
+                                    'content'   => esc_html(get_the_date('M j, Y')),
+                                ),
                                 'post_author' => array(
                                     'condition' => 'yes' === $settings['show_post_author'],
                                     'class'     => 'meta-author',
@@ -99,12 +106,7 @@ if ($query->have_posts()) {
                                                     : '',
                                     'content'   => esc_html($settings['author_prefix']) . ' ' . esc_html(get_the_author()),
                                 ),
-                                'post_date' => array(
-                                    'condition' => 'yes' === $settings['show_post_date'],
-                                    'class'     => 'meta-date',
-                                    'icon'      => ('yes' === $settings['show_meta_data_icon'] && 'yes' === $settings['show_post_date_icon']) ? '<i class="fa fa-calendar"></i>' : '',
-                                    'content'   => esc_html(get_the_date('M j, Y')),
-                                ),
+                                
                                 'post_categories' => array(
                                     'condition' => 'yes' === $settings['show_post_categories'],
                                     'class'     => 'meta-categories',
@@ -207,7 +209,6 @@ if ($query->have_posts()) {
                                 ?>
                             </p>
                         </div>
-                        
                     <?php } ?>
 
                     <!-- Read More Button -->
@@ -223,7 +224,7 @@ if ($query->have_posts()) {
                                         break;
                                 }
                             }
-                     ?>
+                        ?>
                         <div class="btn-wrapper">
                             <a href="<?php echo esc_url(get_permalink()); ?>" 
                                class="rs-link read-more <?php echo esc_attr($button_type); ?>"
@@ -254,9 +255,11 @@ if ($query->have_posts()) {
             </div>                    
         </div>
         <?php
-
     }
-    echo '</div>';
+    
+    ?>
+    </div>
+    <?php
     // Pagination
     if ('yes' === $settings['show_pagination']) {
         echo '<div class="fpg-pagination">';
@@ -274,28 +277,39 @@ if ($query->have_posts()) {
         ));
 
         if (!empty($pagination_links)) {
-            echo '<ul class="page-numbers">';
-            foreach ($pagination_links as $link) {
-                // Replace only the current page <span> with an <a> tag
-                if (strpos($link, '<span class="page-numbers current">') !== false) {
-                    $link = preg_replace(
-                        '/<span class="page-numbers current">(.*?)<\/span>/i',
-                        '<a href="#" class="page-numbers current">$1</a>',
-                        $link
-                    );
-                }
+            echo '<ul class="fancy-page-numbers">';
 
+            foreach ($pagination_links as $link) {
+                // Step 1: Replace all "page-numbers" classes with "fpg-page-numbers"
+                $link = str_replace(
+                    [
+                        'class="next page-numbers',
+                        'class="prev page-numbers',
+                        'class="page-numbers current',
+                        'class="page-numbers',
+                    ],
+                    [
+                        'class="fpg-page-numbers next',
+                        'class="fpg-page-numbers prev',
+                        'class="fpg-page-numbers current',
+                        'class="fpg-page-numbers',
+                    ],
+                    $link
+                );
                 echo '<li>' . wp_kses_post($link) . '</li>';
             }
+
             echo '</ul>';
         }
 
         echo '</div>';
     }
-    
-    echo '</div>';
-    echo '</div>';
-    echo '</div>';
+
+    ?>
+
+    </div>
+    </div>
+    <?php
 } else {
 }
 
