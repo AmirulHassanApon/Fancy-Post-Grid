@@ -1,7 +1,8 @@
 .elementor-control-fancy_post_grid_layout.fpg-el-control-post-chooser-thumb .elementor-control-field,
 .elementor-control-fancy_post_slider_layout.fpg-el-control-post-chooser-slider-thumb .elementor-control-field,
 .elementor-control-fancy_post_isotope_layout.fpg-el-control-post-chooser-isotope-thumb .elementor-control-field,
-.elementor-control-fancy_post_list_layout.fpg-el-control-post-chooser-list-thumb .elementor-control-field {
+.elementor-control-fancy_post_list_layout.fpg-el-control-post-chooser-list-thumb .elementor-control-field,
+.elementor-control-fancy_post_card_layout.fpg-el-control-post-chooser-card-thumb .elementor-control-field {
   flex-direction: column;
   gap: 15px;
   align-items: flex-start;
@@ -9,7 +10,8 @@
 .elementor-control-fancy_post_grid_layout.fpg-el-control-post-chooser-thumb .elementor-control-field .elementor-control-input-wrapper .elementor-choices,
 .elementor-control-fancy_post_slider_layout.fpg-el-control-post-chooser-slider-thumb .elementor-control-field .elementor-control-input-wrapper .elementor-choices,
 .elementor-control-fancy_post_isotope_layout.fpg-el-control-post-chooser-isotope-thumb .elementor-control-field .elementor-control-input-wrapper .elementor-choices,
-.elementor-control-fancy_post_list_layout.fpg-el-control-post-chooser-list-thumb .elementor-control-field .elementor-control-input-wrapper .elementor-choices {
+.elementor-control-fancy_post_list_layout.fpg-el-control-post-chooser-list-thumb .elementor-control-field .elementor-control-input-wrapper .elementor-choices,
+.elementor-control-fancy_post_card_layout.fpg-el-control-post-chooser-card-thumb .elementor-control-field .elementor-control-input-wrapper .elementor-choices {
   justify-content: flex-start;
   flex-wrap: wrap;
   height: auto;
@@ -19,7 +21,8 @@
 .elementor-control-fancy_post_grid_layout.fpg-el-control-post-chooser-thumb .elementor-control-field .elementor-control-input-wrapper .elementor-choices label.elementor-control-unit-1, 
 .elementor-control-fancy_post_slider_layout.fpg-el-control-post-chooser-slider-thumb .elementor-control-field .elementor-control-input-wrapper .elementor-choices label.elementor-control-unit-1,
 .elementor-control-fancy_post_isotope_layout.fpg-el-control-post-chooser-isotope-thumb .elementor-control-field .elementor-control-input-wrapper .elementor-choices label.elementor-control-unit-1, 
-.elementor-control-fancy_post_list_layout.fpg-el-control-post-chooser-list-thumb .elementor-control-field .elementor-control-input-wrapper .elementor-choices label.elementor-control-unit-1 {
+.elementor-control-fancy_post_list_layout.fpg-el-control-post-chooser-list-thumb .elementor-control-field .elementor-control-input-wrapper .elementor-choices label.elementor-control-unit-1,
+.elementor-control-fancy_post_card_layout.fpg-el-control-post-chooser-card-thumb .elementor-control-field .elementor-control-input-wrapper .elementor-choices label.elementor-control-unit-1 {
   width: 30%;
   border: 1px solid #d5d8dc !important;
   padding-bottom: 10px;
@@ -29,7 +32,8 @@
 .elementor-control-fancy_post_grid_layout.fpg-el-control-post-chooser-thumb .elementor-control-field .elementor-control-input-wrapper .elementor-choices label.elementor-control-unit-1 i,
 .elementor-control-fancy_post_slider_layout.fpg-el-control-post-chooser-slider-thumb .elementor-control-field .elementor-control-input-wrapper .elementor-choices label.elementor-control-unit-1 i,
 .elementor-control-fancy_post_isotope_layout.fpg-el-control-post-chooser-isotope-thumb .elementor-control-field .elementor-control-input-wrapper .elementor-choices label.elementor-control-unit-1 i,
-.elementor-control-fancy_post_list_layout.fpg-el-control-post-chooser-list-thumb .elementor-control-field .elementor-control-input-wrapper .elementor-choices label.elementor-control-unit-1 i{
+.elementor-control-fancy_post_list_layout.fpg-el-control-post-chooser-list-thumb .elementor-control-field .elementor-control-input-wrapper .elementor-choices label.elementor-control-unit-1 i,
+.elementor-control-fancy_post_card_layout.fpg-el-control-post-chooser-card-thumb .elementor-control-field .elementor-control-input-wrapper .elementor-choices label.elementor-control-unit-1 i{
   background-size: 95%;
   background-position: center;
   background-repeat: no-repeat;
@@ -40,14 +44,16 @@
 .elementor-control-fancy_post_grid_layout.fpg-el-control-post-chooser-thumb .elementor-control-field .elementor-control-input-wrapper .elementor-choices label.elementor-control-unit-1 i::before, 
 .elementor-control-fancy_post_slider_layout.fpg-el-control-post-chooser-slider-thumb .elementor-control-field .elementor-control-input-wrapper .elementor-choices label.elementor-control-unit-1 i::before,
 .elementor-control-fancy_post_isotope_layout.fpg-el-control-post-chooser-isotope-thumb .elementor-control-field .elementor-control-input-wrapper .elementor-choices label.elementor-control-unit-1 i::before, 
-.elementor-control-fancy_post_list_layout.fpg-el-control-post-chooser-list-thumb .elementor-control-field .elementor-control-input-wrapper .elementor-choices label.elementor-control-unit-1 i::before{
+.elementor-control-fancy_post_list_layout.fpg-el-control-post-chooser-list-thumb .elementor-control-field .elementor-control-input-wrapper .elementor-choices label.elementor-control-unit-1 i::before, 
+.elementor-control-fancy_post_card_layout.fpg-el-control-post-chooser-card-thumb .elementor-control-field .elementor-control-input-wrapper .elementor-choices label.elementor-control-unit-1 i::before{
   font-size: 0;
 }
 
 .elementor-control-fancy_post_grid_layout.fpg-el-control-post-chooser-thumb .elementor-control-field .elementor-control-input-wrapper .elementor-choices label .elementor-screen-only,
 .elementor-control-fancy_post_slider_layout.fpg-el-control-post-chooser-slider-thumb .elementor-control-field .elementor-control-input-wrapper .elementor-choices label .elementor-screen-only,
 .elementor-control-fancy_post_isotope_layout.fpg-el-control-post-chooser-isotope-thumb .elementor-control-field .elementor-control-input-wrapper .elementor-choices label .elementor-screen-only,
-.elementor-control-fancy_post_list_layout.fpg-el-control-post-chooser-list-thumb .elementor-control-field .elementor-control-input-wrapper .elementor-choices label .elementor-screen-only {
+.elementor-control-fancy_post_list_layout.fpg-el-control-post-chooser-list-thumb .elementor-control-field .elementor-control-input-wrapper .elementor-choices label .elementor-screen-only,
+.elementor-control-fancy_post_card_layout.fpg-el-control-post-chooser-card-thumb .elementor-control-field .elementor-control-input-wrapper .elementor-choices label .elementor-screen-only {
   height: auto;
   width: auto;
   overflow: visible;
@@ -290,5 +296,86 @@
   background-image: url('../../../includes/metabox/img/liststyle8.png');
 }
 .elementor-control-fancy_post_list_layout.fpg-el-control-post-chooser-list-thumb .elementor-control-field .elementor-control-input-wrapper .elementor-choices label.elementor-control-unit-1:nth-child(16) i:hover{
+  background-image: url('../../../includes/metabox/img/liststyle8_hover.png');
+}
+
+/*Card*/
+.elementor-control-fancy_post_card_layout.fpg-el-control-post-chooser-card-thumb .elementor-control-field .elementor-control-input-wrapper .elementor-choices label.elementor-control-unit-1:nth-child(2) i{
+  background-image: url('../../../includes/metabox/img/liststyle1.png');
+}
+.elementor-control-fancy_post_card_layout.fpg-el-control-post-chooser-card-thumb .elementor-control-field .elementor-control-input-wrapper .elementor-choices label.elementor-control-unit-1:nth-child(2) i:hover{
+  background-image: url('../../../includes/metabox/img/liststyle1_hover.png');
+}
+
+.elementor-control-fancy_post_card_layout.fpg-el-control-post-chooser-card-thumb .elementor-control-field .elementor-control-input-wrapper .elementor-choices label.elementor-control-unit-1:nth-child(4) i{
+  background-image: url('../../../includes/metabox/img/liststyle2.png');
+}
+.elementor-control-fancy_post_card_layout.fpg-el-control-post-chooser-card-thumb .elementor-control-field .elementor-control-input-wrapper .elementor-choices label.elementor-control-unit-1:nth-child(4) i:hover{
+  background-image: url('../../../includes/metabox/img/liststyle2_hover.png');
+}
+.elementor-control-fancy_post_card_layout.fpg-el-control-post-chooser-card-thumb .elementor-control-field .elementor-control-input-wrapper .elementor-choices label.elementor-control-unit-1:nth-child(6) i{
+  background-image: url('../../../includes/metabox/img/liststyle3.png');
+}
+.elementor-control-fancy_post_card_layout.fpg-el-control-post-chooser-card-thumb .elementor-control-field .elementor-control-input-wrapper .elementor-choices label.elementor-control-unit-1:nth-child(6) i:hover{
+  background-image: url('../../../includes/metabox/img/liststyle3_hover.png');
+}
+
+.elementor-control-fancy_post_card_layout.fpg-el-control-post-chooser-card-thumb .elementor-control-field .elementor-control-input-wrapper .elementor-choices label.elementor-control-unit-1:nth-child(8) i{
+  background-image: url('../../../includes/metabox/img/liststyle4.png');
+}
+.elementor-control-fancy_post_card_layout.fpg-el-control-post-chooser-card-thumb .elementor-control-field .elementor-control-input-wrapper .elementor-choices label.elementor-control-unit-1:nth-child(8) i:hover{
+  background-image: url('../../../includes/metabox/img/liststyle4_hover.png');
+}
+
+.elementor-control-fancy_post_card_layout.fpg-el-control-post-chooser-card-thumb .elementor-control-field .elementor-control-input-wrapper .elementor-choices label.elementor-control-unit-1:nth-child(10) i{
+  background-image: url('../../../includes/metabox/img/liststyle5.png');
+}
+.elementor-control-fancy_post_card_layout.fpg-el-control-post-chooser-card-thumb .elementor-control-field .elementor-control-input-wrapper .elementor-choices label.elementor-control-unit-1:nth-child(10) i:hover{
+  background-image: url('../../../includes/metabox/img/liststyle5_hover.png');
+}
+
+.elementor-control-fancy_post_card_layout.fpg-el-control-post-chooser-card-thumb .elementor-control-field .elementor-control-input-wrapper .elementor-choices label.elementor-control-unit-1:nth-child(12) i{
+  background-image: url('../../../includes/metabox/img/liststyle6.png');
+}
+.elementor-control-fancy_post_card_layout.fpg-el-control-post-chooser-card-thumb .elementor-control-field .elementor-control-input-wrapper .elementor-choices label.elementor-control-unit-1:nth-child(12) i:hover{
+  background-image: url('../../../includes/metabox/img/liststyle6_hover.png');
+}
+
+.elementor-control-fancy_post_card_layout.fpg-el-control-post-chooser-card-thumb .elementor-control-field .elementor-control-input-wrapper .elementor-choices label.elementor-control-unit-1:nth-child(14) i{
+  background-image: url('../../../includes/metabox/img/liststyle7.png');
+}
+.elementor-control-fancy_post_card_layout.fpg-el-control-post-chooser-card-thumb .elementor-control-field .elementor-control-input-wrapper .elementor-choices label.elementor-control-unit-1:nth-child(14) i:hover{
+  background-image: url('../../../includes/metabox/img/liststyle7_hover.png');
+}
+
+.elementor-control-fancy_post_card_layout.fpg-el-control-post-chooser-card-thumb .elementor-control-field .elementor-control-input-wrapper .elementor-choices label.elementor-control-unit-1:nth-child(16) i{
+  background-image: url('../../../includes/metabox/img/liststyle8.png');
+}
+.elementor-control-fancy_post_card_layout.fpg-el-control-post-chooser-card-thumb .elementor-control-field .elementor-control-input-wrapper .elementor-choices label.elementor-control-unit-1:nth-child(16) i:hover{
+  background-image: url('../../../includes/metabox/img/liststyle8_hover.png');
+}
+.elementor-control-fancy_post_card_layout.fpg-el-control-post-chooser-card-thumb .elementor-control-field .elementor-control-input-wrapper .elementor-choices label.elementor-control-unit-1:nth-child(18) i{
+  background-image: url('../../../includes/metabox/img/liststyle7.png');
+}
+.elementor-control-fancy_post_card_layout.fpg-el-control-post-chooser-card-thumb .elementor-control-field .elementor-control-input-wrapper .elementor-choices label.elementor-control-unit-1:nth-child(18) i:hover{
+  background-image: url('../../../includes/metabox/img/liststyle7_hover.png');
+}
+
+.elementor-control-fancy_post_card_layout.fpg-el-control-post-chooser-card-thumb .elementor-control-field .elementor-control-input-wrapper .elementor-choices label.elementor-control-unit-1:nth-child(20) i{
+  background-image: url('../../../includes/metabox/img/liststyle8.png');
+}
+.elementor-control-fancy_post_card_layout.fpg-el-control-post-chooser-card-thumb .elementor-control-field .elementor-control-input-wrapper .elementor-choices label.elementor-control-unit-1:nth-child(20) i:hover{
+  background-image: url('../../../includes/metabox/img/liststyle8_hover.png');
+}.elementor-control-fancy_post_card_layout.fpg-el-control-post-chooser-card-thumb .elementor-control-field .elementor-control-input-wrapper .elementor-choices label.elementor-control-unit-1:nth-child(22) i{
+  background-image: url('../../../includes/metabox/img/liststyle7.png');
+}
+.elementor-control-fancy_post_card_layout.fpg-el-control-post-chooser-card-thumb .elementor-control-field .elementor-control-input-wrapper .elementor-choices label.elementor-control-unit-1:nth-child(22) i:hover{
+  background-image: url('../../../includes/metabox/img/liststyle7_hover.png');
+}
+
+.elementor-control-fancy_post_card_layout.fpg-el-control-post-chooser-card-thumb .elementor-control-field .elementor-control-input-wrapper .elementor-choices label.elementor-control-unit-1:nth-child(24) i{
+  background-image: url('../../../includes/metabox/img/liststyle8.png');
+}
+.elementor-control-fancy_post_card_layout.fpg-el-control-post-chooser-card-thumb .elementor-control-field .elementor-control-input-wrapper .elementor-choices label.elementor-control-unit-1:nth-child(24) i:hover{
   background-image: url('../../../includes/metabox/img/liststyle8_hover.png');
 }

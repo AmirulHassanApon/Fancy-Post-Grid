@@ -255,13 +255,79 @@ add_action('elementor/widgets/widgets_registered', function () {
                                 'title' => esc_html__( 'List Style 08', 'fancy-post-grid' ),
                                 'icon' => 'eicon-text-align-right',
                             ],
-                            'liststyle09' => [
-                                'title' => esc_html__( 'List Style 09', 'fancy-post-grid' ),
+                            
+                        ],
+                        
+                        'default' => 'liststyle01',
+                        'toggle' => true,
+                    ]
+                );
+            }
+            // Add control for List Layout selection 
+            // Check if the control is excluded before adding it
+            if (!in_array('fancy_post_card_layout', $this->exclude_controls)) {
+                $this->add_control(
+                    'fancy_post_card_layout',
+                    [                    
+                        'label'   => esc_html__( 'Card Style', 'fancy-post-grid' ),
+                        'type'    => \Elementor\Controls_Manager::CHOOSE,
+                        'classes' => 'fpg-el-control-post-chooser-card-thumb',
+                        'options' => [
+                            'cardstyle01' => [
+                                'title' => esc_html__( 'Small Card 01', 'fancy-post-grid' ),
+                                'icon' => 'eicon-text-align-left',
+                            ],
+                            'cardstyle02' => [
+                                'title' => esc_html__( 'Small Card 02', 'fancy-post-grid' ),
+                                'icon' => 'eicon-text-align-center',
+                            ],
+                            'cardstyle03' => [
+                                'title' => esc_html__( 'Small Card 03', 'fancy-post-grid' ),
+                                'icon' => 'eicon-text-align-right',
+                            ],
+                            'cardstyle04' => [
+                                'title' => esc_html__( 'Small Card 04', 'fancy-post-grid' ),
+                                'icon' => 'eicon-text-align-right',
+                            ],
+                            'cardstyle05' => [
+                                'title' => esc_html__( 'Small Card 05', 'fancy-post-grid' ),
+                                'icon' => 'eicon-text-align-right',
+                            ],
+                            'cardstyle06' => [
+                                'title' => esc_html__( 'Medium Card 01', 'fancy-post-grid' ),
+                                'icon' => 'eicon-text-align-right',
+                            ],
+                            'cardstyle07' => [
+                                'title' => esc_html__( 'Medium Card 02', 'fancy-post-grid' ),
+                                'icon' => 'eicon-text-align-right',
+                            ],
+                            'cardstyle08' => [
+                                'title' => esc_html__( 'Overlay Card 01', 'fancy-post-grid' ),
+                                'icon' => 'eicon-text-align-right',
+                            ],
+                            'cardstyle09' => [
+                                'title' => esc_html__( 'Categories Card 01', 'fancy-post-grid' ),
+                                'icon' => 'eicon-text-align-right',
+                            ],
+                            'cardstyle10' => [
+                                'title' => esc_html__( 'Trending Card 01', 'fancy-post-grid' ),
+                                'icon' => 'eicon-text-align-right',
+                            ],
+                            'cardstyle11' => [
+                                'title' => esc_html__( 'Video Card 01', 'fancy-post-grid' ),
+                                'icon' => 'eicon-text-align-right',
+                            ],
+                            'cardstyle12' => [
+                                'title' => esc_html__( 'Video Card 02', 'fancy-post-grid' ),
+                                'icon' => 'eicon-text-align-right',
+                            ],
+                            'cardstyle13' => [
+                                'title' => esc_html__( 'Small Card 07', 'fancy-post-grid' ),
                                 'icon' => 'eicon-text-align-right',
                             ],
                         ],
                         
-                        'default' => 'liststyle01',
+                        'default' => 'cardstyle01',
                         'toggle' => true,
                     ]
                 );
@@ -487,6 +553,47 @@ add_action('elementor/widgets/widgets_registered', function () {
                     'tab'   => \Elementor\Controls_Manager::TAB_CONTENT,
                 ]
             );
+            // 🔹 Featured Posts Filter
+            $this->add_control(
+                'featured_filter',
+                [
+                    'label'        => esc_html__( 'Featured Posts Only', 'fancy-post-grid' ),
+                    'type'         => \Elementor\Controls_Manager::SWITCHER,
+                    'label_on'     => esc_html__( 'Yes', 'fancy-post-grid' ),
+                    'label_off'    => esc_html__( 'No', 'fancy-post-grid' ),
+                    'return_value' => 'yes',
+                    'default'      => '',
+                ]
+            );
+            // 🔹 Popular Posts Filter
+            $this->add_control(
+                'popular_filter',
+                [
+                    'label'        => esc_html__( 'Popular Posts by Views', 'fancy-post-grid' ),
+                    'type'         => \Elementor\Controls_Manager::SWITCHER,
+                    'label_on'     => esc_html__( 'Yes', 'fancy-post-grid' ),
+                    'label_off'    => esc_html__( 'No', 'fancy-post-grid' ),
+                    'return_value' => 'yes',
+                    'default'      => '',
+                ]
+            );
+
+            // 🔹 Popular Order
+            $this->add_control(
+                'popular_order',
+                [
+                    'label'   => esc_html__( 'Order By Views', 'fancy-post-grid' ),
+                    'type'    => \Elementor\Controls_Manager::SELECT,
+                    'options' => [
+                        'DESC' => esc_html__( 'Descending (Most to Least Views)', 'fancy-post-grid' ),
+                        'ASC'  => esc_html__( 'Ascending (Least to Most Views)', 'fancy-post-grid' ),
+                    ],
+                    'default' => 'DESC',
+                    'condition' => [
+                        'popular_filter' => 'yes', // show only if enabled
+                    ],
+                ]
+            );            
             // Add Query Builder options
             $this->add_control(
                 'category_filter',
@@ -531,6 +638,9 @@ add_action('elementor/widgets/widgets_registered', function () {
                         'asc'  => esc_html__( 'Ascending', 'fancy-post-grid' ),
                     ),
                     'default' => 'desc',
+                    'condition' => [
+                        'popular_filter' => '', // show only if disabled
+                    ],
                 ]
             );
 
@@ -991,19 +1101,6 @@ add_action('elementor/widgets/widgets_registered', function () {
                 'show_post_date_icon',
                 [
                     'label'   => esc_html__( '- Show Post Date  Icon ', 'fancy-post-grid' ),
-                    'type'    => \Elementor\Controls_Manager::SWITCHER,
-                    'label_on' => esc_html__( 'Show', 'fancy-post-grid' ),
-                    'label_off' => esc_html__( 'Hide', 'fancy-post-grid' ),
-                    'return_value' => 'yes',
-                    'default' => 'yes',
-                    'render_type' => 'template'
-                ]
-            );
-
-            $this->add_control(
-                'show_post_author_icon',
-                [
-                    'label'   => esc_html__( '- Show Post Author  Icon', 'fancy-post-grid' ),
                     'type'    => \Elementor\Controls_Manager::SWITCHER,
                     'label_on' => esc_html__( 'Show', 'fancy-post-grid' ),
                     'label_off' => esc_html__( 'Hide', 'fancy-post-grid' ),
@@ -1526,7 +1623,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                     'type'       => \Elementor\Controls_Manager::DIMENSIONS,
                     'size_units' => array( 'px', 'em', '%' ),
                     'selectors'  => array(
-                        '{{WRAPPER}} .fpg-section-area .rs-blog__single, {{WRAPPER}} .rs-blog-layout-1 .blog-item, {{WRAPPER}} .rs-blog-layout-30-item, {{WRAPPER}} .rs-blog-layout-28-item,{{WRAPPER}} .rs-blog-layout-4 .rs-blog__item,{{WRAPPER}} .rs-blog__left-blog,{{WRAPPER}} .blog-horizontal .blog-meta .blog-item-wrap,{{WRAPPER}} .rs-blog-layout-17-item,{{WRAPPER}} .rs-blog-layout-20-item,{{WRAPPER}} .rs-blog-layout-22-item,{{WRAPPER}} .rs-blog-layout-24-item,{{WRAPPER}} .rs-blog-layout-25-item,{{WRAPPER}} .rs-blog-layout-27-list-item,{{WRAPPER}} .rs-blog-layout-27-item' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                        '{{WRAPPER}} .fpg-section-area .rs-blog__single, {{WRAPPER}} .rs-blog-layout-1 .blog-item, {{WRAPPER}} .rs-blog-layout-30-item, {{WRAPPER}} .rs-blog-layout-28-item,{{WRAPPER}} .rs-blog-layout-4 .rs-blog__item,{{WRAPPER}} .rs-blog__left-blog,{{WRAPPER}} .blog-horizontal .blog-meta .blog-item-wrap,{{WRAPPER}} .rs-blog-layout-17-item,{{WRAPPER}} .rs-blog-layout-20-item,{{WRAPPER}} .rs-blog-layout-22-item,{{WRAPPER}} .rs-blog-layout-24-item,{{WRAPPER}} .rs-blog-layout-25-item,{{WRAPPER}} .rs-blog-layout-27-list-item,{{WRAPPER}} .rs-blog-layout-27-item,{{WRAPPER}} .rs-post-overlay.rs-post-overlay-one,{{WRAPPER}} .rs-post-list.rs-list-one,{{WRAPPER}} .rs-post-small.rs-post-small-one' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                     ),
                 ]
             );
@@ -1538,7 +1635,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                     'type'       => \Elementor\Controls_Manager::DIMENSIONS,
                     'size_units' => array( 'px', 'em', '%' ),
                     'selectors'  => array(
-                        '{{WRAPPER}} .fpg-section-area .rs-blog__single, {{WRAPPER}} .rs-blog-layout-1 .blog-item, {{WRAPPER}} .rs-blog-layout-30-item, {{WRAPPER}} .rs-blog-layout-28-item,{{WRAPPER}} .rs-blog-layout-4 .rs-blog__item,{{WRAPPER}} .rs-blog__left-blog,{{WRAPPER}} .blog-horizontal .blog-meta .blog-item-wrap,{{WRAPPER}} .rs-blog-layout-17-item,{{WRAPPER}} .rs-blog-layout-20-item,{{WRAPPER}} .rs-blog-layout-22-item,{{WRAPPER}} .rs-blog-layout-24-item,{{WRAPPER}} .rs-blog-layout-25-item,{{WRAPPER}} .rs-blog-layout-27-list-item,{{WRAPPER}} .rs-blog-layout-27-item' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                        '{{WRAPPER}} .fpg-section-area .rs-blog__single, {{WRAPPER}} .rs-blog-layout-1 .blog-item, {{WRAPPER}} .rs-blog-layout-30-item, {{WRAPPER}} .rs-blog-layout-28-item,{{WRAPPER}} .rs-blog-layout-4 .rs-blog__item,{{WRAPPER}} .rs-blog__left-blog,{{WRAPPER}} .blog-horizontal .blog-meta .blog-item-wrap,{{WRAPPER}} .rs-blog-layout-17-item,{{WRAPPER}} .rs-blog-layout-20-item,{{WRAPPER}} .rs-blog-layout-22-item,{{WRAPPER}} .rs-blog-layout-24-item,{{WRAPPER}} .rs-blog-layout-25-item,{{WRAPPER}} .rs-blog-layout-27-list-item,{{WRAPPER}} .rs-blog-layout-27-item,{{WRAPPER}} .rs-post-overlay.rs-post-overlay-one,{{WRAPPER}} .rs-post-list.rs-list-one,{{WRAPPER}} .rs-post-small.rs-post-small-one' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                     ),
                 ]
             );
@@ -1551,7 +1648,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                     'type'       => \Elementor\Controls_Manager::DIMENSIONS,
                     'size_units' => array( 'px', 'em', '%' ),
                     'selectors'  => array(
-                        '{{WRAPPER}} .fpg-section-area .rs-blog__single, {{WRAPPER}} .rs-blog-layout-1 .blog-item, {{WRAPPER}} .rs-blog-layout-30-item, {{WRAPPER}} .rs-blog-layout-28-item,{{WRAPPER}} .rs-blog-layout-4 .rs-blog__item,{{WRAPPER}} .rs-blog__left-blog,{{WRAPPER}} .blog-horizontal .blog-meta .blog-item-wrap,{{WRAPPER}} .rs-blog-layout-17-item,{{WRAPPER}} .rs-blog-layout-20-item,{{WRAPPER}} .rs-blog-layout-22-item,{{WRAPPER}} .rs-blog-layout-24-item,{{WRAPPER}} .rs-blog-layout-25-item,{{WRAPPER}} .rs-blog-layout-27-list-item,{{WRAPPER}} .rs-blog-layout-27-item' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                        '{{WRAPPER}} .fpg-section-area .rs-blog__single, {{WRAPPER}} .rs-blog-layout-1 .blog-item, {{WRAPPER}} .rs-blog-layout-30-item, {{WRAPPER}} .rs-blog-layout-28-item,{{WRAPPER}} .rs-blog-layout-4 .rs-blog__item,{{WRAPPER}} .rs-blog__left-blog,{{WRAPPER}} .blog-horizontal .blog-meta .blog-item-wrap,{{WRAPPER}} .rs-blog-layout-17-item,{{WRAPPER}} .rs-blog-layout-20-item,{{WRAPPER}} .rs-blog-layout-22-item,{{WRAPPER}} .rs-blog-layout-24-item,{{WRAPPER}} .rs-blog-layout-25-item,{{WRAPPER}} .rs-blog-layout-27-list-item,{{WRAPPER}} .rs-blog-layout-27-item,{{WRAPPER}} .rs-post-overlay.rs-post-overlay-one,{{WRAPPER}} .rs-post-list.rs-list-one,{{WRAPPER}} .rs-post-small.rs-post-small-one' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                     ),
                 ]
             );
@@ -1576,9 +1673,6 @@ add_action('elementor/widgets/widgets_registered', function () {
                         ),
                     ),
                     'render_type' => 'template'
-                    // 'selectors' => array(
-                    //     '{{WRAPPER}} .fpg-section-area .rs-blog__single, {{WRAPPER}} .rs-blog-layout-1 .blog-item, {{WRAPPER}} .rs-blog__left-blog ' => 'text-align: {{VALUE}};',
-                    // ),
                 ]
             );
 
@@ -1599,7 +1693,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                     'label'     => esc_html__( 'Background Color', 'fancy-post-grid' ),
                     'type'      => \Elementor\Controls_Manager::COLOR,
                     'selectors' => [
-                        '{{WRAPPER}} .fpg-section-area .rs-blog__single,{{WRAPPER}} .rs-blog-layout-26 .rs-blog-layout-26-item .rs-content, {{WRAPPER}} .rs-blog-layout-1 .blog-item, {{WRAPPER}} .rs-blog-layout-30-item, {{WRAPPER}} .rs-blog-layout-28-item,{{WRAPPER}} .rs-blog-layout-4 .rs-blog__item,{{WRAPPER}} .rs-blog__left-blog,{{WRAPPER}} .blog-horizontal .blog-meta .blog-item-wrap,{{WRAPPER}} .rs-blog-layout-17-item,{{WRAPPER}} .rs-blog-layout-20-item,{{WRAPPER}} .rs-blog-layout-22-item,{{WRAPPER}} .rs-blog-layout-24-item,{{WRAPPER}} .rs-blog-layout-25-item,{{WRAPPER}} .rs-blog-layout-27-list-item,{{WRAPPER}} .rs-blog-layout-27-item' => 'background-color: {{VALUE}};',
+                        '{{WRAPPER}} .fpg-section-area .rs-blog__single,{{WRAPPER}} .rs-blog-layout-26 .rs-blog-layout-26-item .rs-content, {{WRAPPER}} .rs-blog-layout-1 .blog-item, {{WRAPPER}} .rs-blog-layout-30-item, {{WRAPPER}} .rs-blog-layout-28-item,{{WRAPPER}} .rs-blog-layout-4 .rs-blog__item,{{WRAPPER}} .rs-blog__left-blog,{{WRAPPER}} .blog-horizontal .blog-meta .blog-item-wrap,{{WRAPPER}} .rs-blog-layout-17-item,{{WRAPPER}} .rs-blog-layout-20-item,{{WRAPPER}} .rs-blog-layout-22-item,{{WRAPPER}} .rs-blog-layout-24-item,{{WRAPPER}} .rs-blog-layout-25-item,{{WRAPPER}} .rs-blog-layout-27-list-item,{{WRAPPER}} .rs-blog-layout-27-item,{{WRAPPER}} .rs-post-overlay.rs-post-overlay-one,{{WRAPPER}} .rs-post-list.rs-list-one,{{WRAPPER}} .rs-post-small.rs-post-small-one' => 'background-color: {{VALUE}};',
                         '{{WRAPPER}} .pre-blog-item.style_12:after' => 'border-color: {{VALUE}};',
                     ],
                 ]
@@ -1608,7 +1702,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                 \Elementor\Group_Control_Border::get_type(),
                 [
                     'name' => 'item_border_color',
-                    'selector' => '{{WRAPPER}} .fpg-section-area .rs-blog__single, {{WRAPPER}} .rs-blog-layout-1 .blog-item, {{WRAPPER}} .rs-blog-layout-30-item,{{WRAPPER}} .rs-blog-layout-4 .rs-blog__item,{{WRAPPER}} .rs-blog__left-blog,{{WRAPPER}} .blog-horizontal .blog-meta .blog-item-wrap,{{WRAPPER}} .rs-blog-layout-17-item,{{WRAPPER}} .rs-blog-layout-20-item,{{WRAPPER}} .rs-blog-layout-22-item,{{WRAPPER}} .rs-blog-layout-24-item,{{WRAPPER}} .rs-blog-layout-25-item,{{WRAPPER}} .rs-blog-layout-27-list-item,{{WRAPPER}} .rs-blog-layout-27-item',
+                    'selector' => '{{WRAPPER}} .fpg-section-area .rs-blog__single, {{WRAPPER}} .rs-blog-layout-1 .blog-item, {{WRAPPER}} .rs-blog-layout-30-item,{{WRAPPER}} .rs-blog-layout-4 .rs-blog__item,{{WRAPPER}} .rs-blog__left-blog,{{WRAPPER}} .blog-horizontal .blog-meta .blog-item-wrap,{{WRAPPER}} .rs-blog-layout-17-item,{{WRAPPER}} .rs-blog-layout-20-item,{{WRAPPER}} .rs-blog-layout-22-item,{{WRAPPER}} .rs-blog-layout-24-item,{{WRAPPER}} .rs-blog-layout-25-item,{{WRAPPER}} .rs-blog-layout-27-list-item,{{WRAPPER}} .rs-blog-layout-27-item,{{WRAPPER}} .rs-post-overlay.rs-post-overlay-one,{{WRAPPER}} .rs-post-list.rs-list-one,{{WRAPPER}} .rs-post-small.rs-post-small-one',
                 ]
             );
 
@@ -1617,7 +1711,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                 [
                     'name'      => 'item_box_shadow',
                     'label'     => esc_html__( 'Box Shadow', 'fancy-post-grid' ),
-                    'selector'  => '{{WRAPPER}} .fpg-section-area .rs-blog__single, {{WRAPPER}} .rs-blog-layout-1 .blog-item, {{WRAPPER}} .rs-blog-layout-30-item,{{WRAPPER}} .rs-blog-layout-4 .rs-blog__item,{{WRAPPER}} .rs-blog__left-blog,{{WRAPPER}} .blog-horizontal .blog-meta .blog-item-wrap,{{WRAPPER}} .rs-blog-layout-17-item,{{WRAPPER}} .rs-blog-layout-20-item,{{WRAPPER}} .rs-blog-layout-22-item,{{WRAPPER}} .rs-blog-layout-24-item,{{WRAPPER}} .rs-blog-layout-25-item,{{WRAPPER}} .rs-blog-layout-27-list-item,{{WRAPPER}} .rs-blog-layout-27-item',
+                    'selector'  => '{{WRAPPER}} .fpg-section-area .rs-blog__single, {{WRAPPER}} .rs-blog-layout-1 .blog-item, {{WRAPPER}} .rs-blog-layout-30-item,{{WRAPPER}} .rs-blog-layout-4 .rs-blog__item,{{WRAPPER}} .rs-blog__left-blog,{{WRAPPER}} .blog-horizontal .blog-meta .blog-item-wrap,{{WRAPPER}} .rs-blog-layout-17-item,{{WRAPPER}} .rs-blog-layout-20-item,{{WRAPPER}} .rs-blog-layout-22-item,{{WRAPPER}} .rs-blog-layout-24-item,{{WRAPPER}} .rs-blog-layout-25-item,{{WRAPPER}} .rs-blog-layout-27-list-item,{{WRAPPER}} .rs-blog-layout-27-item,{{WRAPPER}} .rs-post-overlay.rs-post-overlay-one,{{WRAPPER}} .rs-post-list.rs-list-one,{{WRAPPER}} .rs-post-small.rs-post-small-one',
                     'render_type' => 'template'
                 ]
             );
@@ -1638,7 +1732,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                     'label'     => esc_html__( 'Background Color', 'fancy-post-grid' ),
                     'type'      => \Elementor\Controls_Manager::COLOR,
                     'selectors' => [
-                        '{{WRAPPER}} .fpg-section-area .rs-blog__single:hover,{{WRAPPER}} .rs-blog-layout-26 .rs-blog-layout-26-item:hover .rs-content, {{WRAPPER}} .rs-blog-layout-1 .blog-item:hover, {{WRAPPER}} .rs-blog-layout-30-item:hover, {{WRAPPER}} .rs-blog-layout-28-item:hover,{{WRAPPER}} .rs-blog-layout-4 .rs-blog__item:hover,{{WRAPPER}} .rs-blog__left-blog:hover,{{WRAPPER}} .blog-horizontal .blog-meta .blog-item-wrap:hover,{{WRAPPER}} .rs-blog-layout-17-item:hover,{{WRAPPER}} .rs-blog-layout-20-item:hover,{{WRAPPER}} .rs-blog-layout-22-item:hover,{{WRAPPER}} .rs-blog-layout-24-item:hover,{{WRAPPER}} .rs-blog-layout-25-item:hover,{{WRAPPER}} .rs-blog-layout-27-list-item:hover,{{WRAPPER}} .rs-blog-layout-27-item:hover' => 'background-color: {{VALUE}};',
+                        '{{WRAPPER}} .fpg-section-area .rs-blog__single:hover,{{WRAPPER}} .rs-blog-layout-26 .rs-blog-layout-26-item:hover .rs-content, {{WRAPPER}} .rs-blog-layout-1 .blog-item:hover, {{WRAPPER}} .rs-blog-layout-30-item:hover, {{WRAPPER}} .rs-blog-layout-28-item:hover,{{WRAPPER}} .rs-blog-layout-4 .rs-blog__item:hover,{{WRAPPER}} .rs-blog__left-blog:hover,{{WRAPPER}} .blog-horizontal .blog-meta .blog-item-wrap:hover,{{WRAPPER}} .rs-blog-layout-17-item:hover,{{WRAPPER}} .rs-blog-layout-20-item:hover,{{WRAPPER}} .rs-blog-layout-22-item:hover,{{WRAPPER}} .rs-blog-layout-24-item:hover,{{WRAPPER}} .rs-blog-layout-25-item:hover,{{WRAPPER}} .rs-blog-layout-27-list-item:hover,{{WRAPPER}} .rs-blog-layout-27-item:hover,{{WRAPPER}} .rs-post-overlay.rs-post-overlay-one:hover,{{WRAPPER}} .rs-post-list.rs-list-one:hover,{{WRAPPER}} .rs-post-small.rs-post-small-one:hover' => 'background-color: {{VALUE}};',
                     ],
                 ]
             );
@@ -1646,7 +1740,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                 \Elementor\Group_Control_Border::get_type(),
                 [
                     'name' => 'item_border_color_hover',
-                    'selector' => '{{WRAPPER}} .fpg-section-area .rs-blog__single:hover, {{WRAPPER}} .rs-blog-layout-1 .blog-item:hover,{{WRAPPER}} .rs-blog-layout-30-item:hover,{{WRAPPER}} .rs-blog-layout-28-item:hover,{{WRAPPER}} .rs-blog-layout-4 .rs-blog__item:hover,{{WRAPPER}} .rs-blog__left-blog:hover,{{WRAPPER}} .blog-horizontal .blog-meta .blog-item-wrap:hover,{{WRAPPER}} .rs-blog-layout-17-item:hover,{{WRAPPER}} .rs-blog-layout-20-item:hover,{{WRAPPER}} .rs-blog-layout-22-item:hover,{{WRAPPER}} .rs-blog-layout-24-item:hover,{{WRAPPER}} .rs-blog-layout-25-item:hover,{{WRAPPER}} .rs-blog-layout-27-list-item:hover,{{WRAPPER}} .rs-blog-layout-27-item:hover',
+                    'selector' => '{{WRAPPER}} .fpg-section-area .rs-blog__single:hover, {{WRAPPER}} .rs-blog-layout-1 .blog-item:hover,{{WRAPPER}} .rs-blog-layout-30-item:hover,{{WRAPPER}} .rs-blog-layout-28-item:hover,{{WRAPPER}} .rs-blog-layout-4 .rs-blog__item:hover,{{WRAPPER}} .rs-blog__left-blog:hover,{{WRAPPER}} .blog-horizontal .blog-meta .blog-item-wrap:hover,{{WRAPPER}} .rs-blog-layout-17-item:hover,{{WRAPPER}} .rs-blog-layout-20-item:hover,{{WRAPPER}} .rs-blog-layout-22-item:hover,{{WRAPPER}} .rs-blog-layout-24-item:hover,{{WRAPPER}} .rs-blog-layout-25-item:hover,{{WRAPPER}} .rs-blog-layout-27-list-item:hover,{{WRAPPER}} .rs-blog-layout-27-item:hover,{{WRAPPER}} .rs-post-overlay.rs-post-overlay-one:hover ,{{WRAPPER}} .rs-post-list.rs-list-one:hover,{{WRAPPER}} .rs-post-small.rs-post-small-one:hover ',
                     'render_type' => 'template'
                 ]
             );
@@ -1656,7 +1750,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                 [
                     'name'      => 'item_box_shadow_hover',
                     'label'     => esc_html__( 'Box Shadow', 'fancy-post-grid' ),
-                    'selector'  => '{{WRAPPER}} .fpg-section-area .rs-blog__single:hover, {{WRAPPER}} .rs-blog-layout-1 .blog-item:hover,{{WRAPPER}} .rs-blog-layout-30-item:hover,{{WRAPPER}} .rs-blog-layout-28-item:hover,{{WRAPPER}} .rs-blog-layout-4 .rs-blog__item:hover,{{WRAPPER}} .rs-blog__left-blog:hover,{{WRAPPER}} .blog-horizontal .blog-meta .blog-item-wrap:hover,{{WRAPPER}} .rs-blog-layout-17-item:hover,{{WRAPPER}} .rs-blog-layout-20-item:hover,{{WRAPPER}} .rs-blog-layout-22-item:hover,{{WRAPPER}} .rs-blog-layout-24-item:hover,{{WRAPPER}} .rs-blog-layout-25-item:hover,{{WRAPPER}} .rs-blog-layout-27-list-item:hover,{{WRAPPER}} .rs-blog-layout-27-item:hover',
+                    'selector'  => '{{WRAPPER}} .fpg-section-area .rs-blog__single:hover, {{WRAPPER}} .rs-blog-layout-1 .blog-item:hover,{{WRAPPER}} .rs-blog-layout-30-item:hover,{{WRAPPER}} .rs-blog-layout-28-item:hover,{{WRAPPER}} .rs-blog-layout-4 .rs-blog__item:hover,{{WRAPPER}} .rs-blog__left-blog:hover,{{WRAPPER}} .blog-horizontal .blog-meta .blog-item-wrap:hover,{{WRAPPER}} .rs-blog-layout-17-item:hover,{{WRAPPER}} .rs-blog-layout-20-item:hover,{{WRAPPER}} .rs-blog-layout-22-item:hover,{{WRAPPER}} .rs-blog-layout-24-item:hover,{{WRAPPER}} .rs-blog-layout-25-item:hover,{{WRAPPER}} .rs-blog-layout-27-list-item:hover,{{WRAPPER}} .rs-blog-layout-27-item:hover,{{WRAPPER}} .rs-post-overlay.rs-post-overlay-one:hover,{{WRAPPER}} .rs-post-list.rs-list-one:hover,{{WRAPPER}} .rs-post-small.rs-post-small-one:hover',
                     'render_type' => 'template'
                 ]
             );
@@ -1682,7 +1776,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                 [
                     'name' => 'card_background_content',
                     'types' => [ 'classic', 'gradient' ],
-                    'selector' => '{{WRAPPER}} .fpg-section-area .rs-blog__single .rs-content,{{WRAPPER}} .rs-blog-layout-1 .blog-item .blog-content,{{WRAPPER}} .rs-blog-layout-30-item .rs-content,{{WRAPPER}} .rs-content,{{WRAPPER}} .rs-blog__single .content,{{WRAPPER}} .rs-blog-layout-4 .rs-blog__item .rs-content,{{WRAPPER}} .pre-blog-item.style_12:hover .blog-inner-wrap .pre-blog-content,{{WRAPPER}} .rs-blog__content,{{WRAPPER}} .blog-horizontal .blog-meta .blog-item-wrap .blog-content',
+                    'selector' => '{{WRAPPER}} .fpg-section-area .rs-blog__single .rs-content,{{WRAPPER}} .rs-blog-layout-1 .blog-item .blog-content,{{WRAPPER}} .rs-blog-layout-30-item .rs-content,{{WRAPPER}} .rs-content,{{WRAPPER}} .rs-blog__single .content,{{WRAPPER}} .rs-blog-layout-4 .rs-blog__item .rs-content,{{WRAPPER}} .pre-blog-item.style_12:hover .blog-inner-wrap .pre-blog-content,{{WRAPPER}} .rs-blog__content,{{WRAPPER}} .blog-horizontal .blog-meta .blog-item-wrap .blog-content,{{WRAPPER}} .rs-post-overlay.rs-post-overlay-one .rs-post-overlay-content,{{WRAPPER}} .rs-post-list.rs-list-one .rs-post-small-content,{{WRAPPER}} .rs-post-small.rs-post-small-one .rs-post-small-content',
                 ]
             );
             // Content Styling: Background Hover
@@ -1699,7 +1793,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                 [
                     'name' => 'card_background_content_hover',
                     'types' => [ 'classic', 'gradient' ],
-                    'selector' => '{{WRAPPER}} .fpg-section-area .rs-blog__single:hover .rs-content',
+                    'selector' => '{{WRAPPER}} .fpg-section-area .rs-blog__single:hover .rs-content,{{WRAPPER}} .fpg-section-area .rs-post-overlay-content:hover,{{WRAPPER}} .fpg-section-area .rs-post-small-content:hover,{{WRAPPER}} .rs-post-small.rs-post-small-one .rs-post-small-content:hover',
                 ]
             );
 
@@ -1711,7 +1805,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                     'type'       => \Elementor\Controls_Manager::DIMENSIONS,
                     'size_units' => array( 'px', 'em', '%' ),
                     'selectors'  => array(
-                        '{{WRAPPER}} .fpg-section-area .rs-blog__single .rs-content,{{WRAPPER}} .rs-blog-layout-1 .blog-item .blog-content,{{WRAPPER}} .rs-blog-layout-30-item .rs-content,{{WRAPPER}} .rs-content,{{WRAPPER}} .rs-blog__single .content,{{WRAPPER}} .rs-blog-layout-4 .rs-blog__item .rs-content,{{WRAPPER}} .rs-blog__content,{{WRAPPER}} .blog-horizontal .blog-meta .blog-item-wrap .blog-content' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                        '{{WRAPPER}} .fpg-section-area .rs-blog__single .rs-content,{{WRAPPER}} .rs-blog-layout-1 .blog-item .blog-content,{{WRAPPER}} .rs-blog-layout-30-item .rs-content,{{WRAPPER}} .rs-content,{{WRAPPER}} .rs-blog__single .content,{{WRAPPER}} .rs-blog-layout-4 .rs-blog__item .rs-content,{{WRAPPER}} .rs-blog__content,{{WRAPPER}} .blog-horizontal .blog-meta .blog-item-wrap .blog-content,{{WRAPPER}} .rs-post-small.rs-post-small-one .rs-post-small-content' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                     ),
                     'render_type' => 'template'
                 ]
@@ -1724,7 +1818,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                     'type'       => \Elementor\Controls_Manager::DIMENSIONS,
                     'size_units' => array( 'px', '%' ),
                     'selectors'  => array(
-                        '{{WRAPPER}} .fpg-section-area .rs-blog__single .rs-content,{{WRAPPER}} .rs-blog-layout-1 .blog-item .blog-content,{{WRAPPER}} .rs-blog-layout-30-item .rs-content,{{WRAPPER}} .rs-content,{{WRAPPER}} .rs-blog__single .content,{{WRAPPER}} .rs-blog-layout-4 .rs-blog__item .rs-content,{{WRAPPER}} .rs-blog__content,{{WRAPPER}} .blog-horizontal .blog-meta .blog-item-wrap .blog-content' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                        '{{WRAPPER}} .fpg-section-area .rs-blog__single .rs-content,{{WRAPPER}} .rs-blog-layout-1 .blog-item .blog-content,{{WRAPPER}} .rs-blog-layout-30-item .rs-content,{{WRAPPER}} .rs-content,{{WRAPPER}} .rs-blog__single .content,{{WRAPPER}} .rs-blog-layout-4 .rs-blog__item .rs-content,{{WRAPPER}} .rs-blog__content,{{WRAPPER}} .blog-horizontal .blog-meta .blog-item-wrap .blog-content,{{WRAPPER}} .rs-post-small.rs-post-small-one .rs-post-small-content' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                     ),
                     'render_type' => 'template'
                 ]
@@ -1733,7 +1827,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                 \Elementor\Group_Control_Border::get_type(),
                 [
                     'name' => 'content_border_color',
-                    'selector' => '{{WRAPPER}} .fpg-section-area .rs-blog__single .rs-content,{{WRAPPER}} .rs-blog-layout-1 .blog-item .blog-content,{{WRAPPER}} .rs-blog-layout-30-item .rs-content,{{WRAPPER}} .rs-content,{{WRAPPER}} .rs-blog__single .content,{{WRAPPER}} .rs-blog-layout-4 .rs-blog__item .rs-content,{{WRAPPER}} .rs-blog__content,{{WRAPPER}} .blog-horizontal .blog-meta .blog-item-wrap .blog-content',
+                    'selector' => '{{WRAPPER}} .fpg-section-area .rs-blog__single .rs-content,{{WRAPPER}} .rs-blog-layout-1 .blog-item .blog-content,{{WRAPPER}} .rs-blog-layout-30-item .rs-content,{{WRAPPER}} .rs-content,{{WRAPPER}} .rs-blog__single .content,{{WRAPPER}} .rs-blog-layout-4 .rs-blog__item .rs-content,{{WRAPPER}} .rs-blog__content,{{WRAPPER}} .blog-horizontal .blog-meta .blog-item-wrap .blog-content,{{WRAPPER}} .rs-post-small.rs-post-small-one .rs-post-small-content',
                 ]
             );
             // Card Border Radius
@@ -1744,7 +1838,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                     'type'       => \Elementor\Controls_Manager::DIMENSIONS,
                     'size_units' => array( 'px', 'em', '%' ),
                     'selectors'  => array(
-                        '{{WRAPPER}} .fpg-section-area .rs-blog__single .rs-content,{{WRAPPER}} .rs-blog-layout-1 .blog-item .blog-content,{{WRAPPER}} .rs-blog-layout-30-item .rs-content,{{WRAPPER}} .rs-content,{{WRAPPER}} .rs-blog__single .content,{{WRAPPER}} .rs-blog-layout-4 .rs-blog__item .rs-content,{{WRAPPER}} .rs-blog__content,{{WRAPPER}} .blog-horizontal .blog-meta .blog-item-wrap .blog-content' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                        '{{WRAPPER}} .fpg-section-area .rs-blog__single .rs-content,{{WRAPPER}} .rs-blog-layout-1 .blog-item .blog-content,{{WRAPPER}} .rs-blog-layout-30-item .rs-content,{{WRAPPER}} .rs-content,{{WRAPPER}} .rs-blog__single .content,{{WRAPPER}} .rs-blog-layout-4 .rs-blog__item .rs-content,{{WRAPPER}} .rs-blog__content,{{WRAPPER}} .blog-horizontal .blog-meta .blog-item-wrap .blog-content,{{WRAPPER}} .rs-post-small.rs-post-small-one .rs-post-small-content' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                     ),
                 ]
             );
@@ -2225,7 +2319,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                 [
                     'name'     => 'meta_typography',
                     'label'    => esc_html__( 'Typography', 'fancy-post-grid' ),
-                    'selector' => '{{WRAPPER}} .meta-data-list li,{{WRAPPER}} .pre-blog-item.style_12 .blog-inner-wrap .pre-blog-content ul li, {{WRAPPER}} .meta-date span, {{WRAPPER}} .rs-blog-layout-14-item .rs-content .rs-meta div, {{WRAPPER}} .rs-blog-layout-15-item .rs-content .rs-meta, {{WRAPPER}} .rs-blog-layout-16-item .rs-content .rs-meta, {{WRAPPER}} .rs-blog-layout-26-item .rs-content .rs-meta .rs-meta-all, {{WRAPPER}} .rs-blog-layout-26-item .rs-content .rs-meta .rs-meta-all .meta-categories a, {{WRAPPER}} .rs-blog-layout-1 .blog-item .blog-content .blog-meta li a, .rs-blog-layout-1 .blog-item .blog-content .blog-meta li, .rs-blog-layout-1 .blog-item-wrap .blog-content .blog-meta li a,{{WRAPPER}} .rs-blog-layout-26-item .rs-content .rs-meta .meta-category a,{{WRAPPER}} .rs-blog-layout-13-item .rs-thumb .pre-blog-meta .pre-date, {{WRAPPER}} .rs-blog-layout-13-item .rs-thumb .pre-blog-meta .pre-month, {{WRAPPER}} .rs-blog-layout-8 .rs-blog__thumb .rs-category a, {{WRAPPER}} .rs-blog-layout-8 .rs-blog__thumb .rs-category i, {{WRAPPER}} .rs-blog-layout-1.rs-blog-layout-9 .blog-horizontal .blog-meta .blog-item-wrap .blog-content .blog-meta .meta-date,{{WRAPPER}} .rs-blog-layout-1.rs-blog-layout-9 .blog-horizontal .blog-meta .blog-item-wrap .blog-content .blog-meta .admin,{{WRAPPER}} .rs-blog-layout-15-item .rs-thumb .rs-category,{{WRAPPER}} .pre-blog-item.style_12 .blog-inner-wrap .pre-image-wrap .pre-blog-meta .pre-month,{{WRAPPER}} .pre-blog-item.style_12 .blog-inner-wrap .pre-image-wrap .pre-blog-meta .pre-date,{{WRAPPER}} .rs-blog-layout-14-item .rs-content .rs-meta a,{{WRAPPER}} .rs-blog-layout-14-item .rs-content .rs-meta .meta-date,{{WRAPPER}} .blog-item .blog-content .blog-meta li a,{{WRAPPER}} .rs-blog-layout-3 .rs-blog__single .content .rs-blog-category a,{{WRAPPER}} .rs-blog-layout-3 .rs-blog__single .content ul li,{{WRAPPER}} .rs-blog-layout-3 .rs-blog__single .content .rs-blog-author .user a span,{{WRAPPER}} .rs-blog-layout-4 .rs-blog__item .rs-content .rs-category a,{{WRAPPER}} .rs-blog-layout-4 .rs-blog__item .rs-content .rs-blog-footer .user span,{{WRAPPER}} .rs-blog-layout-25-item .rs-content .rs-cat a,{{WRAPPER}} .rs-blog-layout-27-list-item .rs-content .rs-meta-category a,{{WRAPPER}} .rs-blog-layout-27-list-item .rs-content .rs-meta-category i,{{WRAPPER}} .rs-blog-layout-27-list-item .rs-date .title,{{WRAPPER}} .rs-blog-layout-27-list-item .rs-date span',
+                    'selector' => '{{WRAPPER}} .meta-data-list li,{{WRAPPER}} .pre-blog-item.style_12 .blog-inner-wrap .pre-blog-content ul li, {{WRAPPER}} .meta-date span, {{WRAPPER}} .rs-blog-layout-14-item .rs-content .rs-meta div, {{WRAPPER}} .rs-blog-layout-15-item .rs-content .rs-meta, {{WRAPPER}} .rs-blog-layout-16-item .rs-content .rs-meta, {{WRAPPER}} .rs-blog-layout-26-item .rs-content .rs-meta .rs-meta-all, {{WRAPPER}} .rs-blog-layout-26-item .rs-content .rs-meta .rs-meta-all .meta-categories a, {{WRAPPER}} .rs-blog-layout-1 .blog-item .blog-content .blog-meta li a, .rs-blog-layout-1 .blog-item .blog-content .blog-meta li, .rs-blog-layout-1 .blog-item-wrap .blog-content .blog-meta li a,{{WRAPPER}} .rs-blog-layout-26-item .rs-content .rs-meta .meta-category a,{{WRAPPER}} .rs-blog-layout-13-item .rs-thumb .pre-blog-meta .pre-date, {{WRAPPER}} .rs-blog-layout-13-item .rs-thumb .pre-blog-meta .pre-month, {{WRAPPER}} .rs-blog-layout-8 .rs-blog__thumb .rs-category a, {{WRAPPER}} .rs-blog-layout-8 .rs-blog__thumb .rs-category i, {{WRAPPER}} .rs-blog-layout-1.rs-blog-layout-9 .blog-horizontal .blog-meta .blog-item-wrap .blog-content .blog-meta .meta-date,{{WRAPPER}} .rs-blog-layout-1.rs-blog-layout-9 .blog-horizontal .blog-meta .blog-item-wrap .blog-content .blog-meta .admin,{{WRAPPER}} .rs-blog-layout-15-item .rs-thumb .rs-category,{{WRAPPER}} .pre-blog-item.style_12 .blog-inner-wrap .pre-image-wrap .pre-blog-meta .pre-month,{{WRAPPER}} .pre-blog-item.style_12 .blog-inner-wrap .pre-image-wrap .pre-blog-meta .pre-date,{{WRAPPER}} .rs-blog-layout-14-item .rs-content .rs-meta a,{{WRAPPER}} .rs-blog-layout-14-item .rs-content .rs-meta .meta-date,{{WRAPPER}} .blog-item .blog-content .blog-meta li a,{{WRAPPER}} .rs-blog-layout-3 .rs-blog__single .content .rs-blog-category a,{{WRAPPER}} .rs-blog-layout-3 .rs-blog__single .content ul li,{{WRAPPER}} .rs-blog-layout-3 .rs-blog__single .content .rs-blog-author .user a span,{{WRAPPER}} .rs-blog-layout-4 .rs-blog__item .rs-content .rs-category a,{{WRAPPER}} .rs-blog-layout-4 .rs-blog__item .rs-content .rs-blog-footer .user span,{{WRAPPER}} .rs-blog-layout-25-item .rs-content .rs-cat a,{{WRAPPER}} .rs-blog-layout-27-list-item .rs-content .rs-meta-category a,{{WRAPPER}} .rs-blog-layout-27-list-item .rs-content .rs-meta-category i,{{WRAPPER}} .rs-blog-layout-27-list-item .rs-date .title,{{WRAPPER}} .rs-blog-layout-27-list-item .rs-date span,{{WRAPPER}} .meta-data-list li span,{{WRAPPER}} .rs-post-tag a',
 
                 ]
             );
@@ -2260,7 +2354,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                         ),
                     ),
                     'selectors' => array(
-                        '{{WRAPPER}} .meta-data-list,{{WRAPPER}} .rs-blog-layout-4 .rs-blog__item .rs-content .rs-category' => 'justify-content: {{VALUE}};',
+                        '{{WRAPPER}} .meta-data-list,{{WRAPPER}} .rs-post-meta ul,{{WRAPPER}} .rs-blog-layout-4 .rs-blog__item .rs-content .rs-category,{{WRAPPER}} .rs-post-tag a' => 'justify-content: {{VALUE}};',
                     ),
                 ]
             );
@@ -2285,7 +2379,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                     'type'       => \Elementor\Controls_Manager::DIMENSIONS,
                     'size_units' => array( 'px', 'em', '%' ),
                     'selectors'  => array(
-                        '{{WRAPPER}} .meta-data-list,{{WRAPPER}} .rs-thumb .meta-date span,{{WRAPPER}} .rs-content .rs-meta a,{{WRAPPER}} .rs-blog__item .rs-content .rs-category a,{{WRAPPER}} .rs-blog__single .content .rs-blog-category a,{{WRAPPER}} .rs-content .rs-meta .meta-date,{{WRAPPER}} .rs-content .rs-meta .meta-category a' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                        '{{WRAPPER}} .meta-data-list,{{WRAPPER}} .rs-thumb .meta-date span,{{WRAPPER}} .rs-content .rs-meta a,{{WRAPPER}} .rs-blog__item .rs-content .rs-category a,{{WRAPPER}} .rs-blog__single .content .rs-blog-category a,{{WRAPPER}} .rs-content .rs-meta .meta-date,{{WRAPPER}} .rs-content .rs-meta .meta-category a,{{WRAPPER}} .rs-post-tag a' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                     ),
                 ]
             );
@@ -2307,7 +2401,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                     'label'     => esc_html__( 'Meta Color', 'fancy-post-grid' ),
                     'type'      => \Elementor\Controls_Manager::COLOR,
                     'selectors' => array(
-                        '{{WRAPPER}} .meta-data-list li,{{WRAPPER}} .meta-data-list li a,{{WRAPPER}} .meta-data-list,{{WRAPPER}} .rs-blog-layout-26-item .rs-content .rs-meta .meta-date span,{{WRAPPER}} .rs-blog-layout-26-item .rs-content .rs-meta .meta-category a,{{WRAPPER}} .rs-blog-layout-13-item .rs-thumb .pre-blog-meta .pre-date, {{WRAPPER}} .rs-blog-layout-13-item .rs-thumb .pre-blog-meta .pre-month,{{WRAPPER}} .rs-blog-layout-8 .rs-blog__thumb .rs-category a,{{WRAPPER}} .rs-blog-layout-1.rs-blog-layout-9 .blog-horizontal .blog-meta .blog-item-wrap .blog-content .blog-meta .admin,{{WRAPPER}} .rs-blog-layout-1.rs-blog-layout-9 .blog-horizontal .blog-meta .blog-item-wrap .blog-content .blog-meta .meta-date,{{WRAPPER}} .rs-blog-layout-14-item .rs-content .rs-meta a,{{WRAPPER}} .rs-blog-layout-15-item .rs-thumb .rs-category a,{{WRAPPER}} .pre-blog-item.style_12 .blog-inner-wrap .pre-image-wrap .pre-blog-meta .pre-month,{{WRAPPER}} .pre-blog-item.style_12 .blog-inner-wrap .pre-image-wrap .pre-blog-meta .pre-date,{{WRAPPER}} .rs-blog-layout-14-item .rs-content .rs-meta .meta-date,{{WRAPPER}} .rs-blog-layout-3 .rs-blog__single .content .rs-blog-category a,{{WRAPPER}} .rs-blog-layout-3 .rs-blog__single .content ul li,{{WRAPPER}} .rs-blog-layout-3 .rs-blog__single .content .rs-blog-author .user a span,{{WRAPPER}} .rs-blog-layout-4 .rs-blog__item .rs-content .rs-category a,{{WRAPPER}} .rs-blog-layout-4 .rs-blog__item .rs-content .rs-blog-footer .user span,{{WRAPPER}} .rs-blog-layout-30-item .rs-thumb .meta-date span,{{WRAPPER}} .pre-blog-item.style_12 .blog-inner-wrap .pre-blog-content ul li,{{WRAPPER}} .rs-blog-layout-25-item .rs-content .rs-cat a,{{WRAPPER}} .rs-blog-layout-27-list-item .rs-content .rs-meta-category a,{{WRAPPER}} .rs-blog-layout-27-list-item .rs-content .rs-meta-category i,{{WRAPPER}} .rs-blog-layout-27-list-item .rs-date .title,{{WRAPPER}} .rs-blog-layout-27-list-item .rs-date span' => 'color: {{VALUE}};',
+                        '{{WRAPPER}} .meta-data-list li,{{WRAPPER}} .meta-data-list li a,{{WRAPPER}} .meta-data-list,{{WRAPPER}} .rs-blog-layout-26-item .rs-content .rs-meta .meta-date span,{{WRAPPER}} .rs-blog-layout-26-item .rs-content .rs-meta .meta-category a,{{WRAPPER}} .rs-blog-layout-13-item .rs-thumb .pre-blog-meta .pre-date, {{WRAPPER}} .rs-blog-layout-13-item .rs-thumb .pre-blog-meta .pre-month,{{WRAPPER}} .rs-blog-layout-8 .rs-blog__thumb .rs-category a,{{WRAPPER}} .rs-blog-layout-1.rs-blog-layout-9 .blog-horizontal .blog-meta .blog-item-wrap .blog-content .blog-meta .admin,{{WRAPPER}} .rs-blog-layout-1.rs-blog-layout-9 .blog-horizontal .blog-meta .blog-item-wrap .blog-content .blog-meta .meta-date,{{WRAPPER}} .rs-blog-layout-14-item .rs-content .rs-meta a,{{WRAPPER}} .rs-blog-layout-15-item .rs-thumb .rs-category a,{{WRAPPER}} .pre-blog-item.style_12 .blog-inner-wrap .pre-image-wrap .pre-blog-meta .pre-month,{{WRAPPER}} .pre-blog-item.style_12 .blog-inner-wrap .pre-image-wrap .pre-blog-meta .pre-date,{{WRAPPER}} .rs-blog-layout-14-item .rs-content .rs-meta .meta-date,{{WRAPPER}} .rs-blog-layout-3 .rs-blog__single .content .rs-blog-category a,{{WRAPPER}} .rs-blog-layout-3 .rs-blog__single .content ul li,{{WRAPPER}} .rs-blog-layout-3 .rs-blog__single .content .rs-blog-author .user a span,{{WRAPPER}} .rs-blog-layout-4 .rs-blog__item .rs-content .rs-category a,{{WRAPPER}} .rs-blog-layout-4 .rs-blog__item .rs-content .rs-blog-footer .user span,{{WRAPPER}} .rs-blog-layout-30-item .rs-thumb .meta-date span,{{WRAPPER}} .pre-blog-item.style_12 .blog-inner-wrap .pre-blog-content ul li,{{WRAPPER}} .rs-blog-layout-25-item .rs-content .rs-cat a,{{WRAPPER}} .rs-blog-layout-27-list-item .rs-content .rs-meta-category a,{{WRAPPER}} .rs-blog-layout-27-list-item .rs-content .rs-meta-category i,{{WRAPPER}} .rs-blog-layout-27-list-item .rs-date .title,{{WRAPPER}} .rs-blog-layout-27-list-item .rs-date span,{{WRAPPER}} .rs-post-meta.meta-data-list span.rs-meta,{{WRAPPER}} .rs-post-tag a' => 'color: {{VALUE}};',
                         '{{WRAPPER}} .rs-blog-layout-25-item .rs-content .rs-cat a' => '    border-bottom-color: {{VALUE}};',
                     ),
                 ]
@@ -2320,6 +2414,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                     'selectors' => array(
                         '{{WRAPPER}} .rs-blog-layout-13-item .rs-thumb .pre-blog-meta,{{WRAPPER}} .rs-blog-layout-8 .rs-blog__thumb .rs-category,{{WRAPPER}} .rs-blog-layout-28-item .rs-thumb .rs-meta,{{WRAPPER}} .rs-blog-layout-30-item .rs-thumb .meta-date span,{{WRAPPER}} .pre-blog-item.style_12 .blog-inner-wrap .pre-image-wrap .pre-blog-meta,{{WRAPPER}} .rs-blog-layout-14-item .rs-content .rs-meta a,{{WRAPPER}} .rs-blog-layout-15-item .rs-thumb .rs-category,{{WRAPPER}} .rs-blog-layout-3 .rs-blog__single .content .rs-blog-category a,{{WRAPPER}} .rs-blog-layout-4 .rs-blog__item .rs-content .rs-category a,{{WRAPPER}} .rs-blog-layout-18 .rs-blog-layout-18-item .rs-content .rs-meta,{{WRAPPER}} .rs-blog-layout-27-list-item .rs-date' => 'background: {{VALUE}};',
                         '{{WRAPPER}} .rs-blog-layout-13-item .rs-thumb .pre-blog-meta::after,{{WRAPPER}} .pre-blog-item.style_12 .blog-inner-wrap .pre-image-wrap .pre-blog-meta::after' => 'border-color: {{VALUE}};',
+                        '{{WRAPPER}} .rs-post-tag a,{{WRAPPER}} .rs-category,{{WRAPPER}} .rs-blog-category a' => 'background: {{VALUE}} !important;',
                     ),
                 ]
             );
@@ -3379,6 +3474,7 @@ add_action('elementor/widgets/widgets_registered', function () {
             $slider_layout = $this->get_settings_for_display('fancy_post_slider_layout');
             $isotope_layout = $this->get_settings_for_display('fancy_post_isotope_layout');
             $list_layout = $this->get_settings_for_display('fancy_post_list_layout');
+            $card_layout = $this->get_settings_for_display('fancy_post_card_layout');
 
             // Render grid layout
             if ($grid_layout === 'gridstyle01') {
@@ -3441,7 +3537,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                 $this->render_isotope_style_07();
             }
 
-            // Render isotope layout
+            // Render List layout
             if ($list_layout === 'liststyle01') {
                 $this->render_list_style_01();
             } elseif ($list_layout === 'liststyle02') {
@@ -3460,6 +3556,37 @@ add_action('elementor/widgets/widgets_registered', function () {
                 $this->render_list_style_08();
             } elseif ($list_layout === 'liststyle09') {
                 $this->render_list_style_09();
+            } elseif ($list_layout === 'liststyle10') {
+                $this->render_list_style_10();
+            } 
+
+            // Render List layout
+            if ($card_layout === 'cardstyle01') {
+                $this->render_card_style_01();
+            } elseif ($card_layout === 'cardstyle02') {
+                $this->render_card_style_02();
+            } elseif ($card_layout === 'cardstyle03') {
+                $this->render_card_style_03();
+            }elseif ($card_layout === 'cardstyle04') {
+                $this->render_card_style_04();
+            } elseif ($card_layout === 'cardstyle05') {
+                $this->render_card_style_05();
+            }elseif ($card_layout === 'cardstyle06') {
+                $this->render_card_style_06();
+            } elseif ($card_layout === 'cardstyle07') {
+                $this->render_card_style_07();
+            } elseif ($card_layout === 'cardstyle08') {
+                $this->render_card_style_08();
+            } elseif ($card_layout === 'cardstyle09') {
+                $this->render_card_style_09();
+            } elseif ($card_layout === 'cardstyle10') {
+                $this->render_card_style_10();
+            } elseif ($card_layout === 'cardstyle11') {
+                $this->render_card_style_11();
+            } elseif ($card_layout === 'cardstyle12') {
+                $this->render_card_style_12();
+            } elseif ($card_layout === 'cardstyle13') {
+                $this->render_card_style_13();
             } 
         }
 
@@ -3763,12 +3890,126 @@ add_action('elementor/widgets/widgets_registered', function () {
             } else {
                 echo '<div class="error">' . esc_html__('List Style 09 template not found.', 'fancy-post-grid') . '</div>';
             }
+        } protected function render_list_style_10() {
+            $file_path = plugin_dir_path( __FILE__ ) . 'render/list-style-10.php'; // Adjust the path as needed.
+            
+            if ( file_exists( $file_path ) ) {
+                include $file_path;
+            } else {
+                echo '<div class="error">' . esc_html__('List Style 10 template not found.', 'fancy-post-grid') . '</div>';
+            }
+        } 
+        // Card Style
+        protected function render_card_style_01() {
+            $file_path = plugin_dir_path( __FILE__ ) . 'render/card-style-01.php'; // Adjust the path as needed.
+            
+            if ( file_exists( $file_path ) ) {
+                include $file_path;
+            } else {
+                echo '<div class="error">' . esc_html__('Card Style 01 template not found.', 'fancy-post-grid') . '</div>';
+            }
+        }protected function render_card_style_02() {
+            $file_path = plugin_dir_path( __FILE__ ) . 'render/card-style-02.php'; // Adjust the path as needed.
+            
+            if ( file_exists( $file_path ) ) {
+                include $file_path;
+            } else {
+                echo '<div class="error">' . esc_html__('Card Style 02 template not found.', 'fancy-post-grid') . '</div>';
+            }
+        }protected function render_card_style_03() {
+            $file_path = plugin_dir_path( __FILE__ ) . 'render/card-style-03.php'; // Adjust the path as needed.
+            
+            if ( file_exists( $file_path ) ) {
+                include $file_path;
+            } else {
+                echo '<div class="error">' . esc_html__('Card Style 03 template not found.', 'fancy-post-grid') . '</div>';
+            }
+        }protected function render_card_style_04() {
+            $file_path = plugin_dir_path( __FILE__ ) . 'render/card-style-04.php'; // Adjust the path as needed.
+            
+            if ( file_exists( $file_path ) ) {
+                include $file_path;
+            } else {
+                echo '<div class="error">' . esc_html__('Card Style 04 template not found.', 'fancy-post-grid') . '</div>';
+            }
+        }protected function render_card_style_05() {
+            $file_path = plugin_dir_path( __FILE__ ) . 'render/card-style-05.php'; // Adjust the path as needed.
+            
+            if ( file_exists( $file_path ) ) {
+                include $file_path;
+            } else {
+                echo '<div class="error">' . esc_html__('Card Style 05 template not found.', 'fancy-post-grid') . '</div>';
+            }
+        }protected function render_card_style_06() {
+            $file_path = plugin_dir_path( __FILE__ ) . 'render/card-style-06.php'; // Adjust the path as needed.
+            
+            if ( file_exists( $file_path ) ) {
+                include $file_path;
+            } else {
+                echo '<div class="error">' . esc_html__('Card Style 06 template not found.', 'fancy-post-grid') . '</div>';
+            }
+        }protected function render_card_style_07() {
+            $file_path = plugin_dir_path( __FILE__ ) . 'render/card-style-07.php'; // Adjust the path as needed.
+            
+            if ( file_exists( $file_path ) ) {
+                include $file_path;
+            } else {
+                echo '<div class="error">' . esc_html__('Card Style 07 template not found.', 'fancy-post-grid') . '</div>';
+            }
+        }protected function render_card_style_08() {
+            $file_path = plugin_dir_path( __FILE__ ) . 'render/card-style-08.php'; // Adjust the path as needed.
+            
+            if ( file_exists( $file_path ) ) {
+                include $file_path;
+            } else {
+                echo '<div class="error">' . esc_html__('Card Style 08 template not found.', 'fancy-post-grid') . '</div>';
+            }
+        } protected function render_card_style_09() {
+            $file_path = plugin_dir_path( __FILE__ ) . 'render/card-style-09.php'; // Adjust the path as needed.
+            
+            if ( file_exists( $file_path ) ) {
+                include $file_path;
+            } else {
+                echo '<div class="error">' . esc_html__('Card Style 09 template not found.', 'fancy-post-grid') . '</div>';
+            }
+        } protected function render_card_style_10() {
+            $file_path = plugin_dir_path( __FILE__ ) . 'render/card-style-10.php'; // Adjust the path as needed.
+            
+            if ( file_exists( $file_path ) ) {
+                include $file_path;
+            } else {
+                echo '<div class="error">' . esc_html__('Card Style 10 template not found.', 'fancy-post-grid') . '</div>';
+            }
+        }protected function render_card_style_11() {
+            $file_path = plugin_dir_path( __FILE__ ) . 'render/card-style-11.php'; // Adjust the path as needed.
+            
+            if ( file_exists( $file_path ) ) {
+                include $file_path;
+            } else {
+                echo '<div class="error">' . esc_html__('Card Style 11 template not found.', 'fancy-post-grid') . '</div>';
+            }
+        }protected function render_card_style_12() {
+            $file_path = plugin_dir_path( __FILE__ ) . 'render/card-style-12.php'; // Adjust the path as needed.
+            
+            if ( file_exists( $file_path ) ) {
+                include $file_path;
+            } else {
+                echo '<div class="error">' . esc_html__('Card Style 12 template not found.', 'fancy-post-grid') . '</div>';
+            }
+        } protected function render_card_style_13() {
+            $file_path = plugin_dir_path( __FILE__ ) . 'render/card-style-13.php'; // Adjust the path as needed.
+            
+            if ( file_exists( $file_path ) ) {
+                include $file_path;
+            } else {
+                echo '<div class="error">' . esc_html__('Card Style 13 template not found.', 'fancy-post-grid') . '</div>';
+            }
         }  
     }
 
     // FPG-Grid Layout Widget
     class Fancy_Post_Grid_Layout_Widget extends Fancy_Post_Grid_Base_Widget {
-        protected $exclude_controls = ['fancy_post_slider_layout','fancy_post_list_layout','fancy_post_isotope_layout','slider_pagination_type','slider_section','slider_style','col_desktop_slider','col_lg_slider','col_md_slider','col_sm_slider','col_xs_slider','isotope_section','isotope_style','thumbnail_left_size','thumbnail_right_size','meta_date_color'];
+        protected $exclude_controls = ['fancy_post_slider_layout','fancy_post_card_layout','fancy_post_list_layout','fancy_post_isotope_layout','slider_pagination_type','slider_section','slider_style','col_desktop_slider','col_lg_slider','col_md_slider','col_sm_slider','col_xs_slider','isotope_section','isotope_style','thumbnail_left_size','thumbnail_right_size','meta_date_color'];
         public function get_name() {
             return 'fpg_grid_layout';
         }
@@ -3790,7 +4031,7 @@ add_action('elementor/widgets/widgets_registered', function () {
     class Fancy_Post_Slider_Layout_Widget extends Fancy_Post_Grid_Base_Widget {
         
         // Specify which controls to exclude
-        protected $exclude_controls = ['fancy_post_grid_layout', 'fancy_post_list_layout','fancy_post_isotope_layout','columns','show_pagination','col_desktop','col_lg','col_md','col_sm','col_xs','isotope_section','isotope_style','thumbnail_left_size','thumbnail_right_size','meta_date_color'];
+        protected $exclude_controls = ['fancy_post_grid_layout','fancy_post_card_layout', 'fancy_post_list_layout','fancy_post_isotope_layout','columns','show_pagination','col_desktop','col_lg','col_md','col_sm','col_xs','isotope_section','isotope_style','thumbnail_left_size','thumbnail_right_size','meta_date_color'];
         public function get_name() {
             return 'fpg_slider_layout';
         }
@@ -3813,7 +4054,7 @@ add_action('elementor/widgets/widgets_registered', function () {
     class Fancy_Post_Isotope_Layout_Widget extends Fancy_Post_Grid_Base_Widget {
         
         // Specify which controls to exclude
-        protected $exclude_controls = ['fancy_post_grid_layout','show_pagination_on', 'fancy_post_slider_layout','fancy_post_list_layout','slider_columns','slider_pagination_type','slider_section','slider_style','col_desktop_slider','col_lg_slider','col_md_slider','col_sm_slider','col_xs_slider','thumbnail_left_size','thumbnail_right_size','meta_date_color'];
+        protected $exclude_controls = ['fancy_post_grid_layout','fancy_post_card_layout','show_pagination_on', 'fancy_post_slider_layout','fancy_post_list_layout','slider_columns','slider_pagination_type','slider_section','slider_style','col_desktop_slider','col_lg_slider','col_md_slider','col_sm_slider','col_xs_slider','thumbnail_left_size','thumbnail_right_size','meta_date_color'];
         public function get_name() {
             return 'fpg_isotope_layout';
         }
@@ -3835,13 +4076,35 @@ add_action('elementor/widgets/widgets_registered', function () {
     class Fancy_Post_List_Layout_Widget extends Fancy_Post_Grid_Base_Widget {
         
         // Specify which controls to exclude
-        protected $exclude_controls = ['fancy_post_grid_layout','show_pagination_on', 'fancy_post_slider_layout','fancy_post_isotope_layout','slider_columns','slider_pagination_type','slider_section','slider_style','col_desktop_slider','col_lg_slider','col_md_slider','col_sm_slider','col_xs_slider','isotope_section','isotope_style','col_desktop','col_lg','col_md','col_sm','col_xs','space_between','space_between_lg','space_between_md','space_between_sm','space_between_xs'];
+        protected $exclude_controls = ['fancy_post_grid_layout','fancy_post_card_layout','show_pagination_on', 'fancy_post_slider_layout','fancy_post_isotope_layout','slider_columns','slider_pagination_type','slider_section','slider_style','col_desktop_slider','col_lg_slider','col_md_slider','col_sm_slider','col_xs_slider','isotope_section','isotope_style','col_desktop','col_lg','col_md','col_sm','col_xs','space_between','space_between_lg','space_between_md','space_between_sm','space_between_xs'];
         public function get_name() {
             return 'fpg_list_layout';
         }
 
         public function get_title() {
             return __('FPG - List Layout', 'fancy-post-grid');
+        }
+
+        public function get_icon() {
+            return 'eicon-post-list';
+        }
+
+        public function get_categories() {
+            return array('fancy-post-grid-category');
+        }
+        
+    }
+    // FPG-Card Layout Widget
+    class Fancy_Post_Card_Layout_Widget extends Fancy_Post_Grid_Base_Widget {
+        
+        // Specify which controls to exclude
+        protected $exclude_controls = ['fancy_post_grid_layout','fancy_post_list_layout','show_pagination_on', 'fancy_post_slider_layout','fancy_post_isotope_layout','slider_columns','slider_pagination_type','slider_section','slider_style','col_desktop_slider','col_lg_slider','col_md_slider','col_sm_slider','col_xs_slider','isotope_section','isotope_style','col_desktop','col_lg','col_md','col_sm','col_xs','space_between','space_between_lg','space_between_md','space_between_sm','space_between_xs'];
+        public function get_name() {
+            return 'fpg_card_layout';
+        }
+
+        public function get_title() {
+            return __('FPG - Card Layout', 'fancy-post-grid');
         }
 
         public function get_icon() {
@@ -3860,4 +4123,5 @@ add_action('elementor/widgets/widgets_registered', function () {
     \Elementor\Plugin::instance()->widgets_manager->register_widget_type(new Fancy_Post_Slider_Layout_Widget());
     \Elementor\Plugin::instance()->widgets_manager->register_widget_type(new Fancy_Post_Isotope_Layout_Widget());
     \Elementor\Plugin::instance()->widgets_manager->register_widget_type(new Fancy_Post_List_Layout_Widget());
+    \Elementor\Plugin::instance()->widgets_manager->register_widget_type(new Fancy_Post_Card_Layout_Widget());
 });

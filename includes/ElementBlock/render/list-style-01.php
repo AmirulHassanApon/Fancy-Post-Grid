@@ -78,31 +78,29 @@ $query = new \WP_Query($args);
                                     <?php } else { ?>
                                         <?php the_post_thumbnail($thumbnail_size); ?>
                                     <?php } ?>
-                                    <?php if ('yes' === $settings['show_post_categories']) { ?>
-                                        <div class="rs-category">
-                                            <?php
-                                                // Array of meta items with their respective conditions, content, and class names.
-                                                $meta_items = array( 
-                                                    
-                                                    'post_categories' => array(
-                                                        'condition' => 'yes' === $settings['show_post_categories'],
-                                                        'class'     => 'meta-categories',
-                                                        'icon'      => ('yes' === $settings['show_meta_data_icon'] && 'yes' === $settings['show_post_categories_icon']) ? '<i class="fa fa-folder"></i>' : '',
-                                                        'content'   => get_the_category_list(', '),
-                                                    ),
-                                                );
+                                    <?php
+                                        // Get post categories
+                                        $post_categories = get_the_category();
 
-                                                // Output each meta item as a list item with the respective class.
-                                                foreach ($meta_items as $meta) {
-                                                    if ($meta['condition']) {
-                                                        
-                                                        echo wp_kses_post($meta['icon']) . ' ' . wp_kses_post($meta['content']);
-                                                        
-                                                    }
-                                                }
-                                                ?>                       
-                                        </div>
-                                    <?php } ?>
+                                        if ( 'yes' === $settings['show_post_categories'] && !empty( $post_categories ) ) : ?>
+                                            <?php foreach ( $post_categories as $cat ) : 
+                                                // Get category background color
+                                                $cat_bg = get_term_meta( $cat->term_id, 'fpg_bg_color', true );
+                                                $style = $cat_bg ? 'background:' . esc_attr( $cat_bg ) . ';' : '';
+                                            ?> 
+                                            <div class="rs-category" 
+                                                   style="<?php echo esc_attr( $style ); ?>">
+                                                 
+                                                <i class="fa fa-folder"></i>
+                                                <a href="<?php echo esc_url( get_category_link( $cat->term_id ) ); ?>" 
+                                                   class="meta-categories"
+                                                   style="<?php echo esc_attr( $style ); ?>">
+                                                    <?php echo esc_html( $cat->name ); ?>
+                                                </a>
+                                                <?php endforeach; ?>
+                                            </div>
+                                    <?php endif; ?>
+                                    
                                 </div>
                             <?php } ?>
                             
@@ -301,31 +299,27 @@ $query = new \WP_Query($args);
                                         <?php } else { ?>
                                             <?php the_post_thumbnail($thumbnail_size); ?>
                                         <?php } ?>
-                                        <?php if ('yes' === $settings['show_post_categories']) { ?>
-                                            <div class="rs-category">
-                                                <?php
-                                                    // Array of meta items with their respective conditions, content, and class names.
-                                                    $meta_items = array( 
-                                                        
-                                                        'post_categories' => array(
-                                                            'condition' => 'yes' === $settings['show_post_categories'],
-                                                            'class'     => 'meta-categories',
-                                                            'icon'      => ('yes' === $settings['show_meta_data_icon'] && 'yes' === $settings['show_post_categories_icon']) ? '<i class="fa fa-folder"></i>' : '',
-                                                            'content'   => get_the_category_list(', '),
-                                                        ),
-                                                    );
+                                        <?php
+                                            // Get post categories
+                                            $post_categories = get_the_category();
 
-                                                    // Output each meta item as a list item with the respective class.
-                                                    foreach ($meta_items as $meta) {
-                                                        if ($meta['condition']) {
-                                                            
-                                                            echo wp_kses_post($meta['icon']) . ' ' . wp_kses_post($meta['content']);
-                                                            
-                                                        }
-                                                    }
-                                                    ?>                       
-                                            </div>
-                                        <?php } ?>
+                                            if ( 'yes' === $settings['show_post_categories'] && !empty( $post_categories ) ) : ?>
+                                                <?php foreach ( $post_categories as $cat ) : 
+                                                    // Get category background color
+                                                    $cat_bg = get_term_meta( $cat->term_id, 'fpg_bg_color', true );
+                                                    $style = $cat_bg ? 'background:' . esc_attr( $cat_bg ) . ';' : '';
+                                                ?> 
+                                                <div class="rs-category" 
+                                                       style="<?php echo esc_attr( $style ); ?>">
+                                                     
+                                                    <i class="fa fa-folder"></i>
+                                                    <a href="<?php echo esc_url( get_category_link( $cat->term_id ) ); ?>" 
+                                                       class="meta-categories">
+                                                        <?php echo esc_html( $cat->name ); ?>
+                                                    </a>
+                                                    <?php endforeach; ?>
+                                                </div>
+                                        <?php endif; ?>
                                     </div>
                                 <?php } ?>
                                 <div class="rs-blog__content">

@@ -1,0 +1,4 @@
+/* admin/css/category-style.css */
+.wp-list-table.categories {
+    background-color: #f0f8ff; /* default color, you can make it dynamic later */
+}
