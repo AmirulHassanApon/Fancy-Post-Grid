@@ -14,6 +14,10 @@ function fancy_post_grid_public_styles_pro() {
     wp_enqueue_style('swiper', plugins_url('/assets/css/swiper-bundle.min.css',__FILE__), array(), $ufpg_version, 'all');
     wp_enqueue_style('rs-layout', plugins_url('/assets/css/rs-layout.css',__FILE__), array(), $ufpg_version, 'all');
     wp_enqueue_style('fpg-custom-style', plugins_url('/assets/css/fpg-style.css',__FILE__), array(), $ufpg_version, 'all');
+    wp_enqueue_style('fpg-card-style', plugins_url('/assets/css/fpg-card-style.css',__FILE__), array(), $ufpg_version, 'all');
+    wp_enqueue_style('fpg-magnific', plugins_url('/assets/css/magnific-popup.css',__FILE__), array(), $ufpg_version, 'all');
+    wp_enqueue_style('fpg-animate', plugins_url('/assets/css/animate.min.css',__FILE__), array(), $ufpg_version, 'all');
+    wp_enqueue_style('jquery-ytplayer-css', plugins_url('/assets/css/jquery.mb.YTPlayer.min.css',__FILE__), array(), $ufpg_version, 'all');
 
 }
 add_action( 'wp_enqueue_scripts', 'fancy_post_grid_public_styles_pro' );
@@ -30,6 +34,9 @@ function fancy_post_grid_public_scripts_pro(){
     wp_enqueue_script('swiper-bundle-fpg', plugins_url('/assets/js/swiper-bundle.min.js', __FILE__), array('jquery'), $ufpg_version, true);
     wp_enqueue_script('fpg-main-js', plugins_url('/assets/js/fpg-main.js', __FILE__), array('swiper-bundle-fpg', 'jquery'), $ufpg_version, true);
     wp_enqueue_script( 'fpg-isotope', plugins_url('/assets/js/isotope.pkgd.min.js', __FILE__) , array('jquery','imagesloaded'), $ufpg_version, true );
+    wp_enqueue_script( 'fpg-magnific', plugins_url('/assets/js/magnific-popup.min.js', __FILE__) , array('jquery','imagesloaded'), $ufpg_version, true );
+    wp_enqueue_script( 'jquery-ytplayer', plugins_url('/assets/js/jquery.mb.YTPlayer.min.js', __FILE__) , array('jquery'), $ufpg_version, true );
+
 
 }
 

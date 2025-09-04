@@ -188,30 +188,28 @@ if ($query->have_posts()) {
                         <?php } else { ?>
                             <?php the_post_thumbnail($thumbnail_size); ?>
                         <?php } ?>
-                        <?php if ('yes' === $settings['show_post_categories']) { ?>
-                            <div class="rs-category meta-data-list">
-                                <?php
-                                if ('yes' === $settings['show_post_categories']) {
-                                    $categories = get_the_category();
-                                    if (!empty($categories)) {
-                                        $output = [];
+                        <?php
+                            // Get post categories
+                            $post_categories = get_the_category();
 
-                                        foreach ($categories as $category) {
-                                            $link = esc_url(get_category_link($category->term_id));
-                                            $name = esc_html($category->name);
+                            if ( 'yes' === $settings['show_post_categories'] && !empty( $post_categories ) ) : ?>
+                                <?php foreach ( $post_categories as $cat ) : 
+                                    // Get category background color
+                                    $cat_bg = get_term_meta( $cat->term_id, 'fpg_bg_color', true );
+                                    $style = $cat_bg ? 'background:' . esc_attr( $cat_bg ) . ';' : '';
+                                ?> 
+                                <div class="rs-category meta-data-list" 
+                                       style="<?php echo esc_attr( $style ); ?>">
+                                     
+                                    <i class="fa fa-folder"></i>
+                                    <a href="<?php echo esc_url( get_category_link( $cat->term_id ) ); ?>" 
+                                       class="meta-categories">
+                                        <?php echo esc_html( $cat->name ); ?>
+                                    </a>
+                                    <?php endforeach; ?>
+                                </div>
+                        <?php endif; ?>
 
-                                            // If icon display is enabled
-                                            $icon_html = ('yes' === $settings['show_meta_data_icon'] && 'yes' === $settings['show_post_categories_icon']) ? '<i class="fa fa-folder"></i> ' : '';
-
-                                            $output[] = '<a href="' . $link . '">' . $icon_html . $name . '</a>';
-                                        }
-
-                                        echo implode(', ', $output);
-                                    }
-                                }
-                                ?>
-                            </div>
-                        <?php } ?>
                     </div>
                 <?php } ?>                 
             </div>                    

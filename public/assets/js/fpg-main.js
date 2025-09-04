@@ -67,6 +67,63 @@ jQuery(document).ready(function ($) {
             });
         });
     });
+    /* MagnificPopup video view */
+    // $(".popup-video").magnificPopup({
+    //     type: "iframe",
+    // });
+    $(".popup-video").magnificPopup({
+        type: "iframe",
+        iframe: {
+            patterns: {
+                youtube: {
+                    index: 'youtube.com/',
+                    id: function(url) {
+                        var m = url.match(/[?&]v=([^&]+)/);
+                        return m && m[1] ? m[1] : null;
+                    },
+                    src: 'https://www.youtube.com/embed/%id%?autoplay=1'
+                },
+                youtu_be: {
+                    index: 'youtu.be/',
+                    id: function(url) {
+                        var m = url.match(/youtu\.be\/([^?]+)/);
+                        return m && m[1] ? m[1] : null;
+                    },
+                    src: 'https://www.youtube.com/embed/%id%?autoplay=1'
+                },
+                vimeo: {
+                    index: 'vimeo.com/',
+                    id: function(url) {
+                        var m = url.match(/vimeo\.com\/(\d+)/);
+                        return m && m[1] ? m[1] : null;
+                    },
+                    src: 'https://player.vimeo.com/video/%id%?autoplay=1'
+                }
+            }
+        }
+    });
+    $(document).ready(function(){
+  let filters = {
+    opacity:70,
+    brightness: 50
+  }
+  let containment = $('.ytbdVideo');
+  let option = {
+    autoPlay: true,
+  videoURL: 'https://www.youtube.com/watch?v=tq75nkjL6a8',
+    mute: true,
+    showControls: false,
+    loop: true,
+    containment: containment,
+    loop: true,
+    autoPlay: true,
+    startAt: 0,
+    stopMovieOnBlur: false
+  }
+  
 
 });
 
+jQuery(document).ready(function($){
+    $(".ytbdVideo").YTPlayer();
+});

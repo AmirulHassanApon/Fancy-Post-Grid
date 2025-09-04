@@ -17,6 +17,30 @@ $args = array(
     'post__not_in'   => !empty($settings['exclude_posts']) ? explode(',', $settings['exclude_posts']) : '', // phpcs:ignore WordPressVIPMinimum.Performance.WPQueryParams.PostNotIn_post__not_in
     'paged'          => $paged, // Add the paged parameter to handle pagination
 );
+// ✅ If "Featured Posts Only" is ON → add meta_query
+if ( isset( $settings['featured_filter'] ) && $settings['featured_filter'] === 'yes' ) {
+    $args['meta_query'][] = array(
+        'key'     => '_fpg_featured_post',
+        'value'   => '1',
+        'compare' => '=',
+    );
+}
+// ✅ If "Popular Posts" is ON → order by views
+if ( isset( $settings['popular_filter'] ) && $settings['popular_filter'] === 'yes' ) {
+    $args['meta_query'] = [
+        'relation' => 'OR',
+        [
+            'key'     => 'post_views_count',
+            'compare' => 'EXISTS',
+        ],
+        [
+            'key'     => 'post_views_count',
+            'compare' => 'NOT EXISTS',
+        ],
+    ];
+    $args['orderby']  = 'meta_value_num';
+    $args['order']    = ! empty( $settings['popular_order'] ) ? $settings['popular_order'] : 'DESC';
+}
 $separator_map = [
     'none'        => '',
     'dot'         => ' · ',
@@ -41,34 +65,34 @@ $query = new \WP_Query($args);
                     
                     <div class="col-xl-8 col-lg-8">
                         <?php 
-                            $layout = $settings['fancy_post_list_layout'] ?? 'liststyle01';
+                            $layout = $settings['fancy_post_card_layout'] ?? 'cardstyle08';
                             $box_alignment = $settings['box_alignment'] ?? '';
 
                             if (empty($box_alignment)) {
                                 switch ($layout) {
                                     
-                                    case 'liststyle01':
+                                    case 'cardstyle08':
                                         $box_alignment = 'start';
                                         break;
                                 }
                             }
                         ?>
 
-                        <div class="rs-post-overlay rs-post-overlay-one align-<?php echo esc_attr($box_alignment); ?> <?php echo esc_attr($hover_animation); 
+                        <div class="rs-post-overlay rs-post-overlay-one <?php echo esc_attr($hover_animation); 
                             ?> <?php echo esc_attr($link_type); ?>">
                             <!-- Featured Image -->
                             <?php if ('yes' === $settings['show_post_thumbnail'] && has_post_thumbnail()) { ?>
-                                <div class="rs-post-overlay-bg-thumb">
+                                <div class="rs-post-overlay-bg-thumb rs-thumb">
                                     
                                     <?php 
                                     // Map the custom sizes to their actual dimensions
-                                    $layout = $settings['fancy_post_list_layout'] ?? 'liststyle01';
+                                    $layout = $settings['fancy_post_card_layout'] ?? 'cardstyle08';
                                     $thumbnail_size = $settings['thumbnail_left_size'] ?? '';
 
                                     if (empty($thumbnail_size)) {
                                         switch ($layout) {
                                             
-                                            case 'liststyle01':
+                                            case 'cardstyle08':
                                                 $thumbnail_size = 'fancy_post_list';
                                                 break;
                                         }
@@ -84,22 +108,26 @@ $query = new \WP_Query($args);
                                 </div>
                             <?php } ?>
                             
-                            <div class="rs-post-overlay-content">
-                                <!-- Post Meta: Date, Author, Category, Tags, Comments -->
+                            <div class="rs-post-overlay-content align-<?php echo esc_attr($box_alignment); ?>">
                                 <?php
-                                    $post_tags = get_the_tags();
+                                // Get post categories
+                                $post_categories = get_the_category();
 
-                                    // Check both conditions: show_post_tags setting is enabled AND post has tags
-                                    if ( 'yes' === $settings['show_post_tags'] && !empty( get_the_tag_list( '', ', ' ) ) ) : ?>
-                                        <div class="rs-post-tag">
-                                            <?php foreach ( $post_tags as $tag ) : ?>
-                                                <a href="<?php echo esc_url( get_tag_link( $tag->term_id ) ); ?>" 
-                                                   class="post-tag is-yellow">
-                                                    <?php echo esc_html( $tag->name ); ?>
-                                                </a>
-                                            <?php endforeach; ?>
-                                        </div>
-                                    <?php endif; ?>
+                                if ( 'yes' === $settings['show_post_categories'] && !empty( $post_categories ) ) : ?>
+                                    <div class="rs-post-tag">
+                                        <?php foreach ( $post_categories as $cat ) : 
+                                            // Get category background color
+                                            $cat_bg = get_term_meta( $cat->term_id, 'fpg_bg_color', true );
+                                            $style = $cat_bg ? 'background:' . esc_attr( $cat_bg ) . ';' : '';
+                                        ?>
+                                            <a href="<?php echo esc_url( get_category_link( $cat->term_id ) ); ?>" 
+                                               class="post-tag"
+                                               style="<?php echo esc_attr( $style ); ?>">
+                                                <?php echo esc_html( $cat->name ); ?>
+                                            </a>
+                                        <?php endforeach; ?>
+                                    </div>
+                                <?php endif; ?>
 
 
                                 <!-- Post Title -->
@@ -138,11 +166,10 @@ $query = new \WP_Query($args);
                                         <?php
                                     }
                                 ?>
-
                                 <!-- Post Meta: Date, Author, Category, Tags, Comments -->
                                 <?php if ('yes' === $settings['show_meta_data']) { ?>
-                                    <div class="rs-post-meta meta-white">
-                                        <ul class="meta-data-list">
+                                    <div class="rs-post-meta meta-white meta-data-list">
+                                        <ul>
                                             <?php
                                             // Get post views with a fallback default value.
                                             $post_id    = get_the_ID();
@@ -153,7 +180,7 @@ $query = new \WP_Query($args);
                                             $meta_items = array(
                                                 'post_author' => array(
                                                     'condition' => 'yes' === $settings['show_post_author'],
-                                                    'class'     => 'meta-author',
+                                                    'class'     => 'rs-meta',
                                                     'icon'      => ('yes' === $settings['show_meta_data_icon'] && 'yes' === $settings['author_icon_visibility']) 
                                                                     ? ('icon' === $settings['author_image_icon'] 
                                                                         ? '<i class="fa fa-user"></i>' 
@@ -163,13 +190,13 @@ $query = new \WP_Query($args);
                                                 ),
                                                 'post_views' => array(
                                                     'condition' => true, // <-- Always true, always show views
-                                                    'class'     => 'meta-views',
-                                                    'icon'      => '<i class="fa fa-eye"></i>',
+                                                    'class'     => 'rs-meta',
+                                                    'icon'      => '<i class="ri-pulse-fill"></i>',
                                                     'content'   => esc_html($post_views) . ' ' . esc_html__('Views', 'fancy-post-grid'),
                                                 ),
                                                 'post_date' => array(
                                                     'condition' => 'yes' === $settings['show_post_date'],
-                                                    'class'     => 'meta-date',
+                                                    'class'     => 'rs-meta',
                                                     'icon'      => ('yes' === $settings['show_meta_data_icon'] && 'yes' === $settings['show_post_date_icon']) 
                                                                     ? '<i class="fa fa-calendar"></i>' 
                                                                     : '',
@@ -182,9 +209,11 @@ $query = new \WP_Query($args);
 
                                             foreach ($meta_items as $meta) {
                                                 if ($meta['condition']) {
-                                                    $meta_items_output[] = '<li class="' . esc_attr($meta['class']) . '">' 
-                                                        . $meta['icon'] . ' ' . $meta['content'] 
-                                                        . '</li>';
+                                                    $meta_items_output[] = '<li>'
+                                                        . '<span class="' . esc_attr($meta['class']) . '">'
+                                                            . $meta['icon'] . ' ' . $meta['content']
+                                                        . '</span>'
+                                                    . '</li>';
                                                 }
                                             }
 
@@ -198,45 +227,43 @@ $query = new \WP_Query($args);
                                     </div>
                                 <?php } ?>
 
-
                             </div>
                         </div>
                     </div>
 
                     <div class="col-lg-4">
-                        
                         <?php else : ?>
                             <!-- Second and Third posts on the right (col-7, inside a row) -->
                             <?php 
-                                $layout = $settings['fancy_post_list_layout'] ?? 'liststyle01';
+                                $layout = $settings['fancy_post_card_layout'] ?? 'cardstyle08';
                                 $box_alignment = $settings['box_alignment'] ?? '';
 
                                 if (empty($box_alignment)) {
                                     switch ($layout) {
                                         
-                                        case 'liststyle01':
+                                        case 'cardstyle08':
                                             $box_alignment = 'start';
                                             break;
                                     }
                                 }
                             ?>
-                            <div class="rs-post-list rs-list-one align-<?php echo esc_attr($box_alignment); ?> <?php echo esc_attr($hover_animation); 
+                            <div class="rs-post-list rs-list-one <?php echo esc_attr($hover_animation); 
                             ?> <?php echo esc_attr($link_type); ?>">
                             <!-- Featured Image -->
                             <div class="item">
-                                <div class="rs-post-small rs-post-small-one">
+                                <div class="rs-post-small rs-post-small-one rs-thumb">
                                     <?php if ('yes' === $settings['show_post_thumbnail'] && has_post_thumbnail()) { ?>
                                         <div class="rs-post-small-thumb">
                                             
                                             <?php 
                                             // Map the custom sizes to their actual dimensions
-                                            $layout = $settings['fancy_post_list_layout'] ?? 'liststyle01';
+                                            $layout = $settings['fancy_post_card_layout'] ?? 'cardstyle08';
                                             $thumbnail_size = $settings['thumbnail_right_size'] ?? '';
 
                                             if (empty($thumbnail_size)) {
                                                 switch ($layout) {
                                                     
-                                                    case 'liststyle01':
+                                                    case 'cardstyle08':
                                                         $thumbnail_size = 'fancy_post_list';
                                                         break;
                                                 }
@@ -252,23 +279,27 @@ $query = new \WP_Query($args);
                                         </div>
                                     <?php } ?>
                                     
-                                    <div class="rs-post-small-content">
+                                    <div class="rs-post-small-content align-<?php echo esc_attr($box_alignment); ?>">
                                         <!-- Post Meta: Date, Author, Category, Tags, Comments -->
                                         <?php
-                                            $post_tags = get_the_tags();
+                                        // Get post categories
+                                        $post_categories = get_the_category();
 
-                                            // Check both conditions: show_post_tags setting is enabled AND post has tags
-                                            if ( 'yes' === $settings['show_post_tags'] && !empty( get_the_tag_list( '', ', ' ) ) ) : ?>
-                                                <div class="rs-post-tag">
-                                                    <?php foreach ( $post_tags as $tag ) : ?>
-                                                        <a href="<?php echo esc_url( get_tag_link( $tag->term_id ) ); ?>" 
-                                                           class="post-tag is-green">
-                                                            <?php echo esc_html( $tag->name ); ?>
-                                                        </a>
-                                                    <?php endforeach; ?>
-                                                </div>
-                                            <?php endif; ?>
-
+                                        if ( 'yes' === $settings['show_post_categories'] && !empty( $post_categories ) ) : ?>
+                                            <div class="rs-post-tag">
+                                                <?php foreach ( $post_categories as $cat ) : 
+                                                    // Get category background color
+                                                    $cat_bg = get_term_meta( $cat->term_id, 'fpg_bg_color', true );
+                                                    $style = $cat_bg ? 'background:' . esc_attr( $cat_bg ) . ';' : '';
+                                                ?>
+                                                    <a href="<?php echo esc_url( get_category_link( $cat->term_id ) ); ?>" 
+                                                       class="post-tag"
+                                                       style="<?php echo esc_attr( $style ); ?>">
+                                                        <?php echo esc_html( $cat->name ); ?>
+                                                    </a>
+                                                <?php endforeach; ?>
+                                            </div>
+                                        <?php endif; ?>
 
                                         <!-- Post Title -->
                                         <?php if (!empty($settings['show_post_title']) && 'yes' === $settings['show_post_title']) {
@@ -309,8 +340,8 @@ $query = new \WP_Query($args);
 
                                         <!-- Post Meta: Date, Author, Category, Tags, Comments -->
                                         <?php if ('yes' === $settings['show_meta_data']) { ?>
-                                            <div class="rs-post-meta">
-                                                <ul class="meta-data-list">
+                                            <div class="rs-post-meta meta-data-list">
+                                                <ul class="meta-data-list-small">
                                                     <?php
                                                     // Get post views with a fallback default value.
                                                     $post_id    = get_the_ID();
@@ -321,7 +352,7 @@ $query = new \WP_Query($args);
                                                     $meta_items = array(
                                                         'post_author' => array(
                                                             'condition' => 'yes' === $settings['show_post_author'],
-                                                            'class'     => 'meta-author',
+                                                            'class'     => 'rs-meta',
                                                             'icon'      => ('yes' === $settings['show_meta_data_icon'] && 'yes' === $settings['author_icon_visibility']) 
                                                                             ? ('icon' === $settings['author_image_icon'] 
                                                                                 ? '<i class="fa fa-user"></i>' 
@@ -331,20 +362,21 @@ $query = new \WP_Query($args);
                                                         ),
                                                         'post_views' => array(
                                                             'condition' => true, // <-- Always true, always show views
-                                                            'class'     => 'meta-views',
-                                                            'icon'      => '<i class="fa fa-eye"></i>',
+                                                            'class'     => 'rs-meta',
+                                                            'icon'      => '<i class="ri-pulse-fill"></i>',
                                                             'content'   => esc_html($post_views) . ' ' . esc_html__('Views', 'fancy-post-grid'),
                                                         ),
-
                                                     );
 
                                                     $meta_items_output = []; // Collect meta items.
 
                                                     foreach ($meta_items as $meta) {
                                                         if ($meta['condition']) {
-                                                            $meta_items_output[] = '<li class="' . esc_attr($meta['class']) . '">' 
-                                                                . $meta['icon'] . ' ' . $meta['content'] 
-                                                                . '</li>';
+                                                            $meta_items_output[] = '<li>'
+                                                                . '<span class="' . esc_attr($meta['class']) . '">'
+                                                                    . $meta['icon'] . ' ' . $meta['content']
+                                                                . '</span>'
+                                                            . '</li>';
                                                         }
                                                     }
 
@@ -357,12 +389,10 @@ $query = new \WP_Query($args);
                                                 </ul>
                                             </div>
                                         <?php } ?>
-
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                            
+                        </div>                           
                         <?php endif; ?>
                     <?php endwhile; ?>
                         
