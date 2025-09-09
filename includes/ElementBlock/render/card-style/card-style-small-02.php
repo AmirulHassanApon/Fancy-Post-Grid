@@ -16,14 +16,6 @@ $args = array(
     'post__not_in'   => !empty($settings['exclude_posts']) ? explode(',', $settings['exclude_posts']) : '', // phpcs:ignore WordPressVIPMinimum.Performance.WPQueryParams.PostNotIn_post__not_in
     'paged'          => $paged, // Add the paged parameter to handle pagination
 );
-$separator_map = [
-    'none'        => '',
-    'dot'         => ' · ',
-    'hyphen'      => ' - ',
-    'slash'       => ' / ',
-    'double_slash'=> ' // ',
-    'pipe'        => ' | ',
-];
 // ✅ If "Featured Posts Only" is ON → add meta_query
 if ( isset( $settings['featured_filter'] ) && $settings['featured_filter'] === 'yes' ) {
     $args['meta_query'][] = array(
@@ -48,6 +40,14 @@ if ( isset( $settings['popular_filter'] ) && $settings['popular_filter'] === 'ye
     $args['orderby']  = 'meta_value_num';
     $args['order']    = ! empty( $settings['popular_order'] ) ? $settings['popular_order'] : 'DESC';
 }
+$separator_map = [
+    'none'        => '',
+    'dot'         => ' · ',
+    'hyphen'      => ' - ',
+    'slash'       => ' / ',
+    'double_slash'=> ' // ',
+    'pipe'        => ' | ',
+];
 $separator_value = isset($separator_map[$settings['meta_separator']]) ? $separator_map[$settings['meta_separator']] : '';
 $hover_animation = $settings['hover_animation'];
 $link_type = $settings['link_type'];
@@ -58,33 +58,26 @@ $query = new \WP_Query($args);
 if ($query->have_posts()) { ?>
     <div class="fpg-section-area rs-small-card-area section-space">
         <div class="container">
-            <div class="row g-15">
-                <div class="col-md-4 col-xl-4 col-lg-4 g-15">
-                    <div class="rs-post-small rs-post-small-four ">
-                    <h5 class="section-title is-small fancy-post-title">
-                        <?php echo esc_html__( 'Popular News', 'fancy-post-grid' ); ?>
-                    </h5>
-
-            <?php
-            while ($query->have_posts()) {
-                $query->the_post(); 
-            ?>
-        
+            <div class="row">
+    <?php
+    while ($query->have_posts()) {
+        $query->the_post(); 
+    ?>
+        <div class="col-xl-<?php echo esc_attr($settings['col_desktop_card']); ?> col-lg-<?php echo esc_attr($settings['col_lg_card']); ?> col-md-<?php echo esc_attr($settings['col_md_card']); ?> g-15">
             <?php 
-                $layout = $settings['fancy_post_card_layout'] ?? 'cardstyle03';
+                $layout = $settings['fancy_post_card_layout'] ?? 'cardstyle02';
                 $box_alignment = $settings['box_alignment'] ?? '';
 
                 if (empty($box_alignment)) {
                     switch ($layout) {
                         
-                        case 'cardstyle03':
+                        case 'cardstyle02':
                             $box_alignment = 'start';
                             break;
                     }
                 }
             ?>
- 
-            <div class="rs-post-small-item <?php echo esc_attr($hover_animation); ?> <?php echo esc_attr($link_type); ?>">
+            <div class="rs-post-small rs-post-small-two <?php echo esc_attr($hover_animation); ?> <?php echo esc_attr($link_type); ?>">
                 <!-- Featured Image -->
                 <?php if ('yes' === $settings['show_post_thumbnail'] && has_post_thumbnail()) { ?>
                     <div class="rs-thumb rs-post-small-thumb">
@@ -92,13 +85,13 @@ if ($query->have_posts()) { ?>
                         <?php 
                         // Map the custom sizes to their actual dimensions
                         
-                        $layout = $settings['fancy_post_card_layout'] ?? 'cardstyle03';
+                        $layout = $settings['fancy_post_card_layout'] ?? 'cardstyle02';
                         $thumbnail_size = $settings['thumbnail_size_card'] ?? '';
 
                         if (empty($thumbnail_size)) {
                             switch ($layout) {
                                 
-                                case 'cardstyle03':
+                                case 'cardstyle02':
                                     $thumbnail_size = 'fancy_post_portrait';
                                     break;
                             }
@@ -224,11 +217,12 @@ if ($query->have_posts()) { ?>
                         </div>
                     <?php } ?>
 
-                </div>  
+                </div>                    
             </div>                    
+        </div>
         <?php
     } ?>
-    </div></div></div></div></div>
+    </div></div></div>
     <?
     
 } else {

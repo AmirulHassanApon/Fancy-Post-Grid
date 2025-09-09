@@ -56,28 +56,35 @@ $query = new \WP_Query($args);
 
 // Check if there are posts
 if ($query->have_posts()) { ?>
-    <div class="fpg-section-area rs-small-card-area section-space primary-bg">
+    <div class="fpg-section-area rs-small-card-area secondary-bg section-space">
         <div class="container">
-            <div class="row">
-    <?php
-    while ($query->have_posts()) {
-        $query->the_post(); 
-    ?>
-        <div class="col-md-4 col-xl-4 col-lg-4 g-15">
+            <div class="row g-15">
+                <div class="col-xl-<?php echo esc_attr($settings['col_desktop_card']); ?> col-lg-<?php echo esc_attr($settings['col_lg_card']); ?> col-md-<?php echo esc_attr($settings['col_md_card']); ?> g-15">
+                    <div class="rs-post-small rs-post-small-five">
+                    <h5 class="section-title is-small fancy-post-title">
+                        <?php echo esc_html__( 'Popular News', 'fancy-post-grid' ); ?>
+                    </h5>
+
+            <?php
+            while ($query->have_posts()) {
+                $query->the_post(); 
+            ?>
+        
             <?php 
-                $layout = $settings['fancy_post_card_layout'] ?? 'cardstyle05';
+                $layout = $settings['fancy_post_card_layout'] ?? 'cardstyle03';
                 $box_alignment = $settings['box_alignment'] ?? '';
 
                 if (empty($box_alignment)) {
                     switch ($layout) {
                         
-                        case 'cardstyle05':
+                        case 'cardstyle03':
                             $box_alignment = 'start';
                             break;
                     }
                 }
             ?>
-            <div class="rs-post-small rs-post-small-six <?php echo esc_attr($hover_animation); ?> <?php echo esc_attr($link_type); ?>">
+ 
+            <div class="rs-post-small-item <?php echo esc_attr($hover_animation); ?> <?php echo esc_attr($link_type); ?>">
                 <!-- Featured Image -->
                 <?php if ('yes' === $settings['show_post_thumbnail'] && has_post_thumbnail()) { ?>
                     <div class="rs-thumb rs-post-small-thumb">
@@ -85,13 +92,13 @@ if ($query->have_posts()) { ?>
                         <?php 
                         // Map the custom sizes to their actual dimensions
                         
-                        $layout = $settings['fancy_post_card_layout'] ?? 'cardstyle05';
+                        $layout = $settings['fancy_post_card_layout'] ?? 'cardstyle04';
                         $thumbnail_size = $settings['thumbnail_size_card'] ?? '';
 
                         if (empty($thumbnail_size)) {
                             switch ($layout) {
                                 
-                                case 'cardstyle05':
+                                case 'cardstyle04':
                                     $thumbnail_size = 'fancy_post_portrait';
                                     break;
                             }
@@ -217,12 +224,11 @@ if ($query->have_posts()) { ?>
                         </div>
                     <?php } ?>
 
-                </div>                    
+                </div>  
             </div>                    
-        </div>
         <?php
     } ?>
-    </div></div></div>
+    </div></div></div></div></div>
     <?
     
 } else {

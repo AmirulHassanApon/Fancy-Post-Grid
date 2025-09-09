@@ -63,7 +63,7 @@ if ($query->have_posts()) { ?>
         while ($query->have_posts()) {
             $query->the_post(); 
         ?>
-        <div class="col-xl-4 col-lg-4 g-15">
+        <div class="col-xl-<?php echo esc_attr($settings['col_desktop_card']); ?> col-lg-<?php echo esc_attr($settings['col_lg_card']); ?> col-md-<?php echo esc_attr($settings['col_md_card']); ?> g-15">
             <?php 
                 $layout = $settings['fancy_post_card_layout'] ?? 'cardstyle07';
                 $box_alignment = $settings['box_alignment'] ?? '';
