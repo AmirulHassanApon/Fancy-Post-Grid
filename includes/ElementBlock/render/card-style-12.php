@@ -89,20 +89,20 @@ $query = new \WP_Query($args);
                                 
 
                                 <div class="ytbdVideo"
-     data-property="{videoURL:'rxQQLQDtwfw', 
-                     mute:true, 
-                     showControls:true, 
-                     loop:true, 
-                     autoPlay:true, 
-                     containment:'.ytbdVideo', 
-                     startAt:0, 
-                     stopMovieOnBlur:false}">
-</div>
-<script>
-jQuery(document).ready(function($){
-    $(".ytbdVideo").YTPlayer();
-});
-</script>
+                                     data-property="{videoURL:'rxQQLQDtwfw', 
+                                                     mute:true, 
+                                                     showControls:true, 
+                                                     loop:true, 
+                                                     autoPlay:true, 
+                                                     containment:'.ytbdVideo', 
+                                                     startAt:0, 
+                                                     stopMovieOnBlur:false}">
+                                </div>
+                                <script>
+                                jQuery(document).ready(function($){
+                                    $(".ytbdVideo").YTPlayer();
+                                });
+                                </script>
    
                                 <div class="rs-post-video-content align-<?php echo esc_attr($box_alignment); ?>">
                                     <?php
@@ -185,9 +185,11 @@ jQuery(document).ready(function($){
                                                         'content'   => esc_html($settings['author_prefix']) . ' ' . esc_html(get_the_author()),
                                                     ),
                                                     'post_views' => array(
-                                                        'condition' => true, // <-- Always true, always show views
+                                                        'condition' => 'yes' === $settings['show_post_views'],
                                                         'class'     => 'rs-meta',
-                                                        'icon'      => '<i class="ri-pulse-fill"></i>',
+                                                        'icon'      => ('yes' === $settings['show_meta_data_icon'] && 'yes' === $settings['show_post_views_icon']) 
+                                                                        ? '<i class="ri-pulse-fill"></i>' 
+                                                                        : '',
                                                         'content'   => esc_html($post_views) . ' ' . esc_html__('Views', 'fancy-post-grid'),
                                                     ),
                                                     'post_date' => array(
@@ -260,12 +262,12 @@ jQuery(document).ready(function($){
 
                                         <?php 
                                         // Map the custom sizes to their actual dimensions
-                                        $layout = $settings['fancy_post_card_layout'] ?? 'cardstyle08';
+                                        $layout = $settings['fancy_post_card_layout'] ?? 'cardstyle12';
                                         $thumbnail_size = $settings['thumbnail_right_size'] ?? '';
 
                                         if (empty($thumbnail_size)) {
                                             switch ($layout) {
-                                                case 'cardstyle08':
+                                                case 'cardstyle12':
                                                     $thumbnail_size = 'fancy_post_list';
                                                     break;
                                             }
@@ -370,9 +372,11 @@ jQuery(document).ready(function($){
                                                         'content'   => esc_html($settings['author_prefix']) . ' ' . esc_html(get_the_author()),
                                                     ),
                                                     'post_views' => array(
-                                                        'condition' => true, // <-- Always true, always show views
+                                                        'condition' => 'yes' === $settings['show_post_views'],
                                                         'class'     => 'rs-meta',
-                                                        'icon'      => '<i class="ri-pulse-fill"></i>',
+                                                        'icon'      => ('yes' === $settings['show_meta_data_icon'] && 'yes' === $settings['show_post_views_icon']) 
+                                                                        ? '<i class="ri-pulse-fill"></i>' 
+                                                                        : '',
                                                         'content'   => esc_html($post_views) . ' ' . esc_html__('Views', 'fancy-post-grid'),
                                                     ),
                                                 );

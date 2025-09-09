@@ -322,7 +322,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                                 'icon' => 'eicon-text-align-right',
                             ],
                             'cardstyle13' => [
-                                'title' => esc_html__( 'Small Card 07', 'fancy-post-grid' ),
+                                'title' => esc_html__( 'Small Card 06', 'fancy-post-grid' ),
                                 'icon' => 'eicon-text-align-right',
                             ],
                         ],
@@ -356,6 +356,33 @@ add_action('elementor/widgets/widgets_registered', function () {
                     ]
                 );
             }
+            // Add control for number of Desktops Above 1200px Card
+            
+                $this->add_control(
+                    'col_desktop_card',
+                    [
+                        'label'   => esc_html__('Desktops Above 1200px', 'fancy-post-grid'),
+                        'type'    => \Elementor\Controls_Manager::SELECT,
+                        'label_block' => true,
+                        'default' => 4,
+                        'options' => [
+                            '12' => esc_html__('1 Column', 'fancy-post-grid'),
+                            '6' => esc_html__('2 Columns', 'fancy-post-grid'),
+                            '4' => esc_html__('3 Columns', 'fancy-post-grid'),
+                            '3' => esc_html__('4 Columns', 'fancy-post-grid'),
+                            '2' => esc_html__('6 Columns', 'fancy-post-grid'),
+                            'auto' => esc_html__('Auto', 'fancy-post-grid'),
+                        ],
+                        'classes' => 'fpg-el-control-post-chooser-thumb fpg-el-pro',
+                        'separator' => 'before',
+                        'condition' => [
+                            'fancy_post_card_layout' => [ 'cardstyle01', 'cardstyle02','cardstyle03', 'cardstyle04' ],
+                            
+                        ],
+                        
+                    ]
+                );
+            
             if (!in_array('col_desktop_slider', $this->exclude_controls)) {
                 $this->add_control(
                     'col_desktop_slider',
@@ -398,6 +425,30 @@ add_action('elementor/widgets/widgets_registered', function () {
                 );
             }
 
+            $this->add_control(
+                'col_lg_card',
+                [
+                    'label'   => esc_html__('Large 1199px to 992px', 'fancy-post-grid'),
+                    'type'    => \Elementor\Controls_Manager::SELECT,
+                    'label_block' => true,
+                    'default' => 4,
+                    'options' => [
+                        '12' => esc_html__('1 Column', 'fancy-post-grid'),
+                        '6' => esc_html__('2 Columns', 'fancy-post-grid'),
+                        '4' => esc_html__('3 Columns', 'fancy-post-grid'),
+                        '3' => esc_html__('4 Columns', 'fancy-post-grid'),
+                        '2' => esc_html__('6 Columns', 'fancy-post-grid'),
+                        'auto' => esc_html__('Auto', 'fancy-post-grid'),
+                    ],
+                    'condition' => [
+                        'fancy_post_card_layout' => [ 'cardstyle01', 'cardstyle02','cardstyle03', 'cardstyle04' ],
+                        
+                    ],
+                    'separator' => 'before',
+                ]
+            );
+            
+
             if (!in_array('col_lg_slider', $this->exclude_controls)) {          
                 $this->add_control(
                     'col_lg_slider',
@@ -439,6 +490,30 @@ add_action('elementor/widgets/widgets_registered', function () {
                     ]
                 );
             }
+
+            $this->add_control(
+                'col_md_card',
+                [
+                    'label'   => esc_html__('Medium 991px to 768px', 'fancy-post-grid'),
+                    'type'    => \Elementor\Controls_Manager::SELECT,
+                    'label_block' => true,
+                    'default' => 4,
+                    'options' => [
+                        '12' => esc_html__('1 Column', 'fancy-post-grid'),
+                        '6' => esc_html__('2 Columns', 'fancy-post-grid'),
+                        '4' => esc_html__('3 Columns', 'fancy-post-grid'),
+                        '3' => esc_html__('4 Columns', 'fancy-post-grid'),
+                        '2' => esc_html__('6 Columns', 'fancy-post-grid'),
+                        'auto' => esc_html__('Auto', 'fancy-post-grid'),
+                    ],
+                    'condition' => [
+                        'fancy_post_card_layout' => [ 'cardstyle01', 'cardstyle02','cardstyle03', 'cardstyle04' ],
+                        
+                    ],
+                    'separator' => 'before',
+                ]
+            );
+            
             if (!in_array('col_md_slider', $this->exclude_controls)) {           
                 $this->add_control(
                     'col_md_slider',
@@ -981,9 +1056,23 @@ add_action('elementor/widgets/widgets_registered', function () {
                 ]
             );
 
-            
+            if (!in_array('show_post_excerpt', $this->exclude_controls)) {
+                $this->add_control(
+                    'show_post_excerpt',
+                    [                    
+                        'label'       => esc_html__( 'Show Post Excerpt', 'fancy-post-grid' ),
+                        'type'        => \Elementor\Controls_Manager::SWITCHER,
+                        'label_on' => esc_html__( 'Show', 'fancy-post-grid' ),
+                        'label_off' => esc_html__( 'Hide', 'fancy-post-grid' ),
+                        'return_value' => 'yes',
+                        'default' => 'yes',
+                        'render_type' => 'template'
+                    ]
+                );
+            }
+            // Card Excerpt
             $this->add_control(
-                'show_post_excerpt',
+                'show_post_excerpt_card',
                 [                    
                     'label'       => esc_html__( 'Show Post Excerpt', 'fancy-post-grid' ),
                     'type'        => \Elementor\Controls_Manager::SWITCHER,
@@ -991,22 +1080,28 @@ add_action('elementor/widgets/widgets_registered', function () {
                     'label_off' => esc_html__( 'Hide', 'fancy-post-grid' ),
                     'return_value' => 'yes',
                     'default' => 'yes',
+                    'condition' => [
+                        'fancy_post_card_layout' => [ 'cardstyle06' ],
+                        
+                    ],
                     'render_type' => 'template'
                 ]
             );
-
-            $this->add_control(
-                'show_post_readmore',
-                [
-                    'label'       => esc_html__( 'Show Read More Button', 'fancy-post-grid' ),
-                    'type'        => \Elementor\Controls_Manager::SWITCHER,
-                    'label_on' => esc_html__( 'Show', 'fancy-post-grid' ),
-                    'label_off' => esc_html__( 'Hide', 'fancy-post-grid' ),
-                    'return_value' => 'yes',
-                    'default' => 'yes',
-                    'render_type' => 'template'
-                ]
-            );
+            
+            if (!in_array('show_post_readmore', $this->exclude_controls)) {
+                $this->add_control(
+                    'show_post_readmore',
+                    [
+                        'label'       => esc_html__( 'Show Read More Button', 'fancy-post-grid' ),
+                        'type'        => \Elementor\Controls_Manager::SWITCHER,
+                        'label_on' => esc_html__( 'Show', 'fancy-post-grid' ),
+                        'label_off' => esc_html__( 'Hide', 'fancy-post-grid' ),
+                        'return_value' => 'yes',
+                        'default' => 'yes',
+                        'render_type' => 'template'
+                    ]
+                );
+            }
             $this->add_control(
                 'show_meta_data',
                 [
@@ -1058,32 +1153,50 @@ add_action('elementor/widgets/widgets_registered', function () {
                     'render_type' => 'template'
                 ]
             );
-
             $this->add_control(
-                'show_post_tags',
+                'show_post_views',
                 [
-                    'label'   => esc_html__( '- Show Post Tags', 'fancy-post-grid' ),
+                    'label'   => esc_html__( '- Show Post Views', 'fancy-post-grid' ),
                     'type'    => \Elementor\Controls_Manager::SWITCHER,
                     'label_on' => esc_html__( 'Show', 'fancy-post-grid' ),
                     'label_off' => esc_html__( 'Hide', 'fancy-post-grid' ),
                     'return_value' => 'yes',
-                    'default' => 'no',
+                    'default' => 'yes',
+                    'condition' => [
+                        'fancy_post_card_layout' => [ 'cardstyle01', 'cardstyle02','cardstyle03', 'cardstyle04','cardstyle05', 'cardstyle06','cardstyle07', 'cardstyle08','cardstyle10', 'cardstyle11','cardstyle12', 'cardstyle13' ],
+                        
+                    ],
                     'render_type' => 'template'
                 ]
             );
-
-            $this->add_control(
-                'show_comments_count',
-                [
-                    'label'   => esc_html__( '- Show Comments Count', 'fancy-post-grid' ),
-                    'type'    => \Elementor\Controls_Manager::SWITCHER,
-                    'label_on' => esc_html__( 'Show', 'fancy-post-grid' ),
-                    'label_off' => esc_html__( 'Hide', 'fancy-post-grid' ),
-                    'return_value' => 'yes',
-                    'default' => 'no',
-                    'render_type' => 'template'
-                ]
-            );
+            if (!in_array('show_post_tags', $this->exclude_controls)) {
+                $this->add_control(
+                    'show_post_tags',
+                    [
+                        'label'   => esc_html__( '- Show Post Tags', 'fancy-post-grid' ),
+                        'type'    => \Elementor\Controls_Manager::SWITCHER,
+                        'label_on' => esc_html__( 'Show', 'fancy-post-grid' ),
+                        'label_off' => esc_html__( 'Hide', 'fancy-post-grid' ),
+                        'return_value' => 'yes',
+                        'default' => 'no',
+                        'render_type' => 'template'
+                    ]
+                );
+            }
+            if (!in_array('show_comments_count', $this->exclude_controls)) {
+                $this->add_control(
+                    'show_comments_count',
+                    [
+                        'label'   => esc_html__( '- Show Comments Count', 'fancy-post-grid' ),
+                        'type'    => \Elementor\Controls_Manager::SWITCHER,
+                        'label_on' => esc_html__( 'Show', 'fancy-post-grid' ),
+                        'label_off' => esc_html__( 'Hide', 'fancy-post-grid' ),
+                        'return_value' => 'yes',
+                        'default' => 'no',
+                        'render_type' => 'template'
+                    ]
+                );
+            }
             $this->add_control(
                 'show_meta_data_icon',
                 [
@@ -1122,32 +1235,50 @@ add_action('elementor/widgets/widgets_registered', function () {
                     'render_type' => 'template'
                 ]
             );
-
             $this->add_control(
-                'show_post_tags_icon',
+                'show_post_views_icon',
                 [
-                    'label'   => esc_html__( '- Show Post Tags Icon', 'fancy-post-grid' ),
+                    'label'   => esc_html__( '- Show Post Views icon', 'fancy-post-grid' ),
                     'type'    => \Elementor\Controls_Manager::SWITCHER,
                     'label_on' => esc_html__( 'Show', 'fancy-post-grid' ),
                     'label_off' => esc_html__( 'Hide', 'fancy-post-grid' ),
                     'return_value' => 'yes',
-                    'default' => 'no',
+                    'default' => 'yes',
+                    'condition' => [
+                        'fancy_post_card_layout' => [ 'cardstyle01', 'cardstyle02','cardstyle03', 'cardstyle04','cardstyle05', 'cardstyle06','cardstyle07', 'cardstyle08','cardstyle10', 'cardstyle11','cardstyle12', 'cardstyle13' ],
+                        
+                    ],
                     'render_type' => 'template'
                 ]
             );
-
-            $this->add_control(
-                'show_comments_count_icon',
-                [
-                    'label'   => esc_html__( '- Show Comments Count Icon', 'fancy-post-grid' ),
-                    'type'    => \Elementor\Controls_Manager::SWITCHER,
-                    'label_on' => esc_html__( 'Show', 'fancy-post-grid' ),
-                    'label_off' => esc_html__( 'Hide', 'fancy-post-grid' ),
-                    'return_value' => 'yes',
-                    'default' => 'no',
-                    'render_type' => 'template'
-                ]
-            );
+            if (!in_array('show_post_tags_icon', $this->exclude_controls)) {
+                $this->add_control(
+                    'show_post_tags_icon',
+                    [
+                        'label'   => esc_html__( '- Show Post Tags Icon', 'fancy-post-grid' ),
+                        'type'    => \Elementor\Controls_Manager::SWITCHER,
+                        'label_on' => esc_html__( 'Show', 'fancy-post-grid' ),
+                        'label_off' => esc_html__( 'Hide', 'fancy-post-grid' ),
+                        'return_value' => 'yes',
+                        'default' => 'no',
+                        'render_type' => 'template'
+                    ]
+                );
+            }
+            if (!in_array('show_comments_count_icon', $this->exclude_controls)) {
+                $this->add_control(
+                    'show_comments_count_icon',
+                    [
+                        'label'   => esc_html__( '- Show Comments Count Icon', 'fancy-post-grid' ),
+                        'type'    => \Elementor\Controls_Manager::SWITCHER,
+                        'label_on' => esc_html__( 'Show', 'fancy-post-grid' ),
+                        'label_off' => esc_html__( 'Hide', 'fancy-post-grid' ),
+                        'return_value' => 'yes',
+                        'default' => 'no',
+                        'render_type' => 'template'
+                    ]
+                );
+            }
 
             $this->end_controls_section();
 
@@ -1185,29 +1316,47 @@ add_action('elementor/widgets/widgets_registered', function () {
             );
 
             // Item Order: Excerpt
+            if (!in_array('excerpt_order', $this->exclude_controls)) {
+                $this->add_responsive_control(
+                    'excerpt_order',
+                    [
+                        'label'      => esc_html__( 'Excerpt', 'fancy-post-grid' ),
+                        'type'       => \Elementor\Controls_Manager::SLIDER,
+                        'selectors'  => [
+                            '{{WRAPPER}} .fpg-section-area .fpg-excerpt' => 'order: {{SIZE}};',
+                        ],
+                        
+                    ]
+                );
+            }
             $this->add_responsive_control(
-                'excerpt_order',
+                'excerpt_order_card',
                 [
                     'label'      => esc_html__( 'Excerpt', 'fancy-post-grid' ),
                     'type'       => \Elementor\Controls_Manager::SLIDER,
                     'selectors'  => [
                         '{{WRAPPER}} .fpg-section-area .fpg-excerpt' => 'order: {{SIZE}};',
                     ],
+                    'condition' => [
+                        'fancy_post_card_layout' => [ 'cardstyle06' ],
+                    ],
                     
                 ]
             );
-
+            
             // Item Order: Button
-            $this->add_responsive_control(
-                'button_order',
-                [
-                    'label'      => esc_html__( 'Button', 'fancy-post-grid' ),
-                    'type'       => \Elementor\Controls_Manager::SLIDER,
-                    'selectors'  => [
-                        '{{WRAPPER}} .fpg-section-area .btn-wrapper,{{WRAPPER}} .rs-blog-layout-4 .rs-blog__item .rs-content .rs-blog-footer' => 'order: {{SIZE}};',
-                    ],
-                ]
-            );
+            if (!in_array('button_order', $this->exclude_controls)) {
+                $this->add_responsive_control(
+                    'button_order',
+                    [
+                        'label'      => esc_html__( 'Button', 'fancy-post-grid' ),
+                        'type'       => \Elementor\Controls_Manager::SLIDER,
+                        'selectors'  => [
+                            '{{WRAPPER}} .fpg-section-area .btn-wrapper,{{WRAPPER}} .rs-blog-layout-4 .rs-blog__item .rs-content .rs-blog-footer' => 'order: {{SIZE}};',
+                        ],
+                    ]
+                );
+            }
 
             $this->end_controls_section();
             // Post Title
@@ -1221,7 +1370,7 @@ add_action('elementor/widgets/widgets_registered', function () {
             $this->add_control(
                 'title_tag',
                 [
-                    'label'   => esc_html__( 'Title Tag', 'fancy-post-grid' ),
+                    'label'   => esc_html__( 'Primary Title Tag', 'fancy-post-grid' ),
                     'type'    => \Elementor\Controls_Manager::SELECT,
                     'options' => array(
                         'h1' => esc_html__( 'H1', 'fancy-post-grid' ),
@@ -1235,6 +1384,49 @@ add_action('elementor/widgets/widgets_registered', function () {
                     'render_type' => 'template'
                 ]
             );
+            // Title_secondaery_tag_card
+            $this->add_control(
+                'title_secondaery_tag_card',
+                [
+                    'label'   => esc_html__( 'Secondary Title Tag', 'fancy-post-grid' ),
+                    'type'    => \Elementor\Controls_Manager::SELECT,
+                    'options' => array(
+                        'h1' => esc_html__( 'H1', 'fancy-post-grid' ),
+                        'h2'  => esc_html__( 'H2', 'fancy-post-grid' ),
+                        'h3' => esc_html__( 'H3', 'fancy-post-grid' ),
+                        'h4'  => esc_html__( 'H4', 'fancy-post-grid' ),
+                        'h5' => esc_html__( 'H5', 'fancy-post-grid' ),
+                        'h6'  => esc_html__( 'H6', 'fancy-post-grid' ),
+                    ),
+                    'default' => 'h6',
+                    'condition' => [
+                        'fancy_post_card_layout' => [ 'cardstyle08', 'cardstyle10','cardstyle11', 'cardstyle12' ],
+                        
+                    ],
+                    'render_type' => 'template'
+                ]
+            );
+            $this->add_control(
+                'title_secondaery_tag_list',
+                [
+                    'label'   => esc_html__( 'Secondary Title Tag', 'fancy-post-grid' ),
+                    'type'    => \Elementor\Controls_Manager::SELECT,
+                    'options' => [
+                        'h1' => esc_html__( 'H1', 'fancy-post-grid' ),
+                        'h2' => esc_html__( 'H2', 'fancy-post-grid' ),
+                        'h3' => esc_html__( 'H3', 'fancy-post-grid' ),
+                        'h4' => esc_html__( 'H4', 'fancy-post-grid' ),
+                        'h5' => esc_html__( 'H5', 'fancy-post-grid' ),
+                        'h6' => esc_html__( 'H6', 'fancy-post-grid' ),
+                    ],
+                    'default' => 'h3',
+                    'condition' => [
+                        'fancy_post_list_layout' => 'liststyle08',
+                    ],
+                    'render_type' => 'template',
+                ]
+            );
+
             // Show/Hide Title Hover Underline
             $this->add_control(
                 'title_hover_underline',
@@ -1304,11 +1496,37 @@ add_action('elementor/widgets/widgets_registered', function () {
                             'fancy_post_portrait'   => esc_html__( 'Portrait(421x550)', 'fancy-post-grid' ),
                             'fancy_post_list'       => esc_html__( 'List Size(1200 x 650)', 'fancy-post-grid' ),
                         ),
-                        // 'default' => 'full',
+                        
                         'render_type' => 'template'
                     ]
                 );
             }
+            // Thumbnail main Card Styling
+            $this->add_control(
+                'thumbnail_size_card',
+                [
+                    'label'   => esc_html__( 'Thumbnail Size', 'fancy-post-grid' ),
+                    'type'    => \Elementor\Controls_Manager::SELECT,
+                    'options' => array(
+                        'thumbnail'  => esc_html__( 'Thumbnail', 'fancy-post-grid' ),
+                        'medium'     => esc_html__( 'Medium', 'fancy-post-grid' ),
+                        'large'      => esc_html__( 'Large', 'fancy-post-grid' ),
+                        'full'       => esc_html__( 'Full', 'fancy-post-grid' ),
+                        'fancy_post_custom_size'=> esc_html__( 'Custom Size (768x500)', 'fancy-post-grid' ),
+                        'fancy_post_square'     => esc_html__( 'Square(500x500)', 'fancy-post-grid' ),
+                        'fancy_post_landscape'  => esc_html__( 'Landscape(834x550)', 'fancy-post-grid' ),
+                        'fancy_post_portrait'   => esc_html__( 'Portrait(421x550)', 'fancy-post-grid' ),
+                        'fancy_post_list'       => esc_html__( 'List Size(1200 x 650)', 'fancy-post-grid' ),
+                    ),
+                    'condition' => [
+                        'fancy_post_card_layout' => [ 'cardstyle01', 'cardstyle02','cardstyle03', 'cardstyle04','cardstyle05', 'cardstyle06','cardstyle07','cardstyle13' ],
+                        
+                    ],
+                    
+                    'render_type' => 'template'
+                ]
+            );
+            
             // Thumbnail Left Styling
             if (!in_array('thumbnail_left_size', $this->exclude_controls)) {
                 $this->add_control(
@@ -1349,11 +1567,65 @@ add_action('elementor/widgets/widgets_registered', function () {
                             'fancy_post_portrait'   => esc_html__( 'Portrait(421x550)', 'fancy-post-grid' ),
                             'fancy_post_list'       => esc_html__( 'List Size(1200 x 650)', 'fancy-post-grid' ),
                         ),
-                        // 'default' => 'full',
+                        'condition' => [
+                            'fancy_post_card_layout' => [ 'cardstyle08', 'cardstyle10','cardstyle11', 'cardstyle12' ],
+                            
+                        ],
+                        
                         'render_type' => 'template'
                     ]
                 );
             }
+            // Card Thumbnail Right
+            $this->add_control(
+                'thumbnail_right_size_card',
+                [
+                    'label'   => esc_html__( 'Right Thumbnail Size', 'fancy-post-grid' ),
+                    'type'    => \Elementor\Controls_Manager::SELECT,
+                    'options' => array(
+                        'thumbnail'  => esc_html__( 'Thumbnail', 'fancy-post-grid' ),
+                        'medium'     => esc_html__( 'Medium', 'fancy-post-grid' ),
+                        'large'      => esc_html__( 'Large', 'fancy-post-grid' ),
+                        'full'       => esc_html__( 'Full', 'fancy-post-grid' ),
+                        'fancy_post_custom_size'=> esc_html__( 'Custom Size (768x500)', 'fancy-post-grid' ),
+                        'fancy_post_square'     => esc_html__( 'Square(500x500)', 'fancy-post-grid' ),
+                        'fancy_post_landscape'  => esc_html__( 'Landscape(834x550)', 'fancy-post-grid' ),
+                        'fancy_post_portrait'   => esc_html__( 'Portrait(421x550)', 'fancy-post-grid' ),
+                        'fancy_post_list'       => esc_html__( 'List Size(1200 x 650)', 'fancy-post-grid' ),
+                    ),
+                    'condition' => [
+                        'fancy_post_card_layout' => [ 'cardstyle08', 'cardstyle10','cardstyle11', 'cardstyle12' ],
+                        
+                    ],
+                    
+                    'render_type' => 'template'
+                ]
+            );
+            // Card Thumbnail Left
+            $this->add_control(
+                'thumbnail_left_size_card',
+                [
+                    'label'   => esc_html__( 'Left Thumbnail Size', 'fancy-post-grid' ),
+                    'type'    => \Elementor\Controls_Manager::SELECT,
+                    'options' => array(
+                        'thumbnail'  => esc_html__( 'Thumbnail', 'fancy-post-grid' ),
+                        'medium'     => esc_html__( 'Medium', 'fancy-post-grid' ),
+                        'large'      => esc_html__( 'Large', 'fancy-post-grid' ),
+                        'full'       => esc_html__( 'Full', 'fancy-post-grid' ),
+                        'fancy_post_custom_size'=> esc_html__( 'Custom Size (768x500)', 'fancy-post-grid' ),
+                        'fancy_post_square'     => esc_html__( 'Square(500x500)', 'fancy-post-grid' ),
+                        'fancy_post_landscape'  => esc_html__( 'Landscape(834x550)', 'fancy-post-grid' ),
+                        'fancy_post_portrait'   => esc_html__( 'Portrait(421x550)', 'fancy-post-grid' ),
+                        'fancy_post_list'       => esc_html__( 'List Size(1200 x 650)', 'fancy-post-grid' ),
+                    ),
+
+                    'condition' => [
+                        'fancy_post_card_layout' => [ 'cardstyle08', 'cardstyle10','cardstyle11', 'cardstyle12' ],
+                        
+                    ],
+                    'render_type' => 'template'
+                ]
+            );
             $this->add_control(
                 'hover_animation',
                 [
@@ -1372,50 +1644,104 @@ add_action('elementor/widgets/widgets_registered', function () {
             $this->end_controls_section();
 
             // Excerpt / Content Section
-            $this->start_controls_section(
-                'excerpt_content',
-                [
-                    'label' => esc_html__( ' Excerpt / Content', 'fancy-post-grid' ),
-                    'tab'   => \Elementor\Controls_Manager::TAB_SETTINGS,
-                    
-                ]
-            );
-            // Excerpt Type
-            $this->add_control(
-                'excerpt_type',
-                [
-                    'label'   => esc_html__( 'Excerpt Type', 'fancy-post-grid' ),
-                    'type'    => \Elementor\Controls_Manager::SELECT,
-                    'options' => array(
-                        'character' => esc_html__( 'Character', 'fancy-post-grid' ),
-                        'word' => esc_html__( 'Word', 'fancy-post-grid' ),
-                        'full_content' => esc_html__( 'Full Content', 'fancy-post-grid' ),
-                    ),
-                    'default' => 'word',
-                    'render_type' => 'template'
-                ]
-            );
-            // Excerpt Limit
-            $this->add_control(
-                'excerpt_length',
-                [
-                    'label'   => esc_html__( 'Excerpt Limit', 'fancy-post-grid' ),
-                    'type'    => \Elementor\Controls_Manager::NUMBER,
-                    'default' => 10,
-                    'min'     => 1,
-                ]
-            );
-            // Excerpt Limit
-            $this->add_control(
-                'expansion_indicator',
-                [
-                    'label'   => esc_html__( 'Expansion Indicator', 'fancy-post-grid' ),
-                    'type'    => \Elementor\Controls_Manager::TEXT,
-                    'default' => '...',    
-                ]
-            );
+            if (!in_array('excerpt_content', $this->exclude_controls)) {
+                $this->start_controls_section(
+                    'excerpt_content',
+                    [
+                        'label' => esc_html__( ' Excerpt / Content', 'fancy-post-grid' ),
+                        'tab'   => \Elementor\Controls_Manager::TAB_SETTINGS,
+                        
+                    ]
+                );
+                // Excerpt Type
+                $this->add_control(
+                    'excerpt_type',
+                    [
+                        'label'   => esc_html__( 'Excerpt Type', 'fancy-post-grid' ),
+                        'type'    => \Elementor\Controls_Manager::SELECT,
+                        'options' => array(
+                            'character' => esc_html__( 'Character', 'fancy-post-grid' ),
+                            'word' => esc_html__( 'Word', 'fancy-post-grid' ),
+                            'full_content' => esc_html__( 'Full Content', 'fancy-post-grid' ),
+                        ),
+                        'default' => 'word',
+                        'render_type' => 'template'
+                    ]
+                );
+                // Excerpt Limit
+                $this->add_control(
+                    'excerpt_length',
+                    [
+                        'label'   => esc_html__( 'Excerpt Limit', 'fancy-post-grid' ),
+                        'type'    => \Elementor\Controls_Manager::NUMBER,
+                        'default' => 10,
+                        'min'     => 1,
+                    ]
+                );
+                // Expansion Indicator
+                $this->add_control(
+                    'expansion_indicator',
+                    [
+                        'label'   => esc_html__( 'Expansion Indicator', 'fancy-post-grid' ),
+                        'type'    => \Elementor\Controls_Manager::TEXT,
+                        'default' => '...',    
+                    ]
+                );
 
-            $this->end_controls_section();
+                $this->end_controls_section();
+            }    
+            // END Excerpt / Content Section    
+
+            // Card Excerpt / Content Section
+                $this->start_controls_section(
+                    'excerpt_content_card',
+                    [
+                        'label' => esc_html__( ' Excerpt / Content', 'fancy-post-grid' ),
+                        'tab'   => \Elementor\Controls_Manager::TAB_SETTINGS,
+                        'condition' => [
+                            'fancy_post_card_layout' => [ 'cardstyle06' ],
+                            
+                        ],
+                        
+                    ]
+                );
+                // Excerpt Type
+                $this->add_control(
+                    'excerpt_type_card',
+                    [
+                        'label'   => esc_html__( 'Excerpt Type', 'fancy-post-grid' ),
+                        'type'    => \Elementor\Controls_Manager::SELECT,
+                        'options' => array(
+                            'character' => esc_html__( 'Character', 'fancy-post-grid' ),
+                            'word' => esc_html__( 'Word', 'fancy-post-grid' ),
+                            'full_content' => esc_html__( 'Full Content', 'fancy-post-grid' ),
+                        ),
+                        'default' => 'word',
+                        'render_type' => 'template'
+                    ]
+                );
+                // Excerpt Limit
+                $this->add_control(
+                    'excerpt_length_card',
+                    [
+                        'label'   => esc_html__( 'Excerpt Limit', 'fancy-post-grid' ),
+                        'type'    => \Elementor\Controls_Manager::NUMBER,
+                        'default' => 10,
+                        'min'     => 1,
+                    ]
+                );
+                // Expansion Indicator
+                $this->add_control(
+                    'expansion_indicator_card',
+                    [
+                        'label'   => esc_html__( 'Expansion Indicator', 'fancy-post-grid' ),
+                        'type'    => \Elementor\Controls_Manager::TEXT,
+                        'default' => '...',    
+                    ]
+                );
+
+                $this->end_controls_section();
+            // Card END Excerpt / Content Section    
 
             // Meta Data Section
             $this->start_controls_section(
@@ -1489,72 +1815,73 @@ add_action('elementor/widgets/widgets_registered', function () {
             $this->end_controls_section();
 
             // Button Section
-            $this->start_controls_section(
-                'read_more_content',
-                [
-                    'label' => esc_html__( 'Button', 'fancy-post-grid' ),
-                    'tab'   => \Elementor\Controls_Manager::TAB_SETTINGS,
-                ]
-            );
-            
-            // Button Type
-            $this->add_control(
-                'button_type',
-                [
-                    'label'   => esc_html__( 'Button Style', 'fancy-post-grid' ),
-                    'type'    => \Elementor\Controls_Manager::SELECT,
-                    'options' => array(
-                        'fpg-filled' => esc_html__( 'Filled', 'fancy-post-grid' ),
-                        'fpg-border' => esc_html__( 'Border', 'fancy-post-grid' ),
-                        'fpg-flat' => esc_html__( 'Flat', 'fancy-post-grid' ),
-                    ),
-                    
-                ]
-            );
-            // Read More Label
-            $this->add_control(
-                'read_more_label',
-                [
-                    'label'   => esc_html__( 'Read More Label', 'fancy-post-grid' ),
-                    'type'    => \Elementor\Controls_Manager::TEXT,
-                    'default' => 'Read More',    
-                ]
-            );   
+            if (!in_array('read_more_content', $this->exclude_controls)) {
+                $this->start_controls_section(
+                    'read_more_content',
+                    [
+                        'label' => esc_html__( 'Button', 'fancy-post-grid' ),
+                        'tab'   => \Elementor\Controls_Manager::TAB_SETTINGS,
+                    ]
+                );
+                
+                // Button Type
+                $this->add_control(
+                    'button_type',
+                    [
+                        'label'   => esc_html__( 'Button Style', 'fancy-post-grid' ),
+                        'type'    => \Elementor\Controls_Manager::SELECT,
+                        'options' => array(
+                            'fpg-filled' => esc_html__( 'Filled', 'fancy-post-grid' ),
+                            'fpg-border' => esc_html__( 'Border', 'fancy-post-grid' ),
+                            'fpg-flat' => esc_html__( 'Flat', 'fancy-post-grid' ),
+                        ),
+                        
+                    ]
+                );
+                // Read More Label
+                $this->add_control(
+                    'read_more_label',
+                    [
+                        'label'   => esc_html__( 'Read More Label', 'fancy-post-grid' ),
+                        'type'    => \Elementor\Controls_Manager::TEXT,
+                        'default' => 'Read More',    
+                    ]
+                );   
 
-            // Show Button Icon
-            $this->add_control(
-                'button_icon',
-                [
-                    'label'   => esc_html__( 'Show Button Icon', 'fancy-post-grid' ),
-                    'type'    => \Elementor\Controls_Manager::SWITCHER,
-                    'label_on' => esc_html__( 'Show', 'fancy-post-grid' ),
-                    'label_off' => esc_html__( 'Hide', 'fancy-post-grid' ),
-                    'return_value' => 'yes',
-                    'default' => 'yes',
-                    'render_type' => 'template'
-                ]
-            );
-               
-            // Icon Position
-            $this->add_control(
-                'button_position',
-                [
-                    'label'   => esc_html__( 'Icon Position', 'fancy-post-grid' ),
-                    'type'    => \Elementor\Controls_Manager::SELECT,
-                    'options' => array(
-                        'button_position_right' => esc_html__( 'Right', 'fancy-post-grid' ),
-                        'button_position_left'  => esc_html__( 'Left', 'fancy-post-grid' ),
-                    ),
-                    'default' => 'button_position_right',
-                    'condition' => array(
-                        'button_icon' => 'yes',
-                    ),
-                    'render_type' => 'template'
-                ]
-            );
+                // Show Button Icon
+                $this->add_control(
+                    'button_icon',
+                    [
+                        'label'   => esc_html__( 'Show Button Icon', 'fancy-post-grid' ),
+                        'type'    => \Elementor\Controls_Manager::SWITCHER,
+                        'label_on' => esc_html__( 'Show', 'fancy-post-grid' ),
+                        'label_off' => esc_html__( 'Hide', 'fancy-post-grid' ),
+                        'return_value' => 'yes',
+                        'default' => 'yes',
+                        'render_type' => 'template'
+                    ]
+                );
+                   
+                // Icon Position
+                $this->add_control(
+                    'button_position',
+                    [
+                        'label'   => esc_html__( 'Icon Position', 'fancy-post-grid' ),
+                        'type'    => \Elementor\Controls_Manager::SELECT,
+                        'options' => array(
+                            'button_position_right' => esc_html__( 'Right', 'fancy-post-grid' ),
+                            'button_position_left'  => esc_html__( 'Left', 'fancy-post-grid' ),
+                        ),
+                        'default' => 'button_position_right',
+                        'condition' => array(
+                            'button_icon' => 'yes',
+                        ),
+                        'render_type' => 'template'
+                    ]
+                );
 
-            $this->end_controls_section();
-
+                $this->end_controls_section();
+            }
             // Card (Post Item) Style
 
             // Style Section
@@ -1623,7 +1950,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                     'type'       => \Elementor\Controls_Manager::DIMENSIONS,
                     'size_units' => array( 'px', 'em', '%' ),
                     'selectors'  => array(
-                        '{{WRAPPER}} .fpg-section-area .rs-blog__single, {{WRAPPER}} .rs-blog-layout-1 .blog-item, {{WRAPPER}} .rs-blog-layout-30-item, {{WRAPPER}} .rs-blog-layout-28-item,{{WRAPPER}} .rs-blog-layout-4 .rs-blog__item,{{WRAPPER}} .rs-blog__left-blog,{{WRAPPER}} .blog-horizontal .blog-meta .blog-item-wrap,{{WRAPPER}} .rs-blog-layout-17-item,{{WRAPPER}} .rs-blog-layout-20-item,{{WRAPPER}} .rs-blog-layout-22-item,{{WRAPPER}} .rs-blog-layout-24-item,{{WRAPPER}} .rs-blog-layout-25-item,{{WRAPPER}} .rs-blog-layout-27-list-item,{{WRAPPER}} .rs-blog-layout-27-item,{{WRAPPER}} .rs-post-overlay.rs-post-overlay-one,{{WRAPPER}} .rs-post-list.rs-list-one,{{WRAPPER}} .rs-post-small.rs-post-small-one' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                        '{{WRAPPER}} .fpg-section-area .rs-blog__single, {{WRAPPER}} .rs-blog-layout-1 .blog-item, {{WRAPPER}} .rs-blog-layout-30-item, {{WRAPPER}} .rs-blog-layout-28-item,{{WRAPPER}} .rs-blog-layout-4 .rs-blog__item,{{WRAPPER}} .rs-blog__left-blog,{{WRAPPER}} .blog-horizontal .blog-meta .blog-item-wrap,{{WRAPPER}} .rs-blog-layout-17-item,{{WRAPPER}} .rs-blog-layout-20-item,{{WRAPPER}} .rs-blog-layout-22-item,{{WRAPPER}} .rs-blog-layout-24-item,{{WRAPPER}} .rs-blog-layout-25-item,{{WRAPPER}} .rs-blog-layout-27-list-item,{{WRAPPER}} .rs-blog-layout-27-item,{{WRAPPER}} .rs-post-overlay.rs-post-overlay-one,{{WRAPPER}} .rs-post-list.rs-list-one,{{WRAPPER}} .rs-post-small' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                     ),
                 ]
             );
@@ -1635,7 +1962,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                     'type'       => \Elementor\Controls_Manager::DIMENSIONS,
                     'size_units' => array( 'px', 'em', '%' ),
                     'selectors'  => array(
-                        '{{WRAPPER}} .fpg-section-area .rs-blog__single, {{WRAPPER}} .rs-blog-layout-1 .blog-item, {{WRAPPER}} .rs-blog-layout-30-item, {{WRAPPER}} .rs-blog-layout-28-item,{{WRAPPER}} .rs-blog-layout-4 .rs-blog__item,{{WRAPPER}} .rs-blog__left-blog,{{WRAPPER}} .blog-horizontal .blog-meta .blog-item-wrap,{{WRAPPER}} .rs-blog-layout-17-item,{{WRAPPER}} .rs-blog-layout-20-item,{{WRAPPER}} .rs-blog-layout-22-item,{{WRAPPER}} .rs-blog-layout-24-item,{{WRAPPER}} .rs-blog-layout-25-item,{{WRAPPER}} .rs-blog-layout-27-list-item,{{WRAPPER}} .rs-blog-layout-27-item,{{WRAPPER}} .rs-post-overlay.rs-post-overlay-one,{{WRAPPER}} .rs-post-list.rs-list-one,{{WRAPPER}} .rs-post-small.rs-post-small-one' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                        '{{WRAPPER}} .fpg-section-area .rs-blog__single, {{WRAPPER}} .rs-blog-layout-1 .blog-item, {{WRAPPER}} .rs-blog-layout-30-item, {{WRAPPER}} .rs-blog-layout-28-item,{{WRAPPER}} .rs-blog-layout-4 .rs-blog__item,{{WRAPPER}} .rs-blog__left-blog,{{WRAPPER}} .blog-horizontal .blog-meta .blog-item-wrap,{{WRAPPER}} .rs-blog-layout-17-item,{{WRAPPER}} .rs-blog-layout-20-item,{{WRAPPER}} .rs-blog-layout-22-item,{{WRAPPER}} .rs-blog-layout-24-item,{{WRAPPER}} .rs-blog-layout-25-item,{{WRAPPER}} .rs-blog-layout-27-list-item,{{WRAPPER}} .rs-blog-layout-27-item,{{WRAPPER}} .rs-post-overlay.rs-post-overlay-one,{{WRAPPER}} .rs-post-list.rs-list-one,{{WRAPPER}} .rs-post-small' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                     ),
                 ]
             );
@@ -1648,7 +1975,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                     'type'       => \Elementor\Controls_Manager::DIMENSIONS,
                     'size_units' => array( 'px', 'em', '%' ),
                     'selectors'  => array(
-                        '{{WRAPPER}} .fpg-section-area .rs-blog__single, {{WRAPPER}} .rs-blog-layout-1 .blog-item, {{WRAPPER}} .rs-blog-layout-30-item, {{WRAPPER}} .rs-blog-layout-28-item,{{WRAPPER}} .rs-blog-layout-4 .rs-blog__item,{{WRAPPER}} .rs-blog__left-blog,{{WRAPPER}} .blog-horizontal .blog-meta .blog-item-wrap,{{WRAPPER}} .rs-blog-layout-17-item,{{WRAPPER}} .rs-blog-layout-20-item,{{WRAPPER}} .rs-blog-layout-22-item,{{WRAPPER}} .rs-blog-layout-24-item,{{WRAPPER}} .rs-blog-layout-25-item,{{WRAPPER}} .rs-blog-layout-27-list-item,{{WRAPPER}} .rs-blog-layout-27-item,{{WRAPPER}} .rs-post-overlay.rs-post-overlay-one,{{WRAPPER}} .rs-post-list.rs-list-one,{{WRAPPER}} .rs-post-small.rs-post-small-one' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                        '{{WRAPPER}} .fpg-section-area .rs-blog__single, {{WRAPPER}} .rs-blog-layout-1 .blog-item, {{WRAPPER}} .rs-blog-layout-30-item, {{WRAPPER}} .rs-blog-layout-28-item,{{WRAPPER}} .rs-blog-layout-4 .rs-blog__item,{{WRAPPER}} .rs-blog__left-blog,{{WRAPPER}} .blog-horizontal .blog-meta .blog-item-wrap,{{WRAPPER}} .rs-blog-layout-17-item,{{WRAPPER}} .rs-blog-layout-20-item,{{WRAPPER}} .rs-blog-layout-22-item,{{WRAPPER}} .rs-blog-layout-24-item,{{WRAPPER}} .rs-blog-layout-25-item,{{WRAPPER}} .rs-blog-layout-27-list-item,{{WRAPPER}} .rs-blog-layout-27-item,{{WRAPPER}} .rs-post-overlay.rs-post-overlay-one,{{WRAPPER}} .rs-post-list.rs-list-one,{{WRAPPER}} .rs-post-small' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                     ),
                 ]
             );
@@ -1693,7 +2020,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                     'label'     => esc_html__( 'Background Color', 'fancy-post-grid' ),
                     'type'      => \Elementor\Controls_Manager::COLOR,
                     'selectors' => [
-                        '{{WRAPPER}} .fpg-section-area .rs-blog__single,{{WRAPPER}} .rs-blog-layout-26 .rs-blog-layout-26-item .rs-content, {{WRAPPER}} .rs-blog-layout-1 .blog-item, {{WRAPPER}} .rs-blog-layout-30-item, {{WRAPPER}} .rs-blog-layout-28-item,{{WRAPPER}} .rs-blog-layout-4 .rs-blog__item,{{WRAPPER}} .rs-blog__left-blog,{{WRAPPER}} .blog-horizontal .blog-meta .blog-item-wrap,{{WRAPPER}} .rs-blog-layout-17-item,{{WRAPPER}} .rs-blog-layout-20-item,{{WRAPPER}} .rs-blog-layout-22-item,{{WRAPPER}} .rs-blog-layout-24-item,{{WRAPPER}} .rs-blog-layout-25-item,{{WRAPPER}} .rs-blog-layout-27-list-item,{{WRAPPER}} .rs-blog-layout-27-item,{{WRAPPER}} .rs-post-overlay.rs-post-overlay-one,{{WRAPPER}} .rs-post-list.rs-list-one,{{WRAPPER}} .rs-post-small.rs-post-small-one' => 'background-color: {{VALUE}};',
+                        '{{WRAPPER}} .fpg-section-area .rs-blog__single,{{WRAPPER}} .rs-blog-layout-26 .rs-blog-layout-26-item .rs-content, {{WRAPPER}} .rs-blog-layout-1 .blog-item, {{WRAPPER}} .rs-blog-layout-30-item, {{WRAPPER}} .rs-blog-layout-28-item,{{WRAPPER}} .rs-blog-layout-4 .rs-blog__item,{{WRAPPER}} .rs-blog__left-blog,{{WRAPPER}} .blog-horizontal .blog-meta .blog-item-wrap,{{WRAPPER}} .rs-blog-layout-17-item,{{WRAPPER}} .rs-blog-layout-20-item,{{WRAPPER}} .rs-blog-layout-22-item,{{WRAPPER}} .rs-blog-layout-24-item,{{WRAPPER}} .rs-blog-layout-25-item,{{WRAPPER}} .rs-blog-layout-27-list-item,{{WRAPPER}} .rs-blog-layout-27-item,{{WRAPPER}} .rs-post-overlay.rs-post-overlay-one,{{WRAPPER}} .rs-post-list.rs-list-one,{{WRAPPER}} .rs-post-small' => 'background-color: {{VALUE}};',
                         '{{WRAPPER}} .pre-blog-item.style_12:after' => 'border-color: {{VALUE}};',
                     ],
                 ]
@@ -1702,7 +2029,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                 \Elementor\Group_Control_Border::get_type(),
                 [
                     'name' => 'item_border_color',
-                    'selector' => '{{WRAPPER}} .fpg-section-area .rs-blog__single, {{WRAPPER}} .rs-blog-layout-1 .blog-item, {{WRAPPER}} .rs-blog-layout-30-item,{{WRAPPER}} .rs-blog-layout-4 .rs-blog__item,{{WRAPPER}} .rs-blog__left-blog,{{WRAPPER}} .blog-horizontal .blog-meta .blog-item-wrap,{{WRAPPER}} .rs-blog-layout-17-item,{{WRAPPER}} .rs-blog-layout-20-item,{{WRAPPER}} .rs-blog-layout-22-item,{{WRAPPER}} .rs-blog-layout-24-item,{{WRAPPER}} .rs-blog-layout-25-item,{{WRAPPER}} .rs-blog-layout-27-list-item,{{WRAPPER}} .rs-blog-layout-27-item,{{WRAPPER}} .rs-post-overlay.rs-post-overlay-one,{{WRAPPER}} .rs-post-list.rs-list-one,{{WRAPPER}} .rs-post-small.rs-post-small-one',
+                    'selector' => '{{WRAPPER}} .fpg-section-area .rs-blog__single, {{WRAPPER}} .rs-blog-layout-1 .blog-item, {{WRAPPER}} .rs-blog-layout-30-item,{{WRAPPER}} .rs-blog-layout-4 .rs-blog__item,{{WRAPPER}} .rs-blog__left-blog,{{WRAPPER}} .blog-horizontal .blog-meta .blog-item-wrap,{{WRAPPER}} .rs-blog-layout-17-item,{{WRAPPER}} .rs-blog-layout-20-item,{{WRAPPER}} .rs-blog-layout-22-item,{{WRAPPER}} .rs-blog-layout-24-item,{{WRAPPER}} .rs-blog-layout-25-item,{{WRAPPER}} .rs-blog-layout-27-list-item,{{WRAPPER}} .rs-blog-layout-27-item,{{WRAPPER}} .rs-post-overlay.rs-post-overlay-one,{{WRAPPER}} .rs-post-list.rs-list-one,{{WRAPPER}} .rs-post-small',
                 ]
             );
 
@@ -1711,7 +2038,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                 [
                     'name'      => 'item_box_shadow',
                     'label'     => esc_html__( 'Box Shadow', 'fancy-post-grid' ),
-                    'selector'  => '{{WRAPPER}} .fpg-section-area .rs-blog__single, {{WRAPPER}} .rs-blog-layout-1 .blog-item, {{WRAPPER}} .rs-blog-layout-30-item,{{WRAPPER}} .rs-blog-layout-4 .rs-blog__item,{{WRAPPER}} .rs-blog__left-blog,{{WRAPPER}} .blog-horizontal .blog-meta .blog-item-wrap,{{WRAPPER}} .rs-blog-layout-17-item,{{WRAPPER}} .rs-blog-layout-20-item,{{WRAPPER}} .rs-blog-layout-22-item,{{WRAPPER}} .rs-blog-layout-24-item,{{WRAPPER}} .rs-blog-layout-25-item,{{WRAPPER}} .rs-blog-layout-27-list-item,{{WRAPPER}} .rs-blog-layout-27-item,{{WRAPPER}} .rs-post-overlay.rs-post-overlay-one,{{WRAPPER}} .rs-post-list.rs-list-one,{{WRAPPER}} .rs-post-small.rs-post-small-one',
+                    'selector'  => '{{WRAPPER}} .fpg-section-area .rs-blog__single, {{WRAPPER}} .rs-blog-layout-1 .blog-item, {{WRAPPER}} .rs-blog-layout-30-item,{{WRAPPER}} .rs-blog-layout-4 .rs-blog__item,{{WRAPPER}} .rs-blog__left-blog,{{WRAPPER}} .blog-horizontal .blog-meta .blog-item-wrap,{{WRAPPER}} .rs-blog-layout-17-item,{{WRAPPER}} .rs-blog-layout-20-item,{{WRAPPER}} .rs-blog-layout-22-item,{{WRAPPER}} .rs-blog-layout-24-item,{{WRAPPER}} .rs-blog-layout-25-item,{{WRAPPER}} .rs-blog-layout-27-list-item,{{WRAPPER}} .rs-blog-layout-27-item,{{WRAPPER}} .rs-post-overlay.rs-post-overlay-one,{{WRAPPER}} .rs-post-list.rs-list-one,{{WRAPPER}} .rs-post-small',
                     'render_type' => 'template'
                 ]
             );
@@ -1732,7 +2059,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                     'label'     => esc_html__( 'Background Color', 'fancy-post-grid' ),
                     'type'      => \Elementor\Controls_Manager::COLOR,
                     'selectors' => [
-                        '{{WRAPPER}} .fpg-section-area .rs-blog__single:hover,{{WRAPPER}} .rs-blog-layout-26 .rs-blog-layout-26-item:hover .rs-content, {{WRAPPER}} .rs-blog-layout-1 .blog-item:hover, {{WRAPPER}} .rs-blog-layout-30-item:hover, {{WRAPPER}} .rs-blog-layout-28-item:hover,{{WRAPPER}} .rs-blog-layout-4 .rs-blog__item:hover,{{WRAPPER}} .rs-blog__left-blog:hover,{{WRAPPER}} .blog-horizontal .blog-meta .blog-item-wrap:hover,{{WRAPPER}} .rs-blog-layout-17-item:hover,{{WRAPPER}} .rs-blog-layout-20-item:hover,{{WRAPPER}} .rs-blog-layout-22-item:hover,{{WRAPPER}} .rs-blog-layout-24-item:hover,{{WRAPPER}} .rs-blog-layout-25-item:hover,{{WRAPPER}} .rs-blog-layout-27-list-item:hover,{{WRAPPER}} .rs-blog-layout-27-item:hover,{{WRAPPER}} .rs-post-overlay.rs-post-overlay-one:hover,{{WRAPPER}} .rs-post-list.rs-list-one:hover,{{WRAPPER}} .rs-post-small.rs-post-small-one:hover' => 'background-color: {{VALUE}};',
+                        '{{WRAPPER}} .fpg-section-area .rs-blog__single:hover,{{WRAPPER}} .rs-blog-layout-26 .rs-blog-layout-26-item:hover .rs-content, {{WRAPPER}} .rs-blog-layout-1 .blog-item:hover, {{WRAPPER}} .rs-blog-layout-30-item:hover, {{WRAPPER}} .rs-blog-layout-28-item:hover,{{WRAPPER}} .rs-blog-layout-4 .rs-blog__item:hover,{{WRAPPER}} .rs-blog__left-blog:hover,{{WRAPPER}} .blog-horizontal .blog-meta .blog-item-wrap:hover,{{WRAPPER}} .rs-blog-layout-17-item:hover,{{WRAPPER}} .rs-blog-layout-20-item:hover,{{WRAPPER}} .rs-blog-layout-22-item:hover,{{WRAPPER}} .rs-blog-layout-24-item:hover,{{WRAPPER}} .rs-blog-layout-25-item:hover,{{WRAPPER}} .rs-blog-layout-27-list-item:hover,{{WRAPPER}} .rs-blog-layout-27-item:hover,{{WRAPPER}} .rs-post-overlay.rs-post-overlay-one:hover,{{WRAPPER}} .rs-post-list.rs-list-one:hover,{{WRAPPER}} .rs-post-small:hover' => 'background-color: {{VALUE}};',
                     ],
                 ]
             );
@@ -1740,7 +2067,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                 \Elementor\Group_Control_Border::get_type(),
                 [
                     'name' => 'item_border_color_hover',
-                    'selector' => '{{WRAPPER}} .fpg-section-area .rs-blog__single:hover, {{WRAPPER}} .rs-blog-layout-1 .blog-item:hover,{{WRAPPER}} .rs-blog-layout-30-item:hover,{{WRAPPER}} .rs-blog-layout-28-item:hover,{{WRAPPER}} .rs-blog-layout-4 .rs-blog__item:hover,{{WRAPPER}} .rs-blog__left-blog:hover,{{WRAPPER}} .blog-horizontal .blog-meta .blog-item-wrap:hover,{{WRAPPER}} .rs-blog-layout-17-item:hover,{{WRAPPER}} .rs-blog-layout-20-item:hover,{{WRAPPER}} .rs-blog-layout-22-item:hover,{{WRAPPER}} .rs-blog-layout-24-item:hover,{{WRAPPER}} .rs-blog-layout-25-item:hover,{{WRAPPER}} .rs-blog-layout-27-list-item:hover,{{WRAPPER}} .rs-blog-layout-27-item:hover,{{WRAPPER}} .rs-post-overlay.rs-post-overlay-one:hover ,{{WRAPPER}} .rs-post-list.rs-list-one:hover,{{WRAPPER}} .rs-post-small.rs-post-small-one:hover ',
+                    'selector' => '{{WRAPPER}} .fpg-section-area .rs-blog__single:hover, {{WRAPPER}} .rs-blog-layout-1 .blog-item:hover,{{WRAPPER}} .rs-blog-layout-30-item:hover,{{WRAPPER}} .rs-blog-layout-28-item:hover,{{WRAPPER}} .rs-blog-layout-4 .rs-blog__item:hover,{{WRAPPER}} .rs-blog__left-blog:hover,{{WRAPPER}} .blog-horizontal .blog-meta .blog-item-wrap:hover,{{WRAPPER}} .rs-blog-layout-17-item:hover,{{WRAPPER}} .rs-blog-layout-20-item:hover,{{WRAPPER}} .rs-blog-layout-22-item:hover,{{WRAPPER}} .rs-blog-layout-24-item:hover,{{WRAPPER}} .rs-blog-layout-25-item:hover,{{WRAPPER}} .rs-blog-layout-27-list-item:hover,{{WRAPPER}} .rs-blog-layout-27-item:hover,{{WRAPPER}} .rs-post-overlay.rs-post-overlay-one:hover ,{{WRAPPER}} .rs-post-list.rs-list-one:hover,{{WRAPPER}} .rs-post-small:hover ',
                     'render_type' => 'template'
                 ]
             );
@@ -1750,7 +2077,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                 [
                     'name'      => 'item_box_shadow_hover',
                     'label'     => esc_html__( 'Box Shadow', 'fancy-post-grid' ),
-                    'selector'  => '{{WRAPPER}} .fpg-section-area .rs-blog__single:hover, {{WRAPPER}} .rs-blog-layout-1 .blog-item:hover,{{WRAPPER}} .rs-blog-layout-30-item:hover,{{WRAPPER}} .rs-blog-layout-28-item:hover,{{WRAPPER}} .rs-blog-layout-4 .rs-blog__item:hover,{{WRAPPER}} .rs-blog__left-blog:hover,{{WRAPPER}} .blog-horizontal .blog-meta .blog-item-wrap:hover,{{WRAPPER}} .rs-blog-layout-17-item:hover,{{WRAPPER}} .rs-blog-layout-20-item:hover,{{WRAPPER}} .rs-blog-layout-22-item:hover,{{WRAPPER}} .rs-blog-layout-24-item:hover,{{WRAPPER}} .rs-blog-layout-25-item:hover,{{WRAPPER}} .rs-blog-layout-27-list-item:hover,{{WRAPPER}} .rs-blog-layout-27-item:hover,{{WRAPPER}} .rs-post-overlay.rs-post-overlay-one:hover,{{WRAPPER}} .rs-post-list.rs-list-one:hover,{{WRAPPER}} .rs-post-small.rs-post-small-one:hover',
+                    'selector'  => '{{WRAPPER}} .fpg-section-area .rs-blog__single:hover, {{WRAPPER}} .rs-blog-layout-1 .blog-item:hover,{{WRAPPER}} .rs-blog-layout-30-item:hover,{{WRAPPER}} .rs-blog-layout-28-item:hover,{{WRAPPER}} .rs-blog-layout-4 .rs-blog__item:hover,{{WRAPPER}} .rs-blog__left-blog:hover,{{WRAPPER}} .blog-horizontal .blog-meta .blog-item-wrap:hover,{{WRAPPER}} .rs-blog-layout-17-item:hover,{{WRAPPER}} .rs-blog-layout-20-item:hover,{{WRAPPER}} .rs-blog-layout-22-item:hover,{{WRAPPER}} .rs-blog-layout-24-item:hover,{{WRAPPER}} .rs-blog-layout-25-item:hover,{{WRAPPER}} .rs-blog-layout-27-list-item:hover,{{WRAPPER}} .rs-blog-layout-27-item:hover,{{WRAPPER}} .rs-post-overlay.rs-post-overlay-one:hover,{{WRAPPER}} .rs-post-list.rs-list-one:hover,{{WRAPPER}} .rs-post-small:hover',
                     'render_type' => 'template'
                 ]
             );
@@ -1776,7 +2103,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                 [
                     'name' => 'card_background_content',
                     'types' => [ 'classic', 'gradient' ],
-                    'selector' => '{{WRAPPER}} .fpg-section-area .rs-blog__single .rs-content,{{WRAPPER}} .rs-blog-layout-1 .blog-item .blog-content,{{WRAPPER}} .rs-blog-layout-30-item .rs-content,{{WRAPPER}} .rs-content,{{WRAPPER}} .rs-blog__single .content,{{WRAPPER}} .rs-blog-layout-4 .rs-blog__item .rs-content,{{WRAPPER}} .pre-blog-item.style_12:hover .blog-inner-wrap .pre-blog-content,{{WRAPPER}} .rs-blog__content,{{WRAPPER}} .blog-horizontal .blog-meta .blog-item-wrap .blog-content,{{WRAPPER}} .rs-post-overlay.rs-post-overlay-one .rs-post-overlay-content,{{WRAPPER}} .rs-post-list.rs-list-one .rs-post-small-content,{{WRAPPER}} .rs-post-small.rs-post-small-one .rs-post-small-content',
+                    'selector' => '{{WRAPPER}} .fpg-section-area .rs-blog__single .rs-content,{{WRAPPER}} .rs-blog-layout-1 .blog-item .blog-content,{{WRAPPER}} .rs-blog-layout-30-item .rs-content,{{WRAPPER}} .rs-content,{{WRAPPER}} .rs-blog__single .content,{{WRAPPER}} .rs-blog-layout-4 .rs-blog__item .rs-content,{{WRAPPER}} .pre-blog-item.style_12:hover .blog-inner-wrap .pre-blog-content,{{WRAPPER}} .rs-blog__content,{{WRAPPER}} .blog-horizontal .blog-meta .blog-item-wrap .blog-content,{{WRAPPER}} .rs-post-overlay.rs-post-overlay-one .rs-post-overlay-content,{{WRAPPER}} .rs-post-list.rs-list-one .rs-post-small-content,{{WRAPPER}} .rs-post-small  .rs-post-small-content',
                 ]
             );
             // Content Styling: Background Hover
@@ -1793,7 +2120,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                 [
                     'name' => 'card_background_content_hover',
                     'types' => [ 'classic', 'gradient' ],
-                    'selector' => '{{WRAPPER}} .fpg-section-area .rs-blog__single:hover .rs-content,{{WRAPPER}} .fpg-section-area .rs-post-overlay-content:hover,{{WRAPPER}} .fpg-section-area .rs-post-small-content:hover,{{WRAPPER}} .rs-post-small.rs-post-small-one .rs-post-small-content:hover',
+                    'selector' => '{{WRAPPER}} .fpg-section-area .rs-blog__single:hover .rs-content,{{WRAPPER}} .fpg-section-area .rs-post-overlay-content:hover,{{WRAPPER}} .fpg-section-area .rs-post-small-content:hover,{{WRAPPER}} .rs-post-small .rs-post-small-content:hover',
                 ]
             );
 
@@ -1805,7 +2132,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                     'type'       => \Elementor\Controls_Manager::DIMENSIONS,
                     'size_units' => array( 'px', 'em', '%' ),
                     'selectors'  => array(
-                        '{{WRAPPER}} .fpg-section-area .rs-blog__single .rs-content,{{WRAPPER}} .rs-blog-layout-1 .blog-item .blog-content,{{WRAPPER}} .rs-blog-layout-30-item .rs-content,{{WRAPPER}} .rs-content,{{WRAPPER}} .rs-blog__single .content,{{WRAPPER}} .rs-blog-layout-4 .rs-blog__item .rs-content,{{WRAPPER}} .rs-blog__content,{{WRAPPER}} .blog-horizontal .blog-meta .blog-item-wrap .blog-content,{{WRAPPER}} .rs-post-small.rs-post-small-one .rs-post-small-content' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                        '{{WRAPPER}} .fpg-section-area .rs-blog__single .rs-content,{{WRAPPER}} .rs-blog-layout-1 .blog-item .blog-content,{{WRAPPER}} .rs-blog-layout-30-item .rs-content,{{WRAPPER}} .rs-content,{{WRAPPER}} .rs-blog__single .content,{{WRAPPER}} .rs-blog-layout-4 .rs-blog__item .rs-content,{{WRAPPER}} .rs-blog__content,{{WRAPPER}} .blog-horizontal .blog-meta .blog-item-wrap .blog-content,{{WRAPPER}} .rs-post-small .rs-post-small-content' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                     ),
                     'render_type' => 'template'
                 ]
@@ -1818,7 +2145,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                     'type'       => \Elementor\Controls_Manager::DIMENSIONS,
                     'size_units' => array( 'px', '%' ),
                     'selectors'  => array(
-                        '{{WRAPPER}} .fpg-section-area .rs-blog__single .rs-content,{{WRAPPER}} .rs-blog-layout-1 .blog-item .blog-content,{{WRAPPER}} .rs-blog-layout-30-item .rs-content,{{WRAPPER}} .rs-content,{{WRAPPER}} .rs-blog__single .content,{{WRAPPER}} .rs-blog-layout-4 .rs-blog__item .rs-content,{{WRAPPER}} .rs-blog__content,{{WRAPPER}} .blog-horizontal .blog-meta .blog-item-wrap .blog-content,{{WRAPPER}} .rs-post-small.rs-post-small-one .rs-post-small-content' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                        '{{WRAPPER}} .fpg-section-area .rs-blog__single .rs-content,{{WRAPPER}} .rs-blog-layout-1 .blog-item .blog-content,{{WRAPPER}} .rs-blog-layout-30-item .rs-content,{{WRAPPER}} .rs-content,{{WRAPPER}} .rs-blog__single .content,{{WRAPPER}} .rs-blog-layout-4 .rs-blog__item .rs-content,{{WRAPPER}} .rs-blog__content,{{WRAPPER}} .blog-horizontal .blog-meta .blog-item-wrap .blog-content,{{WRAPPER}} .rs-post-small .rs-post-small-content' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                     ),
                     'render_type' => 'template'
                 ]
@@ -1827,7 +2154,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                 \Elementor\Group_Control_Border::get_type(),
                 [
                     'name' => 'content_border_color',
-                    'selector' => '{{WRAPPER}} .fpg-section-area .rs-blog__single .rs-content,{{WRAPPER}} .rs-blog-layout-1 .blog-item .blog-content,{{WRAPPER}} .rs-blog-layout-30-item .rs-content,{{WRAPPER}} .rs-content,{{WRAPPER}} .rs-blog__single .content,{{WRAPPER}} .rs-blog-layout-4 .rs-blog__item .rs-content,{{WRAPPER}} .rs-blog__content,{{WRAPPER}} .blog-horizontal .blog-meta .blog-item-wrap .blog-content,{{WRAPPER}} .rs-post-small.rs-post-small-one .rs-post-small-content',
+                    'selector' => '{{WRAPPER}} .fpg-section-area .rs-blog__single .rs-content,{{WRAPPER}} .rs-blog-layout-1 .blog-item .blog-content,{{WRAPPER}} .rs-blog-layout-30-item .rs-content,{{WRAPPER}} .rs-content,{{WRAPPER}} .rs-blog__single .content,{{WRAPPER}} .rs-blog-layout-4 .rs-blog__item .rs-content,{{WRAPPER}} .rs-blog__content,{{WRAPPER}} .blog-horizontal .blog-meta .blog-item-wrap .blog-content,{{WRAPPER}} .rs-post-small .rs-post-small-content',
                 ]
             );
             // Card Border Radius
@@ -1838,7 +2165,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                     'type'       => \Elementor\Controls_Manager::DIMENSIONS,
                     'size_units' => array( 'px', 'em', '%' ),
                     'selectors'  => array(
-                        '{{WRAPPER}} .fpg-section-area .rs-blog__single .rs-content,{{WRAPPER}} .rs-blog-layout-1 .blog-item .blog-content,{{WRAPPER}} .rs-blog-layout-30-item .rs-content,{{WRAPPER}} .rs-content,{{WRAPPER}} .rs-blog__single .content,{{WRAPPER}} .rs-blog-layout-4 .rs-blog__item .rs-content,{{WRAPPER}} .rs-blog__content,{{WRAPPER}} .blog-horizontal .blog-meta .blog-item-wrap .blog-content,{{WRAPPER}} .rs-post-small.rs-post-small-one .rs-post-small-content' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                        '{{WRAPPER}} .fpg-section-area .rs-blog__single .rs-content,{{WRAPPER}} .rs-blog-layout-1 .blog-item .blog-content,{{WRAPPER}} .rs-blog-layout-30-item .rs-content,{{WRAPPER}} .rs-content,{{WRAPPER}} .rs-blog__single .content,{{WRAPPER}} .rs-blog-layout-4 .rs-blog__item .rs-content,{{WRAPPER}} .rs-blog__content,{{WRAPPER}} .blog-horizontal .blog-meta .blog-item-wrap .blog-content,{{WRAPPER}} .rs-post-small .rs-post-small-content' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                     ),
                 ]
             );
@@ -2011,8 +2338,21 @@ add_action('elementor/widgets/widgets_registered', function () {
                 \Elementor\Group_Control_Typography::get_type(),
                 [
                     'name'     => 'title_typography',
-                    'label'    => esc_html__( 'Typography', 'fancy-post-grid' ),
+                    'label'    => esc_html__( 'Primary Typography', 'fancy-post-grid' ),
                     'selector' => '{{WRAPPER}} .fancy-post-title a, {{WRAPPER}} .fancy-post-title, {{WRAPPER}} .rs-blog-layout-27-list-item .rs-content .title a',
+
+                ]
+            );
+            $this->add_group_control(
+                \Elementor\Group_Control_Typography::get_type(),
+                [
+                    'name'     => 'title_typography_card',
+                    'label'    => esc_html__( 'Secondary Typography', 'fancy-post-grid' ),
+                    'selector' => '{{WRAPPER}} .title.rs-post-small-title, {{WRAPPER}} .title.rs-post-small-title a,{{WRAPPER}} .title.rs-post-overlay-title-card10, {{WRAPPER}} .title.rs-post-overlay-title-card10 a',
+                    'condition' => [
+                        'fancy_post_card_layout' => [ 'cardstyle08', 'cardstyle10','cardstyle11', 'cardstyle12' ],
+                        
+                    ],
 
                 ]
             );
@@ -2080,7 +2420,7 @@ add_action('elementor/widgets/widgets_registered', function () {
             $this->start_controls_tab(
                 'title_normal',
                 [
-                    'label' => esc_html__( 'Normal', 'fancy-post-grid' ),
+                    'label' => esc_html__( 'Primary Normal', 'fancy-post-grid' ),
                 ]
             );
 
@@ -2116,14 +2456,14 @@ add_action('elementor/widgets/widgets_registered', function () {
             $this->start_controls_tab(
                 'title_hover',
                 [
-                    'label' => esc_html__( 'Hover', 'fancy-post-grid' ),
+                    'label' => esc_html__( 'Primary Hover', 'fancy-post-grid' ),
                 ]
             );
 
             $this->add_control(
                 'title_hover_color',
                 [
-                    'label'     => esc_html__( 'Hover Color', 'fancy-post-grid' ),
+                    'label'     => esc_html__( 'Color', 'fancy-post-grid' ),
                     'type'      => \Elementor\Controls_Manager::COLOR,
                     'selectors' => array(
                         '{{WRAPPER}} .fancy-post-title a:hover' => 'color: {{VALUE}};',
@@ -2136,7 +2476,7 @@ add_action('elementor/widgets/widgets_registered', function () {
             $this->add_control(
                 'title_hover_background',
                 [
-                    'label'     => esc_html__( 'Hover Background Color', 'fancy-post-grid' ),
+                    'label'     => esc_html__( 'Background Color', 'fancy-post-grid' ),
                     'type'      => \Elementor\Controls_Manager::COLOR,
                     'selectors' => array(
                         '{{WRAPPER}} .fancy-post-title:hover,{{WRAPPER}} .rs-blog-layout-3 .rs-blog__single .content .title a:hover,{{WRAPPER}} .rs-blog-layout-27-list-item .rs-content .title:hover' => 'background-color: {{VALUE}};',
@@ -2149,160 +2489,416 @@ add_action('elementor/widgets/widgets_registered', function () {
 
             $this->end_controls_tabs(); // End Title Tabs
 
-            $this->end_controls_section(); // End Post Title Style Section
-
-            // Excerpt/Content Style
-
-            $this->start_controls_section(
-                'excerpt_content_style',
-                [
-                    'label' => esc_html__( 'Excerpt', 'fancy-post-grid' ),
-                    'tab'   => \Elementor\Controls_Manager::TAB_STYLE,
-                    
-                ]
-            );
-
-
-            // Typography Control
-            $this->add_group_control(
-                \Elementor\Group_Control_Typography::get_type(),
-                [
-                    'name'     => 'excerpt_typography',
-                    'label'    => esc_html__( 'Typography', 'fancy-post-grid' ),
-                    'selector' => '{{WRAPPER}} .fancy-post-excerpt',
-
-                ]
-            );
-
-            // Excerpt Padding Control
-            $this->add_responsive_control(
-                'excerpt_padding',
-                [
-                    'label'      => esc_html__( 'Padding', 'fancy-post-grid' ),
-                    'type'       => \Elementor\Controls_Manager::DIMENSIONS,
-                    'size_units' => array( 'px', 'em', '%' ),
-                    'selectors'  => array(
-                        '{{WRAPPER}} .fancy-post-excerpt' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-                    ),
-                    
-                ]
-            );
-
-            // Excerpt Margin Control
-            $this->add_responsive_control(
-                'excerpt_margin',
-                [
-                    'label'      => esc_html__( 'Margin', 'fancy-post-grid' ),
-                    'type'       => \Elementor\Controls_Manager::DIMENSIONS,
-                    'size_units' => array( 'px', 'em', '%' ),
-                    'selectors'  => array(
-                        '{{WRAPPER}} .fancy-post-excerpt' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}} !important;',
-                    ),
-                ]
-            );
-
-            // Excerpt Alignment Control  
-            $this->add_responsive_control(
-                'excerpt_alignment',
-                [
-                    'label'     => esc_html__( 'Alignment', 'fancy-post-grid' ),
-                    'type'      => \Elementor\Controls_Manager::CHOOSE,
-                    'options'   => array(
-                        'left'   => array(
-                            'title' => esc_html__( 'Left', 'fancy-post-grid' ),
-                            'icon'  => 'eicon-text-align-left',
-                        ),
-                        'center' => array(
-                            'title' => esc_html__( 'Center', 'fancy-post-grid' ),
-                            'icon'  => 'eicon-text-align-center',
-                        ),
-                        'right'  => array(
-                            'title' => esc_html__( 'Right', 'fancy-post-grid' ),
-                            'icon'  => 'eicon-text-align-right',
-                        ),
-                        'justify' => array(
-                            'title' => esc_html__( 'Justify', 'fancy-post-grid' ),
-                            'icon'  => 'eicon-text-align-justify',
-                        ),
-                    ),
-                    'selectors' => array(
-                        '{{WRAPPER}} .fancy-post-excerpt' => 'text-align: {{VALUE}};',
-                    ),
-                ]
-            );
-
-            // Tabs for Normal and Box Hover
-            $this->start_controls_tabs('excerpt_color_tabs');
+            // Title Styling: Tabs (Normal, Hover, Box Hover)
+            $this->start_controls_tabs('title_style_tabs_card');
 
             // Normal Tab
             $this->start_controls_tab(
-                'excerpt_normal_tab',
+                'title_normal_card',
                 [
-                    'label' => esc_html__( 'Normal', 'fancy-post-grid' ),
+                    'label' => esc_html__( 'Secondary Normal', 'fancy-post-grid' ),
+                    'condition' => [
+                        'fancy_post_card_layout' => [ 'cardstyle08', 'cardstyle10','cardstyle11', 'cardstyle12' ],
+                        
+                    ],
                 ]
             );
 
-            // Excerpt Color Control (Normal)
             $this->add_control(
-                'excerpt_normal_color',
+                'title_normal_color_card',
                 [
-                    'label'     => esc_html__( 'Excerpt Color', 'fancy-post-grid' ),
+                    'label'     => esc_html__( 'Color', 'fancy-post-grid' ),
                     'type'      => \Elementor\Controls_Manager::COLOR,
+                    
                     'selectors' => array(
-                        '{{WRAPPER}} .fancy-post-excerpt' => 'color: {{VALUE}} !important;',
+                        
+                        '{{WRAPPER}} .title.rs-post-small-title, {{WRAPPER}} .title.rs-post-small-title a,{{WRAPPER}} .title.rs-post-overlay-title-card10, {{WRAPPER}} .title.rs-post-overlay-title-card10 a' => 'color: {{VALUE}};',
+
                     ),
-                    'render_type' => 'template',
+                    'condition' => [
+                        'fancy_post_card_layout' => [ 'cardstyle08', 'cardstyle10','cardstyle11', 'cardstyle12' ],
+                        
+                    ],
                 ]
             );
 
             $this->add_control(
-                'excerpt_normal_background',
+                'title_normal_background_card',
                 [
                     'label'     => esc_html__( 'Background Color', 'fancy-post-grid' ),
                     'type'      => \Elementor\Controls_Manager::COLOR,
                     'selectors' => array(
-                        '{{WRAPPER}} .fancy-post-excerpt' => 'background-color: {{VALUE}};',
+                        '{{WRAPPER}} .title.rs-post-small-title, {{WRAPPER}} .title.rs-post-small-title a,{{WRAPPER}} .title.rs-post-overlay-title-card10' => 'background-color: {{VALUE}};',
                     ),
+                    'condition' => [
+                        'fancy_post_card_layout' => [ 'cardstyle08', 'cardstyle10','cardstyle11', 'cardstyle12' ],
+                        
+                    ],
+                ]
+            );
+            
+
+            $this->end_controls_tab();
+
+            // Hover Tab
+            $this->start_controls_tab(
+                'title_hover_card',
+                [
+                    'label' => esc_html__( 'Secondary Hover', 'fancy-post-grid' ),
+                    'condition' => [
+                        'fancy_post_card_layout' => [ 'cardstyle08', 'cardstyle10','cardstyle11', 'cardstyle12' ],
+                        
+                    ],
+                ]
+            );
+
+            $this->add_control(
+                'title_hover_color_card',
+                [
+                    'label'     => esc_html__( 'Color', 'fancy-post-grid' ),
+                    'type'      => \Elementor\Controls_Manager::COLOR,
+                    'selectors' => array(
+                        '{{WRAPPER}} .title.rs-post-small-title:hover, {{WRAPPER}} .title.rs-post-small-title a:hover,{{WRAPPER}} .title.rs-post-overlay-title-card10:hover,{{WRAPPER}} .title.rs-post-overlay-title-card10 a:hover' => 'color: {{VALUE}};',
+                        
+                        '{{WRAPPER}} .title.rs-post-small-title.underline a,{{WRAPPER}} .title.rs-post-overlay-title-card10.underline a' => 'background-image: linear-gradient(to bottom, {{VALUE}} 0%, {{VALUE}} 100%) !important;',
+                    ),
+                    'condition' => [
+                        'fancy_post_card_layout' => [ 'cardstyle08', 'cardstyle10','cardstyle11', 'cardstyle12' ],
+                        
+                    ],
+                ]
+            );
+
+            $this->add_control(
+                'title_hover_background_card',
+                [
+                    'label'     => esc_html__( 'Background Color', 'fancy-post-grid' ),
+                    'type'      => \Elementor\Controls_Manager::COLOR,
+                    'selectors' => array(
+                        '{{WRAPPER}} .title.rs-post-small-title:hover, {{WRAPPER}} .title.rs-post-small-title a:hover,{{WRAPPER}} .title.rs-post-overlay-title-card10:hover' => 'background-color: {{VALUE}};',
+                    ),
+                    'condition' => [
+                        'fancy_post_card_layout' => [ 'cardstyle08', 'cardstyle10','cardstyle11', 'cardstyle12' ],
+                        
+                    ],
+                    'render_type' => 'template'
                 ]
             );
             
             $this->end_controls_tab();
 
-            // Box Hover Tab
-            $this->start_controls_tab(
-                'excerpt_hover_tab',
-                [
-                    'label' => esc_html__( 'Hover', 'fancy-post-grid' ),
-                ]
-            );
+            $this->end_controls_tabs(); // End Title Tabs
 
-            // Excerpt Color on Hover Control
-            $this->add_control(
-                'excerpt_hover_color',
-                [
-                    'label'     => esc_html__( 'Excerpt Color', 'fancy-post-grid' ),
-                    'type'      => \Elementor\Controls_Manager::COLOR,
-                    'selectors' => array(
-                        '{{WRAPPER}} .fancy-post-excerpt:hover' => 'color: {{VALUE}} !important;',
-                    ),
-                ]
-            );
-            // Excerpt Color Control (Normal)
-            $this->add_control(
-                'excerpt_hover_background',
-                [
-                    'label'     => esc_html__( 'Background Color', 'fancy-post-grid' ),
-                    'type'      => \Elementor\Controls_Manager::COLOR,
-                    'selectors' => array(
-                        '{{WRAPPER}} .fancy-post-excerpt:hover' => 'background-color: {{VALUE}} ;',
-                    ),
-                ]
-            );  
-                     
-            $this->end_controls_tab();
-            $this->end_controls_tabs();
+            $this->end_controls_section(); // End Post Title Style Section
 
-            $this->end_controls_section();
+            // Excerpt/Content Style
+            if (!in_array('excerpt_content_style', $this->exclude_controls)) {
+                $this->start_controls_section(
+                    'excerpt_content_style',
+                    [
+                        'label' => esc_html__( 'Excerpt', 'fancy-post-grid' ),
+                        'tab'   => \Elementor\Controls_Manager::TAB_STYLE,
+                        
+                    ]
+                );
+
+                // Typography Control
+                $this->add_group_control(
+                    \Elementor\Group_Control_Typography::get_type(),
+                    [
+                        'name'     => 'excerpt_typography',
+                        'label'    => esc_html__( 'Typography', 'fancy-post-grid' ),
+                        'selector' => '{{WRAPPER}} .fancy-post-excerpt',
+
+                    ]
+                );
+
+                // Excerpt Padding Control
+                $this->add_responsive_control(
+                    'excerpt_padding',
+                    [
+                        'label'      => esc_html__( 'Padding', 'fancy-post-grid' ),
+                        'type'       => \Elementor\Controls_Manager::DIMENSIONS,
+                        'size_units' => array( 'px', 'em', '%' ),
+                        'selectors'  => array(
+                            '{{WRAPPER}} .fancy-post-excerpt' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                        ),
+                        
+                    ]
+                );
+
+                // Excerpt Margin Control
+                $this->add_responsive_control(
+                    'excerpt_margin',
+                    [
+                        'label'      => esc_html__( 'Margin', 'fancy-post-grid' ),
+                        'type'       => \Elementor\Controls_Manager::DIMENSIONS,
+                        'size_units' => array( 'px', 'em', '%' ),
+                        'selectors'  => array(
+                            '{{WRAPPER}} .fancy-post-excerpt' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}} !important;',
+                        ),
+                    ]
+                );
+
+                // Excerpt Alignment Control  
+                $this->add_responsive_control(
+                    'excerpt_alignment',
+                    [
+                        'label'     => esc_html__( 'Alignment', 'fancy-post-grid' ),
+                        'type'      => \Elementor\Controls_Manager::CHOOSE,
+                        'options'   => array(
+                            'left'   => array(
+                                'title' => esc_html__( 'Left', 'fancy-post-grid' ),
+                                'icon'  => 'eicon-text-align-left',
+                            ),
+                            'center' => array(
+                                'title' => esc_html__( 'Center', 'fancy-post-grid' ),
+                                'icon'  => 'eicon-text-align-center',
+                            ),
+                            'right'  => array(
+                                'title' => esc_html__( 'Right', 'fancy-post-grid' ),
+                                'icon'  => 'eicon-text-align-right',
+                            ),
+                            'justify' => array(
+                                'title' => esc_html__( 'Justify', 'fancy-post-grid' ),
+                                'icon'  => 'eicon-text-align-justify',
+                            ),
+                        ),
+                        'selectors' => array(
+                            '{{WRAPPER}} .fancy-post-excerpt' => 'text-align: {{VALUE}};',
+                        ),
+                    ]
+                );
+
+                // Tabs for Normal and Box Hover
+                $this->start_controls_tabs('excerpt_color_tabs');
+
+                // Normal Tab
+                $this->start_controls_tab(
+                    'excerpt_normal_tab',
+                    [
+                        'label' => esc_html__( 'Normal', 'fancy-post-grid' ),
+                    ]
+                );
+
+                // Excerpt Color Control (Normal)
+                $this->add_control(
+                    'excerpt_normal_color',
+                    [
+                        'label'     => esc_html__( 'Excerpt Color', 'fancy-post-grid' ),
+                        'type'      => \Elementor\Controls_Manager::COLOR,
+                        'selectors' => array(
+                            '{{WRAPPER}} .fancy-post-excerpt' => 'color: {{VALUE}} !important;',
+                        ),
+                        'render_type' => 'template',
+                    ]
+                );
+
+                $this->add_control(
+                    'excerpt_normal_background',
+                    [
+                        'label'     => esc_html__( 'Background Color', 'fancy-post-grid' ),
+                        'type'      => \Elementor\Controls_Manager::COLOR,
+                        'selectors' => array(
+                            '{{WRAPPER}} .fancy-post-excerpt' => 'background-color: {{VALUE}};',
+                        ),
+                    ]
+                );
+                
+                $this->end_controls_tab();
+
+                // Box Hover Tab
+                $this->start_controls_tab(
+                    'excerpt_hover_tab',
+                    [
+                        'label' => esc_html__( 'Hover', 'fancy-post-grid' ),
+                    ]
+                );
+
+                // Excerpt Color on Hover Control
+                $this->add_control(
+                    'excerpt_hover_color',
+                    [
+                        'label'     => esc_html__( 'Excerpt Color', 'fancy-post-grid' ),
+                        'type'      => \Elementor\Controls_Manager::COLOR,
+                        'selectors' => array(
+                            '{{WRAPPER}} .fancy-post-excerpt:hover' => 'color: {{VALUE}} !important;',
+                        ),
+                    ]
+                );
+                // Excerpt Color Control (Normal)
+                $this->add_control(
+                    'excerpt_hover_background',
+                    [
+                        'label'     => esc_html__( 'Background Color', 'fancy-post-grid' ),
+                        'type'      => \Elementor\Controls_Manager::COLOR,
+                        'selectors' => array(
+                            '{{WRAPPER}} .fancy-post-excerpt:hover' => 'background-color: {{VALUE}} ;',
+                        ),
+                    ]
+                );  
+                         
+                $this->end_controls_tab();
+                $this->end_controls_tabs();
+
+                $this->end_controls_section();
+            }
+            // Card Excerpt/Content Style
+            
+                $this->start_controls_section(
+                    'excerpt_content_style_card',
+                    [
+                        'label' => esc_html__( 'Excerpt', 'fancy-post-grid' ),
+                        'tab'   => \Elementor\Controls_Manager::TAB_STYLE,
+                        'condition' => [
+                            'fancy_post_card_layout' => [ 'cardstyle06' ],
+                            
+                        ],
+                        
+                    ]
+                );
+
+                // Typography Control
+                $this->add_group_control(
+                    \Elementor\Group_Control_Typography::get_type(),
+                    [
+                        'name'     => 'excerpt_typography_card',
+                        'label'    => esc_html__( 'Typography', 'fancy-post-grid' ),
+                        'selector' => '{{WRAPPER}} .fancy-post-excerpt',
+
+                    ]
+                );
+
+                // Excerpt Padding Control
+                $this->add_responsive_control(
+                    'excerpt_padding_card',
+                    [
+                        'label'      => esc_html__( 'Padding', 'fancy-post-grid' ),
+                        'type'       => \Elementor\Controls_Manager::DIMENSIONS,
+                        'size_units' => array( 'px', 'em', '%' ),
+                        'selectors'  => array(
+                            '{{WRAPPER}} .fancy-post-excerpt' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                        ),
+                        
+                    ]
+                );
+
+                // Excerpt Margin Control
+                $this->add_responsive_control(
+                    'excerpt_margin_card',
+                    [
+                        'label'      => esc_html__( 'Margin', 'fancy-post-grid' ),
+                        'type'       => \Elementor\Controls_Manager::DIMENSIONS,
+                        'size_units' => array( 'px', 'em', '%' ),
+                        'selectors'  => array(
+                            '{{WRAPPER}} .fancy-post-excerpt' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}} !important;',
+                        ),
+                    ]
+                );
+
+                // Excerpt Alignment Control  
+                $this->add_responsive_control(
+                    'excerpt_alignment_card',
+                    [
+                        'label'     => esc_html__( 'Alignment', 'fancy-post-grid' ),
+                        'type'      => \Elementor\Controls_Manager::CHOOSE,
+                        'options'   => array(
+                            'left'   => array(
+                                'title' => esc_html__( 'Left', 'fancy-post-grid' ),
+                                'icon'  => 'eicon-text-align-left',
+                            ),
+                            'center' => array(
+                                'title' => esc_html__( 'Center', 'fancy-post-grid' ),
+                                'icon'  => 'eicon-text-align-center',
+                            ),
+                            'right'  => array(
+                                'title' => esc_html__( 'Right', 'fancy-post-grid' ),
+                                'icon'  => 'eicon-text-align-right',
+                            ),
+                            'justify' => array(
+                                'title' => esc_html__( 'Justify', 'fancy-post-grid' ),
+                                'icon'  => 'eicon-text-align-justify',
+                            ),
+                        ),
+                        'selectors' => array(
+                            '{{WRAPPER}} .fancy-post-excerpt' => 'text-align: {{VALUE}};',
+                        ),
+                    ]
+                );
+
+                // Tabs for Normal and Box Hover
+                $this->start_controls_tabs('excerpt_color_tabs_card');
+
+                // Normal Tab
+                $this->start_controls_tab(
+                    'excerpt_normal_tab_card',
+                    [
+                        'label' => esc_html__( 'Normal', 'fancy-post-grid' ),
+                    ]
+                );
+
+                // Excerpt Color Control (Normal)
+                $this->add_control(
+                    'excerpt_normal_color_card',
+                    [
+                        'label'     => esc_html__( 'Excerpt Color', 'fancy-post-grid' ),
+                        'type'      => \Elementor\Controls_Manager::COLOR,
+                        'selectors' => array(
+                            '{{WRAPPER}} .fancy-post-excerpt' => 'color: {{VALUE}} !important;',
+                        ),
+                        'render_type' => 'template',
+                    ]
+                );
+
+                $this->add_control(
+                    'excerpt_normal_background_card',
+                    [
+                        'label'     => esc_html__( 'Background Color', 'fancy-post-grid' ),
+                        'type'      => \Elementor\Controls_Manager::COLOR,
+                        'selectors' => array(
+                            '{{WRAPPER}} .fancy-post-excerpt' => 'background-color: {{VALUE}};',
+                        ),
+                    ]
+                );
+                
+                $this->end_controls_tab();
+
+                // Box Hover Tab
+                $this->start_controls_tab(
+                    'excerpt_hover_tab_card',
+                    [
+                        'label' => esc_html__( 'Hover', 'fancy-post-grid' ),
+                    ]
+                );
+
+                // Excerpt Color on Hover Control
+                $this->add_control(
+                    'excerpt_hover_color_card',
+                    [
+                        'label'     => esc_html__( 'Excerpt Color', 'fancy-post-grid' ),
+                        'type'      => \Elementor\Controls_Manager::COLOR,
+                        'selectors' => array(
+                            '{{WRAPPER}} .fancy-post-excerpt:hover' => 'color: {{VALUE}} !important;',
+                        ),
+                    ]
+                );
+                // Excerpt Color Control (Normal)
+                $this->add_control(
+                    'excerpt_hover_background_card',
+                    [
+                        'label'     => esc_html__( 'Background Color', 'fancy-post-grid' ),
+                        'type'      => \Elementor\Controls_Manager::COLOR,
+                        'selectors' => array(
+                            '{{WRAPPER}} .fancy-post-excerpt:hover' => 'background-color: {{VALUE}} ;',
+                        ),
+                    ]
+                );  
+                         
+                $this->end_controls_tab();
+                $this->end_controls_tabs();
+
+                $this->end_controls_section();
+            // Card Excerpt/Content Style
 
             // Meta Data Style
             $this->start_controls_section(
@@ -2485,191 +3081,192 @@ add_action('elementor/widgets/widgets_registered', function () {
 
 
             // Button Style
-            $this->start_controls_section(
-                'read_more_style',
-                [
-                    'label' => esc_html__( 'Button', 'fancy-post-grid' ),
-                    'tab'   => \Elementor\Controls_Manager::TAB_STYLE,
-                ]
-            );
+            if (!in_array('read_more_style', $this->exclude_controls)) {
+                $this->start_controls_section(
+                    'read_more_style',
+                    [
+                        'label' => esc_html__( 'Button', 'fancy-post-grid' ),
+                        'tab'   => \Elementor\Controls_Manager::TAB_STYLE,
+                    ]
+                );
 
-            // Typography
-            $this->add_group_control(
-                \Elementor\Group_Control_Typography::get_type(),
-                [
-                    'name'     => 'readmore_typography',
-                    'label'    => esc_html__( 'Typography', 'fancy-post-grid' ),
-                    'selector' => '{{WRAPPER}} .fpg-section-area a.read-more, {{WRAPPER}} .pre-blog-item.style_12 .blog-inner-wrap .pre-blog-content .blog-btn-part .blog-btn, {{WRAPPER}} .blog-item .blog-content .blog-btn .read-more, {{WRAPPER}} .rs-blog__single .content .rs-blog-author .rs-link a, {{WRAPPER}} .rs-blog-layout-4 .rs-blog__item .rs-content .rs-blog-footer .btn-link, {{WRAPPER}} .rs-blog__item .rs-content .rs-blog-footer .blog-btn .rs-btn',
-                ]
-            );
+                // Typography
+                $this->add_group_control(
+                    \Elementor\Group_Control_Typography::get_type(),
+                    [
+                        'name'     => 'readmore_typography',
+                        'label'    => esc_html__( 'Typography', 'fancy-post-grid' ),
+                        'selector' => '{{WRAPPER}} .fpg-section-area a.read-more, {{WRAPPER}} .pre-blog-item.style_12 .blog-inner-wrap .pre-blog-content .blog-btn-part .blog-btn, {{WRAPPER}} .blog-item .blog-content .blog-btn .read-more, {{WRAPPER}} .rs-blog__single .content .rs-blog-author .rs-link a, {{WRAPPER}} .rs-blog-layout-4 .rs-blog__item .rs-content .rs-blog-footer .btn-link, {{WRAPPER}} .rs-blog__item .rs-content .rs-blog-footer .blog-btn .rs-btn',
+                    ]
+                );
 
-            // Button Space
-            $this->add_responsive_control(
-                'readmore_button_margin',
-                [
-                    'label'     => esc_html__( 'margin', 'fancy-post-grid' ),
-                    'type'      => \Elementor\Controls_Manager::DIMENSIONS,
-                    'size_units' => array( 'px', 'em', '%' ),
-                    'selectors' => array(
-                        '{{WRAPPER}} .fpg-section-area a.read-more, {{WRAPPER}} .pre-blog-item.style_12 .blog-inner-wrap .pre-blog-content .blog-btn-part .blog-btn, {{WRAPPER}} .blog-item .blog-content .blog-btn .read-more, {{WRAPPER}} .rs-blog__single .content .rs-blog-author .rs-link a, {{WRAPPER}} .rs-blog-layout-4 .rs-blog__item .rs-content .rs-blog-footer .btn-link, {{WRAPPER}} .rs-blog__item .rs-content .rs-blog-footer .blog-btn .rs-btn' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-                    ),
-                ]
-            );
-
-            // Button Padding
-            $this->add_responsive_control(
-                'readmore_button_padding',
-                [
-                    'label'     => esc_html__( 'Padding', 'fancy-post-grid' ),
-                    'type'      => \Elementor\Controls_Manager::DIMENSIONS,
-                    'size_units' => array( 'px', 'em', '%' ),
-                    'selectors' => array(
-                        '{{WRAPPER}} .fpg-section-area a.read-more, {{WRAPPER}} .pre-blog-item.style_12 .blog-inner-wrap .pre-blog-content .blog-btn-part .blog-btn, {{WRAPPER}} .blog-item .blog-content .blog-btn .read-more, {{WRAPPER}} .rs-blog__single .content .rs-blog-author .rs-link a, {{WRAPPER}} .rs-blog-layout-4 .rs-blog__item .rs-content .rs-blog-footer .btn-link, {{WRAPPER}} .rs-blog__item .rs-content .rs-blog-footer .blog-btn .rs-btn' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-                    ),
-                ]
-            );
-
-            // Button Alignment
-            $this->add_responsive_control(
-                'readmore_button_alignment',
-                [
-                    'label'        => esc_html__( 'Alignment', 'fancy-post-grid' ),
-                    'type'         => \Elementor\Controls_Manager::CHOOSE,
-                    'options'      => array(
-                        'left'   => array(
-                            'title' => esc_html__( 'Left', 'fancy-post-grid' ),
-                            'icon'  => 'eicon-text-align-left',
+                // Button Space
+                $this->add_responsive_control(
+                    'readmore_button_margin',
+                    [
+                        'label'     => esc_html__( 'margin', 'fancy-post-grid' ),
+                        'type'      => \Elementor\Controls_Manager::DIMENSIONS,
+                        'size_units' => array( 'px', 'em', '%' ),
+                        'selectors' => array(
+                            '{{WRAPPER}} .fpg-section-area a.read-more, {{WRAPPER}} .pre-blog-item.style_12 .blog-inner-wrap .pre-blog-content .blog-btn-part .blog-btn, {{WRAPPER}} .blog-item .blog-content .blog-btn .read-more, {{WRAPPER}} .rs-blog__single .content .rs-blog-author .rs-link a, {{WRAPPER}} .rs-blog-layout-4 .rs-blog__item .rs-content .rs-blog-footer .btn-link, {{WRAPPER}} .rs-blog__item .rs-content .rs-blog-footer .blog-btn .rs-btn' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                         ),
-                        'center' => array(
-                            'title' => esc_html__( 'Center', 'fancy-post-grid' ),
-                            'icon'  => 'eicon-text-align-center',
+                    ]
+                );
+
+                // Button Padding
+                $this->add_responsive_control(
+                    'readmore_button_padding',
+                    [
+                        'label'     => esc_html__( 'Padding', 'fancy-post-grid' ),
+                        'type'      => \Elementor\Controls_Manager::DIMENSIONS,
+                        'size_units' => array( 'px', 'em', '%' ),
+                        'selectors' => array(
+                            '{{WRAPPER}} .fpg-section-area a.read-more, {{WRAPPER}} .pre-blog-item.style_12 .blog-inner-wrap .pre-blog-content .blog-btn-part .blog-btn, {{WRAPPER}} .blog-item .blog-content .blog-btn .read-more, {{WRAPPER}} .rs-blog__single .content .rs-blog-author .rs-link a, {{WRAPPER}} .rs-blog-layout-4 .rs-blog__item .rs-content .rs-blog-footer .btn-link, {{WRAPPER}} .rs-blog__item .rs-content .rs-blog-footer .blog-btn .rs-btn' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                         ),
-                        'right'  => array(
-                            'title' => esc_html__( 'Right', 'fancy-post-grid' ),
-                            'icon'  => 'eicon-text-align-right',
+                    ]
+                );
+
+                // Button Alignment
+                $this->add_responsive_control(
+                    'readmore_button_alignment',
+                    [
+                        'label'        => esc_html__( 'Alignment', 'fancy-post-grid' ),
+                        'type'         => \Elementor\Controls_Manager::CHOOSE,
+                        'options'      => array(
+                            'left'   => array(
+                                'title' => esc_html__( 'Left', 'fancy-post-grid' ),
+                                'icon'  => 'eicon-text-align-left',
+                            ),
+                            'center' => array(
+                                'title' => esc_html__( 'Center', 'fancy-post-grid' ),
+                                'icon'  => 'eicon-text-align-center',
+                            ),
+                            'right'  => array(
+                                'title' => esc_html__( 'Right', 'fancy-post-grid' ),
+                                'icon'  => 'eicon-text-align-right',
+                            ),
                         ),
-                    ),
-                    'selectors'    => array(
-                        '{{WRAPPER}} .fpg-section-area .btn-wrapper,{{WRAPPER}} .rs-blog-layout-18-item .rs-content .blgo-btn-box' => 'text-align: {{VALUE}};',
-                    ),
-                ]
-            );
+                        'selectors'    => array(
+                            '{{WRAPPER}} .fpg-section-area .btn-wrapper,{{WRAPPER}} .rs-blog-layout-18-item .rs-content .blgo-btn-box' => 'text-align: {{VALUE}};',
+                        ),
+                    ]
+                );
 
-            // Start Tabs for Normal, Hover, and Box Hover
-            $this->start_controls_tabs('readmore_style_tabs');
+                // Start Tabs for Normal, Hover, and Box Hover
+                $this->start_controls_tabs('readmore_style_tabs');
 
-            // Normal Tab
-            $this->start_controls_tab(
-                'readmore_normal_tab',
-                [
-                    'label' => esc_html__( 'Normal', 'fancy-post-grid' ),
-                ]
-            );
+                // Normal Tab
+                $this->start_controls_tab(
+                    'readmore_normal_tab',
+                    [
+                        'label' => esc_html__( 'Normal', 'fancy-post-grid' ),
+                    ]
+                );
 
-            $this->add_control(
-                'readmore_normal_text_color',
-                [
-                    'label'     => esc_html__( 'Text Color', 'fancy-post-grid' ),
-                    'type'      => \Elementor\Controls_Manager::COLOR,
-                    
-                    'selectors' => array(
-                        '{{WRAPPER}} .fpg-section-area a.read-more,{{WRAPPER}} .pre-blog-item.style_12 .blog-inner-wrap .pre-blog-content .blog-btn-part .blog-btn, {{WRAPPER}}  .blog-item .blog-content .blog-btn .read-more, {{WRAPPER}} .rs-blog__single .content .rs-blog-author .rs-link a, {{WRAPPER}} .rs-blog-layout-4 .rs-blog__item .rs-content .rs-blog-footer .btn-link, {{WRAPPER}} .rs-blog-layout-4.rs-blog-layout-10 .rs-grid .rs-grid-item .rs-blog__item .rs-content .rs-blog-footer .blog-btn .rs-btn' => 'color: {{VALUE}};',
-                    ),
-                ]
-            );
+                $this->add_control(
+                    'readmore_normal_text_color',
+                    [
+                        'label'     => esc_html__( 'Text Color', 'fancy-post-grid' ),
+                        'type'      => \Elementor\Controls_Manager::COLOR,
+                        
+                        'selectors' => array(
+                            '{{WRAPPER}} .fpg-section-area a.read-more,{{WRAPPER}} .pre-blog-item.style_12 .blog-inner-wrap .pre-blog-content .blog-btn-part .blog-btn, {{WRAPPER}}  .blog-item .blog-content .blog-btn .read-more, {{WRAPPER}} .rs-blog__single .content .rs-blog-author .rs-link a, {{WRAPPER}} .rs-blog-layout-4 .rs-blog__item .rs-content .rs-blog-footer .btn-link, {{WRAPPER}} .rs-blog-layout-4.rs-blog-layout-10 .rs-grid .rs-grid-item .rs-blog__item .rs-content .rs-blog-footer .blog-btn .rs-btn' => 'color: {{VALUE}};',
+                        ),
+                    ]
+                );
 
-            $this->add_control(
-                'readmore_normal_background_color',
-                [
-                    'label'     => esc_html__( 'Background Color', 'fancy-post-grid' ),
-                    'type'      => \Elementor\Controls_Manager::COLOR,
-                    'selectors' => array(
-                        '{{WRAPPER}} .fpg-section-area a.read-more,{{WRAPPER}} .pre-blog-item.style_12 .blog-inner-wrap .pre-blog-content .blog-btn-part .blog-btn, {{WRAPPER}}  .blog-item .blog-content .blog-btn .read-more, {{WRAPPER}} .rs-blog__single .content .rs-blog-author .rs-link a, {{WRAPPER}} .rs-blog-layout-4 .rs-blog__item .rs-content .rs-blog-footer .btn-link, {{WRAPPER}} .rs-blog-layout-4 .rs-blog__item .rs-content .rs-blog-footer .btn-link, {{WRAPPER}} .rs-blog__item .rs-content .rs-blog-footer .blog-btn .rs-btn' => 'background: {{VALUE}};',
-                    ),
-                ]
-            );
+                $this->add_control(
+                    'readmore_normal_background_color',
+                    [
+                        'label'     => esc_html__( 'Background Color', 'fancy-post-grid' ),
+                        'type'      => \Elementor\Controls_Manager::COLOR,
+                        'selectors' => array(
+                            '{{WRAPPER}} .fpg-section-area a.read-more,{{WRAPPER}} .pre-blog-item.style_12 .blog-inner-wrap .pre-blog-content .blog-btn-part .blog-btn, {{WRAPPER}}  .blog-item .blog-content .blog-btn .read-more, {{WRAPPER}} .rs-blog__single .content .rs-blog-author .rs-link a, {{WRAPPER}} .rs-blog-layout-4 .rs-blog__item .rs-content .rs-blog-footer .btn-link, {{WRAPPER}} .rs-blog-layout-4 .rs-blog__item .rs-content .rs-blog-footer .btn-link, {{WRAPPER}} .rs-blog__item .rs-content .rs-blog-footer .blog-btn .rs-btn' => 'background: {{VALUE}};',
+                        ),
+                    ]
+                );
 
-            $this->add_group_control(
-                \Elementor\Group_Control_Border::get_type(),
-                [
-                    'name'     => 'readmore_normal_border',
-                    'label'    => esc_html__( 'Border', 'fancy-post-grid' ),
-                    'selector' => '{{WRAPPER}} .fpg-section-area a.read-more, {{WRAPPER}} .pre-blog-item.style_12 .blog-inner-wrap .pre-blog-content .blog-btn-part .blog-btn, {{WRAPPER}} .blog-item .blog-content .blog-btn .read-more, {{WRAPPER}} .rs-blog__single .content .rs-blog-author .rs-link a, {{WRAPPER}} .rs-blog-layout-4 .rs-blog__item .rs-content .rs-blog-footer .btn-link, {{WRAPPER}} .rs-blog__item .rs-content .rs-blog-footer .blog-btn .rs-btn',
-                ]
-            );
+                $this->add_group_control(
+                    \Elementor\Group_Control_Border::get_type(),
+                    [
+                        'name'     => 'readmore_normal_border',
+                        'label'    => esc_html__( 'Border', 'fancy-post-grid' ),
+                        'selector' => '{{WRAPPER}} .fpg-section-area a.read-more, {{WRAPPER}} .pre-blog-item.style_12 .blog-inner-wrap .pre-blog-content .blog-btn-part .blog-btn, {{WRAPPER}} .blog-item .blog-content .blog-btn .read-more, {{WRAPPER}} .rs-blog__single .content .rs-blog-author .rs-link a, {{WRAPPER}} .rs-blog-layout-4 .rs-blog__item .rs-content .rs-blog-footer .btn-link, {{WRAPPER}} .rs-blog__item .rs-content .rs-blog-footer .blog-btn .rs-btn',
+                    ]
+                );
 
-            $this->add_responsive_control(
-                'readmore_normal_border_radius',
-                [
-                    'label'      => esc_html__( 'Border Radius', 'fancy-post-grid' ),
-                    'type'       => \Elementor\Controls_Manager::DIMENSIONS,
-                    'size_units' => array( 'px', '%' ),
-                    'selectors'  => array(
-                        '{{WRAPPER}} .fpg-section-area a.read-more, {{WRAPPER}} .pre-blog-item.style_12 .blog-inner-wrap .pre-blog-content .blog-btn-part .blog-btn, {{WRAPPER}} .blog-item .blog-content .blog-btn .read-more, {{WRAPPER}} .rs-blog__single .content .rs-blog-author .rs-link a, {{WRAPPER}} .rs-blog-layout-4 .rs-blog__item .rs-content .rs-blog-footer .btn-link, {{WRAPPER}} .rs-blog__item .rs-content .rs-blog-footer .blog-btn .rs-btn' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-                    ),
-                ]
-            );
+                $this->add_responsive_control(
+                    'readmore_normal_border_radius',
+                    [
+                        'label'      => esc_html__( 'Border Radius', 'fancy-post-grid' ),
+                        'type'       => \Elementor\Controls_Manager::DIMENSIONS,
+                        'size_units' => array( 'px', '%' ),
+                        'selectors'  => array(
+                            '{{WRAPPER}} .fpg-section-area a.read-more, {{WRAPPER}} .pre-blog-item.style_12 .blog-inner-wrap .pre-blog-content .blog-btn-part .blog-btn, {{WRAPPER}} .blog-item .blog-content .blog-btn .read-more, {{WRAPPER}} .rs-blog__single .content .rs-blog-author .rs-link a, {{WRAPPER}} .rs-blog-layout-4 .rs-blog__item .rs-content .rs-blog-footer .btn-link, {{WRAPPER}} .rs-blog__item .rs-content .rs-blog-footer .blog-btn .rs-btn' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                        ),
+                    ]
+                );
 
-            $this->end_controls_tab();
+                $this->end_controls_tab();
 
-            // Hover Tab
-            $this->start_controls_tab(
-                'readmore_hover_tab',
-                [
-                    'label' => esc_html__( 'Hover', 'fancy-post-grid' ),
-                ]
-            );
+                // Hover Tab
+                $this->start_controls_tab(
+                    'readmore_hover_tab',
+                    [
+                        'label' => esc_html__( 'Hover', 'fancy-post-grid' ),
+                    ]
+                );
 
-            $this->add_control(
-                'readmore_hover_text_color',
-                [
-                    'label'     => esc_html__( 'Text Color', 'fancy-post-grid' ),
-                    'type'      => \Elementor\Controls_Manager::COLOR,
-                    'selectors' => array(
-                        '{{WRAPPER}} .fpg-section-area a.read-more:hover, {{WRAPPER}} .pre-blog-item.style_12 .blog-inner-wrap .pre-blog-content .blog-btn-part .blog-btn:hover, {{WRAPPER}} .blog-item .blog-content .blog-btn .read-more:hover, {{WRAPPER}} .rs-blog__single .content .rs-blog-author .rs-link a:hover, {{WRAPPER}} .rs-blog-layout-4 .rs-blog__item .rs-content .rs-blog-footer .btn-link:hover, {{WRAPPER}} .rs-blog-layout-4.rs-blog-layout-10 .rs-grid .rs-grid-item .rs-blog__item .rs-content .rs-blog-footer .blog-btn .rs-btn:hover' => 'color: {{VALUE}};',
-                        '{{WRAPPER}} .fpg-section-area .fpg-border::before' => 'background: {{VALUE}} !important;',
-                    ),
-                ]
-            );
+                $this->add_control(
+                    'readmore_hover_text_color',
+                    [
+                        'label'     => esc_html__( 'Text Color', 'fancy-post-grid' ),
+                        'type'      => \Elementor\Controls_Manager::COLOR,
+                        'selectors' => array(
+                            '{{WRAPPER}} .fpg-section-area a.read-more:hover, {{WRAPPER}} .pre-blog-item.style_12 .blog-inner-wrap .pre-blog-content .blog-btn-part .blog-btn:hover, {{WRAPPER}} .blog-item .blog-content .blog-btn .read-more:hover, {{WRAPPER}} .rs-blog__single .content .rs-blog-author .rs-link a:hover, {{WRAPPER}} .rs-blog-layout-4 .rs-blog__item .rs-content .rs-blog-footer .btn-link:hover, {{WRAPPER}} .rs-blog-layout-4.rs-blog-layout-10 .rs-grid .rs-grid-item .rs-blog__item .rs-content .rs-blog-footer .blog-btn .rs-btn:hover' => 'color: {{VALUE}};',
+                            '{{WRAPPER}} .fpg-section-area .fpg-border::before' => 'background: {{VALUE}} !important;',
+                        ),
+                    ]
+                );
 
-            $this->add_control(
-                'readmore_hover_background_color',
-                [
-                    'label'     => esc_html__( 'Background Color', 'fancy-post-grid' ),
-                    'type'      => \Elementor\Controls_Manager::COLOR,
-                    'selectors' => array(
-                        '{{WRAPPER}} .fpg-section-area a.read-more:hover,{{WRAPPER}} .pre-blog-item.style_12 .blog-inner-wrap .pre-blog-content .blog-btn-part .blog-btn:hover, {{WRAPPER}} .blog-item .blog-content .blog-btn .read-more:hover, {{WRAPPER}} .rs-blog__single .content .rs-blog-author .rs-link a:hover, {{WRAPPER}} .rs-blog-layout-4 .rs-blog__item .rs-content .rs-blog-footer .btn-link:hover, {{WRAPPER}} .rs-blog__item .rs-content .rs-blog-footer .blog-btn .rs-btn:hover' => 'background-color: {{VALUE}};',
-                    ),
-                ]
-            );
+                $this->add_control(
+                    'readmore_hover_background_color',
+                    [
+                        'label'     => esc_html__( 'Background Color', 'fancy-post-grid' ),
+                        'type'      => \Elementor\Controls_Manager::COLOR,
+                        'selectors' => array(
+                            '{{WRAPPER}} .fpg-section-area a.read-more:hover,{{WRAPPER}} .pre-blog-item.style_12 .blog-inner-wrap .pre-blog-content .blog-btn-part .blog-btn:hover, {{WRAPPER}} .blog-item .blog-content .blog-btn .read-more:hover, {{WRAPPER}} .rs-blog__single .content .rs-blog-author .rs-link a:hover, {{WRAPPER}} .rs-blog-layout-4 .rs-blog__item .rs-content .rs-blog-footer .btn-link:hover, {{WRAPPER}} .rs-blog__item .rs-content .rs-blog-footer .blog-btn .rs-btn:hover' => 'background-color: {{VALUE}};',
+                        ),
+                    ]
+                );
 
-            $this->add_group_control(
-                \Elementor\Group_Control_Border::get_type(),
-                [
-                    'name'     => 'readmore_hover_border',
-                    'label'    => esc_html__( 'Border', 'fancy-post-grid' ),
-                    'selector' => '{{WRAPPER}} .fpg-section-area a.read-more:hover,{{WRAPPER}} .pre-blog-item.style_12 .blog-inner-wrap .pre-blog-content .blog-btn-part .blog-btn:hover, {{WRAPPER}} .blog-item .blog-content .blog-btn .read-more:hover, {{WRAPPER}} .rs-blog__single .content .rs-blog-author .rs-link a:hover, {{WRAPPER}} .rs-blog-layout-4 .rs-blog__item .rs-content .rs-blog-footer .btn-link:hover, {{WRAPPER}} .rs-blog__item .rs-content .rs-blog-footer .blog-btn .rs-btn:hover',
-                ]
-            );
+                $this->add_group_control(
+                    \Elementor\Group_Control_Border::get_type(),
+                    [
+                        'name'     => 'readmore_hover_border',
+                        'label'    => esc_html__( 'Border', 'fancy-post-grid' ),
+                        'selector' => '{{WRAPPER}} .fpg-section-area a.read-more:hover,{{WRAPPER}} .pre-blog-item.style_12 .blog-inner-wrap .pre-blog-content .blog-btn-part .blog-btn:hover, {{WRAPPER}} .blog-item .blog-content .blog-btn .read-more:hover, {{WRAPPER}} .rs-blog__single .content .rs-blog-author .rs-link a:hover, {{WRAPPER}} .rs-blog-layout-4 .rs-blog__item .rs-content .rs-blog-footer .btn-link:hover, {{WRAPPER}} .rs-blog__item .rs-content .rs-blog-footer .blog-btn .rs-btn:hover',
+                    ]
+                );
 
-            $this->add_responsive_control(
-                'readmore_hover_border_radius',
-                [
-                    'label'      => esc_html__( 'Border Radius on Hover', 'fancy-post-grid' ),
-                    'type'       => \Elementor\Controls_Manager::DIMENSIONS,
-                    'size_units' => array( 'px', '%' ),
-                    'selectors'  => array(
-                        '{{WRAPPER}} .fpg-section-area a.read-more:hover,{{WRAPPER}} .pre-blog-item.style_12 .blog-inner-wrap .pre-blog-content .blog-btn-part .blog-btn:hover, {{WRAPPER}} .blog-item .blog-content .blog-btn .read-more:hover, {{WRAPPER}} .rs-blog__single .content .rs-blog-author .rs-link a:hover, {{WRAPPER}} .rs-blog-layout-4 .rs-blog__item .rs-content .rs-blog-footer .btn-link:hover, {{WRAPPER}} .rs-blog__item .rs-content .rs-blog-footer .blog-btn .rs-btn:hover' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-                    ),
-                ]
-            );
+                $this->add_responsive_control(
+                    'readmore_hover_border_radius',
+                    [
+                        'label'      => esc_html__( 'Border Radius on Hover', 'fancy-post-grid' ),
+                        'type'       => \Elementor\Controls_Manager::DIMENSIONS,
+                        'size_units' => array( 'px', '%' ),
+                        'selectors'  => array(
+                            '{{WRAPPER}} .fpg-section-area a.read-more:hover,{{WRAPPER}} .pre-blog-item.style_12 .blog-inner-wrap .pre-blog-content .blog-btn-part .blog-btn:hover, {{WRAPPER}} .blog-item .blog-content .blog-btn .read-more:hover, {{WRAPPER}} .rs-blog__single .content .rs-blog-author .rs-link a:hover, {{WRAPPER}} .rs-blog-layout-4 .rs-blog__item .rs-content .rs-blog-footer .btn-link:hover, {{WRAPPER}} .rs-blog__item .rs-content .rs-blog-footer .blog-btn .rs-btn:hover' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                        ),
+                    ]
+                );
 
-            $this->end_controls_tab();
+                $this->end_controls_tab();
 
-            $this->end_controls_tabs();
+                $this->end_controls_tabs();
 
-            $this->end_controls_section();
-
+                $this->end_controls_section();
+            }    
             // Isotope Style Section
             if (!in_array('isotope_style', $this->exclude_controls)) {
                 $this->start_controls_section(
@@ -4098,7 +4695,7 @@ add_action('elementor/widgets/widgets_registered', function () {
     class Fancy_Post_Card_Layout_Widget extends Fancy_Post_Grid_Base_Widget {
         
         // Specify which controls to exclude
-        protected $exclude_controls = ['fancy_post_grid_layout','fancy_post_list_layout','show_pagination_on', 'fancy_post_slider_layout','fancy_post_isotope_layout','slider_columns','slider_pagination_type','slider_section','slider_style','col_desktop_slider','col_lg_slider','col_md_slider','col_sm_slider','col_xs_slider','isotope_section','isotope_style','col_desktop','col_lg','col_md','col_sm','col_xs','space_between','space_between_lg','space_between_md','space_between_sm','space_between_xs'];
+        protected $exclude_controls = ['fancy_post_grid_layout','fancy_post_list_layout','show_pagination_on', 'fancy_post_slider_layout', 'excerpt_content','fancy_post_isotope_layout','slider_columns','slider_pagination_type','slider_section','slider_style','col_desktop_slider','col_lg_slider','col_md_slider','col_sm_slider','col_xs_slider','isotope_section','isotope_style','col_desktop','col_lg','col_md','col_sm','col_xs','space_between','space_between_lg','space_between_md','space_between_sm','space_between_xs','read_more_content','read_more_style','show_post_excerpt','show_post_readmore','excerpt_content_style','show_post_tags','show_comments_count','show_post_tags_icon','show_comments_count_icon','excerpt_order','button_order','thumbnail_left_size','thumbnail_right_size','thumbnail_size'];
         public function get_name() {
             return 'fpg_card_layout';
         }

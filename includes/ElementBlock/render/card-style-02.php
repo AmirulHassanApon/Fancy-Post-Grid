@@ -86,7 +86,7 @@ if ($query->have_posts()) { ?>
                         // Map the custom sizes to their actual dimensions
                         
                         $layout = $settings['fancy_post_card_layout'] ?? 'cardstyle02';
-                        $thumbnail_size = $settings['thumbnail_size'] ?? '';
+                        $thumbnail_size = $settings['thumbnail_size_card'] ?? '';
 
                         if (empty($thumbnail_size)) {
                             switch ($layout) {
@@ -186,9 +186,11 @@ if ($query->have_posts()) { ?>
                                         'content'   => esc_html($settings['author_prefix']) . ' ' . esc_html(get_the_author()),
                                     ),
                                     'post_views' => array(
-                                        'condition' => true, // <-- Always true, always show views
+                                        'condition' => 'yes' === $settings['show_post_views'],
                                         'class'     => 'rs-meta',
-                                        'icon'      => '<i class="ri-pulse-fill"></i>',
+                                        'icon'      => ('yes' === $settings['show_meta_data_icon'] && 'yes' === $settings['show_post_views_icon']) 
+                                                        ? '<i class="ri-pulse-fill"></i>' 
+                                                        : '',
                                         'content'   => esc_html($post_views) . ' ' . esc_html__('Views', 'fancy-post-grid'),
                                     ),
                                 );

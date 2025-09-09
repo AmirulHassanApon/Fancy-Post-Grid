@@ -378,4 +378,9 @@
 }
 .elementor-control-fancy_post_card_layout.fpg-el-control-post-chooser-card-thumb .elementor-control-field .elementor-control-input-wrapper .elementor-choices label.elementor-control-unit-1:nth-child(24) i:hover{
   background-image: url('../../../includes/metabox/img/liststyle8_hover.png');
+}.elementor-control-fancy_post_card_layout.fpg-el-control-post-chooser-card-thumb .elementor-control-field .elementor-control-input-wrapper .elementor-choices label.elementor-control-unit-1:nth-child(26) i{
+  background-image: url('../../../includes/metabox/img/liststyle8.png');
+}
+.elementor-control-fancy_post_card_layout.fpg-el-control-post-chooser-card-thumb .elementor-control-field .elementor-control-input-wrapper .elementor-choices label.elementor-control-unit-1:nth-child(26) i:hover{
+  background-image: url('../../../includes/metabox/img/liststyle8_hover.png');
 }
