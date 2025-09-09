@@ -80,35 +80,33 @@ if ($query->have_posts()) {
                             <h5 class="section-title is-small">Explore Categories</h5>
 
                             <ul class="fpg-category-list">
-    <?php foreach ($collected_cats as $cat) : 
-        // 🔹 Get category background image from term meta
-        $cat_bg_img = get_term_meta($cat->term_id, 'fpg_bg_image', true);
-        ?>
-        <li>
-            <a class="rs-categories-bg-thumb" 
-               href="<?php echo esc_url(get_category_link($cat->term_id)); ?>"
-               <?php if ($cat_bg_img) : ?>
-                   style="background-image: url('<?php echo esc_url($cat_bg_img); ?>');"
-               <?php endif; ?>>
-               
-                <span class="rs-categories-name">
-                    <?php echo esc_html($cat->name); ?> (<?php echo intval($cat->count); ?>)
-                </span>
-                
-                <span class="rs-categories-btn">
-                    <svg width="14" height="10" viewBox="0 0 14 10" fill="none"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd" clip-rule="evenodd"
-                            d="M12.7628 4.24925C10.9324 4.24925 9.26427 2.58258 9.26427 0.750751V0H7.76276V0.750751C7.76276 2.08258 8.34685 3.33183 9.26351 4.24925H0V5.75075H9.26351C8.34685 6.66817 7.76276 7.91742 7.76276 9.24925V10H9.26427V9.24925C9.26427 7.41817 10.9324 5.75075 12.7628 5.75075H13.5135V4.24925H12.7628Z"
-                            fill="white" />
-                    </svg>
-                </span>
-            </a>
-        </li>
-    <?php endforeach; ?>
-</ul>
-
-
+                                <?php foreach ($collected_cats as $cat) : 
+                                    // 🔹 Get category background image from term meta
+                                    $cat_bg_img = get_term_meta($cat->term_id, 'fpg_bg_image', true);
+                                    ?>
+                                    <li>
+                                        <a class="rs-categories-bg-thumb" 
+                                           href="<?php echo esc_url(get_category_link($cat->term_id)); ?>"
+                                           <?php if ($cat_bg_img) : ?>
+                                               style="background-image: url('<?php echo esc_url($cat_bg_img); ?>');"
+                                           <?php endif; ?>>
+                                           
+                                            <span class="rs-categories-name">
+                                                <?php echo esc_html($cat->name); ?> (<?php echo intval($cat->count); ?>)
+                                            </span>
+                                            
+                                            <span class="rs-categories-btn">
+                                                <svg width="14" height="10" viewBox="0 0 14 10" fill="none"
+                                                    xmlns="http://www.w3.org/2000/svg">
+                                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                                        d="M12.7628 4.24925C10.9324 4.24925 9.26427 2.58258 9.26427 0.750751V0H7.76276V0.750751C7.76276 2.08258 8.34685 3.33183 9.26351 4.24925H0V5.75075H9.26351C8.34685 6.66817 7.76276 7.91742 7.76276 9.24925V10H9.26427V9.24925C9.26427 7.41817 10.9324 5.75075 12.7628 5.75075H13.5135V4.24925H12.7628Z"
+                                                        fill="white" />
+                                                </svg>
+                                            </span>
+                                        </a>
+                                    </li>
+                                <?php endforeach; ?>
+                            </ul>
                         </div>
                     </div>
                 </div>

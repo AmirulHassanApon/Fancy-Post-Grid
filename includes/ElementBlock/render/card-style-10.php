@@ -160,11 +160,13 @@ $query = new \WP_Query($args);
                                                     'content'   => esc_html($settings['author_prefix']) . ' ' . esc_html(get_the_author()),
                                                 ),
                                                 'post_views' => array(
-                                                    'condition' => true, // <-- Always true, always show views
+                                                    'condition' => 'yes' === $settings['show_post_views'],
                                                     'class'     => 'rs-meta',
-                                                    'icon'      => '<i class="ri-pulse-fill"></i>',
+                                                    'icon'      => ('yes' === $settings['show_meta_data_icon'] && 'yes' === $settings['show_post_views_icon']) 
+                                                                    ? '<i class="ri-pulse-fill"></i>' 
+                                                                    : '',
                                                     'content'   => esc_html($post_views) . ' ' . esc_html__('Views', 'fancy-post-grid'),
-                                                ),
+                                                ),                                           
                                                 'post_date' => array(
                                                     'condition' => 'yes' === $settings['show_post_date'],
                                                     'class'     => 'rs-meta',
@@ -243,7 +245,7 @@ $query = new \WP_Query($args);
                                 <!-- Post Title -->
                                 <?php if (!empty($settings['show_post_title']) && 'yes' === $settings['show_post_title']) {
                                         // Title Tag
-                                        $title_tag = !empty($settings['title_tag']) ? esc_attr($settings['title_tag']) : 'h3';
+                                        $title_secondaery_tag_card = !empty($settings['title_secondaery_tag_card']) ? esc_attr($settings['title_secondaery_tag_card']) : 'h6';
 
                                         // Title Content
                                         $title = get_the_title();
@@ -260,8 +262,8 @@ $query = new \WP_Query($args);
 
                                         // Rendering the Title
                                         ?>
-                                        <<?php echo esc_attr($title_tag); ?>
-                                            class="title rs-post-overlay-title <?php echo esc_attr(implode(' ', $title_classes)); ?>"
+                                        <<?php echo esc_attr($title_secondaery_tag_card); ?>
+                                            class="title rs-post-overlay-title-card10 <?php echo esc_attr(implode(' ', $title_classes)); ?>"
                                             >
                                             <?php if ('link_details' === $settings['link_type']) { ?>
                                                 <a href="<?php the_permalink(); ?>"
@@ -272,7 +274,7 @@ $query = new \WP_Query($args);
                                             <?php } else { ?>
                                                 <?php echo esc_html($title); ?>
                                             <?php } ?>
-                                        </<?php echo esc_attr($title_tag); ?>>
+                                        </<?php echo esc_attr($title_secondaery_tag_card); ?>>
                                         <?php
                                     }
                                 ?> 
