@@ -324,6 +324,24 @@ add_action('elementor/widgets/widgets_registered', function () {
                             'cardstyle13' => [
                                 'title' => esc_html__( 'Small Card 06', 'fancy-post-grid' ),
                                 'icon' => 'eicon-text-align-right',
+                            ],'cardstyle14' => [
+                                'title' => esc_html__( 'Small Card 07', 'fancy-post-grid' ),
+                                'icon' => 'eicon-text-align-right',
+                            ],'cardstyle15' => [
+                                'title' => esc_html__( 'Small Card 08', 'fancy-post-grid' ),
+                                'icon' => 'eicon-text-align-right',
+                            ],'cardstyle16' => [
+                                'title' => esc_html__( 'Small Card 09', 'fancy-post-grid' ),
+                                'icon' => 'eicon-text-align-right',
+                            ],'cardstyle17' => [
+                                'title' => esc_html__( 'Small Card 10', 'fancy-post-grid' ),
+                                'icon' => 'eicon-text-align-right',
+                            ],'cardstyle18' => [
+                                'title' => esc_html__( 'Small Card 11', 'fancy-post-grid' ),
+                                'icon' => 'eicon-text-align-right',
+                            ],'cardstyle19' => [
+                                'title' => esc_html__( 'Small Card 12', 'fancy-post-grid' ),
+                                'icon' => 'eicon-text-align-right',
                             ],
                         ],
                         
@@ -374,7 +392,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                     ]
                 );
             }
-
+            
             // Add control for number of Desktops Above 1200px
             if (!in_array('col_desktop', $this->exclude_controls)) {
                 $this->add_control(
@@ -418,7 +436,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                         'classes' => 'fpg-el-control-post-chooser-thumb fpg-el-pro',
                         'separator' => 'before',
                         'condition' => [
-                            'fancy_post_card_layout' => [ 'cardstyle01', 'cardstyle02','cardstyle03', 'cardstyle04','cardstyle05', 'cardstyle07','cardstyle13' ],
+                            'fancy_post_card_layout' => [ 'cardstyle01', 'cardstyle02','cardstyle03', 'cardstyle04','cardstyle05', 'cardstyle07','cardstyle13', 'cardstyle14','cardstyle15','cardstyle16', 'cardstyle17','cardstyle18','cardstyle19' ],
                             
                         ],
                         
@@ -483,14 +501,13 @@ add_action('elementor/widgets/widgets_registered', function () {
                         'auto' => esc_html__('Auto', 'fancy-post-grid'),
                     ],
                     'condition' => [
-                        'fancy_post_card_layout' => [ 'cardstyle01', 'cardstyle02','cardstyle03', 'cardstyle04','cardstyle05', 'cardstyle07','cardstyle13' ],
+                        'fancy_post_card_layout' => [ 'cardstyle01', 'cardstyle02','cardstyle03', 'cardstyle04','cardstyle05', 'cardstyle07','cardstyle13', 'cardstyle14','cardstyle15','cardstyle16', 'cardstyle17','cardstyle18','cardstyle19' ],
                         
                     ],
                     'separator' => 'before',
                 ]
             );
             
-
             if (!in_array('col_lg_slider', $this->exclude_controls)) {          
                 $this->add_control(
                     'col_lg_slider',
@@ -549,7 +566,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                         'auto' => esc_html__('Auto', 'fancy-post-grid'),
                     ],
                     'condition' => [
-                        'fancy_post_card_layout' => [ 'cardstyle01', 'cardstyle02','cardstyle03', 'cardstyle04','cardstyle05', 'cardstyle07','cardstyle13' ],
+                        'fancy_post_card_layout' => [ 'cardstyle01', 'cardstyle02','cardstyle03', 'cardstyle04','cardstyle05', 'cardstyle07','cardstyle13', 'cardstyle14','cardstyle15','cardstyle16', 'cardstyle17','cardstyle18','cardstyle19' ],
                         
                     ],
                     'separator' => 'before',
@@ -663,7 +680,107 @@ add_action('elementor/widgets/widgets_registered', function () {
 
             $this->end_controls_section();
             // Layout Section
+            // Title Source control
+            if (!in_array('title_content', $this->exclude_controls)) { 
+                $this->start_controls_section(
+                        'title_content',
+                        [
+                            'label' => esc_html__( 'Section Title', 'fancy-post-grid' ),
+                            'tab'   => \Elementor\Controls_Manager::TAB_CONTENT,
+                        ]
+                    );
+                $this->add_control(
+                    'fancy_post_title_source',
+                    [
+                        'label'   => esc_html__( 'Title Source', 'fancy-post-grid' ),
+                        'type'    => \Elementor\Controls_Manager::SELECT,
+                        'options' => array(
+                            'page' => esc_html__( 'Page Title', 'fancy-post-grid' ),
+                            'custom'  => esc_html__( 'Custom Title', 'fancy-post-grid' ),
+                        ),
+                        'default' => 'custom',
+                    ]
+                );
 
+                // Prefix Text (visible only for Page Title)
+                $this->add_control(
+                    'fancy_post_title_prefix',
+                    [
+                        'label'       => esc_html__( 'Title Prefix Text', 'fancy-post-grid' ),
+                        'type'        => \Elementor\Controls_Manager::TEXT,
+                        'placeholder' => esc_html__( 'Enter prefix text', 'fancy-post-grid' ),
+                        'condition'   => [
+                            'fancy_post_title_source' => 'page',
+                        ],
+                    ]
+                );
+
+                // Suffix Text (visible only for Page Title)
+                $this->add_control(
+                    'fancy_post_title_suffix',
+                    [
+                        'label'       => esc_html__( 'Title Suffix Text', 'fancy-post-grid' ),
+                        'type'        => \Elementor\Controls_Manager::TEXT,
+                        'placeholder' => esc_html__( 'Enter suffix text', 'fancy-post-grid' ),
+                        'condition'   => [
+                            'fancy_post_title_source' => 'page',
+                        ],
+                    ]
+                );
+
+                // Custom Title (only when Title Source = Custom)
+                $this->add_control(
+                    'fancy_post_custom_title',
+                    [
+                        'label'       => esc_html__( 'Section Title', 'fancy-post-grid' ),
+                        'type'        => \Elementor\Controls_Manager::TEXT,
+                        'placeholder' => esc_html__( 'Section Title', 'fancy-post-grid' ),
+                        'condition'   => [
+                            'fancy_post_title_source' => 'custom',
+                        ],
+                    ]
+                );
+
+                // Enable External Link switcher
+                $this->add_control(
+                    'fancy_post_enable_external',
+                    [
+                        'label'        => esc_html__( 'Enable External Link', 'fancy-post-grid' ),
+                        'type'         => \Elementor\Controls_Manager::SWITCHER,
+                        'label_on'     => esc_html__( 'Yes', 'fancy-post-grid' ),
+                        'label_off'    => esc_html__( 'No', 'fancy-post-grid' ),
+                        'return_value' => 'yes',
+                        'default'      => '',
+                    ]
+                );
+
+                // External Link URL (only if switcher enabled)
+                $this->add_control(
+                    'fancy_post_external_link_url',
+                    [
+                        'label'       => esc_html__( 'External Link URL', 'fancy-post-grid' ),
+                        'type'        => \Elementor\Controls_Manager::URL,
+                        'placeholder' => esc_html__( 'https://example.com', 'fancy-post-grid' ),
+                        'condition'   => [
+                            'fancy_post_enable_external' => 'yes',
+                        ],
+                    ]
+                );
+
+                // External Link Text (only if switcher enabled)
+                $this->add_control(
+                    'fancy_post_external_link_text',
+                    [
+                        'label'       => esc_html__( 'Link Text', 'fancy-post-grid' ),
+                        'type'        => \Elementor\Controls_Manager::TEXT,
+                        'placeholder' => esc_html__( 'Read More', 'fancy-post-grid' ),
+                        'condition'   => [
+                            'fancy_post_enable_external' => 'yes',
+                        ],
+                    ]
+                );
+                $this->end_controls_section();
+            }
             // Query Builder
             if (!in_array('query_builder_section', $this->exclude_controls)) {  
                 $this->start_controls_section(
@@ -1212,7 +1329,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                         'return_value' => 'yes',
                         'default' => 'yes',
                         'condition' => [
-                            'fancy_post_card_layout' => [ 'cardstyle01', 'cardstyle02','cardstyle03', 'cardstyle04','cardstyle05', 'cardstyle06','cardstyle07', 'cardstyle08','cardstyle10', 'cardstyle11','cardstyle12', 'cardstyle13' ],
+                            'fancy_post_card_layout' => [ 'cardstyle01', 'cardstyle02','cardstyle03', 'cardstyle04','cardstyle05', 'cardstyle06','cardstyle07', 'cardstyle08','cardstyle10', 'cardstyle11','cardstyle12', 'cardstyle13', 'cardstyle14', 'cardstyle15','cardstyle16', 'cardstyle17','cardstyle18','cardstyle19' ],
                             
                         ],
                         'render_type' => 'template'
@@ -1294,7 +1411,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                         'return_value' => 'yes',
                         'default' => 'yes',
                         'condition' => [
-                            'fancy_post_card_layout' => [ 'cardstyle01', 'cardstyle02','cardstyle03', 'cardstyle04','cardstyle05', 'cardstyle06','cardstyle07', 'cardstyle08','cardstyle10', 'cardstyle11','cardstyle12', 'cardstyle13' ],
+                            'fancy_post_card_layout' => [ 'cardstyle01', 'cardstyle02','cardstyle03', 'cardstyle04','cardstyle05', 'cardstyle06','cardstyle07', 'cardstyle08','cardstyle10', 'cardstyle11','cardstyle12', 'cardstyle13', 'cardstyle14', 'cardstyle15' ,'cardstyle16', 'cardstyle17','cardstyle18','cardstyle19'],
                             
                         ],
                         'render_type' => 'template'
@@ -1549,21 +1666,6 @@ add_action('elementor/widgets/widgets_registered', function () {
                     ]
                 );
                 
-                // Show/Hide Title Hover Underline
-                $this->add_control(
-                    'section_title_hover_underline',
-                    [
-                        'label'   => esc_html__( 'Title Hover Underline', 'fancy-post-grid' ),
-                        'type'    => \Elementor\Controls_Manager::SELECT,
-                        'options' => array(
-                            'enable' => esc_html__( 'Enable', 'fancy-post-grid' ),
-                            'disable'  => esc_html__( 'Disable', 'fancy-post-grid' ),
-                        ),
-                        'default' => 'enable',
-                        'render_type' => 'template'
-                    ]
-                );
-
                 // Title Crop By
                 $this->add_control(
                     'section_title_crop_by',
@@ -1643,7 +1745,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                             'fancy_post_list'       => esc_html__( 'List Size(1200 x 650)', 'fancy-post-grid' ),
                         ),
                         'condition' => [
-                            'fancy_post_card_layout' => [ 'cardstyle01', 'cardstyle02','cardstyle03', 'cardstyle04','cardstyle05', 'cardstyle06','cardstyle07','cardstyle13' ],
+                            'fancy_post_card_layout' => [ 'cardstyle01', 'cardstyle02','cardstyle03', 'cardstyle04','cardstyle05', 'cardstyle06','cardstyle07','cardstyle13','cardstyle14','cardstyle15','cardstyle16', 'cardstyle17','cardstyle18','cardstyle19' ],
                             
                         ],
                         
@@ -2737,7 +2839,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                     [
                         'name'     => 'section_title_typography',
                         'label'    => esc_html__( 'Primary Typography', 'fancy-post-grid' ),
-                        'selector' => '{{WRAPPER}} .fancy-post-title a, {{WRAPPER}} .fancy-post-title, {{WRAPPER}} .rs-blog-layout-27-list-item .rs-content .title a',
+                        'selector' => '{{WRAPPER}} .title, {{WRAPPER}} .title a',
 
                     ]
                 );
@@ -2768,7 +2870,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                             ),
                         ),
                         'selectors' => array(
-                            '{{WRAPPER}} .fancy-post-title,{{WRAPPER}} .rs-blog-layout-27-list-item .rs-content .title a' => 'text-align: {{VALUE}};',
+                            '{{WRAPPER}} .title, {{WRAPPER}} .title a' => 'text-align: {{VALUE}};',
                         ),
                     ]
                 );           
@@ -2781,7 +2883,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                         'type'       => \Elementor\Controls_Manager::DIMENSIONS,
                         'size_units' => array( 'px', 'em', '%' ),
                         'selectors'  => array(
-                            '{{WRAPPER}} .fancy-post-title,{{WRAPPER}} .rs-blog-layout-27-list-item .rs-content .title a' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                            '{{WRAPPER}} .title, {{WRAPPER}} .title a' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                         ),
                     ]
                 );
@@ -2794,19 +2896,70 @@ add_action('elementor/widgets/widgets_registered', function () {
                         'type'       => \Elementor\Controls_Manager::DIMENSIONS,
                         'size_units' => array( 'px', 'em', '%' ),
                         'selectors'  => array(
-                            '{{WRAPPER}} .fancy-post-title,{{WRAPPER}} .rs-blog-layout-27-list-item .rs-content .title a' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                            '{{WRAPPER}} .title, {{WRAPPER}} .title a' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                         ),
                     ]
                 ); 
 
+                // External Icon Size
+                $this->add_responsive_control(
+                    'section_title_external_icon_size',
+                    [
+                        'label' => esc_html__( 'External Icon Size', 'fancy-post-grid' ),
+                        'type' => \Elementor\Controls_Manager::SLIDER,
+                        'size_units' => [ 'px' ],
+                        'range' => [
+                            'px' => [
+                                'min' => 0,
+                                'max' => 50,
+                            ],
+                        ],
+                        'selectors' => [
+                            '{{WRAPPER}} .section-btn i,{{WRAPPER}} .section-btn a' => 'font-size: {{SIZE}}{{UNIT}};',
+                            
+                        ],
+                        'condition' => [
+                            'fancy_post_enable_external' => 'yes',
+                        ],
+                    ]
+                );
+
+                // External Icon Y Position
+                $this->add_responsive_control(
+                    'section_title_external_icon_y',
+                    [
+                        'label' => esc_html__( 'External Icon Y Position', 'fancy-post-grid' ),
+                        'type' => \Elementor\Controls_Manager::SLIDER,
+                        'size_units' => [ 'px' ],
+                        'range' => [
+                            'px' => [
+                                'min' => -70,
+                                'max' => 70,
+                            ],
+                        ],
+                        'selectors' => [
+                            '{{WRAPPER}} .section-btn' => 'transform: translateY({{SIZE}}{{UNIT}});',
+                            
+                        ],
+                        'condition' => [
+                            'fancy_post_enable_external' => 'yes',
+                        ],
+                    ]
+                );
+
+
                 // Title Styling: Tabs (Normal, Hover, Box Hover)
                 $this->start_controls_tabs('section_title_style_tabs');
 
-                // Normal Tab
+                /**
+                 * ====================
+                 * Normal Tab
+                 * ====================
+                 */
                 $this->start_controls_tab(
                     'section_title_normal',
                     [
-                        'label' => esc_html__( 'Primary Normal', 'fancy-post-grid' ),
+                        'label' => esc_html__( 'Section Title', 'fancy-post-grid' ),
                     ]
                 );
 
@@ -2815,33 +2968,63 @@ add_action('elementor/widgets/widgets_registered', function () {
                     [
                         'label'     => esc_html__( 'Color', 'fancy-post-grid' ),
                         'type'      => \Elementor\Controls_Manager::COLOR,
-                        
-                        'selectors' => array(
-                            '{{WRAPPER}} .fancy-post-title a,{{WRAPPER}} .blog-title a,{{WRAPPER}} .rs-blog-layout-1.rs-blog-layout-9 .blog-horizontal .blog-meta .blog-item-wrap .blog-content .blog-title a,{{WRAPPER}} .rs-blog-layout-27-list-item .rs-content .title a' => 'color: {{VALUE}};',
-                            '{{WRAPPER}} .fancy-post-title' => 'color: {{VALUE}};',
-
-                        ),
+                        'selectors' => [
+                            '{{WRAPPER}} .title, {{WRAPPER}} .title a' => 'color: {{VALUE}};',
+                        ],
                     ]
                 );
 
+                // Dot Color
                 $this->add_control(
-                    'section_title_normal_background',
+                    'section_title_dot_color',
                     [
-                        'label'     => esc_html__( 'Background Color', 'fancy-post-grid' ),
+                        'label'     => esc_html__( 'Dot Color', 'fancy-post-grid' ),
                         'type'      => \Elementor\Controls_Manager::COLOR,
-                        'selectors' => array(
-                            '{{WRAPPER}} .fancy-post-title,{{WRAPPER}} .rs-blog-layout-3 .rs-blog__single .content .title a,{{WRAPPER}} .rs-blog-layout-27-list-item .rs-content .title' => 'background-color: {{VALUE}};',
-                        ),
+                        'selectors' => [
+                            '{{WRAPPER}} .fancy-post-title .dot' => 'background-color: {{VALUE}};',
+                        ],
                     ]
                 );
-                
+
+                // Line/Border Color
+                $this->add_control(
+                    'section_title_line_color',
+                    [
+                        'label'     => esc_html__( 'Line / Border Color', 'fancy-post-grid' ),
+                        'type'      => \Elementor\Controls_Manager::COLOR,
+                        'selectors' => [
+                            '{{WRAPPER}} .fancy-post-title:after' => 'background-color: {{VALUE}};',
+                            '{{WRAPPER}} .fancy-post-title' => 'border-color: {{VALUE}};',
+                        ],
+                    ]
+                );
+
+                // External Link Color
+                $this->add_control(
+                    'section_title_external_link_color',
+                    [
+                        'label'     => esc_html__( 'External Link Color', 'fancy-post-grid' ),
+                        'type'      => \Elementor\Controls_Manager::COLOR,
+                        'selectors' => [
+                            '{{WRAPPER}} .section-btn i,{{WRAPPER}} .section-btn a' => 'color: {{VALUE}};',
+                        ],
+                        'condition' => [
+                            'fancy_post_enable_external' => 'yes',
+                        ],
+                    ]
+                );
+
                 $this->end_controls_tab();
 
-                // Hover Tab
+                /**
+                 * ====================
+                 * Hover Tab
+                 * ====================
+                 */
                 $this->start_controls_tab(
                     'section_title_hover',
                     [
-                        'label' => esc_html__( 'Primary Hover', 'fancy-post-grid' ),
+                        'label' => esc_html__( 'Section Title Hover', 'fancy-post-grid' ),
                     ]
                 );
 
@@ -2850,29 +3033,31 @@ add_action('elementor/widgets/widgets_registered', function () {
                     [
                         'label'     => esc_html__( 'Color', 'fancy-post-grid' ),
                         'type'      => \Elementor\Controls_Manager::COLOR,
-                        'selectors' => array(
-                            '{{WRAPPER}} .fancy-post-title a:hover' => 'color: {{VALUE}};',
-                            '{{WRAPPER}} .fancy-post-title:hover,{{WRAPPER}} .rs-blog-layout-1.rs-blog-layout-9 .blog-horizontal .blog-meta .blog-item-wrap .blog-content .blog-title a:hover,{{WRAPPER}} .rs-blog-layout-17-item .rs-content .title a:hover,{{WRAPPER}} .rs-blog-layout-27-list-item .rs-content .title a:hover' => 'color: {{VALUE}};',
-                            '{{WRAPPER}} .underline a' => 'background-image: linear-gradient(to bottom, {{VALUE}} 0%, {{VALUE}} 100%) !important;',
-                        ),
+                        'selectors' => [
+                            '{{WRAPPER}} .title:hover, {{WRAPPER}} .title a:hover' => 'color: {{VALUE}};',
+                            
+                        ],
                     ]
                 );
 
+                // External Link Hover Color
                 $this->add_control(
-                    'section_title_hover_background',
+                    'section_title_external_link_hover_color',
                     [
-                        'label'     => esc_html__( 'Background Color', 'fancy-post-grid' ),
+                        'label'     => esc_html__( 'External Link Hover Color', 'fancy-post-grid' ),
                         'type'      => \Elementor\Controls_Manager::COLOR,
-                        'selectors' => array(
-                            '{{WRAPPER}} .fancy-post-title:hover,{{WRAPPER}} .rs-blog-layout-3 .rs-blog__single .content .title a:hover,{{WRAPPER}} .rs-blog-layout-27-list-item .rs-content .title:hover' => 'background-color: {{VALUE}};',
-                        ),
-                        'render_type' => 'template'
+                        'selectors' => [
+                            '{{WRAPPER}} .section-btn i:hover,{{WRAPPER}} .section-btn a:hover' => 'color: {{VALUE}};',
+                        ],
+                        'condition' => [
+                            'fancy_post_enable_external' => 'yes',
+                        ],
                     ]
                 );
-                
-                $this->end_controls_tab();
 
-                $this->end_controls_tabs(); // End Title Tabs
+                $this->end_controls_tab();
+                $this->end_controls_tabs();
+                 // End Title Tabs
 
                 $this->end_controls_section(); // End Post Title Style Section
             }
@@ -4471,6 +4656,18 @@ add_action('elementor/widgets/widgets_registered', function () {
                 $this->render_card_style_12();
             } elseif ($card_layout === 'cardstyle13') {
                 $this->render_card_style_13();
+            } elseif ($card_layout === 'cardstyle14') {
+                $this->render_card_style_14();
+            } elseif ($card_layout === 'cardstyle15') {
+                $this->render_card_style_15();
+            }elseif ($card_layout === 'cardstyle16') {
+                $this->render_card_style_16();
+            } elseif ($card_layout === 'cardstyle17') {
+                $this->render_card_style_17();
+            } elseif ($card_layout === 'cardstyle18') {
+                $this->render_card_style_18();
+            } elseif ($card_layout === 'cardstyle19') {
+                $this->render_card_style_19();
             } 
 
             // Render Title layout
@@ -4936,19 +5133,67 @@ add_action('elementor/widgets/widgets_registered', function () {
                 echo '<div class="error">' . esc_html__('Card Style 12 template not found.', 'fancy-post-grid') . '</div>';
             }
         } protected function render_card_style_13() {
-            $file_path = plugin_dir_path( __FILE__ ) . 'render/card-style/card-style-13.php'; // Adjust the path as needed.
+            $file_path = plugin_dir_path( __FILE__ ) . 'render/card-style/card-style-small-06.php'; // Adjust the path as needed.
             
             if ( file_exists( $file_path ) ) {
                 include $file_path;
             } else {
                 echo '<div class="error">' . esc_html__('Card Style 13 template not found.', 'fancy-post-grid') . '</div>';
             }
-        }  
+        }  protected function render_card_style_14() {
+            $file_path = plugin_dir_path( __FILE__ ) . 'render/card-style/card-style-small-07.php'; // Adjust the path as needed.
+            
+            if ( file_exists( $file_path ) ) {
+                include $file_path;
+            } else {
+                echo '<div class="error">' . esc_html__('Card Style 14 template not found.', 'fancy-post-grid') . '</div>';
+            }
+        }  protected function render_card_style_15() {
+            $file_path = plugin_dir_path( __FILE__ ) . 'render/card-style/card-style-small-08.php'; // Adjust the path as needed.
+            
+            if ( file_exists( $file_path ) ) {
+                include $file_path;
+            } else {
+                echo '<div class="error">' . esc_html__('Card Style 15 template not found.', 'fancy-post-grid') . '</div>';
+            }
+        }protected function render_card_style_16() {
+            $file_path = plugin_dir_path( __FILE__ ) . 'render/card-style/card-style-small-09.php'; // Adjust the path as needed.
+            
+            if ( file_exists( $file_path ) ) {
+                include $file_path;
+            } else {
+                echo '<div class="error">' . esc_html__('Card Style 16 template not found.', 'fancy-post-grid') . '</div>';
+            }
+        }  protected function render_card_style_17() {
+            $file_path = plugin_dir_path( __FILE__ ) . 'render/card-style/card-style-small-10.php'; // Adjust the path as needed.
+            
+            if ( file_exists( $file_path ) ) {
+                include $file_path;
+            } else {
+                echo '<div class="error">' . esc_html__('Card Style 17 template not found.', 'fancy-post-grid') . '</div>';
+            }
+        }  protected function render_card_style_18() {
+            $file_path = plugin_dir_path( __FILE__ ) . 'render/card-style/card-style-small-11.php'; // Adjust the path as needed.
+            
+            if ( file_exists( $file_path ) ) {
+                include $file_path;
+            } else {
+                echo '<div class="error">' . esc_html__('Card Style 18 template not found.', 'fancy-post-grid') . '</div>';
+            }
+        } protected function render_card_style_19() {
+            $file_path = plugin_dir_path( __FILE__ ) . 'render/card-style/card-style-small-12.php'; // Adjust the path as needed.
+            
+            if ( file_exists( $file_path ) ) {
+                include $file_path;
+            } else {
+                echo '<div class="error">' . esc_html__('Card Style 19 template not found.', 'fancy-post-grid') . '</div>';
+            }
+        }
     }
 
     // FPG-Grid Layout Widget
     class Fancy_Post_Grid_Layout_Widget extends Fancy_Post_Grid_Base_Widget {
-        protected $exclude_controls = ['fancy_post_title_layout','fancy_post_slider_layout','fancy_post_card_layout','fancy_post_list_layout','fancy_post_isotope_layout','slider_pagination_type','slider_section','slider_style','col_desktop_slider','col_lg_slider','col_md_slider','col_sm_slider','col_xs_slider','isotope_section','isotope_style','thumbnail_left_size','thumbnail_right_size','meta_date_color','post_section_title_style','section_title'];
+        protected $exclude_controls = ['fancy_post_title_layout','fancy_post_slider_layout','fancy_post_card_layout','fancy_post_list_layout','fancy_post_isotope_layout','slider_pagination_type','slider_section','slider_style','col_desktop_slider','col_lg_slider','col_md_slider','col_sm_slider','col_xs_slider','isotope_section','isotope_style','thumbnail_left_size','thumbnail_right_size','meta_date_color','title_content','section_title','post_section_title_style'];
         public function get_name() {
             return 'fpg_grid_layout';
         }
@@ -4970,7 +5215,7 @@ add_action('elementor/widgets/widgets_registered', function () {
     class Fancy_Post_Slider_Layout_Widget extends Fancy_Post_Grid_Base_Widget {
         
         // Specify which controls to exclude
-        protected $exclude_controls = ['fancy_post_title_layout','fancy_post_grid_layout','fancy_post_card_layout', 'fancy_post_list_layout','fancy_post_isotope_layout','columns','show_pagination','col_desktop','col_lg','col_md','col_sm','col_xs','isotope_section','isotope_style','thumbnail_left_size','thumbnail_right_size','meta_date_color','post_section_title_style','section_title'];
+        protected $exclude_controls = ['fancy_post_title_layout','fancy_post_grid_layout','fancy_post_card_layout', 'fancy_post_list_layout','fancy_post_isotope_layout','columns','show_pagination','col_desktop','col_lg','col_md','col_sm','col_xs','isotope_section','isotope_style','thumbnail_left_size','thumbnail_right_size','meta_date_color','title_content','section_title','post_section_title_style'];
         public function get_name() {
             return 'fpg_slider_layout';
         }
@@ -4993,7 +5238,7 @@ add_action('elementor/widgets/widgets_registered', function () {
     class Fancy_Post_Isotope_Layout_Widget extends Fancy_Post_Grid_Base_Widget {
         
         // Specify which controls to exclude
-        protected $exclude_controls = ['fancy_post_title_layout','fancy_post_grid_layout','fancy_post_card_layout','show_pagination_on', 'fancy_post_slider_layout','fancy_post_list_layout','slider_columns','slider_pagination_type','slider_section','slider_style','col_desktop_slider','col_lg_slider','col_md_slider','col_sm_slider','col_xs_slider','thumbnail_left_size','thumbnail_right_size','meta_date_color','post_section_title_style','section_title'];
+        protected $exclude_controls = ['fancy_post_title_layout','fancy_post_grid_layout','fancy_post_card_layout','show_pagination_on', 'fancy_post_slider_layout','fancy_post_list_layout','slider_columns','slider_pagination_type','slider_section','slider_style','col_desktop_slider','col_lg_slider','col_md_slider','col_sm_slider','col_xs_slider','thumbnail_left_size','thumbnail_right_size','meta_date_color','title_content','section_title','post_section_title_style'];
         public function get_name() {
             return 'fpg_isotope_layout';
         }
@@ -5015,7 +5260,7 @@ add_action('elementor/widgets/widgets_registered', function () {
     class Fancy_Post_List_Layout_Widget extends Fancy_Post_Grid_Base_Widget {
         
         // Specify which controls to exclude
-        protected $exclude_controls = ['fancy_post_title_layout','fancy_post_grid_layout','fancy_post_card_layout','show_pagination_on', 'fancy_post_slider_layout','fancy_post_isotope_layout','slider_columns','slider_pagination_type','slider_section','slider_style','col_desktop_slider','col_lg_slider','col_md_slider','col_sm_slider','col_xs_slider','isotope_section','isotope_style','col_desktop','col_lg','col_md','col_sm','col_xs','space_between','space_between_lg','space_between_md','space_between_sm','space_between_xs','post_section_title_style','section_title'];
+        protected $exclude_controls = ['fancy_post_title_layout','fancy_post_grid_layout','fancy_post_card_layout','show_pagination_on', 'fancy_post_slider_layout','fancy_post_isotope_layout','slider_columns','slider_pagination_type','slider_section','slider_style','col_desktop_slider','col_lg_slider','col_md_slider','col_sm_slider','col_xs_slider','isotope_section','isotope_style','col_desktop','col_lg','col_md','col_sm','col_xs','space_between','space_between_lg','space_between_md','space_between_sm','space_between_xs','title_content','section_title','post_section_title_style'];
         public function get_name() {
             return 'fpg_list_layout';
         }
@@ -5037,7 +5282,7 @@ add_action('elementor/widgets/widgets_registered', function () {
     class Fancy_Post_Card_Layout_Widget extends Fancy_Post_Grid_Base_Widget {
         
         // Specify which controls to exclude
-        protected $exclude_controls = ['fancy_post_title_layout','fancy_post_grid_layout','fancy_post_list_layout','show_pagination_on', 'fancy_post_slider_layout', 'excerpt_content','fancy_post_isotope_layout','slider_columns','slider_pagination_type','slider_section','slider_style','col_desktop_slider','col_lg_slider','col_md_slider','col_sm_slider','col_xs_slider','isotope_section','isotope_style','col_desktop','col_lg','col_md','col_sm','col_xs','space_between','space_between_lg','space_between_md','space_between_sm','space_between_xs','read_more_content','read_more_style','show_post_excerpt','show_post_readmore','excerpt_content_style','show_post_tags','show_comments_count','show_post_tags_icon','show_comments_count_icon','excerpt_order','button_order','thumbnail_left_size','thumbnail_right_size','thumbnail_size','post_section_title_style','section_title'];
+        protected $exclude_controls = ['fancy_post_title_layout','fancy_post_grid_layout','fancy_post_list_layout','show_pagination_on', 'fancy_post_slider_layout', 'excerpt_content','fancy_post_isotope_layout','slider_columns','slider_pagination_type','slider_section','slider_style','col_desktop_slider','col_lg_slider','col_md_slider','col_sm_slider','col_xs_slider','isotope_section','isotope_style','col_desktop','col_lg','col_md','col_sm','col_xs','space_between','space_between_lg','space_between_md','space_between_sm','space_between_xs','read_more_content','read_more_style','show_post_excerpt','show_post_readmore','excerpt_content_style','show_post_tags','show_comments_count','show_post_tags_icon','show_comments_count_icon','excerpt_order','button_order','thumbnail_left_size','thumbnail_right_size','thumbnail_size','title_content','section_title','post_section_title_style'];
         public function get_name() {
             return 'fpg_card_layout';
         }

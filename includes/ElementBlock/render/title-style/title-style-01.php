@@ -1,91 +1,106 @@
 <?php
 $settings = $this->get_settings_for_display();
-// Get the current page number
-$paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
-// Prepare arguments for WP_Query
-$args = array(
-    'post_type'      => 'post',
-    'post_status'    => 'publish',
-    
-    
-    'paged'          => $paged, // Add the paged parameter to handle pagination
-);
+$layout        = $settings['fancy_post_card_layout'] ?? 'titlestyle01';
+$box_alignment = $settings['box_alignment'] ?? '';
 
-// Query the posts
-$query = new \WP_Query($args);
-
-// Check if there are posts
-if ($query->have_posts()) { ?>
-    <div class="fpg-section-area rs-medium-card-area section-space">
-        <div class="container">
-            <div class="row">
-    <?php
-    while ($query->have_posts()) {
-        $query->the_post(); 
-    ?>
-        <div class="col-xl-8 col-lg-8 g-15">
-            <?php 
-                $layout = $settings['fancy_post_card_layout'] ?? 'cardstyle06';
-                $box_alignment = $settings['box_alignment'] ?? '';
-
-                if (empty($box_alignment)) {
-                    switch ($layout) {
-                        
-                        case 'cardstyle06':
-                            $box_alignment = 'start';
-                            break;
-                    }
-                }
-            ?>
-            <div class="rs-post-medium rs-post-medium-one <?php echo esc_attr($hover_animation); ?> ">
-                <div class="rs-post-medium-item">
-                    
-
-                    <div class="rs-post-medium-content align-<?php echo esc_attr($box_alignment); ?>">
-                        
-                        <!-- Post Title -->
-                        <?php 
-                                // Title Tag
-                                $title_tag = !empty($settings['title_tag']) ? esc_attr($settings['title_tag']) : 'h3';
-
-                                // Title Content
-                                $title = get_the_title();
-                                if (!empty($settings['title_crop_by']) && !empty($settings['title_length'])) {
-                                    $title = ('character' === $settings['title_crop_by'])
-                                        ? mb_substr($title, 0, (int)$settings['title_length'])
-                                        : implode(' ', array_slice(explode(' ', $title), 0, (int)$settings['title_length']));
-                                }
-                                // Title Classes
-                                $title_classes = ['fancy-post-title'];
-                                if ('enable' === $settings['title_hover_underline']) {
-                                    $title_classes[] = 'underline';
-                                }                            
-
-                                // Rendering the Title
-                                ?>
-                                <<?php echo esc_attr($title_tag); ?>
-                                    class="title rs-post-medium-title <?php echo esc_attr(implode(' ', $title_classes)); ?>"
-                                    >
-                                    
-                                        <a href="<?php the_permalink(); ?>">
-                                           <?php echo esc_html($title); ?>
-                                        </a>
-                                    
-                                        
-                                </<?php echo esc_attr($title_tag); ?>>
-                                 
-                        
-                    </div>                    
-                </div>                    
-            </div>                    
-        </div>
-        <?php
-    } ?>
-    </div></div></div>
-    <?
-    
-} else {
+if ( empty( $box_alignment ) ) {
+    switch ( $layout ) {
+        case 'titlestyle01':
+            $box_alignment = 'start';
+            break;
+    }
 }
 
+// Title Tag
+$title_tag = ! empty( $settings['section_title_tag'] ) ? esc_attr( $settings['section_title_tag'] ) : 'h3';
+
+// Title Content Source
+if ( 'page' === ( $settings['fancy_post_title_source'] ?? 'custom' ) ) {
+    $title = get_the_title();
+    if ( ! empty( $settings['fancy_post_title_prefix'] ) ) {
+        $title = esc_html( $settings['fancy_post_title_prefix'] ) . ' ' . $title;
+    }
+    if ( ! empty( $settings['fancy_post_title_suffix'] ) ) {
+        $title .= ' ' . esc_html( $settings['fancy_post_title_suffix'] );
+    }
+} else {
+    $title = ! empty( $settings['fancy_post_custom_title'] ) ? $settings['fancy_post_custom_title'] : get_the_title();
+}
+
+// Title Crop
+if ( ! empty( $settings['section_title_crop_by'] ) && ! empty( $settings['section_title_length'] ) ) {
+    $length = (int) $settings['section_title_length'];
+    if ( 'character' === $settings['section_title_crop_by'] ) {
+        $title = mb_substr( $title, 0, $length );
+    } else {
+        $title = implode( ' ', array_slice( explode( ' ', $title ), 0, $length ) );
+    }
+}
+
+// External Link
+$external_url  = ! empty( $settings['fancy_post_external_link_url']['url'] ) ? esc_url( $settings['fancy_post_external_link_url']['url'] ) : '';
+$external_text = ! empty( $settings['fancy_post_external_link_text'] ) ? esc_html( $settings['fancy_post_external_link_text'] ) : '';
+
+// Split text function
+function fancy_split_text( $text ) {
+    $output = '';
+    $words  = preg_split( '/\s+/', $text );
+    foreach ( $words as $word ) {
+        $output .= '<div style="position:relative;display:inline-block;">';
+        $letters = preg_split( '//u', $word, -1, PREG_SPLIT_NO_EMPTY );
+        foreach ( $letters as $letter ) {
+            $output .= '<div style="position: relative; display: inline-block; transform: translate(0px, 0px); opacity: 1;">' . esc_html( $letter ) . '</div>';
+        }
+        $output .= '</div> ';
+    }
+    return trim( $output );
+}
+?>
+
+<div class="row section-title-space align-<?php echo esc_attr( $box_alignment ); ?>">
+    <div class="col-xl-6 col-lg-6">
+        <div class="section-title-wrapper">
+
+            <!-- Section Title -->
+            <<?php echo $title_tag; ?>
+                class="title section-title rs-split-text-enable split-in-left"
+                style="perspective:400px;">
+                
+                <?php if ( 'page' === ( $settings['fancy_post_title_source'] ?? 'custom' ) ) : ?>
+                    <a href="<?php the_permalink(); ?>">
+                        <?php echo fancy_split_text( $title ); ?>
+                    </a>
+                <?php else : ?>
+                    <?php echo fancy_split_text( $title ); ?>
+                <?php endif; ?>
+            </<?php echo $title_tag; ?>>
+
+        </div>
+    </div>
+
+    <div class="col-xl-6 col-lg-6">
+        <!-- External Link -->
+        <?php if ( ! empty( $settings['fancy_post_enable_external'] ) && 'yes' === $settings['fancy_post_enable_external'] ) : ?>
+            <div class="section-btn">
+                <a href="<?php echo $external_url; ?>"
+                   class="rs-btn has-text has-icon"
+                   <?php echo ! empty( $settings['fancy_post_external_link_url']['is_external'] ) ? 'target="_blank"' : ''; ?>
+                   <?php echo ! empty( $settings['fancy_post_external_link_url']['nofollow'] ) ? 'rel="nofollow noopener"' : ''; ?>>
+                   
+                    <?php if ( $external_text ) : ?>
+                        <?php echo $external_text; ?>
+                    <?php endif; ?>
+
+                    <span class="icon-box">
+                        <i class="fas fa-long-arrow-alt-right" aria-hidden="true"></i>
+                    </span>
+                </a>
+            </div>
+        <?php endif; ?>
+    </div>
+</div>
+
+<?php
 // Reset post data
 wp_reset_postdata();
+?>

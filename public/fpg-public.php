@@ -8,6 +8,7 @@ function fancy_post_grid_public_styles_pro() {
     $settings_options = get_option( 'fpg_settings_option' );
        
     wp_enqueue_style( 'fpg-bootstrap', plugins_url('/assets/css/fpg_bootstrap.css', __FILE__), array(), $ufpg_version, 'all' );
+    wp_enqueue_style( 'fpg-bootstrap-main', plugins_url('/assets/css/bootstrap.min.css', __FILE__), array(), $ufpg_version, 'all' );
     wp_enqueue_style( 'fpg-font-awesome', plugins_url('/assets/css/all.min.css', __FILE__), array(), $ufpg_version, 'all' );
           
     wp_enqueue_style('fpg-remixicon', plugins_url('/assets/css/remixicon.css',__FILE__), array(), $ufpg_version, 'all');
@@ -33,6 +34,7 @@ function fancy_post_grid_public_scripts_pro(){
     wp_enqueue_script('jquery'); // This will ensure jQuery is loaded from WordPress's built-in version
     wp_enqueue_script('swiper-bundle-fpg', plugins_url('/assets/js/swiper-bundle.min.js', __FILE__), array('jquery'), $ufpg_version, true);
     wp_enqueue_script('fpg-main-js', plugins_url('/assets/js/fpg-main.js', __FILE__), array('swiper-bundle-fpg', 'jquery'), $ufpg_version, true);
+    wp_enqueue_script('fpg-bootstrap-main', plugins_url('/assets/js/bootstrap.bundle.min.js', __FILE__), array( 'jquery'), $ufpg_version, true);
     wp_enqueue_script( 'fpg-isotope', plugins_url('/assets/js/isotope.pkgd.min.js', __FILE__) , array('jquery','imagesloaded'), $ufpg_version, true );
     wp_enqueue_script( 'fpg-magnific', plugins_url('/assets/js/magnific-popup.min.js', __FILE__) , array('jquery','imagesloaded'), $ufpg_version, true );
     wp_enqueue_script( 'jquery-ytplayer', plugins_url('/assets/js/jquery.mb.YTPlayer.min.js', __FILE__) , array('jquery'), $ufpg_version, true );
