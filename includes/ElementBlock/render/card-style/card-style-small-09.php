@@ -16,14 +16,6 @@ $args = array(
     'post__not_in'   => !empty($settings['exclude_posts']) ? explode(',', $settings['exclude_posts']) : '', // phpcs:ignore WordPressVIPMinimum.Performance.WPQueryParams.PostNotIn_post__not_in
     'paged'          => $paged, // Add the paged parameter to handle pagination
 );
-$separator_map = [
-    'none'        => '',
-    'dot'         => ' · ',
-    'hyphen'      => ' - ',
-    'slash'       => ' / ',
-    'double_slash'=> ' // ',
-    'pipe'        => ' | ',
-];
 // ✅ If "Featured Posts Only" is ON → add meta_query
 if ( isset( $settings['featured_filter'] ) && $settings['featured_filter'] === 'yes' ) {
     $args['meta_query'][] = array(
@@ -48,6 +40,14 @@ if ( isset( $settings['popular_filter'] ) && $settings['popular_filter'] === 'ye
     $args['orderby']  = 'meta_value_num';
     $args['order']    = ! empty( $settings['popular_order'] ) ? $settings['popular_order'] : 'DESC';
 }
+$separator_map = [
+    'none'        => '',
+    'dot'         => ' · ',
+    'hyphen'      => ' - ',
+    'slash'       => ' / ',
+    'double_slash'=> ' // ',
+    'pipe'        => ' | ',
+];
 $separator_value = isset($separator_map[$settings['meta_separator']]) ? $separator_map[$settings['meta_separator']] : '';
 $hover_animation = $settings['hover_animation'];
 $link_type = $settings['link_type'];
@@ -58,16 +58,12 @@ $query = new \WP_Query($args);
 if ($query->have_posts()) { ?>
     <div class="fpg-section-area rs-small-card-area section-space bg-primary">
         <div class="container">
-
             <div class="row g-15">
-                <div class="col-xl-<?php echo esc_attr($settings['col_desktop_card']); ?> col-lg-<?php echo esc_attr($settings['col_lg_card']); ?> col-md-<?php echo esc_attr($settings['col_md_card']); ?> ">
-                    <div class="rs-post-small rs-post-small-seven">
-                        
             <?php
             while ($query->have_posts()) {
                 $query->the_post(); 
             ?>
-        
+        <div class="col-xl-<?php echo esc_attr($settings['col_desktop_card']); ?> col-lg-<?php echo esc_attr($settings['col_lg_card']); ?> col-md-<?php echo esc_attr($settings['col_md_card']); ?>">
             <?php 
                 $layout = $settings['fancy_post_card_layout'] ?? 'cardstyle13';
                 $box_alignment = $settings['box_alignment'] ?? '';
@@ -81,8 +77,7 @@ if ($query->have_posts()) { ?>
                     }
                 }
             ?>
- 
-            <div class="rs-post-small-item <?php echo esc_attr($hover_animation); ?> <?php echo esc_attr($link_type); ?>">
+            <div class="rs-post-small rs-post-small-ten <?php echo esc_attr($hover_animation); ?> <?php echo esc_attr($link_type); ?>">
                 <!-- Featured Image -->
                 <?php if ('yes' === $settings['show_post_thumbnail'] && has_post_thumbnail()) { ?>
                     <div class="rs-thumb rs-post-small-thumb">
@@ -90,13 +85,13 @@ if ($query->have_posts()) { ?>
                         <?php 
                         // Map the custom sizes to their actual dimensions
                         
-                        $layout = $settings['fancy_post_card_layout'] ?? 'cardstyle13';
-                        $thumbnail_size = $settings['thumbnail_size'] ?? '';
+                        $layout = $settings['fancy_post_card_layout'] ?? 'cardstyle05';
+                        $thumbnail_size = $settings['thumbnail_size_card'] ?? '';
 
                         if (empty($thumbnail_size)) {
                             switch ($layout) {
                                 
-                                case 'cardstyle13':
+                                case 'cardstyle05':
                                     $thumbnail_size = 'fancy_post_portrait';
                                     break;
                             }
@@ -113,7 +108,25 @@ if ($query->have_posts()) { ?>
                 <?php } ?>
 
                 <div class="rs-post-small-content align-<?php echo esc_attr($box_alignment); ?>">
-                    
+                    <?php
+                        // Get post categories
+                        $post_categories = get_the_category();
+
+                        if ( 'yes' === $settings['show_post_categories'] && !empty( $post_categories ) ) : ?>
+                            <div class="rs-post-tag">
+                                <?php foreach ( $post_categories as $cat ) : 
+                                    // Get category background color
+                                    $cat_bg = get_term_meta( $cat->term_id, 'fpg_bg_color', true );
+                                    $style = $cat_bg ? 'background:' . esc_attr( $cat_bg ) . ';' : '';
+                                ?>
+                                    <a href="<?php echo esc_url( get_category_link( $cat->term_id ) ); ?>" 
+                                       class="post-tag"
+                                       style="<?php echo esc_attr( $style ); ?>">
+                                        <?php echo esc_html( $cat->name ); ?>
+                                    </a>
+                                <?php endforeach; ?>
+                            </div>
+                    <?php endif; ?>
                     <!-- Post Title -->
                     <?php if (!empty($settings['show_post_title']) && 'yes' === $settings['show_post_title']) {
                             // Title Tag
@@ -204,11 +217,12 @@ if ($query->have_posts()) { ?>
                         </div>
                     <?php } ?>
 
-                </div>  
+                </div>                    
             </div>                    
+        </div>
         <?php
     } ?>
-    </div></div></div></div></div>
+    </div></div></div>
     <?
     
 } else {
