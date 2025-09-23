@@ -70,7 +70,7 @@ $query = new \WP_Query($args);
                             <?php if ('yes' === $settings['show_post_thumbnail'] && has_post_thumbnail()) : ?>
                                 <div class="rs-post-overlay-bg-thumb rs-thumb">
                                     <?php 
-                                    $thumbnail_size = $settings['thumbnail_left_size'] ?? 'fancy_post_list';
+                                    $thumbnail_size = $settings['thumbnail_left_size_card'] ?? 'fancy_post_list';
                                     if ('yes' === $settings['thumbnail_link']) { ?>
                                         <a href="<?php the_permalink(); ?>" target="<?php echo ('new_window' === $settings['link_target']) ? '_blank' : '_self'; ?>">
                                             <?php the_post_thumbnail($thumbnail_size); ?>
@@ -211,7 +211,7 @@ $query = new \WP_Query($args);
                             <?php if ('yes' === $settings['show_post_thumbnail'] && has_post_thumbnail()) : ?>
                                 <div class="rs-post-overlay-bg-thumb rs-thumb">
                                     <?php 
-                                    $thumbnail_size = $settings['thumbnail_right_size'] ?? 'fancy_post_portrait';
+                                    $thumbnail_size = $settings['thumbnail_right_size_card'] ?? 'fancy_post_portrait';
                                     if ('yes' === $settings['thumbnail_link']) { ?>
                                         <a href="<?php the_permalink(); ?>" target="<?php echo ('new_window' === $settings['link_target']) ? '_blank' : '_self'; ?>">
                                             <?php the_post_thumbnail($thumbnail_size); ?>

@@ -75,7 +75,7 @@ if ($query->have_posts()) {
         <div class="fpg-section-area rs-categories-area section-space">
             <div class="container">
                 <div class="row g-15">
-                    <div class="col-xl-4 col-lg-4">
+                    <div class="col-xl-<?php echo esc_attr($settings['col_desktop_card']); ?> col-lg-<?php echo esc_attr($settings['col_lg_card']); ?> col-md-<?php echo esc_attr($settings['col_md_card']); ?> g-15">
                         <div class="rs-categories rs-categories-one">
                             <h5 class="section-title is-small">Explore Categories</h5>
 

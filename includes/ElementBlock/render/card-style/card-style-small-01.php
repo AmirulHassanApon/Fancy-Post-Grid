@@ -58,7 +58,7 @@ $query = new \WP_Query($args);
 if ($query->have_posts()) { ?>
     <div class="fpg-section-area rs-small-card-area section-space">
         <div class="container">
-            <div class="row">
+            <div class="row g-15">
             <?php
             while ($query->have_posts()) {
                 $query->the_post(); 

@@ -76,19 +76,19 @@ $query_featured = new \WP_Query($args_featured);
                            <li class="nav-item" role="presentation">
                               <button class="nav-link active" id="pills-item-one-tab" data-bs-toggle="pill"
                                  data-bs-target="#pills-item-one" type="button" role="tab"
-                                 aria-controls="pills-item-one" aria-selected="true">Recent
+                                 aria-controls="pills-item-one" aria-selected="true"><?php echo esc_html__('Recent', 'fancy-post-grid'); ?>
                               </button>
                            </li>
                            <li class="nav-item" role="presentation">
                               <button class="nav-link" id="pills-item-two-tab" data-bs-toggle="pill"
                                  data-bs-target="#pills-item-two" type="button" role="tab"
-                                 aria-controls="pills-item-two" aria-selected="false">Popular
+                                 aria-controls="pills-item-two" aria-selected="false"> <?php echo esc_html__('Popular', 'fancy-post-grid'); ?>
                               </button>
                            </li>
                            <li class="nav-item" role="presentation">
                               <button class="nav-link" id="pills-item-three-tab" data-bs-toggle="pill"
                                  data-bs-target="#pills-item-three" type="button" role="tab"
-                                 aria-controls="pills-item-three" aria-selected="false">Featured
+                                 aria-controls="pills-item-three" aria-selected="false"><?php echo esc_html__('Featured', 'fancy-post-grid'); ?>
                               </button>
                            </li>
                         </ul>

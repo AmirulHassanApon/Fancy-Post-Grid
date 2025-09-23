@@ -85,13 +85,13 @@ if ($query->have_posts()) { ?>
                         <?php 
                         // Map the custom sizes to their actual dimensions
                         
-                        $layout = $settings['fancy_post_card_layout'] ?? 'cardstyle05';
+                        $layout = $settings['fancy_post_card_layout'] ?? 'cardstyle13';
                         $thumbnail_size = $settings['thumbnail_size_card'] ?? '';
 
                         if (empty($thumbnail_size)) {
                             switch ($layout) {
                                 
-                                case 'cardstyle05':
+                                case 'cardstyle13':
                                     $thumbnail_size = 'fancy_post_portrait';
                                     break;
                             }

@@ -7,9 +7,10 @@ add_action('elementor/elements/categories_registered', function ($elements_manag
             'title' => esc_html__('Fancy Post Grid', 'fancy-post-grid'),
             'icon'  => 'fa fa-th', // Optional icon for the category
         ),
-        100 // Priority set to 0 to place it at the top
+        -1 // Priority set to 0 to place it at the top
     );
 });
+
 
 add_action('elementor/widgets/widgets_registered', function () {
     // Base class for all Fancy Post Grid Layout Widgets
@@ -293,34 +294,6 @@ add_action('elementor/widgets/widgets_registered', function () {
                                 'title' => esc_html__( 'Small Card 05', 'fancy-post-grid' ),
                                 'icon' => 'eicon-text-align-right',
                             ],
-                            'cardstyle06' => [
-                                'title' => esc_html__( 'Medium Card 01', 'fancy-post-grid' ),
-                                'icon' => 'eicon-text-align-right',
-                            ],
-                            'cardstyle07' => [
-                                'title' => esc_html__( 'Medium Card 02', 'fancy-post-grid' ),
-                                'icon' => 'eicon-text-align-right',
-                            ],
-                            'cardstyle08' => [
-                                'title' => esc_html__( 'Overlay Card 01', 'fancy-post-grid' ),
-                                'icon' => 'eicon-text-align-right',
-                            ],
-                            'cardstyle09' => [
-                                'title' => esc_html__( 'Categories Card 01', 'fancy-post-grid' ),
-                                'icon' => 'eicon-text-align-right',
-                            ],
-                            'cardstyle10' => [
-                                'title' => esc_html__( 'Trending Card 01', 'fancy-post-grid' ),
-                                'icon' => 'eicon-text-align-right',
-                            ],
-                            'cardstyle11' => [
-                                'title' => esc_html__( 'Video Card 01', 'fancy-post-grid' ),
-                                'icon' => 'eicon-text-align-right',
-                            ],
-                            'cardstyle12' => [
-                                'title' => esc_html__( 'Video Card 02', 'fancy-post-grid' ),
-                                'icon' => 'eicon-text-align-right',
-                            ],
                             'cardstyle13' => [
                                 'title' => esc_html__( 'Small Card 06', 'fancy-post-grid' ),
                                 'icon' => 'eicon-text-align-right',
@@ -343,6 +316,53 @@ add_action('elementor/widgets/widgets_registered', function () {
                                 'title' => esc_html__( 'Small Card 12', 'fancy-post-grid' ),
                                 'icon' => 'eicon-text-align-right',
                             ],
+                            'cardstyle06' => [
+                                'title' => esc_html__( 'Medium Card 01', 'fancy-post-grid' ),
+                                'icon' => 'eicon-text-align-right',
+                            ],
+                            'cardstyle07' => [
+                                'title' => esc_html__( 'Medium Card 02', 'fancy-post-grid' ),
+                                'icon' => 'eicon-text-align-right',
+                            ],
+                            'cardstyle08' => [
+                                'title' => esc_html__( 'Overlay Card 01', 'fancy-post-grid' ),
+                                'icon' => 'eicon-text-align-right',
+                            ],
+                            'cardstyle09' => [
+                                'title' => esc_html__( 'Categories Card 01', 'fancy-post-grid' ),
+                                'icon' => 'eicon-text-align-right',
+                            ],'cardstyle20' => [
+                                'title' => esc_html__( 'Categories Card 02', 'fancy-post-grid' ),
+                                'icon' => 'eicon-text-align-right',
+                            ],
+                            'cardstyle10' => [
+                                'title' => esc_html__( 'Trending Card 01', 'fancy-post-grid' ),
+                                'icon' => 'eicon-text-align-right',
+                            ],'cardstyle23' => [
+                                'title' => esc_html__( 'Trending Card 02', 'fancy-post-grid' ),
+                                'icon' => 'eicon-text-align-right',
+                            ],'cardstyle24' => [
+                                'title' => esc_html__( 'Trending Card 03', 'fancy-post-grid' ),
+                                'icon' => 'eicon-text-align-right',
+                            ],
+                            'cardstyle11' => [
+                                'title' => esc_html__( 'Video Card 01', 'fancy-post-grid' ),
+                                'icon' => 'eicon-text-align-right',
+                            ],
+                            'cardstyle12' => [
+                                'title' => esc_html__( 'Video Card 02', 'fancy-post-grid' ),
+                                'icon' => 'eicon-text-align-right',
+                            ],'cardstyle21' => [
+                                'title' => esc_html__( 'Video Card 03', 'fancy-post-grid' ),
+                                'icon' => 'eicon-text-align-right',
+                            ],'cardstyle22' => [
+                                'title' => esc_html__( 'Video Card 04', 'fancy-post-grid' ),
+                                'icon' => 'eicon-text-align-right',
+                            ],'cardstyle25' => [
+                                'title' => esc_html__( 'Video Card 05', 'fancy-post-grid' ),
+                                'icon' => 'eicon-text-align-right',
+                            ],
+                            
                         ],
                         
                         'default' => 'cardstyle01',
@@ -436,7 +456,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                         'classes' => 'fpg-el-control-post-chooser-thumb fpg-el-pro',
                         'separator' => 'before',
                         'condition' => [
-                            'fancy_post_card_layout' => [ 'cardstyle01', 'cardstyle02','cardstyle03', 'cardstyle04','cardstyle05', 'cardstyle07','cardstyle13', 'cardstyle14','cardstyle15','cardstyle16', 'cardstyle17','cardstyle18','cardstyle19' ],
+                            'fancy_post_card_layout' => [ 'cardstyle01', 'cardstyle02','cardstyle03', 'cardstyle04','cardstyle05', 'cardstyle07','cardstyle13', 'cardstyle14','cardstyle15','cardstyle16', 'cardstyle17','cardstyle18','cardstyle19','cardstyle09' ,'cardstyle21','cardstyle22','cardstyle23' ],
                             
                         ],
                         
@@ -501,7 +521,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                         'auto' => esc_html__('Auto', 'fancy-post-grid'),
                     ],
                     'condition' => [
-                        'fancy_post_card_layout' => [ 'cardstyle01', 'cardstyle02','cardstyle03', 'cardstyle04','cardstyle05', 'cardstyle07','cardstyle13', 'cardstyle14','cardstyle15','cardstyle16', 'cardstyle17','cardstyle18','cardstyle19' ],
+                        'fancy_post_card_layout' => [ 'cardstyle01', 'cardstyle02','cardstyle03', 'cardstyle04','cardstyle05', 'cardstyle07','cardstyle13', 'cardstyle14','cardstyle15','cardstyle16', 'cardstyle17','cardstyle18','cardstyle19','cardstyle09','cardstyle21' ,'cardstyle22','cardstyle23' ],
                         
                     ],
                     'separator' => 'before',
@@ -566,7 +586,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                         'auto' => esc_html__('Auto', 'fancy-post-grid'),
                     ],
                     'condition' => [
-                        'fancy_post_card_layout' => [ 'cardstyle01', 'cardstyle02','cardstyle03', 'cardstyle04','cardstyle05', 'cardstyle07','cardstyle13', 'cardstyle14','cardstyle15','cardstyle16', 'cardstyle17','cardstyle18','cardstyle19' ],
+                        'fancy_post_card_layout' => [ 'cardstyle01', 'cardstyle02','cardstyle03', 'cardstyle04','cardstyle05', 'cardstyle07','cardstyle13', 'cardstyle14','cardstyle15','cardstyle16', 'cardstyle17','cardstyle18','cardstyle19' ,'cardstyle09','cardstyle21','cardstyle22','cardstyle23'],
                         
                     ],
                     'separator' => 'before',
@@ -1329,7 +1349,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                         'return_value' => 'yes',
                         'default' => 'yes',
                         'condition' => [
-                            'fancy_post_card_layout' => [ 'cardstyle01', 'cardstyle02','cardstyle03', 'cardstyle04','cardstyle05', 'cardstyle06','cardstyle07', 'cardstyle08','cardstyle10', 'cardstyle11','cardstyle12', 'cardstyle13', 'cardstyle14', 'cardstyle15','cardstyle16', 'cardstyle17','cardstyle18','cardstyle19' ],
+                            'fancy_post_card_layout' => [ 'cardstyle01', 'cardstyle02','cardstyle03', 'cardstyle04','cardstyle05', 'cardstyle06','cardstyle07', 'cardstyle08','cardstyle10', 'cardstyle11','cardstyle12', 'cardstyle13', 'cardstyle14', 'cardstyle15','cardstyle16', 'cardstyle17','cardstyle18','cardstyle19','cardstyle21','cardstyle23','cardstyle24','cardstyle25' ],
                             
                         ],
                         'render_type' => 'template'
@@ -1411,7 +1431,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                         'return_value' => 'yes',
                         'default' => 'yes',
                         'condition' => [
-                            'fancy_post_card_layout' => [ 'cardstyle01', 'cardstyle02','cardstyle03', 'cardstyle04','cardstyle05', 'cardstyle06','cardstyle07', 'cardstyle08','cardstyle10', 'cardstyle11','cardstyle12', 'cardstyle13', 'cardstyle14', 'cardstyle15' ,'cardstyle16', 'cardstyle17','cardstyle18','cardstyle19'],
+                            'fancy_post_card_layout' => [ 'cardstyle01', 'cardstyle02','cardstyle03', 'cardstyle04','cardstyle05', 'cardstyle06','cardstyle07', 'cardstyle08','cardstyle10', 'cardstyle11','cardstyle12', 'cardstyle13', 'cardstyle14', 'cardstyle15' ,'cardstyle16', 'cardstyle17','cardstyle18','cardstyle19','cardstyle21','cardstyle23','cardstyle24','cardstyle25'],
                             
                         ],
                         'render_type' => 'template'
@@ -1745,7 +1765,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                             'fancy_post_list'       => esc_html__( 'List Size(1200 x 650)', 'fancy-post-grid' ),
                         ),
                         'condition' => [
-                            'fancy_post_card_layout' => [ 'cardstyle01', 'cardstyle02','cardstyle03', 'cardstyle04','cardstyle05', 'cardstyle06','cardstyle07','cardstyle13','cardstyle14','cardstyle15','cardstyle16', 'cardstyle17','cardstyle18','cardstyle19' ],
+                            'fancy_post_card_layout' => [ 'cardstyle01', 'cardstyle02','cardstyle03', 'cardstyle04','cardstyle05', 'cardstyle06','cardstyle07','cardstyle13','cardstyle14','cardstyle15','cardstyle16', 'cardstyle17','cardstyle18','cardstyle19','cardstyle20','cardstyle21','cardstyle22','cardstyle23' ],
                             
                         ],
                         
@@ -1820,7 +1840,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                             'fancy_post_list'       => esc_html__( 'List Size(1200 x 650)', 'fancy-post-grid' ),
                         ),
                         'condition' => [
-                            'fancy_post_card_layout' => [ 'cardstyle08', 'cardstyle10','cardstyle11', 'cardstyle12' ],
+                            'fancy_post_card_layout' => [ 'cardstyle08', 'cardstyle10','cardstyle11', 'cardstyle12', 'cardstyle24' ],
                             
                         ],
                         
@@ -1846,7 +1866,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                         ),
 
                         'condition' => [
-                            'fancy_post_card_layout' => [ 'cardstyle08', 'cardstyle10','cardstyle11', 'cardstyle12' ],
+                            'fancy_post_card_layout' => [ 'cardstyle08', 'cardstyle10', 'cardstyle12', 'cardstyle24' ],
                             
                         ],
                         'render_type' => 'template'
@@ -2111,6 +2131,76 @@ add_action('elementor/widgets/widgets_registered', function () {
                 $this->end_controls_section();
             }
             // Card (Post Item) Style
+            
+            // Media Section
+            
+                $this->start_controls_section(
+                    'media_section',
+                    [
+                        'label' => esc_html__( 'Media', 'fancy-post-grid' ),
+                        'tab'   => \Elementor\Controls_Manager::TAB_CONTENT,
+                        'condition' => [
+                            'fancy_post_card_layout' => [ 'cardstyle25' ],
+                            
+                        ],
+                    ]
+                );
+
+                // Image Upload
+                $this->add_control(
+                    'custom_image',
+                    [
+                        'label'   => esc_html__( 'Image', 'fancy-post-grid' ),
+                        'type'    => \Elementor\Controls_Manager::MEDIA,
+                        'default' => [
+                            'url' => \Elementor\Utils::get_placeholder_image_src(),
+                        ],
+                    ]
+                );
+
+                // Video Type
+                $this->add_control(
+                    'video_type',
+                    [
+                        'label'   => esc_html__( 'Video Type', 'fancy-post-grid' ),
+                        'type'    => \Elementor\Controls_Manager::SELECT,
+                        'options' => [
+                            'youtube' => esc_html__( 'YouTube', 'fancy-post-grid' ),
+                            'vimeo'   => esc_html__( 'Vimeo', 'fancy-post-grid' ),
+                            'self'    => esc_html__( 'Self Hosted', 'fancy-post-grid' ),
+                        ],
+                        'default' => 'youtube',
+                    ]
+                );
+
+                // Video URL
+                $this->add_control(
+                    'video_url',
+                    [
+                        'label'       => esc_html__( 'Video URL', 'fancy-post-grid' ),
+                        'type'        => \Elementor\Controls_Manager::TEXT,
+                        'placeholder' => esc_html__( 'https://youtube.com/watch?v=xxxxxx', 'fancy-post-grid' ),
+                        'condition'   => [
+                            'video_type' => [ 'youtube', 'vimeo' ],
+                        ],
+                    ]
+                );
+
+                // Self-hosted Video Upload
+                $this->add_control(
+                    'self_video',
+                    [
+                        'label'     => esc_html__( 'Self Hosted Video', 'fancy-post-grid' ),
+                        'type'      => \Elementor\Controls_Manager::MEDIA,
+                        'media_types' => [ 'video' ],
+                        'condition' => [
+                            'video_type' => 'self',
+                        ],
+                    ]
+                );
+
+                $this->end_controls_section();
+            
 
             // Style Section
             if (!in_array('section_style_style', $this->exclude_controls)) {
@@ -2981,7 +3071,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                         'label'     => esc_html__( 'Dot Color', 'fancy-post-grid' ),
                         'type'      => \Elementor\Controls_Manager::COLOR,
                         'selectors' => [
-                            '{{WRAPPER}} .fancy-post-title .dot' => 'background-color: {{VALUE}};',
+                            '{{WRAPPER}} .rs-section-dot' => 'background-color: {{VALUE}};',
                         ],
                     ]
                 );
@@ -2993,8 +3083,8 @@ add_action('elementor/widgets/widgets_registered', function () {
                         'label'     => esc_html__( 'Line / Border Color', 'fancy-post-grid' ),
                         'type'      => \Elementor\Controls_Manager::COLOR,
                         'selectors' => [
-                            '{{WRAPPER}} .fancy-post-title:after' => 'background-color: {{VALUE}};',
-                            '{{WRAPPER}} .fancy-post-title' => 'border-color: {{VALUE}};',
+                            '{{WRAPPER}} .rs-section-line:after' => 'background-color: {{VALUE}};',
+                            '{{WRAPPER}} .rs-section-line' => 'border-color: {{VALUE}};',
                         ],
                     ]
                 );
@@ -4630,44 +4720,83 @@ add_action('elementor/widgets/widgets_registered', function () {
             } 
 
             // Render Card layout
+
+            // Small Card
             if ($card_layout === 'cardstyle01') {
                 $this->render_card_style_01();
-            } elseif ($card_layout === 'cardstyle02') {
+            } 
+            elseif ($card_layout === 'cardstyle02') {
                 $this->render_card_style_02();
-            } elseif ($card_layout === 'cardstyle03') {
+            } 
+            elseif ($card_layout === 'cardstyle03') {
                 $this->render_card_style_03();
-            }elseif ($card_layout === 'cardstyle04') {
+            }
+            elseif ($card_layout === 'cardstyle04') {
                 $this->render_card_style_04();
-            } elseif ($card_layout === 'cardstyle05') {
+            } 
+            elseif ($card_layout === 'cardstyle05') {
                 $this->render_card_style_05();
-            }elseif ($card_layout === 'cardstyle06') {
-                $this->render_card_style_06();
-            } elseif ($card_layout === 'cardstyle07') {
-                $this->render_card_style_07();
-            } elseif ($card_layout === 'cardstyle08') {
-                $this->render_card_style_08();
-            } elseif ($card_layout === 'cardstyle09') {
-                $this->render_card_style_09();
-            } elseif ($card_layout === 'cardstyle10') {
-                $this->render_card_style_10();
-            } elseif ($card_layout === 'cardstyle11') {
-                $this->render_card_style_11();
-            } elseif ($card_layout === 'cardstyle12') {
-                $this->render_card_style_12();
-            } elseif ($card_layout === 'cardstyle13') {
+            }
+            elseif ($card_layout === 'cardstyle13') {
                 $this->render_card_style_13();
-            } elseif ($card_layout === 'cardstyle14') {
+            } 
+            elseif ($card_layout === 'cardstyle14') {
                 $this->render_card_style_14();
-            } elseif ($card_layout === 'cardstyle15') {
+            } 
+            elseif ($card_layout === 'cardstyle15') {
                 $this->render_card_style_15();
-            }elseif ($card_layout === 'cardstyle16') {
+            }
+            elseif ($card_layout === 'cardstyle16') {
                 $this->render_card_style_16();
-            } elseif ($card_layout === 'cardstyle17') {
+            } 
+            elseif ($card_layout === 'cardstyle17') {
                 $this->render_card_style_17();
-            } elseif ($card_layout === 'cardstyle18') {
+            } 
+            elseif ($card_layout === 'cardstyle18') {
                 $this->render_card_style_18();
-            } elseif ($card_layout === 'cardstyle19') {
+            } 
+            elseif ($card_layout === 'cardstyle19') {
                 $this->render_card_style_19();
+            } 
+
+            elseif ($card_layout === 'cardstyle06') {
+                $this->render_card_style_06();
+            } 
+            elseif ($card_layout === 'cardstyle07') {
+                $this->render_card_style_07();
+            } 
+            elseif ($card_layout === 'cardstyle08') {
+                $this->render_card_style_08();
+            } 
+            // Category
+            elseif ($card_layout === 'cardstyle09') {
+                $this->render_card_style_09();
+            } 
+            elseif ($card_layout === 'cardstyle20') {
+                $this->render_card_style_20();
+            } 
+            // Trending
+            elseif ($card_layout === 'cardstyle10') {
+                $this->render_card_style_10();
+            }elseif ($card_layout === 'cardstyle23') {
+                $this->render_card_style_23();
+            } elseif ($card_layout === 'cardstyle24') {
+                $this->render_card_style_24();
+            }  
+            // Video Style
+            elseif ($card_layout === 'cardstyle11') {
+                $this->render_card_style_11();
+            } 
+            elseif ($card_layout === 'cardstyle12') {
+                $this->render_card_style_12();
+            }
+            elseif ($card_layout === 'cardstyle21') {
+                $this->render_card_style_21();
+            } 
+            elseif ($card_layout === 'cardstyle22') {
+                $this->render_card_style_22();
+            }elseif ($card_layout === 'cardstyle25') {
+                $this->render_card_style_25();
             } 
 
             // Render Title layout
@@ -5101,15 +5230,23 @@ add_action('elementor/widgets/widgets_registered', function () {
                 echo '<div class="error">' . esc_html__('Card Style 08 template not found.', 'fancy-post-grid') . '</div>';
             }
         } protected function render_card_style_09() {
-            $file_path = plugin_dir_path( __FILE__ ) . 'render/card-style/card-style-09.php'; // Adjust the path as needed.
+            $file_path = plugin_dir_path( __FILE__ ) . 'render/card-style/card-style-categories-01.php'; // Adjust the path as needed.
             
             if ( file_exists( $file_path ) ) {
                 include $file_path;
             } else {
                 echo '<div class="error">' . esc_html__('Card Style 09 template not found.', 'fancy-post-grid') . '</div>';
             }
+        }protected function render_card_style_20() {
+            $file_path = plugin_dir_path( __FILE__ ) . 'render/card-style/card-style-categories-02.php'; // Adjust the path as needed.
+            
+            if ( file_exists( $file_path ) ) {
+                include $file_path;
+            } else {
+                echo '<div class="error">' . esc_html__('Card Style 20 template not found.', 'fancy-post-grid') . '</div>';
+            }
         } protected function render_card_style_10() {
-            $file_path = plugin_dir_path( __FILE__ ) . 'render/card-style/card-style-10.php'; // Adjust the path as needed.
+            $file_path = plugin_dir_path( __FILE__ ) . 'render/card-style/card-style-trending-01.php'; // Adjust the path as needed.
             
             if ( file_exists( $file_path ) ) {
                 include $file_path;
@@ -5117,7 +5254,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                 echo '<div class="error">' . esc_html__('Card Style 10 template not found.', 'fancy-post-grid') . '</div>';
             }
         }protected function render_card_style_11() {
-            $file_path = plugin_dir_path( __FILE__ ) . 'render/card-style/card-style-11.php'; // Adjust the path as needed.
+            $file_path = plugin_dir_path( __FILE__ ) . 'render/card-style/card-style-video-01.php'; // Adjust the path as needed.
             
             if ( file_exists( $file_path ) ) {
                 include $file_path;
@@ -5125,7 +5262,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                 echo '<div class="error">' . esc_html__('Card Style 11 template not found.', 'fancy-post-grid') . '</div>';
             }
         }protected function render_card_style_12() {
-            $file_path = plugin_dir_path( __FILE__ ) . 'render/card-style/card-style-12.php'; // Adjust the path as needed.
+            $file_path = plugin_dir_path( __FILE__ ) . 'render/card-style/card-style-video-02.php'; // Adjust the path as needed.
             
             if ( file_exists( $file_path ) ) {
                 include $file_path;
@@ -5187,6 +5324,48 @@ add_action('elementor/widgets/widgets_registered', function () {
                 include $file_path;
             } else {
                 echo '<div class="error">' . esc_html__('Card Style 19 template not found.', 'fancy-post-grid') . '</div>';
+            }
+        }
+        protected function render_card_style_21() {
+            $file_path = plugin_dir_path( __FILE__ ) . 'render/card-style/card-style-video-03.php'; // Adjust the path as needed.
+            
+            if ( file_exists( $file_path ) ) {
+                include $file_path;
+            } else {
+                echo '<div class="error">' . esc_html__('Video Card Style 03 template not found.', 'fancy-post-grid') . '</div>';
+            }
+        }protected function render_card_style_22() {
+            $file_path = plugin_dir_path( __FILE__ ) . 'render/card-style/card-style-video-04.php'; // Adjust the path as needed.
+            
+            if ( file_exists( $file_path ) ) {
+                include $file_path;
+            } else {
+                echo '<div class="error">' . esc_html__('Video Card Style 04 template not found.', 'fancy-post-grid') . '</div>';
+            }
+        }
+        protected function render_card_style_23() {
+            $file_path = plugin_dir_path( __FILE__ ) . 'render/card-style/card-style-trending-02.php'; // Adjust the path as needed.
+            
+            if ( file_exists( $file_path ) ) {
+                include $file_path;
+            } else {
+                echo '<div class="error">' . esc_html__('Video Card Style 04 template not found.', 'fancy-post-grid') . '</div>';
+            }
+        }protected function render_card_style_24() {
+            $file_path = plugin_dir_path( __FILE__ ) . 'render/card-style/card-style-trending-03.php'; // Adjust the path as needed.
+            
+            if ( file_exists( $file_path ) ) {
+                include $file_path;
+            } else {
+                echo '<div class="error">' . esc_html__('Video Card Style 04 template not found.', 'fancy-post-grid') . '</div>';
+            }
+        }protected function render_card_style_25() {
+            $file_path = plugin_dir_path( __FILE__ ) . 'render/card-style/card-style-video-05.php'; // Adjust the path as needed.
+            
+            if ( file_exists( $file_path ) ) {
+                include $file_path;
+            } else {
+                echo '<div class="error">' . esc_html__('Video Card Style 05 template not found.', 'fancy-post-grid') . '</div>';
             }
         }
     }

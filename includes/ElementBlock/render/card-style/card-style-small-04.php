@@ -71,13 +71,13 @@ if ($query->have_posts()) { ?>
             ?>
         
             <?php 
-                $layout = $settings['fancy_post_card_layout'] ?? 'cardstyle03';
+                $layout = $settings['fancy_post_card_layout'] ?? 'cardstyle04';
                 $box_alignment = $settings['box_alignment'] ?? '';
 
                 if (empty($box_alignment)) {
                     switch ($layout) {
                         
-                        case 'cardstyle03':
+                        case 'cardstyle04':
                             $box_alignment = 'start';
                             break;
                     }
