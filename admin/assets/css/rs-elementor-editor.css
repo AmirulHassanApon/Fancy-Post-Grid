@@ -1,3 +1,13 @@
+div#elementor-panel-categories {
+    display: flex;
+    flex-direction: column;
+}
+div#elementor-panel-category-fancy-post-grid-category {
+    order: -1;
+}
+div#elementor-panel-category-layout {
+    order: -1;
+}
 .elementor-control-fancy_post_grid_layout.fpg-el-control-post-chooser-thumb .elementor-control-field,
 .elementor-control-fancy_post_slider_layout.fpg-el-control-post-chooser-slider-thumb .elementor-control-field,
 .elementor-control-fancy_post_isotope_layout.fpg-el-control-post-chooser-isotope-thumb .elementor-control-field,

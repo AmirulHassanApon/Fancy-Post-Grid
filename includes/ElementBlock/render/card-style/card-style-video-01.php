@@ -288,7 +288,7 @@ $query = new \WP_Query($args);
                                         <?php 
                                         // Map the custom sizes to their actual dimensions
                                         $layout = $settings['fancy_post_card_layout'] ?? 'cardstyle11';
-                                        $thumbnail_size = $settings['thumbnail_right_size'] ?? '';
+                                        $thumbnail_size = $settings['thumbnail_right_size_card'] ?? '';
 
                                         if (empty($thumbnail_size)) {
                                             switch ($layout) {

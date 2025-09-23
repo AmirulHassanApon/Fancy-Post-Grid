@@ -71,13 +71,13 @@ if ($query->have_posts()) { ?>
             ?>
         
             <?php 
-                $layout = $settings['fancy_post_card_layout'] ?? 'cardstyle15';
+                $layout = $settings['fancy_post_card_layout'] ?? 'cardstyle18';
                 $box_alignment = $settings['box_alignment'] ?? '';
 
                 if (empty($box_alignment)) {
                     switch ($layout) {
                         
-                        case 'cardstyle15':
+                        case 'cardstyle18':
                             $box_alignment = 'start';
                             break;
                     }
@@ -92,13 +92,13 @@ if ($query->have_posts()) { ?>
                         <?php 
                         // Map the custom sizes to their actual dimensions
                         
-                        $layout = $settings['fancy_post_card_layout'] ?? 'cardstyle15';
+                        $layout = $settings['fancy_post_card_layout'] ?? 'cardstyle18';
                         $thumbnail_size = $settings['thumbnail_size_card'] ?? '';
 
                         if (empty($thumbnail_size)) {
                             switch ($layout) {
                                 
-                                case 'cardstyle15':
+                                case 'cardstyle18':
                                     $thumbnail_size = 'fancy_post_portrait';
                                     break;
                             }

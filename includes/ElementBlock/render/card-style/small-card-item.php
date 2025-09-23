@@ -1,11 +1,11 @@
 <?php
 // Ensure $settings, $hover_animation, $link_type, $separator_value are available in parent scope
-$layout = $settings['fancy_post_card_layout'] ?? 'cardstyle15';
+$layout = $settings['fancy_post_card_layout'] ?? 'cardstyle19';
 $box_alignment = $settings['box_alignment'] ?? '';
 
 if (empty($box_alignment)) {
     switch ($layout) {
-        case 'cardstyle15':
+        case 'cardstyle19':
             $box_alignment = 'start';
             break;
     }
@@ -20,7 +20,7 @@ if (empty($box_alignment)) {
             $thumbnail_size = $settings['thumbnail_size_card'] ?? '';
             if (empty($thumbnail_size)) {
                 switch ($layout) {
-                    case 'cardstyle15':
+                    case 'cardstyle19':
                         $thumbnail_size = 'fancy_post_portrait';
                         break;
                 }

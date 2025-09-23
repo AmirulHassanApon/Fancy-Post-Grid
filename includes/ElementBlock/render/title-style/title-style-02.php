@@ -56,50 +56,55 @@ function fancy_split_text( $text ) {
     return trim( $output );
 }
 ?>
+<div class="container">
+    <div class="row section-title-space align-items-center g-5 align-<?php echo esc_attr( $box_alignment ); ?>">
+        <div class="col-xl-12">
+            <div class="section-wrapper">
+                <div class="section-title-wrapper section-border">
 
-<div class="row section-title-space align-items-center g-5 align-<?php echo esc_attr( $box_alignment ); ?>">
-    <div class="col-xl-6 col-lg-6">
-        <div class="section-title-wrapper">
-
-            <!-- Section Title -->
-            <<?php echo $title_tag; ?>
-                class="section-title rs-split-text-enable split-in-left"
-                style="perspective:400px;">
-                
-                <?php if ( 'page' === ( $settings['fancy_post_title_source'] ?? 'custom' ) ) : ?>
-                    <a href="<?php the_permalink(); ?>">
-                        <?php echo fancy_split_text( $title ); ?>
-                    </a>
-                <?php else : ?>
-                    <?php echo fancy_split_text( $title ); ?>
-                <?php endif; ?>
-            </<?php echo $title_tag; ?>>
-            <span class="rs-section-dot"></span> 
-           <span class="rs-section-line bg-light-grey"></span> 
-           <span class="rs-section-dot"></span> 
-
-        </div>
-    </div>
-
-    <div class="col-xl-6 col-lg-6">
-        <!-- External Link -->
-        <?php if ( ! empty( $settings['fancy_post_enable_external'] ) && 'yes' === $settings['fancy_post_enable_external'] ) : ?>
-            <div class="section-btn">
-                <a href="<?php echo $external_url; ?>"
-                   class="rs-btn has-text has-icon"
-                   <?php echo ! empty( $settings['fancy_post_external_link_url']['is_external'] ) ? 'target="_blank"' : ''; ?>
-                   <?php echo ! empty( $settings['fancy_post_external_link_url']['nofollow'] ) ? 'rel="nofollow noopener"' : ''; ?>>
+                    <!-- Section Title -->
+                    <<?php echo $title_tag; ?>
+                        class="title section-title rs-split-text-enable split-in-left"
+                        style="perspective:400px;">
+                        
+                        <?php if ( 'page' === ( $settings['fancy_post_title_source'] ?? 'custom' ) ) : ?>
+                            <a href="<?php the_permalink(); ?>">
+                                <?php echo fancy_split_text( $title ); ?>
+                            </a>
+                        <?php else : ?>
+                            <?php echo fancy_split_text( $title ); ?>
+                        <?php endif; ?>
+                    </<?php echo $title_tag; ?>>
+                    <span class="rs-section-dot"></span> 
+                    
+                   <span class="rs-section-line bg-light-grey"></span> 
                    
-                    <?php if ( $external_text ) : ?>
-                        <?php echo $external_text; ?>
-                    <?php endif; ?>
+                   <span class="rs-section-dot"></span> 
 
-                    <span class="icon-box">
-                        <i class="fas fa-long-arrow-alt-right" aria-hidden="true"></i>
-                    </span>
-                </a>
-            </div>
-        <?php endif; ?>
+                </div>
+
+            
+            <!-- External Link -->
+            <?php if ( ! empty( $settings['fancy_post_enable_external'] ) && 'yes' === $settings['fancy_post_enable_external'] ) : ?>
+                <div class="section-btn">
+                    <a href="<?php echo $external_url; ?>"
+                       class="rs-btn has-text has-icon"
+                       <?php echo ! empty( $settings['fancy_post_external_link_url']['is_external'] ) ? 'target="_blank"' : ''; ?>
+                       <?php echo ! empty( $settings['fancy_post_external_link_url']['nofollow'] ) ? 'rel="nofollow noopener"' : ''; ?>>
+                       
+                        <?php if ( $external_text ) : ?>
+                            <?php echo $external_text; ?>
+                        <?php endif; ?>
+
+                        <span class="icon-box">
+                            <i class="fas fa-long-arrow-alt-right" aria-hidden="true"></i>
+                        </span>
+                    </a>
+                </div>
+            <?php endif; ?>
+        </div>
+
+        
     </div>
 </div>
 
