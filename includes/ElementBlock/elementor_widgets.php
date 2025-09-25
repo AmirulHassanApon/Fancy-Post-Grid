@@ -282,38 +282,47 @@ add_action('elementor/widgets/widgets_registered', function () {
                                 'title' => esc_html__( 'Small Card 02', 'fancy-post-grid' ),
                                 'icon' => 'eicon-text-align-center',
                             ],
-                            'cardstyle03' => [
+                            'cardstyle17' => [
                                 'title' => esc_html__( 'Small Card 03', 'fancy-post-grid' ),
                                 'icon' => 'eicon-text-align-right',
                             ],
-                            'cardstyle04' => [
+                            
+                            'cardstyle05' => [
                                 'title' => esc_html__( 'Small Card 04', 'fancy-post-grid' ),
                                 'icon' => 'eicon-text-align-right',
                             ],
-                            'cardstyle05' => [
+                            
+                            'cardstyle13' => [
                                 'title' => esc_html__( 'Small Card 05', 'fancy-post-grid' ),
                                 'icon' => 'eicon-text-align-right',
                             ],
-                            'cardstyle13' => [
+                            'cardstyle16' => [
                                 'title' => esc_html__( 'Small Card 06', 'fancy-post-grid' ),
                                 'icon' => 'eicon-text-align-right',
-                            ],'cardstyle14' => [
+                            ],
+                            'cardstyle14' => [
                                 'title' => esc_html__( 'Small Card 07', 'fancy-post-grid' ),
                                 'icon' => 'eicon-text-align-right',
-                            ],'cardstyle15' => [
+                            ],
+                            'cardstyle27' => [
                                 'title' => esc_html__( 'Small Card 08', 'fancy-post-grid' ),
                                 'icon' => 'eicon-text-align-right',
-                            ],'cardstyle16' => [
+                            ],
+                            'cardstyle03' => [
                                 'title' => esc_html__( 'Small Card 09', 'fancy-post-grid' ),
                                 'icon' => 'eicon-text-align-right',
-                            ],'cardstyle17' => [
+                            ],
+                            'cardstyle04' => [
                                 'title' => esc_html__( 'Small Card 10', 'fancy-post-grid' ),
                                 'icon' => 'eicon-text-align-right',
-                            ],'cardstyle18' => [
+                            ],'cardstyle15' => [
                                 'title' => esc_html__( 'Small Card 11', 'fancy-post-grid' ),
                                 'icon' => 'eicon-text-align-right',
-                            ],'cardstyle19' => [
+                            ],'cardstyle18' => [
                                 'title' => esc_html__( 'Small Card 12', 'fancy-post-grid' ),
+                                'icon' => 'eicon-text-align-right',
+                            ],'cardstyle19' => [
+                                'title' => esc_html__( 'Small Card 13', 'fancy-post-grid' ),
                                 'icon' => 'eicon-text-align-right',
                             ],
                             'cardstyle06' => [
@@ -322,6 +331,9 @@ add_action('elementor/widgets/widgets_registered', function () {
                             ],
                             'cardstyle07' => [
                                 'title' => esc_html__( 'Medium Card 02', 'fancy-post-grid' ),
+                                'icon' => 'eicon-text-align-right',
+                            ],'cardstyle26' => [
+                                'title' => esc_html__( 'Medium Card 03', 'fancy-post-grid' ),
                                 'icon' => 'eicon-text-align-right',
                             ],
                             'cardstyle08' => [
@@ -456,7 +468,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                         'classes' => 'fpg-el-control-post-chooser-thumb fpg-el-pro',
                         'separator' => 'before',
                         'condition' => [
-                            'fancy_post_card_layout' => [ 'cardstyle01', 'cardstyle02','cardstyle03', 'cardstyle04','cardstyle05', 'cardstyle07','cardstyle13', 'cardstyle14','cardstyle15','cardstyle16', 'cardstyle17','cardstyle18','cardstyle19','cardstyle09' ,'cardstyle21','cardstyle22','cardstyle23' ],
+                            'fancy_post_card_layout' => [ 'cardstyle01', 'cardstyle02','cardstyle03','cardstyle27', 'cardstyle04','cardstyle05','cardstyle06', 'cardstyle07','cardstyle13', 'cardstyle14','cardstyle15','cardstyle16', 'cardstyle17','cardstyle18','cardstyle19','cardstyle09' ,'cardstyle21','cardstyle22','cardstyle23','cardstyle26' ],
                             
                         ],
                         
@@ -521,7 +533,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                         'auto' => esc_html__('Auto', 'fancy-post-grid'),
                     ],
                     'condition' => [
-                        'fancy_post_card_layout' => [ 'cardstyle01', 'cardstyle02','cardstyle03', 'cardstyle04','cardstyle05', 'cardstyle07','cardstyle13', 'cardstyle14','cardstyle15','cardstyle16', 'cardstyle17','cardstyle18','cardstyle19','cardstyle09','cardstyle21' ,'cardstyle22','cardstyle23' ],
+                        'fancy_post_card_layout' => [ 'cardstyle01', 'cardstyle02','cardstyle03','cardstyle27', 'cardstyle04','cardstyle05','cardstyle06', 'cardstyle07','cardstyle13', 'cardstyle14','cardstyle15','cardstyle16', 'cardstyle17','cardstyle18','cardstyle19','cardstyle09','cardstyle21' ,'cardstyle22','cardstyle23','cardstyle26' ],
                         
                     ],
                     'separator' => 'before',
@@ -586,7 +598,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                         'auto' => esc_html__('Auto', 'fancy-post-grid'),
                     ],
                     'condition' => [
-                        'fancy_post_card_layout' => [ 'cardstyle01', 'cardstyle02','cardstyle03', 'cardstyle04','cardstyle05', 'cardstyle07','cardstyle13', 'cardstyle14','cardstyle15','cardstyle16', 'cardstyle17','cardstyle18','cardstyle19' ,'cardstyle09','cardstyle21','cardstyle22','cardstyle23'],
+                        'fancy_post_card_layout' => [ 'cardstyle01', 'cardstyle02','cardstyle03','cardstyle27', 'cardstyle04','cardstyle05','cardstyle06', 'cardstyle07','cardstyle13', 'cardstyle14','cardstyle15','cardstyle16', 'cardstyle17','cardstyle18','cardstyle19' ,'cardstyle09','cardstyle21','cardstyle22','cardstyle23','cardstyle26'],
                         
                     ],
                     'separator' => 'before',
@@ -1300,9 +1312,22 @@ add_action('elementor/widgets/widgets_registered', function () {
                         'render_type' => 'template'
                     ]
                 );
-
+                if (!in_array('show_post_date', $this->exclude_controls)) {
+                    $this->add_control(
+                        'show_post_date',
+                        [
+                            'label'   => esc_html__( '- Show Post Date', 'fancy-post-grid' ),
+                            'type'    => \Elementor\Controls_Manager::SWITCHER,
+                            'label_on' => esc_html__( 'Show', 'fancy-post-grid' ),
+                            'label_off' => esc_html__( 'Hide', 'fancy-post-grid' ),
+                            'return_value' => 'yes',
+                            'default' => 'yes',
+                            'render_type' => 'template'
+                        ]
+                    );
+                }
                 $this->add_control(
-                    'show_post_date',
+                    'show_post_date_card',
                     [
                         'label'   => esc_html__( '- Show Post Date', 'fancy-post-grid' ),
                         'type'    => \Elementor\Controls_Manager::SWITCHER,
@@ -1310,10 +1335,13 @@ add_action('elementor/widgets/widgets_registered', function () {
                         'label_off' => esc_html__( 'Hide', 'fancy-post-grid' ),
                         'return_value' => 'yes',
                         'default' => 'yes',
+                        'condition' => [
+                            'fancy_post_card_layout' => [ 'cardstyle06','cardstyle07','cardstyle26','cardstyle08' ,'cardstyle10','cardstyle23' ,'cardstyle24','cardstyle11','cardstyle12' ],
+                            
+                        ],
                         'render_type' => 'template'
                     ]
                 );
-
                 $this->add_control(
                     'show_post_author',
                     [
@@ -1326,9 +1354,22 @@ add_action('elementor/widgets/widgets_registered', function () {
                         'render_type' => 'template'
                     ]
                 );
-
+                if (!in_array('show_post_categories', $this->exclude_controls)) {
+                    $this->add_control(
+                        'show_post_categories',
+                        [
+                            'label'   => esc_html__( '- Show Post Categories', 'fancy-post-grid' ),
+                            'type'    => \Elementor\Controls_Manager::SWITCHER,
+                            'label_on' => esc_html__( 'Show', 'fancy-post-grid' ),
+                            'label_off' => esc_html__( 'Hide', 'fancy-post-grid' ),
+                            'return_value' => 'yes',
+                            'default' => 'yes',
+                            'render_type' => 'template'
+                        ]
+                    );
+                }
                 $this->add_control(
-                    'show_post_categories',
+                    'show_post_categories_card',
                     [
                         'label'   => esc_html__( '- Show Post Categories', 'fancy-post-grid' ),
                         'type'    => \Elementor\Controls_Manager::SWITCHER,
@@ -1336,6 +1377,10 @@ add_action('elementor/widgets/widgets_registered', function () {
                         'label_off' => esc_html__( 'Hide', 'fancy-post-grid' ),
                         'return_value' => 'yes',
                         'default' => 'yes',
+                        'condition' => [
+                            'fancy_post_card_layout' => [ 'cardstyle01', 'cardstyle02','cardstyle03','cardstyle27', 'cardstyle04','cardstyle05', 'cardstyle06','cardstyle07', 'cardstyle08','cardstyle10', 'cardstyle11','cardstyle12', 'cardstyle13', 'cardstyle15','cardstyle16', 'cardstyle17','cardstyle18','cardstyle19','cardstyle21','cardstyle23','cardstyle24','cardstyle25' ,'cardstyle26' ],
+                            
+                        ],
                         'render_type' => 'template'
                     ]
                 );
@@ -1349,7 +1394,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                         'return_value' => 'yes',
                         'default' => 'yes',
                         'condition' => [
-                            'fancy_post_card_layout' => [ 'cardstyle01', 'cardstyle02','cardstyle03', 'cardstyle04','cardstyle05', 'cardstyle06','cardstyle07', 'cardstyle08','cardstyle10', 'cardstyle11','cardstyle12', 'cardstyle13', 'cardstyle14', 'cardstyle15','cardstyle16', 'cardstyle17','cardstyle18','cardstyle19','cardstyle21','cardstyle23','cardstyle24','cardstyle25' ],
+                            'fancy_post_card_layout' => [ 'cardstyle01', 'cardstyle02','cardstyle03','cardstyle27', 'cardstyle04','cardstyle05', 'cardstyle06','cardstyle07', 'cardstyle08','cardstyle10', 'cardstyle11','cardstyle12', 'cardstyle13', 'cardstyle14', 'cardstyle15','cardstyle16', 'cardstyle17','cardstyle18','cardstyle19','cardstyle21','cardstyle23','cardstyle24','cardstyle25' ,'cardstyle26' ],
                             
                         ],
                         'render_type' => 'template'
@@ -1383,6 +1428,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                         ]
                     );
                 }
+                
                 $this->add_control(
                     'show_meta_data_icon',
                     [
@@ -1395,9 +1441,9 @@ add_action('elementor/widgets/widgets_registered', function () {
                         'render_type' => 'template'
                     ]
                 );
-
+                 
                 $this->add_control(
-                    'show_post_date_icon',
+                    'show_post_date_icon_card',
                     [
                         'label'   => esc_html__( '- Show Post Date  Icon ', 'fancy-post-grid' ),
                         'type'    => \Elementor\Controls_Manager::SWITCHER,
@@ -1405,22 +1451,28 @@ add_action('elementor/widgets/widgets_registered', function () {
                         'label_off' => esc_html__( 'Hide', 'fancy-post-grid' ),
                         'return_value' => 'yes',
                         'default' => 'yes',
+                        'condition' => [
+                        'fancy_post_card_layout' => [ 'cardstyle06','cardstyle07','cardstyle26','cardstyle08' ,'cardstyle10','cardstyle23' ,'cardstyle24','cardstyle11','cardstyle12' ],
+                        
+                        ],
                         'render_type' => 'template'
                     ]
                 );
-
-                $this->add_control(
-                    'show_post_categories_icon',
-                    [
-                        'label'   => esc_html__( '- Show Post Categories Icon', 'fancy-post-grid' ),
-                        'type'    => \Elementor\Controls_Manager::SWITCHER,
-                        'label_on' => esc_html__( 'Show', 'fancy-post-grid' ),
-                        'label_off' => esc_html__( 'Hide', 'fancy-post-grid' ),
-                        'return_value' => 'yes',
-                        'default' => 'yes',
-                        'render_type' => 'template'
-                    ]
-                );
+                
+                if (!in_array('show_post_categories_icon', $this->exclude_controls)) {
+                    $this->add_control(
+                        'show_post_categories_icon',
+                        [
+                            'label'   => esc_html__( '- Show Post Categories Icon', 'fancy-post-grid' ),
+                            'type'    => \Elementor\Controls_Manager::SWITCHER,
+                            'label_on' => esc_html__( 'Show', 'fancy-post-grid' ),
+                            'label_off' => esc_html__( 'Hide', 'fancy-post-grid' ),
+                            'return_value' => 'yes',
+                            'default' => 'yes',
+                            'render_type' => 'template'
+                        ]
+                    );
+                }
                 $this->add_control(
                     'show_post_views_icon',
                     [
@@ -1431,7 +1483,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                         'return_value' => 'yes',
                         'default' => 'yes',
                         'condition' => [
-                            'fancy_post_card_layout' => [ 'cardstyle01', 'cardstyle02','cardstyle03', 'cardstyle04','cardstyle05', 'cardstyle06','cardstyle07', 'cardstyle08','cardstyle10', 'cardstyle11','cardstyle12', 'cardstyle13', 'cardstyle14', 'cardstyle15' ,'cardstyle16', 'cardstyle17','cardstyle18','cardstyle19','cardstyle21','cardstyle23','cardstyle24','cardstyle25'],
+                            'fancy_post_card_layout' => [ 'cardstyle01', 'cardstyle02','cardstyle03','cardstyle27', 'cardstyle04','cardstyle05', 'cardstyle06','cardstyle07', 'cardstyle08','cardstyle10', 'cardstyle11','cardstyle12', 'cardstyle13', 'cardstyle14', 'cardstyle15' ,'cardstyle16', 'cardstyle17','cardstyle18','cardstyle19','cardstyle21','cardstyle23','cardstyle24','cardstyle25','cardstyle26'],
                             
                         ],
                         'render_type' => 'template'
@@ -1758,6 +1810,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                             'medium'     => esc_html__( 'Medium', 'fancy-post-grid' ),
                             'large'      => esc_html__( 'Large', 'fancy-post-grid' ),
                             'full'       => esc_html__( 'Full', 'fancy-post-grid' ),
+                            'fancy_post_small01_card_size'=> esc_html__( 'Small Card 01 (130x130)', 'fancy-post-grid' ),
                             'fancy_post_custom_size'=> esc_html__( 'Custom Size (768x500)', 'fancy-post-grid' ),
                             'fancy_post_square'     => esc_html__( 'Square(500x500)', 'fancy-post-grid' ),
                             'fancy_post_landscape'  => esc_html__( 'Landscape(834x550)', 'fancy-post-grid' ),
@@ -1765,7 +1818,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                             'fancy_post_list'       => esc_html__( 'List Size(1200 x 650)', 'fancy-post-grid' ),
                         ),
                         'condition' => [
-                            'fancy_post_card_layout' => [ 'cardstyle01', 'cardstyle02','cardstyle03', 'cardstyle04','cardstyle05', 'cardstyle06','cardstyle07','cardstyle13','cardstyle14','cardstyle15','cardstyle16', 'cardstyle17','cardstyle18','cardstyle19','cardstyle20','cardstyle21','cardstyle22','cardstyle23' ],
+                            'fancy_post_card_layout' => [ 'cardstyle01', 'cardstyle02','cardstyle03','cardstyle27', 'cardstyle04','cardstyle05', 'cardstyle06','cardstyle07','cardstyle13','cardstyle14','cardstyle15','cardstyle16', 'cardstyle17','cardstyle18','cardstyle19','cardstyle20','cardstyle21','cardstyle22','cardstyle23' ,'cardstyle26' ],
                             
                         ],
                         
@@ -1866,7 +1919,7 @@ add_action('elementor/widgets/widgets_registered', function () {
                         ),
 
                         'condition' => [
-                            'fancy_post_card_layout' => [ 'cardstyle08', 'cardstyle10', 'cardstyle12', 'cardstyle24' ],
+                            'fancy_post_card_layout' => [ 'cardstyle08', 'cardstyle10', 'cardstyle24' ],
                             
                         ],
                         'render_type' => 'template'
@@ -4730,6 +4783,8 @@ add_action('elementor/widgets/widgets_registered', function () {
             } 
             elseif ($card_layout === 'cardstyle03') {
                 $this->render_card_style_03();
+            }elseif ($card_layout === 'cardstyle27') {
+                $this->render_card_style_27();
             }
             elseif ($card_layout === 'cardstyle04') {
                 $this->render_card_style_04();
@@ -4758,13 +4813,17 @@ add_action('elementor/widgets/widgets_registered', function () {
             elseif ($card_layout === 'cardstyle19') {
                 $this->render_card_style_19();
             } 
-
+            // Medium Card
             elseif ($card_layout === 'cardstyle06') {
                 $this->render_card_style_06();
             } 
             elseif ($card_layout === 'cardstyle07') {
                 $this->render_card_style_07();
+            }
+            elseif ($card_layout === 'cardstyle26') {
+                $this->render_card_style_26();
             } 
+
             elseif ($card_layout === 'cardstyle08') {
                 $this->render_card_style_08();
             } 
@@ -5165,111 +5224,62 @@ add_action('elementor/widgets/widgets_registered', function () {
             }
         } 
         // Card Style
+        // Small Card
         protected function render_card_style_01() {
             $file_path = plugin_dir_path( __FILE__ ) . 'render/card-style/card-style-small-01.php'; // Adjust the path as needed.
             
             if ( file_exists( $file_path ) ) {
                 include $file_path;
             } else {
-                echo '<div class="error">' . esc_html__('Card Style 01 template not found.', 'fancy-post-grid') . '</div>';
+                echo '<div class="error">' . esc_html__('Small Card Style 01 template not found.', 'fancy-post-grid') . '</div>';
             }
-        }protected function render_card_style_02() {
+        }
+        protected function render_card_style_02() {
             $file_path = plugin_dir_path( __FILE__ ) . 'render/card-style/card-style-small-02.php'; // Adjust the path as needed.
             
             if ( file_exists( $file_path ) ) {
                 include $file_path;
             } else {
-                echo '<div class="error">' . esc_html__('Card Style 02 template not found.', 'fancy-post-grid') . '</div>';
+                echo '<div class="error">' . esc_html__('Small Card Style 02 template not found.', 'fancy-post-grid') . '</div>';
             }
-        }protected function render_card_style_03() {
+        }
+        protected function render_card_style_03() {
             $file_path = plugin_dir_path( __FILE__ ) . 'render/card-style/card-style-small-03.php'; // Adjust the path as needed.
             
             if ( file_exists( $file_path ) ) {
                 include $file_path;
             } else {
-                echo '<div class="error">' . esc_html__('Card Style 03 template not found.', 'fancy-post-grid') . '</div>';
+                echo '<div class="error">' . esc_html__('Small Card Style 03 template not found.', 'fancy-post-grid') . '</div>';
             }
-        }protected function render_card_style_04() {
+        }
+        protected function render_card_style_27() {
+            $file_path = plugin_dir_path( __FILE__ ) . 'render/card-style/card-style-small-13.php'; // Adjust the path as needed.
+            
+            if ( file_exists( $file_path ) ) {
+                include $file_path;
+            } else {
+                echo '<div class="error">' . esc_html__('Small Card Style 13 template not found.', 'fancy-post-grid') . '</div>';
+            }
+        }
+        protected function render_card_style_04() {
             $file_path = plugin_dir_path( __FILE__ ) . 'render/card-style/card-style-small-04.php'; // Adjust the path as needed.
             
             if ( file_exists( $file_path ) ) {
                 include $file_path;
             } else {
-                echo '<div class="error">' . esc_html__('Card Style 04 template not found.', 'fancy-post-grid') . '</div>';
+                echo '<div class="error">' . esc_html__('Small Card Style 04 template not found.', 'fancy-post-grid') . '</div>';
             }
-        }protected function render_card_style_05() {
+        }
+        protected function render_card_style_05() {
             $file_path = plugin_dir_path( __FILE__ ) . 'render/card-style/card-style-small-05.php'; // Adjust the path as needed.
             
             if ( file_exists( $file_path ) ) {
                 include $file_path;
             } else {
-                echo '<div class="error">' . esc_html__('Card Style 05 template not found.', 'fancy-post-grid') . '</div>';
+                echo '<div class="error">' . esc_html__('Small Card Style 05 template not found.', 'fancy-post-grid') . '</div>';
             }
-        }protected function render_card_style_06() {
-            $file_path = plugin_dir_path( __FILE__ ) . 'render/card-style/card-style-06.php'; // Adjust the path as needed.
-            
-            if ( file_exists( $file_path ) ) {
-                include $file_path;
-            } else {
-                echo '<div class="error">' . esc_html__('Card Style 06 template not found.', 'fancy-post-grid') . '</div>';
-            }
-        }protected function render_card_style_07() {
-            $file_path = plugin_dir_path( __FILE__ ) . 'render/card-style/card-style-07.php'; // Adjust the path as needed.
-            
-            if ( file_exists( $file_path ) ) {
-                include $file_path;
-            } else {
-                echo '<div class="error">' . esc_html__('Card Style 07 template not found.', 'fancy-post-grid') . '</div>';
-            }
-        }protected function render_card_style_08() {
-            $file_path = plugin_dir_path( __FILE__ ) . 'render/card-style/card-style-08.php'; // Adjust the path as needed.
-            
-            if ( file_exists( $file_path ) ) {
-                include $file_path;
-            } else {
-                echo '<div class="error">' . esc_html__('Card Style 08 template not found.', 'fancy-post-grid') . '</div>';
-            }
-        } protected function render_card_style_09() {
-            $file_path = plugin_dir_path( __FILE__ ) . 'render/card-style/card-style-categories-01.php'; // Adjust the path as needed.
-            
-            if ( file_exists( $file_path ) ) {
-                include $file_path;
-            } else {
-                echo '<div class="error">' . esc_html__('Card Style 09 template not found.', 'fancy-post-grid') . '</div>';
-            }
-        }protected function render_card_style_20() {
-            $file_path = plugin_dir_path( __FILE__ ) . 'render/card-style/card-style-categories-02.php'; // Adjust the path as needed.
-            
-            if ( file_exists( $file_path ) ) {
-                include $file_path;
-            } else {
-                echo '<div class="error">' . esc_html__('Card Style 20 template not found.', 'fancy-post-grid') . '</div>';
-            }
-        } protected function render_card_style_10() {
-            $file_path = plugin_dir_path( __FILE__ ) . 'render/card-style/card-style-trending-01.php'; // Adjust the path as needed.
-            
-            if ( file_exists( $file_path ) ) {
-                include $file_path;
-            } else {
-                echo '<div class="error">' . esc_html__('Card Style 10 template not found.', 'fancy-post-grid') . '</div>';
-            }
-        }protected function render_card_style_11() {
-            $file_path = plugin_dir_path( __FILE__ ) . 'render/card-style/card-style-video-01.php'; // Adjust the path as needed.
-            
-            if ( file_exists( $file_path ) ) {
-                include $file_path;
-            } else {
-                echo '<div class="error">' . esc_html__('Card Style 11 template not found.', 'fancy-post-grid') . '</div>';
-            }
-        }protected function render_card_style_12() {
-            $file_path = plugin_dir_path( __FILE__ ) . 'render/card-style/card-style-video-02.php'; // Adjust the path as needed.
-            
-            if ( file_exists( $file_path ) ) {
-                include $file_path;
-            } else {
-                echo '<div class="error">' . esc_html__('Card Style 12 template not found.', 'fancy-post-grid') . '</div>';
-            }
-        } protected function render_card_style_13() {
+        }
+        protected function render_card_style_13() {
             $file_path = plugin_dir_path( __FILE__ ) . 'render/card-style/card-style-small-06.php'; // Adjust the path as needed.
             
             if ( file_exists( $file_path ) ) {
@@ -5277,7 +5287,8 @@ add_action('elementor/widgets/widgets_registered', function () {
             } else {
                 echo '<div class="error">' . esc_html__('Card Style 13 template not found.', 'fancy-post-grid') . '</div>';
             }
-        }  protected function render_card_style_14() {
+        }  
+        protected function render_card_style_14() {
             $file_path = plugin_dir_path( __FILE__ ) . 'render/card-style/card-style-small-07.php'; // Adjust the path as needed.
             
             if ( file_exists( $file_path ) ) {
@@ -5285,7 +5296,8 @@ add_action('elementor/widgets/widgets_registered', function () {
             } else {
                 echo '<div class="error">' . esc_html__('Card Style 14 template not found.', 'fancy-post-grid') . '</div>';
             }
-        }  protected function render_card_style_15() {
+        }  
+        protected function render_card_style_15() {
             $file_path = plugin_dir_path( __FILE__ ) . 'render/card-style/card-style-small-08.php'; // Adjust the path as needed.
             
             if ( file_exists( $file_path ) ) {
@@ -5293,7 +5305,8 @@ add_action('elementor/widgets/widgets_registered', function () {
             } else {
                 echo '<div class="error">' . esc_html__('Card Style 15 template not found.', 'fancy-post-grid') . '</div>';
             }
-        }protected function render_card_style_16() {
+        }
+        protected function render_card_style_16() {
             $file_path = plugin_dir_path( __FILE__ ) . 'render/card-style/card-style-small-09.php'; // Adjust the path as needed.
             
             if ( file_exists( $file_path ) ) {
@@ -5301,7 +5314,8 @@ add_action('elementor/widgets/widgets_registered', function () {
             } else {
                 echo '<div class="error">' . esc_html__('Card Style 16 template not found.', 'fancy-post-grid') . '</div>';
             }
-        }  protected function render_card_style_17() {
+        }  
+        protected function render_card_style_17() {
             $file_path = plugin_dir_path( __FILE__ ) . 'render/card-style/card-style-small-10.php'; // Adjust the path as needed.
             
             if ( file_exists( $file_path ) ) {
@@ -5309,7 +5323,8 @@ add_action('elementor/widgets/widgets_registered', function () {
             } else {
                 echo '<div class="error">' . esc_html__('Card Style 17 template not found.', 'fancy-post-grid') . '</div>';
             }
-        }  protected function render_card_style_18() {
+        }  
+        protected function render_card_style_18() {
             $file_path = plugin_dir_path( __FILE__ ) . 'render/card-style/card-style-small-11.php'; // Adjust the path as needed.
             
             if ( file_exists( $file_path ) ) {
@@ -5317,7 +5332,8 @@ add_action('elementor/widgets/widgets_registered', function () {
             } else {
                 echo '<div class="error">' . esc_html__('Card Style 18 template not found.', 'fancy-post-grid') . '</div>';
             }
-        } protected function render_card_style_19() {
+        } 
+        protected function render_card_style_19() {
             $file_path = plugin_dir_path( __FILE__ ) . 'render/card-style/card-style-small-12.php'; // Adjust the path as needed.
             
             if ( file_exists( $file_path ) ) {
@@ -5326,21 +5342,69 @@ add_action('elementor/widgets/widgets_registered', function () {
                 echo '<div class="error">' . esc_html__('Card Style 19 template not found.', 'fancy-post-grid') . '</div>';
             }
         }
-        protected function render_card_style_21() {
-            $file_path = plugin_dir_path( __FILE__ ) . 'render/card-style/card-style-video-03.php'; // Adjust the path as needed.
+        //Medium Card
+        protected function render_card_style_06() {
+            $file_path = plugin_dir_path( __FILE__ ) . 'render/card-style/card-style-medium-01.php'; // Adjust the path as needed.
             
             if ( file_exists( $file_path ) ) {
                 include $file_path;
             } else {
-                echo '<div class="error">' . esc_html__('Video Card Style 03 template not found.', 'fancy-post-grid') . '</div>';
+                echo '<div class="error">' . esc_html__('Medium Card Style 01 template not found.', 'fancy-post-grid') . '</div>';
             }
-        }protected function render_card_style_22() {
-            $file_path = plugin_dir_path( __FILE__ ) . 'render/card-style/card-style-video-04.php'; // Adjust the path as needed.
+        }protected function render_card_style_07() {
+            $file_path = plugin_dir_path( __FILE__ ) . 'render/card-style/card-style-medium-02.php'; // Adjust the path as needed.
             
             if ( file_exists( $file_path ) ) {
                 include $file_path;
             } else {
-                echo '<div class="error">' . esc_html__('Video Card Style 04 template not found.', 'fancy-post-grid') . '</div>';
+                echo '<div class="error">' . esc_html__('Medium Card Style 02 template not found.', 'fancy-post-grid') . '</div>';
+            }
+        }protected function render_card_style_26() {
+            $file_path = plugin_dir_path( __FILE__ ) . 'render/card-style/card-style-medium-03.php'; // Adjust the path as needed.
+            
+            if ( file_exists( $file_path ) ) {
+                include $file_path;
+            } else {
+                echo '<div class="error">' . esc_html__('Medium Card Style 03 template not found.', 'fancy-post-grid') . '</div>';
+            }
+        }
+        // Overlay Card
+        protected function render_card_style_08() {
+            $file_path = plugin_dir_path( __FILE__ ) . 'render/card-style/card-style-overlay-01.php'; // Adjust the path as needed.
+            
+            if ( file_exists( $file_path ) ) {
+                include $file_path;
+            } else {
+                echo '<div class="error">' . esc_html__('Overlay Card Style 01 template not found.', 'fancy-post-grid') . '</div>';
+            }
+        } 
+        // Category Card
+        protected function render_card_style_09() {
+            $file_path = plugin_dir_path( __FILE__ ) . 'render/card-style/card-style-categories-01.php'; // Adjust the path as needed.
+            
+            if ( file_exists( $file_path ) ) {
+                include $file_path;
+            } else {
+                echo '<div class="error">' . esc_html__('Category Card Style 09 template not found.', 'fancy-post-grid') . '</div>';
+            }
+        }
+        protected function render_card_style_20() {
+            $file_path = plugin_dir_path( __FILE__ ) . 'render/card-style/card-style-categories-02.php'; // Adjust the path as needed.
+            
+            if ( file_exists( $file_path ) ) {
+                include $file_path;
+            } else {
+                echo '<div class="error">' . esc_html__('Category Card Style 20 template not found.', 'fancy-post-grid') . '</div>';
+            }
+        } 
+        // Trending Card
+        protected function render_card_style_10() {
+            $file_path = plugin_dir_path( __FILE__ ) . 'render/card-style/card-style-trending-01.php'; // Adjust the path as needed.
+            
+            if ( file_exists( $file_path ) ) {
+                include $file_path;
+            } else {
+                echo '<div class="error">' . esc_html__('Trending Card Style 01 template not found.', 'fancy-post-grid') . '</div>';
             }
         }
         protected function render_card_style_23() {
@@ -5349,7 +5413,7 @@ add_action('elementor/widgets/widgets_registered', function () {
             if ( file_exists( $file_path ) ) {
                 include $file_path;
             } else {
-                echo '<div class="error">' . esc_html__('Video Card Style 04 template not found.', 'fancy-post-grid') . '</div>';
+                echo '<div class="error">' . esc_html__('Trending Card Style 02 template not found.', 'fancy-post-grid') . '</div>';
             }
         }protected function render_card_style_24() {
             $file_path = plugin_dir_path( __FILE__ ) . 'render/card-style/card-style-trending-03.php'; // Adjust the path as needed.
@@ -5357,9 +5421,47 @@ add_action('elementor/widgets/widgets_registered', function () {
             if ( file_exists( $file_path ) ) {
                 include $file_path;
             } else {
+                echo '<div class="error">' . esc_html__('Trending Card Style 03 template not found.', 'fancy-post-grid') . '</div>';
+            }
+        }
+        // Video Card
+        protected function render_card_style_11() {
+            $file_path = plugin_dir_path( __FILE__ ) . 'render/card-style/card-style-video-01.php'; // Adjust the path as needed.
+            
+            if ( file_exists( $file_path ) ) {
+                include $file_path;
+            } else {
+                echo '<div class="error">' . esc_html__('Video Card Style 01 template not found.', 'fancy-post-grid') . '</div>';
+            }
+        }
+        protected function render_card_style_12() {
+            $file_path = plugin_dir_path( __FILE__ ) . 'render/card-style/card-style-video-02.php'; // Adjust the path as needed.
+            
+            if ( file_exists( $file_path ) ) {
+                include $file_path;
+            } else {
+                echo '<div class="error">' . esc_html__('Video Card Style 02 template not found.', 'fancy-post-grid') . '</div>';
+            }
+        } 
+        protected function render_card_style_21() {
+            $file_path = plugin_dir_path( __FILE__ ) . 'render/card-style/card-style-video-03.php'; // Adjust the path as needed.
+            
+            if ( file_exists( $file_path ) ) {
+                include $file_path;
+            } else {
+                echo '<div class="error">' . esc_html__('Video Card Style 03 template not found.', 'fancy-post-grid') . '</div>';
+            }
+        }
+        protected function render_card_style_22() {
+            $file_path = plugin_dir_path( __FILE__ ) . 'render/card-style/card-style-video-04.php'; // Adjust the path as needed.
+            
+            if ( file_exists( $file_path ) ) {
+                include $file_path;
+            } else {
                 echo '<div class="error">' . esc_html__('Video Card Style 04 template not found.', 'fancy-post-grid') . '</div>';
             }
-        }protected function render_card_style_25() {
+        }
+        protected function render_card_style_25() {
             $file_path = plugin_dir_path( __FILE__ ) . 'render/card-style/card-style-video-05.php'; // Adjust the path as needed.
             
             if ( file_exists( $file_path ) ) {
@@ -5461,7 +5563,7 @@ add_action('elementor/widgets/widgets_registered', function () {
     class Fancy_Post_Card_Layout_Widget extends Fancy_Post_Grid_Base_Widget {
         
         // Specify which controls to exclude
-        protected $exclude_controls = ['fancy_post_title_layout','fancy_post_grid_layout','fancy_post_list_layout','show_pagination_on', 'fancy_post_slider_layout', 'excerpt_content','fancy_post_isotope_layout','slider_columns','slider_pagination_type','slider_section','slider_style','col_desktop_slider','col_lg_slider','col_md_slider','col_sm_slider','col_xs_slider','isotope_section','isotope_style','col_desktop','col_lg','col_md','col_sm','col_xs','space_between','space_between_lg','space_between_md','space_between_sm','space_between_xs','read_more_content','read_more_style','show_post_excerpt','show_post_readmore','excerpt_content_style','show_post_tags','show_comments_count','show_post_tags_icon','show_comments_count_icon','excerpt_order','button_order','thumbnail_left_size','thumbnail_right_size','thumbnail_size','title_content','section_title','post_section_title_style'];
+        protected $exclude_controls = ['fancy_post_title_layout','fancy_post_grid_layout','fancy_post_list_layout','show_pagination_on', 'fancy_post_slider_layout', 'excerpt_content','fancy_post_isotope_layout','slider_columns','slider_pagination_type','slider_section','slider_style','col_desktop_slider','col_lg_slider','col_md_slider','col_sm_slider','col_xs_slider','isotope_section','isotope_style','col_desktop','col_lg','col_md','col_sm','col_xs','space_between','space_between_lg','space_between_md','space_between_sm','space_between_xs','read_more_content','read_more_style','show_post_excerpt','show_post_readmore','excerpt_content_style','show_post_tags','show_comments_count','show_post_tags_icon','show_comments_count_icon','excerpt_order','button_order','thumbnail_left_size','thumbnail_right_size','thumbnail_size','title_content','section_title','post_section_title_style','show_post_date','show_post_categories','show_post_date_icon','show_post_categories_icon'];
         public function get_name() {
             return 'fpg_card_layout';
         }

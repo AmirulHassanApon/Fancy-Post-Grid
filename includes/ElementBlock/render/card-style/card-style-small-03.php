@@ -119,7 +119,7 @@ if ($query->have_posts()) { ?>
                         // Get post categories
                         $post_categories = get_the_category();
 
-                        if ( 'yes' === $settings['show_post_categories'] && !empty( $post_categories ) ) : ?>
+                        if ( 'yes' === $settings['show_post_categories_card'] && !empty( $post_categories ) ) : ?>
                             <div class="rs-post-tag">
                                 <?php foreach ( $post_categories as $cat ) : 
                                     // Get category background color

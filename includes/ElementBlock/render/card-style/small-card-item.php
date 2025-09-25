@@ -37,7 +37,7 @@ if (empty($box_alignment)) {
 
     <div class="rs-post-small-content align-<?php echo esc_attr($box_alignment); ?>">
         <!-- Categories -->
-        <?php if ('yes' === $settings['show_post_categories']) :
+        <?php if ('yes' === $settings['show_post_categories_card']) :
             $post_categories = get_the_category();
             if (!empty($post_categories)) : ?>
                 <div class="rs-post-tag">

@@ -349,10 +349,10 @@
 .secondary-bg {
     background-color: #f7f7f7;
 }
-.section-space {
+/*.section-space {
     padding-top: 120px;
     padding-bottom: 120px;
-}
+}*/
 .rs-post-small-five {
     border: 1px solid #e5e5e5;
     padding: 20px 30px 30px 30px;
@@ -711,6 +711,12 @@
      position: relative;
      overflow: hidden;
      border-radius: 8px;
+}
+.rs-post-medium-two .rs-play-btn {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
  .rs-post-medium-two .rs-post-medium-thumb a {
      display: block;
@@ -1875,9 +1881,9 @@
 }
 
 /*Title Card*/
-.section-title-space{
+/*.section-title-space{
     margin-bottom: 32px;
-}
+}*/
 .section-title {
     color: #000;
     font-weight: 700;
@@ -2922,4 +2928,29 @@
 }
 .rs-square-btn.has-icon .icon-box svg path{
     fill: #ffffff;
+}
+
+/*responsive*/
+@media only screen and (min-width: 1200px) and (max-width: 3200px) {
+    .rs-post-meta ul {
+        flex-wrap: wrap;
+    }
+}
+
+@media only screen and (min-width: 992px) and (max-width: 1199px) {
+    .rs-post-meta ul {
+        flex-wrap: wrap;
+    }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+    .rs-post-meta ul {
+        flex-wrap: wrap;
+    }
+}
+
+@media only screen and (max-width: 767px) {
+    .rs-post-meta ul {
+        flex-wrap: wrap;
+    }
 }
