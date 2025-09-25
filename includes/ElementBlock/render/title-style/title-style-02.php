@@ -1,11 +1,11 @@
 <?php
 $settings = $this->get_settings_for_display();
-$layout        = $settings['fancy_post_card_layout'] ?? 'titlestyle01';
+$layout        = $settings['fancy_post_card_layout'] ?? 'titlestyle02';
 $box_alignment = $settings['box_alignment'] ?? '';
 
 if ( empty( $box_alignment ) ) {
     switch ( $layout ) {
-        case 'titlestyle01':
+        case 'titlestyle02':
             $box_alignment = 'start';
             break;
     }
@@ -41,20 +41,6 @@ if ( ! empty( $settings['section_title_crop_by'] ) && ! empty( $settings['sectio
 $external_url  = ! empty( $settings['fancy_post_external_link_url']['url'] ) ? esc_url( $settings['fancy_post_external_link_url']['url'] ) : '';
 $external_text = ! empty( $settings['fancy_post_external_link_text'] ) ? esc_html( $settings['fancy_post_external_link_text'] ) : '';
 
-// Split text function
-function fancy_split_text( $text ) {
-    $output = '';
-    $words  = preg_split( '/\s+/', $text );
-    foreach ( $words as $word ) {
-        $output .= '<div style="position:relative;display:inline-block;">';
-        $letters = preg_split( '//u', $word, -1, PREG_SPLIT_NO_EMPTY );
-        foreach ( $letters as $letter ) {
-            $output .= '<div style="position: relative; display: inline-block; transform: translate(0px, 0px); opacity: 1;">' . esc_html( $letter ) . '</div>';
-        }
-        $output .= '</div> ';
-    }
-    return trim( $output );
-}
 ?>
 <div class="container">
     <div class="row section-title-space align-items-center g-5 align-<?php echo esc_attr( $box_alignment ); ?>">
@@ -69,10 +55,10 @@ function fancy_split_text( $text ) {
                         
                         <?php if ( 'page' === ( $settings['fancy_post_title_source'] ?? 'custom' ) ) : ?>
                             <a href="<?php the_permalink(); ?>">
-                                <?php echo fancy_split_text( $title ); ?>
+                                <?php echo  $title ; ?>
                             </a>
                         <?php else : ?>
-                            <?php echo fancy_split_text( $title ); ?>
+                            <?php echo  $title ; ?>
                         <?php endif; ?>
                     </<?php echo $title_tag; ?>>
                     <span class="rs-section-dot"></span> 

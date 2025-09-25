@@ -103,27 +103,28 @@ jQuery(document).ready(function ($) {
         }
     });
     $(document).ready(function(){
-  let filters = {
-    opacity:70,
-    brightness: 50
-  }
-  let containment = $('.ytbdVideo');
-  let option = {
-    autoPlay: true,
-  videoURL: 'https://www.youtube.com/watch?v=tq75nkjL6a8',
-    mute: true,
-    showControls: false,
-    loop: true,
-    containment: containment,
-    loop: true,
-    autoPlay: true,
-    startAt: 0,
-    stopMovieOnBlur: false
-  }
-  
+      let filters = {
+        opacity:70,
+        brightness: 50
+      }
+      let containment = $('.ytbdVideo');
+      let option = {
+        autoPlay: true,
+      videoURL: 'https://www.youtube.com/watch?v=tq75nkjL6a8',
+        mute: true,
+        showControls: false,
+        loop: true,
+        containment: containment,
+        loop: true,
+        autoPlay: true,
+        startAt: 0,
+        stopMovieOnBlur: false
+      }
+      
 
-});
+    });
 
-jQuery(document).ready(function($){
-    $(".ytbdVideo").YTPlayer();
+    jQuery(document).ready(function($){
+        $(".ytbdVideo").YTPlayer();
+    });
 });

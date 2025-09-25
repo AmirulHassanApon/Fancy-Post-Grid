@@ -59,25 +59,25 @@ if ($query->have_posts()) { ?>
     <div class="fpg-section-area rs-medium-card-area section-space">
         <div class="container">
             <div class="row">
-        <?php
-        while ($query->have_posts()) {
-            $query->the_post(); 
-        ?>
+    <?php
+    while ($query->have_posts()) {
+        $query->the_post(); 
+    ?>
         <div class="col-xl-<?php echo esc_attr($settings['col_desktop_card']); ?> col-lg-<?php echo esc_attr($settings['col_lg_card']); ?> col-md-<?php echo esc_attr($settings['col_md_card']); ?> g-15">
             <?php 
-                $layout = $settings['fancy_post_card_layout'] ?? 'cardstyle07';
+                $layout = $settings['fancy_post_card_layout'] ?? 'cardstyle06';
                 $box_alignment = $settings['box_alignment'] ?? '';
 
                 if (empty($box_alignment)) {
                     switch ($layout) {
                         
-                        case 'cardstyle07':
+                        case 'cardstyle06':
                             $box_alignment = 'start';
                             break;
                     }
                 }
             ?>
-            <div class="rs-post-medium rs-post-medium-two <?php echo esc_attr($hover_animation); ?> <?php echo esc_attr($link_type); ?>">
+            <div class="rs-post-medium rs-post-medium-one <?php echo esc_attr($hover_animation); ?> <?php echo esc_attr($link_type); ?>">
                 <div class="rs-post-medium-item">
                     <!-- Featured Image -->
                     <?php if ('yes' === $settings['show_post_thumbnail'] && has_post_thumbnail()) { ?>
@@ -86,13 +86,13 @@ if ($query->have_posts()) { ?>
                             <?php 
                             // Map the custom sizes to their actual dimensions
                             
-                            $layout = $settings['fancy_post_card_layout'] ?? 'cardstyle07';
+                            $layout = $settings['fancy_post_card_layout'] ?? 'cardstyle06';
                             $thumbnail_size = $settings['thumbnail_size_card'] ?? '';
 
                             if (empty($thumbnail_size)) {
                                 switch ($layout) {
                                     
-                                    case 'cardstyle07':
+                                    case 'cardstyle06':
                                         $thumbnail_size = 'fancy_post_portrait';
                                         break;
                                 }
@@ -113,7 +113,7 @@ if ($query->have_posts()) { ?>
                             // Get post categories
                             $post_categories = get_the_category();
 
-                            if ( 'yes' === $settings['show_post_categories'] && !empty( $post_categories ) ) : ?>
+                            if ( 'yes' === $settings['show_post_categories_card'] && !empty( $post_categories ) ) : ?>
                                 <div class="rs-post-tag">
                                     <?php foreach ( $post_categories as $cat ) : 
                                         // Get category background color
@@ -164,7 +164,28 @@ if ($query->have_posts()) { ?>
                                 <?php
                             }
                         ?>  
-                                
+                        <!-- Post Excerpt -->
+                        <?php if ( 'yes' === $settings['show_post_excerpt_card'] ) { ?>
+                            <p class="fancy-post-excerpt fpg-excerpt rs-post-description" >
+                                <?php
+                                $excerpt_type = $settings['excerpt_type_card'];
+                                $excerpt_length = $settings['excerpt_length_card'];
+                                $expansion_indicator = $settings['expansion_indicator_card'];
+
+                                if ( 'full_content' === $excerpt_type ) {
+                                    $content = get_the_content();
+                                    echo esc_html( $content );
+                                } elseif ( 'character' === $excerpt_type ) {
+                                    $excerpt = get_the_excerpt();
+                                    $trimmed_excerpt = mb_substr( $excerpt, 0, $excerpt_length ) . esc_html( $expansion_indicator );
+                                    echo esc_html( $trimmed_excerpt );
+                                } else { // Word-based excerpt
+                                    $excerpt = wp_trim_words( get_the_excerpt(), $excerpt_length, esc_html( $expansion_indicator ) );
+                                    echo esc_html( $excerpt );
+                                }
+                                ?>
+                            </p>
+                        <?php } ?>          
                         <!-- Post Meta: Date, Author, Category, Tags, Comments -->
                         <?php if ('yes' === $settings['show_meta_data']) { ?>
                             <div class="rs-post-meta meta-data-list">
@@ -196,9 +217,9 @@ if ($query->have_posts()) { ?>
                                             'content'   => esc_html($post_views) . ' ' . esc_html__('Views', 'fancy-post-grid'),
                                         ),
                                         'post_date' => array(
-                                            'condition' => 'yes' === $settings['show_post_date'],
+                                            'condition' => 'yes' === $settings['show_post_date_card'],
                                             'class'     => 'rs-meta',
-                                            'icon'      => ('yes' === $settings['show_meta_data_icon'] && 'yes' === $settings['show_post_date_icon']) 
+                                            'icon'      => ('yes' === $settings['show_meta_data_icon'] && 'yes' === $settings['show_post_date_icon_card']) 
                                                             ? '<i class="fa fa-calendar"></i>' 
                                                             : '',
                                             'content'   => esc_html(get_the_date('M j, Y')),

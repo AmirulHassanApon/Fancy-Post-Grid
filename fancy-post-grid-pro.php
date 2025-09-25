@@ -52,10 +52,28 @@ include_once  FANCY_POST_GRID_PATH_PRO.'includes/Gutenberg/gutenberg-init.php';
  * Register custom image sizes for Fancy Post Grid
  */
 function fancy_post_grid_register_image_sizes_pro() {
-    add_image_size( 'fancy_post_custom_size', 768, 500, true ); // Custom size with 768x500 dimensions and hard crop
-    add_image_size( 'fancy_post_square', 500, 500, true );      // Square size with 500x500 dimensions
-    add_image_size( 'fancy_post_landscape', 834, 550, true );   // Landscape size with 834x550 dimensions
-    add_image_size( 'fancy_post_portrait', 421, 550, true );    // Portrait size with 421x550 dimensions
-    add_image_size( 'fancy_post_list', 1200, 650, true );    // Portrait size with 1200x650 dimensions
+    add_image_size( 'fancy_post_small01_card_size', 130, 130, true ); 
+    add_image_size( 'fancy_post_small02_card_size', 139, 130, true ); 
+    add_image_size( 'fancy_post_categories_card_size', 194, 156, true ); 
+    add_image_size( 'fancy_post_small03_card_size', 332, 175, true ); 
+    add_image_size( 'fancy_post_medium01_card_size', 401, 322, true ); 
+    add_image_size( 'fancy_post_medium02_card_size', 426, 316, true ); 
+    add_image_size( 'fancy_post_small04_card_size', 450, 426, true ); 
+    add_image_size( 'fancy_post_trending01_card_size', 450, 462, true ); 
+    add_image_size( 'fancy_post_trending02_card_size', 450, 470, true ); 
+    add_image_size( 'fancy_post_trending03_card_size', 450, 480, true ); 
+    add_image_size( 'fancy_post_trending04_card_size', 450, 501, true ); 
+    add_image_size( 'fancy_post_trending05_card_size', 440, 501, true ); 
+    add_image_size( 'fancy_post_trending06_card_size', 450, 526, true ); 
+    
+    add_image_size( 'fancy_post_overlay01_card_size', 930, 462, true ); 
+    add_image_size( 'fancy_post_overlay02_card_size', 930, 501, true ); 
+    add_image_size( 'fancy_post_video_card_size', 1920, 650, true ); 
+
+    add_image_size( 'fancy_post_custom_size', 768, 500, true ); 
+    add_image_size( 'fancy_post_square', 500, 500, true );      
+    add_image_size( 'fancy_post_landscape', 834, 550, true );   
+    add_image_size( 'fancy_post_portrait', 421, 550, true ); 
+    add_image_size( 'fancy_post_list', 1200, 650, true ); 
 }
 add_action( 'after_setup_theme', 'fancy_post_grid_register_image_sizes_pro' );

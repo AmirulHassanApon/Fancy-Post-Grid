@@ -73,13 +73,13 @@ $query = new \WP_Query($args);
                     <div class="col-xl-8 col-lg-8">
                         <div class="rs-post-video rs-post-video-one">
                             <?php 
-                                $layout = $settings['fancy_post_card_layout'] ?? 'cardstyle11';
+                                $layout = $settings['fancy_post_card_layout'] ?? 'cardstyle12';
                                 $box_alignment = $settings['box_alignment'] ?? '';
 
                                 if (empty($box_alignment)) {
                                     switch ($layout) {
                                         
-                                        case 'cardstyle11':
+                                        case 'cardstyle12':
                                             $box_alignment = 'start';
                                             break;
                                     }
@@ -109,7 +109,7 @@ $query = new \WP_Query($args);
                                     // Get post categories
                                     $post_categories = get_the_category();
 
-                                    if ( 'yes' === $settings['show_post_categories'] && !empty( $post_categories ) ) : ?>
+                                    if ( 'yes' === $settings['show_post_categories_card'] && !empty( $post_categories ) ) : ?>
                                         <div class="rs-post-tag">
                                             <?php foreach ( $post_categories as $cat ) : 
                                                 // Get category background color
@@ -193,9 +193,9 @@ $query = new \WP_Query($args);
                                                         'content'   => esc_html($post_views) . ' ' . esc_html__('Views', 'fancy-post-grid'),
                                                     ),
                                                     'post_date' => array(
-                                                        'condition' => 'yes' === $settings['show_post_date'],
+                                                        'condition' => 'yes' === $settings['show_post_date_card'],
                                                         'class'     => 'rs-meta',
-                                                        'icon'      => ('yes' === $settings['show_meta_data_icon'] && 'yes' === $settings['show_post_date_icon']) 
+                                                        'icon'      => ('yes' === $settings['show_meta_data_icon'] && 'yes' === $settings['show_post_date_icon_card']) 
                                                                         ? '<i class="fa fa-calendar"></i>' 
                                                                         : '',
                                                         'content'   => esc_html(get_the_date('M j, Y')),
@@ -240,13 +240,13 @@ $query = new \WP_Query($args);
                             ?>
                             
                             <?php 
-                                $layout = $settings['fancy_post_card_layout'] ?? 'cardstyle11';
+                                $layout = $settings['fancy_post_card_layout'] ?? 'cardstyle12';
                                 $box_alignment = $settings['box_alignment'] ?? '';
 
                                 if (empty($box_alignment)) {
                                     switch ($layout) {
                                         
-                                        case 'cardstyle11':
+                                        case 'cardstyle12':
                                             $box_alignment = 'start';
                                             break;
                                     }
@@ -263,7 +263,7 @@ $query = new \WP_Query($args);
                                         <?php 
                                         // Map the custom sizes to their actual dimensions
                                         $layout = $settings['fancy_post_card_layout'] ?? 'cardstyle12';
-                                        $thumbnail_size = $settings['thumbnail_right_size'] ?? '';
+                                        $thumbnail_size = $settings['thumbnail_right_size_card'] ?? '';
 
                                         if (empty($thumbnail_size)) {
                                             switch ($layout) {
@@ -296,7 +296,7 @@ $query = new \WP_Query($args);
                                     // Get post categories
                                     $post_categories = get_the_category();
 
-                                    if ( 'yes' === $settings['show_post_categories'] && !empty( $post_categories ) ) : ?>
+                                    if ( 'yes' === $settings['show_post_categories_card'] && !empty( $post_categories ) ) : ?>
                                         <div class="rs-post-tag">
                                             <?php foreach ( $post_categories as $cat ) : 
                                                 // Get category background color

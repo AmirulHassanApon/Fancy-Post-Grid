@@ -86,7 +86,7 @@ $query = new \WP_Query($args);
                                 // Get post categories
                                 $post_categories = get_the_category();
 
-                                if ( 'yes' === $settings['show_post_categories'] && !empty( $post_categories ) ) : ?>
+                                if ( 'yes' === $settings['show_post_categories_card'] && !empty( $post_categories ) ) : ?>
                                     <div class="rs-post-tag">
                                         <?php foreach ( $post_categories as $cat ) : 
                                             // Get category background color
@@ -168,9 +168,9 @@ $query = new \WP_Query($args);
                                                     'content'   => esc_html($post_views) . ' ' . esc_html__('Views', 'fancy-post-grid'),
                                                 ),                                           
                                                 'post_date' => array(
-                                                    'condition' => 'yes' === $settings['show_post_date'],
+                                                    'condition' => 'yes' === $settings['show_post_date_card'],
                                                     'class'     => 'rs-meta',
-                                                    'icon'      => ('yes' === $settings['show_meta_data_icon'] && 'yes' === $settings['show_post_date_icon']) 
+                                                    'icon'      => ('yes' === $settings['show_meta_data_icon'] && 'yes' === $settings['show_post_date_icon_card']) 
                                                                     ? '<i class="fa fa-calendar"></i>' 
                                                                     : '',
                                                     'content'   => esc_html(get_the_date('M j, Y')),
@@ -227,7 +227,7 @@ $query = new \WP_Query($args);
                                 // Get post categories
                                 $post_categories = get_the_category();
 
-                                if ( 'yes' === $settings['show_post_categories'] && !empty( $post_categories ) ) : ?>
+                                if ( 'yes' === $settings['show_post_categories_card'] && !empty( $post_categories ) ) : ?>
                                     <div class="rs-post-tag">
                                         <?php foreach ( $post_categories as $cat ) : 
                                             // Get category background color
@@ -307,9 +307,9 @@ $query = new \WP_Query($args);
                                                     'content'   => esc_html($post_views) . ' ' . esc_html__('Views', 'fancy-post-grid'),
                                                 ),
                                                 'post_date' => array(
-                                                    'condition' => 'yes' === $settings['show_post_date'],
+                                                    'condition' => 'yes' === $settings['show_post_date_card'],
                                                     'class'     => 'rs-meta',
-                                                    'icon'      => ('yes' === $settings['show_meta_data_icon'] && 'yes' === $settings['show_post_date_icon']) 
+                                                    'icon'      => ('yes' === $settings['show_meta_data_icon'] && 'yes' === $settings['show_post_date_icon_card']) 
                                                                     ? '<i class="fa fa-calendar"></i>' 
                                                                     : '',
                                                     'content'   => esc_html(get_the_date('M j, Y')),
