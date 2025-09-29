@@ -210,7 +210,7 @@ ob_start();
 
                                     ?>
                                     <a href="<?php the_permalink(); ?>" <?php echo esc_attr($target_blank); ?>>
-                                        <img src="<?php echo esc_url($feature_image_url); ?>" alt="<?php echo $alt_text; ?>">
+                                        <img src="<?php echo esc_url($feature_image_url); ?>" alt="<?php echo esc_attr($alt_text); ?>">
                                     </a>
                                 <?php endif; ?>
                                 
@@ -268,7 +268,7 @@ ob_start();
 
                                         <?php if ($fpg_field_group_read_more) : ?>
                                         <div class="blgo-btn-box <?php echo esc_attr($button_alignment_class); ?>">
-                                            <a class="rs-btn  <?php echo esc_attr($button_class); ?>" href="<?php the_permalink(); ?>" <?php echo $target_blank; ?>>
+                                            <a class="rs-btn  <?php echo esc_attr($button_class); ?>" href="<?php the_permalink(); ?>" <?php echo esc_attr($target_blank); ?>>
                                                 <div class="blog-btn" >
                                                     <?php echo esc_html($fancy_post_read_more_text); ?>
                                                     <i class="ri-arrow-right-line"></i>

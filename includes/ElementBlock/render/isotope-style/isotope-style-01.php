@@ -191,22 +191,27 @@ if ($query->have_posts()) {
                     <div class="rs-blog-footer">
                         <?php if ('yes' === $settings['show_meta_data']) { ?>
                             <div class="user">
-                                <?php if ('yes' === $settings['show_post_author']) : 
-                                    $author_id = get_the_author_meta('ID');
-                                    $author_url = get_author_posts_url($author_id);
-                                    $author_name = esc_html(get_the_author());
-                                    $author_prefix = esc_html($settings['author_prefix']); // Example: 'By'
-                                    $avatar_url = get_avatar_url($author_id);
+                                <?php if ( 'yes' === $settings['show_post_author'] ) : 
+                                    $author_id     = get_the_author_meta( 'ID' );
+                                    $author_url    = get_author_posts_url( $author_id );
+                                    $author_name   = get_the_author(); // escape later
+                                    $author_prefix = $settings['author_prefix']; // escape later
+                                    $avatar_url    = get_avatar_url( $author_id );
                                 ?>
-                                    <a href="<?php echo esc_url($author_url); ?>">
+                                    <a href="<?php echo esc_url( $author_url ); ?>">
                                         <div class="author-thumb">
-                                            <img decoding="async" src="<?php echo esc_url($avatar_url); ?>" alt="<?php esc_attr_e('Author', 'fancy-post-grid'); ?>" class="author-avatar" />
-                                            
+                                            <img decoding="async"
+                                                 src="<?php echo esc_url( $avatar_url ); ?>"
+                                                 alt="<?php esc_attr_e( 'Author', 'fancy-post-grid' ); ?>"
+                                                 class="author-avatar" />
                                         </div>
-                                        <span><?php echo $author_prefix . ' ' . $author_name; ?></span>
+                                        <span>
+                                            <?php echo esc_html( $author_prefix . ' ' . $author_name ); ?>
+                                        </span>
                                     </a>
                                 <?php endif; ?>
                             </div>
+
                         <?php } ?>
 
                         <!-- Read More Button -->

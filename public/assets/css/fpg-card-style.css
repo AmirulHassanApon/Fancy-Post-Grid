@@ -2954,3 +2954,6 @@
         flex-wrap: wrap;
     }
 }
+.rs-post-meta.meta-data-list span.rs-meta:hover{
+    color: #616C74 !important;
+}

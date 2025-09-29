@@ -44,19 +44,18 @@ if ( ! empty( $settings['section_title_crop_by'] ) && ! empty( $settings['sectio
         <div class="section-title-wrapper">
 
             <!-- Section Title -->
-            <<?php echo $title_tag; ?>
+            <<?php echo esc_attr($title_tag); ?>
                 class="title section-title rs-split-text-enable split-in-left"
                 style="perspective:400px;">
                 
                 <?php if ( 'page' === ( $settings['fancy_post_title_source'] ?? 'custom' ) ) : ?>
-                    <a href="<?php the_permalink(); ?>">
-                        <?php echo  $title ; ?>
-                    </a>
-                <?php else : ?>
-                    <?php echo  $title ; ?>
-                <?php endif; ?>
-            </<?php echo $title_tag; ?>>
-
+                        <a href="<?php the_permalink(); ?>">
+                            <?php echo esc_html($title); ?>
+                        </a>
+                    <?php else : ?>
+                        <?php echo esc_html($title); ?>
+                    <?php endif; ?>
+            </<?php echo esc_attr($title_tag); ?>>
         </div>
     </div>
 </div>

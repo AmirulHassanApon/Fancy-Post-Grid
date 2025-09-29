@@ -227,7 +227,7 @@ if ($query->have_posts()) { ?>
         <?php
     } ?>
     </div></div></div></div></div>
-    <?
+    <?php
     
 } else {
 }

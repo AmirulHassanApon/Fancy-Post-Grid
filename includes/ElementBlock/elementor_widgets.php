@@ -831,6 +831,10 @@ add_action('elementor/widgets/widgets_registered', function () {
                         'label_on'     => esc_html__( 'Yes', 'fancy-post-grid' ),
                         'label_off'    => esc_html__( 'No', 'fancy-post-grid' ),
                         'return_value' => 'yes',
+                        'condition' => [
+                            'fancy_post_card_layout' => [ 'cardstyle01', 'cardstyle02','cardstyle03', 'cardstyle04','cardstyle05', 'cardstyle06','cardstyle07', 'cardstyle08','cardstyle09','cardstyle10', 'cardstyle11','cardstyle12', 'cardstyle13','cardstyle14', 'cardstyle15','cardstyle16', 'cardstyle17','cardstyle18','cardstyle19','cardstyle20','cardstyle21','cardstyle22','cardstyle23','cardstyle24','cardstyle25' ,'cardstyle26','cardstyle27' ],
+                            
+                        ],
                         'default'      => '',
                     ]
                 );
@@ -843,6 +847,10 @@ add_action('elementor/widgets/widgets_registered', function () {
                         'label_on'     => esc_html__( 'Yes', 'fancy-post-grid' ),
                         'label_off'    => esc_html__( 'No', 'fancy-post-grid' ),
                         'return_value' => 'yes',
+                        'condition' => [
+                            'fancy_post_card_layout' => [ 'cardstyle01', 'cardstyle02','cardstyle03', 'cardstyle04','cardstyle05', 'cardstyle06','cardstyle07', 'cardstyle08','cardstyle09','cardstyle10', 'cardstyle11','cardstyle12', 'cardstyle13','cardstyle14', 'cardstyle15','cardstyle16', 'cardstyle17','cardstyle18','cardstyle19','cardstyle20','cardstyle21','cardstyle22','cardstyle23','cardstyle24','cardstyle25' ,'cardstyle26','cardstyle27' ],
+                            
+                        ],
                         'default'      => '',
                     ]
                 );
@@ -1443,9 +1451,21 @@ add_action('elementor/widgets/widgets_registered', function () {
                 );
                  
                 $this->add_control(
+                    'show_post_date_icon',
+                    [
+                        'label'   => esc_html__( '- Show Post Date Icon ', 'fancy-post-grid' ),
+                        'type'    => \Elementor\Controls_Manager::SWITCHER,
+                        'label_on' => esc_html__( 'Show', 'fancy-post-grid' ),
+                        'label_off' => esc_html__( 'Hide', 'fancy-post-grid' ),
+                        'return_value' => 'yes',
+                        'default' => 'yes',
+                        'render_type' => 'template'
+                    ]
+                );
+                $this->add_control(
                     'show_post_date_icon_card',
                     [
-                        'label'   => esc_html__( '- Show Post Date  Icon ', 'fancy-post-grid' ),
+                        'label'   => esc_html__( '- Show Post Date Icon ', 'fancy-post-grid' ),
                         'type'    => \Elementor\Controls_Manager::SWITCHER,
                         'label_on' => esc_html__( 'Show', 'fancy-post-grid' ),
                         'label_off' => esc_html__( 'Hide', 'fancy-post-grid' ),
@@ -1811,6 +1831,21 @@ add_action('elementor/widgets/widgets_registered', function () {
                             'large'      => esc_html__( 'Large', 'fancy-post-grid' ),
                             'full'       => esc_html__( 'Full', 'fancy-post-grid' ),
                             'fancy_post_small01_card_size'=> esc_html__( 'Small Card 01 (130x130)', 'fancy-post-grid' ),
+                            'fancy_post_small02_card_size'=> esc_html__( 'Small Card 02 (139x130)', 'fancy-post-grid' ),
+                            'fancy_post_small03_card_size'=> esc_html__( 'Small Card 03 (332x175)', 'fancy-post-grid' ),
+                            'fancy_post_small04_card_size'=> esc_html__( 'Small Card 04 (450x426)', 'fancy-post-grid' ),
+                            'fancy_post_categories_card_size'=> esc_html__( 'Categories Card (194x156)', 'fancy-post-grid' ),
+                            'fancy_post_medium01_card_size'=> esc_html__( 'Medium Card 02 (401x322)', 'fancy-post-grid' ),
+                            'fancy_post_medium02_card_size'=> esc_html__( 'Medium Card 03 (426x316)', 'fancy-post-grid' ),
+                            'fancy_post_trending01_card_size'=> esc_html__( 'Trending Card 01 (450x462)', 'fancy-post-grid' ),
+                            'fancy_post_trending02_card_size'=> esc_html__( 'Trending Card 02 (450x470)', 'fancy-post-grid' ),
+                            'fancy_post_trending03_card_size'=> esc_html__( 'Trending Card 03 (450x480)', 'fancy-post-grid' ),
+                            'fancy_post_trending04_card_size'=> esc_html__( 'Trending Card 04 (450x501)', 'fancy-post-grid' ),
+                            'fancy_post_trending05_card_size'=> esc_html__( 'Trending Card 05 (440x501)', 'fancy-post-grid' ),
+                            'fancy_post_trending06_card_size'=> esc_html__( 'Trending Card 06 (450x526)', 'fancy-post-grid' ),
+                            'fancy_post_overlay01_card_size'=> esc_html__( 'Overlay Card (930x462)', 'fancy-post-grid' ),
+                            'fancy_post_overlay02_card_size'=> esc_html__( 'Trending Card 05 (930x501)', 'fancy-post-grid' ),
+                            'fancy_post_video_card_size'=> esc_html__( 'Video Card (1920x650)', 'fancy-post-grid' ),
                             'fancy_post_custom_size'=> esc_html__( 'Custom Size (768x500)', 'fancy-post-grid' ),
                             'fancy_post_square'     => esc_html__( 'Square(500x500)', 'fancy-post-grid' ),
                             'fancy_post_landscape'  => esc_html__( 'Landscape(834x550)', 'fancy-post-grid' ),
@@ -1886,6 +1921,22 @@ add_action('elementor/widgets/widgets_registered', function () {
                             'medium'     => esc_html__( 'Medium', 'fancy-post-grid' ),
                             'large'      => esc_html__( 'Large', 'fancy-post-grid' ),
                             'full'       => esc_html__( 'Full', 'fancy-post-grid' ),
+                            'fancy_post_small01_card_size'=> esc_html__( 'Small Card 01 (130x130)', 'fancy-post-grid' ),
+                            'fancy_post_small02_card_size'=> esc_html__( 'Small Card 02 (139x130)', 'fancy-post-grid' ),
+                            'fancy_post_small03_card_size'=> esc_html__( 'Small Card 03 (332x175)', 'fancy-post-grid' ),
+                            'fancy_post_small04_card_size'=> esc_html__( 'Small Card 04 (450x426)', 'fancy-post-grid' ),
+                            'fancy_post_categories_card_size'=> esc_html__( 'Categories Card (194x156)', 'fancy-post-grid' ),
+                            'fancy_post_medium01_card_size'=> esc_html__( 'Medium Card 02 (401x322)', 'fancy-post-grid' ),
+                            'fancy_post_medium02_card_size'=> esc_html__( 'Medium Card 03 (426x316)', 'fancy-post-grid' ),
+                            'fancy_post_trending01_card_size'=> esc_html__( 'Trending Card 01 (450x462)', 'fancy-post-grid' ),
+                            'fancy_post_trending02_card_size'=> esc_html__( 'Trending Card 02 (450x470)', 'fancy-post-grid' ),
+                            'fancy_post_trending03_card_size'=> esc_html__( 'Trending Card 03 (450x480)', 'fancy-post-grid' ),
+                            'fancy_post_trending04_card_size'=> esc_html__( 'Trending Card 04 (450x501)', 'fancy-post-grid' ),
+                            'fancy_post_trending05_card_size'=> esc_html__( 'Trending Card 05 (440x501)', 'fancy-post-grid' ),
+                            'fancy_post_trending06_card_size'=> esc_html__( 'Trending Card 06 (450x526)', 'fancy-post-grid' ),
+                            'fancy_post_overlay01_card_size'=> esc_html__( 'Overlay Card (930x462)', 'fancy-post-grid' ),
+                            'fancy_post_overlay02_card_size'=> esc_html__( 'Trending Card 05 (930x501)', 'fancy-post-grid' ),
+                            'fancy_post_video_card_size'=> esc_html__( 'Video Card (1920x650)', 'fancy-post-grid' ),
                             'fancy_post_custom_size'=> esc_html__( 'Custom Size (768x500)', 'fancy-post-grid' ),
                             'fancy_post_square'     => esc_html__( 'Square(500x500)', 'fancy-post-grid' ),
                             'fancy_post_landscape'  => esc_html__( 'Landscape(834x550)', 'fancy-post-grid' ),
@@ -1911,6 +1962,22 @@ add_action('elementor/widgets/widgets_registered', function () {
                             'medium'     => esc_html__( 'Medium', 'fancy-post-grid' ),
                             'large'      => esc_html__( 'Large', 'fancy-post-grid' ),
                             'full'       => esc_html__( 'Full', 'fancy-post-grid' ),
+                            'fancy_post_small01_card_size'=> esc_html__( 'Small Card 01 (130x130)', 'fancy-post-grid' ),
+                            'fancy_post_small02_card_size'=> esc_html__( 'Small Card 02 (139x130)', 'fancy-post-grid' ),
+                            'fancy_post_small03_card_size'=> esc_html__( 'Small Card 03 (332x175)', 'fancy-post-grid' ),
+                            'fancy_post_small04_card_size'=> esc_html__( 'Small Card 04 (450x426)', 'fancy-post-grid' ),
+                            'fancy_post_categories_card_size'=> esc_html__( 'Categories Card (194x156)', 'fancy-post-grid' ),
+                            'fancy_post_medium01_card_size'=> esc_html__( 'Medium Card 02 (401x322)', 'fancy-post-grid' ),
+                            'fancy_post_medium02_card_size'=> esc_html__( 'Medium Card 03 (426x316)', 'fancy-post-grid' ),
+                            'fancy_post_trending01_card_size'=> esc_html__( 'Trending Card 01 (450x462)', 'fancy-post-grid' ),
+                            'fancy_post_trending02_card_size'=> esc_html__( 'Trending Card 02 (450x470)', 'fancy-post-grid' ),
+                            'fancy_post_trending03_card_size'=> esc_html__( 'Trending Card 03 (450x480)', 'fancy-post-grid' ),
+                            'fancy_post_trending04_card_size'=> esc_html__( 'Trending Card 04 (450x501)', 'fancy-post-grid' ),
+                            'fancy_post_trending05_card_size'=> esc_html__( 'Trending Card 05 (440x501)', 'fancy-post-grid' ),
+                            'fancy_post_trending06_card_size'=> esc_html__( 'Trending Card 06 (450x526)', 'fancy-post-grid' ),
+                            'fancy_post_overlay01_card_size'=> esc_html__( 'Overlay Card (930x462)', 'fancy-post-grid' ),
+                            'fancy_post_overlay02_card_size'=> esc_html__( 'Trending Card 05 (930x501)', 'fancy-post-grid' ),
+                            'fancy_post_video_card_size'=> esc_html__( 'Video Card (1920x650)', 'fancy-post-grid' ),
                             'fancy_post_custom_size'=> esc_html__( 'Custom Size (768x500)', 'fancy-post-grid' ),
                             'fancy_post_square'     => esc_html__( 'Square(500x500)', 'fancy-post-grid' ),
                             'fancy_post_landscape'  => esc_html__( 'Landscape(834x550)', 'fancy-post-grid' ),
@@ -3611,8 +3678,19 @@ add_action('elementor/widgets/widgets_registered', function () {
                         'label'     => esc_html__( 'Meta Color', 'fancy-post-grid' ),
                         'type'      => \Elementor\Controls_Manager::COLOR,
                         'selectors' => array(
-                            '{{WRAPPER}} .meta-data-list li,{{WRAPPER}} .meta-data-list li a,{{WRAPPER}} .meta-data-list,{{WRAPPER}} .rs-blog-layout-26-item .rs-content .rs-meta .meta-date span,{{WRAPPER}} .rs-blog-layout-26-item .rs-content .rs-meta .meta-category a,{{WRAPPER}} .rs-blog-layout-13-item .rs-thumb .pre-blog-meta .pre-date, {{WRAPPER}} .rs-blog-layout-13-item .rs-thumb .pre-blog-meta .pre-month,{{WRAPPER}} .rs-blog-layout-8 .rs-blog__thumb .rs-category a,{{WRAPPER}} .rs-blog-layout-1.rs-blog-layout-9 .blog-horizontal .blog-meta .blog-item-wrap .blog-content .blog-meta .admin,{{WRAPPER}} .rs-blog-layout-1.rs-blog-layout-9 .blog-horizontal .blog-meta .blog-item-wrap .blog-content .blog-meta .meta-date,{{WRAPPER}} .rs-blog-layout-14-item .rs-content .rs-meta a,{{WRAPPER}} .rs-blog-layout-15-item .rs-thumb .rs-category a,{{WRAPPER}} .pre-blog-item.style_12 .blog-inner-wrap .pre-image-wrap .pre-blog-meta .pre-month,{{WRAPPER}} .pre-blog-item.style_12 .blog-inner-wrap .pre-image-wrap .pre-blog-meta .pre-date,{{WRAPPER}} .rs-blog-layout-14-item .rs-content .rs-meta .meta-date,{{WRAPPER}} .rs-blog-layout-3 .rs-blog__single .content .rs-blog-category a,{{WRAPPER}} .rs-blog-layout-3 .rs-blog__single .content ul li,{{WRAPPER}} .rs-blog-layout-3 .rs-blog__single .content .rs-blog-author .user a span,{{WRAPPER}} .rs-blog-layout-4 .rs-blog__item .rs-content .rs-category a,{{WRAPPER}} .rs-blog-layout-4 .rs-blog__item .rs-content .rs-blog-footer .user span,{{WRAPPER}} .rs-blog-layout-30-item .rs-thumb .meta-date span,{{WRAPPER}} .pre-blog-item.style_12 .blog-inner-wrap .pre-blog-content ul li,{{WRAPPER}} .rs-blog-layout-25-item .rs-content .rs-cat a,{{WRAPPER}} .rs-blog-layout-27-list-item .rs-content .rs-meta-category a,{{WRAPPER}} .rs-blog-layout-27-list-item .rs-content .rs-meta-category i,{{WRAPPER}} .rs-blog-layout-27-list-item .rs-date .title,{{WRAPPER}} .rs-blog-layout-27-list-item .rs-date span,{{WRAPPER}} .rs-post-meta.meta-data-list span.rs-meta,{{WRAPPER}} .rs-post-tag a' => 'color: {{VALUE}};',
+                            '{{WRAPPER}} .meta-data-list li,{{WRAPPER}} .meta-data-list li a,{{WRAPPER}} .meta-data-list,{{WRAPPER}} .rs-blog-layout-26-item .rs-content .rs-meta .meta-date span,{{WRAPPER}} .rs-blog-layout-26-item .rs-content .rs-meta .meta-category a,{{WRAPPER}} .rs-blog-layout-13-item .rs-thumb .pre-blog-meta .pre-date, {{WRAPPER}} .rs-blog-layout-13-item .rs-thumb .pre-blog-meta .pre-month,{{WRAPPER}} .rs-blog-layout-8 .rs-blog__thumb .rs-category a,{{WRAPPER}} .rs-blog-layout-1.rs-blog-layout-9 .blog-horizontal .blog-meta .blog-item-wrap .blog-content .blog-meta .admin,{{WRAPPER}} .rs-blog-layout-1.rs-blog-layout-9 .blog-horizontal .blog-meta .blog-item-wrap .blog-content .blog-meta .meta-date,{{WRAPPER}} .rs-blog-layout-14-item .rs-content .rs-meta a,{{WRAPPER}} .rs-blog-layout-15-item .rs-thumb .rs-category a,{{WRAPPER}} .pre-blog-item.style_12 .blog-inner-wrap .pre-image-wrap .pre-blog-meta .pre-month,{{WRAPPER}} .pre-blog-item.style_12 .blog-inner-wrap .pre-image-wrap .pre-blog-meta .pre-date,{{WRAPPER}} .rs-blog-layout-14-item .rs-content .rs-meta .meta-date,{{WRAPPER}} .rs-blog-layout-3 .rs-blog__single .content .rs-blog-category a,{{WRAPPER}} .rs-blog-layout-3 .rs-blog__single .content ul li,{{WRAPPER}} .rs-blog-layout-3 .rs-blog__single .content .rs-blog-author .user a span,{{WRAPPER}} .rs-blog-layout-4 .rs-blog__item .rs-content .rs-category a,{{WRAPPER}} .rs-blog-layout-4 .rs-blog__item .rs-content .rs-blog-footer .user span,{{WRAPPER}} .rs-blog-layout-30-item .rs-thumb .meta-date span,{{WRAPPER}} .pre-blog-item.style_12 .blog-inner-wrap .pre-blog-content ul li,{{WRAPPER}} .rs-blog-layout-25-item .rs-content .rs-cat a,{{WRAPPER}} .rs-blog-layout-27-list-item .rs-content .rs-meta-category a,{{WRAPPER}} .rs-blog-layout-27-list-item .rs-content .rs-meta-category i,{{WRAPPER}} .rs-blog-layout-27-list-item .rs-date .title,{{WRAPPER}} .rs-blog-layout-27-list-item .rs-date span,{{WRAPPER}} .rs-post-meta.meta-data-list span.rs-meta' => 'color: {{VALUE}};',
                             '{{WRAPPER}} .rs-blog-layout-25-item .rs-content .rs-cat a' => '    border-bottom-color: {{VALUE}};',
+                        ),
+                    ]
+                );
+                $this->add_control(
+                    'meta_categories_color',
+                    [
+                        'label'     => esc_html__( 'Meta Categories Color', 'fancy-post-grid' ),
+                        'type'      => \Elementor\Controls_Manager::COLOR,
+                        'selectors' => array(
+                            '{{WRAPPER}} .rs-post-tag a' => 'color: {{VALUE}};',
+                            
                         ),
                     ]
                 );
@@ -3675,7 +3753,18 @@ add_action('elementor/widgets/widgets_registered', function () {
                         'label' => esc_html__( 'Hover', 'fancy-post-grid' ),
                     ]
                 );
-
+                
+                $this->add_control(
+                    'meta_hover_color',
+                    [
+                        'label'     => esc_html__( 'Meta Hover Color', 'fancy-post-grid' ),
+                        'type'      => \Elementor\Controls_Manager::COLOR,
+                        'selectors' => array(
+                            '{{WRAPPER}} .rs-post-meta.meta-data-list span.rs-meta:hover' => 'color: {{VALUE}};',
+                            
+                        ),
+                    ]
+                );
                 $this->add_control(
                     'meta_link_hover_color',
                     [
