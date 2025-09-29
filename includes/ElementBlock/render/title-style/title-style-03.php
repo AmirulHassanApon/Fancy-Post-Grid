@@ -54,28 +54,23 @@ $external_text = ! empty( $settings['fancy_post_external_link_text'] ) ? esc_htm
                     
                     <span class="rs-section-line bg-light-grey"></span> 
                     <!-- Section Title -->
-                    <<?php echo $title_tag; ?>
-                        class="title section-title rs-split-text-enable split-in-left section-gap"
+                    <<?php echo esc_attr($title_tag); ?>
+                        class="title section-title rs-split-text-enable split-in-left"
                         style="perspective:400px;">
                         
                         <?php if ( 'page' === ( $settings['fancy_post_title_source'] ?? 'custom' ) ) : ?>
-                            <a href="<?php the_permalink(); ?>">
-                                <?php echo  $title ; ?>
-                            </a>
-                        <?php else : ?>
-                            <?php echo  $title ; ?>
-                        <?php endif; ?>
-                    </<?php echo $title_tag; ?>>
+                                <a href="<?php the_permalink(); ?>">
+                                    <?php echo esc_html($title); ?>
+                                </a>
+                            <?php else : ?>
+                                <?php echo esc_html($title); ?>
+                            <?php endif; ?>
+                    </<?php echo esc_attr($title_tag); ?>>
                    <span class="rs-section-line bg-light-grey"></span> 
                    <span class="rs-section-dot"></span> 
 
                 </div>
-
-            
-            
         </div>
-
-        
     </div>
 </div>
 

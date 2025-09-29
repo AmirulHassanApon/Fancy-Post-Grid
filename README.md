@@ -11,8 +11,8 @@
 **License URI:** http://www.gnu.org/licenses/gpl-2.0.html 
 **Stable tag:** 1.0.1
 **Tested up to:** 6.8
-**Requires PHP:** 7.0.0
-**Requires at least:** 5.5
+**Requires PHP:** 7.4
+**Requires at least:** 6.3
 
 Display your posts in 100+ stunning layouts with Fancy Post Grid — a stylish, versatile plugin for modern WordPress blogs.
 

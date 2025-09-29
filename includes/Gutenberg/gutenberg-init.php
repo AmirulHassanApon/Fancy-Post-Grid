@@ -49,31 +49,36 @@ function fancy_post_grid_register_gutenberg_block() {
 
     wp_register_script(
         'fancy-post-grid-block',
-        plugins_url('blocks/fancy-post-grid/grid-block.js', __FILE__),
-        array('wp-blocks', 'wp-element', 'wp-editor', 'wp-data'),
-        filemtime(plugin_dir_path(__FILE__) . 'blocks/fancy-post-grid/grid-block.js')
+        plugins_url( 'blocks/fancy-post-grid/grid-block.js', __FILE__ ),
+        array( 'wp-blocks', 'wp-element', 'wp-editor', 'wp-data' ),
+        filemtime( plugin_dir_path( __FILE__ ) . 'blocks/fancy-post-grid/grid-block.js' ),
+        true // load in footer
     );
 
     wp_register_script(
         'fancy-post-slider-block',
-        plugins_url('blocks/fancy-post-slider/slider-block.js', __FILE__),
-        array('wp-blocks', 'wp-element', 'wp-editor', 'wp-data'),
-        filemtime(plugin_dir_path(__FILE__) . 'blocks/fancy-post-slider/slider-block.js')
+        plugins_url( 'blocks/fancy-post-slider/slider-block.js', __FILE__ ),
+        array( 'wp-blocks', 'wp-element', 'wp-editor', 'wp-data' ),
+        filemtime( plugin_dir_path( __FILE__ ) . 'blocks/fancy-post-slider/slider-block.js' ),
+        true
     );
 
     wp_register_script(
         'fancy-post-list-block',
-        plugins_url('blocks/fancy-post-list/list-block.js', __FILE__),
-        array('wp-blocks', 'wp-element', 'wp-editor', 'wp-data'),
-        filemtime(plugin_dir_path(__FILE__) . 'blocks/fancy-post-list/list-block.js')
+        plugins_url( 'blocks/fancy-post-list/list-block.js', __FILE__ ),
+        array( 'wp-blocks', 'wp-element', 'wp-editor', 'wp-data' ),
+        filemtime( plugin_dir_path( __FILE__ ) . 'blocks/fancy-post-list/list-block.js' ),
+        true
     );
 
     wp_register_script(
         'fancy-post-isotope-block',
-        plugins_url('blocks/fancy-post-isotope/isotope-block.js', __FILE__),
-        array('wp-blocks', 'wp-element', 'wp-editor', 'wp-data'),
-        filemtime(plugin_dir_path(__FILE__) . 'blocks/fancy-post-isotope/isotope-block.js')
-    );    
+        plugins_url( 'blocks/fancy-post-isotope/isotope-block.js', __FILE__ ),
+        array( 'wp-blocks', 'wp-element', 'wp-editor', 'wp-data' ),
+        filemtime( plugin_dir_path( __FILE__ ) . 'blocks/fancy-post-isotope/isotope-block.js' ),
+        true
+    );
+   
 
     wp_register_style(
         'fancy-post-grid-style',

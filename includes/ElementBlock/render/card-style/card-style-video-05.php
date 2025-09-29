@@ -53,8 +53,6 @@ $separator_value = isset($separator_map[$settings['meta_separator']]) ? $separat
 $hover_animation = $settings['hover_animation'];
 $link_type = $settings['link_type'];
 
-
-
 // Background Image
 $bg_image = !empty($settings['custom_image']['url']) 
     ? esc_url($settings['custom_image']['url']) 
@@ -75,9 +73,10 @@ $query = new \WP_Query($args);
 <?php if ($query->have_posts()) : ?>
 <section class="rs-video-area rs-video-one rs-video-two fpg-section-area">
     <div class="rs-video-bg-thumb" 
-         data-background="<?php echo $bg_image; ?>" 
-         style="background-image: url('<?php echo $bg_image; ?>');">
+         data-background="<?php echo esc_url( $bg_image ); ?>" 
+         style="background-image: url('<?php echo esc_url( $bg_image ); ?>');">
     </div>
+
 
     <div class="container">
         <div class="row justify-content-center">
@@ -85,7 +84,7 @@ $query = new \WP_Query($args);
                 <div class="rs-video-wrapper text-center">
                     <?php if ( !empty($video_url) ) : ?>
                         <div class="rs-video-play-btn">
-                            <a href="<?php echo $video_url; ?>" 
+                            <a href="<?php echo esc_url( $video_url ); ?>" 
                                class="rs-play-btn popup-video is-white">
                                 <i class="fa-solid fa-play"></i>
                             </a>

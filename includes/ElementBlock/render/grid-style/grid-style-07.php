@@ -136,7 +136,7 @@ if ($query->have_posts()) { ?>
                                 $author_prefix = !empty($settings['author_prefix']) ? esc_html($settings['author_prefix']) . ' ' : '';
                                 $author_name = get_the_author();
                                 echo '<a href="' . esc_url($author_url) . '">'
-                                    . $author_prefix . esc_html($author_name)
+                                    . esc_html($author_prefix) . esc_html($author_name)
                                     . '</a>';
                             }
                             ?>

@@ -59,24 +59,30 @@ function rs_elementor_editor_css() {
 
 add_action('admin_enqueue_scripts', 'fpg_enqueue_category_scripts');
 
-function fpg_enqueue_category_scripts($hook) {
+function fpg_enqueue_category_scripts( $hook ) {
     // Only load on category taxonomy page
-    if ($hook === 'edit-tags.php' && isset($_GET['taxonomy']) && $_GET['taxonomy'] === 'category') {
+    if ( $hook === 'edit-tags.php' && isset( $_GET['taxonomy'] ) && $_GET['taxonomy'] === 'category' ) {
         // Enqueue WordPress color picker
-        wp_enqueue_style('wp-color-picker');
-        wp_enqueue_script('wp-color-picker');
+        wp_enqueue_style( 'wp-color-picker' );
+        wp_enqueue_script( 'wp-color-picker' );
 
-        // Enqueue your plugin's CSS/JS
-        wp_enqueue_style('fpg-category-style', plugin_dir_url(__FILE__) . 'assets/css/category-style.css');
+        // Enqueue your plugin's CSS/JS with inline version
+        wp_enqueue_style(
+            'fpg-category-style',
+            plugin_dir_url( __FILE__ ) . 'assets/css/category-style.css',
+            [],
+            filemtime( plugin_dir_path( __FILE__ ) . 'assets/css/category-style.css' )
+        );
         wp_enqueue_script(
             'fpg-category-script',
-            plugin_dir_url(__FILE__) . 'assets/js/category-script.js',
-            ['jquery', 'wp-color-picker'], // dependencies
-            null,
+            plugin_dir_url( __FILE__ ) . 'assets/js/category-script.js',
+            [ 'jquery', 'wp-color-picker' ],
+            filemtime( plugin_dir_path( __FILE__ ) . 'assets/js/category-script.js' ),
             true
         );
     }
 }
+
 
 if (is_admin()) {
 
@@ -89,14 +95,14 @@ if (is_admin()) {
     function fpg_category_fields($taxonomy) {
         ?>
         <div class="form-field term-bg-color-wrap">
-            <label><?php _e('Background Color', 'fancy-post-grid'); ?></label>
+            <label><?php esc_html_e('Background Color', 'fancy-post-grid'); ?></label>
             <input type="text" name="fpg_bg_color" value="#ffffff" class="fpg-color-field" />
         </div>
         
         <div class="form-field term-bg-image-wrap">
-            <label><?php _e('Background Image', 'fancy-post-grid'); ?></label>
+            <label><?php esc_html_e('Background Image', 'fancy-post-grid'); ?></label>
             <input type="text" name="fpg_bg_image" value="" class="fpg-image-field" />
-            <button class="button fpg-upload-image-button"><?php _e('Upload Image', 'fancy-post-grid'); ?></button>
+            <button class="button fpg-upload-image-button"><?php esc_html_e('Upload Image', 'fancy-post-grid'); ?></button>
             <div class="fpg-image-preview" style="margin-top:10px;position:relative;display:inline-block;"></div>
         </div>
         <?php
@@ -107,16 +113,16 @@ if (is_admin()) {
         $image = get_term_meta($term->term_id, 'fpg_bg_image', true);
         ?>
         <tr class="form-field term-bg-color-wrap">
-            <th scope="row"><label><?php _e('Background Color', 'fancy-post-grid'); ?></label></th>
+            <th scope="row"><label><?php esc_html_e('Background Color', 'fancy-post-grid'); ?></label></th>
             <td>
                 <input type="text" name="fpg_bg_color" value="<?php echo esc_attr($color); ?>" class="fpg-color-field" />
             </td>
         </tr>
         <tr class="form-field term-bg-image-wrap">
-            <th scope="row"><label><?php _e('Background Image', 'fancy-post-grid'); ?></label></th>
+            <th scope="row"><label><?php esc_html_e('Background Image', 'fancy-post-grid'); ?></label></th>
             <td>
                 <input type="text" name="fpg_bg_image" value="<?php echo esc_attr($image); ?>" class="fpg-image-field" />
-                <button class="button fpg-upload-image-button"><?php _e('Upload Image', 'fancy-post-grid'); ?></button>
+                <button class="button fpg-upload-image-button"><?php esc_html_e('Upload Image', 'fancy-post-grid'); ?></button>
                 <div class="fpg-image-preview" style="margin-top:10px;position:relative;display:inline-block;">
                     <?php if ($image) : ?>
                         <img src="<?php echo esc_url($image); ?>" style="max-width:150px;height:auto;" />
@@ -245,7 +251,7 @@ function fpg_featured_post_metabox_callback($post) {
     ?>
     <label>
         <input type="checkbox" name="fpg_featured_post" value="1" <?php checked($value, '1'); ?> />
-        <?php _e('Mark as Featured Post', 'fancy-post-grid'); ?>
+        <?php esc_html_e('Mark as Featured Post', 'fancy-post-grid'); ?>
     </label>
     <?php
 }
@@ -344,7 +350,7 @@ function fpg_video_link_metabox_callback($post) {
     ?>
     <p>
         <label for="fpg_video_link">
-            <?php _e('Enter Video URL (YouTube, Vimeo, MP4, etc.):', 'fancy-post-grid'); ?>
+            <?php esc_html_e('Enter Video URL (YouTube, Vimeo, MP4, etc.):', 'fancy-post-grid'); ?>
         </label>
     </p>
     <input 

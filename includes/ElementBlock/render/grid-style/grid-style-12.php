@@ -113,7 +113,7 @@ if ($query->have_posts()) { ?>
                                     }
                                 }
 
-                                echo implode('', $meta_items_output);
+                                echo wp_kses_post(implode('', $meta_items_output));
                             ?>
 
                             <?php

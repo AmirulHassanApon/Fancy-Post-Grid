@@ -127,8 +127,7 @@ if ($query->have_posts()) {
                                             $meta_items_output[] = '<div class="' . esc_attr($meta['class']) . '">' 
                                                 . $meta['icon'] . ' ' . $meta['content'] 
                                                 . '</div>';
-                                           
-
+                                
                                         }
                                     }
                                     // Only wrap the separator in a <span> if it's not empty.
