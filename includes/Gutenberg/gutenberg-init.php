@@ -146,7 +146,14 @@ function fancy_post_grid_render_callback($attributes) {
     $gridLayoutStyle = isset($attributes['gridLayoutStyle']) ? $attributes['gridLayoutStyle'] : 'style1';
     $gridColumns = isset($attributes['gridColumns']) ? absint($attributes['gridColumns']) : '';
     //Query Builder
-    $selectedCategory = isset($attributes['selectedCategory']) ? sanitize_text_field($attributes['selectedCategory']) : '';
+    
+    $selectedCategories = isset($attributes['selectedCategories']) && is_array($attributes['selectedCategories'])
+    ? array_map('absint', $attributes['selectedCategories'])
+    : [];
+    $selectedTags = isset($attributes['selectedTags']) && is_array($attributes['selectedTags'])
+    ? array_map('absint', $attributes['selectedTags'])
+    : [];
+
     $selectedTag = isset($attributes['selectedTag']) ? sanitize_text_field($attributes['selectedTag']) : '';
     $orderBy = isset($attributes['orderBy']) ? sanitize_text_field($attributes['orderBy']) : 'title';
     $postLimit = isset($attributes['postLimit']) ? absint($attributes['postLimit']) : 3;
@@ -322,15 +329,31 @@ function fancy_post_grid_render_callback($attributes) {
         'order'          => 'DESC', // Ensure ordering
     );
 
-    // Filter by category (use 'cat' for category ID)
-    if (!empty($selectedCategory) && is_numeric($selectedCategory)) {
-        $query_args['cat'] = intval($selectedCategory); 
+    
+    if ( ! empty( $selectedCategories ) ) {
+        $query_args['category__in'] = $selectedCategories;
+    }
+    if ( ! empty( $selectedTags ) ) {
+        $query_args['tag__in'] = $selectedTags;
+    }
+    // Include Posts
+    $includePosts = isset($attributes['includePosts']) ? $attributes['includePosts'] : '';
+    if ( ! empty($includePosts) ) {
+        $ids = array_filter(array_map('absint', explode(',', $includePosts)));
+        if ( ! empty($ids) ) {
+            $query_args['post__in'] = $ids;
+        }
     }
 
-    // Filter by tag (use 'tag__in' for tag IDs)
-    if (!empty($selectedTag) && is_numeric($selectedTag)) {
-        $query_args['tag__in'] = array(intval($selectedTag)); 
+    // Exclude Posts
+    $excludePosts = isset($attributes['excludePosts']) ? $attributes['excludePosts'] : '';
+    if ( ! empty($excludePosts) ) {
+        $ids = array_filter(array_map('absint', explode(',', $excludePosts)));
+        if ( ! empty($ids) ) {
+            $query_args['post__not_in'] = $ids;
+        }
     }
+
     // GRID COLUMNS
     $gridColumns1 = ($gridLayoutStyle === 'style1' && $gridColumns == null)
               ? 3 : $gridColumns; 
@@ -9335,8 +9358,12 @@ function fancy_post_slider_render_callback($attributes) {
     $sliderLayoutStyle = isset($attributes['sliderLayoutStyle']) ? $attributes['sliderLayoutStyle'] : 'style1';
     $gridColumns = isset($attributes['gridColumns']) ? absint($attributes['gridColumns']) : 3;
     //Query Builder
-    $selectedCategory = isset($attributes['selectedCategory']) ? sanitize_text_field($attributes['selectedCategory']) : '';
-    $selectedTag = isset($attributes['selectedTag']) ? sanitize_text_field($attributes['selectedTag']) : '';
+    $selectedCategories = isset($attributes['selectedCategories']) && is_array($attributes['selectedCategories'])
+    ? array_map('absint', $attributes['selectedCategories'])
+    : [];
+    $selectedTags = isset($attributes['selectedTags']) && is_array($attributes['selectedTags'])
+    ? array_map('absint', $attributes['selectedTags'])
+    : [];
     $orderBy = isset($attributes['orderBy']) ? sanitize_text_field($attributes['orderBy']) : 'title';
     $postLimit = isset($attributes['postLimit']) ? absint($attributes['postLimit']) : 9;
       
@@ -9514,17 +9541,32 @@ function fancy_post_slider_render_callback($attributes) {
         'posts_per_page' => $postLimit,
         'paged'          => $paged,
         'orderby'        => $orderBy,
+        'category__in'   => $selectedCategories, // fetch only selected categories
         'order'          => 'DESC', // Ensure ordering
     );
-
-    // Filter by category (use 'cat' for category ID)
-    if (!empty($selectedCategory) && is_numeric($selectedCategory)) {
-        $query_args['cat'] = intval($selectedCategory); 
+    
+    if ( ! empty( $selectedCategories ) ) {
+        $query_args['category__in'] = $selectedCategories;
+    }
+    if ( ! empty( $selectedTags ) ) {
+        $query_args['tag__in'] = $selectedTags;
+    }
+    // Include Posts
+    $includePosts = isset($attributes['includePosts']) ? $attributes['includePosts'] : '';
+    if ( ! empty($includePosts) ) {
+        $ids = array_filter(array_map('absint', explode(',', $includePosts)));
+        if ( ! empty($ids) ) {
+            $query_args['post__in'] = $ids;
+        }
     }
 
-    // Filter by tag (use 'tag__in' for tag IDs)
-    if (!empty($selectedTag) && is_numeric($selectedTag)) {
-        $query_args['tag__in'] = array(intval($selectedTag)); 
+    // Exclude Posts
+    $excludePosts = isset($attributes['excludePosts']) ? $attributes['excludePosts'] : '';
+    if ( ! empty($excludePosts) ) {
+        $ids = array_filter(array_map('absint', explode(',', $excludePosts)));
+        if ( ! empty($ids) ) {
+            $query_args['post__not_in'] = $ids;
+        }
     }
 
     // thumbnailSize
@@ -14923,8 +14965,12 @@ function fancy_post_list_render_callback($attributes) {
     $listLayoutStyle = isset($attributes['listLayoutStyle']) ? $attributes['listLayoutStyle'] : 'style1';
     
     //Query Builder
-    $selectedCategory = isset($attributes['selectedCategory']) ? sanitize_text_field($attributes['selectedCategory']) : '';
-    $selectedTag = isset($attributes['selectedTag']) ? sanitize_text_field($attributes['selectedTag']) : '';
+    $selectedCategories = isset($attributes['selectedCategories']) && is_array($attributes['selectedCategories'])
+    ? array_map('absint', $attributes['selectedCategories'])
+    : [];
+    $selectedTags = isset($attributes['selectedTags']) && is_array($attributes['selectedTags'])
+    ? array_map('absint', $attributes['selectedTags'])
+    : [];
     $orderBy = isset($attributes['orderBy']) ? sanitize_text_field($attributes['orderBy']) : 'title';
     $postLimit = isset($attributes['postLimit']) ? absint($attributes['postLimit']) : 3;
       
@@ -15076,14 +15122,28 @@ function fancy_post_list_render_callback($attributes) {
         'order'          => 'DESC', // Ensure ordering
     );
 
-    // Filter by category (use 'cat' for category ID)
-    if (!empty($selectedCategory) && is_numeric($selectedCategory)) {
-        $query_args['cat'] = intval($selectedCategory); 
+    if ( ! empty( $selectedCategories ) ) {
+        $query_args['category__in'] = $selectedCategories;
+    }
+    if ( ! empty( $selectedTags ) ) {
+        $query_args['tag__in'] = $selectedTags;
+    }
+    // Include Posts
+    $includePosts = isset($attributes['includePosts']) ? $attributes['includePosts'] : '';
+    if ( ! empty($includePosts) ) {
+        $ids = array_filter(array_map('absint', explode(',', $includePosts)));
+        if ( ! empty($ids) ) {
+            $query_args['post__in'] = $ids;
+        }
     }
 
-    // Filter by tag (use 'tag__in' for tag IDs)
-    if (!empty($selectedTag) && is_numeric($selectedTag)) {
-        $query_args['tag__in'] = array(intval($selectedTag)); 
+    // Exclude Posts
+    $excludePosts = isset($attributes['excludePosts']) ? $attributes['excludePosts'] : '';
+    if ( ! empty($excludePosts) ) {
+        $ids = array_filter(array_map('absint', explode(',', $excludePosts)));
+        if ( ! empty($ids) ) {
+            $query_args['post__not_in'] = $ids;
+        }
     }
     //Thumbnail
     $thumbnailSize1L = ($listLayoutStyle === 'style1' && $leftThumbnailSize == null)
@@ -23831,8 +23891,12 @@ function fancy_post_isotope_render_callback($attributes) {
     $isotopeLayoutStyle = isset($attributes['isotopeLayoutStyle']) ? $attributes['isotopeLayoutStyle'] : 'style1';
     $gridColumns = isset($attributes['gridColumns']) ? absint($attributes['gridColumns']) : 3;
     //Query Builder
-    $selectedCategory = isset($attributes['selectedCategory']) ? sanitize_text_field($attributes['selectedCategory']) : '';
-    $selectedTag = isset($attributes['selectedTag']) ? sanitize_text_field($attributes['selectedTag']) : '';
+    $selectedCategories = isset($attributes['selectedCategories']) && is_array($attributes['selectedCategories'])
+    ? array_map('absint', $attributes['selectedCategories'])
+    : [];
+    $selectedTags = isset($attributes['selectedTags']) && is_array($attributes['selectedTags'])
+    ? array_map('absint', $attributes['selectedTags'])
+    : [];
 
     $orderBy = isset($attributes['orderBy']) ? sanitize_text_field($attributes['orderBy']) : 'title';
     $postLimit = isset($attributes['postLimit']) ? absint($attributes['postLimit']) : 6;
@@ -24014,13 +24078,28 @@ function fancy_post_isotope_render_callback($attributes) {
     );
 
     // Filter by category (use 'cat' for category ID)
-    if (!empty($selectedCategory) && is_numeric($selectedCategory)) {
-        $query_args['cat'] = intval($selectedCategory); 
+    if ( ! empty( $selectedCategories ) ) {
+        $query_args['category__in'] = $selectedCategories;
+    }
+    if ( ! empty( $selectedTags ) ) {
+        $query_args['tag__in'] = $selectedTags;
+    }
+    // Include Posts
+    $includePosts = isset($attributes['includePosts']) ? $attributes['includePosts'] : '';
+    if ( ! empty($includePosts) ) {
+        $ids = array_filter(array_map('absint', explode(',', $includePosts)));
+        if ( ! empty($ids) ) {
+            $query_args['post__in'] = $ids;
+        }
     }
 
-    // Filter by tag (use 'tag__in' for tag IDs)
-    if (!empty($selectedTag) && is_numeric($selectedTag)) {
-        $query_args['tag__in'] = array(intval($selectedTag)); 
+    // Exclude Posts
+    $excludePosts = isset($attributes['excludePosts']) ? $attributes['excludePosts'] : '';
+    if ( ! empty($excludePosts) ) {
+        $ids = array_filter(array_map('absint', explode(',', $excludePosts)));
+        if ( ! empty($ids) ) {
+            $query_args['post__not_in'] = $ids;
+        }
     }
 
     $thumbnailSize1 = ($isotopeLayoutStyle === 'style1' && $thumbnailSize == null)

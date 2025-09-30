@@ -9,9 +9,9 @@ function fancy_post_grid_custom_post_type_pro() {
     $labels = array(
         'name'               => esc_html__( 'Fancy Post Grid', 'fancy-post-grid' ),
         'singular_name'      => esc_html__( 'The Post Grid', 'fancy-post-grid' ),
-        'add_new'            => esc_html__( 'Add New Grid', 'fancy-post-grid' ),
-        'all_items'          => esc_html__( 'All Grids', 'fancy-post-grid' ),
-        'add_new_item'       => esc_html__( 'Add New Post Grid', 'fancy-post-grid' ),
+        'add_new'            => esc_html__( 'Add New Shortcode Grid', 'fancy-post-grid' ),
+        'all_items'          => esc_html__( 'All Shortcode Grids', 'fancy-post-grid' ),
+        'add_new_item'       => esc_html__( 'Add Shortcode Grid', 'fancy-post-grid' ),
         'edit_item'          => esc_html__( 'Edit Post Grid', 'fancy-post-grid' ),
         'new_item'           => esc_html__( 'New Post Grid', 'fancy-post-grid' ),
         'view_item'          => esc_html__( 'View Post Grid', 'fancy-post-grid' ),

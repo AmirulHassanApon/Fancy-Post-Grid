@@ -4,24 +4,32 @@ function fancy_post_grid_render_get_help_page() {
     <div class="fpg-help-wrapper">
         
         <!-- Welcome Box -->
+
+        
         <div class="fpg-help-section fpg-document-box">
             <div class="fpg-box-content">
                 <div class="fpg-box-title-wrapper">
                     <i class="dashicons dashicons-layout"></i>
                     <h3 class="fpg-box-title"><?php echo esc_html__( 'Thank you for installing Fancy Post Grid', 'fancy-post-grid' ); ?></h3>
                 </div>
-
-                <h3><?php echo esc_html__( 'Plugin Demo', 'fancy-post-grid' ); ?></h3>
-                <iframe class="fpg-iframe" width="800" height="450" src="https://www.youtube.com/embed/ZRpv49BUG_k?si=XHPGsG_mGPHcVWtK" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-
-                <h3><?php echo esc_html__( 'Shortcode Tutorial', 'fancy-post-grid' ); ?></h3>
-                <iframe class="fpg-iframe" width="800" height="450" src="https://www.youtube.com/embed/SclxnsTzWcc?si=Smp74B2AsK32nAbx" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-
-                <h3><?php echo esc_html__( 'Elementor Tutorial', 'fancy-post-grid' ); ?></h3>
-                <iframe class="fpg-iframe" width="800" height="450" src="https://www.youtube.com/embed/vjX_c0yOcYI?si=m_UXm7ShIG9qhRne" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-
-                <h3><?php echo esc_html__( 'Gutenberg Tutorial', 'fancy-post-grid' ); ?></h3>
-                <iframe class="fpg-iframe" width="800" height="450" src="https://www.youtube.com/embed/RwMDdesJvJY?si=FDw0TtAcj4HFjnVR" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                <div class="fpg-video-section">
+                    <div class="fpg-video-card">
+                        <h3><?php echo esc_html__( 'Plugin Demo', 'fancy-post-grid' ); ?></h3>
+                        <iframe class="fpg-iframe" width="800" height="450" src="https://www.youtube.com/embed/ZRpv49BUG_k?si=XHPGsG_mGPHcVWtK" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    </div>
+                    <div class="fpg-video-card">
+                        <h3><?php echo esc_html__( 'Shortcode Tutorial', 'fancy-post-grid' ); ?></h3>
+                        <iframe class="fpg-iframe" width="800" height="450" src="https://www.youtube.com/embed/SclxnsTzWcc?si=Smp74B2AsK32nAbx" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    </div>
+                    <div class="fpg-video-card">  
+                        <h3><?php echo esc_html__( 'Elementor Tutorial', 'fancy-post-grid' ); ?></h3>
+                        <iframe class="fpg-iframe" width="800" height="450" src="https://www.youtube.com/embed/vjX_c0yOcYI?si=m_UXm7ShIG9qhRne" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    </div>
+                    <div class="fpg-video-card">
+                        <h3><?php echo esc_html__( 'Gutenberg Tutorial', 'fancy-post-grid' ); ?></h3>
+                        <iframe class="fpg-iframe" width="800" height="450" src="https://www.youtube.com/embed/RwMDdesJvJY?si=FDw0TtAcj4HFjnVR" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    </div>
+                </div>
             </div>
         </div>
 

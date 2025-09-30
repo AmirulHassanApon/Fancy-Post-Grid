@@ -16,8 +16,10 @@
             gridColumns: { type: 'number', default: 3 },
             sliderLayoutStyle: { type: 'string', default: 'style1' },
             // Query Builder
-            selectedCategory: { type: 'string', default: '' },
-            selectedTag: { type: 'string', default: '' },
+            selectedCategories: { type: 'array', default: [] },
+            selectedTags: { type: 'array', default: [] },
+            includePosts: { type: 'string', default: '' },
+            excludePosts: { type: 'string', default: '' },
             orderBy: { type: 'string', default: 'title' },       
             postLimit: { type: 'number', default: 9 },           
             // Pagination settings
@@ -186,7 +188,7 @@
         edit: function ({ attributes, setAttributes }) {
             const { 
                 gridColumns,sliderLayoutStyle
-                ,selectedCategory, selectedTag,orderBy, postLimit,enablePagination,enableArrow,enableDynamicBullets,enableKeyboard,enableLoop,enableFreeMode,enableAutoPlay,paginationClickable,autoPlaySpeed,paginationType,
+                ,selectedCategories, selectedTags,excludePosts,includePosts,orderBy, postLimit,enablePagination,enableArrow,enableDynamicBullets,enableKeyboard,enableLoop,enableFreeMode,enableAutoPlay,paginationClickable,autoPlaySpeed,paginationType,
                 postLinkTarget,thumbnailLink,postLinkType,
 
                 showPostTitle,showThumbnail,showPostExcerpt,showReadMoreButton,showMetaData,showPostDate
@@ -349,19 +351,39 @@
 
             // Fetch posts dynamically based on the current page
             const { posts } = useSelect((select) => {
+                const includeIDs = includePosts
+                    ? includePosts.split(',').map((id) => parseInt(id.trim(), 10)).filter((id) => !isNaN(id))
+                    : undefined;
+
+                const excludeIDs = excludePosts
+                    ? excludePosts.split(',').map((id) => parseInt(id.trim(), 10)).filter((id) => !isNaN(id))
+                    : undefined;
                 const query = {
                     per_page: gridColumns,
                     _embed: true,
                     orderby: orderBy, // Dynamic sorting field (e.g., 'date', 'title', etc.)
-                    categories: selectedCategory ? selectedCategory : undefined, // Apply category filter if selected
-                    tags: selectedTag ? selectedTag : undefined, // Apply tag filter if selected
+                    
                 };
+                // Add filters only if they have values
+                if (selectedCategories.length) {
+                    query.categories = selectedCategories;
+                }
+                if (selectedTags.length) {
+                    query.tags = selectedTags;
+                }
+                if (includeIDs && includeIDs.length) {
+                    query.include = includeIDs;
+                }
+                if (excludeIDs && excludeIDs.length) {
+                    query.exclude = excludeIDs;
+                }
                 // Fetch posts
                 const postsData = select('core').getEntityRecords('postType', postType, query);
                 return {
                     posts: postsData,
                 };
-            }, [postType, gridColumns, selectedCategory, selectedTag, orderBy]);
+            }, [postType, gridColumns, selectedCategories, selectedTags,excludePosts,includePosts, orderBy]);
+            
 
             const swiperOptions = {
                 spaceBetween: attributes.itemGap,
@@ -2993,19 +3015,118 @@
 
                                     
                                     // Select Category
-                                    wp.element.createElement(SelectControl, {
-                                        label: __('Select Category', 'fancy-post-grid'),
-                                        value: selectedCategory || '', // Default to '' if selectedCategory is not set
-                                        options: [{ label: __('All Categories', 'fancy-post-grid'), value: '' }, ...categories],
-                                        onChange: (value) => setAttributes({ selectedCategory: value }) // Update selectedCategory value
+                                    wp.element.createElement(
+                                      'div',
+                                        { style: { marginBottom: '15px' } },
+                                        wp.element.createElement(
+                                            'label',
+                                            {
+                                                htmlFor: 'fpg-categories',
+                                                style: { display: 'block', marginBottom: '5px', fontWeight: 'bold' }
+                                            },
+                                            __('Select Categories', 'fancy-post-grid')
+                                        ),
+                                        wp.element.createElement(
+                                            'select',
+                                            {
+                                                id: 'fpg-categories',
+                                                multiple: true,
+                                                value: selectedCategories || [],
+                                                onChange: (event) => {
+                                                    const options = Array.from(event.target.options);
+                                                    const selected = options
+                                                        .filter((option) => option.selected)
+                                                        .map((option) => parseInt(option.value, 10));
+
+                                                    // If "All Categories" (value 0) is selected → set empty array = show all
+                                                    if (selected.includes(0)) {
+                                                        setAttributes({ selectedCategories: [] });
+                                                    } else {
+                                                        setAttributes({ selectedCategories: selected });
+                                                    }
+                                                },
+                                                style: { width: '100%', minHeight: '120px' },
+                                            },
+                                            [
+                                                wp.element.createElement(
+                                                    'option',
+                                                    { key: 0, value: 0 },
+                                                    __('All Categories', 'fancy-post-grid')
+                                                ),
+                                                ...categories.map((cat) =>
+                                                    wp.element.createElement(
+                                                        'option',
+                                                        { key: cat.value, value: cat.value },
+                                                        cat.label
+                                                    )
+                                                )
+                                            ]
+                                        )
+                                    ),
+                                  
+                                    // Select Tag
+                                    wp.element.createElement(
+                                      'div',
+                                      { style: { marginBottom: '15px' } },
+                                        wp.element.createElement(
+                                            'label',
+                                            {
+                                                htmlFor: 'fpg-tags',
+                                                style: { display: 'block', marginBottom: '5px', fontWeight: 'bold' }
+                                            },
+                                            __('Select Tags', 'fancy-post-grid')
+                                        ),
+                                        wp.element.createElement(
+                                            'select',
+                                            {
+                                                id: 'fpg-tags',
+                                                multiple: true,
+                                                value: selectedTags || [],
+                                                onChange: (event) => {
+                                                    const options = Array.from(event.target.options);
+                                                    const selected = options
+                                                        .filter((option) => option.selected)
+                                                        .map((option) => parseInt(option.value, 10));
+
+                                                    // If "All Tags" (value 0) is selected → reset to empty array
+                                                    if (selected.includes(0)) {
+                                                        setAttributes({ selectedTags: [] });
+                                                    } else {
+                                                        setAttributes({ selectedTags: selected });
+                                                    }
+                                                },
+                                                style: { width: '100%', minHeight: '120px' },
+                                            },
+                                            [
+                                                wp.element.createElement(
+                                                    'option',
+                                                    { key: 0, value: 0 },
+                                                    __('All Tags', 'fancy-post-grid')
+                                                ),
+                                                ...tags.map((tag) =>
+                                                    wp.element.createElement(
+                                                        'option',
+                                                        { key: tag.value, value: tag.value },
+                                                        tag.label
+                                                    )
+                                                )
+                                            ]
+                                        )
+                                    ),
+                                    // Include Posts field
+                                    wp.element.createElement(TextControl, {
+                                        label: __('Include Posts (IDs)', 'fancy-post-grid'),
+                                        help: __('Enter post IDs separated by commas', 'fancy-post-grid'),
+                                        value: includePosts || '',
+                                        onChange: (value) => setAttributes({ includePosts: value })
                                     }),
 
-                                    // Select Tag
-                                    wp.element.createElement(SelectControl, {
-                                        label: __('Select Tag', 'fancy-post-grid'),
-                                        value: selectedTag || '',
-                                        options: [{ label: __('All Tags', 'fancy-post-grid'), value: '' }, ...tags],
-                                        onChange: (value) => setAttributes({ selectedTag: value })
+                                    // Exclude Posts field
+                                    wp.element.createElement(TextControl, {
+                                        label: __('Exclude Posts (IDs)', 'fancy-post-grid'),
+                                        help: __('Enter post IDs separated by commas', 'fancy-post-grid'),
+                                        value: excludePosts || '',
+                                        onChange: (value) => setAttributes({ excludePosts: value })
                                     }),
                                     
                                     // Create SelectControl for selecting orderBy field (sorting field)
