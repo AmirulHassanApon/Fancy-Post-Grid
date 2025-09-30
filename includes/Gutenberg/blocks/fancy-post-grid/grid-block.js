@@ -17,7 +17,7 @@
             gridColumns: { type: 'number'},
             gridLayoutStyle: { type: 'string', default: 'style1' },
             // Query Builder
-            selectedCategory: { type: 'string', default: '' },
+            
             selectedCategories: { type: 'array', default: [] },
             selectedTags: { type: 'array', default: [] },
             includePosts: { type: 'string', default: '' },
